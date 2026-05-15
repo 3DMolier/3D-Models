@@ -8,7 +8,7 @@
 <link rel="canonical" href="https://3dmolier.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -47,7 +47,7 @@ tailwind.config = {
 </script>
 <style>
   * { box-sizing: border-box; }
-  body { background: #07090F; font-family: 'Inter', sans-serif; color: #EDF2FF; }
+  body { background: #07090F; font-family: 'Open Sans', sans-serif; color: #EDF2FF; }
 
   /* Grain texture overlay */
   body::before {
@@ -105,7 +105,7 @@ tailwind.config = {
   .img-placeholder {
     width: 100%; height: 100%;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 10px; font-family: 'Inter', sans-serif;
+    gap: 10px; font-family: 'Open Sans', sans-serif;
   }
   .img-placeholder span { font-size: 11px; font-weight: 500; letter-spacing: 0.04em; opacity: 0.7; text-align: center; padding: 0 12px; }
 
@@ -113,7 +113,7 @@ tailwind.config = {
   .btn-primary {
     display: inline-flex; align-items: center; gap: 8px;
     background: #00E5C4; color: #07090F;
-    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px;
+    font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 14px;
     padding: 11px 24px; border-radius: 8px;
     transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
     border: none; cursor: pointer; text-decoration: none;
@@ -126,7 +126,7 @@ tailwind.config = {
   .btn-ghost {
     display: inline-flex; align-items: center; gap: 8px;
     background: transparent; color: #EDF2FF;
-    font-family: 'Inter', sans-serif; font-weight: 500; font-size: 14px;
+    font-family: 'Open Sans', sans-serif; font-weight: 500; font-size: 14px;
     padding: 10px 24px; border-radius: 8px;
     border: 1px solid #1E2B44; cursor: pointer; text-decoration: none;
     transition: border-color 0.2s, background 0.2s, transform 0.15s;
@@ -138,7 +138,7 @@ tailwind.config = {
   .btn-ts {
     display: inline-flex; align-items: center; gap: 8px;
     background: rgba(0,229,196,0.1); color: #00E5C4;
-    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px;
+    font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 13px;
     padding: 9px 18px; border-radius: 7px;
     border: 1px solid rgba(0,229,196,0.25); cursor: pointer; text-decoration: none;
     transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
@@ -151,7 +151,7 @@ tailwind.config = {
   /* Search bar */
   .search-input {
     width: 100%; background: #0E1220; border: 1px solid #1E2B44; color: #EDF2FF;
-    font-family: 'Inter', sans-serif; font-size: 16px;
+    font-family: 'Open Sans', sans-serif; font-size: 16px;
     padding: 16px 56px 16px 52px; border-radius: 12px;
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
@@ -214,7 +214,7 @@ tailwind.config = {
 
   /* Stats number */
   .stat-num {
-    font-family: 'Syne', sans-serif; font-size: 42px; font-weight: 800;
+    font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 800;
     color: #EDF2FF; letter-spacing: -0.04em; line-height: 1;
   }
 
@@ -258,6 +258,7 @@ tailwind.config = {
   .delay-2 { animation-delay: 0.2s; }
   .delay-3 { animation-delay: 0.3s; }
 </style>
+<link rel="icon" href="/3D-Models/favicon.svg" type="image/svg+xml">
 </head>
 <body class="relative min-h-screen">
 
@@ -270,7 +271,7 @@ tailwind.config = {
       <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#00E5C4,#0099FF);display:flex;align-items:center;justify-content:center;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#07090F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
       </div>
-      <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.02em;color:#EDF2FF;">3D Molier</span>
+      <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:17px;letter-spacing:-0.02em;color:#EDF2FF;">3D Molier</span>
     </a>
 
     <!-- Nav links -->
@@ -308,7 +309,7 @@ tailwind.config = {
       <span style="font-size:12px;font-weight:600;color:#00E5C4;letter-spacing:0.06em;">88,000+ Professional 3D Models</span>
     </div>
 
-    <h1 style="font-family:'Syne',sans-serif;font-size:clamp(38px,5.5vw,64px);font-weight:800;letter-spacing:-0.035em;line-height:1.05;margin-bottom:20px;color:#EDF2FF;">
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(38px,5.5vw,64px);font-weight:800;letter-spacing:-0.035em;line-height:1.05;margin-bottom:20px;color:#EDF2FF;">
       Searchable 3D Model<br>
       <span style="background:linear-gradient(90deg,#00E5C4,#0099FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Catalog</span>
       <span style="color:#EDF2FF;"> by 3D Molier</span>
@@ -353,27 +354,19 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <!-- ═══════════════════════════════════════ STATS ════════════════════════════ -->
-<section style="padding: 32px 24px; border-top: 1px solid #1E2B44; border-bottom: 1px solid #1E2B44; background: rgba(14,18,32,0.5);">
-  <div class="max-w-7xl mx-auto" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;">
-    <div style="text-align:center;padding:16px;border-right:1px solid #1E2B44;">
+<section style="padding:24px;border-top:1px solid #1E2B44;border-bottom:1px solid #1E2B44;background:rgba(14,18,32,0.5);">
+  <div class="max-w-7xl mx-auto" style="display:flex;justify-content:center;">
+    <div style="text-align:center;padding:12px 32px;">
       <div class="stat-num">88K+</div>
-      <div style="font-size:13px;color:#7A8DB0;margin-top:4px;font-weight:500;">3D Models</div>
-    </div>
-    <div style="text-align:center;padding:16px;border-right:1px solid #1E2B44;">
-      <div class="stat-num">15</div>
-      <div style="font-size:13px;color:#7A8DB0;margin-top:4px;font-weight:500;">Categories</div>
-    </div>
-    <div style="text-align:center;padding:16px;border-right:1px solid #1E2B44;">
-      <div class="stat-num">42K+</div>
-      <div style="font-size:13px;color:#7A8DB0;margin-top:4px;font-weight:500;">Units Sold</div>
-    </div>
-    <div style="text-align:center;padding:16px;">
-      <div class="stat-num">918</div>
-      <div style="font-size:13px;color:#7A8DB0;margin-top:4px;font-weight:500;">CheckMate Certified</div>
+      <div style="font-size:13px;color:#7A8DB0;margin-top:4px;font-weight:500;">3D Models on TurboSquid</div>
     </div>
   </div>
 </section>
+
+
 
 <!-- ═══════════════════════════════════════ CATEGORIES ═══════════════════════ -->
 <section style="padding: 72px 24px;">
@@ -381,7 +374,7 @@ tailwind.config = {
     <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:12px;">
       <div>
         <div class="section-label" style="margin-bottom:8px;">Browse by Category</div>
-        <h2 style="font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.1;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.1;">
           Top Commercial Categories
         </h2>
       </div>
@@ -389,147 +382,102 @@ tailwind.config = {
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;">
-
-      <!-- Vehicles -->
-      <a href="/3D-Models/categories/vehicles/" class="cat-card card-glow">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div class="cat-icon">🚗</div>
-          <div>
-            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#EDF2FF;letter-spacing:-0.01em;">Vehicles</div>
-            <div style="font-size:12px;color:#7A8DB0;margin-top:2px;">7,133 models</div>
-          </div>
+      <a href="/3D-Models/categories/vehicles/" style="display:block;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);background:#0D1117;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 40px rgba(0,0,0,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:relative;height:160px;overflow:hidden;background:linear-gradient(135deg,#4F9EFF22,#4F9EFF08);">
+          <img src="https://static.turbosquid.com/Preview/001214/116/Tesla-Model-3_D_Main.jpg" alt="Vehicles" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(7,9,15,0.75) 0%,transparent 55%);"></div>
+          <span style="position:absolute;bottom:10px;left:12px;font-size:26px;line-height:1;">🚗</span>
+          <span style="position:absolute;top:10px;right:10px;background:#4F9EFF22;border:1px solid #4F9EFF44;color:#4F9EFF;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:0.04em;">7,133 models</span>
         </div>
-        <p style="font-size:13px;color:#7A8DB0;line-height:1.6;">Cars, trucks, motorcycles, buses and specialty vehicles for film, games and advertising.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;">
-          <span class="chip" style="font-size:11px;padding:3px 9px;">Cars</span>
-          <span class="chip" style="font-size:11px;padding:3px 9px;">Trucks</span>
-          <span class="chip" style="font-size:11px;padding:3px 9px;">Motorcycles</span>
-        </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:auto;">
-          <span style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</span>
+        <div style="padding:14px 16px 16px;">
+          <div style="font-size:15px;font-weight:700;color:#EDF2FF;margin-bottom:8px;">Vehicles</div>
+          <div style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</div>
         </div>
       </a>
-
-      <!-- Military Vehicles -->
-      <a href="/3D-Models/categories/military-vehicles/" class="cat-card card-glow">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div class="cat-icon">🪖</div>
-          <div>
-            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#EDF2FF;letter-spacing:-0.01em;">Military Vehicles</div>
-            <div style="font-size:12px;color:#7A8DB0;margin-top:2px;">1,727 models</div>
-          </div>
+      <a href="/3D-Models/categories/aircraft/" style="display:block;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);background:#0D1117;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 40px rgba(0,0,0,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:relative;height:160px;overflow:hidden;background:linear-gradient(135deg,#9F7AEA22,#9F7AEA08);">
+          <img src="https://static.turbosquid.com/Preview/001230/754/Airbus-A320-Generic_D_Main.jpg" alt="Aircraft" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(7,9,15,0.75) 0%,transparent 55%);"></div>
+          <span style="position:absolute;bottom:10px;left:12px;font-size:26px;line-height:1;">✈️</span>
+          <span style="position:absolute;top:10px;right:10px;background:#9F7AEA22;border:1px solid #9F7AEA44;color:#9F7AEA;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:0.04em;">3,871 models</span>
         </div>
-        <p style="font-size:13px;color:#7A8DB0;line-height:1.6;">Tanks, APCs, warplanes, warships and military equipment for simulation and games.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;">
-          <span class="chip" style="font-size:11px;padding:3px 9px;">Tanks</span>
-          <span class="chip" style="font-size:11px;padding:3px 9px;">Aircraft</span>
-          <span class="chip" style="font-size:11px;padding:3px 9px;">Ships</span>
-        </div>
-        <div style="margin-top:auto;">
-          <span style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</span>
+        <div style="padding:14px 16px 16px;">
+          <div style="font-size:15px;font-weight:700;color:#EDF2FF;margin-bottom:8px;">Aircraft</div>
+          <div style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</div>
         </div>
       </a>
-
-      <!-- Aircraft -->
-      <a href="/3D-Models/categories/aircraft/" class="cat-card card-glow">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div class="cat-icon">✈️</div>
-          <div>
-            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#EDF2FF;letter-spacing:-0.01em;">Aircraft</div>
-            <div style="font-size:12px;color:#7A8DB0;margin-top:2px;">3,871 models</div>
-          </div>
+      <a href="/3D-Models/categories/military-vehicles/" style="display:block;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);background:#0D1117;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 40px rgba(0,0,0,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:relative;height:160px;overflow:hidden;background:linear-gradient(135deg,#4ADE8022,#4ADE8008);">
+          <img src="https://static.turbosquid.com/Preview/001085/902/Sikorsky-Uh-60-Black-Hawk-Us-Military-Utility-Helicopter_D_Main.jpg" alt="Military Vehicles" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(7,9,15,0.75) 0%,transparent 55%);"></div>
+          <span style="position:absolute;bottom:10px;left:12px;font-size:26px;line-height:1;">🪖</span>
+          <span style="position:absolute;top:10px;right:10px;background:#4ADE8022;border:1px solid #4ADE8044;color:#4ADE80;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:0.04em;">1,727 models</span>
         </div>
-        <p style="font-size:13px;color:#7A8DB0;line-height:1.6;">Airliners, helicopters, private jets and drones for aerospace visualization and film.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;">
-          <span class="chip" style="font-size:11px;padding:3px 9px;">Airliners</span>
-          <span class="chip" style="font-size:11px;padding:3px 9px;">Helicopters</span>
-          <span class="chip" style="font-size:11px;padding:3px 9px;">Drones</span>
-        </div>
-        <div style="margin-top:auto;">
-          <span style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</span>
+        <div style="padding:14px 16px 16px;">
+          <div style="font-size:15px;font-weight:700;color:#EDF2FF;margin-bottom:8px;">Military Vehicles</div>
+          <div style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</div>
         </div>
       </a>
-
-      <!-- Ships -->
-      <a href="/3D-Models/categories/ships/" class="cat-card card-glow">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div class="cat-icon">🚢</div>
-          <div>
-            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#EDF2FF;letter-spacing:-0.01em;">Ships</div>
-            <div style="font-size:12px;color:#7A8DB0;margin-top:2px;">983 models</div>
-          </div>
+      <a href="/3D-Models/categories/ships/" style="display:block;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);background:#0D1117;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 40px rgba(0,0,0,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:relative;height:160px;overflow:hidden;background:linear-gradient(135deg,#38BDF822,#38BDF808);">
+          <img src="https://static.turbosquid.com/Preview/001357/949/Qatar-Traditional-Boat_D_Main.jpg" alt="Ships" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(7,9,15,0.75) 0%,transparent 55%);"></div>
+          <span style="position:absolute;bottom:10px;left:12px;font-size:26px;line-height:1;">⚓</span>
+          <span style="position:absolute;top:10px;right:10px;background:#38BDF822;border:1px solid #38BDF844;color:#38BDF8;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:0.04em;">983 models</span>
         </div>
-        <p style="font-size:13px;color:#7A8DB0;line-height:1.6;">Yachts, cargo ships, cruise liners and boats for film production and simulation.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;">
-          <span class="chip" style="font-size:11px;padding:3px 9px;">Yachts</span>
-          <span class="chip" style="font-size:11px;padding:3px 9px;">Cargo</span>
-          <span class="chip" style="font-size:11px;padding:3px 9px;">Cruise</span>
-        </div>
-        <div style="margin-top:auto;">
-          <span style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</span>
+        <div style="padding:14px 16px 16px;">
+          <div style="font-size:15px;font-weight:700;color:#EDF2FF;margin-bottom:8px;">Ships</div>
+          <div style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</div>
         </div>
       </a>
-
-      <!-- Medical -->
-      <a href="/3D-Models/categories/medical-3d-models/" class="cat-card card-glow">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div class="cat-icon">🏥</div>
-          <div>
-            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#EDF2FF;letter-spacing:-0.01em;">Medical</div>
-            <div style="font-size:12px;color:#7A8DB0;margin-top:2px;">2,125 models</div>
-          </div>
+      <a href="/3D-Models/categories/medical-3d-models/" style="display:block;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);background:#0D1117;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 40px rgba(0,0,0,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:relative;height:160px;overflow:hidden;background:linear-gradient(135deg,#00E5C422,#00E5C408);">
+          <img src="https://static.turbosquid.com/Preview/001467/539/Male-Full-Body-Anatomy-And-Skin_D_Main.jpg" alt="Medical" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(7,9,15,0.75) 0%,transparent 55%);"></div>
+          <span style="position:absolute;bottom:10px;left:12px;font-size:26px;line-height:1;">🧬</span>
+          <span style="position:absolute;top:10px;right:10px;background:#00E5C422;border:1px solid #00E5C444;color:#00E5C4;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:0.04em;">2,125 models</span>
         </div>
-        <p style="font-size:13px;color:#7A8DB0;line-height:1.6;">Human anatomy, surgical equipment and healthcare models for medical visualization.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;">
-          <span class="chip" style="font-size:11px;padding:3px 9px;">Anatomy</span>
-          <span class="chip" style="font-size:11px;padding:3px 9px;">Surgical</span>
-          <span class="chip" style="font-size:11px;padding:3px 9px;">Equipment</span>
-        </div>
-        <div style="margin-top:auto;">
-          <span style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</span>
+        <div style="padding:14px 16px 16px;">
+          <div style="font-size:15px;font-weight:700;color:#EDF2FF;margin-bottom:8px;">Medical</div>
+          <div style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</div>
         </div>
       </a>
-
-      <!-- Industrial Equipment -->
-      <a href="/3D-Models/categories/industrial-equipment/" class="cat-card card-glow">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div class="cat-icon">⚙️</div>
-          <div>
-            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#EDF2FF;letter-spacing:-0.01em;">Industrial</div>
-            <div style="font-size:12px;color:#7A8DB0;margin-top:2px;">1,403 models</div>
-          </div>
+      <a href="/3D-Models/categories/industrial-equipment/" style="display:block;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);background:#0D1117;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 40px rgba(0,0,0,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:relative;height:160px;overflow:hidden;background:linear-gradient(135deg,#10B98122,#10B98108);">
+          <img src="https://static.turbosquid.com/Preview/000955/965/20-Ft-Iso-Container-White_D_Main.jpg" alt="Industrial Equipment" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(7,9,15,0.75) 0%,transparent 55%);"></div>
+          <span style="position:absolute;bottom:10px;left:12px;font-size:26px;line-height:1;">⚙️</span>
+          <span style="position:absolute;top:10px;right:10px;background:#10B98122;border:1px solid #10B98144;color:#10B981;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:0.04em;">1,403 models</span>
         </div>
-        <p style="font-size:13px;color:#7A8DB0;line-height:1.6;">Machinery, robot arms, HVAC systems and industrial equipment for hardware visualization.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;">
-          <span class="chip" style="font-size:11px;padding:3px 9px;">Machinery</span>
-          <span class="chip" style="font-size:11px;padding:3px 9px;">Robots</span>
-          <span class="chip" style="font-size:11px;padding:3px 9px;">HVAC</span>
-        </div>
-        <div style="margin-top:auto;">
-          <span style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</span>
+        <div style="padding:14px 16px 16px;">
+          <div style="font-size:15px;font-weight:700;color:#EDF2FF;margin-bottom:8px;">Industrial Equipment</div>
+          <div style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</div>
         </div>
       </a>
-
-      <!-- Architecture -->
-      <a href="/3D-Models/categories/architecture-landmarks/" class="cat-card card-glow">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div class="cat-icon">🏛️</div>
-          <div>
-            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#EDF2FF;letter-spacing:-0.01em;">Architecture</div>
-            <div style="font-size:12px;color:#7A8DB0;margin-top:2px;">2,317 models</div>
-          </div>
+      <a href="/3D-Models/categories/architecture-landmarks/" style="display:block;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);background:#0D1117;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 40px rgba(0,0,0,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:relative;height:160px;overflow:hidden;background:linear-gradient(135deg,#F59E0B22,#F59E0B08);">
+          <img src="https://static.turbosquid.com/Preview/001625/177/Eiffel-Tower_D_Main.jpg" alt="Architecture" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(7,9,15,0.75) 0%,transparent 55%);"></div>
+          <span style="position:absolute;bottom:10px;left:12px;font-size:26px;line-height:1;">🏛️</span>
+          <span style="position:absolute;top:10px;right:10px;background:#F59E0B22;border:1px solid #F59E0B44;color:#F59E0B;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:0.04em;">892 models</span>
         </div>
-        <p style="font-size:13px;color:#7A8DB0;line-height:1.6;">Landmarks, buildings, interiors and architectural structures for visualization.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;">
-          <span class="chip" style="font-size:11px;padding:3px 9px;">Landmarks</span>
-          <span class="chip" style="font-size:11px;padding:3px 9px;">Interiors</span>
-          <span class="chip" style="font-size:11px;padding:3px 9px;">Buildings</span>
-        </div>
-        <div style="margin-top:auto;">
-          <span style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</span>
+        <div style="padding:14px 16px 16px;">
+          <div style="font-size:15px;font-weight:700;color:#EDF2FF;margin-bottom:8px;">Architecture</div>
+          <div style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</div>
         </div>
       </a>
-
+      <a href="/3D-Models/categories/characters-people/" style="display:block;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);background:#0D1117;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 16px 40px rgba(0,0,0,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:relative;height:160px;overflow:hidden;background:linear-gradient(135deg,#8B5CF622,#8B5CF608);">
+          <img src="https://static.turbosquid.com/Preview/001103/552/Man-Hands-2-Rigged-For-Cinema-4d_D_Main.jpg" alt="Characters & People" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(7,9,15,0.75) 0%,transparent 55%);"></div>
+          <span style="position:absolute;bottom:10px;left:12px;font-size:26px;line-height:1;">👤</span>
+          <span style="position:absolute;top:10px;right:10px;background:#8B5CF622;border:1px solid #8B5CF644;color:#8B5CF6;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:0.04em;">1,241 models</span>
+        </div>
+        <div style="padding:14px 16px 16px;">
+          <div style="font-size:15px;font-weight:700;color:#EDF2FF;margin-bottom:8px;">Characters & People</div>
+          <div style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</div>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -540,7 +488,7 @@ tailwind.config = {
     <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:12px;">
       <div>
         <div class="section-label" style="margin-bottom:8px;">Best Sellers</div>
-        <h2 style="font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.1;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.1;">
           Top Rated 3D Models
         </h2>
       </div>
@@ -561,7 +509,7 @@ tailwind.config = {
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Railroad Amtrak Passenger Car 2</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Railroad Amtrak Passenger Car 2</h3>
             <span class="cert-badge">✓ CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
@@ -587,7 +535,7 @@ tailwind.config = {
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Airbus A400M Atlas Military Transport Rigged</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Airbus A400M Atlas Military Transport Rigged</h3>
             <span class="cert-badge">✓ CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
@@ -613,7 +561,7 @@ tailwind.config = {
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Sigma Class Indonesian Frigate</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Sigma Class Indonesian Frigate</h3>
             <span class="cert-badge">✓ CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
@@ -639,7 +587,7 @@ tailwind.config = {
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Viking Ship Dragon Head</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Viking Ship Dragon Head</h3>
             <span class="cert-badge">✓ CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
@@ -665,7 +613,7 @@ tailwind.config = {
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Boiler Suit Coverall with Safety Helmet</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Boiler Suit Coverall with Safety Helmet</h3>
             <span class="cert-badge">✓ CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
@@ -691,7 +639,7 @@ tailwind.config = {
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Male Pelvis Skeleton</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Male Pelvis Skeleton</h3>
             <span class="cert-badge">✓ CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
@@ -717,7 +665,7 @@ tailwind.config = {
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Shanghai Tower China</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Shanghai Tower China</h3>
             <span class="cert-badge">✓ CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
@@ -743,7 +691,7 @@ tailwind.config = {
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Golden Chinese Dragon 3D Model</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Golden Chinese Dragon 3D Model</h3>
             <span class="cert-badge">✓ CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
@@ -766,7 +714,7 @@ tailwind.config = {
   <div class="max-w-7xl mx-auto">
     <div style="margin-bottom:40px;">
       <div class="section-label" style="margin-bottom:8px;">Who Uses These Models</div>
-      <h2 style="font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.1;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.1;">
         High-Value Industries
       </h2>
     </div>
@@ -775,42 +723,42 @@ tailwind.config = {
       <!-- Industry chips — large format -->
       <a href="/industries/aerospace/" style="text-decoration:none;background:#0E1220;border:1px solid #1E2B44;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,196,0.35)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.borderColor='#1E2B44';this.style.transform='';this.style.boxShadow=''">
         <span style="font-size:22px;">🚀</span>
-        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#EDF2FF;">Aerospace</span>
+        <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:14px;color:#EDF2FF;">Aerospace</span>
         <span style="font-size:12px;color:#7A8DB0;">3,871 models</span>
       </a>
       <a href="/industries/military-defense/" style="text-decoration:none;background:#0E1220;border:1px solid #1E2B44;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,196,0.35)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.borderColor='#1E2B44';this.style.transform='';this.style.boxShadow=''">
         <span style="font-size:22px;">🛡️</span>
-        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#EDF2FF;">Military / Defense</span>
+        <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:14px;color:#EDF2FF;">Military / Defense</span>
         <span style="font-size:12px;color:#7A8DB0;">1,727 models</span>
       </a>
       <a href="/industries/medical/" style="text-decoration:none;background:#0E1220;border:1px solid #1E2B44;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,196,0.35)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.borderColor='#1E2B44';this.style.transform='';this.style.boxShadow=''">
         <span style="font-size:22px;">🏥</span>
-        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#EDF2FF;">Medical</span>
+        <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:14px;color:#EDF2FF;">Medical</span>
         <span style="font-size:12px;color:#7A8DB0;">2,125 models</span>
       </a>
       <a href="/industries/game-development/" style="text-decoration:none;background:#0E1220;border:1px solid #1E2B44;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,196,0.35)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.borderColor='#1E2B44';this.style.transform='';this.style.boxShadow=''">
         <span style="font-size:22px;">🎮</span>
-        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#EDF2FF;">Game Development</span>
+        <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:14px;color:#EDF2FF;">Game Development</span>
         <span style="font-size:12px;color:#7A8DB0;">16,031 models</span>
       </a>
       <a href="/industries/film-video-production/" style="text-decoration:none;background:#0E1220;border:1px solid #1E2B44;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,196,0.35)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.borderColor='#1E2B44';this.style.transform='';this.style.boxShadow=''">
         <span style="font-size:22px;">🎬</span>
-        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#EDF2FF;">Film & Video</span>
+        <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:14px;color:#EDF2FF;">Film & Video</span>
         <span style="font-size:12px;color:#7A8DB0;">83,145 models</span>
       </a>
       <a href="/industries/architecture/" style="text-decoration:none;background:#0E1220;border:1px solid #1E2B44;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,196,0.35)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.borderColor='#1E2B44';this.style.transform='';this.style.boxShadow=''">
         <span style="font-size:22px;">🏗️</span>
-        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#EDF2FF;">Architecture</span>
+        <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:14px;color:#EDF2FF;">Architecture</span>
         <span style="font-size:12px;color:#7A8DB0;">9,450 models</span>
       </a>
       <a href="/industries/virtual-reality/" style="text-decoration:none;background:#0E1220;border:1px solid #1E2B44;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,196,0.35)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.borderColor='#1E2B44';this.style.transform='';this.style.boxShadow=''">
         <span style="font-size:22px;">🥽</span>
-        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#EDF2FF;">Virtual Reality</span>
+        <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:14px;color:#EDF2FF;">Virtual Reality</span>
         <span style="font-size:12px;color:#7A8DB0;">8,313 models</span>
       </a>
       <a href="/industries/advertising/" style="text-decoration:none;background:#0E1220;border:1px solid #1E2B44;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,196,0.35)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.borderColor='#1E2B44';this.style.transform='';this.style.boxShadow=''">
         <span style="font-size:22px;">📢</span>
-        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#EDF2FF;">Advertising</span>
+        <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:14px;color:#EDF2FF;">Advertising</span>
         <span style="font-size:12px;color:#7A8DB0;">78,159 models</span>
       </a>
     </div>
@@ -822,7 +770,7 @@ tailwind.config = {
   <div class="max-w-7xl mx-auto">
     <div style="max-width:520px;margin-bottom:48px;">
       <div class="section-label" style="margin-bottom:8px;">Why This Catalog</div>
-      <h2 style="font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.1;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.1;">
         Find the right model faster
       </h2>
     </div>
@@ -833,7 +781,7 @@ tailwind.config = {
         <div style="width:42px;height:42px;border-radius:10px;background:rgba(0,229,196,0.1);border:1px solid rgba(0,229,196,0.2);display:flex;align-items:center;justify-content:center;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00E5C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
         </div>
-        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:#EDF2FF;letter-spacing:-0.02em;">Search 88K+ Models</h3>
+        <h3 style="font-family:'Playfair Display',serif;font-weight:700;font-size:16px;color:#EDF2FF;letter-spacing:-0.02em;">Search 88K+ Models</h3>
         <p style="font-size:14px;color:#7A8DB0;line-height:1.7;">Full-text search across names, categories, industries and use cases — find exactly what your project needs.</p>
       </div>
 
@@ -841,15 +789,15 @@ tailwind.config = {
         <div style="width:42px;height:42px;border-radius:10px;background:rgba(0,229,196,0.1);border:1px solid rgba(0,229,196,0.2);display:flex;align-items:center;justify-content:center;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00E5C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
-        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:#EDF2FF;letter-spacing:-0.02em;">Scored & Curated</h3>
-        <p style="font-size:14px;color:#7A8DB0;line-height:1.7;">Top models selected by sales, revenue, CheckMate certification and category priority — not random.</p>
+        <h3 style="font-family:'Playfair Display',serif;font-weight:700;font-size:16px;color:#EDF2FF;letter-spacing:-0.02em;">Scored & Curated</h3>
+        <p style="font-size:14px;color:#7A8DB0;line-height:1.7;">Top models selected by category priority — not random.</p>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:16px;">
         <div style="width:42px;height:42px;border-radius:10px;background:rgba(0,229,196,0.1);border:1px solid rgba(0,229,196,0.2);display:flex;align-items:center;justify-content:center;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00E5C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </div>
-        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:#EDF2FF;letter-spacing:-0.02em;">Opens on TurboSquid</h3>
+        <h3 style="font-family:'Playfair Display',serif;font-weight:700;font-size:16px;color:#EDF2FF;letter-spacing:-0.02em;">Opens on TurboSquid</h3>
         <p style="font-size:14px;color:#7A8DB0;line-height:1.7;">Every link takes you directly to the model page on TurboSquid for full preview, specs and purchase.</p>
       </div>
 
@@ -857,7 +805,7 @@ tailwind.config = {
         <div style="width:42px;height:42px;border-radius:10px;background:rgba(0,229,196,0.1);border:1px solid rgba(0,229,196,0.2);display:flex;align-items:center;justify-content:center;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00E5C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
         </div>
-        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:#EDF2FF;letter-spacing:-0.02em;">By Project Type</h3>
+        <h3 style="font-family:'Playfair Display',serif;font-weight:700;font-size:16px;color:#EDF2FF;letter-spacing:-0.02em;">By Project Type</h3>
         <p style="font-size:14px;color:#7A8DB0;line-height:1.7;">Browse by industry — aerospace, medical, film production, game dev — to find models suited to your workflow.</p>
       </div>
 
@@ -875,7 +823,7 @@ tailwind.config = {
 
       <div style="position:relative;z-index:1;">
         <div class="section-label" style="margin-bottom:12px;">Ready to buy?</div>
-        <h2 style="font-family:'Syne',sans-serif;font-size:clamp(24px,4vw,40px);font-weight:800;letter-spacing:-0.035em;color:#EDF2FF;margin-bottom:16px;line-height:1.1;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,40px);font-weight:800;letter-spacing:-0.035em;color:#EDF2FF;margin-bottom:16px;line-height:1.1;">
           Browse the full store on TurboSquid
         </h2>
         <p style="font-size:16px;color:#7A8DB0;line-height:1.7;max-width:480px;margin:0 auto 32px;">
@@ -908,7 +856,7 @@ tailwind.config = {
           <div style="width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#00E5C4,#0099FF);display:flex;align-items:center;justify-content:center;">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#07090F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
           </div>
-          <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:#EDF2FF;">3D Molier</span>
+          <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:16px;color:#EDF2FF;">3D Molier</span>
         </div>
         <p style="font-size:13px;color:#7A8DB0;line-height:1.7;max-width:280px;">Searchable catalog of professional 3D models. All models available on TurboSquid.</p>
       </div>
@@ -952,7 +900,7 @@ tailwind.config = {
 
     <div style="border-top:1px solid #1E2B44;padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
       <p style="font-size:12px;color:#4A5C7A;">© 2024 3D Molier. All 3D models sold via TurboSquid.</p>
-      <a href="/about/" class="nav-link" style="font-size:12px;">About</a>
+      
     </div>
   </div>
 </footer>
@@ -971,5 +919,15 @@ tailwind.config = {
   });
 </script>
 
+
+<script>
+(function(){
+  var inp = document.querySelector('.search-input');
+  var btn = document.querySelector('[aria-label="Search"]');
+  function go(){ var q=(inp?inp.value:'').trim(); if(q) location.href='/3D-Models/search/?q='+encodeURIComponent(q); }
+  if(btn) btn.addEventListener('click', go);
+  if(inp) inp.addEventListener('keydown', function(e){ if(e.key==='Enter') go(); });
+})();
+</script>
 </body>
 </html>

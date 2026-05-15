@@ -336,9 +336,9 @@ def model_page_html(m: dict, related: list[dict]) -> str:
     if subcat:
         cat_chip += f' <span class="chip" style="font-size:12px;">{subcat}</span>'
 
-    # Stats
-    sales_html = f'<div class="stat-box"><div class="stat-box-num">{sales:,}</div><div class="stat-box-label">Units Sold</div></div>' if sales > 0 else ''
-    prev_html  = f'<div class="stat-box"><div class="stat-box-num">{previews:,}</div><div class="stat-box-label">Previews</div></div>' if previews > 0 else ''
+    # Stats (Units Sold and Previews removed per design)
+    sales_html = ''
+    prev_html  = ''
 
     # Industries chips
     ind_chips = ' '.join(f'<span class="chip" style="font-size:12px;">{i}</span>' for i in industries)
