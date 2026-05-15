@@ -257,8 +257,11 @@ def related_card_html(m: dict) -> str:
     elif 'Stem' in cert:
         cert_html = '<span class="cert-badge cert-badge-sc" style="font-size:9px;padding:2px 6px;">SC</span>'
 
+    PROXY = "https://images.weserv.nl/?url="
+    img_src = (PROXY + img.replace("https://", "") + "&w=600&q=85&output=webp"
+               if img and img.startswith("https://static.turbosquid") else img)
     img_html = (
-        f'<img src="{img}" alt="{title}" loading="lazy" '
+        f'<img src="{img_src}" alt="{title}" loading="lazy" '
         f'onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';">'
         f'<div class="img-placeholder" style="color:{color};display:none;">'
         f'<span style="font-size:22px;opacity:0.4;">&#128247;</span></div>'
@@ -337,8 +340,6 @@ def model_page_html(m: dict, related: list[dict]) -> str:
         cat_chip += f' <span class="chip" style="font-size:12px;">{subcat}</span>'
 
     # Stats (Units Sold and Previews removed per design)
-    sales_html = ''
-    prev_html  = ''
 
     # Industries chips
     ind_chips = ' '.join(f'<span class="chip" style="font-size:12px;">{i}</span>' for i in industries)
@@ -346,10 +347,13 @@ def model_page_html(m: dict, related: list[dict]) -> str:
     kw_chips  = ' '.join(f'<span class="chip" style="font-size:11px;padding:3px 10px;color:#4A5C7A;">{k}</span>' for k in seo_kws[:6])
 
     # Hero image
+    PROXY = "https://images.weserv.nl/?url="
+    img_proxied = (PROXY + img.replace("https://", "") + "&w=600&q=85&output=webp"
+                   if img and img.startswith("https://static.turbosquid") else img)
     img_content = ''
     if img:
         img_content = (
-            f'<img src="{img}" alt="{title} 3D model preview" '
+            f'<img src="{img_proxied}" alt="{title} 3D model preview" '
             f'onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';" '
             f'style="width:100%;height:100%;object-fit:cover;display:block;">'
             f'<div style="width:100%;height:100%;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:linear-gradient({gradient});">'
@@ -471,12 +475,7 @@ tailwind.config = {{
           </a>
         </div>
 
-        <!-- Stats row -->
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;">
-          {sales_html}
-          {prev_html}
-          {('<div class="stat-box"><div class="stat-box-num">'+cert.split("/")[0]+'</div><div class="stat-box-label">Certification</div></div>') if cert and cert != "no certification" else ""}
-        </div>
+
 
         <!-- Industries -->
         {'<div style="margin-top:4px;"><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#4A5C7A;text-transform:uppercase;margin-bottom:10px;">Used In</div><div style="display:flex;flex-wrap:wrap;gap:6px;">' + ind_chips + '</div></div>' if industries else ''}
@@ -521,7 +520,7 @@ tailwind.config = {{
               <a href="/categories/{cat_slug}/" style="font-size:13px;font-weight:600;color:#00E5C4;text-decoration:none;">{cat}</a>
             </div>
             {'<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1E2B44;padding-bottom:10px;"><span style="font-size:13px;color:#7A8DB0;">Subcategory</span><span style="font-size:13px;font-weight:500;color:#EDF2FF;">' + subcat + '</span></div>' if subcat else ''}
-            {'<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1E2B44;padding-bottom:10px;"><span style="font-size:13px;color:#7A8DB0;">Units Sold</span><span style="font-size:13px;font-weight:600;color:#EDF2FF;">' + str(sales) + '</span></div>' if sales > 0 else ''}
+
             <div style="display:flex;justify-content:space-between;align-items:center;">
               <span style="font-size:13px;color:#7A8DB0;">Certification</span>
               <span style="font-size:13px;font-weight:500;color:{'#FFC600' if 'CheckMate' in cert else ('#7C3AED' if 'Stem' in cert else '#4A5C7A')};">{cert if cert and cert != 'no certification' else 'None'}</span>

@@ -36,10 +36,13 @@ def build_sitemap():
     entries = []
 
     # Static pages
-    entries.append(url("/",           "1.0", "weekly"))
-    entries.append(url("/catalog/",   "0.9", "weekly"))
-    entries.append(url("/search/",    "0.8", "weekly"))
-    entries.append(url("/collections/", "0.8", "weekly"))
+    entries.append(url("/",              "1.0", "weekly"))
+    entries.append(url("/catalog/",      "0.9", "weekly"))
+    entries.append(url("/search/",       "0.8", "weekly"))
+    entries.append(url("/collections/",  "0.8", "weekly"))
+    entries.append(url("/about/",        "0.6", "monthly"))
+    entries.append(url("/contact/",      "0.6", "monthly"))
+    entries.append(url("/custom-order/", "0.7", "monthly"))
 
     # 15 category pages
     for slug in CAT_SLUGS:
