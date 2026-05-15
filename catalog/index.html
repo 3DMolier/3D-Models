@@ -171,15 +171,15 @@
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="/" class="nav-logo">3D <span>Molier</span></a>
+    <a href="/3D-Models/" class="nav-logo">3D <span>Molier</span></a>
     <div class="nav-links">
-      <a href="/catalog/">Catalog</a>
-      <a href="/categories/vehicles/">Vehicles</a>
-      <a href="/categories/aircraft/">Aircraft</a>
-      <a href="/categories/military-vehicles/">Military</a>
-      <a href="/categories/medical-3d-models/">Medical</a>
-      <a href="/collections/">Collections</a>
-      <a href="/search/" style="display:flex;align-items:center;gap:4px;color:#6B7280;text-decoration:none;font-size:14px;font-weight:500;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6B7280'">
+      <a href="/3D-Models/catalog/">Catalog</a>
+      <a href="/3D-Models/categories/vehicles/">Vehicles</a>
+      <a href="/3D-Models/categories/aircraft/">Aircraft</a>
+      <a href="/3D-Models/categories/military-vehicles/">Military</a>
+      <a href="/3D-Models/categories/medical-3d-models/">Medical</a>
+      <a href="/3D-Models/collections/">Collections</a>
+      <a href="/3D-Models/search/" style="display:flex;align-items:center;gap:4px;color:#6B7280;text-decoration:none;font-size:14px;font-weight:500;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6B7280'">
         <svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M15 15l-3.5-3.5"/></svg>
         Search
       </a>
@@ -388,17 +388,17 @@
       </div>
       <div class="footer-col">
         <h4>Categories</h4>
-        <a href="/categories/vehicles/">Vehicles</a>
-        <a href="/categories/aircraft/">Aircraft</a>
-        <a href="/categories/military-vehicles/">Military Vehicles</a>
-        <a href="/categories/ships/">Ships</a>
+        <a href="/3D-Models/categories/vehicles/">Vehicles</a>
+        <a href="/3D-Models/categories/aircraft/">Aircraft</a>
+        <a href="/3D-Models/categories/military-vehicles/">Military Vehicles</a>
+        <a href="/3D-Models/categories/ships/">Ships</a>
       </div>
       <div class="footer-col">
         <h4>Collections</h4>
-        <a href="/collections/best-vehicle-3d-models/">Best Vehicles</a>
-        <a href="/collections/best-aircraft-3d-models/">Best Aircraft</a>
-        <a href="/collections/best-medical-3d-models/">Best Medical</a>
-        <a href="/collections/">All Collections</a>
+        <a href="/3D-Models/collections/best-vehicle-3d-models/">Best Vehicles</a>
+        <a href="/3D-Models/collections/best-aircraft-3d-models/">Best Aircraft</a>
+        <a href="/3D-Models/collections/best-medical-3d-models/">Best Medical</a>
+        <a href="/3D-Models/collections/">All Collections</a>
       </div>
       <div class="footer-col">
         <h4>TurboSquid</h4>
@@ -461,7 +461,7 @@ function certBadgeHtml(cert) {
 function cardHtml(m) {
   const price = Number.isInteger(m.p) ? m.p : m.p.toFixed(0);
   const salesFmt = m.sales >= 1000 ? (m.sales/1000).toFixed(1)+'k' : m.sales;
-  return `<a href="/models/${m.s}/" class="model-card">
+  return `<a href="/3D-Models/models/${m.s}/" class="model-card">
     <div class="card-img">
       <img src="${m.img}" alt="${m.n}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="img-fallback" style="display:none;background:linear-gradient(135deg,${m.col}22,${m.col}08)">

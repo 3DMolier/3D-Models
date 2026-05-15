@@ -11,7 +11,7 @@ ROOT   = Path(__file__).parent.parent
 TODAY  = date.today().isoformat()          # 2026-05-15
 
 # ── UPDATE THIS before deploying ──────────────────────────────────────────────
-DOMAIN = "https://3d-molier.github.io"    # no trailing slash
+DOMAIN = "https://3dmolier.github.io/3D-Models"    # no trailing slash
 # ──────────────────────────────────────────────────────────────────────────────
 
 CAT_SLUGS = [
