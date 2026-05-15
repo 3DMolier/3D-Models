@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best Architecture & Landmark 3D Models for Visualization & Games | 3D Molier</title>
+<meta name="description" content="Browse architecture and landmark 3D models by 3D Molier — buildings, towers, monuments, interiors and more. For architecture visualization and game environments.">
+<link rel="canonical" href="https://3dmolier.com/collections/best-architecture-landmark-3d-models/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: { extend: { colors: { base:'#07090F',surface:'#0E1220',raised:'#151A2E',border:'#1E2B44',teal:'#00E5C4' }, fontFamily: { display:['Syne','sans-serif'],body:['Inter','sans-serif'] } } }
+}
+</script>
+<style>
+
+  * { box-sizing: border-box; }
+  body { background: #07090F; font-family: 'Inter', sans-serif; color: #EDF2FF; }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    opacity: 0.4;
+  }
+  html { scroll-behavior: smooth; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #07090F; }
+  ::-webkit-scrollbar-thumb { background: #1E2B44; border-radius: 3px; }
+
+  .nav-link { color: #7A8DB0; font-size: 14px; font-weight: 500; text-decoration: none; padding: 6px 2px; position: relative; transition: color 0.2s; }
+  .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: #00E5C4; transition: width 0.25s cubic-bezier(0.4,0,0.2,1); }
+  .nav-link:hover { color: #EDF2FF; }
+  .nav-link:hover::after { width: 100%; }
+  .nav-link:focus-visible { outline: none; color: #00E5C4; }
+
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #00E5C4; color: #07090F; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; padding: 11px 24px; border-radius: 8px; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; border: none; cursor: pointer; text-decoration: none; box-shadow: 0 2px 12px rgba(0,229,196,0.3); }
+  .btn-primary:hover { background: #00CCB0; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,229,196,0.4); }
+  .btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,229,196,0.4); }
+
+  .btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: #EDF2FF; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 14px; padding: 10px 24px; border-radius: 8px; border: 1px solid #1E2B44; cursor: pointer; text-decoration: none; transition: border-color 0.2s, background 0.2s, transform 0.15s; }
+  .btn-ghost:hover { border-color: rgba(0,229,196,0.4); background: rgba(0,229,196,0.05); transform: translateY(-1px); }
+  .btn-ghost:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,229,196,0.25); }
+
+  .btn-ts { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,229,196,0.1); color: #00E5C4; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px; padding: 9px 18px; border-radius: 7px; border: 1px solid rgba(0,229,196,0.25); cursor: pointer; text-decoration: none; transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s; white-space: nowrap; }
+  .btn-ts:hover { background: rgba(0,229,196,0.18); border-color: rgba(0,229,196,0.5); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,229,196,0.15); }
+  .btn-ts:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,229,196,0.3); }
+
+  .chip { display: inline-flex; align-items: center; background: rgba(255,255,255,0.04); border: 1px solid #1E2B44; color: #7A8DB0; font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 100px; white-space: nowrap; }
+
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #00E5C4; }
+
+  .cert-badge { display: inline-flex; align-items: center; gap: 4px; background: rgba(255,198,0,0.1); border: 1px solid rgba(255,198,0,0.25); color: #FFC600; font-size: 10px; font-weight: 600; letter-spacing: 0.04em; padding: 2px 7px; border-radius: 4px; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; }
+
+  .model-card { background: #0E1220; border: 1px solid #1E2B44; border-radius: 12px; overflow: hidden; transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s cubic-bezier(0.4,0,0.2,1); }
+  .model-card:hover { border-color: rgba(0,229,196,0.3); box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 2px 8px rgba(0,229,196,0.08); transform: translateY(-2px); }
+  .model-card:focus-within { box-shadow: 0 0 0 2px rgba(0,229,196,0.4); }
+
+  .card-glow { position: relative; }
+  .card-glow::before { content: ''; position: absolute; inset: -1px; border-radius: inherit; background: linear-gradient(135deg, rgba(0,229,196,0.15) 0%, transparent 50%, rgba(79,107,255,0.08) 100%); opacity: 0; transition: opacity 0.3s cubic-bezier(0.4,0,0.2,1); z-index: -1; }
+  .card-glow:hover::before { opacity: 1; }
+
+  .img-wrap { position: relative; overflow: hidden; }
+  .img-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(7,9,15,0.8) 0%, transparent 55%); }
+  .img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); filter: saturate(0.9) brightness(0.95); }
+  .model-card:hover .img-wrap img { transform: scale(1.05); filter: saturate(1.1) brightness(1); }
+  .img-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+  .img-placeholder span { font-size: 11px; font-weight: 500; letter-spacing: 0.04em; opacity: 0.7; }
+
+  .coll-card { background: #0E1220; border: 1px solid #1E2B44; border-radius: 14px; padding: 20px; text-decoration: none; display: flex; align-items: center; gap: 14px; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+  .coll-card:hover { border-color: rgba(0,229,196,0.35); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+  .coll-card:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(0,229,196,0.5); }
+
+</style>
+</head>
+<body class="relative min-h-screen">
+
+<header class="sticky top-0 z-50" style="border-bottom:1px solid #1E2B44;background:rgba(7,9,15,0.85);backdrop-filter:blur(16px);">
+  <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-8">
+    <a href="/" class="flex items-center gap-2.5 shrink-0" style="text-decoration:none;">
+      <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#00E5C4,#0099FF);display:flex;align-items:center;justify-content:center;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#07090F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.02em;color:#EDF2FF;">3D Molier</span>
+    </a>
+    <div class="hidden md:flex items-center gap-6">
+      <a href="/catalog/" class="nav-link">Catalog</a>
+      <a href="/categories/vehicles/" class="nav-link">Vehicles</a>
+      <a href="/categories/aircraft/" class="nav-link">Aircraft</a>
+      <a href="/categories/military-vehicles/" class="nav-link">Military</a>
+      <a href="/categories/medical-3d-models/" class="nav-link">Medical</a>
+      <a href="/collections/" class="nav-link">Collections</a>
+      <a href="/search/" class="nav-link" title="Search" style="display:flex;align-items:center;gap:4px;">
+        <svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M15 15l-3.5-3.5"/></svg>
+        Search
+      </a>
+    </div>
+    <div class="flex items-center gap-3 shrink-0">
+      <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-primary" style="padding:8px 16px;font-size:13px;">
+        TurboSquid Store
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    </div>
+  </nav>
+</header>
+
+<main style="position:relative;z-index:1;">
+
+<!-- Breadcrumb -->
+<div style="border-bottom:1px solid #1E2B44;background:rgba(14,18,32,0.5);">
+  <div class="max-w-7xl mx-auto px-6 py-3" style="display:flex;align-items:center;gap:8px;font-size:13px;color:#7A8DB0;">
+    <a href="/" style="color:#7A8DB0;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDF2FF'" onmouseout="this.style.color='#7A8DB0'">Home</a>
+    <span style="color:#1E2B44;">&#8250;</span>
+    <a href="/collections/" style="color:#7A8DB0;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDF2FF'" onmouseout="this.style.color='#7A8DB0'">Collections</a>
+    <span style="color:#1E2B44;">&#8250;</span>
+    <span style="color:#EDF2FF;">Best Architecture & Landmark 3D Models</span>
+  </div>
+</div>
+
+<!-- Collection Hero -->
+<section style="padding:56px 24px 40px;border-bottom:1px solid #1E2B44;">
+  <div class="max-w-7xl mx-auto">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;">
+
+      <div style="flex:1;min-width:280px;">
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(0,229,196,0.06);border:1px solid rgba(0,229,196,0.15);padding:5px 12px;border-radius:100px;margin-bottom:20px;">
+          <span style="font-size:11px;font-weight:600;color:#00E5C4;letter-spacing:0.08em;text-transform:uppercase;">Best-of Category</span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
+          <div style="width:56px;height:56px;border-radius:14px;background:rgba(0,229,196,0.08);border:1px solid rgba(0,229,196,0.2);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;">
+            🏛️
+          </div>
+          <h1 style="font-family:'Syne',sans-serif;font-size:clamp(22px,3.2vw,36px);font-weight:800;letter-spacing:-0.035em;color:#EDF2FF;line-height:1.1;">
+            Best Architecture & Landmark 3D Models
+          </h1>
+        </div>
+
+        <p style="font-size:15px;color:#7A8DB0;line-height:1.75;max-width:620px;margin-bottom:28px;">
+          Selected architecture and landmark 3D models for architecture visualization, event staging, VR experiences, advertising and game environments.
+        </p>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="https://www.turbosquid.com/Search/3D-Models/architecture?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Browse on TurboSquid
+          </a>
+          <a href="/collections/" class="btn-ghost">&#8592; All Collections</a>
+        </div>
+      </div>
+
+      <!-- Stats panel -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#1E2B44;border:1px solid #1E2B44;border-radius:16px;overflow:hidden;min-width:240px;">
+        <div style="background:#0E1220;padding:24px 20px;text-align:center;">
+          <div style="font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:#EDF2FF;letter-spacing:-0.04em;line-height:1;">1,165</div>
+          <div style="font-size:12px;color:#7A8DB0;margin-top:4px;font-weight:500;">Total Models</div>
+        </div>
+        <div style="background:#0E1220;padding:24px 20px;text-align:center;">
+          <div style="font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:#EDF2FF;letter-spacing:-0.04em;line-height:1;">24</div>
+          <div style="font-size:12px;color:#7A8DB0;margin-top:4px;font-weight:500;">Featured</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Model Grid — all 24 in HTML for SEO -->
+<section style="padding:56px 24px;">
+  <div class="max-w-7xl mx-auto">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div class="section-label" style="margin-bottom:6px;">Hand-picked</div>
+        <h2 style="font-family:'Syne',sans-serif;font-size:clamp(18px,2.5vw,26px);font-weight:700;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.1;">
+          Featured Models
+        </h2>
+      </div>
+      <a href="https://www.turbosquid.com/Search/3D-Models/architecture?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ghost" style="font-size:13px;padding:9px 18px;">
+        View all on TurboSquid
+      </a>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;">
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001625/177/Eiffel-Tower_D_Main.jpg" alt="Eiffel Tower" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Eiffel Tower</h3>
+            <span class="cert-badge">&#10003; CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$199</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/eiffel-tower-1625177?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001358/782/Colosseum_D_Main.jpg" alt="Colosseum" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Colosseum</h3>
+            <span class="cert-badge">&#10003; CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$259</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/colosseum-1358782?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001518/313/New-National-Olympic-Stadium-Tokyo-Field-Hockey_D_Main.jpg" alt="New National Olympic Stadium Tokyo Field Hockey" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">New National Olympic Stadium Tokyo Field Hockey</h3>
+            <span class="cert-badge">&#10003; CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$199</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/new-national-olympic-stadium-tokyo-field-hockey-1518313?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001518/300/Multi-Purpose-Olympic-Stadium_D_Main.jpg" alt="Multi-Purpose Olympic Stadium" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Multi-Purpose Olympic Stadium</h3>
+            <span class="cert-badge">&#10003; CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$199</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/multi-purpose-olympic-stadium-1518300?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/002122/364/National-Architectural-Monument-Statue-Of-Liberty_D_Main.jpg" alt="National Architectural Monument Statue of Liberty" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">National Architectural Monument Statue of Liberty</h3>
+            <span class="cert-badge" style="background:rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.25);color:#7C3AED;">SC</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$169</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/national-architectural-monument-statue-of-liberty-2122364?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001492/942/Sydney-Opera-House-Performing-Arts-Centre_D_Main.jpg" alt="Sydney Opera House Performing Arts Centre" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Sydney Opera House Performing Arts Centre</h3>
+            <span class="cert-badge">&#10003; CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$179</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/sydney-opera-house-performing-arts-centre-1492942?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001439/041/Disneyland-Cinderella-Castle_D_Main.jpg" alt="Disneyland Cinderella Castle" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Disneyland Cinderella Castle</h3>
+            <span class="cert-badge">&#10003; CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$399</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/disneyland-cinderella-castle-1439041?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001272/188/Glass-Louvre-Pyramid_D_Main.jpg" alt="Glass Louvre Pyramid" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Glass Louvre Pyramid</h3>
+            <span class="cert-badge">&#10003; CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$49</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/glass-louvre-pyramid-1272188?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001518/310/New-National-Olympic-Stadium-Tokyo_D_Main.jpg" alt="New National Olympic Stadium Tokyo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">New National Olympic Stadium Tokyo</h3>
+            <span class="cert-badge">&#10003; CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$199</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/new-national-olympic-stadium-tokyo-1518310?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001219/166/Cell-Tower_D_Main.jpg" alt="Cell Tower" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Cell Tower</h3>
+            <span class="cert-badge">&#10003; CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$79</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/cell-tower-1219166?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001412/722/Water-Storage-Tower_D_Main.jpg" alt="Water Storage Tower" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Water Storage Tower</h3>
+            <span class="cert-badge">&#10003; CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$39</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/water-storage-tower-1412722?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001424/471/Old-Wooden-Church_D_Main.jpg" alt="Old Wooden Church" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Old Wooden Church</h3>
+            <span class="cert-badge">&#10003; CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$79</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/old-wooden-church-1424471?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001493/319/Tokyo-Skytree-Broadcasting-Tower_D_Main.jpg" alt="Tokyo Skytree Broadcasting Tower" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Tokyo Skytree Broadcasting Tower</h3>
+            <span class="cert-badge">&#10003; CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$79</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/tokyo-skytree-broadcasting-tower-1493319?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001219/492/Cellular-Tower-Site_D_Main.jpg" alt="Cellular Tower Site" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Cellular Tower Site</h3>
+            <span class="cert-badge">&#10003; CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$99</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/cellular-tower-site-1219492?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/000904/226/Shanghai-Tower-China_D_Main.jpg" alt="Shanghai Tower China" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Shanghai Tower China</h3>
+            <span class="cert-badge">&#10003; CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$99</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/shanghai-tower-china-904226?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001625/137/Big-Ben-Clock-Tower-Palace-Of-Westminster_D_Main.jpg" alt="Big Ben Clock Tower Palace of Westminster" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Big Ben Clock Tower Palace of Westminster</h3>
+            <span class="cert-badge" style="background:rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.25);color:#7C3AED;">SC</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$179</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/big-ben-clock-tower-palace-of-westminster-1625137?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001377/577/Warehouse-And-Hangars-Collection_D_Main.jpg" alt="Warehouse and Hangars Collection" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Warehouse and Hangars Collection</h3>
+            <span class="cert-badge">&#10003; CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$199</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/warehouse-and-hangars-collection-1377577?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001518/220/Cn-Tower-Toronto_D_Main.jpg" alt="CN Tower Toronto" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">CN Tower Toronto</h3>
+            <span class="cert-badge" style="background:rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.25);color:#7C3AED;">SC</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$149</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/cn-tower-toronto-1518220?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001790/687/Lumen-Field-Multi-Purpose-Stadium_D_Main.jpg" alt="Lumen Field Multi Purpose Stadium" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Lumen Field Multi Purpose Stadium</h3>
+            <span class="cert-badge">&#10003; CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$229</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/lumen-field-multi-purpose-stadium-1790687?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001602/603/The-Shard-Skyscraper_D_Main.jpg" alt="The Shard Skyscraper" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">The Shard Skyscraper</h3>
+            <span class="cert-badge">&#10003; CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$149</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/the-shard-skyscraper-1602603?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001053/816/Solomons-Temple_D_Main.jpg" alt="Solomons Temple" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Solomons Temple</h3>
+            <span class="cert-badge">&#10003; CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$99</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/solomons-temple-1053816?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001944/779/Plastic-Stadium-Seat-Open_D_Main.jpg" alt="Plastic Stadium Seat Open" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Plastic Stadium Seat Open</h3>
+            <span class="cert-badge">&#10003; CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$29</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/plastic-stadium-seat-open-1944779?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001031/144/Cape-Town-Stadium-Green-Point-3d-Model_D_Main.jpg" alt="Cape Town Stadium Green Point 3D Model" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Cape Town Stadium Green Point 3D Model</h3>
+            <span class="cert-badge">&#10003; CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$199</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/cape-town-stadium-green-point-3d-model-1031144?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201500 50%,#150F05 100%);">
+          <img src="https://static.turbosquid.com/Preview/001230/761/Bathroom-Sink_D_Main.jpg" alt="Bathroom Sink" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#F59E0B;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#F59E0B;">Architecture Landmarks</span></div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Bathroom Sink</h3>
+            <span class="cert-badge">&#10003; CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture Landmarks</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$29</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/bathroom-sink-1230761?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Related Collections -->
+<section style="padding:0 24px 72px;">
+  <div class="max-w-7xl mx-auto">
+    <div style="border-top:1px solid #1E2B44;padding-top:48px;">
+      <div class="section-label" style="margin-bottom:8px;">Explore More</div>
+      <h2 style="font-family:'Syne',sans-serif;font-size:clamp(18px,2.5vw,26px);font-weight:700;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.1;margin-bottom:24px;">
+        Related Collections
+      </h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
+        <a href="/collections/3d-models-for-architecture-visualization/" class="coll-card">
+          <div style="width:48px;height:48px;border-radius:12px;background:rgba(0,229,196,0.06);border:1px solid rgba(0,229,196,0.15);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🏗️</div>
+          <div style="min-width:0;">
+            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#EDF2FF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">3D Models for Architecture Visualization</div>
+            <div style="font-size:12px;color:#7A8DB0;margin-top:2px;">Buildings, interiors and landscaping assets for architectura…</div>
+          </div>
+          <span style="margin-left:auto;color:#00E5C4;font-size:18px;flex-shrink:0;">&#8594;</span>
+        </a>
+<a href="/collections/3d-models-for-vr-projects/" class="coll-card">
+          <div style="width:48px;height:48px;border-radius:12px;background:rgba(0,229,196,0.06);border:1px solid rgba(0,229,196,0.15);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🥽</div>
+          <div style="min-width:0;">
+            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#EDF2FF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">3D Models for VR Projects</div>
+            <div style="font-size:12px;color:#7A8DB0;margin-top:2px;">Optimized assets for real-time VR experiences, architectural…</div>
+          </div>
+          <span style="margin-left:auto;color:#00E5C4;font-size:18px;flex-shrink:0;">&#8594;</span>
+        </a>
+<a href="/collections/3d-models-for-event-management/" class="coll-card">
+          <div style="width:48px;height:48px;border-radius:12px;background:rgba(0,229,196,0.06);border:1px solid rgba(0,229,196,0.15);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🎪</div>
+          <div style="min-width:0;">
+            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#EDF2FF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">3D Models for Event Management</div>
+            <div style="font-size:12px;color:#7A8DB0;margin-top:2px;">Venues, props and decorative assets for event planning and v…</div>
+          </div>
+          <span style="margin-left:auto;color:#00E5C4;font-size:18px;flex-shrink:0;">&#8594;</span>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer style="border-top:1px solid #1E2B44;padding:48px 24px 32px;background:#0A0D16;">
+  <div class="max-w-7xl mx-auto">
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+          <div style="width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#00E5C4,#0099FF);display:flex;align-items:center;justify-content:center;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#07090F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:#EDF2FF;">3D Molier</span>
+        </div>
+        <p style="font-size:13px;color:#7A8DB0;line-height:1.7;max-width:280px;">Searchable catalog of 88,000+ professional 3D models. All models available on TurboSquid.</p>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#4A5C7A;text-transform:uppercase;margin-bottom:16px;">Categories</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="/categories/vehicles/" class="nav-link" style="font-size:13px;">Vehicles</a>
+          <a href="/categories/aircraft/" class="nav-link" style="font-size:13px;">Aircraft</a>
+          <a href="/categories/military-vehicles/" class="nav-link" style="font-size:13px;">Military</a>
+          <a href="/categories/medical-3d-models/" class="nav-link" style="font-size:13px;">Medical</a>
+          <a href="/categories/ships/" class="nav-link" style="font-size:13px;">Ships</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#4A5C7A;text-transform:uppercase;margin-bottom:16px;">Collections</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="/collections/best-vehicle-3d-models/" class="nav-link" style="font-size:13px;">Best Vehicles</a>
+          <a href="/collections/best-aircraft-3d-models/" class="nav-link" style="font-size:13px;">Best Aircraft</a>
+          <a href="/collections/best-medical-3d-models/" class="nav-link" style="font-size:13px;">Best Medical</a>
+          <a href="/collections/best-military-vehicle-3d-models/" class="nav-link" style="font-size:13px;">Best Military</a>
+          <a href="/collections/" class="nav-link" style="font-size:13px;">View all</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#4A5C7A;text-transform:uppercase;margin-bottom:16px;">TurboSquid</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link" style="font-size:13px;">Artist Store</a>
+          <a href="https://www.turbosquid.com/Search/3D-Models/vehicle?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link" style="font-size:13px;">Vehicle Models</a>
+          <a href="https://www.turbosquid.com/Search/3D-Models/aircraft?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link" style="font-size:13px;">Aircraft Models</a>
+          <a href="https://www.turbosquid.com/Search/3D-Models/medical?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link" style="font-size:13px;">Medical Models</a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid #1E2B44;padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <p style="font-size:12px;color:#4A5C7A;">&#169; 2025 3D Molier. All 3D models sold via TurboSquid.</p>
+      <a href="/" class="nav-link" style="font-size:12px;">&#8592; Back to home</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

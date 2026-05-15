@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D Model Catalog — 3D Molier | Vehicles, Aircraft, Medical & More</title>
+<meta name="description" content="Searchable catalog of 88,000+ professional 3D models by 3D Molier. Vehicles, aircraft, medical, military and more. Open each model directly on TurboSquid.">
+<link rel="canonical" href="https://3dmolier.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        base:    '#07090F',
+        surface: '#0E1220',
+        raised:  '#151A2E',
+        border:  '#1E2B44',
+        teal:    '#00E5C4',
+        'teal-dim': '#00B89A',
+        'teal-glow': 'rgba(0,229,196,0.15)',
+        ink:     '#EDF2FF',
+        muted:   '#7A8DB0',
+      },
+      fontFamily: {
+        display: ['Syne', 'sans-serif'],
+        body:    ['Inter', 'sans-serif'],
+      },
+      letterSpacing: {
+        tighter: '-0.03em',
+      },
+      lineHeight: {
+        relaxed: '1.7',
+      },
+      boxShadow: {
+        card:    '0 4px 24px rgba(0,0,0,0.5), 0 1px 4px rgba(0,229,196,0.04)',
+        hover:   '0 8px 40px rgba(0,0,0,0.6), 0 2px 8px rgba(0,229,196,0.10)',
+        teal:    '0 0 32px rgba(0,229,196,0.25)',
+        glow:    '0 0 0 3px rgba(0,229,196,0.35)',
+      },
+    }
+  }
+}
+</script>
+<style>
+  * { box-sizing: border-box; }
+  body { background: #07090F; font-family: 'Inter', sans-serif; color: #EDF2FF; }
+
+  /* Grain texture overlay */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    opacity: 0.4;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #07090F; }
+  ::-webkit-scrollbar-thumb { background: #1E2B44; border-radius: 3px; }
+
+  /* Smooth scroll */
+  html { scroll-behavior: smooth; }
+
+  /* Hero radial gradient mesh */
+  .hero-bg {
+    background:
+      radial-gradient(ellipse 80% 60% at 20% -10%, rgba(0,229,196,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 80% 110%, rgba(79,107,255,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 100% 80% at 50% 50%, rgba(0,0,0,0) 0%, #07090F 80%);
+  }
+
+  /* Animated gradient border on cards */
+  .card-glow {
+    position: relative;
+  }
+  .card-glow::before {
+    content: '';
+    position: absolute; inset: -1px; border-radius: inherit;
+    background: linear-gradient(135deg, rgba(0,229,196,0.15) 0%, transparent 50%, rgba(79,107,255,0.08) 100%);
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.4,0,0.2,1);
+    z-index: -1;
+  }
+  .card-glow:hover::before { opacity: 1; }
+
+  /* Image overlay */
+  .img-wrap { position: relative; overflow: hidden; }
+  .img-wrap::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(7,9,15,0.8) 0%, transparent 55%);
+  }
+  .img-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    filter: saturate(0.9) brightness(0.95);
+  }
+  .card-glow:hover .img-wrap img { transform: scale(1.05); filter: saturate(1.1) brightness(1); }
+
+  /* CSS placeholder when image is absent */
+  .img-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; font-family: 'Inter', sans-serif;
+  }
+  .img-placeholder span { font-size: 11px; font-weight: 500; letter-spacing: 0.04em; opacity: 0.7; text-align: center; padding: 0 12px; }
+
+  /* Button styles */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #00E5C4; color: #07090F;
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px;
+    padding: 11px 24px; border-radius: 8px;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    border: none; cursor: pointer; text-decoration: none;
+    box-shadow: 0 2px 12px rgba(0,229,196,0.3);
+  }
+  .btn-primary:hover  { background: #00CCB0; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,229,196,0.4); }
+  .btn-primary:active { transform: translateY(0); box-shadow: 0 1px 6px rgba(0,229,196,0.2); }
+  .btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,229,196,0.4); }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: #EDF2FF;
+    font-family: 'Inter', sans-serif; font-weight: 500; font-size: 14px;
+    padding: 10px 24px; border-radius: 8px;
+    border: 1px solid #1E2B44; cursor: pointer; text-decoration: none;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  }
+  .btn-ghost:hover  { border-color: rgba(0,229,196,0.4); background: rgba(0,229,196,0.05); transform: translateY(-1px); }
+  .btn-ghost:active { transform: translateY(0); }
+  .btn-ghost:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,229,196,0.25); }
+
+  .btn-ts {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,229,196,0.1); color: #00E5C4;
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px;
+    padding: 9px 18px; border-radius: 7px;
+    border: 1px solid rgba(0,229,196,0.25); cursor: pointer; text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+    white-space: nowrap;
+  }
+  .btn-ts:hover  { background: rgba(0,229,196,0.18); border-color: rgba(0,229,196,0.5); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,229,196,0.15); }
+  .btn-ts:active { transform: translateY(0); }
+  .btn-ts:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,229,196,0.3); }
+
+  /* Search bar */
+  .search-input {
+    width: 100%; background: #0E1220; border: 1px solid #1E2B44; color: #EDF2FF;
+    font-family: 'Inter', sans-serif; font-size: 16px;
+    padding: 16px 56px 16px 52px; border-radius: 12px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .search-input::placeholder { color: #4A5C7A; }
+  .search-input:focus { border-color: rgba(0,229,196,0.5); box-shadow: 0 0 0 3px rgba(0,229,196,0.1), 0 4px 24px rgba(0,0,0,0.3); }
+
+  /* Tag/chip */
+  .chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(255,255,255,0.04); border: 1px solid #1E2B44;
+    color: #7A8DB0; font-size: 12px; font-weight: 500;
+    padding: 5px 12px; border-radius: 100px; cursor: pointer; text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .chip:hover  { background: rgba(0,229,196,0.08); border-color: rgba(0,229,196,0.3); color: #00E5C4; }
+  .chip:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(0,229,196,0.4); }
+
+  /* Section heading */
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #00E5C4;
+  }
+
+  /* Nav link */
+  .nav-link {
+    color: #7A8DB0; font-size: 14px; font-weight: 500; text-decoration: none;
+    padding: 6px 2px; position: relative;
+    transition: color 0.2s;
+  }
+  .nav-link::after {
+    content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
+    background: #00E5C4;
+    transition: width 0.25s cubic-bezier(0.4,0,0.2,1);
+  }
+  .nav-link:hover  { color: #EDF2FF; }
+  .nav-link:hover::after { width: 100%; }
+  .nav-link:focus-visible { outline: none; color: #00E5C4; }
+
+  /* Category icon box */
+  .cat-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: rgba(0,229,196,0.08); border: 1px solid rgba(0,229,196,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  a:hover .cat-icon, button:hover .cat-icon {
+    background: rgba(0,229,196,0.15); border-color: rgba(0,229,196,0.35);
+  }
+
+  /* Cert badge */
+  .cert-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: rgba(255,198,0,0.1); border: 1px solid rgba(255,198,0,0.25);
+    color: #FFC600; font-size: 10px; font-weight: 600; letter-spacing: 0.04em;
+    padding: 2px 7px; border-radius: 4px; text-transform: uppercase;
+  }
+
+  /* Stats number */
+  .stat-num {
+    font-family: 'Syne', sans-serif; font-size: 42px; font-weight: 800;
+    color: #EDF2FF; letter-spacing: -0.04em; line-height: 1;
+  }
+
+  /* Divider */
+  .divider { border: none; border-top: 1px solid #1E2B44; }
+
+  /* Model card */
+  .model-card {
+    background: #0E1220; border: 1px solid #1E2B44; border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s cubic-bezier(0.4,0,0.2,1);
+    cursor: pointer;
+  }
+  .model-card:hover {
+    border-color: rgba(0,229,196,0.3);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 2px 8px rgba(0,229,196,0.08);
+    transform: translateY(-2px);
+  }
+  .model-card:focus-within { box-shadow: 0 0 0 2px rgba(0,229,196,0.4); }
+
+  /* Category card */
+  .cat-card {
+    background: #0E1220; border: 1px solid #1E2B44; border-radius: 14px; padding: 24px;
+    text-decoration: none; display: flex; flex-direction: column; gap: 16px;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s cubic-bezier(0.4,0,0.2,1);
+  }
+  .cat-card:hover {
+    border-color: rgba(0,229,196,0.35);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 2px 8px rgba(0,229,196,0.07);
+    transform: translateY(-2px);
+  }
+  .cat-card:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(0,229,196,0.5); }
+
+  /* Fade-in animation */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.5s cubic-bezier(0.4,0,0.2,1) both; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+</style>
+</head>
+<body class="relative min-h-screen">
+
+<!-- ═══════════════════════════════════════ NAV ═══════════════════════════════ -->
+<header class="sticky top-0 z-50 border-b border-border" style="background: rgba(7,9,15,0.85); backdrop-filter: blur(16px);">
+  <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-8">
+
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2.5 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded" style="text-decoration:none;">
+      <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#00E5C4,#0099FF);display:flex;align-items:center;justify-content:center;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#07090F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.02em;color:#EDF2FF;">3D Molier</span>
+    </a>
+
+    <!-- Nav links -->
+    <div class="hidden md:flex items-center gap-6">
+      <a href="/catalog/" class="nav-link">Catalog</a>
+      <a href="/categories/vehicles/" class="nav-link">Vehicles</a>
+      <a href="/categories/aircraft/" class="nav-link">Aircraft</a>
+      <a href="/categories/military-vehicles/" class="nav-link">Military</a>
+      <a href="/categories/medical-3d-models/" class="nav-link">Medical</a>
+      <a href="/collections/" class="nav-link">Collections</a>
+    </div>
+
+    <!-- Right -->
+    <div class="flex items-center gap-3 shrink-0">
+      <a href="/search/" class="nav-link hidden md:block" style="display:flex;align-items:center;gap:6px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        Search
+      </a>
+      <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-primary" style="padding:8px 16px;font-size:13px;">
+        TurboSquid Store
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    </div>
+  </nav>
+</header>
+
+<main style="position:relative;z-index:1;">
+
+<!-- ═══════════════════════════════════════ HERO ══════════════════════════════ -->
+<section class="hero-bg pt-20 pb-16 px-6">
+  <div class="max-w-4xl mx-auto text-center fade-up">
+
+    <div class="inline-flex items-center gap-2 mb-6" style="background:rgba(0,229,196,0.08);border:1px solid rgba(0,229,196,0.2);padding:6px 14px;border-radius:100px;">
+      <span style="width:6px;height:6px;border-radius:50%;background:#00E5C4;display:inline-block;box-shadow:0 0 8px rgba(0,229,196,0.7);"></span>
+      <span style="font-size:12px;font-weight:600;color:#00E5C4;letter-spacing:0.06em;">88,000+ Professional 3D Models</span>
+    </div>
+
+    <h1 style="font-family:'Syne',sans-serif;font-size:clamp(38px,5.5vw,64px);font-weight:800;letter-spacing:-0.035em;line-height:1.05;margin-bottom:20px;color:#EDF2FF;">
+      Searchable 3D Model<br>
+      <span style="background:linear-gradient(90deg,#00E5C4,#0099FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Catalog</span>
+      <span style="color:#EDF2FF;"> by 3D Molier</span>
+    </h1>
+
+    <p style="font-size:17px;color:#7A8DB0;line-height:1.7;max-width:600px;margin:0 auto 36px;" class="fade-up delay-1">
+      Explore selected 3D models for film, advertising, architecture, games,
+      VR, medical visualization, aerospace and simulation. Open each model directly on TurboSquid.
+    </p>
+
+    <!-- Search bar -->
+    <div class="fade-up delay-2" style="max-width:640px;margin:0 auto 20px;position:relative;">
+      <svg style="position:absolute;left:18px;top:50%;transform:translateY(-50%);color:#4A5C7A;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input class="search-input" type="text" placeholder="Search 3D models — aircraft, vehicles, medical, military…" aria-label="Search 3D models">
+      <button class="btn-primary" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);padding:8px 18px;" aria-label="Search">
+        Search
+      </button>
+    </div>
+
+    <!-- Category chips -->
+    <div class="fade-up delay-3" style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:640px;margin:0 auto 36px;">
+      <a href="/categories/vehicles/" class="chip">🚗 Vehicles</a>
+      <a href="/categories/aircraft/" class="chip">✈️ Aircraft</a>
+      <a href="/categories/military-vehicles/" class="chip">🪖 Military</a>
+      <a href="/categories/ships/" class="chip">🚢 Ships</a>
+      <a href="/categories/medical-3d-models/" class="chip">🏥 Medical</a>
+      <a href="/categories/industrial-equipment/" class="chip">⚙️ Industrial</a>
+      <a href="/categories/architecture-landmarks/" class="chip">🏛️ Architecture</a>
+    </div>
+
+    <!-- CTAs -->
+    <div class="fade-up delay-3" style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
+      <a href="/catalog/" class="btn-primary" style="font-size:15px;padding:13px 28px;">
+        Browse Catalog
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ghost" style="font-size:15px;padding:12px 28px;">
+        View TurboSquid Store
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ STATS ════════════════════════════ -->
+<section style="padding: 32px 24px; border-top: 1px solid #1E2B44; border-bottom: 1px solid #1E2B44; background: rgba(14,18,32,0.5);">
+  <div class="max-w-7xl mx-auto" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;">
+    <div style="text-align:center;padding:16px;border-right:1px solid #1E2B44;">
+      <div class="stat-num">88K+</div>
+      <div style="font-size:13px;color:#7A8DB0;margin-top:4px;font-weight:500;">3D Models</div>
+    </div>
+    <div style="text-align:center;padding:16px;border-right:1px solid #1E2B44;">
+      <div class="stat-num">15</div>
+      <div style="font-size:13px;color:#7A8DB0;margin-top:4px;font-weight:500;">Categories</div>
+    </div>
+    <div style="text-align:center;padding:16px;border-right:1px solid #1E2B44;">
+      <div class="stat-num">42K+</div>
+      <div style="font-size:13px;color:#7A8DB0;margin-top:4px;font-weight:500;">Units Sold</div>
+    </div>
+    <div style="text-align:center;padding:16px;">
+      <div class="stat-num">918</div>
+      <div style="font-size:13px;color:#7A8DB0;margin-top:4px;font-weight:500;">CheckMate Certified</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ CATEGORIES ═══════════════════════ -->
+<section style="padding: 72px 24px;">
+  <div class="max-w-7xl mx-auto">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div class="section-label" style="margin-bottom:8px;">Browse by Category</div>
+        <h2 style="font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.1;">
+          Top Commercial Categories
+        </h2>
+      </div>
+      <a href="/catalog/" class="btn-ghost" style="font-size:13px;padding:9px 18px;">View all categories</a>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;">
+
+      <!-- Vehicles -->
+      <a href="/categories/vehicles/" class="cat-card card-glow">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div class="cat-icon">🚗</div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#EDF2FF;letter-spacing:-0.01em;">Vehicles</div>
+            <div style="font-size:12px;color:#7A8DB0;margin-top:2px;">7,133 models</div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:#7A8DB0;line-height:1.6;">Cars, trucks, motorcycles, buses and specialty vehicles for film, games and advertising.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="chip" style="font-size:11px;padding:3px 9px;">Cars</span>
+          <span class="chip" style="font-size:11px;padding:3px 9px;">Trucks</span>
+          <span class="chip" style="font-size:11px;padding:3px 9px;">Motorcycles</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:auto;">
+          <span style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</span>
+        </div>
+      </a>
+
+      <!-- Military Vehicles -->
+      <a href="/categories/military-vehicles/" class="cat-card card-glow">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div class="cat-icon">🪖</div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#EDF2FF;letter-spacing:-0.01em;">Military Vehicles</div>
+            <div style="font-size:12px;color:#7A8DB0;margin-top:2px;">1,727 models</div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:#7A8DB0;line-height:1.6;">Tanks, APCs, warplanes, warships and military equipment for simulation and games.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="chip" style="font-size:11px;padding:3px 9px;">Tanks</span>
+          <span class="chip" style="font-size:11px;padding:3px 9px;">Aircraft</span>
+          <span class="chip" style="font-size:11px;padding:3px 9px;">Ships</span>
+        </div>
+        <div style="margin-top:auto;">
+          <span style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</span>
+        </div>
+      </a>
+
+      <!-- Aircraft -->
+      <a href="/categories/aircraft/" class="cat-card card-glow">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div class="cat-icon">✈️</div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#EDF2FF;letter-spacing:-0.01em;">Aircraft</div>
+            <div style="font-size:12px;color:#7A8DB0;margin-top:2px;">3,871 models</div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:#7A8DB0;line-height:1.6;">Airliners, helicopters, private jets and drones for aerospace visualization and film.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="chip" style="font-size:11px;padding:3px 9px;">Airliners</span>
+          <span class="chip" style="font-size:11px;padding:3px 9px;">Helicopters</span>
+          <span class="chip" style="font-size:11px;padding:3px 9px;">Drones</span>
+        </div>
+        <div style="margin-top:auto;">
+          <span style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</span>
+        </div>
+      </a>
+
+      <!-- Ships -->
+      <a href="/categories/ships/" class="cat-card card-glow">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div class="cat-icon">🚢</div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#EDF2FF;letter-spacing:-0.01em;">Ships</div>
+            <div style="font-size:12px;color:#7A8DB0;margin-top:2px;">983 models</div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:#7A8DB0;line-height:1.6;">Yachts, cargo ships, cruise liners and boats for film production and simulation.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="chip" style="font-size:11px;padding:3px 9px;">Yachts</span>
+          <span class="chip" style="font-size:11px;padding:3px 9px;">Cargo</span>
+          <span class="chip" style="font-size:11px;padding:3px 9px;">Cruise</span>
+        </div>
+        <div style="margin-top:auto;">
+          <span style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</span>
+        </div>
+      </a>
+
+      <!-- Medical -->
+      <a href="/categories/medical-3d-models/" class="cat-card card-glow">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div class="cat-icon">🏥</div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#EDF2FF;letter-spacing:-0.01em;">Medical</div>
+            <div style="font-size:12px;color:#7A8DB0;margin-top:2px;">2,125 models</div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:#7A8DB0;line-height:1.6;">Human anatomy, surgical equipment and healthcare models for medical visualization.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="chip" style="font-size:11px;padding:3px 9px;">Anatomy</span>
+          <span class="chip" style="font-size:11px;padding:3px 9px;">Surgical</span>
+          <span class="chip" style="font-size:11px;padding:3px 9px;">Equipment</span>
+        </div>
+        <div style="margin-top:auto;">
+          <span style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</span>
+        </div>
+      </a>
+
+      <!-- Industrial Equipment -->
+      <a href="/categories/industrial-equipment/" class="cat-card card-glow">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div class="cat-icon">⚙️</div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#EDF2FF;letter-spacing:-0.01em;">Industrial</div>
+            <div style="font-size:12px;color:#7A8DB0;margin-top:2px;">1,403 models</div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:#7A8DB0;line-height:1.6;">Machinery, robot arms, HVAC systems and industrial equipment for hardware visualization.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="chip" style="font-size:11px;padding:3px 9px;">Machinery</span>
+          <span class="chip" style="font-size:11px;padding:3px 9px;">Robots</span>
+          <span class="chip" style="font-size:11px;padding:3px 9px;">HVAC</span>
+        </div>
+        <div style="margin-top:auto;">
+          <span style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</span>
+        </div>
+      </a>
+
+      <!-- Architecture -->
+      <a href="/categories/architecture-landmarks/" class="cat-card card-glow">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div class="cat-icon">🏛️</div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#EDF2FF;letter-spacing:-0.01em;">Architecture</div>
+            <div style="font-size:12px;color:#7A8DB0;margin-top:2px;">2,317 models</div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:#7A8DB0;line-height:1.6;">Landmarks, buildings, interiors and architectural structures for visualization.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="chip" style="font-size:11px;padding:3px 9px;">Landmarks</span>
+          <span class="chip" style="font-size:11px;padding:3px 9px;">Interiors</span>
+          <span class="chip" style="font-size:11px;padding:3px 9px;">Buildings</span>
+        </div>
+        <div style="margin-top:auto;">
+          <span style="font-size:13px;font-weight:600;color:#00E5C4;">Explore →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ TOP MODELS ════════════════════════ -->
+<section style="padding: 72px 24px; background: rgba(14,18,32,0.4);">
+  <div class="max-w-7xl mx-auto">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div class="section-label" style="margin-bottom:8px;">Best Sellers</div>
+        <h2 style="font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.1;">
+          Top Rated 3D Models
+        </h2>
+      </div>
+      <a href="/catalog/" class="btn-ghost" style="font-size:13px;padding:9px 18px;">View all models</a>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;">
+
+      <!-- 1: Vehicles — Railroad Amtrak Passenger Car 2 -->
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1A28 0%,#0D2030 50%,#0A1520 100%);">
+          <img src="https://static.turbosquid.com/Preview/000930/528/Railroad-Amtrak-Passenger-Car-2_D_Main.jpg" alt="Railroad Amtrak Passenger Car 2" loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="img-placeholder" style="color:#4F9EFF;display:none;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <span style="color:#4F9EFF;">Vehicles</span>
+          </div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Railroad Amtrak Passenger Car 2</h3>
+            <span class="cert-badge">✓ CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Vehicles</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$79</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/railroad-amtrak-passenger-car-2-930528?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+
+      <!-- 2: Aircraft — Airbus A400M -->
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
+          <img src="https://static.turbosquid.com/Preview/001550/640/Airbus-A400m-Atlas-Military-Transport-Aircraft-Rigged_D_Main.jpg" alt="Airbus A400M Atlas Military Transport Aircraft Rigged" loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="img-placeholder" style="color:#9F7AEA;display:none;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+            <span style="color:#9F7AEA;">Aircraft</span>
+          </div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Airbus A400M Atlas Military Transport Rigged</h3>
+            <span class="cert-badge">✓ CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Aircraft</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$219</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/airbus-a400m-atlas-military-transport-aircraft-rigged-1550640?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+
+      <!-- 3: Military Vehicles — Sigma Frigate -->
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0A1A0A 0%,#0F2010 50%,#081508 100%);">
+          <img src="https://static.turbosquid.com/Preview/001394/359/Sigma-Class-Indonesian-Frigate_D_Main.jpg" alt="Sigma Class Indonesian Frigate" loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="img-placeholder" style="color:#4ADE80;display:none;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"><path d="M3 12h18M3 12l4-4M3 12l4 4M21 12l-4-4M21 12l-4 4"/></svg>
+            <span style="color:#4ADE80;">Military</span>
+          </div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Sigma Class Indonesian Frigate</h3>
+            <span class="cert-badge">✓ CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Military Vehicles</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$199</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/sigma-class-indonesian-frigate-1394359?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+
+      <!-- 4: Ships — Viking Ship -->
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#081520 0%,#0A1C28 50%,#061018 100%);">
+          <img src="https://static.turbosquid.com/Preview/001786/441/Viking-Ship-Dragon-Head_D_Main.jpg" alt="Viking Ship Dragon Head" loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="img-placeholder" style="color:#38BDF8;display:none;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"><path d="M2 20h20l-2-8H4l-2 8zM4 12V8a8 8 0 0116 0v4"/></svg>
+            <span style="color:#38BDF8;">Ships</span>
+          </div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Viking Ship Dragon Head</h3>
+            <span class="cert-badge">✓ CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Ships</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$39</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/viking-ship-dragon-head-1786441?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+
+      <!-- 5: Industrial Equipment — Boiler Suit -->
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#081A10 0%,#0A2015 50%,#061410 100%);">
+          <img src="https://static.turbosquid.com/Preview/001138/628/Boiler-Suit-Coverall-With-Safety-Helmet_D_Main.jpg" alt="Boiler Suit Coverall with Safety Helmet" loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="img-placeholder" style="color:#10B981;display:none;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            <span style="color:#10B981;">Industrial</span>
+          </div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Boiler Suit Coverall with Safety Helmet</h3>
+            <span class="cert-badge">✓ CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Industrial</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$99</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/boiler-suit-coverall-with-safety-helmet-1138628?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+
+      <!-- 6: Medical — Male Pelvis Skeleton -->
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D2020 0%,#0D2A20 50%,#0A1F1A 100%);">
+          <img src="https://static.turbosquid.com/Preview/001023/424/Male-Pelvis-Skeleton_D_Main.jpg" alt="Male Pelvis Skeleton" loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="img-placeholder" style="color:#00E5C4;display:none;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span style="color:#00E5C4;">Medical</span>
+          </div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Male Pelvis Skeleton</h3>
+            <span class="cert-badge">✓ CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Medical</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$49</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/male-pelvis-skeleton-1023424?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+
+      <!-- 7: Architecture Landmarks — Shanghai Tower -->
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A1008 0%,#201508 50%,#150E05 100%);">
+          <img src="https://static.turbosquid.com/Preview/000904/226/Shanghai-Tower-China_D_Main.jpg" alt="Shanghai Tower China" loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="img-placeholder" style="color:#F59E0B;display:none;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span style="color:#F59E0B;">Architecture</span>
+          </div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Shanghai Tower China</h3>
+            <span class="cert-badge">✓ CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Architecture</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$99</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/shanghai-tower-china-904226?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+
+      <!-- 8: Animals & Creatures — Golden Chinese Dragon -->
+      <div class="model-card card-glow">
+        <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#1A0A00 0%,#201500 50%,#150A00 100%);">
+          <img src="https://static.turbosquid.com/Preview/001379/923/Golden-Chinese-Dragon-3d-Model_D_Main.jpg" alt="Golden Chinese Dragon 3D Model" loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="img-placeholder" style="color:#F97316;display:none;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span style="color:#F97316;">Animals & Creatures</span>
+          </div>
+        </div>
+        <div style="padding:16px;">
+          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Golden Chinese Dragon 3D Model</h3>
+            <span class="cert-badge">✓ CM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">Animals</span>
+            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">$99</span>
+          </div>
+          <a href="https://www.turbosquid.com/3d-models/golden-chinese-dragon-3d-model-1379923?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View on TurboSquid
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ INDUSTRIES ═══════════════════════ -->
+<section style="padding: 72px 24px;">
+  <div class="max-w-7xl mx-auto">
+    <div style="margin-bottom:40px;">
+      <div class="section-label" style="margin-bottom:8px;">Who Uses These Models</div>
+      <h2 style="font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.1;">
+        High-Value Industries
+      </h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;">
+      <!-- Industry chips — large format -->
+      <a href="/industries/aerospace/" style="text-decoration:none;background:#0E1220;border:1px solid #1E2B44;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,196,0.35)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.borderColor='#1E2B44';this.style.transform='';this.style.boxShadow=''">
+        <span style="font-size:22px;">🚀</span>
+        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#EDF2FF;">Aerospace</span>
+        <span style="font-size:12px;color:#7A8DB0;">3,871 models</span>
+      </a>
+      <a href="/industries/military-defense/" style="text-decoration:none;background:#0E1220;border:1px solid #1E2B44;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,196,0.35)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.borderColor='#1E2B44';this.style.transform='';this.style.boxShadow=''">
+        <span style="font-size:22px;">🛡️</span>
+        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#EDF2FF;">Military / Defense</span>
+        <span style="font-size:12px;color:#7A8DB0;">1,727 models</span>
+      </a>
+      <a href="/industries/medical/" style="text-decoration:none;background:#0E1220;border:1px solid #1E2B44;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,196,0.35)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.borderColor='#1E2B44';this.style.transform='';this.style.boxShadow=''">
+        <span style="font-size:22px;">🏥</span>
+        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#EDF2FF;">Medical</span>
+        <span style="font-size:12px;color:#7A8DB0;">2,125 models</span>
+      </a>
+      <a href="/industries/game-development/" style="text-decoration:none;background:#0E1220;border:1px solid #1E2B44;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,196,0.35)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.borderColor='#1E2B44';this.style.transform='';this.style.boxShadow=''">
+        <span style="font-size:22px;">🎮</span>
+        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#EDF2FF;">Game Development</span>
+        <span style="font-size:12px;color:#7A8DB0;">16,031 models</span>
+      </a>
+      <a href="/industries/film-video-production/" style="text-decoration:none;background:#0E1220;border:1px solid #1E2B44;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,196,0.35)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.borderColor='#1E2B44';this.style.transform='';this.style.boxShadow=''">
+        <span style="font-size:22px;">🎬</span>
+        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#EDF2FF;">Film & Video</span>
+        <span style="font-size:12px;color:#7A8DB0;">83,145 models</span>
+      </a>
+      <a href="/industries/architecture/" style="text-decoration:none;background:#0E1220;border:1px solid #1E2B44;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,196,0.35)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.borderColor='#1E2B44';this.style.transform='';this.style.boxShadow=''">
+        <span style="font-size:22px;">🏗️</span>
+        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#EDF2FF;">Architecture</span>
+        <span style="font-size:12px;color:#7A8DB0;">9,450 models</span>
+      </a>
+      <a href="/industries/virtual-reality/" style="text-decoration:none;background:#0E1220;border:1px solid #1E2B44;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,196,0.35)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.borderColor='#1E2B44';this.style.transform='';this.style.boxShadow=''">
+        <span style="font-size:22px;">🥽</span>
+        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#EDF2FF;">Virtual Reality</span>
+        <span style="font-size:12px;color:#7A8DB0;">8,313 models</span>
+      </a>
+      <a href="/industries/advertising/" style="text-decoration:none;background:#0E1220;border:1px solid #1E2B44;border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,196,0.35)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'" onmouseout="this.style.borderColor='#1E2B44';this.style.transform='';this.style.boxShadow=''">
+        <span style="font-size:22px;">📢</span>
+        <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#EDF2FF;">Advertising</span>
+        <span style="font-size:12px;color:#7A8DB0;">78,159 models</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ WHY ═══════════════════════════════ -->
+<section style="padding: 72px 24px; background: rgba(14,18,32,0.4); border-top: 1px solid #1E2B44; border-bottom: 1px solid #1E2B44;">
+  <div class="max-w-7xl mx-auto">
+    <div style="max-width:520px;margin-bottom:48px;">
+      <div class="section-label" style="margin-bottom:8px;">Why This Catalog</div>
+      <h2 style="font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.1;">
+        Find the right model faster
+      </h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;">
+
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="width:42px;height:42px;border-radius:10px;background:rgba(0,229,196,0.1);border:1px solid rgba(0,229,196,0.2);display:flex;align-items:center;justify-content:center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00E5C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:#EDF2FF;letter-spacing:-0.02em;">Search 88K+ Models</h3>
+        <p style="font-size:14px;color:#7A8DB0;line-height:1.7;">Full-text search across names, categories, industries and use cases — find exactly what your project needs.</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="width:42px;height:42px;border-radius:10px;background:rgba(0,229,196,0.1);border:1px solid rgba(0,229,196,0.2);display:flex;align-items:center;justify-content:center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00E5C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:#EDF2FF;letter-spacing:-0.02em;">Scored & Curated</h3>
+        <p style="font-size:14px;color:#7A8DB0;line-height:1.7;">Top models selected by sales, revenue, CheckMate certification and category priority — not random.</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="width:42px;height:42px;border-radius:10px;background:rgba(0,229,196,0.1);border:1px solid rgba(0,229,196,0.2);display:flex;align-items:center;justify-content:center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00E5C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:#EDF2FF;letter-spacing:-0.02em;">Opens on TurboSquid</h3>
+        <p style="font-size:14px;color:#7A8DB0;line-height:1.7;">Every link takes you directly to the model page on TurboSquid for full preview, specs and purchase.</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="width:42px;height:42px;border-radius:10px;background:rgba(0,229,196,0.1);border:1px solid rgba(0,229,196,0.2);display:flex;align-items:center;justify-content:center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00E5C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:#EDF2FF;letter-spacing:-0.02em;">By Project Type</h3>
+        <p style="font-size:14px;color:#7A8DB0;line-height:1.7;">Browse by industry — aerospace, medical, film production, game dev — to find models suited to your workflow.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ CTA BANNER ════════════════════════ -->
+<section style="padding: 72px 24px;">
+  <div class="max-w-4xl mx-auto text-center">
+    <div style="background:linear-gradient(135deg,rgba(0,229,196,0.06) 0%,rgba(79,107,255,0.04) 100%);border:1px solid rgba(0,229,196,0.15);border-radius:20px;padding:60px 40px;position:relative;overflow:hidden;">
+      <!-- Background blobs -->
+      <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,196,0.08),transparent 70%);pointer-events:none;"></div>
+      <div style="position:absolute;bottom:-40px;left:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(79,107,255,0.06),transparent 70%);pointer-events:none;"></div>
+
+      <div style="position:relative;z-index:1;">
+        <div class="section-label" style="margin-bottom:12px;">Ready to buy?</div>
+        <h2 style="font-family:'Syne',sans-serif;font-size:clamp(24px,4vw,40px);font-weight:800;letter-spacing:-0.035em;color:#EDF2FF;margin-bottom:16px;line-height:1.1;">
+          Browse the full store on TurboSquid
+        </h2>
+        <p style="font-size:16px;color:#7A8DB0;line-height:1.7;max-width:480px;margin:0 auto 32px;">
+          All 88,000+ models are available for purchase on TurboSquid with full technical specs, format details and preview renders.
+        </p>
+        <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
+          <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-primary" style="font-size:15px;padding:14px 32px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View TurboSquid Store
+          </a>
+          <a href="/catalog/" class="btn-ghost" style="font-size:15px;padding:13px 32px;">
+            Browse This Catalog
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════ FOOTER ════════════════════════════ -->
+<footer style="border-top: 1px solid #1E2B44; padding: 48px 24px 32px; background: #0A0D16;">
+  <div class="max-w-7xl mx-auto">
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;">
+
+      <!-- Brand -->
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+          <div style="width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#00E5C4,#0099FF);display:flex;align-items:center;justify-content:center;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#07090F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:#EDF2FF;">3D Molier</span>
+        </div>
+        <p style="font-size:13px;color:#7A8DB0;line-height:1.7;max-width:280px;">Searchable catalog of professional 3D models. All models available on TurboSquid.</p>
+      </div>
+
+      <!-- Categories -->
+      <div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#4A5C7A;text-transform:uppercase;margin-bottom:16px;">Categories</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="/categories/vehicles/" class="nav-link" style="font-size:13px;">Vehicles</a>
+          <a href="/categories/aircraft/" class="nav-link" style="font-size:13px;">Aircraft</a>
+          <a href="/categories/military-vehicles/" class="nav-link" style="font-size:13px;">Military</a>
+          <a href="/categories/medical-3d-models/" class="nav-link" style="font-size:13px;">Medical</a>
+          <a href="/categories/ships/" class="nav-link" style="font-size:13px;">Ships</a>
+        </div>
+      </div>
+
+      <!-- Collections -->
+      <div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#4A5C7A;text-transform:uppercase;margin-bottom:16px;">Collections</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="/collections/best-vehicle-3d-models/" class="nav-link" style="font-size:13px;">Best Vehicles</a>
+          <a href="/collections/best-aircraft-3d-models/" class="nav-link" style="font-size:13px;">Best Aircraft</a>
+          <a href="/collections/best-medical-3d-models/" class="nav-link" style="font-size:13px;">Best Medical</a>
+          <a href="/collections/best-military-vehicle-3d-models/" class="nav-link" style="font-size:13px;">Best Military</a>
+          <a href="/collections/" class="nav-link" style="font-size:13px;">View all →</a>
+        </div>
+      </div>
+
+      <!-- Store -->
+      <div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#4A5C7A;text-transform:uppercase;margin-bottom:16px;">TurboSquid</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link" style="font-size:13px;">Artist Store</a>
+          <a href="https://www.turbosquid.com/Search/3D-Models/vehicle?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link" style="font-size:13px;">Vehicle Models</a>
+          <a href="https://www.turbosquid.com/Search/3D-Models/aircraft?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link" style="font-size:13px;">Aircraft Models</a>
+          <a href="https://www.turbosquid.com/Search/3D-Models/medical?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link" style="font-size:13px;">Medical Models</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="border-top:1px solid #1E2B44;padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <p style="font-size:12px;color:#4A5C7A;">© 2024 3D Molier. All 3D models sold via TurboSquid.</p>
+      <a href="/about/" class="nav-link" style="font-size:12px;">About</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Analytics: track TurboSquid clicks -->
+<script>
+  document.querySelectorAll('a[href*="turbosquid.com"]').forEach(link => {
+    link.addEventListener('click', () => {
+      const url = link.href;
+      const isCollection = link.textContent.trim().includes('Collection');
+      // gtag('event', isCollection ? 'turbosquid_collection_click' : 'turbosquid_click', {
+      //   source_page_url: location.href,
+      //   source_page_type: 'home',
+      // });
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+# Large data files — regenerate locally with scripts/process_data.py
+data/models_master.csv
+data/search_index.json
+
+# Raw source data (not needed to serve the site)
+models.csv
+Models_and_Sales.xlsm
+TZ.txt
+TZ_my.txt
+
+# Dev tools (not served by GitHub Pages)
+node_modules/
+temporary screenshots/
+serve.mjs
+screenshot.mjs
+package-lock.json
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Claude Code internals
+.claude/
+CLAUDE.md
+
+# Internal skill assets (not part of the site)
+assets/skills/
+assets/__MACOSX/
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,35 @@
+# Scoring weights for top model selection.
+# All weights must sum to 1.0.
+# Edit values here without touching any Python code.
+
+weights:
+  sales_qty: 0.30          # Total units sold
+  estimated_revenue: 0.25  # price × sales_qty
+  recent_sales: 0.15       # Sales in recent_years below
+  full_previews: 0.10      # Page views on TurboSquid
+  shopping_carts: 0.08     # Added-to-cart count
+  category_priority: 0.07  # 1.0 for top-7 categories, 0.3 for others
+  certification: 0.05      # CheckMate > StemCell > none
+
+top_models:
+  max_count: 1000           # How many models get is_top_model = true
+
+recent_years:
+  - 2024
+  - 2025
+  - 2026
+
+certification_scores:
+  "StemCell": 0.7
+  "Stemcell": 0.7
+  "CheckMate Lite/Pro": 1.0
+  "no certification": 0.0
+
+priority_categories:
+  - Vehicles
+  - Military Vehicles
+  - Aircraft
+  - Ships
+  - Industrial Equipment
+  - Medical
+  - Architecture Landmarks

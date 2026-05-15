@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page Not Found — 3D Molier</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --teal: #00E5C4; --bg: #07090F; --surface: #0D1117; --border: rgba(255,255,255,0.07); --muted: #6B7280; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: #E8EAF0; font-family: 'Inter', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+  body::before {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+  nav { background: rgba(7,9,15,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 32px; }
+  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: #fff; text-decoration: none; letter-spacing: -0.03em; }
+  .nav-logo span { color: var(--teal); }
+  main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 24px; text-align: center; }
+  .wrap { max-width: 480px; }
+  .code { font-family: 'Syne', sans-serif; font-size: clamp(80px, 15vw, 140px); font-weight: 800; line-height: 1; letter-spacing: -0.05em; background: linear-gradient(135deg, var(--teal), #0099FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  h1 { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 700; color: #fff; margin-top: 16px; letter-spacing: -0.02em; }
+  p { color: var(--muted); margin-top: 12px; line-height: 1.7; }
+  .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
+  .btn-primary { background: var(--teal); color: #07090F; font-weight: 700; font-size: 14px; padding: 12px 24px; border-radius: 10px; text-decoration: none; transition: opacity 0.2s, transform 0.15s; }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-ghost { background: transparent; border: 1px solid var(--border); color: #E8EAF0; font-size: 14px; padding: 12px 24px; border-radius: 10px; text-decoration: none; transition: border-color 0.2s; }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.2); }
+  footer { border-top: 1px solid var(--border); padding: 20px 24px; text-align: center; }
+  footer p { color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">3D <span>Molier</span></a>
+  </div>
+</nav>
+<main>
+  <div class="wrap">
+    <div class="code">404</div>
+    <h1>Page not found</h1>
+    <p>This model page may have moved or the URL is incorrect.<br>Try browsing the catalog or searching by name.</p>
+    <div class="actions">
+      <a href="/" class="btn-primary">Go Home</a>
+      <a href="/catalog/" class="btn-ghost">Browse Catalog</a>
+      <a href="/search/" class="btn-ghost">Search Models</a>
+    </div>
+  </div>
+</main>
+<footer>
+  <p>© 2025 3D Molier · All models on <a href="https://www.turbosquid.com/Search/3D-Models?include=true&media_typeid=2&artist_screenname=3d_molier-studio&referral=3d_molier-studio" style="color:var(--teal);text-decoration:none;" target="_blank" rel="noopener">TurboSquid</a></p>
+</footer>
+</body>
+</html>
