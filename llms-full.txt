@@ -6,8 +6,9 @@
 ## Business Model
 - All models are sold exclusively through TurboSquid
 - This website is a searchable SEO catalog / landing site — users click through to TurboSquid to purchase
-- Custom 3D modeling services are offered directly (contact: dddmolier@gmail.com)
+- Custom 3D modeling services are offered directly (contact: andrey.3dmolier@gmail.com)
 - All referral links use: ?referral=3d_molier-studio
+- Prices range from $0 (free models) to $500+ (complex professional assets)
 
 ## Main URLs
 - Homepage: https://3dmolier.github.io/3D-Models/
@@ -17,13 +18,14 @@
 - About: https://3dmolier.github.io/3D-Models/about/
 - Contact: https://3dmolier.github.io/3D-Models/contact/
 - Custom Order: https://3dmolier.github.io/3D-Models/custom-order/
+- LLMs Index: https://3dmolier.github.io/3D-Models/llms.txt
 
-## Categories
-- Vehicles (7,518 total): https://3dmolier.github.io/3D-Models/categories/vehicles/
-- Aircraft (3,871 total): https://3dmolier.github.io/3D-Models/categories/aircraft/
-- Military Vehicles (1,733 total): https://3dmolier.github.io/3D-Models/categories/military-vehicles/
-- Medical (1,938 total): https://3dmolier.github.io/3D-Models/categories/medical-3d-models/
-- Ships (961 total): https://3dmolier.github.io/3D-Models/categories/ships/
+## Category Pages (all models count is approximate)
+- Vehicles (7,518 models): https://3dmolier.github.io/3D-Models/categories/vehicles/
+- Aircraft (3,871 models): https://3dmolier.github.io/3D-Models/categories/aircraft/
+- Military Vehicles (1,733 models): https://3dmolier.github.io/3D-Models/categories/military-vehicles/
+- Medical (1,938 models): https://3dmolier.github.io/3D-Models/categories/medical-3d-models/
+- Ships (961 models): https://3dmolier.github.io/3D-Models/categories/ships/
 - Architecture Landmarks: https://3dmolier.github.io/3D-Models/categories/architecture-landmarks/
 - Industrial Equipment: https://3dmolier.github.io/3D-Models/categories/industrial-equipment/
 - Characters & People: https://3dmolier.github.io/3D-Models/categories/characters-people/
@@ -33,6 +35,8 @@
 - Electronics & Gadgets: https://3dmolier.github.io/3D-Models/categories/electronics-gadgets/
 - Clothing & Accessories: https://3dmolier.github.io/3D-Models/categories/clothing-accessories/
 - Food & Beverages: https://3dmolier.github.io/3D-Models/categories/food-beverages/
+- Weapons & Tools: https://3dmolier.github.io/3D-Models/categories/weapons-tools/
+- Other: https://3dmolier.github.io/3D-Models/categories/other/
 
 ## Industry Pages
 - Aerospace: https://3dmolier.github.io/3D-Models/industries/aerospace/
@@ -43,20 +47,94 @@
 - Architecture: https://3dmolier.github.io/3D-Models/industries/architecture/
 - Virtual Reality: https://3dmolier.github.io/3D-Models/industries/virtual-reality/
 - Advertising: https://3dmolier.github.io/3D-Models/industries/advertising/
+- Software Development: https://3dmolier.github.io/3D-Models/industries/softwaredevelopment/
+- Event Management: https://3dmolier.github.io/3D-Models/industries/eventmanagement/
+- Hardware: https://3dmolier.github.io/3D-Models/industries/hardware/
+- 3D Printing: https://3dmolier.github.io/3D-Models/industries/3dprinting/
 
-## File Formats Available
-FBX, OBJ, 3ds Max (.max), Cinema 4D (.c4d), Blender (.blend), COLLADA (.dae), glTF — varies by model.
+## Top 20 Model URLs (by sales rank)
+1. https://3dmolier.github.io/3D-Models/models/tesla-model-3-1214116/
+2. https://3dmolier.github.io/3D-Models/models/male-full-body-anatomy-and-skin-1467539/
+3. https://3dmolier.github.io/3D-Models/models/airbus-a320-generic-1335731/
+4. https://3dmolier.github.io/3D-Models/models/military-soldier-rigged-for-cinema-4d-1308127/
+5. https://3dmolier.github.io/3D-Models/models/ford-transit-cargo-2020-1411498/
+6. https://3dmolier.github.io/3D-Models/models/male-skeleton-collection-1421765/
+7. https://3dmolier.github.io/3D-Models/models/snowball-hat-1297578/
+8. https://3dmolier.github.io/3D-Models/models/complete-female-body-anatomy-1467538/
+9. https://3dmolier.github.io/3D-Models/models/sikorsky-ch-53k-black-hawk-us-military-utility-helicopter-1474682/
+10. https://3dmolier.github.io/3D-Models/models/animated-flying-monarch-butterfly-rigged-for-cinema-4d-1233254/
+11. https://3dmolier.github.io/3D-Models/models/generic-hybrid-car-1330459/
+12. https://3dmolier.github.io/3D-Models/models/tesla-model-s-plaid-2021-1461561/
+13. https://3dmolier.github.io/3D-Models/models/pickup-truck-generic-simple-interior-1346543/
+14. https://3dmolier.github.io/3D-Models/models/orbital-power-1342867/
+15. https://3dmolier.github.io/3D-Models/models/vr66-power-1342868/
+16. https://3dmolier.github.io/3D-Models/models/mercedes-sprinter-van-2019-1474218/
+17. https://3dmolier.github.io/3D-Models/models/six-wheel-apc-container-white-1308928/
+18. https://3dmolier.github.io/3D-Models/models/semi-truck-with-trailer-generic-simple-interior-1474681/
+19. https://3dmolier.github.io/3D-Models/models/lockhead-c-130-hercules-us-military-transport-aircraft-1474683/
+20. https://3dmolier.github.io/3D-Models/models/double-halligan-fighter-p-38-lightning-p-38-1474684/
 
-## Quality Certifications
-- CheckMate Lite/Pro: TurboSquid's highest quality certification. Guarantees clean topology, correct normals, proper UV mapping and real-world scale.
-- StemCell: TurboSquid's game-ready certification. Optimized for real-time engines with PBR textures.
+## Top Collections
+- Best Vehicle 3D Models: https://3dmolier.github.io/3D-Models/collections/best-vehicle-3d-models/
+- Best Aircraft 3D Models: https://3dmolier.github.io/3D-Models/collections/best-aircraft-3d-models/
+- Best Military Vehicle 3D Models: https://3dmolier.github.io/3D-Models/collections/best-military-vehicle-3d-models/
+- Best Medical 3D Models: https://3dmolier.github.io/3D-Models/collections/best-medical-3d-models/
+- Best Ship 3D Models: https://3dmolier.github.io/3D-Models/collections/best-ship-3d-models/
+- Best Architecture Landmark 3D Models: https://3dmolier.github.io/3D-Models/collections/best-architecture-landmark-3d-models/
+- Best Industrial Equipment 3D Models: https://3dmolier.github.io/3D-Models/collections/best-industrial-equipment-3d-models/
+- CheckMate Certified 3D Models: https://3dmolier.github.io/3D-Models/collections/checkmate-certified-3d-models/
+- StemCell Certified 3D Models: https://3dmolier.github.io/3D-Models/collections/stemcell-certified-3d-models/
+- 3D Models for Film Production: https://3dmolier.github.io/3D-Models/collections/3d-models-for-film-production/
+- 3D Models for Game Development: https://3dmolier.github.io/3D-Models/collections/3d-models-for-game-development/
+- 3D Models for Medical Visualization: https://3dmolier.github.io/3D-Models/collections/3d-models-for-medical-visualization/
+- 3D Models for Aerospace Visualization: https://3dmolier.github.io/3D-Models/collections/3d-models-for-aerospace-visualization/
+- 3D Models for Architecture Visualization: https://3dmolier.github.io/3D-Models/collections/3d-models-for-architecture-visualization/
+- 3D Models for Defense Simulation: https://3dmolier.github.io/3D-Models/collections/3d-models-for-defense-simulation/
+- 3D Models for VR Projects: https://3dmolier.github.io/3D-Models/collections/3d-models-for-vr-projects/
+- 3D Models for Advertising: https://3dmolier.github.io/3D-Models/collections/3d-models-for-advertising/
 
-## Custom Modeling
-3D Molier accepts custom modeling commissions:
-- New models built from reference materials or specifications
-- Modifications to existing catalog models
-- Contact: dddmolier@gmail.com
-- Request form: https://3dmolier.github.io/3D-Models/custom-order/
+## Q&A — Common Questions
 
-## Sitemap
-https://3dmolier.github.io/3D-Models/sitemap.xml
+Q: Where can I buy models from 3D Molier?
+A: All models are sold on TurboSquid at https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio — this website is a catalog/preview site that links directly to TurboSquid for purchase.
+
+Q: Can I get a custom 3D model made?
+A: Yes. 3D Molier offers custom 3D modeling services. Contact via https://3dmolier.github.io/3D-Models/custom-order/ or email andrey.3dmolier@gmail.com
+
+Q: What file formats are available?
+A: Most models are available in FBX, OBJ, MAX (3ds Max), C4D (Cinema 4D), BLEND (Blender), and sometimes additional formats. Check each model's TurboSquid page for the full format list.
+
+Q: Are the models CheckMate certified?
+A: Many models carry TurboSquid's CheckMate Lite or CheckMate Pro certification, which guarantees professional-quality topology, UV mapping, texturing, and real-world scale.
+
+Q: What is the price range?
+A: Prices range from $0 (free sample models) to $500+ for complex, highly detailed professional assets. Most models fall between $29 and $149.
+
+Q: Can I use these models commercially?
+A: Yes. Models purchased from TurboSquid include commercial licensing rights. Check the specific license on each model's TurboSquid page.
+
+Q: What industries use 3D Molier models?
+A: Film and video production, game development, aerospace simulation, medical education, architectural visualization, advertising, virtual reality, defense training, 3D printing, software development, event management, and hardware prototyping.
+
+Q: Who is behind 3D Molier?
+A: Andrey Simonenko, a 3D artist and visualization specialist with 20+ years of experience.
+
+Q: How many models are available?
+A: Over 88,000 models on TurboSquid. This website features the top 1,000 most popular and highest-rated models in a searchable catalog.
+
+## Custom Modeling Service
+3D Molier builds custom 3D models to client specifications:
+- New models built from scratch from reference images or blueprints
+- Modifications to existing catalog models (color, format, detail changes)
+- Animated or rigged versions of static models
+- High-poly cinematic or low-poly game-ready versions
+- Architectural walkthroughs and product visualization
+
+Contact: andrey.3dmolier@gmail.com or use https://3dmolier.github.io/3D-Models/custom-order/
+
+## Technical Notes
+- All models use real-world scale
+- CheckMate models have clean subdivision-ready topology
+- Textures are typically 2K or 4K resolution
+- UV maps are fully unwrapped
+- Models are tested in the file formats provided

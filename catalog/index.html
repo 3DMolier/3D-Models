@@ -14,9 +14,9 @@
 <link rel="icon" href="/3D-Models/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://3dmolier.github.io/3D-Models/catalog/">
 
-<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/3D-Models/assets/css/styles.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Open+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --teal: #00E5C4;
@@ -128,27 +128,96 @@
   #sort-select { background: var(--surface); border: 1px solid var(--border); color: #fff; font-family: 'Inter', sans-serif; font-size: 13px; padding: 7px 12px; border-radius: 8px; outline: none; cursor: pointer; }
   #sort-select:focus { border-color: var(--teal); }
 
-  /* MODEL GRID — Dribbble-inspired editorial cards */
-  #model-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 20px; }
+  /* MODEL GRID — Fashion editorial card design */
+  #model-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
 
-  .model-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: transform 0.25s cubic-bezier(0.4,0,0.2,1), box-shadow 0.25s, border-color 0.25s; text-decoration: none; display: block; position: relative; }
-  .model-card:hover { transform: translateY(-5px); border-color: rgba(0,229,196,0.3); box-shadow: 0 16px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,229,196,0.1); }
+  .model-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s, border-color 0.3s;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .model-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,229,196,0.35);
+    box-shadow: 0 20px 56px rgba(0,0,0,0.55), 0 0 0 1px rgba(0,229,196,0.12);
+  }
   .model-card:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
 
-  .card-img { position: relative; height: 200px; overflow: hidden; background: var(--surface2); }
-  .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); display: block; }
-  .model-card:hover .card-img img { transform: scale(1.05); }
-  .card-img .img-fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 40px; opacity: 0.4; }
-  .card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(7,9,15,0.8) 0%, rgba(7,9,15,0.1) 50%, transparent 100%); pointer-events: none; }
-  .card-cat-badge { position: absolute; bottom: 10px; left: 10px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 3px 9px; border-radius: 20px; backdrop-filter: blur(8px); }
-  .card-cert { position: absolute; top: 10px; right: 10px; font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; backdrop-filter: blur(8px); }
-  .cert-cm-badge { background: rgba(79,158,255,0.25); color: #4F9EFF; border: 1px solid rgba(79,158,255,0.3); }
-  .cert-sc-badge { background: rgba(139,92,246,0.25); color: #8B5CF6; border: 1px solid rgba(139,92,246,0.3); }
+  /* Image area — tall, editorial proportions */
+  .card-img {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+    background: linear-gradient(160deg, #131A22 0%, #0F1620 100%);
+    flex-shrink: 0;
+  }
+  .card-img img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.45s cubic-bezier(0.4,0,0.2,1), filter 0.35s;
+    filter: brightness(0.92) saturate(0.95);
+  }
+  .model-card:hover .card-img img {
+    transform: scale(1.06);
+    filter: brightness(1.05) saturate(1.1);
+  }
+  .card-img .img-fallback {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px; opacity: 0.3;
+  }
+  /* Lighter overlay so images are more visible */
+  .card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(7,9,15,0.65) 0%, rgba(7,9,15,0.05) 40%, transparent 100%);
+    pointer-events: none;
+  }
+  /* Category chip on image (bottom-left) */
+  .card-cat-badge {
+    position: absolute; bottom: 8px; left: 8px;
+    font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em;
+    padding: 3px 8px; border-radius: 20px;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  }
+  /* Cert badge (top-right) */
+  .card-cert {
+    position: absolute; top: 8px; right: 8px;
+    font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 20px;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  }
+  .cert-cm-badge { background: rgba(79,158,255,0.28); color: #6BB3FF; border: 1px solid rgba(79,158,255,0.35); }
+  .cert-sc-badge { background: rgba(139,92,246,0.28); color: #A78BFA; border: 1px solid rgba(139,92,246,0.35); }
 
-  .card-body { padding: 14px 14px 16px; }
-  .card-name { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; color: #EDF2FF; line-height: 1.4; letter-spacing: -0.01em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 10px; }
-  .card-footer { display: flex; align-items: center; justify-content: space-between; }
-  .card-price { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 18px; color: #fff; letter-spacing: -0.02em; }
+  /* Hover CTA bar appears over bottom of image */
+  .card-quick-view {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 40px; display: flex; align-items: center; justify-content: center;
+    background: rgba(0,229,196,0.92); color: #07090F;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.04em;
+    transform: translateY(100%);
+    transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
+  }
+  .model-card:hover .card-quick-view { transform: translateY(0); }
+
+  /* Card body */
+  .card-body { padding: 12px 14px 14px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+  .card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 13.5px; font-weight: 700; color: #EDF2FF;
+    line-height: 1.45; letter-spacing: -0.01em;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+  .card-price {
+    font-family: 'Playfair Display', serif; font-weight: 800; font-size: 17px;
+    color: #fff; letter-spacing: -0.02em;
+  }
   .card-view { font-size: 11px; color: var(--teal); font-weight: 600; opacity: 0; transition: opacity 0.2s; }
   .model-card:hover .card-view { opacity: 1; }
 
@@ -645,7 +714,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 3D Molier. All models available on TurboSquid.</p>
+      <p>© 2026 3D Molier. All models available on TurboSquid.</p>
       <a href="#" class="back-top">Back to top ↑</a>
     </div>
   </div>
@@ -711,17 +780,18 @@ function cardHtml(m) {
     <div class="card-img">
       <img src="${imgSrc}" alt="${m.n} 3D model — ${m.c} by 3D Molier" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="img-fallback" style="display:none;background:linear-gradient(135deg,${m.col}22,${m.col}08)">
-        <span style="font-size:40px;">&#128247;</span>
+        <span style="font-size:36px;">&#128247;</span>
       </div>
       <div class="card-overlay"></div>
-      <span class="card-cat-badge" style="background:${m.col}22;color:${m.col};border:1px solid ${m.col}44;">${m.c}</span>
+      <span class="card-cat-badge" style="background:${m.col}28;color:${m.col};border:1px solid ${m.col}55;">${m.c}</span>
       ${certBadge}
+      <div class="card-quick-view">View Model &#8594;</div>
     </div>
     <div class="card-body">
       <div class="card-name">${m.n}</div>
       <div class="card-footer">
         <div class="card-price">$${price}</div>
-        <div class="card-view">View Model &rsaquo;</div>
+        <div class="card-view">&#8594;</div>
       </div>
     </div>
   </a>`;

@@ -411,9 +411,9 @@ tailwind.config = {{
 <!-- Breadcrumb -->
 <div style="border-bottom:1px solid #1E2B44;background:rgba(14,18,32,0.5);">
   <div class="max-w-7xl mx-auto px-6 py-3" style="display:flex;align-items:center;gap:8px;font-size:13px;color:#7A8DB0;">
-    <a href="/" style="color:#7A8DB0;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDF2FF'" onmouseout="this.style.color='#7A8DB0'">Home</a>
+    <a href="/3D-Models/" style="color:#7A8DB0;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDF2FF'" onmouseout="this.style.color='#7A8DB0'">Home</a>
     <span style="color:#1E2B44;">&#8250;</span>
-    <a href="/collections/" style="color:#7A8DB0;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDF2FF'" onmouseout="this.style.color='#7A8DB0'">Collections</a>
+    <a href="/3D-Models/collections/" style="color:#7A8DB0;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDF2FF'" onmouseout="this.style.color='#7A8DB0'">Collections</a>
     <span style="color:#1E2B44;">&#8250;</span>
     <span style="color:#EDF2FF;">{title}</span>
   </div>
@@ -593,7 +593,7 @@ tailwind.config = {{
 <!-- Breadcrumb -->
 <div style="border-bottom:1px solid #1E2B44;background:rgba(14,18,32,0.5);">
   <div class="max-w-7xl mx-auto px-6 py-3" style="display:flex;align-items:center;gap:8px;font-size:13px;color:#7A8DB0;">
-    <a href="/" style="color:#7A8DB0;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDF2FF'" onmouseout="this.style.color='#7A8DB0'">Home</a>
+    <a href="/3D-Models/" style="color:#7A8DB0;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDF2FF'" onmouseout="this.style.color='#7A8DB0'">Home</a>
     <span style="color:#1E2B44;">&#8250;</span>
     <span style="color:#EDF2FF;">Collections</span>
   </div>
