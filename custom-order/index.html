@@ -8,7 +8,7 @@
 <meta property="og:title" content="Custom 3D Model Order — 3D Molier">
 <meta property="og:description" content="Order a custom 3D model from 3D Molier. New models from scratch, model adaptation, rigging and any file format. Contact: dddmolier@gmail.com">
 <meta property="og:url" content="https://3dmolier.github.io/3D-Models/custom-order/">
-<meta property="og:image" content="https://3dmolier.github.io/3D-Models/favicon.svg">
+<meta property="og:image" content="https://3dmolier.github.io/3D-Models/assets/og/3d-molier-og.jpg">
 <meta property="og:site_name" content="3D Molier">
 <meta name="description" content="Order a custom 3D model from 3D Molier. New models from scratch, model adaptation, rigging and any file format. Contact: dddmolier@gmail.com">
 <link rel="icon" href="/3D-Models/favicon.svg" type="image/svg+xml">
@@ -99,17 +99,17 @@
           style="display:flex;flex-direction:column;gap:18px;">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
         <div>
-          <label>Your Name</label>
-          <input type="text" name="name" placeholder="John Smith" required>
+          <label for="co-name">Your Name</label>
+          <input id="co-name" type="text" name="name" placeholder="John Smith" required aria-label="Your name">
         </div>
         <div>
-          <label>Your Email</label>
-          <input type="email" name="email" placeholder="you@example.com" required>
+          <label for="co-email">Your Email</label>
+          <input id="co-email" type="email" name="email" placeholder="you@example.com" required aria-label="Your email">
         </div>
       </div>
       <div>
-        <label>Type of Request</label>
-        <select name="type">
+        <label for="co-type">Type of Request</label>
+        <select id="co-type" name="type" aria-label="Type of request">
           <option>New model from scratch</option>
           <option>Modify an existing model</option>
           <option>Rigging / Animation</option>
@@ -119,13 +119,13 @@
         </select>
       </div>
       <div>
-        <label>Describe Your Project</label>
-        <textarea name="body" rows="6" required style="resize:vertical;min-height:140px;"
+        <label for="co-description">Describe Your Project</label>
+        <textarea id="co-description" name="body" rows="6" required aria-label="Describe your project" style="resize:vertical;min-height:140px;"
           placeholder="Describe the model you need: type, size, level of detail, polygon budget, reference images URL, delivery format, deadline..."></textarea>
       </div>
       <div>
-        <label>Budget (USD, optional)</label>
-        <input type="text" name="budget" placeholder="e.g. $200 – $500">
+        <label for="co-budget">Budget (USD, optional)</label>
+        <input id="co-budget" type="text" name="budget" placeholder="e.g. $200 – $500" aria-label="Budget in USD (optional)">
       </div>
       <button type="submit"
               style="background:#00E5C4;color:#07090F;font-weight:700;font-size:15px;padding:14px 32px;border-radius:10px;border:none;cursor:pointer;align-self:flex-start;">

@@ -8,7 +8,7 @@
 <meta property="og:title" content="Contact 3D Molier — Get in Touch">
 <meta property="og:description" content="Contact 3D Molier for custom 3D model requests, licensing questions or collaboration. Email: dddmolier@gmail.com">
 <meta property="og:url" content="https://3dmolier.github.io/3D-Models/contact/">
-<meta property="og:image" content="https://3dmolier.github.io/3D-Models/favicon.svg">
+<meta property="og:image" content="https://3dmolier.github.io/3D-Models/assets/og/3d-molier-og.jpg">
 <meta property="og:site_name" content="3D Molier">
 <meta name="description" content="Contact 3D Molier for custom 3D model requests, licensing questions or collaboration. Email: dddmolier@gmail.com">
 <link rel="icon" href="/3D-Models/favicon.svg" type="image/svg+xml">
@@ -61,16 +61,16 @@
     <form action="mailto:dddmolier@gmail.com" method="get" enctype="text/plain"
           style="display:flex;flex-direction:column;gap:18px;">
       <div>
-        <label>Your Name</label>
-        <input type="text" name="name" placeholder="John Smith" required>
+        <label for="contact-name">Your Name</label>
+        <input id="contact-name" type="text" name="name" placeholder="John Smith" required aria-label="Your name">
       </div>
       <div>
-        <label>Your Email</label>
-        <input type="email" name="email" placeholder="you@example.com" required>
+        <label for="contact-email">Your Email</label>
+        <input id="contact-email" type="email" name="email" placeholder="you@example.com" required aria-label="Your email">
       </div>
       <div>
-        <label>Subject</label>
-        <select name="subject">
+        <label for="contact-subject">Subject</label>
+        <select id="contact-subject" name="subject" aria-label="Subject">
           <option>Question about a model</option>
           <option>Custom 3D model request</option>
           <option>Licensing inquiry</option>
@@ -79,8 +79,8 @@
         </select>
       </div>
       <div>
-        <label>Message</label>
-        <textarea name="body" rows="5" placeholder="Describe your request in detail..." required
+        <label for="contact-message">Message</label>
+        <textarea id="contact-message" name="body" rows="5" placeholder="Describe your request in detail..." required aria-label="Message"
                   style="resize:vertical;min-height:120px;"></textarea>
       </div>
       <button type="submit"
