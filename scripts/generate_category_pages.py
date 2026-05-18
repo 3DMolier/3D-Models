@@ -461,9 +461,12 @@ def footer_html():
 LINK_ICON = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>'
 
 
+PROXY_BASE = "https://images.weserv.nl/?url="
+
 def model_card_html(m, color, gradient):
     title = m['product_name']
     price = m['price']
+    slug  = m.get('slug', '')
     try:
         price_str = f"${float(price):.0f}"
     except (ValueError, TypeError):
@@ -474,14 +477,18 @@ def model_card_html(m, color, gradient):
     url  = m.get('referral_url', '#')
     is_cm = 'CheckMate' in cert
 
+    # Proxy TurboSquid images through weserv.nl
+    if img and img.startswith("https://static.turbosquid"):
+        img = PROXY_BASE + img.replace("https://", "") + "&w=600&q=85&output=webp"
+
     cert_html = '<span class="cert-badge">&#10003; CM</span>' if is_cm else \
                 '<span class="cert-badge" style="background:rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.25);color:#7C3AED;">SC</span>' \
                 if 'Stem' in cert else ''
 
     img_html = ''
     if img:
-        img_html = f'''<img src="{img}" alt="{title}" loading="lazy"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        img_html = f'''<img src="{img}" alt="{title} 3D model preview" loading="lazy"
+            onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';">
           <div class="img-placeholder" style="color:{color};display:none;">
             <span style="font-size:28px;opacity:0.5;">&#128247;</span>
             <span style="color:{color};">{cat}</span>
@@ -492,25 +499,23 @@ def model_card_html(m, color, gradient):
             <span style="color:{color};">{cat}</span>
           </div>'''
 
-    return f'''<div class="model-card card-glow">
+    internal_link = f"/3D-Models/models/{slug}/" if slug else url
+
+    return f'''<a href="{internal_link}" class="model-card card-glow" style="text-decoration:none;display:block;">
         <div class="img-wrap" style="height:180px;background:linear-gradient({gradient});">
           {img_html}
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">{title}</h3>
+            <h3 style="font-family:\'Playfair Display\',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">{title}</h3>
             {cert_html}
           </div>
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-            <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">{cat}</span>
-            <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">{price_str}</span>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span class="chip" style="font-size:11px;padding:3px 8px;color:{color};border-color:{color}44;">{cat}</span>
+            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">{price_str}</span>
           </div>
-          <a href="{url}" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
-            {LINK_ICON}
-            View on TurboSquid
-          </a>
         </div>
-      </div>'''
+      </a>'''
 
 
 # ── Full page HTML ──────────────────────────────────────────────────────────────

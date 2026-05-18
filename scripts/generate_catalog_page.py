@@ -81,7 +81,7 @@ def generate():
 
     cats_ordered = sorted(CAT_STYLE.keys(), key=lambda c: counts.get(c, 0), reverse=True)
 
-    # Build category filter pills HTML
+    # Build category filter pills HTML (use div not label to avoid double-click)
     cat_pills_html = ""
     for cat in cats_ordered:
         n = counts.get(cat, 0)
@@ -90,12 +90,41 @@ def generate():
         col = CAT_STYLE[cat]["color"]
         icon = CAT_STYLE[cat]["icon"]
         cat_pills_html += f"""
-          <label class="cat-pill" data-cat="{cat}" style="--cat-col:{col}">
-            <input type="checkbox" name="cat" value="{cat}" class="sr-only">
+          <div class="cat-pill" data-cat="{cat}" style="--cat-col:{col}" role="button" tabindex="0" aria-label="Filter by {cat}">
             <span class="pill-icon">{icon}</span>
             <span class="pill-name">{cat}</span>
             <span class="pill-count">{n}</span>
-          </label>"""
+          </div>"""
+
+    # Build no-JS static pre-render of first 24 models for SEO
+    PROXY = "https://images.weserv.nl/?url="
+    static_cards = ""
+    for r in rows[:24]:
+        slug = r["slug"]
+        title = r["product_name"]
+        cat = r["category"]
+        style = CAT_STYLE.get(cat, {"color": "#00E5C4"})
+        col = style["color"]
+        img = r["image_url"]
+        if img and img.startswith("https://static.turbosquid"):
+            img_proxied = PROXY + img.replace("https://", "") + "&w=600&q=85&output=webp"
+        else:
+            img_proxied = img
+        try:
+            price_str = f"${float(r['price']):.0f}"
+        except:
+            price_str = f"${r['price']}"
+        cert = r.get("certification", "")
+        static_cards += f'''<a href="/3D-Models/models/{slug}/" style="text-decoration:none;display:block;background:#0D1117;border:1px solid rgba(255,255,255,0.07);border-radius:14px;overflow:hidden;">
+          <div style="height:200px;background:#131A22;overflow:hidden;position:relative;">
+            <img src="{img_proxied}" alt="{title} 3D model — {cat} by 3D Molier" loading="lazy" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display=\'none\'">
+            <span style="position:absolute;top:8px;left:8px;font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;background:{col}22;color:{col};border:1px solid {col}44;">{cat}</span>
+          </div>
+          <div style="padding:12px;">
+            <div style="font-size:13px;font-weight:600;color:#EDF2FF;line-height:1.4;margin-bottom:8px;">{title}</div>
+            <div style="font-size:15px;font-weight:700;color:#fff;">{price_str}</div>
+          </div>
+        </a>\n'''
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
 
@@ -106,9 +135,15 @@ def generate():
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Browse 3D Models Catalog — 88,000+ Assets | 3D Molier on TurboSquid</title>
 <meta name="description" content="Browse 88,000+ professional 3D models by 3D Molier on TurboSquid. Filter by category, price, and certification. Vehicles, Aircraft, Medical, Architecture and more.">
+<link rel="icon" href="/3D-Models/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://3dmolier.github.io/3D-Models/catalog/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Browse 3D Models Catalog — 88,000+ Assets | 3D Molier">
+<meta property="og:description" content="Browse 88,000+ professional 3D models. Filter by category, price, and certification.">
+<meta property="og:url" content="https://3dmolier.github.io/3D-Models/catalog/">
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {{
     --teal: #00E5C4;
@@ -121,8 +156,8 @@ def generate():
   }}
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
   html {{ scroll-behavior: smooth; }}
-  body {{ background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; }}
-  .syne {{ font-family: 'Syne', sans-serif; }}
+  body {{ background: var(--bg); color: var(--text); font-family: 'Open Sans', sans-serif; font-size: 15px; line-height: 1.6; }}
+  .syne {{ font-family: 'Playfair Display', serif; }}
 
   /* Noise grain */
   body::before {{
@@ -135,7 +170,7 @@ def generate():
   /* NAV */
   nav {{ position: sticky; top: 0; z-index: 50; background: rgba(7,9,15,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }}
   .nav-inner {{ max-width: 1400px; margin: 0 auto; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 32px; }}
-  .nav-logo {{ font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: #fff; text-decoration: none; letter-spacing: -0.03em; }}
+  .nav-logo {{ font-family: 'Playfair Display', serif; font-weight: 800; font-size: 18px; color: #fff; text-decoration: none; letter-spacing: -0.03em; }}
   .nav-logo span {{ color: var(--teal); }}
   .nav-links {{ display: flex; gap: 24px; margin-left: auto; }}
   .nav-links a {{ color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }}
@@ -220,26 +255,29 @@ def generate():
   #sort-select {{ background: var(--surface); border: 1px solid var(--border); color: #fff; font-family: 'Inter', sans-serif; font-size: 13px; padding: 7px 12px; border-radius: 8px; outline: none; cursor: pointer; }}
   #sort-select:focus {{ border-color: var(--teal); }}
 
-  /* MODEL GRID */
-  #model-grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }}
+  /* MODEL GRID — Dribbble-inspired editorial cards */
+  #model-grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 20px; }}
 
-  .model-card {{ background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; text-decoration: none; display: block; }}
-  .model-card:hover {{ transform: translateY(-4px); border-color: rgba(255,255,255,0.14); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }}
+  .model-card {{ background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: transform 0.25s cubic-bezier(0.4,0,0.2,1), box-shadow 0.25s, border-color 0.25s; text-decoration: none; display: block; position: relative; }}
+  .model-card:hover {{ transform: translateY(-5px); border-color: rgba(0,229,196,0.3); box-shadow: 0 16px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,229,196,0.1); }}
+  .model-card:focus-visible {{ outline: 2px solid var(--teal); outline-offset: 3px; }}
 
-  .card-img {{ position: relative; padding-top: 75%; overflow: hidden; background: var(--surface2); }}
-  .card-img img {{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }}
-  .card-img .img-fallback {{ position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 36px; }}
-  .card-overlay {{ position: absolute; inset: 0; background: linear-gradient(to top, rgba(7,9,15,0.7) 0%, transparent 60%); }}
-  .card-cert {{ position: absolute; top: 8px; right: 8px; font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; }}
-  .cert-cm-badge {{ background: rgba(79,158,255,0.2); color: #4F9EFF; backdrop-filter: blur(4px); }}
-  .cert-sc-badge {{ background: rgba(139,92,246,0.2); color: #8B5CF6; backdrop-filter: blur(4px); }}
+  .card-img {{ position: relative; height: 200px; overflow: hidden; background: var(--surface2); }}
+  .card-img img {{ width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); display: block; }}
+  .model-card:hover .card-img img {{ transform: scale(1.05); }}
+  .card-img .img-fallback {{ position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 40px; opacity: 0.4; }}
+  .card-overlay {{ position: absolute; inset: 0; background: linear-gradient(to top, rgba(7,9,15,0.8) 0%, rgba(7,9,15,0.1) 50%, transparent 100%); pointer-events: none; }}
+  .card-cat-badge {{ position: absolute; bottom: 10px; left: 10px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 3px 9px; border-radius: 20px; backdrop-filter: blur(8px); }}
+  .card-cert {{ position: absolute; top: 10px; right: 10px; font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; backdrop-filter: blur(8px); }}
+  .cert-cm-badge {{ background: rgba(79,158,255,0.25); color: #4F9EFF; border: 1px solid rgba(79,158,255,0.3); }}
+  .cert-sc-badge {{ background: rgba(139,92,246,0.25); color: #8B5CF6; border: 1px solid rgba(139,92,246,0.3); }}
 
-  .card-body {{ padding: 12px; }}
-  .card-cat {{ font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }}
-  .card-name {{ font-size: 13px; font-weight: 600; color: #fff; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }}
-  .card-footer {{ display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }}
-  .card-price {{ font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; color: #fff; }}
-  .card-sales {{ font-size: 11px; color: var(--muted); }}
+  .card-body {{ padding: 14px 14px 16px; }}
+  .card-name {{ font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; color: #EDF2FF; line-height: 1.4; letter-spacing: -0.01em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 10px; }}
+  .card-footer {{ display: flex; align-items: center; justify-content: space-between; }}
+  .card-price {{ font-family: 'Playfair Display', serif; font-weight: 800; font-size: 18px; color: #fff; letter-spacing: -0.02em; }}
+  .card-view {{ font-size: 11px; color: var(--teal); font-weight: 600; opacity: 0; transition: opacity 0.2s; }}
+  .model-card:hover .card-view {{ opacity: 1; }}
 
   /* LOAD MORE */
   .load-more-wrap {{ text-align: center; margin-top: 40px; }}
@@ -272,18 +310,17 @@ def generate():
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="/" class="nav-logo">3D <span>Molier</span></a>
+    <a href="/3D-Models/" class="nav-logo">3D <span>Molier</span></a>
     <div class="nav-links">
-      <a href="/catalog/">Catalog</a>
-      <a href="/categories/vehicles/">Vehicles</a>
-      <a href="/categories/aircraft/">Aircraft</a>
-      <a href="/categories/military-vehicles/">Military</a>
-      <a href="/categories/medical-3d-models/">Medical</a>
-      <a href="/collections/">Collections</a>
-      <a href="/search/" style="display:flex;align-items:center;gap:4px;color:#6B7280;text-decoration:none;font-size:14px;font-weight:500;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6B7280'">
-        <svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M15 15l-3.5-3.5"/></svg>
-        Search
-      </a>
+      <a href="/3D-Models/catalog/">Catalog</a>
+      <a href="/3D-Models/categories/vehicles/">Vehicles</a>
+      <a href="/3D-Models/categories/aircraft/">Aircraft</a>
+      <a href="/3D-Models/categories/military-vehicles/">Military</a>
+      <a href="/3D-Models/categories/medical-3d-models/">Medical</a>
+      <a href="/3D-Models/collections/">Collections</a>
+      <a href="/3D-Models/about/">About</a>
+      <a href="/3D-Models/custom-order/">Custom Order</a>
+      <a href="/3D-Models/contact/">Contact</a>
     </div>
     <a href="https://www.turbosquid.com/Search/3D-Models?include=true&media_typeid=2&artist_screenname=3d_molier-studio&referral=3d_molier-studio" class="btn-ts" target="_blank" rel="noopener">TurboSquid ↗</a>
   </div>
@@ -303,7 +340,7 @@ def generate():
     <svg class="search-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
       <circle cx="9" cy="9" r="6"/><path d="M15 15l-3.5-3.5"/>
     </svg>
-    <input id="search-input" type="search" placeholder="Search models by name…" autocomplete="off">
+    <input id="search-input" type="search" placeholder="Search models by name…" autocomplete="off" aria-label="Search 3D models by name, category or keyword">
   </div>
 </div>
 
@@ -336,21 +373,18 @@ def generate():
     <div class="filter-section">
       <h3>Certification</h3>
       <div class="cert-options">
-        <label class="cert-opt" data-cert="CheckMate Lite/Pro">
-          <input type="checkbox" class="sr-only" value="CheckMate Lite/Pro">
+        <div class="cert-opt" data-cert="CheckMate Lite/Pro" role="button" tabindex="0" aria-label="Filter by CheckMate certification">
           <span class="cert-label">CheckMate</span>
           <span class="cert-badge cm">CM</span>
-        </label>
-        <label class="cert-opt" data-cert="StemCell">
-          <input type="checkbox" class="sr-only" value="StemCell">
+        </div>
+        <div class="cert-opt" data-cert="StemCell" role="button" tabindex="0" aria-label="Filter by StemCell certification">
           <span class="cert-label">StemCell</span>
           <span class="cert-badge sc">SC</span>
-        </label>
-        <label class="cert-opt" data-cert="no certification">
-          <input type="checkbox" class="sr-only" value="no certification">
+        </div>
+        <div class="cert-opt" data-cert="no certification" role="button" tabindex="0" aria-label="Filter: no certification">
           <span class="cert-label">No Certification</span>
           <span class="cert-badge none">–</span>
-        </label>
+        </div>
       </div>
     </div>
 
@@ -375,10 +409,14 @@ def generate():
 
     <div id="active-filters"></div>
 
-    <div id="model-grid"></div>
+    <div id="model-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;">{static_cards}</div>
+
+    <noscript>
+      <p style="color:#9CA3AF;font-size:14px;padding:20px 0;">JavaScript is required for full filtering. Showing 24 of {total} models above.</p>
+    </noscript>
 
     <div id="empty-state">
-      <div class="empty-icon">🔍</div>
+      <div class="empty-icon">&#128269;</div>
       <h3>No models found</h3>
       <p>Try adjusting your filters or search terms.</p>
     </div>
@@ -469,24 +507,33 @@ function certBadgeHtml(cert) {{
   return '';
 }}
 
+function proxyImg(url) {{
+  if (!url) return '';
+  if (url.startsWith('https://static.turbosquid')) {{
+    return 'https://images.weserv.nl/?url=' + url.replace('https://','') + '&w=600&q=85&output=webp';
+  }}
+  return url;
+}}
+
 function cardHtml(m) {{
   const price = Number.isInteger(m.p) ? m.p : m.p.toFixed(0);
-  const salesFmt = m.sales >= 1000 ? (m.sales/1000).toFixed(1)+'k' : m.sales;
-  return `<a href="/models/${{m.s}}/" class="model-card">
+  const imgSrc = proxyImg(m.img);
+  const certBadge = certBadgeHtml(m.cert);
+  return `<a href="/3D-Models/models/${{m.s}}/" class="model-card">
     <div class="card-img">
-      <img src="${{m.img}}" alt="${{m.n}}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img src="${{imgSrc}}" alt="${{m.n}} 3D model — ${{m.c}} by 3D Molier" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="img-fallback" style="display:none;background:linear-gradient(135deg,${{m.col}}22,${{m.col}}08)">
-        <span style="font-size:40px;opacity:.5">🎨</span>
+        <span style="font-size:40px;">&#128247;</span>
       </div>
       <div class="card-overlay"></div>
-      ${{certBadgeHtml(m.cert)}}
+      <span class="card-cat-badge" style="background:${{m.col}}22;color:${{m.col}};border:1px solid ${{m.col}}44;">${{m.c}}</span>
+      ${{certBadge}}
     </div>
     <div class="card-body">
-      <div class="card-cat" style="color:${{m.col}}">${{m.c}}</div>
       <div class="card-name">${{m.n}}</div>
       <div class="card-footer">
         <div class="card-price">$${{price}}</div>
-        <div class="card-sales">${{salesFmt}} sales</div>
+        <div class="card-view">View Model &rsaquo;</div>
       </div>
     </div>
   </a>`;

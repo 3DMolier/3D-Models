@@ -47,7 +47,7 @@ CAT_SLUG: dict[str, str] = {
     "Electronics & Gadgets":  "electronics-gadgets",
     "Clothing & Accessories": "clothing-accessories",
     "Food & Beverages":       "food-beverages",
-    "Other":                  "catalog",
+    "Other":                  "other",
 }
 
 # ── Description generator ────────────────────────────────────────────────────

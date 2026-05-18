@@ -1,4 +1,32 @@
 User-agent: *
 Allow: /
+Disallow: /data/
+
+# AI search crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
 
 Sitemap: https://3dmolier.github.io/3D-Models/sitemap.xml
+LLMs-txt: https://3dmolier.github.io/3D-Models/llms.txt
+LLMs-full: https://3dmolier.github.io/3D-Models/llms-full.txt

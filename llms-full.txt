@@ -1,0 +1,62 @@
+# 3D Molier — Full Site Context for AI/LLM Agents
+
+## About 3D Molier
+3D Molier is a professional 3D modeling studio operated by Andrey Simonenko. The studio has been producing 3D assets for 20+ years and has published over 88,000 models on TurboSquid. The catalog spans vehicles, aircraft, military hardware, medical anatomy, architecture, industrial equipment, ships, characters, nature assets, electronics, clothing, furniture and more.
+
+## Business Model
+- All models are sold exclusively through TurboSquid
+- This website is a searchable SEO catalog / landing site — users click through to TurboSquid to purchase
+- Custom 3D modeling services are offered directly (contact: dddmolier@gmail.com)
+- All referral links use: ?referral=3d_molier-studio
+
+## Main URLs
+- Homepage: https://3dmolier.github.io/3D-Models/
+- Catalog (browse + filter): https://3dmolier.github.io/3D-Models/catalog/
+- Search: https://3dmolier.github.io/3D-Models/search/
+- Collections: https://3dmolier.github.io/3D-Models/collections/
+- About: https://3dmolier.github.io/3D-Models/about/
+- Contact: https://3dmolier.github.io/3D-Models/contact/
+- Custom Order: https://3dmolier.github.io/3D-Models/custom-order/
+
+## Categories
+- Vehicles (7,518 total): https://3dmolier.github.io/3D-Models/categories/vehicles/
+- Aircraft (3,871 total): https://3dmolier.github.io/3D-Models/categories/aircraft/
+- Military Vehicles (1,733 total): https://3dmolier.github.io/3D-Models/categories/military-vehicles/
+- Medical (1,938 total): https://3dmolier.github.io/3D-Models/categories/medical-3d-models/
+- Ships (961 total): https://3dmolier.github.io/3D-Models/categories/ships/
+- Architecture Landmarks: https://3dmolier.github.io/3D-Models/categories/architecture-landmarks/
+- Industrial Equipment: https://3dmolier.github.io/3D-Models/categories/industrial-equipment/
+- Characters & People: https://3dmolier.github.io/3D-Models/categories/characters-people/
+- Animals & Creatures: https://3dmolier.github.io/3D-Models/categories/animals-creatures/
+- Nature & Plants: https://3dmolier.github.io/3D-Models/categories/nature-plants/
+- Furniture & Interior: https://3dmolier.github.io/3D-Models/categories/furniture-interior/
+- Electronics & Gadgets: https://3dmolier.github.io/3D-Models/categories/electronics-gadgets/
+- Clothing & Accessories: https://3dmolier.github.io/3D-Models/categories/clothing-accessories/
+- Food & Beverages: https://3dmolier.github.io/3D-Models/categories/food-beverages/
+
+## Industry Pages
+- Aerospace: https://3dmolier.github.io/3D-Models/industries/aerospace/
+- Military & Defense: https://3dmolier.github.io/3D-Models/industries/military-defense/
+- Medical: https://3dmolier.github.io/3D-Models/industries/medical/
+- Game Development: https://3dmolier.github.io/3D-Models/industries/game-development/
+- Film & Video Production: https://3dmolier.github.io/3D-Models/industries/film-video-production/
+- Architecture: https://3dmolier.github.io/3D-Models/industries/architecture/
+- Virtual Reality: https://3dmolier.github.io/3D-Models/industries/virtual-reality/
+- Advertising: https://3dmolier.github.io/3D-Models/industries/advertising/
+
+## File Formats Available
+FBX, OBJ, 3ds Max (.max), Cinema 4D (.c4d), Blender (.blend), COLLADA (.dae), glTF — varies by model.
+
+## Quality Certifications
+- CheckMate Lite/Pro: TurboSquid's highest quality certification. Guarantees clean topology, correct normals, proper UV mapping and real-world scale.
+- StemCell: TurboSquid's game-ready certification. Optimized for real-time engines with PBR textures.
+
+## Custom Modeling
+3D Molier accepts custom modeling commissions:
+- New models built from reference materials or specifications
+- Modifications to existing catalog models
+- Contact: dddmolier@gmail.com
+- Request form: https://3dmolier.github.io/3D-Models/custom-order/
+
+## Sitemap
+https://3dmolier.github.io/3D-Models/sitemap.xml
