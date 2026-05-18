@@ -19,81 +19,76 @@
 <style>
 
   * { box-sizing: border-box; }
-  body { background: #07090F; font-family: 'Inter', sans-serif; color: #EDF2FF; }
+  body { background: #fafafa; font-family: 'Inter', sans-serif; color: #111111; }
 
-  body::before {
-    content: '';
-    position: fixed; inset: 0; pointer-events: none; z-index: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
-    opacity: 0.4;
-  }
+  
 
   html { scroll-behavior: smooth; }
   ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: #07090F; }
-  ::-webkit-scrollbar-thumb { background: #1E2B44; border-radius: 3px; }
+  ::-webkit-scrollbar-track { background: #fafafa; }
+  ::-webkit-scrollbar-thumb { background: #f5f5f5; border-radius: 3px; }
 
   .nav-link {
-    color: #7A8DB0; font-size: 14px; font-weight: 500; text-decoration: none;
+    color: #6b7280; font-size: 14px; font-weight: 500; text-decoration: none;
     padding: 6px 2px; position: relative;
     transition: color 0.2s;
   }
   .nav-link::after {
     content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
-    background: #00E5C4;
+    background: #111111;
     transition: width 0.25s cubic-bezier(0.4,0,0.2,1);
   }
-  .nav-link:hover { color: #EDF2FF; }
+  .nav-link:hover { color: #111111; }
   .nav-link:hover::after { width: 100%; }
-  .nav-link:focus-visible { outline: none; color: #00E5C4; }
+  .nav-link:focus-visible { outline: none; color: #111111; }
 
   .btn-primary {
     display: inline-flex; align-items: center; gap: 8px;
-    background: #00E5C4; color: #07090F;
+    background: #111111; color: #ffffff;
     font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px;
     padding: 11px 24px; border-radius: 8px;
     transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
     border: none; cursor: pointer; text-decoration: none;
-    box-shadow: 0 2px 12px rgba(0,229,196,0.3);
+    box-shadow: none;
   }
-  .btn-primary:hover  { background: #00CCB0; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,229,196,0.4); }
+  .btn-primary:hover { background: #333333; transform: translateY(-1px); box-shadow: none; }
   .btn-primary:active { transform: translateY(0); }
-  .btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,229,196,0.4); }
+  .btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,0,0,0.15); }
 
   .btn-ghost {
     display: inline-flex; align-items: center; gap: 8px;
-    background: transparent; color: #EDF2FF;
+    background: transparent; color: #111111;
     font-family: 'Inter', sans-serif; font-weight: 500; font-size: 14px;
     padding: 10px 24px; border-radius: 8px;
-    border: 1px solid #1E2B44; cursor: pointer; text-decoration: none;
+    border: 1px solid #e5e5e5; cursor: pointer; text-decoration: none;
     transition: border-color 0.2s, background 0.2s, transform 0.15s;
   }
-  .btn-ghost:hover  { border-color: rgba(0,229,196,0.4); background: rgba(0,229,196,0.05); transform: translateY(-1px); }
-  .btn-ghost:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,229,196,0.25); }
+  .btn-ghost:hover  { border-color: #111111; background: transparent; transform: translateY(-1px); }
+  .btn-ghost:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,0,0,0.1); }
 
   .btn-ts {
     display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(0,229,196,0.1); color: #00E5C4;
+    background: #f5f5f5; color: #111111;
     font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px;
     padding: 9px 18px; border-radius: 7px;
-    border: 1px solid rgba(0,229,196,0.25); cursor: pointer; text-decoration: none;
+    border: 1px solid #e5e5e5; cursor: pointer; text-decoration: none;
     transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
     white-space: nowrap;
   }
-  .btn-ts:hover  { background: rgba(0,229,196,0.18); border-color: rgba(0,229,196,0.5); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,229,196,0.15); }
-  .btn-ts:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,229,196,0.3); }
+  .btn-ts:hover  { background: #ebebeb; border-color: #d1d5db; transform: translateY(-1px); box-shadow: none; }
+  .btn-ts:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,0,0,0.1); }
 
   .chip {
     display: inline-flex; align-items: center; gap: 5px;
-    background: rgba(255,255,255,0.04); border: 1px solid #1E2B44;
-    color: #7A8DB0; font-size: 12px; font-weight: 500;
+    background: rgba(255,255,255,0.04); border: 1px solid #e5e5e5;
+    color: #6b7280; font-size: 12px; font-weight: 500;
     padding: 5px 12px; border-radius: 100px; cursor: default;
     white-space: nowrap;
   }
 
   .section-label {
     font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: #00E5C4;
+    text-transform: uppercase; color: #111111;
   }
 
   .cert-badge {
@@ -105,22 +100,22 @@
   }
 
   .model-card {
-    background: #0E1220; border: 1px solid #1E2B44; border-radius: 12px;
+    background: #ffffff; border: 1px solid #e5e5e5; border-radius: 12px;
     overflow: hidden;
     transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s cubic-bezier(0.4,0,0.2,1);
   }
   .model-card:hover {
-    border-color: rgba(0,229,196,0.3);
-    box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 2px 8px rgba(0,229,196,0.08);
+    border-color: #d1d5db;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.04);
     transform: translateY(-2px);
   }
-  .model-card:focus-within { box-shadow: 0 0 0 2px rgba(0,229,196,0.4); }
+  .model-card:focus-within { box-shadow: 0 0 0 2px rgba(0,0,0,0.1); }
 
   .card-glow { position: relative; }
   .card-glow::before {
     content: '';
     position: absolute; inset: -1px; border-radius: inherit;
-    background: linear-gradient(135deg, rgba(0,229,196,0.15) 0%, transparent 50%, rgba(79,107,255,0.08) 100%);
+    background: linear-gradient(135deg, rgba(0,0,0,0.04) 0%, transparent 60%);
     opacity: 0;
     transition: opacity 0.3s cubic-bezier(0.4,0,0.2,1);
     z-index: -1;
@@ -131,7 +126,7 @@
   .img-wrap::after {
     content: '';
     position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(7,9,15,0.8) 0%, transparent 55%);
+    background: linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 55%);
   }
   .img-wrap img {
     width: 100%; height: 100%; object-fit: cover;
@@ -147,29 +142,29 @@
   .img-placeholder span { font-size: 11px; font-weight: 500; letter-spacing: 0.04em; opacity: 0.7; }
 
   .related-card {
-    background: #0E1220; border: 1px solid #1E2B44; border-radius: 12px; padding: 20px;
+    background: #ffffff; border: 1px solid #e5e5e5; border-radius: 12px; padding: 20px;
     text-decoration: none; display: flex; align-items: center; gap: 14px;
     transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
   }
   .related-card:hover {
-    border-color: rgba(0,229,196,0.35); transform: translateY(-2px);
+    border-color: #d1d5db; transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(0,0,0,0.3);
   }
-  .related-card:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(0,229,196,0.5); }
+  .related-card:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(0,0,0,0.1); }
 
 </style>
 </head>
 <body class="relative min-h-screen">
 
-<header class="sticky top-0 z-50 border-b border-[#1E2B44]" style="background:rgba(7,9,15,0.85);backdrop-filter:blur(16px);">
-  <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-8">
-    <a href="/3D-Models/" class="flex items-center gap-2.5 shrink-0" style="text-decoration:none;">
-      <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#00E5C4,#0099FF);display:flex;align-items:center;justify-content:center;">
+<header style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.97);backdrop-filter:blur(16px);border-bottom:1px solid #e5e5e5;">
+  <nav style="max-width:1280px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:32px;">
+    <a href="/3D-Models/" style="display:flex;align-items:center;gap:10px;flex-shrink:0;text-decoration:none;">
+      <div style="width:32px;height:32px;border-radius:8px;background:#111111;display:flex;align-items:center;justify-content:center;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#07090F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
       </div>
-      <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.02em;color:#EDF2FF;">3D Molier</span>
+      <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.02em;color:#111111;">3D Molier</span>
     </a>
-    <div class="hidden md:flex items-center gap-6">
+    <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
       <a href="/3D-Models/catalog/" class="nav-link">Catalog</a>
       <a href="/3D-Models/categories/vehicles/" class="nav-link">Vehicles</a>
       <a href="/3D-Models/categories/aircraft/" class="nav-link">Aircraft</a>
@@ -184,7 +179,7 @@
         Search
       </a>
     </div>
-    <div class="flex items-center gap-3 shrink-0">
+    <div style="display:flex;align-items:center;gap:12px;flex-shrink:0;">
       <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-primary" style="padding:8px 16px;font-size:13px;">
         TurboSquid Store
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -196,35 +191,35 @@
 <main style="position:relative;z-index:1;">
 
 <!-- Breadcrumb -->
-<div style="border-bottom:1px solid #1E2B44;background:rgba(14,18,32,0.5);">
-  <div class="max-w-7xl mx-auto px-6 py-3" style="display:flex;align-items:center;gap:8px;font-size:13px;color:#7A8DB0;">
-    <a href="/3D-Models/" style="color:#7A8DB0;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDF2FF'" onmouseout="this.style.color='#7A8DB0'">Home</a>
-    <span style="color:#1E2B44;">›</span>
-    <a href="/3D-Models/catalog/" style="color:#7A8DB0;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDF2FF'" onmouseout="this.style.color='#7A8DB0'">Categories</a>
-    <span style="color:#1E2B44;">›</span>
-    <span style="color:#EDF2FF;">Industrial Equipment</span>
+<div style="border-bottom:1px solid #e5e5e5;background:#ffffff;">
+  <div style="max-width:1280px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:8px;font-size:13px;color:#6b7280;">
+    <a href="/3D-Models/" style="color:#6b7280;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#111111'" onmouseout="this.style.color='#6b7280'">Home</a>
+    <span style="color:#d1d5db;">›</span>
+    <a href="/3D-Models/catalog/" style="color:#6b7280;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#111111'" onmouseout="this.style.color='#6b7280'">Categories</a>
+    <span style="color:#d1d5db;">›</span>
+    <span style="color:#111111;">Industrial Equipment</span>
   </div>
 </div>
 
 <!-- Category Hero -->
-<section style="padding:56px 24px 40px;border-bottom:1px solid #1E2B44;">
+<section style="padding:56px 24px 40px;border-bottom:1px solid #e5e5e5;">
   <div class="max-w-7xl mx-auto">
     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;">
 
       <div style="flex:1;min-width:280px;">
         <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
-          <div style="width:56px;height:56px;border-radius:14px;background:rgba(0,229,196,0.08);border:1px solid rgba(0,229,196,0.2);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;">
+          <div style="width:56px;height:56px;border-radius:14px;background:#f5f5f5;border:1px solid #e5e5e5;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;">
             ⚙️
           </div>
           <div>
             <div class="section-label" style="margin-bottom:4px;">3D Model Category</div>
-            <h1 style="font-family:'Syne',sans-serif;font-size:clamp(24px,3.5vw,38px);font-weight:800;letter-spacing:-0.035em;color:#EDF2FF;line-height:1.1;">
+            <h1 style="font-family:'Syne',sans-serif;font-size:clamp(24px,3.5vw,38px);font-weight:800;letter-spacing:-0.035em;color:#111111;line-height:1.1;">
               Industrial Equipment 3D Models
             </h1>
           </div>
         </div>
 
-        <p style="font-size:15px;color:#7A8DB0;line-height:1.75;max-width:640px;margin-bottom:24px;">
+        <p style="font-size:15px;color:#6b7280;line-height:1.75;max-width:640px;margin-bottom:24px;">
           Technical 3D models of industrial machinery and equipment for manufacturing, oil & gas, construction and automation industries. Includes robot arms, CNC machines, conveyor systems, HVAC equipment, oil rigs and power plant components. Ideal for engineering presentations, technical documentation and industrial simulation.
         </p>
 
@@ -242,18 +237,18 @@
       </div>
 
       <!-- Stats panel -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#1E2B44;border:1px solid #1E2B44;border-radius:16px;overflow:hidden;min-width:260px;">
-        <div style="background:#0E1220;padding:24px 20px;text-align:center;">
-          <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:#EDF2FF;letter-spacing:-0.04em;line-height:1;">1,308</div>
-          <div style="font-size:12px;color:#7A8DB0;margin-top:4px;font-weight:500;">Total Models</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e5e5e5;border:1px solid #e5e5e5;border-radius:16px;overflow:hidden;min-width:260px;">
+        <div style="background:#ffffff;padding:24px 20px;text-align:center;">
+          <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:#111111;letter-spacing:-0.04em;line-height:1;">1,308</div>
+          <div style="font-size:12px;color:#6b7280;margin-top:4px;font-weight:500;">Total Models</div>
         </div>
-        <div style="background:#0E1220;padding:24px 20px;text-align:center;">
-          <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:#EDF2FF;letter-spacing:-0.04em;line-height:1;">34</div>
-          <div style="font-size:12px;color:#7A8DB0;margin-top:4px;font-weight:500;">Top Ranked</div>
+        <div style="background:#ffffff;padding:24px 20px;text-align:center;">
+          <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:#111111;letter-spacing:-0.04em;line-height:1;">34</div>
+          <div style="font-size:12px;color:#6b7280;margin-top:4px;font-weight:500;">Top Ranked</div>
         </div>
-        <div style="background:#0E1220;padding:24px 20px;grid-column:1/-1;border-top:1px solid #1E2B44;">
-          <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#4A5C7A;text-transform:uppercase;margin-bottom:12px;">Used in Industries</div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;"><a href="/industries/hardware/" class="chip" style="color:#EDF2FF;text-decoration:none;">Hardware</a> <a href="/industries/softwaredevelopment/" class="chip" style="color:#EDF2FF;text-decoration:none;">Software Development</a> <a href="/3D-Models/industries/aerospace/" class="chip" style="color:#EDF2FF;text-decoration:none;">Simulation</a> <a href="/3D-Models/industries/advertising/" class="chip" style="color:#EDF2FF;text-decoration:none;">Advertising</a></div>
+        <div style="background:#ffffff;padding:24px 20px;grid-column:1/-1;border-top:1px solid #e5e5e5;">
+          <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#6b7280;text-transform:uppercase;margin-bottom:12px;">Used in Industries</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;"><a href="/industries/hardware/" class="chip" style="color:#111111;text-decoration:none;">Hardware</a> <a href="/industries/softwaredevelopment/" class="chip" style="color:#111111;text-decoration:none;">Software Development</a> <a href="/3D-Models/industries/aerospace/" class="chip" style="color:#111111;text-decoration:none;">Simulation</a> <a href="/3D-Models/industries/advertising/" class="chip" style="color:#111111;text-decoration:none;">Advertising</a></div>
         </div>
       </div>
 
@@ -267,7 +262,7 @@
     <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px;">
       <div>
         <div class="section-label" style="margin-bottom:6px;">Top Ranked</div>
-        <h2 style="font-family:'Syne',sans-serif;font-size:clamp(18px,2.5vw,26px);font-weight:700;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.1;">
+        <h2 style="font-family:'Syne',sans-serif;font-size:clamp(18px,2.5vw,26px);font-weight:700;letter-spacing:-0.03em;color:#111111;line-height:1.1;">
           Best Industrial Equipment 3D Models
         </h2>
       </div>
@@ -290,12 +285,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">20 ft ISO Container White</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">20 ft ISO Container White</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$49</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$49</span>
           </div>
         </div>
       </a>
@@ -310,12 +305,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Conveyor Belt</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">Conveyor Belt</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$39</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$39</span>
           </div>
         </div>
       </a>
@@ -330,12 +325,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Industrial Pipes Collection</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">Industrial Pipes Collection</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$149</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$149</span>
           </div>
         </div>
       </a>
@@ -350,12 +345,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Electric Centrifugal Water Pump</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">Electric Centrifugal Water Pump</h3>
             <span class="cert-badge" style="background:rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.25);color:#7C3AED;">SC</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$49</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$49</span>
           </div>
         </div>
       </a>
@@ -370,12 +365,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Telescopic Handler Forklift Generic Rigged 3D Model</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">Telescopic Handler Forklift Generic Rigged 3D Model</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$179</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$179</span>
           </div>
         </div>
       </a>
@@ -390,12 +385,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Industrial Power Diesel Generator Generic</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">Industrial Power Diesel Generator Generic</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$49</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$49</span>
           </div>
         </div>
       </a>
@@ -410,12 +405,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Overload Distribution Power Transformer</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">Overload Distribution Power Transformer</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$89</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$89</span>
           </div>
         </div>
       </a>
@@ -430,12 +425,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Industrial Belt Conveyor</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">Industrial Belt Conveyor</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$69</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$69</span>
           </div>
         </div>
       </a>
@@ -450,12 +445,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Industrial Pipes</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">Industrial Pipes</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$79</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$79</span>
           </div>
         </div>
       </a>
@@ -470,12 +465,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">20 ft ISO Container Blue 2</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">20 ft ISO Container Blue 2</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$49</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$49</span>
           </div>
         </div>
       </a>
@@ -490,12 +485,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Oil Pump Jack</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">Oil Pump Jack</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$99</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$99</span>
           </div>
         </div>
       </a>
@@ -510,12 +505,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Telescopic Handler Forklift JCB 535 95 Yellow 3</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">Telescopic Handler Forklift JCB 535 95 Yellow 3</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$129</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$129</span>
           </div>
         </div>
       </a>
@@ -530,12 +525,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Industrial Electrical Panel 6</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">Industrial Electrical Panel 6</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$29</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$29</span>
           </div>
         </div>
       </a>
@@ -550,12 +545,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">ARAHO Freezer Processor Factory Trawler</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">ARAHO Freezer Processor Factory Trawler</h3>
             <span class="cert-badge" style="background:rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.25);color:#7C3AED;">SC</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$239</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$239</span>
           </div>
         </div>
       </a>
@@ -570,12 +565,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Industrial Debris Collection</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">Industrial Debris Collection</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$99</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$99</span>
           </div>
         </div>
       </a>
@@ -590,12 +585,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Geothermal Power Plant 3D Model</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">Geothermal Power Plant 3D Model</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$149</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$149</span>
           </div>
         </div>
       </a>
@@ -610,12 +605,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Conveyor Belt Straight</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">Conveyor Belt Straight</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$39</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$39</span>
           </div>
         </div>
       </a>
@@ -630,12 +625,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Airport Conveyor Belt Loader TUG 660</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">Airport Conveyor Belt Loader TUG 660</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$79</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$79</span>
           </div>
         </div>
       </a>
@@ -650,12 +645,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Motorised Conveyor Belt</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">Motorised Conveyor Belt</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$39</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$39</span>
           </div>
         </div>
       </a>
@@ -670,12 +665,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Boiler Suit Coverall with Safety Helmet</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">Boiler Suit Coverall with Safety Helmet</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$99</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$99</span>
           </div>
         </div>
       </a>
@@ -690,12 +685,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Horizontal Roller Conveyor Belt</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">Horizontal Roller Conveyor Belt</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$39</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$39</span>
           </div>
         </div>
       </a>
@@ -710,12 +705,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Linde Reach Staker with 20ft ISO Container Rigged</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">Linde Reach Staker with 20ft ISO Container Rigged</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$149</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$149</span>
           </div>
         </div>
       </a>
@@ -730,12 +725,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Industrial Power Switch</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">Industrial Power Switch</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$19</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$19</span>
           </div>
         </div>
       </a>
@@ -750,12 +745,12 @@
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">Industrial Electrical Panel 3</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">Industrial Electrical Panel 3</h3>
             <span class="cert-badge">&#10003; CM</span>
           </div>
           <div style="display:flex;align-items:center;gap:8px;">
             <span class="chip" style="font-size:11px;padding:3px 8px;color:#10B981;border-color:#10B98144;">Industrial Equipment</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">$39</span>
+            <span style="font-size:13px;font-weight:700;color:#111111;margin-left:auto;">$39</span>
           </div>
         </div>
       </a>
@@ -772,35 +767,35 @@
 <!-- Related Categories -->
 <section style="padding:0 24px 72px;">
   <div class="max-w-7xl mx-auto">
-    <div style="border-top:1px solid #1E2B44;padding-top:48px;">
+    <div style="border-top:1px solid #e5e5e5;padding-top:48px;">
       <div class="section-label" style="margin-bottom:8px;">Explore More</div>
-      <h2 style="font-family:'Syne',sans-serif;font-size:clamp(18px,2.5vw,26px);font-weight:700;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.1;margin-bottom:24px;">
+      <h2 style="font-family:'Syne',sans-serif;font-size:clamp(18px,2.5vw,26px);font-weight:700;letter-spacing:-0.03em;color:#111111;line-height:1.1;margin-bottom:24px;">
         Related Categories
       </h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;">
         <a href="/3D-Models/categories/vehicles/" class="related-card">
           <span style="font-size:28px;">🚗</span>
           <div>
-            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#EDF2FF;">Vehicles</div>
-            <div style="font-size:12px;color:#7A8DB0;margin-top:2px;">7,518 models</div>
+            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#111111;">Vehicles</div>
+            <div style="font-size:12px;color:#6b7280;margin-top:2px;">7,518 models</div>
           </div>
-          <span style="margin-left:auto;color:#00E5C4;font-size:18px;">→</span>
+          <span style="margin-left:auto;color:#111111;font-size:18px;">→</span>
         </a>
 <a href="/3D-Models/categories/architecture-landmarks/" class="related-card">
           <span style="font-size:28px;">🏛️</span>
           <div>
-            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#EDF2FF;">Architecture Landmarks</div>
-            <div style="font-size:12px;color:#7A8DB0;margin-top:2px;">1,165 models</div>
+            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#111111;">Architecture Landmarks</div>
+            <div style="font-size:12px;color:#6b7280;margin-top:2px;">1,165 models</div>
           </div>
-          <span style="margin-left:auto;color:#00E5C4;font-size:18px;">→</span>
+          <span style="margin-left:auto;color:#111111;font-size:18px;">→</span>
         </a>
 <a href="/3D-Models/categories/medical-3d-models/" class="related-card">
           <span style="font-size:28px;">🏥</span>
           <div>
-            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#EDF2FF;">Medical</div>
-            <div style="font-size:12px;color:#7A8DB0;margin-top:2px;">1,938 models</div>
+            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#111111;">Medical</div>
+            <div style="font-size:12px;color:#6b7280;margin-top:2px;">1,938 models</div>
           </div>
-          <span style="margin-left:auto;color:#00E5C4;font-size:18px;">→</span>
+          <span style="margin-left:auto;color:#111111;font-size:18px;">→</span>
         </a>
 
       </div>
@@ -810,20 +805,20 @@
 
 </main>
 
-<footer style="border-top:1px solid #1E2B44;padding:48px 24px 32px;background:#0A0D16;">
+<footer style="border-top:1px solid #e5e5e5;padding:48px 24px 32px;background:#111111;">
   <div class="max-w-7xl mx-auto">
     <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;">
       <div>
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-          <div style="width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#00E5C4,#0099FF);display:flex;align-items:center;justify-content:center;">
+          <div style="width:28px;height:28px;border-radius:7px;background:#111111;display:flex;align-items:center;justify-content:center;">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#07090F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
           </div>
-          <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:#EDF2FF;">3D Molier</span>
+          <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:#ffffff;">3D Molier</span>
         </div>
-        <p style="font-size:13px;color:#7A8DB0;line-height:1.7;max-width:280px;">Searchable catalog of 88,000+ professional 3D models. All models available on TurboSquid.</p>
+        <p style="font-size:13px;color:#6b7280;line-height:1.7;max-width:280px;">Searchable catalog of 88,000+ professional 3D models. All models available on TurboSquid.</p>
       </div>
       <div>
-        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#4A5C7A;text-transform:uppercase;margin-bottom:16px;">Categories</div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#6b7280;text-transform:uppercase;margin-bottom:16px;">Categories</div>
         <div style="display:flex;flex-direction:column;gap:10px;">
           <a href="/3D-Models/categories/vehicles/" class="nav-link" style="font-size:13px;">Vehicles</a>
           <a href="/3D-Models/categories/aircraft/" class="nav-link" style="font-size:13px;">Aircraft</a>
@@ -833,7 +828,7 @@
         </div>
       </div>
       <div>
-        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#4A5C7A;text-transform:uppercase;margin-bottom:16px;">Collections</div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#6b7280;text-transform:uppercase;margin-bottom:16px;">Collections</div>
         <div style="display:flex;flex-direction:column;gap:10px;">
           <a href="/3D-Models/collections/best-vehicle-3d-models/" class="nav-link" style="font-size:13px;">Best Vehicles</a>
           <a href="/3D-Models/collections/best-aircraft-3d-models/" class="nav-link" style="font-size:13px;">Best Aircraft</a>
@@ -843,7 +838,7 @@
         </div>
       </div>
       <div>
-        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#4A5C7A;text-transform:uppercase;margin-bottom:16px;">TurboSquid</div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#6b7280;text-transform:uppercase;margin-bottom:16px;">TurboSquid</div>
         <div style="display:flex;flex-direction:column;gap:10px;">
           <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link" style="font-size:13px;">Artist Store</a>
           <a href="https://www.turbosquid.com/Search/3D-Models/vehicle?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link" style="font-size:13px;">Vehicle Models</a>
@@ -852,8 +847,8 @@
         </div>
       </div>
     </div>
-    <div style="border-top:1px solid #1E2B44;padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-      <p style="font-size:12px;color:#4A5C7A;">© 2026 3D Molier. All 3D models sold via TurboSquid.</p>
+    <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <p style="font-size:12px;color:rgba(255,255,255,0.5);">© 2026 3D Molier. All 3D models sold via TurboSquid.</p>
       <a href="/3D-Models/" class="nav-link" style="font-size:12px;">← Back to home</a>
     </div>
   </div>
@@ -886,12 +881,12 @@ function loadMore() {
       <div class="img-wrap" style="height:180px;background:linear-gradient(${GRADIENT});">${imgHtml}</div>
       <div style="padding:16px;">
         <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-          <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">${m.title}</h3>
+          <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">${m.title}</h3>
           ${certHtml}
         </div>
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-          <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">${m.cat}</span>
-          <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">${m.price}</span>
+          <span class="chip" style="font-size:11px;padding:3px 8px;color:#111111;border-color:rgba(0,229,196,0.25);">${m.cat}</span>
+          <span style="font-size:13px;font-weight:600;color:#111111;margin-left:auto;">${m.price}</span>
         </div>
         <a href="${m.url}" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
           ${LINK_ICON} View on TurboSquid
