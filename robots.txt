@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /data/
+Disallow: /assets/og/og-source.html
 
 # AI search crawlers
 User-agent: GPTBot
@@ -30,3 +31,5 @@ Allow: /
 Sitemap: https://3dmolier.github.io/3D-Models/sitemap.xml
 LLMs-txt: https://3dmolier.github.io/3D-Models/llms.txt
 LLMs-full: https://3dmolier.github.io/3D-Models/llms-full.txt
+
+Sitemap: https://3dmolier.github.io/3D-Models/image-sitemap.xml
