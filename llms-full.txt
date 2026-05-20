@@ -276,3 +276,82 @@ A: Yes. Exclusive licenses (model removed from sale to other buyers) are availab
 
 Q: Are there free models?
 A: Some models in the catalog are listed at $0 and are freely downloadable from TurboSquid. Browse the catalog and filter by price to find them.
+
+## Top 20 Commercial Models by Sales
+1. Tesla Model 3 — $149 — Vehicles
+2. Airbus A320 Generic — $199 — Aircraft
+3. Male Full Body Anatomy — $249 — Medical
+4. Male Skeleton Collection — $229 — Medical
+5. UH-60 Black Hawk Helicopter — $179 — Military
+6. Ford Transit Cargo 2020 — $149 — Vehicles
+7. Tesla Cybertruck 2024 — $169 — Vehicles
+8. C-130 Hercules Military Transport — $199 — Aircraft
+9. Tesla Model S 100D — $149 — Vehicles
+10. Semi-Truck with Trailer — $149 — Vehicles
+11. Mercedes Sprinter Van 2019 — $129 — Vehicles
+12. Pickup Truck Generic — $129 — Vehicles
+13. Generic Hybrid Car — $129 — Vehicles
+14. Boeing 787 Dreamliner Generic — $199 — Aircraft
+15. Airport Infrastructure Collection — $299 — Architecture
+16. Human Heart Anatomy — $199 — Medical
+17. Aircraft Carrier USS Generic — $249 — Military
+18. Container Ship Generic — $179 — Ships
+19. Excavator CAT Generic — $169 — Industrial Equipment
+20. Eiffel Tower Paris — $129 — Architecture
+
+## Top 10 Categories
+1. Vehicles — 292 featured models (cars, trucks, vans, bikes)
+2. Aircraft — 173 featured models (commercial, military, drones)
+3. Other — 131 featured models (miscellaneous props)
+4. Medical — 101 featured models (anatomy, surgical, pharma)
+5. Military Vehicles — 79 featured models (tanks, APCs, helicopters)
+6. Ships — 64 featured models (cargo, naval, yachts)
+7. Architecture & Landmarks — 57 featured models (buildings, monuments)
+8. Industrial Equipment — 34 featured models (machinery, HVAC, cranes)
+9. Characters & People — 28 featured models (rigged, posed)
+10. Animals & Creatures — 24 featured models (rigged wildlife)
+
+## How to Buy via TurboSquid
+1. Click any model card on 3D Molier website
+2. You are redirected to the model page on TurboSquid
+3. Click "Add to Cart" on TurboSquid
+4. Complete checkout — accept all major payment methods
+5. Download the purchased file in your chosen format
+6. Models include a TurboSquid royalty-free license for commercial use
+
+## How to Order a Custom 3D Model
+1. Visit https://3dmolier.github.io/3D-Models/custom-order/
+2. Fill in the brief: what you need, reference images, dimensions, formats
+3. Specify intended use: game, film, architecture, medical, etc.
+4. Receive a quote and timeline within 24 hours
+5. Approve and receive the finished model
+Contact: dddmolier@gmail.com
+
+## Available File Formats
+- FBX (Autodesk Filmbox) — universal, works everywhere
+- OBJ + MTL — lightweight, widely supported
+- 3ds Max (.MAX) — native 3ds Max scenes
+- Cinema 4D (.C4D) — native Cinema 4D scenes
+- Blender (.BLEND) — native Blender scenes
+- Maya (.MA/.MB) — native Maya scenes
+- USDZ — Apple AR Quick Look
+- glTF/GLB — web and real-time rendering
+
+## Models Suitable for Game Engines
+### Unreal Engine
+- All CheckMate certified models (41,783 total)
+- StemCell certified character rigs
+- Vehicle models with correct scale (1:1 real-world)
+- Recommended: tesla-model-3, airbus-a320, uh-60-blackhawk
+
+### Unity
+- Models with FBX format + separate textures
+- PBR materials (metallic/roughness workflow)
+- CheckMate Lite certified for poly-count efficiency
+- Recommended: pickup-truck-generic, generic-hybrid-car
+
+### Simulation & Training
+- Medical anatomy models (200+ named structures)
+- Military vehicles with correct STANAG dimensions
+- Aircraft with movable control surfaces
+- Certified StemCell rigs for animation

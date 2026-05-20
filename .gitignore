@@ -5,8 +5,19 @@ data/search_index.json
 # Raw source data (not needed to serve the site)
 models.csv
 Models_and_Sales.xlsm
+Models_and_Sales_clear.xlsx
+TS_Images.xlsx
+turbosquid_images_output.csv
+data/top_models.csv
+data/fc.js
 TZ.txt
 TZ_my.txt
+
+# Dev / build scripts (run locally, not served)
+fix-*.js
+generate-*.js
+add-*.js
+enhance-*.js
 
 # Dev tools (not served by GitHub Pages)
 node_modules/
