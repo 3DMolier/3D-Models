@@ -4,18 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>All 86,865 3D Models — Full Catalog | 3D Molier on TurboSquid</title>
-<meta name="description" content="Browse the complete catalog of 86,865 professional 3D models by 3D Molier on TurboSquid. Search by name, filter by price and certification. Instant results.">
-<meta property="og:title" content="Full 3D Model Catalog — 86,865 Assets | 3D Molier">
-<meta property="og:description" content="Browse all 86,865 professional 3D models. Search, filter by price and certification.">
-<meta property="og:url" content="https://3dmolier.github.io/3D-Models/full-catalog/">
-<meta property="og:type" content="website">
+<meta name="description" content="Browse all 86,865 professional 3D models by 3D Molier on TurboSquid. Search by name, filter by price and certification. Instant results.">
 <link rel="icon" href="/3D-Models/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://3dmolier.github.io/3D-Models/full-catalog/">
 <link rel="stylesheet" href="/3D-Models/assets/css/styles.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Open+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#fafafa;--surface:#ffffff;--border:#e5e5e5;--text:#111111;--muted:#6b7280}
+:root{--bg:#fafafa;--surface:#fff;--border:#e5e5e5;--text:#111;--muted:#6b7280}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Open Sans',sans-serif;font-size:15px;line-height:1.6}
@@ -26,119 +22,106 @@ nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var
 .nav-logo{font-family:'Playfair Display',serif;font-weight:800;font-size:20px;color:#111;text-decoration:none;letter-spacing:-0.03em}
 .nav-links{display:flex;gap:24px;margin-left:auto}
 .nav-links a{color:#555;text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
-.nav-links a:hover{color:#111}
-.nav-links a.active{color:#111;font-weight:700}
+.nav-links a:hover,.nav-links a.active{color:#111;font-weight:600}
 .btn-ts{background:#111;color:#fff;font-weight:700;font-size:13px;padding:8px 18px;border-radius:4px;text-decoration:none;white-space:nowrap;transition:opacity .2s}
 .btn-ts:hover{opacity:.8}
 
 /* HERO */
-.hero{max-width:1400px;margin:0 auto;padding:40px 24px 28px;border-bottom:1px solid var(--border)}
-.hero h1{font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(26px,3.5vw,40px);letter-spacing:-0.03em;line-height:1.2;color:#111}
-.hero-sub{color:var(--muted);margin-top:8px;font-size:14px}
-.hero-stats{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap}
-.hero-stat{background:#f5f5f5;border:1px solid var(--border);border-radius:6px;padding:10px 18px}
-.hero-stat .val{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#111}
-.hero-stat .lbl{font-size:11px;color:var(--muted);margin-top:2px}
+.hero{max-width:1400px;margin:0 auto;padding:36px 24px 24px;border-bottom:1px solid var(--border)}
+.hero h1{font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(24px,3.5vw,38px);letter-spacing:-0.03em;line-height:1.2}
+.hero-sub{color:var(--muted);margin-top:6px;font-size:14px}
+.hero-stats{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
+.hs{background:#f5f5f5;border:1px solid var(--border);border-radius:6px;padding:9px 16px}
+.hs .v{font-family:'Playfair Display',serif;font-size:17px;font-weight:700}
+.hs .l{font-size:11px;color:var(--muted);margin-top:1px}
 
 /* SEARCH */
-.search-wrap{position:relative;margin-top:20px;max-width:560px}
-.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);width:16px}
-#search-input{width:100%;background:#fff;border:1px solid var(--border);color:#111;font-family:'Open Sans',sans-serif;font-size:14px;padding:11px 14px 11px 40px;border-radius:6px;outline:none;transition:border-color .2s}
-#search-input:focus{border-color:#111}
-#search-input::placeholder{color:#aaa}
+.search-row{display:flex;gap:12px;align-items:center;margin-top:16px;flex-wrap:wrap}
+.sw{position:relative;flex:1;min-width:260px;max-width:520px}
+.si{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+#q{width:100%;background:#fff;border:1px solid var(--border);color:#111;font-family:'Open Sans',sans-serif;font-size:14px;padding:10px 14px 10px 38px;border-radius:6px;outline:none;transition:border-color .2s}
+#q:focus{border-color:#111}
+#q::placeholder{color:#bbb}
+.sort-inline{display:flex;align-items:center;gap:8px}
+.sort-inline label{font-size:13px;color:var(--muted)}
+#sort-select{background:#fff;border:1px solid var(--border);color:#111;font-family:'Open Sans',sans-serif;font-size:13px;padding:6px 10px;border-radius:6px;outline:none;cursor:pointer}
 
-/* LAYOUT */
-.catalog-layout{max-width:1400px;margin:0 auto;padding:0 24px 80px;display:grid;grid-template-columns:220px 1fr;gap:40px}
-@media(max-width:900px){.catalog-layout{grid-template-columns:1fr}.sidebar{display:none}}
+/* STATUS BAR */
+.status-bar{max-width:1400px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--border);font-size:13px;color:var(--muted);min-height:44px}
+#status-msg{display:flex;align-items:center;gap:8px}
+.bar-spinner{width:14px;height:14px;border:2px solid #e5e5e5;border-top-color:#111;border-radius:50%;animation:spin .65s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+#results-count strong{color:#111}
 
-/* SIDEBAR */
-.sidebar{position:sticky;top:76px;height:fit-content;max-height:calc(100vh - 100px);overflow-y:auto;scrollbar-width:thin;padding-top:28px}
-.filter-section{margin-bottom:28px}
-.filter-section h3{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#999;margin-bottom:12px}
-.filter-opts{display:flex;flex-direction:column;gap:1px}
-.fopt{display:flex;align-items:center;justify-content:space-between;padding:7px 8px;border-radius:4px;cursor:pointer;transition:background .15s;border:1px solid transparent;background:transparent;font-family:'Open Sans',sans-serif;font-size:13px;color:#555;text-align:left;width:100%;gap:8px}
-.fopt:hover{background:#f0f0f0;color:#111}
-.fopt.active{background:#111;color:#fff;border-color:#111}
-.fopt-count{font-size:11px;opacity:.55;flex-shrink:0}
-.fopt.active .fopt-count{opacity:.7}
-.cert-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.dot-sc{background:#9b59e0}
-.dot-cm{background:#3366cc}
-.dot-none{background:#aaa}
-#clear-btn{width:100%;padding:8px;background:#fff0f0;color:#cc3333;border:1px solid #ffcccc;border-radius:4px;font-family:'Open Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:background .15s;display:none;margin-top:16px}
-#clear-btn:hover{background:#ffe0e0}
-#clear-btn.visible{display:block}
-
-/* RESULTS BAR */
-.results-bar{display:flex;align-items:center;justify-content:space-between;padding:20px 0 16px;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:12px;margin-bottom:16px}
-.results-count{font-size:13px;color:var(--muted)}
-.results-count strong{color:#111;font-weight:600}
-.sort-wrap{display:flex;align-items:center;gap:8px}
-.sort-wrap label{font-size:13px;color:var(--muted)}
-#sort-select{background:#fff;border:1px solid var(--border);color:#111;font-family:'Open Sans',sans-serif;font-size:13px;padding:6px 10px;border-radius:4px;outline:none;cursor:pointer}
-#sort-select:focus{border-color:#111}
-
-/* ACTIVE CHIPS */
-#active-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-.achip{display:flex;align-items:center;gap:6px;padding:4px 10px;background:#f0f0f0;border:1px solid #e0e0e0;border-radius:3px;font-size:12px;color:#333}
-.achip button{background:none;border:none;color:#666;cursor:pointer;line-height:1;padding:0;font-size:14px}
-.achip button:hover{color:#111}
+/* FILTERS */
+.filter-bar{max-width:1400px;margin:0 auto;padding:12px 24px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--border)}
+.fb-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#999;margin-right:4px}
+.ftag{background:#fff;border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:500;color:#555;cursor:pointer;transition:all .15s;white-space:nowrap}
+.ftag:hover{border-color:#888;color:#111}
+.ftag.active{background:#111;border-color:#111;color:#fff;font-weight:600}
+.ftag-sep{width:1px;height:18px;background:var(--border);flex-shrink:0;margin:0 4px}
+#clear-all{background:none;border:none;font-family:'Open Sans',sans-serif;font-size:12px;color:#cc3333;cursor:pointer;padding:4px 8px;border-radius:4px;display:none;transition:background .15s}
+#clear-all:hover{background:#fff0f0}
+#clear-all.show{display:inline-block}
 
 /* GRID */
-#model-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
+.grid-wrap{max-width:1400px;margin:0 auto;padding:24px 24px 80px}
+#model-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+
+/* SKELETON CARDS */
+.sk{background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.sk-img{height:170px;background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);background-size:200% 100%;animation:shimmer 1.4s infinite}
+.sk-body{padding:12px}
+.sk-line{height:12px;border-radius:3px;background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;margin-bottom:8px}
+.sk-line.short{width:55%}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* REAL CARDS */
 .mc{background:#fff;border:1px solid #e5e5e5;border-radius:6px;overflow:hidden;transition:transform .25s cubic-bezier(.4,0,.2,1),box-shadow .25s;text-decoration:none;display:flex;flex-direction:column;position:relative}
-.mc:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.09);border-color:#ccc}
-.mc:focus-visible{outline:2px solid #111;outline-offset:3px}
-.mc-img{position:relative;height:180px;overflow:hidden;background:#f5f5f5;flex-shrink:0}
-.mc-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s cubic-bezier(.4,0,.2,1)}
+.mc:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.09);border-color:#ccc}
+.mc-img{position:relative;height:170px;overflow:hidden;background:#f5f5f5;flex-shrink:0}
+.mc-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s cubic-bezier(.4,0,.2,1)}
 .mc:hover .mc-img img{transform:scale(1.04)}
-.mc-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:40px;opacity:.18;background:#f0f0f0}
-.mc-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.08) 0%,transparent 45%);pointer-events:none}
-.mc-cert{position:absolute;top:8px;right:8px;font-size:9px;font-weight:700;padding:3px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:.05em}
+.mc-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:36px;opacity:.15}
+.mc-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.07) 0%,transparent 45%);pointer-events:none}
+.mc-cert{position:absolute;top:7px;right:7px;font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px;text-transform:uppercase;letter-spacing:.05em}
 .cert-sc{background:#f0e8ff;color:#6633cc;border:1px solid #d8c8ff}
 .cert-cm{background:#e8f0ff;color:#3366cc;border:1px solid #c8d8ff}
-.mc-qv{position:absolute;bottom:0;left:0;right:0;height:34px;display:flex;align-items:center;justify-content:center;background:rgba(17,17,17,.88);color:#fff;font-size:11px;font-weight:700;letter-spacing:.06em;transform:translateY(100%);transition:transform .2s cubic-bezier(.4,0,.2,1)}
+.mc-qv{position:absolute;bottom:0;left:0;right:0;height:32px;display:flex;align-items:center;justify-content:center;background:rgba(17,17,17,.88);color:#fff;font-size:10px;font-weight:700;letter-spacing:.06em;transform:translateY(100%);transition:transform .18s cubic-bezier(.4,0,.2,1)}
 .mc:hover .mc-qv{transform:translateY(0)}
-.mc-body{padding:11px 13px 13px;flex:1;display:flex;flex-direction:column;gap:6px}
-.mc-name{font-size:13px;font-weight:600;color:#111;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.mc-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
+.mc-body{padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:6px}
+.mc-name{font-size:12px;font-weight:600;color:#111;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mc-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
 .mc-price{font-weight:700;font-size:14px;color:#111}
-.mc-sales{font-size:11px;color:#aaa}
-.mc:hover .mc-sales{color:#888}
+.mc-sold{font-size:11px;color:#bbb}
 
 /* LOAD MORE */
-.load-more-wrap{text-align:center;margin-top:36px}
-#load-more-btn{background:#fff;border:1px solid #e5e5e5;color:#111;font-family:'Open Sans',sans-serif;font-size:14px;font-weight:600;padding:12px 48px;border-radius:4px;cursor:pointer;transition:border-color .2s,background .2s}
-#load-more-btn:hover{border-color:#111;background:#f5f5f5}
-#load-more-btn:disabled{opacity:.4;cursor:default}
+.lm-wrap{text-align:center;margin-top:32px}
+#lm-btn{background:#fff;border:1px solid #e5e5e5;color:#111;font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;padding:11px 44px;border-radius:4px;cursor:pointer;transition:border-color .2s,background .2s;display:none}
+#lm-btn:hover{border-color:#111;background:#f5f5f5}
 
-/* EMPTY STATE */
-#empty-state{display:none;text-align:center;padding:80px 20px}
-#empty-state .ei{font-size:64px;margin-bottom:20px;opacity:.3}
-#empty-state h3{font-size:22px;color:#111;margin-bottom:10px}
-#empty-state p{color:var(--muted)}
-
-/* LOADING */
-#loading{text-align:center;padding:80px 20px;color:var(--muted)}
-.spinner{width:36px;height:36px;border:3px solid #e5e5e5;border-top-color:#111;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 16px}
-@keyframes spin{to{transform:rotate(360deg)}}
+/* EMPTY */
+#empty{display:none;text-align:center;padding:64px 20px;color:var(--muted)}
+#empty .ei{font-size:56px;opacity:.25;margin-bottom:16px}
+#empty h3{font-size:20px;color:#111;margin-bottom:8px}
 
 /* FOOTER */
-footer{background:#111;color:#fff;padding:48px 0 24px;margin-top:80px}
-.footer-inner{max-width:1400px;margin:0 auto;padding:0 24px}
-.footer-grid{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;margin-bottom:40px}
-@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr}}
-.footer-brand p{color:#888;font-size:13px;line-height:1.7;margin-top:10px;max-width:280px}
-.footer-col h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#555;margin-bottom:14px}
-.footer-col a{display:block;color:#999;font-size:13px;text-decoration:none;margin-bottom:8px;transition:color .2s}
-.footer-col a:hover{color:#fff}
-.footer-bottom{border-top:1px solid #2a2a2a;padding-top:24px;display:flex;justify-content:space-between;align-items:center}
-.footer-bottom p{color:#555;font-size:12px}
+footer{background:#111;color:#fff;padding:48px 0 24px;margin-top:40px}
+.fi{max-width:1400px;margin:0 auto;padding:0 24px}
+.fg{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;margin-bottom:40px}
+@media(max-width:768px){.fg{grid-template-columns:1fr 1fr}}
+.fb p{color:#888;font-size:13px;line-height:1.7;margin-top:8px;max-width:280px}
+.fc h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#555;margin-bottom:12px}
+.fc a{display:block;color:#999;font-size:13px;text-decoration:none;margin-bottom:8px;transition:color .2s}
+.fc a:hover{color:#fff}
+.fbot{border-top:1px solid #2a2a2a;padding-top:20px;display:flex;justify-content:space-between;align-items:center}
+.fbot p{color:#555;font-size:12px}
+.fbot a{color:#555;font-size:12px;text-decoration:none;transition:color .2s}
+.fbot a:hover{color:#fff}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <a href="/3D-Models/" class="nav-logo">3D Molier</a>
@@ -157,304 +140,358 @@ footer{background:#111;color:#fff;padding:48px 0 24px;margin-top:80px}
   </div>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
-  <h1>Full Catalog — <span>86,865</span> 3D Models</h1>
-  <p class="hero-sub">Complete collection by 3D Molier on TurboSquid. Search, filter by price or certification.</p>
+  <h1>Full Catalog — 86,865 3D Models</h1>
+  <p class="hero-sub">Complete collection by 3D Molier on TurboSquid. Search and filter instantly.</p>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="val">86,865</div><div class="lbl">Total Models</div></div>
-    <div class="hero-stat"><div class="val">41,783</div><div class="lbl">CheckMate Certified</div></div>
-    <div class="hero-stat"><div class="val">12,666</div><div class="lbl">StemCell Certified</div></div>
-    <div class="hero-stat"><div class="val">$1 – $2,999</div><div class="lbl">Price Range</div></div>
+    <div class="hs"><div class="v">86,865</div><div class="l">Total Models</div></div>
+    <div class="hs"><div class="v">41,783</div><div class="l">CheckMate</div></div>
+    <div class="hs"><div class="v">12,666</div><div class="l">StemCell</div></div>
+    <div class="hs"><div class="v">$1–$2,999</div><div class="l">Price Range</div></div>
   </div>
-  <div class="search-wrap">
-    <svg class="search-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M15 15l-3.5-3.5"/></svg>
-    <input id="search-input" type="search" placeholder="Search all 86,865 models…" autocomplete="off" aria-label="Search 3D models">
+  <div class="search-row">
+    <div class="sw">
+      <svg class="si" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M15 15l-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Search 86,865 models…" autocomplete="off" disabled>
+    </div>
+    <div class="sort-inline">
+      <label for="sort-select">Sort:</label>
+      <select id="sort-select" disabled>
+        <option value="sales">Best Selling</option>
+        <option value="price_asc">Price ↑</option>
+        <option value="price_desc">Price ↓</option>
+        <option value="name">A → Z</option>
+      </select>
+    </div>
   </div>
 </div>
 
-<!-- CATALOG LAYOUT -->
-<div class="catalog-layout">
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-
-    <div class="filter-section">
-      <h3>Price</h3>
-      <div class="filter-opts">
-        <button class="fopt" data-price="u5">Under $5 <span class="fopt-count">385</span></button>
-        <button class="fopt" data-price="u15">$5 – $15 <span class="fopt-count">3,965</span></button>
-        <button class="fopt" data-price="u30">$15 – $30 <span class="fopt-count">21,010</span></button>
-        <button class="fopt" data-price="u60">$30 – $60 <span class="fopt-count">20,064</span></button>
-        <button class="fopt" data-price="u120">$60 – $120 <span class="fopt-count">16,030</span></button>
-        <button class="fopt" data-price="u999">$120+ <span class="fopt-count">25,411</span></button>
-      </div>
-    </div>
-
-    <div class="filter-section">
-      <h3>Certification</h3>
-      <div class="filter-opts">
-        <button class="fopt" data-cert="2"><span class="cert-dot dot-cm"></span>CheckMate <span class="fopt-count">41,783</span></button>
-        <button class="fopt" data-cert="1"><span class="cert-dot dot-sc"></span>StemCell <span class="fopt-count">12,666</span></button>
-        <button class="fopt" data-cert="0"><span class="cert-dot dot-none"></span>Standard <span class="fopt-count">32,416</span></button>
-      </div>
-    </div>
-
-    <button id="clear-btn">✕ Clear all filters</button>
-  </aside>
-
-  <!-- MAIN -->
-  <div>
-    <div class="results-bar">
-      <div class="results-count"><strong id="results-num">86,865</strong> models</div>
-      <div class="sort-wrap">
-        <label for="sort-select">Sort:</label>
-        <select id="sort-select">
-          <option value="sales">Best Selling</option>
-          <option value="price_asc">Price: Low → High</option>
-          <option value="price_desc">Price: High → Low</option>
-          <option value="name">A → Z</option>
-        </select>
-      </div>
-    </div>
-
-    <div id="active-filters"></div>
-
-    <div id="loading">
-      <div class="spinner"></div>
-      Loading 86,865 models…
-    </div>
-
-    <div id="model-grid" style="display:none"></div>
-    <div id="empty-state">
-      <div class="ei">🔍</div>
-      <h3>No models found</h3>
-      <p>Try a different search term or clear the filters</p>
-    </div>
-    <div class="load-more-wrap">
-      <button id="load-more-btn" style="display:none">Load more</button>
-    </div>
+<div class="status-bar">
+  <div id="status-msg">
+    <div class="bar-spinner"></div>
+    <span id="status-text">Loading catalog…</span>
   </div>
-
+  <div id="results-count"></div>
 </div>
 
-<!-- FOOTER -->
+<div class="filter-bar" id="filter-bar" style="display:none">
+  <span class="fb-label">Price:</span>
+  <button class="ftag" data-price="u5">Under $5</button>
+  <button class="ftag" data-price="u15">$5–$15</button>
+  <button class="ftag" data-price="u30">$15–$30</button>
+  <button class="ftag" data-price="u60">$30–$60</button>
+  <button class="ftag" data-price="u120">$60–$120</button>
+  <button class="ftag" data-price="u999">$120+</button>
+  <div class="ftag-sep"></div>
+  <span class="fb-label">Cert:</span>
+  <button class="ftag" data-cert="2">CheckMate</button>
+  <button class="ftag" data-cert="1">StemCell</button>
+  <button class="ftag" data-cert="0">Standard</button>
+  <div class="ftag-sep"></div>
+  <button id="clear-all">✕ Clear</button>
+</div>
+
+<div class="grid-wrap">
+  <div id="model-grid">
+    <!-- 24 skeleton cards shown immediately -->
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+    <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
+  </div>
+  <div id="empty"><div class="ei">🔍</div><h3>No models found</h3><p>Try a different search term or clear filters</p></div>
+  <div class="lm-wrap"><button id="lm-btn">Load more</button></div>
+</div>
+
 <footer>
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
+  <div class="fi">
+    <div class="fg">
+      <div class="fb">
         <a href="/3D-Models/" style="font-family:'Playfair Display',serif;font-weight:800;font-size:20px;color:#fff;text-decoration:none;letter-spacing:-0.03em">3D Molier</a>
-        <p>Professional 3D models for film, games, architecture, medical and aerospace. All models on TurboSquid.</p>
+        <p>Professional 3D models for film, games, architecture, medical and aerospace.</p>
       </div>
-      <div class="footer-col">
+      <div class="fc">
         <h4>Catalog</h4>
         <a href="/3D-Models/catalog/">Top 1000</a>
         <a href="/3D-Models/full-catalog/">All 86K Models</a>
         <a href="/3D-Models/categories/vehicles/">Vehicles</a>
         <a href="/3D-Models/categories/aircraft/">Aircraft</a>
       </div>
-      <div class="footer-col">
+      <div class="fc">
         <h4>Collections</h4>
         <a href="/3D-Models/collections/">All Collections</a>
         <a href="/3D-Models/collections/best-vehicle-3d-models/">Best Vehicles</a>
-        <a href="/3D-Models/collections/best-aircraft-3d-models/">Best Aircraft</a>
         <a href="/3D-Models/collections/checkmate-certified-3d-models/">CheckMate</a>
+        <a href="/3D-Models/collections/stemcell-certified-3d-models/">StemCell</a>
       </div>
-      <div class="footer-col">
+      <div class="fc">
         <h4>Company</h4>
         <a href="/3D-Models/about/">About</a>
         <a href="/3D-Models/custom-order/">Custom Order</a>
         <a href="/3D-Models/contact/">Contact</a>
-        <a href="https://www.turbosquid.com/Search/3D-Models?include=true&media_typeid=2&artist_screenname=3d_molier-studio&referral=3d_molier-studio" target="_blank" rel="noopener">TurboSquid Store ↗</a>
+        <a href="https://www.turbosquid.com/Search/3D-Models?include=true&media_typeid=2&artist_screenname=3d_molier-studio&referral=3d_molier-studio" target="_blank" rel="noopener">TurboSquid ↗</a>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="fbot">
       <p>© 2026 3D Molier. All models sold through TurboSquid.</p>
-      <a href="#" class="back-top" style="color:#555;font-size:12px;text-decoration:none" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">↑ Back to top</a>
+      <a href="#" onclick="scrollTo({top:0,behavior:'smooth'});return false">↑ Top</a>
     </div>
   </div>
 </footer>
 
-<!-- DATA + APP -->
-<script src="/3D-Models/data/fc.js" onload="FC_LOADED()" onerror="FC_ERR()"></script>
 <script>
 (function(){
-const PER_PAGE = 60;
-let filtered = [], offset = 0;
-let state = { q:'', price:null, cert:null, sort:'sales' };
+'use strict';
 
-const PRICE_RANGES = {
-  u5:   [0,5],   u15:  [5,15],  u30:  [15,30],
-  u60:  [30,60], u120: [60,120], u999: [120,9999]
-};
-const CERT_LABELS = {0:'Standard',1:'StemCell',2:'CheckMate'};
-const PRICE_LABELS = {u5:'Under $5',u15:'$5–$15',u30:'$15–$30',u60:'$30–$60',u120:'$60–$120',u999:'$120+'};
+const BASE   = '/3D-Models/data/';
+const PER    = 60;
+const PLIMIT = {u5:[0,5],u15:[5,15],u30:[15,30],u60:[30,60],u120:[60,120],u999:[120,9e9]};
+const PLABEL = {u5:'<$5',u15:'$5–15',u30:'$15–30',u60:'$30–60',u120:'$60–120',u999:'$120+'};
+const CLABEL = {0:'Standard',1:'StemCell',2:'CheckMate'};
 
+// Raw columnar data populated by fetch
+let IDS=[], NAMES=[], PRICES=[], SALES=[], CERTS=[];
+// Image map populated lazily
+let IMGS = {};
+let imgsLoaded = false;
+
+// State
+let filtered = [];
+let offset   = 0;
+let state    = { q:'', price:null, cert:null, sort:'sales' };
+
+// DOM refs
+const grid    = document.getElementById('model-grid');
+const empty   = document.getElementById('empty');
+const lmBtn   = document.getElementById('lm-btn');
+const rcEl    = document.getElementById('results-count');
+const statEl  = document.getElementById('status-text');
+const statRow = document.getElementById('status-msg');
+const fBar    = document.getElementById('filter-bar');
+const qEl     = document.getElementById('q');
+const sortEl  = document.getElementById('sort-select');
+const clearEl = document.getElementById('clear-all');
+
+// ── Filtering ────────────────────────────────────────────────────────────────
 function applyFilter() {
-  const q = state.q.trim().toLowerCase();
-  const pr = state.price ? PRICE_RANGES[state.price] : null;
-  const ce = state.cert !== null ? Number(state.cert) : null;
-  filtered = FM.filter(m => {
-    if (q && m[1].toLowerCase().indexOf(q) === -1) return false;
-    if (pr && (m[2] < pr[0] || m[2] >= pr[1])) return false;
-    if (ce !== null && m[4] !== ce) return false;
-    return true;
-  });
-  sortModels();
-}
-
-function sortModels() {
+  const q  = state.q.toLowerCase();
+  const pr = state.price ? PLIMIT[state.price] : null;
+  const ce = state.cert !== null ? +state.cert : null;
+  const len = IDS.length;
+  const out = [];
+  for (let i = 0; i < len; i++) {
+    if (q && NAMES[i].toLowerCase().indexOf(q) === -1) continue;
+    if (pr && (PRICES[i] < pr[0] || PRICES[i] >= pr[1])) continue;
+    if (ce !== null && CERTS[i] !== ce) continue;
+    out.push(i);
+  }
+  // Sort
   const s = state.sort;
-  if (s === 'sales')      filtered.sort((a,b) => b[3]-a[3]);
-  else if (s === 'price_asc')  filtered.sort((a,b) => a[2]-b[2]);
-  else if (s === 'price_desc') filtered.sort((a,b) => b[2]-a[2]);
-  else if (s === 'name')       filtered.sort((a,b) => a[1].localeCompare(b[1]));
+  if (s === 'price_asc')  out.sort((a,b) => PRICES[a]-PRICES[b]);
+  else if (s === 'price_desc') out.sort((a,b) => PRICES[b]-PRICES[a]);
+  else if (s === 'name')       out.sort((a,b) => NAMES[a] < NAMES[b] ? -1 : 1);
+  // default 'sales': data already sorted by sales desc from generation
+  filtered = out;
   offset = 0;
 }
 
-function certBadge(cert) {
-  if (cert === 1) return '<span class="mc-cert cert-sc">StemCell</span>';
-  if (cert === 2) return '<span class="mc-cert cert-cm">CheckMate</span>';
+// ── Card HTML ────────────────────────────────────────────────────────────────
+function certBadge(c) {
+  if (c===1) return '<span class="mc-cert cert-sc">StemCell</span>';
+  if (c===2) return '<span class="mc-cert cert-cm">CheckMate</span>';
   return '';
 }
 
-function cardHtml(m) {
-  const [id, name, price, sales, cert, img] = m;
-  const url = `https://www.turbosquid.com/FullPreview/${id}?referral=3d_molier-studio`;
-  const imgHtml = img
-    ? `<img src="${img}" alt="${name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
-    : '';
-  const phStyle = img ? 'display:none' : '';
-  return `<a href="${url}" class="mc" target="_blank" rel="noopener" aria-label="${name} — $${price}">
-  <div class="mc-img">
-    ${imgHtml}
-    <div class="mc-placeholder" style="${phStyle}">📦</div>
-    <div class="mc-overlay"></div>
-    ${certBadge(cert)}
-    <div class="mc-qv">VIEW ON TURBOSQUID</div>
-  </div>
-  <div class="mc-body">
-    <div class="mc-name">${name}</div>
-    <div class="mc-footer">
-      <span class="mc-price">$${price}</span>
-      ${sales > 0 ? `<span class="mc-sales">${sales} sold</span>` : ''}
-    </div>
-  </div>
-</a>`;
+function cardHtml(idx) {
+  const id    = IDS[idx];
+  const name  = NAMES[idx];
+  const price = PRICES[idx];
+  const sales = SALES[idx];
+  const cert  = CERTS[idx];
+  const img   = IMGS[id] || '';
+  const href  = `https://www.turbosquid.com/FullPreview/${id}?referral=3d_molier-studio`;
+  const imgPart = img
+    ? `<img src="${img}" alt="${name.replace(/"/g,'')}" loading="lazy" onerror="this.style.display='none'">`
+    : `<div class="mc-ph">📦</div>`;
+  return `<a href="${href}" class="mc" target="_blank" rel="noopener">
+<div class="mc-img">${imgPart}<div class="mc-ov"></div>${certBadge(cert)}<div class="mc-qv">VIEW ON TURBOSQUID</div></div>
+<div class="mc-body"><div class="mc-name">${name}</div>
+<div class="mc-foot"><span class="mc-price">$${price}</span>${sales>0?`<span class="mc-sold">${sales} sold</span>`:''}</div>
+</div></a>`;
 }
 
+// ── Render ────────────────────────────────────────────────────────────────────
 function render(append) {
-  const grid   = document.getElementById('model-grid');
-  const empty  = document.getElementById('empty-state');
-  const btn    = document.getElementById('load-more-btn');
-  const numEl  = document.getElementById('results-num');
-
-  numEl.textContent = filtered.length.toLocaleString();
-
-  if (filtered.length === 0) {
-    grid.style.display = 'none';
-    empty.style.display = 'block';
-    btn.style.display = 'none';
-    return;
+  const slice = filtered.slice(offset, offset + PER);
+  if (!append) {
+    if (filtered.length === 0) {
+      grid.style.display = 'none';
+      empty.style.display = 'block';
+      lmBtn.style.display = 'none';
+      rcEl.innerHTML = '<strong>0</strong> models';
+      return;
+    }
+    empty.style.display = 'none';
+    grid.style.display  = 'grid';
   }
-
-  empty.style.display = 'none';
-  grid.style.display  = 'grid';
-
-  const slice = filtered.slice(offset, offset + PER_PAGE);
-  const html  = slice.map(cardHtml).join('');
-
-  if (append) {
-    grid.insertAdjacentHTML('beforeend', html);
-  } else {
-    grid.innerHTML = html;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
+  const frag = document.createDocumentFragment();
+  const tmp  = document.createElement('div');
+  tmp.innerHTML = slice.map(cardHtml).join('');
+  while (tmp.firstChild) frag.appendChild(tmp.firstChild);
+  if (append) grid.appendChild(frag);
+  else        grid.innerHTML = '', grid.appendChild(frag);
   offset += slice.length;
-  btn.style.display = offset < filtered.length ? 'inline-block' : 'none';
-  if (offset < filtered.length) {
-    btn.textContent = `Load more (${(filtered.length - offset).toLocaleString()} remaining)`;
-  }
+  rcEl.innerHTML = `<strong>${filtered.length.toLocaleString()}</strong> models`;
+  lmBtn.style.display = offset < filtered.length ? 'inline-block' : 'none';
+  if (offset < filtered.length)
+    lmBtn.textContent = `Load ${Math.min(PER, filtered.length-offset).toLocaleString()} more`;
 }
 
-function updateChips() {
-  const el = document.getElementById('active-filters');
-  el.innerHTML = '';
-  if (state.q) el.insertAdjacentHTML('beforeend', chip(`"${state.q}"`, ()=>{state.q='';document.getElementById('search-input').value='';refresh()}));
-  if (state.price) el.insertAdjacentHTML('beforeend', chip(PRICE_LABELS[state.price], ()=>{state.price=null;refresh()}));
-  if (state.cert !== null) el.insertAdjacentHTML('beforeend', chip(CERT_LABELS[state.cert], ()=>{state.cert=null;refresh()}));
-  document.getElementById('clear-btn').className = (state.q || state.price || state.cert !== null) ? 'visible' : '';
+// ── Update chip / filter UI ──────────────────────────────────────────────────
+function updateUI() {
+  const hasFilter = state.q || state.price || state.cert !== null;
+  clearEl.className = hasFilter ? 'show' : '';
+  document.querySelectorAll('.ftag[data-price]').forEach(b =>
+    b.classList.toggle('active', b.dataset.price === state.price));
+  document.querySelectorAll('.ftag[data-cert]').forEach(b =>
+    b.classList.toggle('active', String(b.dataset.cert) === String(state.cert)));
 }
 
-function chip(label, fn) {
-  const id = 'chip' + Math.random().toString(36).slice(2);
-  setTimeout(() => { const b = document.getElementById(id); if(b) b.onclick = fn; }, 0);
-  return `<span class="achip">${label}<button id="${id}" aria-label="Remove filter">×</button></span>`;
+function refresh() { updateUI(); applyFilter(); render(false); }
+
+// ── Inject images after image map loads ──────────────────────────────────────
+function injectImages() {
+  grid.querySelectorAll('.mc').forEach(card => {
+    const href = card.getAttribute('href') || '';
+    const m    = href.match(/FullPreview\/(\d+)/);
+    if (!m) return;
+    const url  = IMGS[+m[1]];
+    if (!url) return;
+    const imgArea = card.querySelector('.mc-img');
+    if (imgArea.querySelector('img')) return; // already has image
+    const ph = imgArea.querySelector('.mc-ph');
+    const img = document.createElement('img');
+    img.src     = url;
+    img.alt     = '';
+    img.loading = 'lazy';
+    img.onerror = function(){ this.style.display='none'; };
+    if (ph) imgArea.insertBefore(img, ph);
+    else    imgArea.insertBefore(img, imgArea.firstChild);
+  });
 }
 
-function refresh() {
-  updateChips();
-  document.querySelectorAll('.fopt[data-price]').forEach(b => b.classList.toggle('active', b.dataset.price === state.price));
-  document.querySelectorAll('.fopt[data-cert]').forEach(b => b.classList.toggle('active', String(b.dataset.cert) === String(state.cert)));
-  applyFilter();
+// ── Main init ─────────────────────────────────────────────────────────────────
+function init(data) {
+  IDS    = data.i;
+  NAMES  = data.n;
+  PRICES = data.p;
+  SALES  = data.s;
+  CERTS  = data.c;
+
+  // Initial sort = sales (data already sorted from generation)
+  filtered = Array.from({length: IDS.length}, (_,i) => i);
+
+  // Update status
+  statRow.querySelector('.bar-spinner').remove();
+  statEl.textContent = 'Ready — ' + IDS.length.toLocaleString() + ' models loaded';
+  setTimeout(() => { statRow.style.display = 'none'; }, 1800);
+
+  // Enable controls
+  fBar.style.display  = 'flex';
+  qEl.disabled        = false;
+  sortEl.disabled     = false;
+  qEl.placeholder     = 'Search 86,865 models…';
+
   render(false);
-}
 
-window.FC_LOADED = function() {
-  document.getElementById('loading').style.display = 'none';
-  // Initial sort by sales
-  FM.sort((a,b) => b[3]-a[3]);
-  filtered = FM.slice();
-  offset = 0;
-  render(false);
+  // Load images in background (low priority)
+  fetch(BASE + 'fc-img.json')
+    .then(r => r.json())
+    .then(imgs => {
+      IMGS = imgs;
+      imgsLoaded = true;
+      injectImages();
+    })
+    .catch(() => {}); // images are optional
 
-  // Search
+  // Search (debounced)
   let timer;
-  document.getElementById('search-input').addEventListener('input', e => {
+  qEl.addEventListener('input', e => {
     clearTimeout(timer);
     timer = setTimeout(() => { state.q = e.target.value; refresh(); }, 220);
   });
 
-  // Price filters
-  document.querySelectorAll('.fopt[data-price]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      state.price = btn.classList.contains('active') ? null : btn.dataset.price;
-      refresh();
-    });
-  });
-
-  // Cert filters
-  document.querySelectorAll('.fopt[data-cert]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const v = Number(btn.dataset.cert);
-      state.cert = (state.cert === v) ? null : v;
-      refresh();
-    });
-  });
-
   // Sort
-  document.getElementById('sort-select').addEventListener('change', e => {
+  sortEl.addEventListener('change', e => {
     state.sort = e.target.value;
-    sortModels();
-    offset = 0;
+    applyFilter();
     render(false);
   });
 
+  // Price filter
+  document.querySelectorAll('.ftag[data-price]').forEach(btn =>
+    btn.addEventListener('click', () => {
+      state.price = btn.classList.contains('active') ? null : btn.dataset.price;
+      refresh();
+    })
+  );
+
+  // Cert filter
+  document.querySelectorAll('.ftag[data-cert]').forEach(btn =>
+    btn.addEventListener('click', () => {
+      const v = +btn.dataset.cert;
+      state.cert = (state.cert === v) ? null : v;
+      refresh();
+    })
+  );
+
   // Load more
-  document.getElementById('load-more-btn').addEventListener('click', () => render(true));
+  lmBtn.addEventListener('click', () => {
+    render(true);
+    if (imgsLoaded) injectImages();
+  });
 
   // Clear
-  document.getElementById('clear-btn').addEventListener('click', () => {
+  clearEl.addEventListener('click', () => {
     state = { q:'', price:null, cert:null, sort:state.sort };
-    document.getElementById('search-input').value = '';
+    qEl.value = '';
     refresh();
   });
-};
+}
 
-window.FC_ERR = function() {
-  document.getElementById('loading').innerHTML = '<p style="color:#cc3333">Failed to load catalog data. Please refresh the page.</p>';
-};
+// ── Fetch core data (fast — no images, columnar format) ───────────────────────
+fetch(BASE + 'fc.json')
+  .then(r => {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  })
+  .then(data => init(data))
+  .catch(err => {
+    statEl.textContent = 'Failed to load — please refresh';
+    statRow.querySelector('.bar-spinner').style.borderTopColor = '#cc3333';
+    console.error(err);
+  });
+
 })();
 </script>
 </body>
