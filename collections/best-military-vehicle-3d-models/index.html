@@ -8,7 +8,7 @@
 <meta property="og:title" content="Best Military Vehicle 3D Models for Games, Film & Simulation | 3D Molier">
 <meta property="og:description" content="Browse military vehicle 3D models by 3D Molier — tanks, APCs, warplanes, warships and more. For defense simulation, game development and film production.">
 <meta property="og:url" content="https://3dmolier.github.io/3D-Models/collections/best-military-vehicle-3d-models/">
-<meta property="og:image" content="https://p.turbosquid.com/ts-thumb/34/5G5ITt/9uwrFmvi/sikorskyuh60blackhawkusmilitaryutilityhelicopterc4dmodel002/jpg/1477311781/1920x1080/fit_q87/0d8ee50de73df309fe971dd667db85a7ad6249e0/sikorskyuh60blackhawkusmilitaryutilityhelicopterc4dmodel002.jpg">
+<meta property="og:image" content="https://3dmolier.github.io/3D-Models/assets/og/3d-molier-og.jpg">
 <meta property="og:site_name" content="3D Molier">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@3dmolier">
@@ -115,7 +115,7 @@
     <a href="/3D-Models/" class="nav-logo">3D Molier</a>
     <div class="nav-links" id="nav-links">
       <a href="/3D-Models/catalog/" class="nav-link">Top 1000</a>
-      <a href="/3D-Models/full-catalog/" class="nav-link">All 86K</a>
+      <a href="/3D-Models/full-catalog/" class="nav-link">Full Collection</a>
       <span class="nav-sep" aria-hidden="true"></span>
       <div class="nav-has-dropdown nav-has-mega" id="nav-cat-wrap">
         <button class="nav-link" id="nav-cat-btn" aria-haspopup="true" aria-expanded="false">Categories <span class="nav-caret" aria-hidden="true">▾</span></button>
@@ -150,6 +150,7 @@
       <a href="/3D-Models/collections/" class="nav-link">Collections</a>
       <a href="/3D-Models/search/" class="nav-link">Search</a>
       <a href="/3D-Models/custom-order/" class="nav-link">Custom Order</a>
+      <a href="/3D-Models/about/" class="nav-link">About</a>
     </div>
     <a href="https://www.turbosquid.com/Search/3D-Models?include=true&media_typeid=2&artist_screenname=3d_molier-studio&referral=3d_molier-studio" class="nav-cta" target="_blank" rel="noopener">TurboSquid ↗</a>
     <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -157,7 +158,7 @@
 </nav>
 <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
   <a href="/3D-Models/catalog/">Top 1000 Models</a>
-  <a href="/3D-Models/full-catalog/">All 86K Models</a>
+  <a href="/3D-Models/full-catalog/">Full Collection</a>
   <button class="nav-mobile-toggle" id="mob-cat-toggle" aria-expanded="false">Categories <span class="nav-caret">▾</span></button>
   <div class="nav-mobile-sub" id="mob-cat-sub">
     <a href="/3D-Models/categories/vehicles/">Vehicles</a>
@@ -187,8 +188,8 @@
   <a href="/3D-Models/collections/">Collections</a>
   <a href="/3D-Models/search/">Search</a>
   <a href="/3D-Models/custom-order/">Custom Order</a>
-  <a href="/3D-Models/contact/">Contact</a>
   <a href="/3D-Models/about/">About</a>
+  <a href="/3D-Models/contact/">Contact</a>
   <a href="https://www.turbosquid.com/Search/3D-Models?include=true&media_typeid=2&artist_screenname=3d_molier-studio&referral=3d_molier-studio" target="_blank" rel="noopener" class="mobile-cta">TurboSquid Store ↗</a>
 </div>
 </header>
@@ -830,6 +831,56 @@ var burger=d.getElementById('nav-burger'),mob=d.getElementById('nav-mobile');
 if(burger&&mob){burger.addEventListener('click',function(){var o=mob.classList.toggle('open');burger.classList.toggle('open',o);burger.setAttribute('aria-expanded',''+o);mob.setAttribute('aria-hidden',String(!o));});}
 var btn=d.getElementById('nav-cat-btn'),wrap=d.getElementById('nav-cat-wrap');
 if(btn&&wrap){btn.addEventListener('click',function(e){e.stopPropagation();wrap.classList.toggle('open');btn.setAttribute('aria-expanded',String(wrap.classList.contains('open')));});d.addEventListener('click',function(e){if(!wrap.contains(e.target)){wrap.classList.remove('open');btn.setAttribute('aria-expanded','false');}});}
+})();
+</script>
+<script>
+(function(){
+var p=location.pathname,d=document;
+// Active state
+d.querySelectorAll('.nav-link,.nav-dropdown a,.nav-mobile a,.nav-mobile-sub a').forEach(function(el){
+  var h=el.getAttribute('href');if(!h||h.indexOf('turbosquid')>-1)return;
+  if(h===p||(h.length>14&&p.startsWith(h)))el.classList.add('active');
+});
+// Hamburger
+var burger=d.getElementById('nav-burger'),mob=d.getElementById('nav-mobile');
+if(burger&&mob){
+  burger.addEventListener('click',function(){
+    var o=mob.classList.toggle('open');
+    burger.classList.toggle('open',o);
+    burger.setAttribute('aria-expanded',''+o);
+    mob.setAttribute('aria-hidden',String(!o));
+    if(o){var f=mob.querySelector('a,button');if(f)f.focus();}
+  });
+}
+// Dropdown with hover-intent (no dead zone)
+function setupDropdown(btnId,wrapId){
+  var btn=d.getElementById(btnId),wrap=d.getElementById(wrapId);
+  if(!btn||!wrap) return;
+  var t=null;
+  function open(){clearTimeout(t);wrap.classList.add('open');btn.setAttribute('aria-expanded','true');}
+  function close(){wrap.classList.remove('open');btn.setAttribute('aria-expanded','false');}
+  function schedClose(){t=setTimeout(close,160);}
+  wrap.addEventListener('mouseenter',open);
+  wrap.addEventListener('mouseleave',schedClose);
+  btn.addEventListener('click',function(e){e.stopPropagation();wrap.classList.contains('open')?close():open();});
+  d.addEventListener('click',function(e){if(!wrap.contains(e.target))close();});
+  d.addEventListener('keydown',function(e){if(e.key==='Escape'){close();btn.focus();}});
+}
+setupDropdown('nav-cat-btn','nav-cat-wrap');
+setupDropdown('nav-ind-btn','nav-ind-wrap');
+// Mobile sub-menus
+function mobToggle(btnId,subId){
+  var btn=d.getElementById(btnId),sub=d.getElementById(subId);
+  if(btn&&sub){
+    btn.addEventListener('click',function(){
+      var o=sub.classList.toggle('open');
+      btn.setAttribute('aria-expanded',''+o);
+      var c=btn.querySelector('.nav-caret');if(c)c.style.transform=o?'rotate(180deg)':'';
+    });
+  }
+}
+mobToggle('mob-cat-toggle','mob-cat-sub');
+mobToggle('mob-ind-toggle','mob-ind-sub');
 })();
 </script>
 </body>
