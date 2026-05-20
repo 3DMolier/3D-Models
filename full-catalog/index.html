@@ -4,12 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>All 86,865 3D Models — Full Catalog | 3D Molier on TurboSquid</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@3dmolier">
-<meta name="twitter:title" content="3D Molier — Professional 3D Models">
+<meta name="twitter:title" content="Full 3D Molier Catalog — 86,865 3D Models">
 <meta name="twitter:description" content="Professional 3D models on TurboSquid.">
 <meta name="twitter:image" content="https://3dmolier.github.io/3D-Models/assets/og/og.jpg">
 <meta name="description" content="Browse all 86,865 professional 3D models by 3D Molier on TurboSquid. Search by name, filter by price and certification. Instant results.">
@@ -20,16 +17,6 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Open Sans',sans-serif;font-size:15px;line-height:1.6}
-
-/* NAV */
-nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--border)}
-.nav-inner{max-width:1400px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;gap:32px}
-.nav-logo{font-family:'Playfair Display',serif;font-weight:800;font-size:20px;color:#111;text-decoration:none;letter-spacing:-0.03em}
-.nav-links{display:flex;gap:24px;margin-left:auto}
-.nav-links a{color:#555;text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
-.nav-links a:hover,.nav-links a.active{color:#111;font-weight:600}
-.btn-ts{background:#111;color:#fff;font-weight:700;font-size:13px;padding:8px 18px;border-radius:4px;text-decoration:none;white-space:nowrap;transition:opacity .2s}
-.btn-ts:hover{opacity:.8}
 
 /* HERO */
 .hero{max-width:1400px;margin:0 auto;padding:36px 24px 24px;border-bottom:1px solid var(--border)}
@@ -100,6 +87,13 @@ nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var
 .mc-price{font-weight:700;font-size:14px;color:#111}
 .mc-sold{font-size:11px;color:#bbb}
 
+
+/* POPULAR SEARCHES */
+.popular-searches{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+.ps-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#999}
+.ps-tag{background:#fff;border:1px solid #e5e5e5;border-radius:16px;padding:4px 12px;font-size:12px;font-family:'Open Sans',sans-serif;color:#555;cursor:pointer;transition:all .15s}
+.ps-tag:hover{border-color:#111;color:#111}
+
 /* LOAD MORE */
 .lm-wrap{text-align:center;margin-top:32px}
 #lm-btn{background:#fff;border:1px solid #e5e5e5;color:#111;font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;padding:11px 44px;border-radius:4px;cursor:pointer;transition:border-color .2s,background .2s;display:none}
@@ -131,6 +125,13 @@ footer{background:#111;color:#fff;padding:48px 0 24px;margin-top:40px}
   {"@type":"WebPage","url":"https://3dmolier.github.io/3D-Models/full-catalog/","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://3dmolier.github.io/3D-Models/search/?q={search_term_string}"},"query-input":"required name=search_term_string"}}
 ]}
 </script>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Full 3D Molier Catalog — 86,865 3D Models">
+<meta property="og:description" content="Browse the complete 3D Molier catalog of 86,865 3D models for simulation, visualization, animation, VFX, games and technical production.">
+<meta property="og:url" content="https://3dmolier.github.io/3D-Models/full-catalog/">
+<meta property="og:site_name" content="3D Molier Models">
+<meta property="og:image" content="https://3dmolier.github.io/3D-Models/assets/og/3d-molier-og.jpg">
+<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css">
 </head>
 <body>
 
@@ -141,36 +142,74 @@ footer{background:#111;color:#fff;padding:48px 0 24px;margin-top:40px}
     <div class="nav-links" id="nav-links">
       <a href="/3D-Models/catalog/" class="nav-link">Top 1000</a>
       <a href="/3D-Models/full-catalog/" class="nav-link">All 86K</a>
-      <div class="nav-has-dropdown" id="nav-cat-wrap">
-        <button class="nav-link nav-dd-btn" id="nav-cat-btn" aria-haspopup="true" aria-expanded="false">Categories <span class="nav-caret" aria-hidden="true">▾</span></button>
-        <div class="nav-dropdown" role="menu">
-          <a href="/3D-Models/categories/vehicles/" role="menuitem">Vehicles</a>
-          <a href="/3D-Models/categories/aircraft/" role="menuitem">Aircraft</a>
-          <a href="/3D-Models/categories/military-vehicles/" role="menuitem">Military</a>
-          <a href="/3D-Models/categories/medical-3d-models/" role="menuitem">Medical</a>
-          <a href="/3D-Models/categories/ships/" role="menuitem">Ships</a>
-          <a href="/3D-Models/categories/industrial-equipment/" role="menuitem">Industrial</a>
-          <a href="/3D-Models/categories/architecture-landmarks/" role="menuitem">Architecture</a>
-          <a href="/3D-Models/collections/" role="menuitem">Collections</a>
-          <a href="/3D-Models/categories/other/" role="menuitem">Other</a>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <div class="nav-has-dropdown nav-has-mega" id="nav-cat-wrap">
+        <button class="nav-link" id="nav-cat-btn" aria-haspopup="true" aria-expanded="false">Categories <span class="nav-caret" aria-hidden="true">▾</span></button>
+        <div class="nav-dropdown nav-mega" role="menu">
+          <a href="/3D-Models/categories/vehicles/" role="menuitem" class="mega-item"><span class="mega-name">Vehicles</span><span class="mega-desc">cars, trucks, motorcycles</span></a>
+          <a href="/3D-Models/categories/aircraft/" role="menuitem" class="mega-item"><span class="mega-name">Aircraft</span><span class="mega-desc">airplanes, helicopters, drones</span></a>
+          <a href="/3D-Models/categories/military-vehicles/" role="menuitem" class="mega-item"><span class="mega-name">Military</span><span class="mega-desc">defense, tanks, equipment</span></a>
+          <a href="/3D-Models/categories/ships/" role="menuitem" class="mega-item"><span class="mega-name">Ships</span><span class="mega-desc">naval, cargo, yachts</span></a>
+          <a href="/3D-Models/categories/medical-3d-models/" role="menuitem" class="mega-item"><span class="mega-name">Medical</span><span class="mega-desc">anatomy, surgery, pharma</span></a>
+          <a href="/3D-Models/categories/industrial-equipment/" role="menuitem" class="mega-item"><span class="mega-name">Industrial</span><span class="mega-desc">machinery, HVAC, cranes</span></a>
+          <a href="/3D-Models/categories/architecture-landmarks/" role="menuitem" class="mega-item"><span class="mega-name">Architecture</span><span class="mega-desc">buildings, monuments</span></a>
+          <a href="/3D-Models/categories/other/" role="menuitem" class="mega-item"><span class="mega-name">Other</span><span class="mega-desc">characters, animals, props</span></a>
         </div>
       </div>
-      <a href="/3D-Models/about/" class="nav-link">About</a>
-      <a href="/3D-Models/custom-order/" class="nav-link">Custom Order</a>
-      <a href="/3D-Models/contact/" class="nav-link">Contact</a>
+      <div class="nav-has-dropdown" id="nav-ind-wrap">
+        <button class="nav-link" id="nav-ind-btn" aria-haspopup="true" aria-expanded="false">Industries <span class="nav-caret" aria-hidden="true">▾</span></button>
+        <div class="nav-dropdown" role="menu">
+          <a href="/3D-Models/industries/aerospace/" role="menuitem">Aerospace</a>
+          <a href="/3D-Models/industries/military-defense/" role="menuitem">Military &amp; Defense</a>
+          <a href="/3D-Models/industries/medical/" role="menuitem">Medical</a>
+          <a href="/3D-Models/industries/game-development/" role="menuitem">Game Development</a>
+          <a href="/3D-Models/industries/film-video-production/" role="menuitem">Film Production</a>
+          <a href="/3D-Models/industries/architecture/" role="menuitem">Architecture</a>
+          <a href="/3D-Models/industries/virtual-reality/" role="menuitem">Virtual Reality</a>
+          <a href="/3D-Models/industries/advertising/" role="menuitem">Advertising</a>
+          <a href="/3D-Models/industries/softwaredevelopment/" role="menuitem">Software Development</a>
+          <a href="/3D-Models/industries/eventmanagement/" role="menuitem">Event Management</a>
+          <a href="/3D-Models/industries/hardware/" role="menuitem">Hardware</a>
+          <a href="/3D-Models/industries/3dprinting/" role="menuitem">3D Printing</a>
+        </div>
+      </div>
+      <a href="/3D-Models/collections/" class="nav-link">Collections</a>
       <a href="/3D-Models/search/" class="nav-link">Search</a>
+      <a href="/3D-Models/custom-order/" class="nav-link">Custom Order</a>
     </div>
-    <a href="https://www.turbosquid.com/Search/3D-Models?include=true&media_typeid=2&artist_screenname=3d_molier-studio&referral=3d_molier-studio" class="nav-cta" target="_blank" rel="noopener">TurboSquid Store ↗</a>
+    <a href="https://www.turbosquid.com/Search/3D-Models?include=true&media_typeid=2&artist_screenname=3d_molier-studio&referral=3d_molier-studio" class="nav-cta" target="_blank" rel="noopener">TurboSquid ↗</a>
     <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
   <a href="/3D-Models/catalog/">Top 1000 Models</a>
   <a href="/3D-Models/full-catalog/">All 86K Models</a>
-  <a href="/3D-Models/categories/vehicles/">Vehicles</a>
-  <a href="/3D-Models/categories/aircraft/">Aircraft</a>
-  <a href="/3D-Models/categories/military-vehicles/">Military</a>
-  <a href="/3D-Models/categories/medical-3d-models/">Medical</a>
+  <button class="nav-mobile-toggle" id="mob-cat-toggle" aria-expanded="false">Categories <span class="nav-caret">▾</span></button>
+  <div class="nav-mobile-sub" id="mob-cat-sub">
+    <a href="/3D-Models/categories/vehicles/">Vehicles</a>
+    <a href="/3D-Models/categories/aircraft/">Aircraft</a>
+    <a href="/3D-Models/categories/military-vehicles/">Military</a>
+    <a href="/3D-Models/categories/ships/">Ships</a>
+    <a href="/3D-Models/categories/medical-3d-models/">Medical</a>
+    <a href="/3D-Models/categories/industrial-equipment/">Industrial</a>
+    <a href="/3D-Models/categories/architecture-landmarks/">Architecture</a>
+    <a href="/3D-Models/categories/other/">Other</a>
+  </div>
+  <button class="nav-mobile-toggle" id="mob-ind-toggle" aria-expanded="false">Industries <span class="nav-caret">▾</span></button>
+  <div class="nav-mobile-sub" id="mob-ind-sub">
+    <a href="/3D-Models/industries/aerospace/">Aerospace</a>
+    <a href="/3D-Models/industries/military-defense/">Military &amp; Defense</a>
+    <a href="/3D-Models/industries/medical/">Medical</a>
+    <a href="/3D-Models/industries/game-development/">Game Development</a>
+    <a href="/3D-Models/industries/film-video-production/">Film Production</a>
+    <a href="/3D-Models/industries/architecture/">Architecture</a>
+    <a href="/3D-Models/industries/virtual-reality/">Virtual Reality</a>
+    <a href="/3D-Models/industries/advertising/">Advertising</a>
+    <a href="/3D-Models/industries/softwaredevelopment/">Software Development</a>
+    <a href="/3D-Models/industries/eventmanagement/">Event Management</a>
+    <a href="/3D-Models/industries/hardware/">Hardware</a>
+    <a href="/3D-Models/industries/3dprinting/">3D Printing</a>
+  </div>
   <a href="/3D-Models/collections/">Collections</a>
   <a href="/3D-Models/search/">Search</a>
   <a href="/3D-Models/custom-order/">Custom Order</a>
@@ -181,7 +220,7 @@ footer{background:#111;color:#fff;padding:48px 0 24px;margin-top:40px}
 </header>
 
 <div class="hero">
-  <h1>Full Catalog — 86,865 3D Models</h1>
+  <h1>Full <span style="color:var(--accent)">Catalog</span> — 86,865 3D Models</h1>
   <p class="hero-sub">Complete collection by 3D Molier on TurboSquid. Search and filter instantly.</p>
   <div class="hero-stats">
     <div class="hs"><div class="v">86,865</div><div class="l">Total Models</div></div>
@@ -189,7 +228,19 @@ footer{background:#111;color:#fff;padding:48px 0 24px;margin-top:40px}
     <div class="hs"><div class="v">12,666</div><div class="l">StemCell</div></div>
     <div class="hs"><div class="v">$1–$2,999</div><div class="l">Price Range</div></div>
   </div>
-  <div class="search-row">
+  
+<div class="popular-searches" id="popular-searches">
+  <span class="ps-label">Popular:</span>
+  <button class="ps-tag" data-q="aircraft">aircraft</button>
+  <button class="ps-tag" data-q="military vehicle">military vehicle</button>
+  <button class="ps-tag" data-q="uav drone">uav drone</button>
+  <button class="ps-tag" data-q="ship">ship</button>
+  <button class="ps-tag" data-q="human anatomy">human anatomy</button>
+  <button class="ps-tag" data-q="industrial engine">industrial engine</button>
+  <button class="ps-tag" data-q="Tesla">Tesla</button>
+  <button class="ps-tag" data-q="container">container</button>
+</div>
+<div class="search-row">
     <div class="sw">
       <svg class="si" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M15 15l-3.5-3.5"/></svg>
       <input id="q" type="search" placeholder="Search 86,865 models…" autocomplete="off" disabled aria-label="Search 3D models">
@@ -332,6 +383,66 @@ const qEl     = document.getElementById('q');
 const sortEl  = document.getElementById('sort-select');
 const clearEl = document.getElementById('clear-all');
 
+
+// Popular Searches
+document.querySelectorAll('.ps-tag').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    qEl.value=this.dataset.q;
+    state.q=this.dataset.q.toLowerCase();
+    applyFilter();render(false);
+    updateUi();
+    qEl.focus();
+  });
+});
+
+
+// Popular Searches
+document.querySelectorAll('.ps-tag').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    qEl.value=this.dataset.q;
+    state.q=this.dataset.q.toLowerCase();
+    applyFilter();render(false);
+    updateUi();
+    qEl.focus();
+  });
+});
+
+
+// Popular Searches
+document.querySelectorAll('.ps-tag').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    qEl.value=this.dataset.q;
+    state.q=this.dataset.q.toLowerCase();
+    applyFilter();render(false);
+    updateUi();
+    qEl.focus();
+  });
+});
+
+
+// Popular Searches
+document.querySelectorAll('.ps-tag').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    qEl.value=this.dataset.q;
+    state.q=this.dataset.q.toLowerCase();
+    applyFilter();render(false);
+    updateUi();
+    qEl.focus();
+  });
+});
+
+
+// Popular Searches
+document.querySelectorAll('.ps-tag').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    qEl.value=this.dataset.q;
+    state.q=this.dataset.q.toLowerCase();
+    applyFilter();render(false);
+    updateUi();
+    qEl.focus();
+  });
+});
+
 // ── Filtering ────────────────────────────────────────────────────────────────
 function applyFilter() {
   const q  = state.q.toLowerCase();
@@ -369,10 +480,11 @@ function cardHtml(idx) {
   const sales = SALES[idx];
   const cert  = CERTS[idx];
   const img   = IMGS[id] || '';
+  if(typeof dataLayer!=="undefined")dataLayer.push({event:"full_catalog_model_click",model_id:id,model_name:name});
   const href  = `https://www.turbosquid.com/FullPreview/${id}?referral=3d_molier-studio`;
   const imgPart = img
     ? `<img src="${img}" alt="${name.replace(/"/g,'')}" loading="lazy" onerror="this.style.display='none'">`
-    : `<div class="mc-ph">📦</div>`;
+    : `<div class="mc-ph"></div>`;
   return `<a href="${href}" class="mc" target="_blank" rel="noopener">
 <div class="mc-img">${imgPart}<div class="mc-ov"></div>${certBadge(cert)}<div class="mc-qv">VIEW ON TURBOSQUID</div></div>
 <div class="mc-body"><div class="mc-name">${name}</div>
@@ -486,6 +598,7 @@ function init(data) {
     state.sort = e.target.value;
     applyFilter();
     render(false);
+    if(typeof dataLayer!=="undefined"&&state.q)dataLayer.push({event:"full_catalog_search",search_term:state.q});
   });
 
   // Price filter

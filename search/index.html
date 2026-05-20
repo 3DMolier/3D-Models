@@ -4,9 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Search 3D Models — 3D Molier on TurboSquid</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Search 3D Models — 3D Molier on TurboSquid">
 <meta property="og:description" content="Search 88,000+ professional 3D models by 3D Molier on TurboSquid. Find vehicles, aircraft, medical, architecture, characters and more.">
@@ -157,6 +154,7 @@
   }
 }
 </script>
+<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css">
 </head>
 <body>
 
@@ -167,36 +165,74 @@
     <div class="nav-links" id="nav-links">
       <a href="/3D-Models/catalog/" class="nav-link">Top 1000</a>
       <a href="/3D-Models/full-catalog/" class="nav-link">All 86K</a>
-      <div class="nav-has-dropdown" id="nav-cat-wrap">
-        <button class="nav-link nav-dd-btn" id="nav-cat-btn" aria-haspopup="true" aria-expanded="false">Categories <span class="nav-caret" aria-hidden="true">▾</span></button>
-        <div class="nav-dropdown" role="menu">
-          <a href="/3D-Models/categories/vehicles/" role="menuitem">Vehicles</a>
-          <a href="/3D-Models/categories/aircraft/" role="menuitem">Aircraft</a>
-          <a href="/3D-Models/categories/military-vehicles/" role="menuitem">Military</a>
-          <a href="/3D-Models/categories/medical-3d-models/" role="menuitem">Medical</a>
-          <a href="/3D-Models/categories/ships/" role="menuitem">Ships</a>
-          <a href="/3D-Models/categories/industrial-equipment/" role="menuitem">Industrial</a>
-          <a href="/3D-Models/categories/architecture-landmarks/" role="menuitem">Architecture</a>
-          <a href="/3D-Models/collections/" role="menuitem">Collections</a>
-          <a href="/3D-Models/categories/other/" role="menuitem">Other</a>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <div class="nav-has-dropdown nav-has-mega" id="nav-cat-wrap">
+        <button class="nav-link" id="nav-cat-btn" aria-haspopup="true" aria-expanded="false">Categories <span class="nav-caret" aria-hidden="true">▾</span></button>
+        <div class="nav-dropdown nav-mega" role="menu">
+          <a href="/3D-Models/categories/vehicles/" role="menuitem" class="mega-item"><span class="mega-name">Vehicles</span><span class="mega-desc">cars, trucks, motorcycles</span></a>
+          <a href="/3D-Models/categories/aircraft/" role="menuitem" class="mega-item"><span class="mega-name">Aircraft</span><span class="mega-desc">airplanes, helicopters, drones</span></a>
+          <a href="/3D-Models/categories/military-vehicles/" role="menuitem" class="mega-item"><span class="mega-name">Military</span><span class="mega-desc">defense, tanks, equipment</span></a>
+          <a href="/3D-Models/categories/ships/" role="menuitem" class="mega-item"><span class="mega-name">Ships</span><span class="mega-desc">naval, cargo, yachts</span></a>
+          <a href="/3D-Models/categories/medical-3d-models/" role="menuitem" class="mega-item"><span class="mega-name">Medical</span><span class="mega-desc">anatomy, surgery, pharma</span></a>
+          <a href="/3D-Models/categories/industrial-equipment/" role="menuitem" class="mega-item"><span class="mega-name">Industrial</span><span class="mega-desc">machinery, HVAC, cranes</span></a>
+          <a href="/3D-Models/categories/architecture-landmarks/" role="menuitem" class="mega-item"><span class="mega-name">Architecture</span><span class="mega-desc">buildings, monuments</span></a>
+          <a href="/3D-Models/categories/other/" role="menuitem" class="mega-item"><span class="mega-name">Other</span><span class="mega-desc">characters, animals, props</span></a>
         </div>
       </div>
-      <a href="/3D-Models/about/" class="nav-link">About</a>
-      <a href="/3D-Models/custom-order/" class="nav-link">Custom Order</a>
-      <a href="/3D-Models/contact/" class="nav-link">Contact</a>
+      <div class="nav-has-dropdown" id="nav-ind-wrap">
+        <button class="nav-link" id="nav-ind-btn" aria-haspopup="true" aria-expanded="false">Industries <span class="nav-caret" aria-hidden="true">▾</span></button>
+        <div class="nav-dropdown" role="menu">
+          <a href="/3D-Models/industries/aerospace/" role="menuitem">Aerospace</a>
+          <a href="/3D-Models/industries/military-defense/" role="menuitem">Military &amp; Defense</a>
+          <a href="/3D-Models/industries/medical/" role="menuitem">Medical</a>
+          <a href="/3D-Models/industries/game-development/" role="menuitem">Game Development</a>
+          <a href="/3D-Models/industries/film-video-production/" role="menuitem">Film Production</a>
+          <a href="/3D-Models/industries/architecture/" role="menuitem">Architecture</a>
+          <a href="/3D-Models/industries/virtual-reality/" role="menuitem">Virtual Reality</a>
+          <a href="/3D-Models/industries/advertising/" role="menuitem">Advertising</a>
+          <a href="/3D-Models/industries/softwaredevelopment/" role="menuitem">Software Development</a>
+          <a href="/3D-Models/industries/eventmanagement/" role="menuitem">Event Management</a>
+          <a href="/3D-Models/industries/hardware/" role="menuitem">Hardware</a>
+          <a href="/3D-Models/industries/3dprinting/" role="menuitem">3D Printing</a>
+        </div>
+      </div>
+      <a href="/3D-Models/collections/" class="nav-link">Collections</a>
       <a href="/3D-Models/search/" class="nav-link">Search</a>
+      <a href="/3D-Models/custom-order/" class="nav-link">Custom Order</a>
     </div>
-    <a href="https://www.turbosquid.com/Search/3D-Models?include=true&media_typeid=2&artist_screenname=3d_molier-studio&referral=3d_molier-studio" class="nav-cta" target="_blank" rel="noopener">TurboSquid Store ↗</a>
+    <a href="https://www.turbosquid.com/Search/3D-Models?include=true&media_typeid=2&artist_screenname=3d_molier-studio&referral=3d_molier-studio" class="nav-cta" target="_blank" rel="noopener">TurboSquid ↗</a>
     <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
   <a href="/3D-Models/catalog/">Top 1000 Models</a>
   <a href="/3D-Models/full-catalog/">All 86K Models</a>
-  <a href="/3D-Models/categories/vehicles/">Vehicles</a>
-  <a href="/3D-Models/categories/aircraft/">Aircraft</a>
-  <a href="/3D-Models/categories/military-vehicles/">Military</a>
-  <a href="/3D-Models/categories/medical-3d-models/">Medical</a>
+  <button class="nav-mobile-toggle" id="mob-cat-toggle" aria-expanded="false">Categories <span class="nav-caret">▾</span></button>
+  <div class="nav-mobile-sub" id="mob-cat-sub">
+    <a href="/3D-Models/categories/vehicles/">Vehicles</a>
+    <a href="/3D-Models/categories/aircraft/">Aircraft</a>
+    <a href="/3D-Models/categories/military-vehicles/">Military</a>
+    <a href="/3D-Models/categories/ships/">Ships</a>
+    <a href="/3D-Models/categories/medical-3d-models/">Medical</a>
+    <a href="/3D-Models/categories/industrial-equipment/">Industrial</a>
+    <a href="/3D-Models/categories/architecture-landmarks/">Architecture</a>
+    <a href="/3D-Models/categories/other/">Other</a>
+  </div>
+  <button class="nav-mobile-toggle" id="mob-ind-toggle" aria-expanded="false">Industries <span class="nav-caret">▾</span></button>
+  <div class="nav-mobile-sub" id="mob-ind-sub">
+    <a href="/3D-Models/industries/aerospace/">Aerospace</a>
+    <a href="/3D-Models/industries/military-defense/">Military &amp; Defense</a>
+    <a href="/3D-Models/industries/medical/">Medical</a>
+    <a href="/3D-Models/industries/game-development/">Game Development</a>
+    <a href="/3D-Models/industries/film-video-production/">Film Production</a>
+    <a href="/3D-Models/industries/architecture/">Architecture</a>
+    <a href="/3D-Models/industries/virtual-reality/">Virtual Reality</a>
+    <a href="/3D-Models/industries/advertising/">Advertising</a>
+    <a href="/3D-Models/industries/softwaredevelopment/">Software Development</a>
+    <a href="/3D-Models/industries/eventmanagement/">Event Management</a>
+    <a href="/3D-Models/industries/hardware/">Hardware</a>
+    <a href="/3D-Models/industries/3dprinting/">3D Printing</a>
+  </div>
   <a href="/3D-Models/collections/">Collections</a>
   <a href="/3D-Models/search/">Search</a>
   <a href="/3D-Models/custom-order/">Custom Order</a>
@@ -359,6 +395,7 @@ function search(q) {
              : colFuse;
 
   const raw = fuse.search(q, { limit: 60 });
+  if(typeof triggerFCSearch!=="undefined") triggerFCSearch(q);
   const hits = raw.map(r => r.item);
 
   const models  = hits.filter(h => h.type === 'model');
@@ -463,6 +500,65 @@ var burger=d.getElementById('nav-burger'),mob=d.getElementById('nav-mobile');
 if(burger&&mob){burger.addEventListener('click',function(){var o=mob.classList.toggle('open');burger.classList.toggle('open',o);burger.setAttribute('aria-expanded',''+o);mob.setAttribute('aria-hidden',String(!o));});}
 var btn=d.getElementById('nav-cat-btn'),wrap=d.getElementById('nav-cat-wrap');
 if(btn&&wrap){btn.addEventListener('click',function(e){e.stopPropagation();wrap.classList.toggle('open');btn.setAttribute('aria-expanded',String(wrap.classList.contains('open')));});d.addEventListener('click',function(e){if(!wrap.contains(e.target)){wrap.classList.remove('open');btn.setAttribute('aria-expanded','false');}});}
+})();
+</script>
+
+<script>
+// Full catalog search via fc.json
+(function(){
+var FC_IDS=[], FC_NAMES=[], FC_PRICES=[], FC_IMGS={};
+var fcLoaded=false, fcImgLoaded=false;
+fetch('/3D-Models/data/fc.json').then(function(r){return r.json();}).then(function(d){
+  FC_IDS=d.i; FC_NAMES=d.n; FC_PRICES=d.p; fcLoaded=true;
+  // Lazy load images
+  fetch('/3D-Models/data/fc-img.json').then(function(r){return r.json();}).then(function(imgs){FC_IMGS=imgs;fcImgLoaded=true;});
+  // Re-run search if query was already entered
+  var q=document.getElementById('q');
+  if(q&&q.value.trim().length>1) triggerFCSearch(q.value.trim());
+}).catch(function(){});
+
+window.triggerFCSearch=function(q){
+  if(!fcLoaded) return;
+  var ql=q.toLowerCase();
+  var results=[];
+  for(var i=0;i<FC_NAMES.length;i++){
+    if(FC_NAMES[i].toLowerCase().indexOf(ql)>-1){
+      results.push(i);
+      if(results.length>=60) break;
+    }
+  }
+  var wrap=document.getElementById('fc-results');
+  if(!wrap){ wrap=document.createElement('div'); wrap.id='fc-results'; wrap.style='max-width:1200px;margin:0 auto;padding:0 24px 24px';
+    var rv=document.querySelector('.results-wrap'); if(rv) rv.parentNode.insertBefore(wrap,rv); }
+  if(results.length===0){wrap.innerHTML='';return;}
+  var html='<div style="font-size:12px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;">All 86K Catalog Results ('+results.length+(results.length>=60?'+':'')+' found)</div>';
+  html+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px">';
+  results.forEach(function(idx){
+    var id=FC_IDS[idx], name=FC_NAMES[idx], price=FC_PRICES[idx];
+    var img=FC_IMGS[id]?('<img src="'+FC_IMGS[id]+'" alt="'+name.replace(/"/g,'')+'" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">'):'';
+    var href='https://www.turbosquid.com/FullPreview/'+id+'?referral=3d_molier-studio';
+    html+='<a href="'+href+'" target="_blank" rel="noopener" style="background:#fff;border:1px solid #e5e5e5;border-radius:6px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,0,0,.09)'" onmouseout="this.style.boxShadow=''">'
+      +'<div style="height:140px;overflow:hidden;background:#f5f5f5;flex-shrink:0">'+img+'</div>'
+      +'<div style="padding:8px 10px 10px;flex:1">'
+      +'<div style="font-size:11px;font-weight:600;color:#111;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">'+name+'</div>'
+      +'<div style="margin-top:6px;font-size:13px;font-weight:700;color:#111">$'+price+'</div>'
+      +'</div></a>';
+  });
+  html+='</div>';
+  wrap.innerHTML=html;
+  if(typeof dataLayer!=="undefined") dataLayer.push({event:"search_full_catalog",search_term:q,results_count:results.length});
+};
+
+// Popular search tags click
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('.ps-tag').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var q=this.dataset.q;
+      var el=document.getElementById('q');
+      if(el){el.value=q;el.dispatchEvent(new Event('input'));el.dispatchEvent(new KeyboardEvent('keyup',{key:'Enter',bubbles:true}));}
+    });
+  });
+});
 })();
 </script>
 </body>
