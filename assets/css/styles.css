@@ -163,22 +163,10 @@
 
 /* ── Colors (matches Tailwind config + site palette) ──────────────────────── */
 .text-white    { color: #fff; }
-.text-ink      { color: #EDF2FF; }
-.text-muted    { color: #7A8DB0; }
-.text-teal     { color: #00E5C4; }
-.text-border   { color: #1E2B44; }
-.bg-base       { background: #07090F; }
-.bg-surface    { background: #0E1220; }
-.bg-raised     { background: #151A2E; }
-.bg-teal       { background: #00E5C4; }
 .bg-transparent { background: transparent; }
 
 /* ── Borders ───────────────────────────────────────────────────────────────── */
-.border         { border: 1px solid #1E2B44; }
-.border-0       { border: none; }
-.border-b       { border-bottom: 1px solid #1E2B44; }
-.border-t       { border-top: 1px solid #1E2B44; }
-.border-border  { border-color: #1E2B44; }
+.border-0 { border: none; }
 .rounded        { border-radius: 4px; }
 .rounded-md     { border-radius: 6px; }
 .rounded-lg     { border-radius: 8px; }
@@ -217,8 +205,8 @@
 
 /* ── Focus states ──────────────────────────────────────────────────────────── */
 .focus-visible\:outline-none:focus-visible { outline: none; }
-.focus-visible\:ring-2:focus-visible { box-shadow: 0 0 0 2px #00E5C4; }
-.focus-visible\:ring-teal:focus-visible { box-shadow: 0 0 0 2px #00E5C4; }
+.focus-visible\:ring-2:focus-visible { box-shadow: 0 0 0 2px #1659c9; }
+.focus-visible\:ring-teal:focus-visible { box-shadow: 0 0 0 2px #1659c9; }
 
 /* ── Responsive (mobile-first) ─────────────────────────────────────────────── */
 @media (min-width: 768px) {
@@ -304,3 +292,20 @@
 .s-mc-price{margin-top:5px;font-size:12px;font-weight:700;color:#111}
 .s-pc{box-shadow:none;transition:box-shadow .15s}
 .s-pc:hover{box-shadow:0 2px 12px rgba(0,0,0,.08)}
+
+/* Hover effects — replaces inline onmouseover/onmouseout */
+.cat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+}
+.ind-card:hover {
+  border-color: #d1d5db !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.07);
+}
+.footer-link { color: #9ca3af; text-decoration: none; transition: color 0.2s; }
+.footer-link:hover { color: #ffffff; }
+.col-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+@media (max-width: 640px) {
+  .stats-grid { grid-template-columns: repeat(2,1fr) !important; }
+}
