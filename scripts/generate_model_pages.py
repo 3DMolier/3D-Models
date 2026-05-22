@@ -271,7 +271,7 @@ def related_card_html(m: dict) -> str:
     )
 
     return f'''<a href="/models/{slug}/" style="text-decoration:none;" class="model-card card-glow">
-        <div class="img-wrap" style="height:150px;background:linear-gradient({gradient});">
+        <div class="img-wrap" style="height:150px;background:#f5f5f5;">
           {img_html}
         </div>
         <div style="padding:12px 14px;">
@@ -405,16 +405,8 @@ def model_page_html(m: dict, related: list[dict]) -> str:
 <link rel="canonical" href="https://3dmolier.com/models/{slug}/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {{
-  theme: {{ extend: {{ colors: {{ base:'#07090F',surface:'#0E1220',border:'#1E2B44',teal:'#00E5C4' }}, fontFamily: {{ display:['Syne','sans-serif'],body:['Inter','sans-serif'] }} }} }}
-}}
-</script>
-<style>
-{SHARED_CSS}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/3D-Models/assets/css/model-pages.css">
 <script type="application/ld+json">
 {schema}
 </script>

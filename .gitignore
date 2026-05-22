@@ -43,3 +43,8 @@ assets/__MACOSX/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Old industry redirect stubs (use canonical URLs with dashes)
+industries/softwaredevelopment/
+industries/eventmanagement/
+industries/3dprinting/

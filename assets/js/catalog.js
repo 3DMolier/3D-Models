@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
       ALL = data;
       filtered = ALL.slice();
       renderGrid();
+      var spinner = document.getElementById('catalog-spinner');
+      if (spinner) spinner.style.display = 'none';
       // URL params
       var urlSearch = new URLSearchParams(location.search);
       var q = urlSearch.get('q'), cat = urlSearch.get('cat');
@@ -15,7 +17,11 @@ document.addEventListener('DOMContentLoaded', function() {
       if (cat) { var pill = document.querySelector('.cat-pill[data-cat="'+cat+'"]'); if(pill)pill.click(); }
       if(q||cat) applyFilters();
     })
-    .catch(function(e) { console.error('Failed to load catalog data', e); });
+    .catch(function(e) {
+    console.error('Failed to load catalog data', e);
+    var spinner = document.getElementById('catalog-spinner');
+    if (spinner) spinner.innerHTML = 'Failed to load models. Please refresh the page.';
+  });
 });
 
 // State
@@ -70,7 +76,7 @@ function cardHtml(m) {
   const certBadge = certBadgeHtml(m.cert);
   return `<a href="/3D-Models/models/${m.s}/" class="model-card">
     <div class="card-img">
-      <img src="${imgSrc}" alt="${m.n} 3D model –” ${m.c} by 3D Molier" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img src=”${imgSrc}” alt=”${m.n} 3D model — ${m.c} by 3D Molier” loading=”lazy” onerror=”this.style.display='none';this.nextElementSibling.style.display='flex'”>
       <div class="img-fallback" style="display:none;background:#f5f5f5;">
         <span style="font-size:36px;">&#128247;</span>
       </div>
