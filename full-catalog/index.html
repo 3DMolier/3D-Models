@@ -156,21 +156,21 @@ footer{background:#111;color:#fff;padding:48px 0 24px;margin-top:40px}
           <a href="/3D-Models/categories/other/" role="menuitem" class="mega-item"><span class="mega-name">Other</span><span class="mega-desc">characters, animals, props</span></a>
         </div>
       </div>
-      <div class="nav-has-dropdown" id="nav-ind-wrap">
-        <button class="nav-link" id="nav-ind-btn" aria-haspopup="true" aria-expanded="false">Industries <span class="nav-caret" aria-hidden="true">▾</span></button>
-        <div class="nav-dropdown" role="menu">
-          <a href="/3D-Models/industries/aerospace/" role="menuitem">Aerospace</a>
-          <a href="/3D-Models/industries/military-defense/" role="menuitem">Military &amp; Defense</a>
-          <a href="/3D-Models/industries/medical/" role="menuitem">Medical</a>
-          <a href="/3D-Models/industries/game-development/" role="menuitem">Game Development</a>
-          <a href="/3D-Models/industries/film-video-production/" role="menuitem">Film Production</a>
-          <a href="/3D-Models/industries/architecture/" role="menuitem">Architecture</a>
-          <a href="/3D-Models/industries/virtual-reality/" role="menuitem">Virtual Reality</a>
-          <a href="/3D-Models/industries/advertising/" role="menuitem">Advertising</a>
-          <a href="/3D-Models/industries/softwaredevelopment/" role="menuitem">Software Development</a>
-          <a href="/3D-Models/industries/eventmanagement/" role="menuitem">Event Management</a>
-          <a href="/3D-Models/industries/hardware/" role="menuitem">Hardware</a>
-          <a href="/3D-Models/industries/3dprinting/" role="menuitem">3D Printing</a>
+      <div class="nav-has-dropdown nav-has-mega" id="nav-ind-wrap">
+        <button class="nav-link" id="nav-ind-btn" aria-haspopup="true" aria-expanded="false">Industries <span class="nav-caret" aria-hidden="true">&#9662;</span></button>
+        <div class="nav-dropdown nav-mega" role="menu">
+          <a href="/3D-Models/industries/aerospace/" role="menuitem" class="mega-item"><span class="mega-name">Aerospace</span><span class="mega-desc">aviation, rockets, satellites</span></a>
+          <a href="/3D-Models/industries/military-defense/" role="menuitem" class="mega-item"><span class="mega-name">Military &amp; Defense</span><span class="mega-desc">defense, simulation, training</span></a>
+          <a href="/3D-Models/industries/medical/" role="menuitem" class="mega-item"><span class="mega-name">Medical</span><span class="mega-desc">anatomy, surgery, education</span></a>
+          <a href="/3D-Models/industries/game-development/" role="menuitem" class="mega-item"><span class="mega-name">Game Development</span><span class="mega-desc">Unity, Unreal, real-time</span></a>
+          <a href="/3D-Models/industries/film-video-production/" role="menuitem" class="mega-item"><span class="mega-name">Film Production</span><span class="mega-desc">VFX, animation, commercials</span></a>
+          <a href="/3D-Models/industries/architecture/" role="menuitem" class="mega-item"><span class="mega-name">Architecture</span><span class="mega-desc">buildings, landmarks, viz</span></a>
+          <a href="/3D-Models/industries/virtual-reality/" role="menuitem" class="mega-item"><span class="mega-name">Virtual Reality</span><span class="mega-desc">VR, AR, immersive scenes</span></a>
+          <a href="/3D-Models/industries/advertising/" role="menuitem" class="mega-item"><span class="mega-name">Advertising</span><span class="mega-desc">product rendering, campaigns</span></a>
+          <a href="/3D-Models/industries/software-development/" role="menuitem" class="mega-item"><span class="mega-name">Software Dev</span><span class="mega-desc">apps, demos, UI assets</span></a>
+          <a href="/3D-Models/industries/event-management/" role="menuitem" class="mega-item"><span class="mega-name">Event Management</span><span class="mega-desc">exhibitions, staging, shows</span></a>
+          <a href="/3D-Models/industries/hardware/" role="menuitem" class="mega-item"><span class="mega-name">Hardware</span><span class="mega-desc">devices, components, tech</span></a>
+          <a href="/3D-Models/industries/3d-printing/" role="menuitem" class="mega-item"><span class="mega-name">3D Printing</span><span class="mega-desc">printing, prototyping, fab</span></a>
         </div>
       </div>
       <a href="/3D-Models/collections/" class="nav-link">Collections</a>
@@ -196,7 +196,7 @@ footer{background:#111;color:#fff;padding:48px 0 24px;margin-top:40px}
     <a href="/3D-Models/categories/architecture-landmarks/">Architecture</a>
     <a href="/3D-Models/categories/other/">Other</a>
   </div>
-  <button class="nav-mobile-toggle" id="mob-ind-toggle" aria-expanded="false">Industries <span class="nav-caret">▾</span></button>
+    <button class="nav-mobile-toggle" id="mob-ind-toggle" aria-expanded="false">Industries <span class="nav-caret">&#9662;</span></button>
   <div class="nav-mobile-sub" id="mob-ind-sub">
     <a href="/3D-Models/industries/aerospace/">Aerospace</a>
     <a href="/3D-Models/industries/military-defense/">Military &amp; Defense</a>
@@ -206,10 +206,10 @@ footer{background:#111;color:#fff;padding:48px 0 24px;margin-top:40px}
     <a href="/3D-Models/industries/architecture/">Architecture</a>
     <a href="/3D-Models/industries/virtual-reality/">Virtual Reality</a>
     <a href="/3D-Models/industries/advertising/">Advertising</a>
-    <a href="/3D-Models/industries/softwaredevelopment/">Software Development</a>
-    <a href="/3D-Models/industries/eventmanagement/">Event Management</a>
+    <a href="/3D-Models/industries/software-development/">Software Development</a>
+    <a href="/3D-Models/industries/event-management/">Event Management</a>
     <a href="/3D-Models/industries/hardware/">Hardware</a>
-    <a href="/3D-Models/industries/3dprinting/">3D Printing</a>
+    <a href="/3D-Models/industries/3d-printing/">3D Printing</a>
   </div>
   <a href="/3D-Models/collections/">Collections</a>
   <a href="/3D-Models/search/">Search</a>
@@ -352,366 +352,6 @@ footer{background:#111;color:#fff;padding:48px 0 24px;margin-top:40px}
 </footer>
 
 <script>
-(function(){
-'use strict';
-
-const BASE   = '/3D-Models/data/';
-const PER    = 60;
-const PLIMIT = {u5:[0,5],u15:[5,15],u30:[15,30],u60:[30,60],u120:[60,120],u999:[120,9e9]};
-const PLABEL = {u5:'<$5',u15:'$5–15',u30:'$15–30',u60:'$30–60',u120:'$60–120',u999:'$120+'};
-const CLABEL = {0:'Standard',1:'StemCell',2:'CheckMate'};
-
-// Raw columnar data populated by fetch
-let IDS=[], NAMES=[], PRICES=[], SALES=[], CERTS=[];
-// Image map populated lazily
-let IMGS = {};
-let imgsLoaded = false;
-
-// State
-let filtered = [];
-let offset   = 0;
-let state    = { q:'', price:null, cert:null, sort:'sales' };
-
-// DOM refs
-const grid    = document.getElementById('model-grid');
-const empty   = document.getElementById('empty');
-const lmBtn   = document.getElementById('lm-btn');
-const rcEl    = document.getElementById('results-count');
-const statEl  = document.getElementById('status-text');
-const statRow = document.getElementById('status-msg');
-const fBar    = document.getElementById('filter-bar');
-const qEl     = document.getElementById('q');
-const sortEl  = document.getElementById('sort-select');
-const clearEl = document.getElementById('clear-all');
-
-
-// Popular Searches
-document.querySelectorAll('.ps-tag').forEach(function(btn){
-  btn.addEventListener('click',function(){
-    qEl.value=this.dataset.q;
-    state.q=this.dataset.q.toLowerCase();
-    applyFilter();render(false);
-    updateUi();
-    qEl.focus();
-  });
-});
-
-
-// Popular Searches
-document.querySelectorAll('.ps-tag').forEach(function(btn){
-  btn.addEventListener('click',function(){
-    qEl.value=this.dataset.q;
-    state.q=this.dataset.q.toLowerCase();
-    applyFilter();render(false);
-    updateUi();
-    qEl.focus();
-  });
-});
-
-
-// Popular Searches
-document.querySelectorAll('.ps-tag').forEach(function(btn){
-  btn.addEventListener('click',function(){
-    qEl.value=this.dataset.q;
-    state.q=this.dataset.q.toLowerCase();
-    applyFilter();render(false);
-    updateUi();
-    qEl.focus();
-  });
-});
-
-
-// Popular Searches
-document.querySelectorAll('.ps-tag').forEach(function(btn){
-  btn.addEventListener('click',function(){
-    qEl.value=this.dataset.q;
-    state.q=this.dataset.q.toLowerCase();
-    applyFilter();render(false);
-    updateUi();
-    qEl.focus();
-  });
-});
-
-
-// Popular Searches
-document.querySelectorAll('.ps-tag').forEach(function(btn){
-  btn.addEventListener('click',function(){
-    qEl.value=this.dataset.q;
-    state.q=this.dataset.q.toLowerCase();
-    applyFilter();render(false);
-    updateUi();
-    qEl.focus();
-  });
-});
-
-// ── Filtering ────────────────────────────────────────────────────────────────
-function applyFilter() {
-  const q  = state.q.toLowerCase();
-  const pr = state.price ? PLIMIT[state.price] : null;
-  const ce = state.cert !== null ? +state.cert : null;
-  const len = IDS.length;
-  const out = [];
-  for (let i = 0; i < len; i++) {
-    if (q && NAMES[i].toLowerCase().indexOf(q) === -1) continue;
-    if (pr && (PRICES[i] < pr[0] || PRICES[i] >= pr[1])) continue;
-    if (ce !== null && CERTS[i] !== ce) continue;
-    out.push(i);
-  }
-  // Sort
-  const s = state.sort;
-  if (s === 'price_asc')  out.sort((a,b) => PRICES[a]-PRICES[b]);
-  else if (s === 'price_desc') out.sort((a,b) => PRICES[b]-PRICES[a]);
-  else if (s === 'name')       out.sort((a,b) => NAMES[a] < NAMES[b] ? -1 : 1);
-  // default 'sales': data already sorted by sales desc from generation
-  filtered = out;
-  offset = 0;
-}
-
-// ── Card HTML ────────────────────────────────────────────────────────────────
-function certBadge(c) {
-  if (c===1) return '<span class="mc-cert cert-sc">StemCell</span>';
-  if (c===2) return '<span class="mc-cert cert-cm">CheckMate</span>';
-  return '';
-}
-
-function cardHtml(idx) {
-  const id    = IDS[idx];
-  const name  = NAMES[idx];
-  const price = PRICES[idx];
-  const sales = SALES[idx];
-  const cert  = CERTS[idx];
-  const img   = IMGS[id] || '';
-  if(typeof dataLayer!=="undefined")dataLayer.push({event:"full_catalog_model_click",model_id:id,model_name:name});
-  const href  = `https://www.turbosquid.com/FullPreview/${id}?referral=3d_molier-studio`;
-  const imgPart = img
-    ? `<img src="${img}" alt="${name.replace(/"/g,'')}" loading="lazy" onerror="this.style.display='none'">`
-    : `<div class="mc-ph"></div>`;
-  return `<a href="${href}" class="mc" target="_blank" rel="noopener">
-<div class="mc-img">${imgPart}<div class="mc-ov"></div>${certBadge(cert)}<div class="mc-qv">VIEW ON TURBOSQUID</div></div>
-<div class="mc-body"><div class="mc-name">${name}</div>
-<div class="mc-foot"><span class="mc-price">$${price}</span>${sales>0?`<span class="mc-sold">${sales} sold</span>`:''}</div>
-</div></a>`;
-}
-
-// ── Render ────────────────────────────────────────────────────────────────────
-function render(append) {
-  const slice = filtered.slice(offset, offset + PER);
-  if (!append) {
-    if (filtered.length === 0) {
-      grid.style.display = 'none';
-      empty.style.display = 'block';
-      lmBtn.style.display = 'none';
-      rcEl.innerHTML = '<strong>0</strong> models';
-      return;
-    }
-    empty.style.display = 'none';
-    grid.style.display  = 'grid';
-  }
-  const frag = document.createDocumentFragment();
-  const tmp  = document.createElement('div');
-  tmp.innerHTML = slice.map(cardHtml).join('');
-  while (tmp.firstChild) frag.appendChild(tmp.firstChild);
-  if (append) grid.appendChild(frag);
-  else        grid.innerHTML = '', grid.appendChild(frag);
-  offset += slice.length;
-  rcEl.innerHTML = `<strong>${filtered.length.toLocaleString()}</strong> models`;
-  lmBtn.style.display = offset < filtered.length ? 'inline-block' : 'none';
-  if (offset < filtered.length)
-    lmBtn.textContent = `Load ${Math.min(PER, filtered.length-offset).toLocaleString()} more`;
-}
-
-// ── Update chip / filter UI ──────────────────────────────────────────────────
-function updateUI() {
-  const hasFilter = state.q || state.price || state.cert !== null;
-  clearEl.className = hasFilter ? 'show' : '';
-  document.querySelectorAll('.ftag[data-price]').forEach(b =>
-    b.classList.toggle('active', b.dataset.price === state.price));
-  document.querySelectorAll('.ftag[data-cert]').forEach(b =>
-    b.classList.toggle('active', String(b.dataset.cert) === String(state.cert)));
-}
-
-function refresh() { updateUI(); applyFilter(); render(false); }
-
-// ── Inject images after image map loads ──────────────────────────────────────
-function injectImages() {
-  grid.querySelectorAll('.mc').forEach(card => {
-    const href = card.getAttribute('href') || '';
-    const m    = href.match(/FullPreview\/(\d+)/);
-    if (!m) return;
-    const url  = IMGS[+m[1]];
-    if (!url) return;
-    const imgArea = card.querySelector('.mc-img');
-    if (imgArea.querySelector('img')) return; // already has image
-    const ph = imgArea.querySelector('.mc-ph');
-    const img = document.createElement('img');
-    img.src     = url;
-    img.alt     = '';
-    img.loading = 'lazy';
-    img.onerror = function(){ this.style.display='none'; };
-    if (ph) imgArea.insertBefore(img, ph);
-    else    imgArea.insertBefore(img, imgArea.firstChild);
-  });
-}
-
-// ── Main init ─────────────────────────────────────────────────────────────────
-function init(data) {
-  IDS    = data.i;
-  NAMES  = data.n;
-  PRICES = data.p;
-  SALES  = data.s;
-  CERTS  = data.c;
-
-  // Initial sort = sales (data already sorted from generation)
-  filtered = Array.from({length: IDS.length}, (_,i) => i);
-
-  // Update status
-  statRow.querySelector('.bar-spinner').remove();
-  statEl.textContent = 'Ready — ' + IDS.length.toLocaleString() + ' models loaded';
-  setTimeout(() => { statRow.style.display = 'none'; }, 1800);
-
-  // Enable controls
-  fBar.style.display  = 'flex';
-  qEl.disabled        = false;
-  sortEl.disabled     = false;
-  qEl.placeholder     = 'Search 86,865 models…';
-
-  render(false);
-
-  // Load images in background (low priority)
-  fetch(BASE + 'fc-img.json')
-    .then(r => r.json())
-    .then(imgs => {
-      IMGS = imgs;
-      imgsLoaded = true;
-      injectImages();
-    })
-    .catch(() => {}); // images are optional
-
-  // Search (debounced)
-  let timer;
-  qEl.addEventListener('input', e => {
-    clearTimeout(timer);
-    timer = setTimeout(() => { state.q = e.target.value; refresh(); }, 220);
-  });
-
-  // Sort
-  sortEl.addEventListener('change', e => {
-    state.sort = e.target.value;
-    applyFilter();
-    render(false);
-    if(typeof dataLayer!=="undefined"&&state.q)dataLayer.push({event:"full_catalog_search",search_term:state.q});
-  });
-
-  // Price filter
-  document.querySelectorAll('.ftag[data-price]').forEach(btn =>
-    btn.addEventListener('click', () => {
-      state.price = btn.classList.contains('active') ? null : btn.dataset.price;
-      refresh();
-    })
-  );
-
-  // Cert filter
-  document.querySelectorAll('.ftag[data-cert]').forEach(btn =>
-    btn.addEventListener('click', () => {
-      const v = +btn.dataset.cert;
-      state.cert = (state.cert === v) ? null : v;
-      refresh();
-    })
-  );
-
-  // Load more
-  lmBtn.addEventListener('click', () => {
-    render(true);
-    if (imgsLoaded) injectImages();
-  });
-
-  // Clear
-  clearEl.addEventListener('click', () => {
-    state = { q:'', price:null, cert:null, sort:state.sort };
-    qEl.value = '';
-    refresh();
-  });
-}
-
-// ── Fetch core data (fast — no images, columnar format) ───────────────────────
-fetch(BASE + 'fc.json')
-  .then(r => {
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    return r.json();
-  })
-  .then(data => init(data))
-  .catch(err => {
-    statEl.textContent = 'Failed to load — please refresh';
-    statRow.querySelector('.bar-spinner').style.borderTopColor = '#cc3333';
-    console.error(err);
-  });
-
-})();
-</script>
-<script>
-(function(){
-var p=location.pathname,d=document;
-d.querySelectorAll('.nav-link,.nav-dropdown a,.nav-mobile a').forEach(function(el){
-  var h=el.getAttribute('href');if(!h||h.indexOf('turbosquid')>-1)return;
-  if(h===p||(h.length>14&&p.indexOf(h)===0))el.classList.add('active');
-});
-var burger=d.getElementById('nav-burger'),mob=d.getElementById('nav-mobile');
-if(burger&&mob){burger.addEventListener('click',function(){var o=mob.classList.toggle('open');burger.classList.toggle('open',o);burger.setAttribute('aria-expanded',''+o);mob.setAttribute('aria-hidden',String(!o));});}
-var btn=d.getElementById('nav-cat-btn'),wrap=d.getElementById('nav-cat-wrap');
-if(btn&&wrap){btn.addEventListener('click',function(e){e.stopPropagation();wrap.classList.toggle('open');btn.setAttribute('aria-expanded',String(wrap.classList.contains('open')));});d.addEventListener('click',function(e){if(!wrap.contains(e.target)){wrap.classList.remove('open');btn.setAttribute('aria-expanded','false');}});}
-})();
-</script>
-<script>
-(function(){
-var p=location.pathname,d=document;
-// Active state
-d.querySelectorAll('.nav-link,.nav-dropdown a,.nav-mobile a,.nav-mobile-sub a').forEach(function(el){
-  var h=el.getAttribute('href');if(!h||h.indexOf('turbosquid')>-1)return;
-  if(h===p||(h.length>14&&p.startsWith(h)))el.classList.add('active');
-});
-// Hamburger
-var burger=d.getElementById('nav-burger'),mob=d.getElementById('nav-mobile');
-if(burger&&mob){
-  burger.addEventListener('click',function(){
-    var o=mob.classList.toggle('open');
-    burger.classList.toggle('open',o);
-    burger.setAttribute('aria-expanded',''+o);
-    mob.setAttribute('aria-hidden',String(!o));
-    if(o){var f=mob.querySelector('a,button');if(f)f.focus();}
-  });
-}
-// Dropdown with hover-intent (no dead zone)
-function setupDropdown(btnId,wrapId){
-  var btn=d.getElementById(btnId),wrap=d.getElementById(wrapId);
-  if(!btn||!wrap) return;
-  var t=null;
-  function open(){clearTimeout(t);wrap.classList.add('open');btn.setAttribute('aria-expanded','true');}
-  function close(){wrap.classList.remove('open');btn.setAttribute('aria-expanded','false');}
-  function schedClose(){t=setTimeout(close,160);}
-  wrap.addEventListener('mouseenter',open);
-  wrap.addEventListener('mouseleave',schedClose);
-  btn.addEventListener('click',function(e){e.stopPropagation();wrap.classList.contains('open')?close():open();});
-  d.addEventListener('click',function(e){if(!wrap.contains(e.target))close();});
-  d.addEventListener('keydown',function(e){if(e.key==='Escape'){close();btn.focus();}});
-}
-setupDropdown('nav-cat-btn','nav-cat-wrap');
-setupDropdown('nav-ind-btn','nav-ind-wrap');
-// Mobile sub-menus
-function mobToggle(btnId,subId){
-  var btn=d.getElementById(btnId),sub=d.getElementById(subId);
-  if(btn&&sub){
-    btn.addEventListener('click',function(){
-      var o=sub.classList.toggle('open');
-      btn.setAttribute('aria-expanded',''+o);
-      var c=btn.querySelector('.nav-caret');if(c)c.style.transform=o?'rotate(180deg)':'';
-    });
-  }
-}
-mobToggle('mob-cat-toggle','mob-cat-sub');
-mobToggle('mob-ind-toggle','mob-ind-sub');
-})();
-</script>
-<script>
 // Recently Viewed display <!-- rv_display -->
 (function(){
   try{
@@ -729,6 +369,23 @@ mobToggle('mob-ind-toggle','mob-ind-sub');
     html+='</div></div>';
     hero.insertAdjacentHTML('beforeend',html);
   }catch(e){}
+})();
+</script>
+<script>
+(function(){
+var p=location.pathname,d=document;
+d.querySelectorAll('.nav-link,.nav-dropdown a,.nav-mobile a,.nav-mobile-sub a').forEach(function(el){
+  var h=el.getAttribute('href');if(!h||h.indexOf('turbosquid')>-1)return;
+  if(h===p||(h.length>14&&p.startsWith(h))){el.classList.add('active');el.setAttribute('aria-current','page');}
+});
+var burger=d.getElementById('nav-burger'),mob=d.getElementById('nav-mobile');
+if(burger&&mob){burger.addEventListener('click',function(){var o=mob.classList.toggle('open');burger.classList.toggle('open',o);burger.setAttribute('aria-expanded',''+o);mob.setAttribute('aria-hidden',String(!o));if(o){var f=mob.querySelector('a,button');if(f)f.focus();}});}
+function setupDropdown(btnId,wrapId){var btn=d.getElementById(btnId),wrap=d.getElementById(wrapId);if(!btn||!wrap)return;var t=null;function open(){clearTimeout(t);wrap.classList.add('open');btn.setAttribute('aria-expanded','true');}function close(){wrap.classList.remove('open');btn.setAttribute('aria-expanded','false');}function sc(){t=setTimeout(close,160);}wrap.addEventListener('mouseenter',open);wrap.addEventListener('mouseleave',sc);btn.addEventListener('click',function(e){e.stopPropagation();wrap.classList.contains('open')?close():open();});d.addEventListener('click',function(e){if(!wrap.contains(e.target))close();});d.addEventListener('keydown',function(e){if(e.key==='Escape'){close();btn.focus();}});}
+setupDropdown('nav-cat-btn','nav-cat-wrap');
+setupDropdown('nav-ind-btn','nav-ind-wrap');
+function mobToggle(btnId,subId){var btn=d.getElementById(btnId),sub=d.getElementById(subId);if(btn&&sub){btn.addEventListener('click',function(){var o=sub.classList.toggle('open');btn.setAttribute('aria-expanded',''+o);var c=btn.querySelector('.nav-caret');if(c)c.style.transform=o?'rotate(180deg)':'';});}}
+mobToggle('mob-cat-toggle','mob-cat-sub');
+mobToggle('mob-ind-toggle','mob-ind-sub');
 })();
 </script>
 </body>

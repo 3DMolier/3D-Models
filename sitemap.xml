@@ -6313,13 +6313,13 @@
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://3dmolier.github.io/3D-Models/industries/softwaredevelopment/</loc>
+    <loc>https://3dmolier.github.io/3D-Models/industries/software-development/</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://3dmolier.github.io/3D-Models/industries/eventmanagement/</loc>
+    <loc>https://3dmolier.github.io/3D-Models/industries/event-management/</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -6331,7 +6331,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://3dmolier.github.io/3D-Models/industries/3dprinting/</loc>
+    <loc>https://3dmolier.github.io/3D-Models/industries/3d-printing/</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
