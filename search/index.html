@@ -39,15 +39,6 @@
     opacity: 0.5;
   }
 
-  nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-  .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 32px; }
-  .nav-logo { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 18px; color: #111111; text-decoration: none; letter-spacing: -0.03em; }
-  .nav-logo span { color: var(--teal); }
-  .nav-links { display: flex; gap: 24px; margin-left: auto; }
-  .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
-  .nav-links a:hover { color: #111111; }
-  .btn-ts { background: var(--teal); color: #ffffff; font-weight: 700; font-size: 13px; padding: 8px 18px; border-radius: 4px; text-decoration: none; transition: opacity 0.2s, transform 0.15s; }
-  .btn-ts:hover { opacity: 0.88; transform: translateY(-1px); }
 
   /* HERO */
   .hero { max-width: 760px; margin: 0 auto; padding: 64px 24px 40px; text-align: center; }
@@ -164,7 +155,7 @@
     <a href="/3D-Models/" class="nav-logo">3D Molier</a>
     <div class="nav-links" id="nav-links">
       <a href="/3D-Models/catalog/" class="nav-link">Top 1000</a>
-      <a href="/3D-Models/full-catalog/" class="nav-link">Full Collection</a>
+      <a href="/3D-Models/full-catalog/" class="nav-link">Full 86K Catalog</a>
       <span class="nav-sep" aria-hidden="true"></span>
       <div class="nav-has-dropdown nav-has-mega" id="nav-cat-wrap">
         <button class="nav-link" id="nav-cat-btn" aria-haspopup="true" aria-expanded="false">Categories <span class="nav-caret" aria-hidden="true">▾</span></button>
@@ -207,7 +198,7 @@
 </nav>
 <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
   <a href="/3D-Models/catalog/">Top 1000 Models</a>
-  <a href="/3D-Models/full-catalog/">Full Collection</a>
+  <a href="/3D-Models/full-catalog/">Full 86K Catalog</a>
   <button class="nav-mobile-toggle" id="mob-cat-toggle" aria-expanded="false">Categories <span class="nav-caret">▾</span></button>
   <div class="nav-mobile-sub" id="mob-cat-sub">
     <a href="/3D-Models/categories/vehicles/">Vehicles</a>
@@ -294,168 +285,7 @@
   </div>
 </footer>
 
-<script>
-(function(){
-// ── Data ─────────────────────────────────────────────────────────────────────
-var PAGES = [{"type":"category","title":"Vehicles","slug":"vehicles","page":"/3D-Models/categories/vehicles/","col":"#4F9EFF","icon":"🚗","count":292},{"type":"category","title":"Aircraft","slug":"aircraft","page":"/3D-Models/categories/aircraft/","col":"#9F7AEA","icon":"✈️","count":173},{"type":"category","title":"Military Vehicles","slug":"military-vehicles","page":"/3D-Models/categories/military-vehicles/","col":"#4ADE80","icon":"🪖","count":79},{"type":"category","title":"Ships","slug":"ships","page":"/3D-Models/categories/ships/","col":"#38BDF8","icon":"⚓","count":64},{"type":"category","title":"Medical","slug":"medical-3d-models","page":"/3D-Models/categories/medical-3d-models/","col":"#00E5C4","icon":"🧬","count":101},{"type":"category","title":"Industrial Equipment","slug":"industrial-equipment","page":"/3D-Models/categories/industrial-equipment/","col":"#10B981","icon":"⚙️","count":34},{"type":"category","title":"Architecture Landmarks","slug":"architecture-landmarks","page":"/3D-Models/categories/architecture-landmarks/","col":"#F59E0B","icon":"🏛️","count":57},{"type":"category","title":"Characters & People","slug":"characters-people","page":"/3D-Models/categories/characters-people/","col":"#8B5CF6","icon":"👤","count":4},{"type":"category","title":"Animals & Creatures","slug":"animals-creatures","page":"/3D-Models/categories/animals-creatures/","col":"#F97316","icon":"🐾","count":13},{"type":"category","title":"Nature & Plants","slug":"nature-plants","page":"/3D-Models/categories/nature-plants/","col":"#34D399","icon":"🌿","count":18},{"type":"category","title":"Furniture & Interior","slug":"furniture-interior","page":"/3D-Models/categories/furniture-interior/","col":"#A78BFA","icon":"🪑","count":8},{"type":"category","title":"Weapons & Tools","slug":"weapons-tools","page":"/3D-Models/categories/weapons-tools/","col":"#EF4444","icon":"⚔️","count":0},{"type":"category","title":"Electronics & Gadgets","slug":"electronics-gadgets","page":"/3D-Models/categories/electronics-gadgets/","col":"#60A5FA","icon":"💻","count":10},{"type":"category","title":"Clothing & Accessories","slug":"clothing-accessories","page":"/3D-Models/categories/clothing-accessories/","col":"#F472B6","icon":"👗","count":12},{"type":"category","title":"Food & Beverages","slug":"food-beverages","page":"/3D-Models/categories/food-beverages/","col":"#FBBF24","icon":"🍕","count":4},{"type":"category","title":"Other","slug":"other","page":"/3D-Models/categories/other/","col":"#00E5C4","icon":"📦","count":131},{"type":"collection","title":"Best Vehicle 3D Models","slug":"best-vehicle-3d-models","page":"/3D-Models/collections/best-vehicle-3d-models/","col":"#00E5C4","icon":"🚗","total":7518,"intro":"Explore selected vehicle 3D models for film production, advertising campaigns, game environments and"},{"type":"collection","title":"Best Military Vehicle 3D Models","slug":"best-military-vehicle-3d-models","page":"/3D-Models/collections/best-military-vehicle-3d-models/","col":"#00E5C4","icon":"📦","total":1733,"intro":"Selected military vehicle 3D models for defense simulation, game environments, film production and t"},{"type":"collection","title":"Best Aircraft 3D Models","slug":"best-aircraft-3d-models","page":"/3D-Models/collections/best-aircraft-3d-models/","col":"#00E5C4","icon":"✈️","total":3871,"intro":"Selected aircraft and aviation 3D models for aerospace visualization, film production, simulation, V"},{"type":"collection","title":"Best Ship 3D Models","slug":"best-ship-3d-models","page":"/3D-Models/collections/best-ship-3d-models/","col":"#00E5C4","icon":"⚓","total":961,"intro":"Selected ship and maritime 3D models for film production, game environments, simulation and event vi"},{"type":"collection","title":"Best Industrial Equipment 3D Models","slug":"best-industrial-equipment-3d-models","page":"/3D-Models/collections/best-industrial-equipment-3d-models/","col":"#00E5C4","icon":"📦","total":1308,"intro":"Selected industrial equipment and machinery 3D models for hardware presentations, simulation, softwa"},{"type":"collection","title":"Best Medical 3D Models","slug":"best-medical-3d-models","page":"/3D-Models/collections/best-medical-3d-models/","col":"#00E5C4","icon":"🧬","total":1938,"intro":"Selected medical and anatomy 3D models for healthcare visualization, medical education, training sim"},{"type":"collection","title":"Best Architecture & Landmark 3D Models","slug":"best-architecture-landmark-3d-models","page":"/3D-Models/collections/best-architecture-landmark-3d-models/","col":"#00E5C4","icon":"📦","total":1165,"intro":"Selected architecture and landmark 3D models for architecture visualization, event staging, VR exper"},{"type":"collection","title":"3D Models for Aerospace Visualization","slug":"3d-models-for-aerospace-visualization","page":"/3D-Models/collections/3d-models-for-aerospace-visualization/","col":"#00E5C4","icon":"📦","total":3871,"intro":"3D models selected for aerospace visualization, flight simulation, engineering presentations and avi"},{"type":"collection","title":"3D Models for Medical Visualization","slug":"3d-models-for-medical-visualization","page":"/3D-Models/collections/3d-models-for-medical-visualization/","col":"#00E5C4","icon":"📦","total":1938,"intro":"3D models for medical visualization, anatomy education, surgical training and healthcare VR applicat"},{"type":"collection","title":"3D Models for Defense & Simulation","slug":"3d-models-for-defense-simulation","page":"/3D-Models/collections/3d-models-for-defense-simulation/","col":"#00E5C4","icon":"📦","total":2644,"intro":"3D models for defense simulation, military training, tactical visualization and game development in "},{"type":"collection","title":"3D Models for Film Production","slug":"3d-models-for-film-production","page":"/3D-Models/collections/3d-models-for-film-production/","col":"#00E5C4","icon":"📦","total":84392,"intro":"3D models for film production, visual effects, animation, commercials and video content creation."},{"type":"collection","title":"3D Models for VR Projects","slug":"3d-models-for-vr-projects","page":"/3D-Models/collections/3d-models-for-vr-projects/","col":"#00E5C4","icon":"📦","total":16949,"intro":"3D models for virtual reality experiences, interactive simulations, VR training and immersive enviro"},{"type":"collection","title":"3D Models for Game Development","slug":"3d-models-for-game-development","page":"/3D-Models/collections/3d-models-for-game-development/","col":"#00E5C4","icon":"📦","total":30560,"intro":"3D models for game environments, props, vehicles and characters — selected for game development proj"},{"type":"collection","title":"3D Models for Advertising","slug":"3d-models-for-advertising","page":"/3D-Models/collections/3d-models-for-advertising/","col":"#00E5C4","icon":"📦","total":76694,"intro":"3D models for advertising campaigns, product visualization, commercial animation and marketing conte"},{"type":"collection","title":"3D Models for Architecture Visualization","slug":"3d-models-for-architecture-visualization","page":"/3D-Models/collections/3d-models-for-architecture-visualization/","col":"#00E5C4","icon":"📦","total":12866,"intro":"3D models for architectural visualization, interior design presentations, urban planning and real es"},{"type":"collection","title":"3D Models for Event Management","slug":"3d-models-for-event-management","page":"/3D-Models/collections/3d-models-for-event-management/","col":"#00E5C4","icon":"📦","total":2126,"intro":"3D models for event staging, venue visualization, trade show design and event management presentatio"},{"type":"collection","title":"3D Models for Hardware Presentation","slug":"3d-models-for-hardware-presentation","page":"/3D-Models/collections/3d-models-for-hardware-presentation/","col":"#00E5C4","icon":"📦","total":3589,"intro":"3D models for hardware product presentations, technical visualization and industrial equipment demon"},{"type":"collection","title":"CheckMate Certified 3D Models","slug":"checkmate-certified-3d-models","page":"/3D-Models/collections/checkmate-certified-3d-models/","col":"#00E5C4","icon":"✅","total":41783,"intro":"CheckMate certified 3D models meet TurboSquid's highest quality standard. Verified topology, clean g"},{"type":"collection","title":"StemCell Certified 3D Models","slug":"stemcell-certified-3d-models","page":"/3D-Models/collections/stemcell-certified-3d-models/","col":"#00E5C4","icon":"🔬","total":12666,"intro":"StemCell certified 3D models are real-time ready with PBR textures and multi-format compatibility."},{"type":"industry","title":"Aerospace","icon":"✈️","page":"/3D-Models/industries/aerospace/"},{"type":"industry","title":"Military & Defense","icon":"🪖","page":"/3D-Models/industries/military-defense/"},{"type":"industry","title":"Medical","icon":"🏥","page":"/3D-Models/industries/medical/"},{"type":"industry","title":"Game Development","icon":"🎮","page":"/3D-Models/industries/game-development/"},{"type":"industry","title":"Film Production","icon":"🎬","page":"/3D-Models/industries/film-video-production/"},{"type":"industry","title":"Architecture","icon":"🏛️","page":"/3D-Models/industries/architecture/"},{"type":"industry","title":"Virtual Reality","icon":"🥽","page":"/3D-Models/industries/virtual-reality/"},{"type":"industry","title":"Advertising","icon":"📢","page":"/3D-Models/industries/advertising/"},{"type":"industry","title":"Software Development","icon":"💻","page":"/3D-Models/industries/software-development/"},{"type":"industry","title":"Event Management","icon":"🎪","page":"/3D-Models/industries/event-management/"},{"type":"industry","title":"Hardware","icon":"⚙️","page":"/3D-Models/industries/hardware/"},{"type":"industry","title":"3D Printing","icon":"🖨️","page":"/3D-Models/industries/3d-printing/"}];
-var PS = ['aircraft','military vehicle','uav drone','ship','human anatomy','industrial engine','Tesla','container'];
-var FC={i:[],n:[],p:[],s:[],c:[]}, IMGS={}, fcReady=false;
-var lastQ='', debT=null;
-
-// ── DOM ──────────────────────────────────────────────────────────────────────
-var qEl=document.getElementById('q');
-var clearBtn=document.getElementById('clear-q');
-var rWrap=document.querySelector('.results-wrap');
-var heroEl=document.querySelector('.hero');
-
-// ── Load fc.json ─────────────────────────────────────────────────────────────
-fetch('/3D-Models/data/fc.json').then(function(r){return r.json();}).then(function(d){
-  FC=d; fcReady=true;
-  fetch('/3D-Models/data/fc-img.json').then(function(r){return r.json();}).then(function(imgs){IMGS=imgs;if(lastQ.length>1)search(lastQ);});
-  if(lastQ.length>1)search(lastQ);
-}).catch(function(){});
-
-// ── Search ───────────────────────────────────────────────────────────────────
-function search(q){
-  lastQ=q;
-  if(!q||q.length<2){renderHint();return;}
-  var ql=q.toLowerCase();
-  var pr=PAGES.filter(function(x){return x.title.toLowerCase().indexOf(ql)>-1||(x.type||'').indexOf(ql)>-1;});
-  var mi=[];
-  if(fcReady){for(var i=0;i<FC.n.length;i++){if(FC.n[i].toLowerCase().indexOf(ql)>-1){mi.push(i);if(mi.length>=60)break;}}}
-  render(pr,mi,q);
-  if(typeof dataLayer!=='undefined')dataLayer.push({event:'search',search_term:q,results_models:mi.length,results_pages:pr.length});
-}
-
-// ── Render ────────────────────────────────────────────────────────────────────
-function renderHint(){
-  if(!rWrap)return;
-  rWrap.innerHTML='<div style="text-align:center;padding:60px 20px;color:#9ca3af"><div style="font-size:48px;opacity:.25;margin-bottom:16px">🔍</div><h3 style="font-size:18px;color:#111;margin-bottom:8px;font-family:'Playfair Display',serif">Search 86,865 models</h3><p style="font-size:14px">Vehicles, aircraft, anatomy, architecture and more.</p></div>';
-}
-
-function pageCard(item){
-  return '<a href="'+item.page+'" style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#fff;border:1px solid #e5e5e5;border-radius:8px;text-decoration:none;transition:box-shadow .15s" onmouseover="this.style.boxShadow='0 2px 12px rgba(0,0,0,.08)'" onmouseout="this.style.boxShadow=''">'
-    +'<span style="font-size:26px;flex-shrink:0">'+(item.icon||'📁')+'</span>'
-    +'<div style="min-width:0"><div style="font-size:14px;font-weight:600;color:#111;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+item.title+(item.count?' <span style="font-size:11px;color:#9ca3af;font-weight:400">'+item.count+' models</span>':'')+'</div>'
-    +'<div style="font-size:11px;color:#9ca3af;text-transform:capitalize;margin-top:2px">'+item.type+'</div></div></a>';
-}
-
-function modelCard(idx){
-  var id=FC.i[idx],name=FC.n[idx],price=FC.p[idx];
-  var img=IMGS[id]?('<img src="'+IMGS[id]+'" alt="'+name.replace(/"/g,'')+'" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:6px 6px 0 0">'):'<div style="width:100%;height:100%;background:#f0f0f0;border-radius:6px 6px 0 0"></div>';
-  return '<a href="https://www.turbosquid.com/FullPreview/'+id+'?referral=3d_molier-studio" target="_blank" rel="noopener" style="background:#fff;border:1px solid #e5e5e5;border-radius:6px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:box-shadow .15s" onmouseover="this.style.boxShadow='0 4px 14px rgba(0,0,0,.09)'" onmouseout="this.style.boxShadow=''">'
-    +'<div style="height:130px;overflow:hidden;background:#f5f5f5;flex-shrink:0">'+img+'</div>'
-    +'<div style="padding:8px 10px 10px;flex:1"><div style="font-size:11px;font-weight:600;color:#111;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">'+name+'</div>'
-    +'<div style="margin-top:5px;font-size:12px;font-weight:700;color:#111">$'+price+'</div></div></a>';
-}
-
-function render(pages,mi,q){
-  if(!rWrap)return;
-  var html='';
-  if(pages.length>0){
-    html+='<div style="margin-bottom:28px"><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#9ca3af;margin-bottom:10px">Pages ('+pages.length+')</div>';
-    html+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px">';
-    pages.forEach(function(x){html+=pageCard(x);});
-    html+='</div></div>';
-  }
-  if(mi.length>0){
-    html+='<div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#9ca3af;margin-bottom:10px">Models ('+mi.length+(mi.length>=60?'+':'')+')'
-      +' &nbsp;<a href="/3D-Models/full-catalog/?q='+encodeURIComponent(q)+'" style="color:#1659c9;text-decoration:none;font-weight:600;font-size:11px">see all ↗</a></div>';
-    html+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px">';
-    mi.forEach(function(i){html+=modelCard(i);});
-    html+='</div></div>';
-  }
-  if(pages.length===0&&mi.length===0){
-    html='<div style="text-align:center;padding:60px 20px;color:#9ca3af"><div style="font-size:48px;opacity:.25;margin-bottom:16px">🔍</div>'
-      +'<h3 style="font-size:18px;color:#111;margin-bottom:8px;font-family:'Playfair Display',serif">No results for &ldquo;'+q+'&rdquo;</h3>'
-      +(fcReady?'<p style="font-size:14px">Try a different keyword or <a href="/3D-Models/full-catalog/" style="color:#1659c9">browse Full Collection</a></p>'
-      :'<p style="font-size:14px">Loading catalog… try again in a moment</p>')+'</div>';
-  }
-  rWrap.innerHTML=html;
-}
-
-// ── Recently Viewed ───────────────────────────────────────────────────────────
-(function(){
-  try{
-    var rv=JSON.parse(localStorage.getItem('rv')||'[]');
-    if(rv.length===0||!heroEl) return;
-    var div=document.createElement('div');
-    div.style='margin-top:24px;padding-top:18px;border-top:1px solid #e5e5e5';
-    var lbl=document.createElement('div');
-    lbl.style='font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#9ca3af;margin-bottom:10px';
-    lbl.textContent='Recently Viewed';
-    var row=document.createElement('div');
-    row.style='display:flex;gap:8px;flex-wrap:wrap';
-    rv.slice(0,6).forEach(function(item){
-      var a=document.createElement('a');
-      a.href=item.url;
-      a.style='display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid #e5e5e5;border-radius:6px;padding:5px 10px;text-decoration:none;font-size:12px;color:#111;transition:border-color .15s';
-      a.addEventListener('mouseover',function(){this.style.borderColor='#111';});
-      a.addEventListener('mouseout',function(){this.style.borderColor='#e5e5e5';});
-      if(item.img){var img=document.createElement('img');img.src=item.img;img.style='width:28px;height:28px;object-fit:cover;border-radius:3px';img.loading='lazy';a.appendChild(img);}
-      var sp=document.createElement('span');sp.textContent=item.name.length>26?item.name.substring(0,26)+'…':item.name;a.appendChild(sp);
-      row.appendChild(a);
-    });
-    div.appendChild(lbl);div.appendChild(row);
-    heroEl.appendChild(div);
-  }catch(e){}
-})();
-
-// ── Popular Searches ──────────────────────────────────────────────────────────
-(function(){
-  if(!heroEl||heroEl.querySelector('.ps-wrap'))return;
-  var div=document.createElement('div');
-  div.className='ps-wrap';
-  div.style='display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:16px';
-  var lbl=document.createElement('span');
-  lbl.style='font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#9ca3af';
-  lbl.textContent='Popular:';
-  div.appendChild(lbl);
-  PS.forEach(function(q){
-    var btn=document.createElement('button');
-    btn.textContent=q;
-    btn.style='background:#fff;border:1px solid #e5e5e5;border-radius:16px;padding:4px 12px;font-size:12px;font-family:inherit;color:#555;cursor:pointer;transition:border-color .15s';
-    btn.addEventListener('mouseover',function(){this.style.borderColor='#111';});
-    btn.addEventListener('mouseout',function(){this.style.borderColor='#e5e5e5';});
-    btn.addEventListener('click',function(){if(qEl){qEl.value=q;qEl.dispatchEvent(new Event('input'));}});
-    div.appendChild(btn);
-  });
-  heroEl.appendChild(div);
-})();
-
-// ── Event listeners ───────────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded',function(){
-  if(!qEl)return;
-  renderHint();
-  qEl.addEventListener('input',function(){
-    var q=this.value.trim();
-    if(clearBtn)clearBtn.style.display=q?'flex':'none';
-    clearTimeout(debT);debT=setTimeout(function(){search(q);},220);
-  });
-  if(clearBtn)clearBtn.addEventListener('click',function(){qEl.value='';if(clearBtn)clearBtn.style.display='none';renderHint();qEl.focus();});
-  var urlQ=new URLSearchParams(location.search).get('q');
-  if(urlQ){qEl.value=urlQ;if(clearBtn)clearBtn.style.display='flex';search(urlQ);}
-  else renderHint();
-});
-
-})();
-</script>
-<script>
-(function(){
-var p=location.pathname,d=document;
-d.querySelectorAll('.nav-link,.nav-dropdown a,.nav-mobile a,.nav-mobile-sub a').forEach(function(el){
-  var h=el.getAttribute('href');if(!h||h.indexOf('turbosquid')>-1)return;
-  if(h===p||(h.length>14&&p.startsWith(h))){el.classList.add('active');el.setAttribute('aria-current','page');}
-});
-var burger=d.getElementById('nav-burger'),mob=d.getElementById('nav-mobile');
-if(burger&&mob){burger.addEventListener('click',function(){var o=mob.classList.toggle('open');burger.classList.toggle('open',o);burger.setAttribute('aria-expanded',''+o);mob.setAttribute('aria-hidden',String(!o));if(o){var f=mob.querySelector('a,button');if(f)f.focus();}});}
-function setupDropdown(btnId,wrapId){var btn=d.getElementById(btnId),wrap=d.getElementById(wrapId);if(!btn||!wrap)return;var t=null;function open(){clearTimeout(t);wrap.classList.add('open');btn.setAttribute('aria-expanded','true');}function close(){wrap.classList.remove('open');btn.setAttribute('aria-expanded','false');}function sc(){t=setTimeout(close,160);}wrap.addEventListener('mouseenter',open);wrap.addEventListener('mouseleave',sc);btn.addEventListener('click',function(e){e.stopPropagation();wrap.classList.contains('open')?close():open();});d.addEventListener('click',function(e){if(!wrap.contains(e.target))close();});d.addEventListener('keydown',function(e){if(e.key==='Escape'){close();btn.focus();}});}
-setupDropdown('nav-cat-btn','nav-cat-wrap');
-setupDropdown('nav-ind-btn','nav-ind-wrap');
-function mobToggle(btnId,subId){var btn=d.getElementById(btnId),sub=d.getElementById(subId);if(btn&&sub){btn.addEventListener('click',function(){var o=sub.classList.toggle('open');btn.setAttribute('aria-expanded',''+o);var c=btn.querySelector('.nav-caret');if(c)c.style.transform=o?'rotate(180deg)':'';});}}
-mobToggle('mob-cat-toggle','mob-cat-sub');
-mobToggle('mob-ind-toggle','mob-ind-sub');
-})();
-</script>
+<script src="/3D-Models/assets/js/site.js" defer></script>
+<script src="/3D-Models/assets/js/search.js"></script>
 </body>
 </html>

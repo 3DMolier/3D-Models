@@ -47,10 +47,10 @@
 - Architecture: https://3dmolier.github.io/3D-Models/industries/architecture/
 - Virtual Reality: https://3dmolier.github.io/3D-Models/industries/virtual-reality/
 - Advertising: https://3dmolier.github.io/3D-Models/industries/advertising/
-- Software Development: https://3dmolier.github.io/3D-Models/industries/softwaredevelopment/
-- Event Management: https://3dmolier.github.io/3D-Models/industries/eventmanagement/
+- Software Development: https://3dmolier.github.io/3D-Models/industries/software-development/
+- Event Management: https://3dmolier.github.io/3D-Models/industries/event-management/
 - Hardware: https://3dmolier.github.io/3D-Models/industries/hardware/
-- 3D Printing: https://3dmolier.github.io/3D-Models/industries/3dprinting/
+- 3D Printing: https://3dmolier.github.io/3D-Models/industries/3d-printing/
 
 ## Top 20 Model URLs (by sales rank)
 1. https://3dmolier.github.io/3D-Models/models/tesla-model-3-1214116/
@@ -301,11 +301,11 @@ These industry pages explain how 3D Molier models can be used in professional pr
    Useful for product rendering, marketing visuals, commercials, online campaigns and brand presentations.
 
 9. Software Development 3D Models
-   https://3dmolier.github.io/3D-Models/industries/softwaredevelopment/
+   https://3dmolier.github.io/3D-Models/industries/software-development/
    Useful for software prototypes, UI demos, interactive apps, product explainers and digital experiences.
 
 10. 3D Printing Models
-    https://3dmolier.github.io/3D-Models/industries/3dprinting/
+    https://3dmolier.github.io/3D-Models/industries/3d-printing/
     Useful for 3D printing workflows, prototyping, physical model preparation and fabrication projects.
 
 ## How to buy models

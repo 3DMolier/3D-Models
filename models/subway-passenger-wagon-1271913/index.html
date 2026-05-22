@@ -122,7 +122,7 @@
     <a href="/3D-Models/" class="nav-logo">3D Molier</a>
     <div class="nav-links" id="nav-links">
       <a href="/3D-Models/catalog/" class="nav-link">Top 1000</a>
-      <a href="/3D-Models/full-catalog/" class="nav-link">Full Collection</a>
+      <a href="/3D-Models/full-catalog/" class="nav-link">Full 86K Catalog</a>
       <span class="nav-sep" aria-hidden="true"></span>
       <div class="nav-has-dropdown nav-has-mega" id="nav-cat-wrap">
         <button class="nav-link" id="nav-cat-btn" aria-haspopup="true" aria-expanded="false">Categories <span class="nav-caret" aria-hidden="true">▾</span></button>
@@ -165,7 +165,7 @@
 </nav>
 <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
   <a href="/3D-Models/catalog/">Top 1000 Models</a>
-  <a href="/3D-Models/full-catalog/">Full Collection</a>
+  <a href="/3D-Models/full-catalog/">Full 86K Catalog</a>
   <button class="nav-mobile-toggle" id="mob-cat-toggle" aria-expanded="false">Categories <span class="nav-caret">▾</span></button>
   <div class="nav-mobile-sub" id="mob-cat-sub">
     <a href="/3D-Models/categories/vehicles/">Vehicles</a>
@@ -444,34 +444,6 @@
     </div>
   </div>
 </footer>
-<script>
-(function(){
-  try{
-    var rv=JSON.parse(localStorage.getItem('rv')||'[]');
-    var item={id:1271913,name:"Subway Passenger Wagon",price:79.0,img:"https://3dmolier.github.io/3D-Models/assets/og/3d-molier-og.jpg",url:location.pathname};
-    rv=rv.filter(function(x){return x.id!==item.id;});
-    rv.unshift(item);
-    if(rv.length>12)rv=rv.slice(0,12);
-    localStorage.setItem('rv',JSON.stringify(rv));
-  }catch(e){}
-})();
-</script><!-- rv_save -->
-<script>
-(function(){
-var p=location.pathname,d=document;
-d.querySelectorAll('.nav-link,.nav-dropdown a,.nav-mobile a,.nav-mobile-sub a').forEach(function(el){
-  var h=el.getAttribute('href');if(!h||h.indexOf('turbosquid')>-1)return;
-  if(h===p||(h.length>14&&p.startsWith(h))){el.classList.add('active');el.setAttribute('aria-current','page');}
-});
-var burger=d.getElementById('nav-burger'),mob=d.getElementById('nav-mobile');
-if(burger&&mob){burger.addEventListener('click',function(){var o=mob.classList.toggle('open');burger.classList.toggle('open',o);burger.setAttribute('aria-expanded',''+o);mob.setAttribute('aria-hidden',String(!o));if(o){var f=mob.querySelector('a,button');if(f)f.focus();}});}
-function setupDropdown(btnId,wrapId){var btn=d.getElementById(btnId),wrap=d.getElementById(wrapId);if(!btn||!wrap)return;var t=null;function open(){clearTimeout(t);wrap.classList.add('open');btn.setAttribute('aria-expanded','true');}function close(){wrap.classList.remove('open');btn.setAttribute('aria-expanded','false');}function sc(){t=setTimeout(close,160);}wrap.addEventListener('mouseenter',open);wrap.addEventListener('mouseleave',sc);btn.addEventListener('click',function(e){e.stopPropagation();wrap.classList.contains('open')?close():open();});d.addEventListener('click',function(e){if(!wrap.contains(e.target))close();});d.addEventListener('keydown',function(e){if(e.key==='Escape'){close();btn.focus();}});}
-setupDropdown('nav-cat-btn','nav-cat-wrap');
-setupDropdown('nav-ind-btn','nav-ind-wrap');
-function mobToggle(btnId,subId){var btn=d.getElementById(btnId),sub=d.getElementById(subId);if(btn&&sub){btn.addEventListener('click',function(){var o=sub.classList.toggle('open');btn.setAttribute('aria-expanded',''+o);var c=btn.querySelector('.nav-caret');if(c)c.style.transform=o?'rotate(180deg)':'';});}}
-mobToggle('mob-cat-toggle','mob-cat-sub');
-mobToggle('mob-ind-toggle','mob-ind-sub');
-})();
-</script>
+<script src="/3D-Models/assets/js/site.js" defer></script>
 </body>
 </html>
