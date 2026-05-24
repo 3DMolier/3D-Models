@@ -304,7 +304,7 @@ def model_card_html(m: dict) -> str:
     if img:
         img_html = (
             f'<img src="{img}" alt="{title}" loading="lazy" '
-            f'onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';">'
+            f'onerror="imgErr(this)">'
             f'<div class="img-placeholder" style="color:{color};display:none;">'
             f'<span style="font-size:28px;opacity:0.5;">&#128247;</span>'
             f'<span style="color:{color};">{cat}</span></div>'
@@ -401,6 +401,7 @@ tailwind.config = {{
 <style>
 {SHARED_CSS}
 </style>
+<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css">
 </head>
 <body class="relative min-h-screen">
 
@@ -420,7 +421,7 @@ tailwind.config = {{
 </div>
 
 <!-- Collection Hero -->
-<section style="padding:56px 24px 40px;border-bottom:1px solid #1E2B44;">
+<section class="page-section page-section--border-bottom">
   <div class="max-w-7xl mx-auto">
     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;">
 
@@ -468,12 +469,12 @@ tailwind.config = {{
 </section>
 
 <!-- Model Grid — all 24 in HTML for SEO -->
-<section style="padding:56px 24px;">
+<section class="page-section">
   <div class="max-w-7xl mx-auto">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px;">
+    <div class="section-header">
       <div>
-        <div class="section-label" style="margin-bottom:6px;">Hand-picked</div>
-        <h2 style="font-family:'Syne',sans-serif;font-size:clamp(18px,2.5vw,26px);font-weight:700;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.1;">
+        <div class="section-label">Hand-picked</div>
+        <h2 class="section-h2">
           Featured Models
         </h2>
       </div>
@@ -482,21 +483,21 @@ tailwind.config = {{
       </a>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;">
+    <div class="model-grid">
       {cards_html}
     </div>
   </div>
 </section>
 
 <!-- Related Collections -->
-<section style="padding:0 24px 72px;">
+<section class="page-section">
   <div class="max-w-7xl mx-auto">
     <div style="border-top:1px solid #1E2B44;padding-top:48px;">
-      <div class="section-label" style="margin-bottom:8px;">Explore More</div>
-      <h2 style="font-family:'Syne',sans-serif;font-size:clamp(18px,2.5vw,26px);font-weight:700;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.1;margin-bottom:24px;">
+      <div class="section-label">Explore More</div>
+      <h2 class="section-h2" style="margin-bottom:24px;">
         Related Collections
       </h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
+      <div class="rel-grid">
         {related_html}
       </div>
     </div>
@@ -506,6 +507,7 @@ tailwind.config = {{
 </main>
 
 {footer_html()}
+<script src="/3D-Models/assets/js/site.min.js" defer></script>
 </body>
 </html>'''
 
@@ -555,10 +557,10 @@ def collections_index_html(all_cols: list[dict]) -> str:
         sections_html += f'''
     <div style="margin-bottom:64px;">
       <div style="margin-bottom:32px;">
-        <div class="section-label" style="margin-bottom:6px;">{label}</div>
+        <div class="section-label">{label}</div>
         <p style="font-size:14px;color:#7A8DB0;margin-top:4px;">{sub}</p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">
+      <div class="model-grid">
         {cards_html}
       </div>
     </div>'''
@@ -583,6 +585,7 @@ tailwind.config = {{
 <style>
 {SHARED_CSS}
 </style>
+<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css">
 </head>
 <body class="relative min-h-screen">
 
@@ -600,9 +603,9 @@ tailwind.config = {{
 </div>
 
 <!-- Page Hero -->
-<section style="padding:56px 24px 48px;border-bottom:1px solid #1E2B44;">
+<section class="page-section page-section--border-bottom">
   <div class="max-w-7xl mx-auto">
-    <div class="section-label" style="margin-bottom:10px;">Hand-Picked Sets</div>
+    <div class="section-label">Hand-Picked Sets</div>
     <h1 style="font-family:'Syne',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;letter-spacing:-0.035em;color:#EDF2FF;line-height:1.1;margin-bottom:16px;">
       3D Model Collections
     </h1>
@@ -613,7 +616,7 @@ tailwind.config = {{
 </section>
 
 <!-- Collections Grid -->
-<section style="padding:56px 24px 80px;">
+<section class="page-section">
   <div class="max-w-7xl mx-auto">
     {sections_html}
   </div>
@@ -622,6 +625,7 @@ tailwind.config = {{
 </main>
 
 {footer_html()}
+<script src="/3D-Models/assets/js/site.min.js" defer></script>
 </body>
 </html>'''
 

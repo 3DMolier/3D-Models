@@ -16,23 +16,84 @@ var resultCount=document.getElementById('results-count');
 var emptyEl=document.getElementById('empty');
 var filterBar=document.getElementById('filter-bar');
 
-fetch('/3D-Models/data/fc.json').then(function(r){return r.json();}).then(function(d){
-  FC=d; fcReady=true;
+var totalChunks=0, loadedChunks=0, imgChunks=0, totalImgChunks=0;
+
+function mergeChunk(chunk) {
+  var keys=['i','n','p','s','c'];
+  for(var k=0;k<keys.length;k++){
+    var key=keys[k];
+    FC[key]=FC[key].concat(chunk[key]||[]);
+  }
+}
+
+function onFirstChunk() {
+  fcReady=true;
+  var loadingEl=document.getElementById('fc-loading');
+  if(loadingEl)loadingEl.style.display='none';
   var spinner=statusMsg?statusMsg.querySelector('.bar-spinner'):null;
   if(spinner)spinner.style.display='none';
   if(statusText)statusText.textContent='';
   if(sortSel)sortSel.disabled=false;
   if(qEl){qEl.disabled=false;qEl.placeholder='Search '+FC.n.length+' models…';}
   if(filterBar)filterBar.style.display='';
-  fetch('/3D-Models/data/fc-img.json').then(function(r){return r.json();}).then(function(imgs){
-    IMGS=imgs; renderGrid(); updateProgress(); setupInfiniteScroll();
-  }).catch(function(){renderGrid(); updateProgress(); setupInfiniteScroll();});
   applyFilters();
   var urlQ=new URLSearchParams(location.search).get('q');
   if(urlQ&&qEl){qEl.value=urlQ;searchQ=urlQ.toLowerCase();applyFilters();}
-}).catch(function(){
-  if(statusText)statusText.textContent='Failed to load catalog. Please refresh.';
-});
+  if('IntersectionObserver' in window) setupInfiniteScroll();
+}
+
+function loadChunk(i) {
+  fetch('/3D-Models/data/fc-chunk-'+i+'.json')
+    .then(function(r){return r.json();})
+    .then(function(chunk){
+      mergeChunk(chunk);
+      loadedChunks++;
+      if(loadedChunks===1) onFirstChunk();
+      else if(fcReady){ applyFilters(); }
+      if(loadedChunks<totalChunks) setTimeout(function(){loadChunk(loadedChunks);}, 200);
+    })
+    .catch(function(err){
+      console.error('Chunk '+i+' failed:',err);
+      if(loadedChunks===0){
+        var loadingEl=document.getElementById('fc-loading');
+        if(loadingEl)loadingEl.innerHTML='Failed to load. <a href="javascript:location.reload()">Retry</a>';
+      }
+    });
+}
+
+function loadImgChunk(i) {
+  fetch('/3D-Models/data/fc-img-chunk-'+i+'.json')
+    .then(function(r){return r.json();})
+    .then(function(chunk){
+      Object.assign(IMGS, chunk);
+      imgChunks++;
+      if(imgChunks<totalImgChunks) setTimeout(function(){loadImgChunk(imgChunks);}, 300);
+    })
+    .catch(function(){});
+}
+
+function startLoading(fcIdx, imgIdx) {
+  totalChunks = fcIdx.chunks;
+  totalImgChunks = imgIdx.chunks;
+  loadChunk(0);
+  loadImgChunk(0);
+}
+
+Promise.all([
+  fetch('/3D-Models/data/fc-index.json').then(function(r){return r.json();}),
+  fetch('/3D-Models/data/fc-img-index.json').then(function(r){return r.json();})
+]).then(function(res){ startLoading(res[0], res[1]); })
+  .catch(function(){
+    // Fallback to monolithic files
+    Promise.all([
+      fetch('/3D-Models/data/fc.json').then(function(r){return r.json();}),
+      fetch('/3D-Models/data/fc-img.json').then(function(r){return r.json();})
+    ]).then(function(res){
+      mergeChunk(res[0]); IMGS=res[1]; loadedChunks=1; onFirstChunk();
+    }).catch(function(){
+      if(statusText)statusText.textContent='Failed to load catalog. Please refresh.';
+    });
+  });
 
 function applyFilters(){
   if(!fcReady)return;

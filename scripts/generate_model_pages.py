@@ -406,7 +406,7 @@ def model_page_html(m: dict, related: list[dict]) -> str:
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/3D-Models/assets/css/model-pages.css">
+<link rel="stylesheet" href="/3D-Models/assets/css/model-pages.min.css">
 <script type="application/ld+json">
 {schema}
 </script>
@@ -538,6 +538,7 @@ def model_page_html(m: dict, related: list[dict]) -> str:
 </main>
 
 {footer_html()}
+<script src="/3D-Models/assets/js/site.min.js" defer></script>
 </body>
 </html>'''
 

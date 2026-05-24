@@ -14,7 +14,7 @@
 <link rel="canonical" href="https://3dmolier.github.io/3D-Models/full-catalog/">
 <link rel="alternate" hreflang="en" href="https://3dmolier.github.io/3D-Models/full-catalog/">
 <link rel="alternate" hreflang="x-default" href="https://3dmolier.github.io/3D-Models/full-catalog/">
-<link rel="stylesheet" href="/3D-Models/assets/css/styles.css"><style>
+<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css"><style>
 :root{--bg:#fafafa;--surface:#fff;--border:#e5e5e5;--text:#111;--muted:#6b7280}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -148,8 +148,8 @@ footer{background:#111;color:#fff;padding:48px 0 24px;margin-top:40px}
       <a href="/3D-Models/full-catalog/" class="nav-link">Full 86K Catalog</a>
       <span class="nav-sep" aria-hidden="true"></span>
       <div class="nav-has-dropdown nav-has-mega" id="nav-cat-wrap">
-        <button class="nav-link" id="nav-cat-btn" aria-haspopup="true" aria-expanded="false">Categories <span class="nav-caret" aria-hidden="true">▾</span></button>
-        <div class="nav-dropdown nav-mega" role="menu">
+        <button class="nav-link" id="nav-cat-btn" aria-haspopup="true" aria-expanded="false" aria-controls="nav-categories-menu">Categories <span class="nav-caret" aria-hidden="true">▾</span></button>
+        <div class="nav-dropdown nav-mega" id="nav-categories-menu" role="menu">
           <a href="/3D-Models/categories/vehicles/" role="menuitem" class="mega-item"><span class="mega-name">Vehicles</span><span class="mega-desc">cars, trucks, motorcycles</span></a>
           <a href="/3D-Models/categories/aircraft/" role="menuitem" class="mega-item"><span class="mega-name">Aircraft</span><span class="mega-desc">airplanes, helicopters, drones</span></a>
           <a href="/3D-Models/categories/military-vehicles/" role="menuitem" class="mega-item"><span class="mega-name">Military</span><span class="mega-desc">defense, tanks, equipment</span></a>
@@ -161,7 +161,7 @@ footer{background:#111;color:#fff;padding:48px 0 24px;margin-top:40px}
         </div>
       </div>
       <div class="nav-has-dropdown nav-has-mega" id="nav-ind-wrap">
-        <button class="nav-link" id="nav-ind-btn" aria-haspopup="true" aria-expanded="false">Industries <span class="nav-caret" aria-hidden="true">&#9662;</span></button>
+        <button class="nav-link" id="nav-ind-btn" aria-haspopup="true" aria-expanded="false" aria-controls="nav-industries-menu">Industries <span class="nav-caret" aria-hidden="true">&#9662;</span></button>
         <div class="nav-dropdown nav-mega" role="menu">
           <a href="/3D-Models/industries/aerospace/" role="menuitem" class="mega-item"><span class="mega-name">Aerospace</span><span class="mega-desc">aviation, rockets, satellites</span></a>
           <a href="/3D-Models/industries/military-defense/" role="menuitem" class="mega-item"><span class="mega-name">Military &amp; Defense</span><span class="mega-desc">defense, simulation, training</span></a>
@@ -288,7 +288,11 @@ footer{background:#111;color:#fff;padding:48px 0 24px;margin-top:40px}
 </div>
 
 <div class="grid-wrap">
-  <div id="model-grid" aria-live="polite" aria-atomic="false">
+  <div id="fc-loading" style="text-align:center;padding:80px 24px;">
+  <div style="font-size:13px;font-weight:600;color:#111;margin-bottom:8px;">Loading catalog...</div>
+  <div style="font-size:12px;color:#9ca3af;">86,000+ models</div>
+</div>
+<div id="model-grid" aria-live="polite" aria-atomic="false">
     <!-- 24 skeleton cards shown immediately -->
     <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
     <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
@@ -376,7 +380,7 @@ footer{background:#111;color:#fff;padding:48px 0 24px;margin-top:40px}
   }catch(e){}
 })();
 </script>
-<script src="/3D-Models/assets/js/site.js" defer></script>
-<script src="/3D-Models/assets/js/full-catalog.js"></script>
+<script src="/3D-Models/assets/js/site.min.js" defer></script>
+<script src="/3D-Models/assets/js/full-catalog.min.js"></script>
 </body>
 </html>

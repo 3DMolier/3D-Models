@@ -51,6 +51,7 @@ def head(title, desc, canonical, color="#00E5C4"):
 <meta property="og:site_name" content="3D Molier">
 <link rel="icon" href="/3D-Models/favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css">
 <style>
   *{{box-sizing:border-box;margin:0;padding:0;}}
   body{{background:#07090F;color:#E8EAF0;font-family:'Open Sans',sans-serif;font-size:15px;line-height:1.7;}}

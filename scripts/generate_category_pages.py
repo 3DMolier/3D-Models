@@ -485,10 +485,10 @@ def model_card_html(m, color, gradient):
                 '<span class="cert-badge" style="background:rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.25);color:#7C3AED;">SC</span>' \
                 if 'Stem' in cert else ''
 
+    raw_img = m.get('image_url', '')
     img_html = ''
     if img:
-        img_html = f'''<img src="{img}" alt="{title} 3D model preview" loading="lazy"
-            onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';">
+        img_html = f'''<img src="{img}" data-src="{raw_img}" alt="{title} 3D model preview" loading="lazy" onerror="imgErr(this)">
           <div class="img-placeholder" style="color:{color};display:none;">
             <span style="font-size:28px;opacity:0.5;">&#128247;</span>
             <span style="color:{color};">{cat}</span>
@@ -568,48 +568,9 @@ def page_html(cat_name, meta, models):
         </button>
       </div>'''
         load_more_script = f'''<script>
-const EXTRA_MODELS = {extra_json};
-const COLOR = "{color}";
-const GRADIENT = "{gradient}";
-let loaded = false;
-
-function loadMore() {{
-  if (loaded) return;
-  loaded = true;
-  const grid = document.getElementById('model-grid');
-  const btn = document.getElementById('load-more-wrap');
-  const LINK_ICON = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
-  for (const m of EXTRA_MODELS) {{
-    const certHtml = m.cert === 'CM'
-      ? '<span class="cert-badge">&#10003; CM</span>'
-      : m.cert === 'SC'
-        ? '<span class="cert-badge" style="background:rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.25);color:#7C3AED;">SC</span>'
-        : '';
-    const imgHtml = m.img
-      ? `<img src="${{m.img}}" alt="${{m.title}}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-         <div class="img-placeholder" style="color:${{COLOR}};display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:${{COLOR}};">${{m.cat}}</span></div>`
-      : `<div class="img-placeholder" style="color:${{COLOR}};"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:${{COLOR}};">${{m.cat}}</span></div>`;
-    const card = document.createElement('div');
-    card.className = 'model-card card-glow';
-    card.innerHTML = `
-      <div class="img-wrap" style="height:180px;background:linear-gradient(${{GRADIENT}});">${{imgHtml}}</div>
-      <div style="padding:16px;">
-        <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-          <h3 style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">${{m.title}}</h3>
-          ${{certHtml}}
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-          <span class="chip" style="font-size:11px;padding:3px 8px;color:#00E5C4;border-color:rgba(0,229,196,0.25);">${{m.cat}}</span>
-          <span style="font-size:13px;font-weight:600;color:#EDF2FF;margin-left:auto;">${{m.price}}</span>
-        </div>
-        <a href="${{m.url}}" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">
-          ${{LINK_ICON}} View on TurboSquid
-        </a>
-      </div>`;
-    grid.appendChild(card);
-  }}
-  btn.remove();
-}}
+var EXTRA_MODELS = {extra_json};
+var COLOR = "{color}";
+var GRADIENT = "{gradient}";
 </script>'''
 
     # Related category cards
@@ -673,6 +634,7 @@ tailwind.config = {{
 <style>
 {SHARED_CSS}
 </style>
+<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css">
 </head>
 <body class="relative min-h-screen">
 
@@ -692,20 +654,18 @@ tailwind.config = {{
 </div>
 
 <!-- Category Hero -->
-<section style="padding:56px 24px 40px;border-bottom:1px solid #1E2B44;">
+<section class="page-section page-section--border-bottom">
   <div class="max-w-7xl mx-auto">
-    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;">
+    <div class="cat-hero">
 
-      <div style="flex:1;min-width:280px;">
+      <div class="cat-hero-left">
         <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
-          <div style="width:56px;height:56px;border-radius:14px;background:rgba(0,229,196,0.08);border:1px solid rgba(0,229,196,0.2);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;">
+          <div class="cat-hero-icon">
             {icon}
           </div>
           <div>
-            <div class="section-label" style="margin-bottom:4px;">3D Model Category</div>
-            <h1 style="font-family:'Syne',sans-serif;font-size:clamp(24px,3.5vw,38px);font-weight:800;letter-spacing:-0.035em;color:#EDF2FF;line-height:1.1;">
-              {meta["h1"]}
-            </h1>
+            <div class="section-label">3D Model Category</div>
+            <h1 class="cat-page-h1">{meta["h1"]}</h1>
           </div>
         </div>
 
@@ -747,14 +707,12 @@ tailwind.config = {{
 </section>
 
 <!-- Model Grid -->
-<section style="padding:56px 24px;">
+<section class="page-section">
   <div class="max-w-7xl mx-auto">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px;">
+    <div class="section-header">
       <div>
-        <div class="section-label" style="margin-bottom:6px;">Top Ranked</div>
-        <h2 style="font-family:'Syne',sans-serif;font-size:clamp(18px,2.5vw,26px);font-weight:700;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.1;">
-          Best {cat_name} 3D Models
-        </h2>
+        <div class="section-label">Top Ranked</div>
+        <h2 class="section-h2">Best {cat_name} 3D Models</h2>
       </div>
       <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ghost" style="font-size:13px;padding:9px 18px;">
         View all on TurboSquid
@@ -763,7 +721,7 @@ tailwind.config = {{
 
     {no_models_note}
 
-    <div id="model-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;">
+    <div id="model-grid" class="model-grid">
       {initial_cards}
     </div>
 
@@ -772,14 +730,12 @@ tailwind.config = {{
 </section>
 
 <!-- Related Categories -->
-<section style="padding:0 24px 72px;">
+<section class="page-section">
   <div class="max-w-7xl mx-auto">
     <div style="border-top:1px solid #1E2B44;padding-top:48px;">
-      <div class="section-label" style="margin-bottom:8px;">Explore More</div>
-      <h2 style="font-family:'Syne',sans-serif;font-size:clamp(18px,2.5vw,26px);font-weight:700;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.1;margin-bottom:24px;">
-        Related Categories
-      </h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;">
+      <div class="section-label">Explore More</div>
+      <h2 class="section-h2" style="margin-bottom:24px;">Related Categories</h2>
+      <div class="rel-grid">
         {related_cards}
       </div>
     </div>
@@ -790,6 +746,8 @@ tailwind.config = {{
 
 {footer_html()}
 {load_more_script}
+<script src="/3D-Models/assets/js/site.min.js" defer></script>
+<script src="/3D-Models/assets/js/category-pages.min.js" defer></script>
 </body>
 </html>'''
 

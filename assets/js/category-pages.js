@@ -43,4 +43,24 @@ function loadMore() {
 
 window.loadMore = loadMore;
 
+function initFilterChips() {
+  document.querySelectorAll('.cat-chip, .filter-chip').forEach(function(chip) {
+    chip.setAttribute('role', 'button');
+    chip.setAttribute('aria-pressed', 'false');
+    chip.addEventListener('click', function() {
+      var isActive = chip.classList.contains('active');
+      document.querySelectorAll('.cat-chip, .filter-chip').forEach(function(c) {
+        c.classList.remove('active');
+        c.setAttribute('aria-pressed', 'false');
+      });
+      if (!isActive) {
+        chip.classList.add('active');
+        chip.setAttribute('aria-pressed', 'true');
+      }
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initFilterChips);
+
 })();
