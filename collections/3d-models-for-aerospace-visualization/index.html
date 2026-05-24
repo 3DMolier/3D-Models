@@ -16,55 +16,12 @@
 <meta name="twitter:description" content="Selected 3D models for aerospace visualization projects — aircraft, spacecraft, aviation equipment and more by 3D Molier.">
 <meta name="twitter:image" content="https://static.turbosquid.com/Preview/001230/754/Airbus-A320-Generic_D_Main.jpg">
 <meta name="description" content="Selected 3D models for aerospace visualization projects — aircraft, spacecraft, aviation equipment and more by 3D Molier.">
+<link rel="preload" href="/3D-Models/assets/fonts/font-12.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="canonical" href="https://3dmolier.github.io/3D-Models/collections/3d-models-for-aerospace-visualization/"><link rel="stylesheet" href="/3D-Models/assets/css/styles.css">
-<style>
-
-  * { box-sizing: border-box; }
-  body { background: #fafafa; font-family: 'Open Sans', sans-serif; color: #111111; }
-  
-  html { scroll-behavior: smooth; }
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: #fafafa; }
-  ::-webkit-scrollbar-thumb { background: #f5f5f5; border-radius: 3px; }
-
-  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #111111; color: #ffffff; font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 14px; padding: 11px 24px; border-radius: 8px; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; border: none; cursor: pointer; text-decoration: none; box-shadow: none; }
-  .btn-primary:hover { background: #333333; transform: translateY(-1px); box-shadow: none; }
-  .btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,0,0,0.15); }
-
-  .btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: #111111; font-family: 'Open Sans', sans-serif; font-weight: 500; font-size: 14px; padding: 10px 24px; border-radius: 8px; border: 1px solid #e5e5e5; cursor: pointer; text-decoration: none; transition: border-color 0.2s, background 0.2s, transform 0.15s; }
-  .btn-ghost:hover { border-color: #111111; background: transparent; transform: translateY(-1px); }
-  .btn-ghost:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,0,0,0.1); }
-
-  .btn-ts { display: inline-flex; align-items: center; gap: 8px; background: #f5f5f5; color: #111111; font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 13px; padding: 9px 18px; border-radius: 7px; border: 1px solid #e5e5e5; cursor: pointer; text-decoration: none; transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s; white-space: nowrap; }
-  .btn-ts:hover { background: #ebebeb; border-color: #d1d5db; transform: translateY(-1px); box-shadow: none; }
-  .btn-ts:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,0,0,0.1); }
-
-  .chip { display: inline-flex; align-items: center; background: rgba(255,255,255,0.04); border: 1px solid #e5e5e5; color: #6b7280; font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 100px; white-space: nowrap; }
-
-  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #111111; }
-
-  .cert-badge { display: inline-flex; align-items: center; gap: 4px; background: rgba(255,198,0,0.1); border: 1px solid rgba(255,198,0,0.25); color: #FFC600; font-size: 10px; font-weight: 600; letter-spacing: 0.04em; padding: 2px 7px; border-radius: 4px; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; }
-
-  .model-card { background: #ffffff; border: 1px solid #e5e5e5; border-radius: 12px; overflow: hidden; transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s cubic-bezier(0.4,0,0.2,1); }
-  .model-card:hover { border-color: #d1d5db; box-shadow: 0 8px 32px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.04); transform: translateY(-2px); }
-  .model-card:focus-within { box-shadow: 0 0 0 2px rgba(0,0,0,0.1); }
-
-  .card-glow { position: relative; }
-  .card-glow::before { content: ''; position: absolute; inset: -1px; border-radius: inherit; background: linear-gradient(135deg, rgba(0,0,0,0.04) 0%, transparent 60%); opacity: 0; transition: opacity 0.3s cubic-bezier(0.4,0,0.2,1); z-index: -1; }
-  .card-glow:hover::before { opacity: 1; }
-
-  .img-wrap { position: relative; overflow: hidden; }
-  .img-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 55%); }
-  .img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); filter: saturate(0.9) brightness(0.95); }
-  .model-card:hover .img-wrap img { transform: scale(1.05); filter: saturate(1.1) brightness(1); }
-  .img-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
-  .img-placeholder span { font-size: 11px; font-weight: 500; letter-spacing: 0.04em; opacity: 0.7; }
-
-  .coll-card { background: #ffffff; border: 1px solid #e5e5e5; border-radius: 14px; padding: 20px; text-decoration: none; display: flex; align-items: center; gap: 14px; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+<style>.model-card:hover
+.coll-card { background: #ffffff; border: 1px solid #e5e5e5; border-radius: 14px; padding: 20px; text-decoration: none; display: flex; align-items: center; gap: 14px; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
   .coll-card:hover { border-color: #d1d5db; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-  .coll-card:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(0,0,0,0.1); }
-
-</style>
+  .coll-card:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(0,0,0,0.1); }</style>
 <link rel="icon" href="/3D-Models/favicon.svg" type="image/svg+xml">
 
 <script type="application/ld+json">
@@ -102,6 +59,7 @@
 <link rel="stylesheet" href="/3D-Models/assets/css/fonts.css">
 </head>
 <body class="relative min-h-screen">
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <header id="site-header">
 <nav id="main-nav">
@@ -188,7 +146,7 @@
 </div>
 </header>
 
-<main style="position:relative;z-index:1;">
+<main id="main-content" style="position:relative;z-index:1;">
 
 <!-- Breadcrumb -->
 <div style="border-bottom:1px solid #e5e5e5;background:#ffffff;">
@@ -286,7 +244,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://static.turbosquid.com/Preview/001121/545/Lockheed-C-130-Hercules-Us-Military-Transport-Aircraft_D_Main.jpg" alt="Lockheed C-130 Hercules US Military Transport Aircraft" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://static.turbosquid.com/Preview/001121/545/Lockheed-C-130-Hercules-Us-Military-Transport-Aircraft_D_Main.jpg" alt="Lockheed C-130 Hercules US Military Transport Aircraft" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -305,7 +263,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://static.turbosquid.com/Preview/001179/675/Boeing-737-800-With-Interior-Delta-Air-Lines-Rigged_D_Main.jpg" alt="Boeing 737-800 with Interior Delta Air Lines Rigged" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://static.turbosquid.com/Preview/001179/675/Boeing-737-800-With-Interior-Delta-Air-Lines-Rigged_D_Main.jpg" alt="Boeing 737-800 with Interior Delta Air Lines Rigged" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -324,7 +282,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://static.turbosquid.com/Preview/001062/832/Airbus-A380-800-Emirates_D_Main.jpg" alt="Airbus A380-800 Emirates" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://static.turbosquid.com/Preview/001062/832/Airbus-A380-800-Emirates_D_Main.jpg" alt="Airbus A380-800 Emirates" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -343,7 +301,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://static.turbosquid.com/Preview/001028/932/Boeing-787-3-Dreamliner-United-Airlines_D_Main.jpg" alt="Boeing 787-3 Dreamliner United Airlines" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://static.turbosquid.com/Preview/001028/932/Boeing-787-3-Dreamliner-United-Airlines_D_Main.jpg" alt="Boeing 787-3 Dreamliner United Airlines" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -362,7 +320,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://p.turbosquid.com/ts-thumb/Cw/P6GKEN/wW1OYplx/airbusa400matlasturbopropmilitarytransportaircraft3dmodel001/jpg/1597347519/1920x1080/fit_q87/a147215377d686b5b0860bf55c07bcb313bfe15b/airbusa400matlasturbopropmilitarytransportaircraft3dmodel001.jpg" alt="Airbus A400M Atlas Turboprop Military Transport Aircraft" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://p.turbosquid.com/ts-thumb/Cw/P6GKEN/wW1OYplx/airbusa400matlasturbopropmilitarytransportaircraft3dmodel001/jpg/1597347519/1920x1080/fit_q87/a147215377d686b5b0860bf55c07bcb313bfe15b/airbusa400matlasturbopropmilitarytransportaircraft3dmodel001.jpg" alt="Airbus A400M Atlas Turboprop Military Transport Aircraft" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -381,7 +339,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://static.turbosquid.com/Preview/002046/457/Hesa-Shahed-136-Kamikadze-Drone_D_Main.jpg" alt="HESA Shahed 136 Kamikadze Drone" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://static.turbosquid.com/Preview/002046/457/Hesa-Shahed-136-Kamikadze-Drone_D_Main.jpg" alt="HESA Shahed 136 Kamikadze Drone" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -400,7 +358,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://static.turbosquid.com/Preview/001179/257/Light-Utility-Helicopter-Eurocopter-As-350_D_Main.jpg" alt="Light Utility Helicopter Eurocopter AS 350" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://static.turbosquid.com/Preview/001179/257/Light-Utility-Helicopter-Eurocopter-As-350_D_Main.jpg" alt="Light Utility Helicopter Eurocopter AS 350" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -419,7 +377,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://p.turbosquid.com/ts-thumb/ih/YeUGY0/gLrunu4D/boeingp8poseidonmilitaryaircraft3dmodel001/jpg/1583245313/1920x1080/fit_q87/ec6aa2a5eb45a15801a3b273e9cb4000e2f80e35/boeingp8poseidonmilitaryaircraft3dmodel001.jpg" alt="Boeing P-8 Poseidon Military Aircraft" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://p.turbosquid.com/ts-thumb/ih/YeUGY0/gLrunu4D/boeingp8poseidonmilitaryaircraft3dmodel001/jpg/1583245313/1920x1080/fit_q87/ec6aa2a5eb45a15801a3b273e9cb4000e2f80e35/boeingp8poseidonmilitaryaircraft3dmodel001.jpg" alt="Boeing P-8 Poseidon Military Aircraft" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -438,7 +396,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://static.turbosquid.com/Preview/001212/096/Civil-Helicopter-Airbus-H145_D_Main.jpg" alt="Civil Helicopter Airbus H145" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://static.turbosquid.com/Preview/001212/096/Civil-Helicopter-Airbus-H145_D_Main.jpg" alt="Civil Helicopter Airbus H145" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -457,7 +415,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://static.turbosquid.com/Preview/001892/082/Boeing-C17-Globemaster-Iii-Cargo-Door-Open_D_Main.jpg" alt="Boeing C17 Globemaster III Cargo Door Open" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://static.turbosquid.com/Preview/001892/082/Boeing-C17-Globemaster-Iii-Cargo-Door-Open_D_Main.jpg" alt="Boeing C17 Globemaster III Cargo Door Open" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -476,7 +434,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://static.turbosquid.com/Preview/001536/498/Bell-407-Gx-Utility-Helicopter_D_Main.jpg" alt="Bell 407 GX Utility Helicopter" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://static.turbosquid.com/Preview/001536/498/Bell-407-Gx-Utility-Helicopter_D_Main.jpg" alt="Bell 407 GX Utility Helicopter" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -495,7 +453,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://p.turbosquid.com/ts-thumb/8k/1WikPA/gtUjBjsz/unmannedcombatairvehiclemq9reaperuav3dmodel01/jpg/1442667417/1920x1080/fit_q87/ccb84d02701cb7286b490903553380e5f442c310/unmannedcombatairvehiclemq9reaperuav3dmodel01.jpg" alt="Unmanned Combat Air Vehicle MQ 9 Reaper UAV" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://p.turbosquid.com/ts-thumb/8k/1WikPA/gtUjBjsz/unmannedcombatairvehiclemq9reaperuav3dmodel01/jpg/1442667417/1920x1080/fit_q87/ccb84d02701cb7286b490903553380e5f442c310/unmannedcombatairvehiclemq9reaperuav3dmodel01.jpg" alt="Unmanned Combat Air Vehicle MQ 9 Reaper UAV" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -514,7 +472,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://p.turbosquid.com/ts-thumb/pg/0nPhUo/dX1fiJ6h/airbusa3501000genericmb3dmodel034/jpg/1490971066/1920x1080/fit_q87/b7bf1baabdd160a479064b3ae206c978bdda356b/airbusa3501000genericmb3dmodel034.jpg" alt="Airbus A350-1000 Generic" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://p.turbosquid.com/ts-thumb/pg/0nPhUo/dX1fiJ6h/airbusa3501000genericmb3dmodel034/jpg/1490971066/1920x1080/fit_q87/b7bf1baabdd160a479064b3ae206c978bdda356b/airbusa3501000genericmb3dmodel034.jpg" alt="Airbus A350-1000 Generic" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -533,7 +491,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://static.turbosquid.com/Preview/001059/833/Boeing-777-300er-Generic_D_Main.jpg" alt="Boeing 777-300ER Generic" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://static.turbosquid.com/Preview/001059/833/Boeing-777-300er-Generic_D_Main.jpg" alt="Boeing 777-300ER Generic" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -552,7 +510,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://static.turbosquid.com/Preview/001211/569/Helicopter-Agustawestland-Aw169_D_Main.jpg" alt="Helicopter AgustaWestland AW169" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://static.turbosquid.com/Preview/001211/569/Helicopter-Agustawestland-Aw169_D_Main.jpg" alt="Helicopter AgustaWestland AW169" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -571,7 +529,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://static.turbosquid.com/Preview/001191/819/Boeing-737-Interior_D_Main.jpg" alt="Boeing 737 Interior" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://static.turbosquid.com/Preview/001191/819/Boeing-737-Interior_D_Main.jpg" alt="Boeing 737 Interior" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -590,7 +548,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://p.turbosquid.com/ts-thumb/wx/RzhCQ8/9j9wcdRz/helicoptersikorskys76vray3dmodel01/jpg/1471602113/1920x1080/fit_q87/7aafc2684db91d8626297f4d29c9f7a890839307/helicoptersikorskys76vray3dmodel01.jpg" alt="Helicopter Sikorsky s76" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://p.turbosquid.com/ts-thumb/wx/RzhCQ8/9j9wcdRz/helicoptersikorskys76vray3dmodel01/jpg/1471602113/1920x1080/fit_q87/7aafc2684db91d8626297f4d29c9f7a890839307/helicoptersikorskys76vray3dmodel01.jpg" alt="Helicopter Sikorsky s76" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -609,7 +567,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://static.turbosquid.com/Preview/001157/601/Civil-Helicopter-Eurocopter-Ec-135_D_Main.jpg" alt="Civil Helicopter Eurocopter EC-135" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://static.turbosquid.com/Preview/001157/601/Civil-Helicopter-Eurocopter-Ec-135_D_Main.jpg" alt="Civil Helicopter Eurocopter EC-135" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -628,7 +586,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://p.turbosquid.com/ts-thumb/VI/GKBtGP/DYExSdOk/airbusa220300detailedinterior3dmodel001/jpg/1597858906/1920x1080/fit_q87/e1be5cff3010e3c8ff83615d4f1bca46f579f859/airbusa220300detailedinterior3dmodel001.jpg" alt="Airbus A220 300 Detailed Interior" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://p.turbosquid.com/ts-thumb/VI/GKBtGP/DYExSdOk/airbusa220300detailedinterior3dmodel001/jpg/1597858906/1920x1080/fit_q87/e1be5cff3010e3c8ff83615d4f1bca46f579f859/airbusa220300detailedinterior3dmodel001.jpg" alt="Airbus A220 300 Detailed Interior" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -647,7 +605,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://static.turbosquid.com/Preview/001019/661/Turbofan-Aircraft-Engine-Cfm-International-Cfm56_D_Main.jpg" alt="Turbofan Aircraft Engine CFM International CFM56" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://static.turbosquid.com/Preview/001019/661/Turbofan-Aircraft-Engine-Cfm-International-Cfm56_D_Main.jpg" alt="Turbofan Aircraft Engine CFM International CFM56" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -666,7 +624,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://static.turbosquid.com/Preview/001028/449/Turboprop-Aircraft-Engine-Canada-Pt6-Sectioned_D_Main.jpg" alt="Turboprop Aircraft Engine Canada PT6 Sectioned" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://static.turbosquid.com/Preview/001028/449/Turboprop-Aircraft-Engine-Canada-Pt6-Sectioned_D_Main.jpg" alt="Turboprop Aircraft Engine Canada PT6 Sectioned" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -685,7 +643,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://static.turbosquid.com/Preview/001602/927/Agustawestland-Aw139-Helicopter_D_Main.jpg" alt="AgustaWestland AW139 Helicopter" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://static.turbosquid.com/Preview/001602/927/Agustawestland-Aw139-Helicopter_D_Main.jpg" alt="AgustaWestland AW139 Helicopter" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
@@ -704,7 +662,7 @@
       </div>
       <div class="model-card card-glow">
         <div class="img-wrap" style="height:180px;background:linear-gradient(135deg,#0D1525 0%,#101A35 50%,#0A1228 100%);">
-          <img src="https://p.turbosquid.com/ts-thumb/7z/C4rLqz/dDkaLVG9/airbusa220300simpleinterior3dsmodel001/jpg/1597411426/1920x1080/fit_q87/96175d80b8402afa9e0a328d376c006152da90d5/airbusa220300simpleinterior3dsmodel001.jpg" alt="Airbus A220 300 Simple Interior" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
+          <img src="https://p.turbosquid.com/ts-thumb/7z/C4rLqz/dDkaLVG9/airbusa220300simpleinterior3dsmodel001/jpg/1597411426/1920x1080/fit_q87/96175d80b8402afa9e0a328d376c006152da90d5/airbusa220300simpleinterior3dsmodel001.jpg" alt="Airbus A220 300 Simple Interior" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" decoding="async"><div class="img-placeholder" style="color:#9F7AEA;display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:#9F7AEA;">Aircraft</span></div>
         </div>
         <div style="padding:16px;">
           <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">

@@ -346,3 +346,55 @@
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
 }
 .cert-badge-sc { background: rgba(124,58,237,0.1); border-color: rgba(124,58,237,0.3); color: #7C3AED; }
+
+
+/* ── Global base (added v9) ─────────────────────────────────── */
+body { background: #fafafa; font-family: 'Open Sans', sans-serif; color: #111111; }
+html { scroll-behavior: smooth; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #fafafa; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+
+/* ── Skip link ─────────────────────────────────────────────── */
+.skip-link { position: absolute; top: -40px; left: 0; background: #111111; color: #ffffff; padding: 8px 16px; z-index: 9999; font-size: 13px; font-weight: 600; text-decoration: none; transition: top .1s; }
+.skip-link:focus { top: 0; }
+
+/* ── Shared buttons ────────────────────────────────────────── */
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #111111; color: #ffffff; font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 14px; padding: 11px 24px; border-radius: 8px; transition: background 0.2s, transform 0.15s; border: none; cursor: pointer; text-decoration: none; }
+.btn-primary:hover { background: #333333; transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,0,0,0.2); }
+
+.btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: #111111; font-family: 'Open Sans', sans-serif; font-weight: 500; font-size: 14px; padding: 10px 24px; border-radius: 8px; border: 1px solid #d1d5db; cursor: pointer; text-decoration: none; transition: border-color 0.2s, background 0.2s, transform 0.15s; }
+.btn-ghost:hover { border-color: #111111; transform: translateY(-1px); }
+.btn-ghost:active { transform: translateY(0); }
+.btn-ghost:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,0,0,0.15); }
+
+/* ── Chip / badge ──────────────────────────────────────────── */
+.chip { display: inline-flex; align-items: center; gap: 5px; background: #f5f5f5; border: 1px solid #e5e5e5; color: #555555; font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 100px; cursor: pointer; text-decoration: none; transition: background 0.2s, border-color 0.2s, color 0.2s; white-space: nowrap; }
+.chip:hover { background: #111111; border-color: #111111; color: #ffffff; }
+.chip-teal { background: #f0f0f0; border-color: #d1d5db; color: #111111; }
+.chip-gold { background: rgba(255,198,0,0.07); border-color: rgba(255,198,0,0.2); color: #FFC600; }
+
+.cert-badge { display: inline-flex; align-items: center; gap: 4px; background: rgba(255,198,0,0.1); border: 1px solid rgba(255,198,0,0.25); color: #FFC600; font-size: 10px; font-weight: 600; letter-spacing: 0.04em; padding: 2px 7px; border-radius: 4px; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; }
+
+.section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #111111; }
+
+/* ── Image wrap (CRITICAL — fixes category page image sizing) ── */
+.img-wrap { position: relative; overflow: hidden; }
+.img-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 55%); pointer-events: none; }
+.img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); }
+.model-card:hover .img-wrap img { transform: scale(1.04); }
+
+/* ── Model card ────────────────────────────────────────────── */
+.model-card { background: #ffffff; border: 1px solid #e5e5e5; border-radius: 12px; overflow: hidden; display: block; text-decoration: none; transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s; }
+.model-card:hover { border-color: #d1d5db; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(-2px); }
+
+/* ── Card glow ─────────────────────────────────────────────── */
+.card-glow { position: relative; }
+.card-glow::before { content: ''; position: absolute; inset: -1px; border-radius: inherit; background: linear-gradient(135deg, rgba(0,0,0,0.03) 0%, transparent 60%); opacity: 0; transition: opacity 0.3s; z-index: -1; }
+.card-glow:hover::before { opacity: 1; }
+
+/* ── Footer nav: prevent black-on-black active state ────────── */
+footer .nav-link.active { color: #9ca3af !important; border-bottom-color: transparent !important; font-weight: 500 !important; }
+footer .nav-dropdown a.active { color: #9ca3af !important; background: transparent !important; }

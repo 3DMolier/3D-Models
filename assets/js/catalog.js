@@ -153,7 +153,7 @@ function updateActiveFilters() {
   wrap.innerHTML = chips.join('');
 }
 
-function removecat(c)  { selCats.delete(c);  document.querySelector(`.cat-pill[data-cat="${c}"]`).classList.remove('active'); applyFilters(); }
+function removecat(c)  { selCats.delete(c);  var p=document.querySelector(`.cat-pill[data-cat="${c}"]`); p.classList.remove('active'); p.setAttribute('aria-pressed','false'); applyFilters(); }
 function removeprice() { priceMin=0; priceMax=999999; document.querySelectorAll('.price-btn').forEach((b,i)=>b.classList.toggle('active',i===0)); applyFilters(); }
 function removecert(c) { selCerts.delete(c); document.querySelector(`.cert-opt[data-cert="${c}"]`).classList.remove('active'); applyFilters(); }
 function clearsearch() { searchQ=''; document.getElementById('search-input').value=''; applyFilters(); }
@@ -162,7 +162,7 @@ function clearAll() {
   selCats.clear(); selCerts.clear();
   priceMin=0; priceMax=999999; searchQ='';
   document.getElementById('search-input').value = '';
-  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.cat-pill').forEach(p => { p.classList.remove('active'); p.setAttribute('aria-pressed', 'false'); });
   document.querySelectorAll('.price-btn').forEach((b,i) => b.classList.toggle('active', i===0));
   document.querySelectorAll('.cert-opt').forEach(o => o.classList.remove('active'));
   applyFilters();

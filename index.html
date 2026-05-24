@@ -17,58 +17,9 @@
 <meta name="twitter:image" content="https://3dmolier.github.io/3D-Models/assets/og/3d-molier-og.jpg">
 <meta name="description" content="Searchable catalog of 88,000+ professional 3D models by 3D Molier. Vehicles, aircraft, medical, military and more. Open each model directly on TurboSquid.">
 <link rel="canonical" href="https://3dmolier.github.io/3D-Models/"><link rel="stylesheet" href="/3D-Models/assets/css/styles.css">
-<style>
-  * { box-sizing: border-box; }
-  body { background: #fafafa; font-family: 'Open Sans', sans-serif; color: #111111; }
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: #fafafa; }
-  ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
-  html { scroll-behavior: smooth; }
-  .hero-bg { background: #ffffff; }
-  .card-glow { position: relative; }
-  .card-glow::before {
-    content: ''; position: absolute; inset: -1px; border-radius: inherit;
-    background: transparent; opacity: 0; z-index: -1;
-  }
-  .img-wrap { position: relative; overflow: hidden; }
-  .img-wrap::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 50%);
-  }
-  .img-wrap img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
-  }
-  .card-glow:hover .img-wrap img { transform: scale(1.04); }
-  .img-placeholder {
-    width: 100%; height: 100%;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 10px; font-family: 'Open Sans', sans-serif; background: #f5f5f5;
-  }
-  .img-placeholder span { font-size: 11px; font-weight: 500; letter-spacing: 0.04em; opacity: 0.6; text-align: center; padding: 0 12px; }
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: #111111; color: #ffffff;
-    font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 14px;
-    padding: 11px 24px; border-radius: 4px;
-    transition: background 0.2s, transform 0.15s;
-    border: none; cursor: pointer; text-decoration: none;
-  }
-  .btn-primary:hover  { background: #333333; transform: translateY(-1px); }
-  .btn-primary:active { transform: translateY(0); }
-  .btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,0,0,0.2); }
-  .btn-ghost {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: transparent; color: #111111;
-    font-family: 'Open Sans', sans-serif; font-weight: 500; font-size: 14px;
-    padding: 10px 24px; border-radius: 4px;
-    border: 1px solid #d1d5db; cursor: pointer; text-decoration: none;
-    transition: border-color 0.2s, background 0.2s, transform 0.15s;
-  }
-  .btn-ghost:hover  { border-color: #111111; transform: translateY(-1px); }
-  .btn-ghost:active { transform: translateY(0); }
-  .btn-ghost:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,0,0,0.15); }
-  .btn-ts {
+<style>.hero-bg { background: #ffffff; }
+.card-glow:hover
+.btn-ts {
     display: inline-flex; align-items: center; gap: 8px;
     background: #111111; color: #ffffff;
     font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 13px;
@@ -87,20 +38,7 @@
   }
   .search-input::placeholder { color: #9ca3af; }
   .search-input:focus { border-color: #111111; box-shadow: 0 0 0 2px rgba(0,0,0,0.08); }
-  .chip {
-    display: inline-flex; align-items: center; gap: 5px;
-    background: #f5f5f5; border: 1px solid #e5e5e5;
-    color: #555555; font-size: 12px; font-weight: 500;
-    padding: 5px 12px; border-radius: 100px; cursor: pointer; text-decoration: none;
-    transition: background 0.2s, border-color 0.2s, color 0.2s; white-space: nowrap;
-  }
-  .chip:hover { background: #111111; border-color: #111111; color: #ffffff; }
-  .chip:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(0,0,0,0.3); }
-  .section-label {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: #6b7280;
-  }
-  .cat-icon {
+.cat-icon {
     width: 44px; height: 44px; border-radius: 10px;
     background: #f5f5f5; border: 1px solid #e5e5e5;
     display: flex; align-items: center; justify-content: center;
@@ -146,8 +84,7 @@
   .fade-up { animation: fadeUp 0.5s cubic-bezier(0.4,0,0.2,1) both; }
   .delay-1 { animation-delay: 0.1s; }
   .delay-2 { animation-delay: 0.2s; }
-  .delay-3 { animation-delay: 0.3s; }
-</style>
+  .delay-3 { animation-delay: 0.3s; }</style>
 <link rel="icon" href="/3D-Models/favicon.svg" type="image/svg+xml">
 
 <script type="application/ld+json">
@@ -205,8 +142,18 @@
 </script>
 <link rel="preload" href="/3D-Models/assets/fonts/font-12.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/3D-Models/assets/css/fonts.css">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What 3D file formats are available?","acceptedAnswer":{"@type":"Answer","text":"Models are available in FBX, OBJ, MAX, C4D, Maya, Blender and other formats. Exact formats are listed on each product page on TurboSquid."}},
+{"@type":"Question","name":"Are these 3D models CheckMate certified?","acceptedAnswer":{"@type":"Answer","text":"Over 917 models in this catalog hold TurboSquid CheckMate certification, guaranteeing clean topology, correct scale, and production-ready geometry."}},
+{"@type":"Question","name":"Can I use these models for commercial projects?","acceptedAnswer":{"@type":"Answer","text":"Yes. All models are sold with a commercial license through TurboSquid. License details are available on each product page."}},
+{"@type":"Question","name":"How do I purchase a 3D model?","acceptedAnswer":{"@type":"Answer","text":"Click 'View on TurboSquid' on any model page. You will be redirected to TurboSquid where you can purchase and download the model."}}
+]}
+</script>
 </head>
 <body class="relative min-h-screen">
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- ═══════════════════════════════════════ NAV ═══════════════════════════════ -->
 <header id="site-header">
@@ -294,7 +241,7 @@
 </div>
 </header>
 
-<main style="position:relative;z-index:1;">
+<main id="main-content" style="position:relative;z-index:1;">
 
 <!-- ═══════════════════════════════════════ HERO ══════════════════════════════ -->
 <section class="hero-bg pt-20 pb-16 px-6">
@@ -841,7 +788,7 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             View TurboSquid Store
           </a>
-          <a href="/3D-Models/catalog/" class="btn-ghost" style="font-size:15px;padding:13px 32px;">
+          <a href="/3D-Models/catalog/" class="btn-ghost" style="font-size:15px;padding:13px 32px;color:#ffffff;border-color:rgba(255,255,255,0.35);">
             Browse This Catalog
           </a>
         </div>
