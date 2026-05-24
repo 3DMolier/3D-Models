@@ -77,7 +77,7 @@ function cardHtml(m) {
   const certBadge = certBadgeHtml(m.cert);
   return `<a href="/3D-Models/models/${m.s}/" class="model-card">
     <div class="card-img">
-      <img src=”${imgSrc}” alt=”${m.n} 3D model — ${m.c} by 3D Molier” loading=”lazy” onerror=”this.style.display='none';this.nextElementSibling.style.display='flex'”>
+      <img src=”${imgSrc}” data-src=”${m.img}” alt=”${m.n} 3D model — ${m.c} by 3D Molier” loading=”lazy” onerror=”imgErr(this)”>
       <div class="img-fallback" style="display:none;background:#f5f5f5;">
         <span style="font-size:36px;">&#128247;</span>
       </div>

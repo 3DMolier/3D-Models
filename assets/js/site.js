@@ -1,3 +1,14 @@
+function imgErr(img) {
+  var direct = img.getAttribute('data-src');
+  if (direct && img.src !== direct) {
+    img.src = direct;
+  } else {
+    img.style.display = 'none';
+    var sib = img.nextElementSibling;
+    if (sib) sib.style.display = 'flex';
+  }
+}
+
 (function(){
 var p=location.pathname,d=document;
 d.querySelectorAll('.nav-link,.nav-dropdown a,.nav-mobile a,.nav-mobile-sub a').forEach(function(el){

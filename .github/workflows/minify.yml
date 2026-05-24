@@ -27,6 +27,17 @@ jobs:
       - name: Install tools
         run: npm install -g clean-css-cli terser
 
+      - name: Validate JS syntax
+        run: |
+          ERRORS=0
+          for f in assets/js/site.js assets/js/catalog.js assets/js/search.js \
+                   assets/js/category-pages.js assets/js/full-catalog.js; do
+            if [ -f "$f" ]; then
+              node --check "$f" && echo "OK: $f" || { echo "SYNTAX ERROR: $f"; ERRORS=$((ERRORS+1)); }
+            fi
+          done
+          [ $ERRORS -eq 0 ] || exit 1
+
       - name: Minify CSS
         run: cleancss -o assets/css/styles.min.css assets/css/styles.css
 
