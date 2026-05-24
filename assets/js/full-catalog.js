@@ -25,8 +25,8 @@ fetch('/3D-Models/data/fc.json').then(function(r){return r.json();}).then(functi
   if(qEl){qEl.disabled=false;qEl.placeholder='Search '+FC.n.length+' models…';}
   if(filterBar)filterBar.style.display='';
   fetch('/3D-Models/data/fc-img.json').then(function(r){return r.json();}).then(function(imgs){
-    IMGS=imgs; renderGrid();
-  }).catch(function(){renderGrid();});
+    IMGS=imgs; renderGrid(); updateProgress(); setupInfiniteScroll();
+  }).catch(function(){renderGrid(); updateProgress(); setupInfiniteScroll();});
   applyFilters();
   var urlQ=new URLSearchParams(location.search).get('q');
   if(urlQ&&qEl){qEl.value=urlQ;searchQ=urlQ.toLowerCase();applyFilters();}
@@ -60,6 +60,7 @@ function applyFilters(){
   });
   page=0;
   renderGrid();
+  updateProgress();
   updateStatus();
 }
 
@@ -147,5 +148,32 @@ document.querySelectorAll('.ps-tag').forEach(function(btn){
     applyFilters();
   });
 });
+
+
+function setupInfiniteScroll() {
+  var sentinel = document.getElementById('fc-sentinel');
+  if (!sentinel) {
+    sentinel = document.createElement('div');
+    sentinel.id = 'fc-sentinel';
+    sentinel.style.height = '1px';
+    var gridWrap = grid && grid.parentNode;
+    if (gridWrap) gridWrap.insertBefore(sentinel, grid.nextSibling);
+  }
+  var io = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting && fcReady) {
+      var shown = (page + 1) * PAGE_SIZE;
+      if (shown < filtered.length) { page++; renderGrid(); updateProgress(); }
+    }
+  }, { rootMargin: '400px' });
+  io.observe(sentinel);
+}
+
+function updateProgress() {
+  var shown = Math.min((page + 1) * PAGE_SIZE, filtered.length);
+  var shownEl = document.getElementById('fc-shown');
+  var totalEl = document.getElementById('fc-total');
+  if (shownEl) shownEl.textContent = shown.toLocaleString();
+  if (totalEl) totalEl.textContent = filtered.length.toLocaleString();
+}
 
 })();

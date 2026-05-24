@@ -16,7 +16,9 @@
 <meta name="twitter:description" content="Searchable catalog of 88,000+ professional 3D models by 3D Molier. Vehicles, aircraft, medical, military and more. Open each model directly on TurboSquid.">
 <meta name="twitter:image" content="https://3dmolier.github.io/3D-Models/assets/og/3d-molier-og.jpg">
 <meta name="description" content="Searchable catalog of 88,000+ professional 3D models by 3D Molier. Vehicles, aircraft, medical, military and more. Open each model directly on TurboSquid.">
-<link rel="canonical" href="https://3dmolier.github.io/3D-Models/"><link rel="stylesheet" href="/3D-Models/assets/css/styles.css">
+<link rel="canonical" href="https://3dmolier.github.io/3D-Models/">
+<link rel="alternate" hreflang="en" href="https://3dmolier.github.io/3D-Models/">
+<link rel="alternate" hreflang="x-default" href="https://3dmolier.github.io/3D-Models/"><link rel="stylesheet" href="/3D-Models/assets/css/styles.css">
 <style>.hero-bg { background: #ffffff; }
 .card-glow:hover
 .btn-ts {
@@ -141,7 +143,9 @@
 }
 </script>
 <link rel="preload" href="/3D-Models/assets/fonts/font-12.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css">
+<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css">
+<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/3D-Models/assets/css/fonts.css"></noscript>
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
@@ -323,7 +327,7 @@
 </section>
 
 <!-- ═══════════════════════════════════════ CATEGORIES ═══════════════════════ -->
-<section style="padding: 72px 24px;">
+<section class="page-section">
   <div class="max-w-7xl mx-auto">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:12px;">
       <div>
@@ -335,7 +339,7 @@
       <a href="/3D-Models/catalog/" class="btn-ghost" style="font-size:13px;padding:9px 18px;">View all categories</a>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;">
+    <div class="model-grid">
       <a href="/3D-Models/categories/vehicles/" class="cat-card">
         <div style="position:relative;height:160px;overflow:hidden;background:#f5f5f5;">
           <img src="https://static.turbosquid.com/Preview/001214/116/Tesla-Model-3_D_Main.jpg" alt="Vehicles" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'">
@@ -437,7 +441,7 @@
 </section>
 
 <!-- ═══════════════════════════════════════ TOP MODELS ════════════════════════ -->
-<section style="padding: 72px 24px; background: #f5f5f5;">
+<section class="page-section page-section--gray">
   <div class="max-w-7xl mx-auto">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:12px;">
       <div>
@@ -664,7 +668,7 @@
 </section>
 
 <!-- ═══════════════════════════════════════ INDUSTRIES ═══════════════════════ -->
-<section style="padding: 72px 24px;">
+<section class="page-section">
   <div class="max-w-7xl mx-auto">
     <div style="margin-bottom:40px;">
       <div class="section-label" style="margin-bottom:8px;">Who Uses These Models</div>
@@ -721,18 +725,18 @@
 
 
 <!-- ═══════════════════════════════════════ COLLECTIONS ═════════════════════ -->
-<section style="padding:72px 24px;background:#f5f5f5;">
+<section class="page-section page-section--gray">
   <div class="max-w-7xl mx-auto">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:12px;">
       <div>
         <div class="section-label" style="margin-bottom:8px;">Handpicked</div>
-        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-0.03em;color:#111;">
+        <h2 class="section-h2">
           Curated Collections
         </h2>
       </div>
       <a href="/3D-Models/collections/" class="btn-ghost" style="font-size:13px;padding:9px 18px;">View all collections</a>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;">
+    <div class="cat-grid">
       <a href="/3D-Models/collections/best-vehicle-3d-models/" style="display:block;padding:20px 24px;background:#fff;border:1px solid #e5e5e5;border-radius:6px;text-decoration:none;transition:box-shadow .2s;" class="col-card">
         <div style="font-size:22px;margin-bottom:10px;">&#x1F697;</div>
         <div style="font-size:15px;font-weight:700;color:#111;margin-bottom:6px;">Best Vehicle Models</div>
@@ -768,7 +772,7 @@
 </section>
 
 <!-- ═══════════════════════════════════════ CTA BANNER ════════════════════════ -->
-<section style="padding: 72px 24px;">
+<section class="page-section">
   <div class="max-w-4xl mx-auto text-center">
     <div style="background:#111111;border-radius:12px;padding:60px 40px;position:relative;overflow:hidden;">
       <!-- Background blobs -->

@@ -12,6 +12,8 @@
 <meta name="description" content="Browse all 86,865 professional 3D models by 3D Molier on TurboSquid. Search by name, filter by price and certification. Instant results.">
 <link rel="icon" href="/3D-Models/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://3dmolier.github.io/3D-Models/full-catalog/">
+<link rel="alternate" hreflang="en" href="https://3dmolier.github.io/3D-Models/full-catalog/">
+<link rel="alternate" hreflang="x-default" href="https://3dmolier.github.io/3D-Models/full-catalog/">
 <link rel="stylesheet" href="/3D-Models/assets/css/styles.css"><style>
 :root{--bg:#fafafa;--surface:#fff;--border:#e5e5e5;--text:#111;--muted:#6b7280}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -131,7 +133,9 @@ footer{background:#111;color:#fff;padding:48px 0 24px;margin-top:40px}
 <meta property="og:url" content="https://3dmolier.github.io/3D-Models/full-catalog/">
 <meta property="og:site_name" content="3D Molier Models">
 <meta property="og:image" content="https://3dmolier.github.io/3D-Models/assets/og/3d-molier-og.jpg">
-<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css">
+<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css">
+<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/3D-Models/assets/css/fonts.css"></noscript>
 </head>
 <body>
 
@@ -284,7 +288,7 @@ footer{background:#111;color:#fff;padding:48px 0 24px;margin-top:40px}
 </div>
 
 <div class="grid-wrap">
-  <div id="model-grid">
+  <div id="model-grid" aria-live="polite" aria-atomic="false">
     <!-- 24 skeleton cards shown immediately -->
     <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
     <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
@@ -312,7 +316,8 @@ footer{background:#111;color:#fff;padding:48px 0 24px;margin-top:40px}
     <div class="sk"><div class="sk-img"></div><div class="sk-body"><div class="sk-line"></div><div class="sk-line short"></div></div></div>
   </div>
   <div id="empty"><div class="ei">🔍</div><h3>No models found</h3><p>Try a different search term or clear filters</p></div>
-  <div class="lm-wrap"><button id="lm-btn">Load more</button></div>
+  <div id="fc-progress" style="text-align:center;padding:12px 0;font-size:12px;color:#9ca3af;">Showing <span id="fc-shown">0</span> of <span id="fc-total">0</span> models</div>
+<div class="lm-wrap"><button id="lm-btn">Load more</button></div>
 </div>
 
 <footer>
