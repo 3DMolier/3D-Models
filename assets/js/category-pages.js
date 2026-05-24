@@ -1,5 +1,6 @@
 (function(){
 'use strict';
+function proxyImg(url){if(!url)return'';var b=url.replace(/^https?:\/\//,'');return'https://images.weserv.nl/?url='+b+'&w=600&q=85&output=webp';}
 
 var loaded = false;
 

@@ -382,7 +382,7 @@ html { scroll-behavior: smooth; }
 
 /* ── Image wrap (CRITICAL — fixes category page image sizing) ── */
 .img-wrap { position: relative; overflow: hidden; }
-.img-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 55%); pointer-events: none; }
+.cat-card .img-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 55%); pointer-events: none; }
 .img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); }
 .model-card:hover .img-wrap img { transform: scale(1.04); }
 
@@ -398,3 +398,21 @@ html { scroll-behavior: smooth; }
 /* ── Footer nav: prevent black-on-black active state ────────── */
 footer .nav-link.active { color: #9ca3af !important; border-bottom-color: transparent !important; font-weight: 500 !important; }
 footer .nav-dropdown a.active { color: #9ca3af !important; background: transparent !important; }
+
+/* ── Breadcrumb ─────────────────────────────────────────────── */
+.bc-link { color: #6b7280; text-decoration: none; transition: color .15s; }
+.bc-link:hover { color: #111111; }
+.bc-sep { color: #d1d5db; margin: 0 4px; }
+.bc-current { color: #111111; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 320px; display: inline-block; vertical-align: bottom; }
+
+/* ── Page sections ──────────────────────────────────────────── */
+.page-section       { padding: 72px 24px; }
+.page-section--gray { background: #f5f5f5; }
+.page-section--dark { background: #111111; color: #ffffff; }
+.page-section--sm   { padding: 48px 24px; }
+.section-h2 { font-family: 'Playfair Display', serif; font-size: clamp(22px, 3vw, 32px); font-weight: 700; letter-spacing: -0.03em; color: #111111; line-height: 1.15; }
+.section-desc { font-size: 15px; color: #6b7280; line-height: 1.65; max-width: 560px; }
+.section-header { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
+.cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.ind-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+@media (max-width: 640px) { .page-section { padding: 48px 16px; } }

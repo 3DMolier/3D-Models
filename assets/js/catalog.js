@@ -67,7 +67,8 @@ function certBadgeHtml(cert) {
 
 function proxyImg(url) {
   if (!url) return '';
-  return url;
+  var bare = url.replace(/^https?:\/\//, '');
+  return 'https://images.weserv.nl/?url=' + bare + '&w=600&q=85&output=webp';
 }
 
 function cardHtml(m) {
