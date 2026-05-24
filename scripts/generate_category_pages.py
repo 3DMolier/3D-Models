@@ -226,160 +226,16 @@ CATEGORIES = {
 }
 
 
-# ── Shared CSS (same design system as homepage) ────────────────────────────────
-
-SHARED_CSS = """
-  * { box-sizing: border-box; }
-  body { background: #07090F; font-family: 'Inter', sans-serif; color: #EDF2FF; }
-
-  body::before {
-    content: '';
-    position: fixed; inset: 0; pointer-events: none; z-index: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
-    opacity: 0.4;
-  }
-
-  html { scroll-behavior: smooth; }
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: #07090F; }
-  ::-webkit-scrollbar-thumb { background: #1E2B44; border-radius: 3px; }
-
-  .nav-link {
-    color: #7A8DB0; font-size: 14px; font-weight: 500; text-decoration: none;
-    padding: 6px 2px; position: relative;
-    transition: color 0.2s;
-  }
-  .nav-link::after {
-    content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
-    background: #00E5C4;
-    transition: width 0.25s cubic-bezier(0.4,0,0.2,1);
-  }
-  .nav-link:hover { color: #EDF2FF; }
-  .nav-link:hover::after { width: 100%; }
-  .nav-link:focus-visible { outline: none; color: #00E5C4; }
-
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: #00E5C4; color: #07090F;
-    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px;
-    padding: 11px 24px; border-radius: 8px;
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    border: none; cursor: pointer; text-decoration: none;
-    box-shadow: 0 2px 12px rgba(0,229,196,0.3);
-  }
-  .btn-primary:hover  { background: #00CCB0; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,229,196,0.4); }
-  .btn-primary:active { transform: translateY(0); }
-  .btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,229,196,0.4); }
-
-  .btn-ghost {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: transparent; color: #EDF2FF;
-    font-family: 'Inter', sans-serif; font-weight: 500; font-size: 14px;
-    padding: 10px 24px; border-radius: 8px;
-    border: 1px solid #1E2B44; cursor: pointer; text-decoration: none;
-    transition: border-color 0.2s, background 0.2s, transform 0.15s;
-  }
-  .btn-ghost:hover  { border-color: rgba(0,229,196,0.4); background: rgba(0,229,196,0.05); transform: translateY(-1px); }
-  .btn-ghost:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,229,196,0.25); }
-
-  .btn-ts {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(0,229,196,0.1); color: #00E5C4;
-    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px;
-    padding: 9px 18px; border-radius: 7px;
-    border: 1px solid rgba(0,229,196,0.25); cursor: pointer; text-decoration: none;
-    transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
-    white-space: nowrap;
-  }
-  .btn-ts:hover  { background: rgba(0,229,196,0.18); border-color: rgba(0,229,196,0.5); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,229,196,0.15); }
-  .btn-ts:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,229,196,0.3); }
-
-  .chip {
-    display: inline-flex; align-items: center; gap: 5px;
-    background: rgba(255,255,255,0.04); border: 1px solid #1E2B44;
-    color: #7A8DB0; font-size: 12px; font-weight: 500;
-    padding: 5px 12px; border-radius: 100px; cursor: default;
-    white-space: nowrap;
-  }
-
-  .section-label {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: #00E5C4;
-  }
-
-  .cert-badge {
-    display: inline-flex; align-items: center; gap: 4px;
-    background: rgba(255,198,0,0.1); border: 1px solid rgba(255,198,0,0.25);
-    color: #FFC600; font-size: 10px; font-weight: 600; letter-spacing: 0.04em;
-    padding: 2px 7px; border-radius: 4px; text-transform: uppercase;
-    white-space: nowrap; flex-shrink: 0;
-  }
-
-  .model-card {
-    background: #0E1220; border: 1px solid #1E2B44; border-radius: 12px;
-    overflow: hidden;
-    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s cubic-bezier(0.4,0,0.2,1);
-  }
-  .model-card:hover {
-    border-color: rgba(0,229,196,0.3);
-    box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 2px 8px rgba(0,229,196,0.08);
-    transform: translateY(-2px);
-  }
-  .model-card:focus-within { box-shadow: 0 0 0 2px rgba(0,229,196,0.4); }
-
-  .card-glow { position: relative; }
-  .card-glow::before {
-    content: '';
-    position: absolute; inset: -1px; border-radius: inherit;
-    background: linear-gradient(135deg, rgba(0,229,196,0.15) 0%, transparent 50%, rgba(79,107,255,0.08) 100%);
-    opacity: 0;
-    transition: opacity 0.3s cubic-bezier(0.4,0,0.2,1);
-    z-index: -1;
-  }
-  .card-glow:hover::before { opacity: 1; }
-
-  .img-wrap { position: relative; overflow: hidden; }
-  .img-wrap::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(7,9,15,0.8) 0%, transparent 55%);
-  }
-  .img-wrap img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
-    filter: saturate(0.9) brightness(0.95);
-  }
-  .model-card:hover .img-wrap img { transform: scale(1.05); filter: saturate(1.1) brightness(1); }
-  .img-placeholder {
-    width: 100%; height: 100%;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 10px; font-family: 'Inter', sans-serif;
-  }
-  .img-placeholder span { font-size: 11px; font-weight: 500; letter-spacing: 0.04em; opacity: 0.7; }
-
-  .related-card {
-    background: #0E1220; border: 1px solid #1E2B44; border-radius: 12px; padding: 20px;
-    text-decoration: none; display: flex; align-items: center; gap: 14px;
-    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-  }
-  .related-card:hover {
-    border-color: rgba(0,229,196,0.35); transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-  }
-  .related-card:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(0,229,196,0.5); }
-"""
-
-
 # ── Nav HTML (shared) ───────────────────────────────────────────────────────────
 
 def nav_html():
-    return """<header class="sticky top-0 z-50 border-b border-[#1E2B44]" style="background:rgba(7,9,15,0.85);backdrop-filter:blur(16px);">
+    return """<header class="cat-header sticky top-0 z-50 border-b border-[#e5e7eb]">
   <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-8">
     <a href="/" class="flex items-center gap-2.5 shrink-0" style="text-decoration:none;">
-      <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#00E5C4,#0099FF);display:flex;align-items:center;justify-content:center;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#07090F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      <div class="cat-logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
       </div>
-      <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.02em;color:#EDF2FF;">3D Molier</span>
+      <span class="cat-logo-text">3D Molier</span>
     </a>
     <div class="hidden md:flex items-center gap-6">
       <a href="/catalog/" class="nav-link">Catalog</a>
@@ -388,13 +244,13 @@ def nav_html():
       <a href="/categories/military-vehicles/" class="nav-link">Military</a>
       <a href="/categories/medical-3d-models/" class="nav-link">Medical</a>
       <a href="/collections/" class="nav-link">Collections</a>
-      <a href="/search/" class="nav-link" title="Search" style="display:flex;align-items:center;gap:4px;">
+      <a href="/search/" class="nav-link flex items-center gap-1" title="Search">
         <svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M15 15l-3.5-3.5"/></svg>
         Search
       </a>
     </div>
     <div class="flex items-center gap-3 shrink-0">
-      <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-primary" style="padding:8px 16px;font-size:13px;">
+      <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-primary btn-primary--sm">
         TurboSquid Store
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       </a>
@@ -406,51 +262,51 @@ def nav_html():
 # ── Footer HTML (shared) ────────────────────────────────────────────────────────
 
 def footer_html():
-    return """<footer style="border-top:1px solid #1E2B44;padding:48px 24px 32px;background:#0A0D16;">
+    return """<footer class="cat-footer">
   <div class="max-w-7xl mx-auto">
-    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;">
+    <div class="cat-footer-grid">
       <div>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-          <div style="width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#00E5C4,#0099FF);display:flex;align-items:center;justify-content:center;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#07090F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        <div class="flex items-center gap-2.5 mb-4">
+          <div class="cat-footer-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
           </div>
-          <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:#EDF2FF;">3D Molier</span>
+          <span class="cat-footer-text">3D Molier</span>
         </div>
-        <p style="font-size:13px;color:#7A8DB0;line-height:1.7;max-width:280px;">Searchable catalog of 88,000+ professional 3D models. All models available on TurboSquid.</p>
+        <p class="cat-footer-desc">Searchable catalog of 88,000+ professional 3D models. All models available on TurboSquid.</p>
       </div>
       <div>
-        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#4A5C7A;text-transform:uppercase;margin-bottom:16px;">Categories</div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <a href="/categories/vehicles/" class="nav-link" style="font-size:13px;">Vehicles</a>
-          <a href="/categories/aircraft/" class="nav-link" style="font-size:13px;">Aircraft</a>
-          <a href="/categories/military-vehicles/" class="nav-link" style="font-size:13px;">Military</a>
-          <a href="/categories/medical-3d-models/" class="nav-link" style="font-size:13px;">Medical</a>
-          <a href="/categories/ships/" class="nav-link" style="font-size:13px;">Ships</a>
-        </div>
-      </div>
-      <div>
-        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#4A5C7A;text-transform:uppercase;margin-bottom:16px;">Collections</div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <a href="/collections/best-vehicle-3d-models/" class="nav-link" style="font-size:13px;">Best Vehicles</a>
-          <a href="/collections/best-aircraft-3d-models/" class="nav-link" style="font-size:13px;">Best Aircraft</a>
-          <a href="/collections/best-medical-3d-models/" class="nav-link" style="font-size:13px;">Best Medical</a>
-          <a href="/collections/best-military-vehicle-3d-models/" class="nav-link" style="font-size:13px;">Best Military</a>
-          <a href="/collections/" class="nav-link" style="font-size:13px;">View all →</a>
+        <div class="cat-footer-col-hd">Categories</div>
+        <div class="cat-footer-links">
+          <a href="/categories/vehicles/" class="nav-link">Vehicles</a>
+          <a href="/categories/aircraft/" class="nav-link">Aircraft</a>
+          <a href="/categories/military-vehicles/" class="nav-link">Military</a>
+          <a href="/categories/medical-3d-models/" class="nav-link">Medical</a>
+          <a href="/categories/ships/" class="nav-link">Ships</a>
         </div>
       </div>
       <div>
-        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#4A5C7A;text-transform:uppercase;margin-bottom:16px;">TurboSquid</div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link" style="font-size:13px;">Artist Store</a>
-          <a href="https://www.turbosquid.com/Search/3D-Models/vehicle?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link" style="font-size:13px;">Vehicle Models</a>
-          <a href="https://www.turbosquid.com/Search/3D-Models/aircraft?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link" style="font-size:13px;">Aircraft Models</a>
-          <a href="https://www.turbosquid.com/Search/3D-Models/medical?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link" style="font-size:13px;">Medical Models</a>
+        <div class="cat-footer-col-hd">Collections</div>
+        <div class="cat-footer-links">
+          <a href="/collections/best-vehicle-3d-models/" class="nav-link">Best Vehicles</a>
+          <a href="/collections/best-aircraft-3d-models/" class="nav-link">Best Aircraft</a>
+          <a href="/collections/best-medical-3d-models/" class="nav-link">Best Medical</a>
+          <a href="/collections/best-military-vehicle-3d-models/" class="nav-link">Best Military</a>
+          <a href="/collections/" class="nav-link">View all →</a>
+        </div>
+      </div>
+      <div>
+        <div class="cat-footer-col-hd">TurboSquid</div>
+        <div class="cat-footer-links">
+          <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link">Artist Store</a>
+          <a href="https://www.turbosquid.com/Search/3D-Models/vehicle?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link">Vehicle Models</a>
+          <a href="https://www.turbosquid.com/Search/3D-Models/aircraft?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link">Aircraft Models</a>
+          <a href="https://www.turbosquid.com/Search/3D-Models/medical?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link">Medical Models</a>
         </div>
       </div>
     </div>
-    <div style="border-top:1px solid #1E2B44;padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-      <p style="font-size:12px;color:#4A5C7A;">© 2025 3D Molier. All 3D models sold via TurboSquid.</p>
-      <a href="/" class="nav-link" style="font-size:12px;">← Back to home</a>
+    <div class="cat-footer-bottom">
+      <p class="cat-footer-copy">© 2025 3D Molier. All 3D models sold via TurboSquid.</p>
+      <a href="/" class="nav-link">← Back to home</a>
     </div>
   </div>
 </footer>"""
@@ -486,33 +342,23 @@ def model_card_html(m, color, gradient):
                 if 'Stem' in cert else ''
 
     raw_img = m.get('image_url', '')
-    img_html = ''
     if img:
-        img_html = f'''<img src="{img}" data-src="{raw_img}" alt="{title} 3D model preview" loading="lazy" onerror="imgErr(this)">
-          <div class="img-placeholder" style="color:{color};display:none;">
-            <span style="font-size:28px;opacity:0.5;">&#128247;</span>
-            <span style="color:{color};">{cat}</span>
-          </div>'''
+        img_html = f'<img src="{img}" data-src="{raw_img}" alt="{title} 3D model preview" loading="lazy" onerror="imgErr(this)"><div class="img-placeholder"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">{cat}</span></div>'
     else:
-        img_html = f'''<div class="img-placeholder" style="color:{color};">
-            <span style="font-size:28px;opacity:0.5;">&#128247;</span>
-            <span style="color:{color};">{cat}</span>
-          </div>'''
+        img_html = f'<div class="img-placeholder" style="display:flex;"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">{cat}</span></div>'
 
     internal_link = f"/3D-Models/models/{slug}/" if slug else url
 
-    return f'''<a href="{internal_link}" class="model-card card-glow" style="text-decoration:none;display:block;">
-        <div class="img-wrap" style="height:180px;background:linear-gradient({gradient});">
-          {img_html}
-        </div>
-        <div style="padding:16px;">
-          <div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">
-            <h3 style="font-family:\'Playfair Display\',serif;font-size:14px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">{title}</h3>
+    return f'''<a href="{internal_link}" class="model-card card-glow" style="--mc-bg:linear-gradient({gradient})">
+        <div class="img-wrap mc-img">{img_html}</div>
+        <div class="mc-body">
+          <div class="mc-meta">
+            <h3 class="mc-title">{title}</h3>
             {cert_html}
           </div>
-          <div style="display:flex;align-items:center;gap:8px;">
-            <span class="chip" style="font-size:11px;padding:3px 8px;color:{color};border-color:{color}44;">{cat}</span>
-            <span style="font-size:13px;font-weight:700;color:#EDF2FF;margin-left:auto;">{price_str}</span>
+          <div class="mc-foot">
+            <span class="chip mc-chip">{cat}</span>
+            <span class="mc-price">{price_str}</span>
           </div>
         </div>
       </a>'''
@@ -562,8 +408,8 @@ def page_html(cat_name, meta, models):
     load_more_btn = ''
     load_more_script = ''
     if extra_models:
-        load_more_btn = f'''<div id="load-more-wrap" style="text-align:center;margin-top:40px;">
-        <button id="load-more-btn" class="btn-ghost" style="font-size:14px;padding:12px 32px;" onclick="loadMore()">
+        load_more_btn = f'''<div id="load-more-wrap" class="mc-load-more">
+        <button id="load-more-btn" class="btn-ghost btn-ghost--md" onclick="loadMore()">
           Load more models ({len(extra_models)} remaining)
         </button>
       </div>'''
@@ -580,12 +426,12 @@ var GRADIENT = "{gradient}";
         rel_icon  = rel_meta.get('icon', '📦')
         rel_total = rel_meta.get('total_models', 0)
         related_cards += f'''<a href="/categories/{rel_slug}/" class="related-card">
-          <span style="font-size:28px;">{rel_icon}</span>
+          <span class="mc-ph-icon">{rel_icon}</span>
           <div>
-            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#EDF2FF;">{rel_name}</div>
-            <div style="font-size:12px;color:#7A8DB0;margin-top:2px;">{rel_total:,} models</div>
+            <div class="cat-rel-name">{rel_name}</div>
+            <div class="cat-rel-count">{rel_total:,} models</div>
           </div>
-          <span style="margin-left:auto;color:#00E5C4;font-size:18px;">→</span>
+          <span class="cat-rel-arrow">→</span>
         </a>\n'''
 
     # Tags
@@ -595,14 +441,14 @@ var GRADIENT = "{gradient}";
 
     # Industries
     industry_chips = ' '.join(
-        f'<a href="/industries/{ind.lower().replace(" ","").replace("/","-").replace("&","")}/" class="chip" style="color:#EDF2FF;text-decoration:none;">{ind}</a>'
+        f'<a href="/industries/{ind.lower().replace(" ","").replace("/","-").replace("&","")}/" class="chip">{ind}</a>'
         for ind in industries
     )
 
     no_models_note = ''
     if top_n == 0:
-        no_models_note = '''<div style="text-align:center;padding:60px 24px;color:#7A8DB0;">
-        <p style="font-size:16px;">No top-ranked models in this category yet.</p>
+        no_models_note = '''<div class="cat-desc" style="text-align:center;padding:60px 24px;">
+        <p>No top-ranked models in this category yet.</p>
         <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="margin-top:16px;display:inline-flex;">Browse all models on TurboSquid</a>
       </div>'''
 
@@ -614,42 +460,40 @@ var GRADIENT = "{gradient}";
 <title>{meta["seo_title"]} | 3D Molier</title>
 <meta name="description" content="{meta["meta_desc"]}">
 <link rel="canonical" href="https://3dmolier.com/categories/{slug}/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" href="/3D-Models/assets/fonts/font-13.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css">
+<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/3D-Models/assets/css/fonts.css"></noscript>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {{
   theme: {{
     extend: {{
       colors: {{
-        base:'#07090F', surface:'#0E1220', raised:'#151A2E',
-        border:'#1E2B44', teal:'#00E5C4',
+        base:'#fafafa', surface:'#ffffff', raised:'#f5f5f5',
+        border:'#e5e7eb', teal:'#00E5C4',
       }},
-      fontFamily: {{ display:['Syne','sans-serif'], body:['Inter','sans-serif'] }},
+      fontFamily: {{ display:['Playfair Display','serif'], body:['Open Sans','sans-serif'] }},
     }}
   }}
 }}
 </script>
-<style>
-{SHARED_CSS}
-</style>
 <link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css">
 </head>
 <body class="relative min-h-screen">
 
 {nav_html()}
 
-<main style="position:relative;z-index:1;">
+<main class="cat-main">
 
 <!-- Breadcrumb -->
-<div style="border-bottom:1px solid #1E2B44;background:rgba(14,18,32,0.5);">
-  <div class="max-w-7xl mx-auto px-6 py-3" style="display:flex;align-items:center;gap:8px;font-size:13px;color:#7A8DB0;">
-    <a href="/" style="color:#7A8DB0;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDF2FF'" onmouseout="this.style.color='#7A8DB0'">Home</a>
-    <span style="color:#1E2B44;">›</span>
-    <a href="/catalog/" style="color:#7A8DB0;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDF2FF'" onmouseout="this.style.color='#7A8DB0'">Categories</a>
-    <span style="color:#1E2B44;">›</span>
-    <span style="color:#EDF2FF;">{cat_name}</span>
+<div class="cat-bc">
+  <div class="max-w-7xl mx-auto px-6 py-3 cat-bc-inner">
+    <a href="/" class="bc-link">Home</a>
+    <span class="bc-sep">›</span>
+    <a href="/catalog/" class="bc-link">Categories</a>
+    <span class="bc-sep">›</span>
+    <span class="bc-current">{cat_name}</span>
   </div>
 </div>
 
@@ -659,25 +503,16 @@ tailwind.config = {{
     <div class="cat-hero">
 
       <div class="cat-hero-left">
-        <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
-          <div class="cat-hero-icon">
-            {icon}
-          </div>
+        <div class="cat-hero-top">
+          <div class="cat-hero-icon">{icon}</div>
           <div>
             <div class="section-label">3D Model Category</div>
             <h1 class="cat-page-h1">{meta["h1"]}</h1>
           </div>
         </div>
-
-        <p style="font-size:15px;color:#7A8DB0;line-height:1.75;max-width:640px;margin-bottom:24px;">
-          {meta["description"]}
-        </p>
-
-        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;">
-          {tag_chips}
-        </div>
-
-        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <p class="cat-desc">{meta["description"]}</p>
+        <div class="cat-tags">{tag_chips}</div>
+        <div class="cat-actions">
           <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-primary">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Browse on TurboSquid
@@ -687,18 +522,18 @@ tailwind.config = {{
       </div>
 
       <!-- Stats panel -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#1E2B44;border:1px solid #1E2B44;border-radius:16px;overflow:hidden;min-width:260px;">
-        <div style="background:#0E1220;padding:24px 20px;text-align:center;">
-          <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:#EDF2FF;letter-spacing:-0.04em;line-height:1;">{total:,}</div>
-          <div style="font-size:12px;color:#7A8DB0;margin-top:4px;font-weight:500;">Total Models</div>
+      <div class="cat-stats">
+        <div class="cat-stat-cell">
+          <div class="cat-stat-num">{total:,}</div>
+          <div class="cat-stat-label">Total Models</div>
         </div>
-        <div style="background:#0E1220;padding:24px 20px;text-align:center;">
-          <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:#EDF2FF;letter-spacing:-0.04em;line-height:1;">{top_n}</div>
-          <div style="font-size:12px;color:#7A8DB0;margin-top:4px;font-weight:500;">Top Ranked</div>
+        <div class="cat-stat-cell">
+          <div class="cat-stat-num">{top_n}</div>
+          <div class="cat-stat-label">Top Ranked</div>
         </div>
-        <div style="background:#0E1220;padding:24px 20px;grid-column:1/-1;border-top:1px solid #1E2B44;">
-          <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#4A5C7A;text-transform:uppercase;margin-bottom:12px;">Used in Industries</div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;">{industry_chips}</div>
+        <div class="cat-stat-cell cat-stat-cell--wide">
+          <div class="cat-ind-label">Used in Industries</div>
+          <div class="cat-ind-chips">{industry_chips}</div>
         </div>
       </div>
 
@@ -714,7 +549,7 @@ tailwind.config = {{
         <div class="section-label">Top Ranked</div>
         <h2 class="section-h2">Best {cat_name} 3D Models</h2>
       </div>
-      <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ghost" style="font-size:13px;padding:9px 18px;">
+      <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ghost btn-ghost--md">
         View all on TurboSquid
       </a>
     </div>
@@ -732,7 +567,7 @@ tailwind.config = {{
 <!-- Related Categories -->
 <section class="page-section">
   <div class="max-w-7xl mx-auto">
-    <div style="border-top:1px solid #1E2B44;padding-top:48px;">
+    <div class="cat-rel-wrap">
       <div class="section-label">Explore More</div>
       <h2 class="section-h2" style="margin-bottom:24px;">Related Categories</h2>
       <div class="rel-grid">

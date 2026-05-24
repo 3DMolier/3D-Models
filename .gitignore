@@ -1,6 +1,8 @@
 # Large data files — regenerate locally with scripts/process_data.py
 data/models_master.csv
 data/search_index.json
+data/fc.json
+data/fc-img.json
 
 # Raw source data (not needed to serve the site)
 models.csv
@@ -18,6 +20,8 @@ fix-*.js
 generate-*.js
 add-*.js
 enhance-*.js
+patch_generators.py
+scripts/patch_generators.py
 
 # Dev tools (not served by GitHub Pages)
 node_modules/

@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'assets/css/styles.css'
+      - 'assets/css/model-pages.css'
       - 'assets/js/*.js'
   workflow_dispatch:
 
@@ -39,7 +40,11 @@ jobs:
           [ $ERRORS -eq 0 ] || exit 1
 
       - name: Minify CSS
-        run: cleancss -o assets/css/styles.min.css assets/css/styles.css
+        run: |
+          cleancss -o assets/css/styles.min.css assets/css/styles.css
+          echo "styles.min.css: $(wc -c < assets/css/styles.min.css) bytes"
+          cleancss -o assets/css/model-pages.min.css assets/css/model-pages.css
+          echo "model-pages.min.css: $(wc -c < assets/css/model-pages.min.css) bytes"
 
       - name: Minify JS
         run: |
@@ -55,8 +60,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          find assets/css -name "*.min.css" | xargs git add 2>/dev/null || true
-          find assets/js  -name "*.min.js"  | xargs git add 2>/dev/null || true
+          git add -f assets/css/styles.min.css assets/css/model-pages.min.css \
+            assets/js/site.min.js assets/js/catalog.min.js assets/js/search.min.js \
+            assets/js/category-pages.min.js assets/js/full-catalog.min.js 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "Nothing to commit"
           else

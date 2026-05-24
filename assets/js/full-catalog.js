@@ -62,6 +62,7 @@ function loadChunk(i) {
 }
 
 function loadImgChunk(i) {
+  if(i>=totalImgChunks)return;
   fetch('/3D-Models/data/fc-img-chunk-'+i+'.json')
     .then(function(r){return r.json();})
     .then(function(chunk){
@@ -84,15 +85,7 @@ Promise.all([
   fetch('/3D-Models/data/fc-img-index.json').then(function(r){return r.json();})
 ]).then(function(res){ startLoading(res[0], res[1]); })
   .catch(function(){
-    // Fallback to monolithic files
-    Promise.all([
-      fetch('/3D-Models/data/fc.json').then(function(r){return r.json();}),
-      fetch('/3D-Models/data/fc-img.json').then(function(r){return r.json();})
-    ]).then(function(res){
-      mergeChunk(res[0]); IMGS=res[1]; loadedChunks=1; onFirstChunk();
-    }).catch(function(){
-      if(statusText)statusText.textContent='Failed to load catalog. Please refresh.';
-    });
+    if(statusText)statusText.textContent='Failed to load catalog. Please refresh.';
   });
 
 function applyFilters(){
@@ -154,7 +147,7 @@ function modelCard(idx){
   var certBadge=cert===2?'<span class="mc-cert cert-cm">CheckMate</span>'
     :cert===1?'<span class="mc-cert cert-sc">StemCell</span>':'';
   var salesHtml=sales?'<span class="mc-sold">'+sales+' sold</span>':'';
-  return '<a href="https://www.turbosquid.com/FullPreview/'+id+'?referral=3d_molier-studio" target="_blank" rel="noopener" class="mc">'
+  return '<a href="https://www.turbosquid.com/FullPreview/'+id+'?referral=3d_molier-studio" target="_blank" rel="noopener" class="mc" role="listitem">'
     +'<div class="mc-img">'+imgHtml+'<div class="mc-ov"></div>'+certBadge+'<div class="mc-qv">Quick View</div></div>'
     +'<div class="mc-body"><div class="mc-name">'+name+'</div>'
     +'<div class="mc-foot"><span class="mc-price">$'+price+'</span>'+salesHtml+'</div>'
