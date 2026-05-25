@@ -160,9 +160,9 @@ LINK_ICON_MD = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stro
 def nav_html():
     return """<header class="sticky top-0 z-50 mp-header">
   <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-8">
-    <a href="/" class="flex items-center gap-2.5 shrink-0 mp-logo-link">
+    <a href="/3D-Models/" class="flex items-center gap-2.5 shrink-0 mp-logo-link">
       <div class="mp-logo-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#07090F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
       </div>
       <span class="mp-brand-name">3D Molier</span>
     </a>
@@ -194,7 +194,7 @@ def footer_html():
     <div class="mp-footer-grid">
       <div>
         <div class="mp-footer-brand-row">
-          <div class="mp-footer-logo-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#07090F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <div class="mp-footer-logo-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
           <span class="mp-footer-brand-name">3D Molier</span>
         </div>
         <p class="mp-footer-desc">Searchable catalog of 88,000+ professional 3D models. All models sold on TurboSquid.</p>
@@ -230,7 +230,7 @@ def footer_html():
     </div>
     <div class="mp-footer-bottom">
       <p class="mp-footer-copy">&#169; 2025 3D Molier. All 3D models sold via TurboSquid.</p>
-      <a href="/" class="nav-link mp-back-link">&#8592; Back to home</a>
+      <a href="/3D-Models/" class="nav-link mp-back-link">&#8592; Back to home</a>
     </div>
   </div>
 </footer>"""
@@ -470,15 +470,16 @@ def model_page_html(m: dict, related: list[dict]) -> str:
 </script>
 </head>
 <body class="relative min-h-screen">
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 {nav_html()}
 
-<main class="mp-main">
+<main id="main-content" class="mp-main">
 
 <!-- Breadcrumb -->
 <div class="mp-bc-bar">
   <div class="max-w-7xl mx-auto px-6 py-3 mp-bc-inner">
-    <a href="/" class="mp-bc-link">Home</a>
+    <a href="/3D-Models/" class="mp-bc-link">Home</a>
     <span class="mp-bc-sep">&#8250;</span>
     <a href="/categories/{cat_slug}/" class="mp-bc-link">{cat}</a>
     <span class="mp-bc-sep">&#8250;</span>
