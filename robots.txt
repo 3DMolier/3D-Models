@@ -37,7 +37,4 @@ Sitemap: https://3dmolier.github.io/3D-Models/image-sitemap.xml
 Disallow: /3D-Models/industries/softwaredevelopment/
 Disallow: /3D-Models/industries/eventmanagement/
 Disallow: /3D-Models/industries/3dprinting/
-Disallow: /3D-Models/data/fc-chunk-
-Disallow: /3D-Models/data/fc-img-chunk-
-Disallow: /3D-Models/data/fc-index.json
-Disallow: /3D-Models/data/fc-img-index.json
+Disallow: /3D-Models/data/

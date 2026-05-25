@@ -378,7 +378,7 @@ html { scroll-behavior: smooth; }
 
 .cert-badge { display: inline-flex; align-items: center; gap: 4px; background: rgba(255,198,0,0.1); border: 1px solid rgba(255,198,0,0.25); color: #FFC600; font-size: 10px; font-weight: 600; letter-spacing: 0.04em; padding: 2px 7px; border-radius: 4px; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; }
 
-.section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #111111; }
+.section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #111111; margin-bottom: 8px; }
 
 /* ── Image wrap (CRITICAL — fixes category page image sizing) ── */
 .img-wrap { position: relative; overflow: hidden; }
@@ -471,8 +471,6 @@ footer .nav-dropdown a.active { color: #9ca3af !important; background: transpare
 
 .cat-meta-num { font-weight: 700; color: #111111; }
 
-.section-label { margin-bottom: 8px; }
-
 /* ── Model card sub-classes ─────────────────────────────── */
 .mc-img  { height: 180px; background: var(--mc-bg, #f5f5f5); }
 .mc-body { padding: 16px; }
@@ -503,14 +501,14 @@ footer .nav-dropdown a.active { color: #9ca3af !important; background: transpare
 .cat-rel-wrap   { border-top: 1px solid #e5e7eb; padding-top: 48px; }
 .cat-rel-name   { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 15px; color: #111111; }
 .cat-rel-count  { font-size: 12px; color: #6b7280; margin-top: 2px; }
-.cat-rel-arrow  { margin-left: auto; color: #00E5C4; font-size: 18px; }
+.cat-rel-arrow  { margin-left: auto; color: #6b7280; font-size: 18px; }
 .mc-load-more   { text-align: center; margin-top: 40px; }
 
 /* ── Nav / footer logo & layout ─────────────────────────── */
-.cat-logo-icon { width: 32px; height: 32px; border-radius: 8px; background: linear-gradient(135deg,#00E5C4,#0099FF); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.cat-logo-icon { width: 32px; height: 32px; border-radius: 8px; background: #111111; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .cat-logo-text { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 17px; letter-spacing: -0.02em; color: #111111; }
 .cat-footer { border-top: 1px solid #e5e7eb; padding: 48px 24px 32px; background: #f9fafb; }
-.cat-footer-icon { width: 28px; height: 28px; border-radius: 7px; background: linear-gradient(135deg,#00E5C4,#0099FF); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.cat-footer-icon { width: 28px; height: 28px; border-radius: 7px; background: #111111; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .cat-footer-text { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 16px; color: #111111; }
 .cat-footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
 .cat-footer-col-hd { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: #9ca3af; text-transform: uppercase; margin-bottom: 16px; }
@@ -535,35 +533,33 @@ footer .nav-dropdown a.active { color: #9ca3af !important; background: transpare
 
 /* Related collection cards */
 .coll-card       { background: #ffffff; border: 1px solid #e5e5e5; border-radius: 14px; padding: 20px; text-decoration: none; display: flex; align-items: center; gap: 14px; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
-.coll-card:hover { border-color: #00E5C4; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
-.coll-card:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(0,229,196,0.4); }
+.coll-card:hover { border-color: #111111; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+.coll-card:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(0,0,0,0.15); }
 .coll-icon       { width: 48px; height: 48px; border-radius: 12px; background: #f0fdfb; border: 1px solid #ccfbf1; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
 .coll-content    { min-width: 0; }
 .coll-card-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 14px; color: #111111; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .coll-card-desc  { font-size: 12px; color: #6b7280; margin-top: 2px; }
-.coll-card-arrow { margin-left: auto; color: #00E5C4; font-size: 18px; flex-shrink: 0; }
+.coll-card-arrow { margin-left: auto; color: #6b7280; font-size: 18px; flex-shrink: 0; }
 
 /* Collections index page */
 .coll-idx-card       { text-decoration: none; background: #ffffff; border: 1px solid #e5e5e5; border-radius: 14px; padding: 24px; display: flex; flex-direction: column; gap: 14px; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
-.coll-idx-card:hover { border-color: #00E5C4; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
-.coll-idx-card:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(0,229,196,0.4); }
+.coll-idx-card:hover { border-color: #111111; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+.coll-idx-card:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(0,0,0,0.15); }
 .coll-idx-head   { display: flex; align-items: center; gap: 12px; }
 .coll-idx-icon   { width: 44px; height: 44px; border-radius: 11px; background: #f0fdfb; border: 1px solid #ccfbf1; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
 .coll-idx-title  { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 15px; color: #111111; letter-spacing: -0.01em; line-height: 1.3; }
 .coll-idx-desc   { font-size: 13px; color: #6b7280; line-height: 1.6; margin: 0; }
 .coll-idx-foot   { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
 .coll-idx-count  { font-size: 12px; color: #9ca3af; }
-.coll-idx-action { font-size: 13px; font-weight: 600; color: #00E5C4; }
+.coll-idx-action { font-size: 13px; font-weight: 600; color: #111111; }
 .coll-sec        { margin-bottom: 64px; }
 .coll-sec-hd     { margin-bottom: 32px; }
 .coll-sec-sub    { font-size: 14px; color: #6b7280; margin-top: 4px; }
 .coll-idx-h1    { font-family: 'Playfair Display', serif; font-size: clamp(26px, 4vw, 44px); font-weight: 800; letter-spacing: -0.035em; color: #111111; line-height: 1.1; margin-bottom: 16px; }
 .coll-idx-intro { font-size: 16px; color: #6b7280; line-height: 1.75; max-width: 600px; }
 
-/* TurboSquid button (light theme) */
-.btn-ts       { display: inline-flex; align-items: center; gap: 8px; background: #f0fdfb; color: #009688; font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 13px; padding: 9px 18px; border-radius: 7px; border: 1px solid #ccfbf1; cursor: pointer; text-decoration: none; transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s; white-space: nowrap; width: 100%; justify-content: center; margin-top: 12px; }
-.btn-ts:hover { background: #ccfbf1; border-color: #00E5C4; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,229,196,0.15); }
-.btn-ts:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,229,196,0.3); }
+/* Collection card TurboSquid button override */
+.model-grid .btn-ts { width: 100%; justify-content: center; margin-top: 12px; }
 
 /* Certification badge StemCell variant */
 .cert-badge-stem { background: rgba(124,58,237,0.06) !important; border-color: rgba(124,58,237,0.2) !important; color: #7C3AED !important; }
