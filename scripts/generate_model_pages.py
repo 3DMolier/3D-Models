@@ -263,12 +263,12 @@ def related_card_html(m: dict) -> str:
     if img:
         img_html = (
             f'<img src="{img_src}" alt="{title}" loading="lazy" onerror="imgErr(this)">'
-            f'<div class="img-placeholder" style="color:{color};">'
+            f'<div class="img-placeholder">'
             f'<span class="mp-rc-placeholder-icon">&#128247;</span></div>'
         )
     else:
         img_html = (
-            f'<div class="img-placeholder" style="color:{color};display:flex;">'
+            f'<div class="img-placeholder" style="display:flex;">'
             f'<span class="mp-rc-placeholder-icon">&#128247;</span></div>'
         )
 
@@ -360,14 +360,14 @@ def model_page_html(m: dict, related: list[dict]) -> str:
             f'onerror="imgErr(this)" class="mp-hero-img">'
             f'<div class="img-placeholder mp-placeholder">'
             f'<span class="mp-placeholder-icon">&#128247;</span>'
-            f'<span class="mp-placeholder-cat" style="color:{color};">{cat}</span>'
+            f'<span class="mp-placeholder-cat">{cat}</span>'
             f'</div>'
         )
     else:
         img_content = (
             f'<div class="img-placeholder mp-placeholder" style="display:flex;">'
             f'<span class="mp-placeholder-icon">&#128247;</span>'
-            f'<span class="mp-placeholder-cat" style="color:{color};">{cat}</span>'
+            f'<span class="mp-placeholder-cat">{cat}</span>'
             f'</div>'
         )
 
@@ -492,7 +492,7 @@ def model_page_html(m: dict, related: list[dict]) -> str:
     <div class="mp-hero-grid">
 
       <!-- Image -->
-      <div class="hero-img-frame mp-hero-frame" style="--mp-cat-bg:linear-gradient({gradient});">
+      <div class="hero-img-frame mp-hero-frame">
         {img_content}
       </div>
 
