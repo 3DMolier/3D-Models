@@ -158,13 +158,13 @@ LINK_ICON_MD = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stro
 
 
 def nav_html():
-    return """<header class="sticky top-0 z-50" style="border-bottom:1px solid #1E2B44;background:rgba(7,9,15,0.85);backdrop-filter:blur(16px);">
+    return """<header class="sticky top-0 z-50 mp-header">
   <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-8">
-    <a href="/" class="flex items-center gap-2.5 shrink-0" style="text-decoration:none;">
-      <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#00E5C4,#0099FF);display:flex;align-items:center;justify-content:center;">
+    <a href="/" class="flex items-center gap-2.5 shrink-0 mp-logo-link">
+      <div class="mp-logo-icon">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#07090F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
       </div>
-      <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.02em;color:#EDF2FF;">3D Molier</span>
+      <span class="mp-brand-name">3D Molier</span>
     </a>
     <div class="hidden md:flex items-center gap-6">
       <a href="/catalog/" class="nav-link">Catalog</a>
@@ -173,13 +173,13 @@ def nav_html():
       <a href="/categories/military-vehicles/" class="nav-link">Military</a>
       <a href="/categories/medical-3d-models/" class="nav-link">Medical</a>
       <a href="/collections/" class="nav-link">Collections</a>
-      <a href="/search/" class="nav-link" title="Search" style="display:flex;align-items:center;gap:4px;">
+      <a href="/search/" class="nav-link mp-nav-search" title="Search">
         <svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M15 15l-3.5-3.5"/></svg>
         Search
       </a>
     </div>
     <div class="flex items-center gap-3 shrink-0">
-      <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-primary" style="padding:8px 16px;font-size:13px;">
+      <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-primary mp-btn-store">
         TurboSquid Store
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       </a>
@@ -189,48 +189,48 @@ def nav_html():
 
 
 def footer_html():
-    return """<footer style="border-top:1px solid #1E2B44;padding:48px 24px 32px;background:#0A0D16;">
+    return """<footer class="mp-footer">
   <div class="max-w-7xl mx-auto">
-    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;">
+    <div class="mp-footer-grid">
       <div>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-          <div style="width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#00E5C4,#0099FF);display:flex;align-items:center;justify-content:center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#07090F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
-          <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:#EDF2FF;">3D Molier</span>
+        <div class="mp-footer-brand-row">
+          <div class="mp-footer-logo-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#07090F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <span class="mp-footer-brand-name">3D Molier</span>
         </div>
-        <p style="font-size:13px;color:#7A8DB0;line-height:1.7;max-width:280px;">Searchable catalog of 88,000+ professional 3D models. All models sold on TurboSquid.</p>
+        <p class="mp-footer-desc">Searchable catalog of 88,000+ professional 3D models. All models sold on TurboSquid.</p>
       </div>
       <div>
-        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#4A5C7A;text-transform:uppercase;margin-bottom:16px;">Categories</div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <a href="/categories/vehicles/" class="nav-link" style="font-size:13px;">Vehicles</a>
-          <a href="/categories/aircraft/" class="nav-link" style="font-size:13px;">Aircraft</a>
-          <a href="/categories/military-vehicles/" class="nav-link" style="font-size:13px;">Military</a>
-          <a href="/categories/medical-3d-models/" class="nav-link" style="font-size:13px;">Medical</a>
-          <a href="/categories/ships/" class="nav-link" style="font-size:13px;">Ships</a>
-        </div>
-      </div>
-      <div>
-        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#4A5C7A;text-transform:uppercase;margin-bottom:16px;">Collections</div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <a href="/collections/best-vehicle-3d-models/" class="nav-link" style="font-size:13px;">Best Vehicles</a>
-          <a href="/collections/best-aircraft-3d-models/" class="nav-link" style="font-size:13px;">Best Aircraft</a>
-          <a href="/collections/best-medical-3d-models/" class="nav-link" style="font-size:13px;">Best Medical</a>
-          <a href="/collections/" class="nav-link" style="font-size:13px;">All Collections</a>
+        <div class="mp-footer-col-hd">Categories</div>
+        <div class="mp-footer-links">
+          <a href="/categories/vehicles/" class="nav-link mp-footer-link">Vehicles</a>
+          <a href="/categories/aircraft/" class="nav-link mp-footer-link">Aircraft</a>
+          <a href="/categories/military-vehicles/" class="nav-link mp-footer-link">Military</a>
+          <a href="/categories/medical-3d-models/" class="nav-link mp-footer-link">Medical</a>
+          <a href="/categories/ships/" class="nav-link mp-footer-link">Ships</a>
         </div>
       </div>
       <div>
-        <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#4A5C7A;text-transform:uppercase;margin-bottom:16px;">TurboSquid</div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link" style="font-size:13px;">Artist Store</a>
-          <a href="https://www.turbosquid.com/Search/3D-Models/vehicle?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link" style="font-size:13px;">Vehicle Models</a>
-          <a href="https://www.turbosquid.com/Search/3D-Models/aircraft?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link" style="font-size:13px;">Aircraft Models</a>
-          <a href="https://www.turbosquid.com/Search/3D-Models/medical?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link" style="font-size:13px;">Medical Models</a>
+        <div class="mp-footer-col-hd">Collections</div>
+        <div class="mp-footer-links">
+          <a href="/collections/best-vehicle-3d-models/" class="nav-link mp-footer-link">Best Vehicles</a>
+          <a href="/collections/best-aircraft-3d-models/" class="nav-link mp-footer-link">Best Aircraft</a>
+          <a href="/collections/best-medical-3d-models/" class="nav-link mp-footer-link">Best Medical</a>
+          <a href="/collections/" class="nav-link mp-footer-link">All Collections</a>
+        </div>
+      </div>
+      <div>
+        <div class="mp-footer-col-hd">TurboSquid</div>
+        <div class="mp-footer-links">
+          <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link mp-footer-link">Artist Store</a>
+          <a href="https://www.turbosquid.com/Search/3D-Models/vehicle?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link mp-footer-link">Vehicle Models</a>
+          <a href="https://www.turbosquid.com/Search/3D-Models/aircraft?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link mp-footer-link">Aircraft Models</a>
+          <a href="https://www.turbosquid.com/Search/3D-Models/medical?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link mp-footer-link">Medical Models</a>
         </div>
       </div>
     </div>
-    <div style="border-top:1px solid #1E2B44;padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-      <p style="font-size:12px;color:#4A5C7A;">&#169; 2025 3D Molier. All 3D models sold via TurboSquid.</p>
-      <a href="/" class="nav-link" style="font-size:12px;">&#8592; Back to home</a>
+    <div class="mp-footer-bottom">
+      <p class="mp-footer-copy">&#169; 2025 3D Molier. All 3D models sold via TurboSquid.</p>
+      <a href="/" class="nav-link mp-back-link">&#8592; Back to home</a>
     </div>
   </div>
 </footer>"""
@@ -253,35 +253,37 @@ def related_card_html(m: dict) -> str:
 
     cert_html = ''
     if 'CheckMate' in cert:
-        cert_html = '<span class="cert-badge" style="font-size:9px;padding:2px 6px;">&#10003; CM</span>'
+        cert_html = '<span class="cert-badge mp-cert-sm">&#10003; CM</span>'
     elif 'Stem' in cert:
-        cert_html = '<span class="cert-badge cert-badge-sc" style="font-size:9px;padding:2px 6px;">SC</span>'
+        cert_html = '<span class="cert-badge cert-badge-sc mp-cert-sm">SC</span>'
 
     PROXY = "https://images.weserv.nl/?url="
     img_src = (PROXY + img.replace("https://", "") + "&w=600&q=85&output=webp"
                if img and img.startswith("https://static.turbosquid") else img)
-    img_html = (
-        f'<img src="{img_src}" alt="{title}" loading="lazy" '
-        f'onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';">'
-        f'<div class="img-placeholder" style="color:{color};display:none;">'
-        f'<span style="font-size:22px;opacity:0.4;">&#128247;</span></div>'
-    ) if img else (
-        f'<div class="img-placeholder" style="color:{color};">'
-        f'<span style="font-size:22px;opacity:0.4;">&#128247;</span></div>'
-    )
+    if img:
+        img_html = (
+            f'<img src="{img_src}" alt="{title}" loading="lazy" onerror="imgErr(this)">'
+            f'<div class="img-placeholder" style="color:{color};">'
+            f'<span class="mp-rc-placeholder-icon">&#128247;</span></div>'
+        )
+    else:
+        img_html = (
+            f'<div class="img-placeholder" style="color:{color};display:flex;">'
+            f'<span class="mp-rc-placeholder-icon">&#128247;</span></div>'
+        )
 
-    return f'''<a href="/models/{slug}/" style="text-decoration:none;" class="model-card card-glow">
-        <div class="img-wrap" style="height:150px;background:#f5f5f5;">
+    return f'''<a href="/models/{slug}/" class="model-card card-glow mp-rc-link">
+        <div class="img-wrap mp-rc-img-wrap">
           {img_html}
         </div>
-        <div style="padding:12px 14px;">
-          <div style="display:flex;align-items:start;justify-content:space-between;gap:6px;margin-bottom:8px;">
-            <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#EDF2FF;line-height:1.3;letter-spacing:-0.01em;">{title}</div>
+        <div class="mp-rc-body">
+          <div class="mp-rc-head">
+            <div class="mp-rc-title">{title}</div>
             {cert_html}
           </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;">
-            <span class="chip chip-teal" style="font-size:10px;padding:2px 8px;">{cat}</span>
-            <span style="font-size:13px;font-weight:600;color:#EDF2FF;">{price_str}</span>
+          <div class="mp-rc-foot">
+            <span class="chip chip-teal mp-rc-chip">{cat}</span>
+            <span class="mp-rc-price">{price_str}</span>
           </div>
         </div>
       </a>'''
@@ -335,42 +337,98 @@ def model_page_html(m: dict, related: list[dict]) -> str:
         cert_detail    = 'StemCell — clean edge loops, consistent scale and universal rigging compatibility.'
 
     # Category chip
-    cat_chip = f'<a href="/categories/{cat_slug}/" class="chip chip-teal" style="text-decoration:none;font-size:12px;">{cat}</a>'
+    cat_chip = f'<a href="/categories/{cat_slug}/" class="chip chip-teal chip--sm">{cat}</a>'
     if subcat:
-        cat_chip += f' <span class="chip" style="font-size:12px;">{subcat}</span>'
+        cat_chip += f' <span class="chip chip--sm">{subcat}</span>'
 
-    # Stats (Units Sold and Previews removed per design)
+    # Chip rows
+    ind_chips = ' '.join(f'<span class="chip chip--sm">{i}</span>' for i in industries)
+    uc_chips  = ' '.join(f'<span class="chip chip--sm">{u}</span>' for u in use_cases)
+    kw_chips  = ' '.join(f'<span class="chip chip--kw">{k}</span>' for k in seo_kws[:6])
 
-    # Industries chips
-    ind_chips = ' '.join(f'<span class="chip" style="font-size:12px;">{i}</span>' for i in industries)
-    uc_chips  = ' '.join(f'<span class="chip" style="font-size:12px;">{u}</span>' for u in use_cases)
-    kw_chips  = ' '.join(f'<span class="chip" style="font-size:11px;padding:3px 10px;color:#4A5C7A;">{k}</span>' for k in seo_kws[:6])
+    # Cert color class
+    cert_val_class = 'mp-cert-gold' if 'CheckMate' in cert else ('mp-cert-purple' if 'Stem' in cert else 'mp-cert-none')
+    cert_val_text = cert if cert and cert != 'no certification' else 'None'
 
     # Hero image
     PROXY = "https://images.weserv.nl/?url="
     img_proxied = (PROXY + img.replace("https://", "") + "&w=600&q=85&output=webp"
                    if img and img.startswith("https://static.turbosquid") else img)
-    img_content = ''
     if img:
         img_content = (
             f'<img src="{img_proxied}" alt="{title} 3D model preview" '
-            f'onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';" '
-            f'style="width:100%;height:100%;object-fit:cover;display:block;">'
-            f'<div style="width:100%;height:100%;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:linear-gradient({gradient});">'
-            f'<span style="font-size:48px;opacity:0.3;">&#128247;</span>'
-            f'<span style="font-size:13px;color:{color};opacity:0.7;">{cat}</span>'
+            f'onerror="imgErr(this)" class="mp-hero-img">'
+            f'<div class="img-placeholder mp-placeholder">'
+            f'<span class="mp-placeholder-icon">&#128247;</span>'
+            f'<span class="mp-placeholder-cat" style="color:{color};">{cat}</span>'
             f'</div>'
         )
     else:
         img_content = (
-            f'<div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:linear-gradient({gradient});">'
-            f'<span style="font-size:48px;opacity:0.3;">&#128247;</span>'
-            f'<span style="font-size:13px;color:{color};opacity:0.7;">{cat}</span>'
+            f'<div class="img-placeholder mp-placeholder" style="display:flex;">'
+            f'<span class="mp-placeholder-icon">&#128247;</span>'
+            f'<span class="mp-placeholder-cat" style="color:{color};">{cat}</span>'
             f'</div>'
         )
 
-    # Related cards
-    related_cards = '\n        '.join(related_card_html(r) for r in related[:4])
+    # Pre-computed conditional HTML blocks
+    industries_html = ''
+    if industries:
+        industries_html = (
+            f'<div class="mp-industries">'
+            f'<div class="mp-field-label">Used In</div>'
+            f'<div class="mp-chip-row">{ind_chips}</div>'
+            f'</div>'
+        )
+
+    use_cases_html = ''
+    if use_cases:
+        use_cases_html = (
+            f'<div>'
+            f'<div class="section-label mp-mb12">Use Cases</div>'
+            f'<div class="mp-chip-row-8">{uc_chips}</div>'
+            f'</div>'
+        )
+
+    keywords_html = ''
+    if seo_kws:
+        keywords_html = (
+            f'<div>'
+            f'<div class="section-label mp-mb12">Search Keywords</div>'
+            f'<div class="mp-chip-row">{kw_chips}</div>'
+            f'</div>'
+        )
+
+    subcat_row_html = ''
+    if subcat:
+        subcat_row_html = (
+            f'<div class="mp-info-row">'
+            f'<span class="mp-info-row-label">Subcategory</span>'
+            f'<span class="mp-info-row-val-sm">{subcat}</span>'
+            f'</div>'
+        )
+
+    cert_card_html = ''
+    if cert_detail:
+        cert_card_html = (
+            f'<div class="mp-cert-card">'
+            f'<div class="mp-cert-card-label">Quality Certified</div>'
+            f'<p class="mp-cert-card-text">{cert_detail}</p>'
+            f'</div>'
+        )
+
+    related_section_html = ''
+    if related:
+        related_cards = '\n        '.join(related_card_html(r) for r in related[:4])
+        related_section_html = (
+            f'<section class="mp-related-section">'
+            f'<div class="max-w-7xl mx-auto">'
+            f'<div class="section-label mp-mb8">More in {cat}</div>'
+            f'<h2 class="mp-related-h2">Related 3D Models</h2>'
+            f'<div class="mp-related-grid">'
+            f'\n        {related_cards}'
+            f'\n    </div></div></section>'
+        )
 
     # Schema.org JSON-LD
     schema = json.dumps({
@@ -415,62 +473,59 @@ def model_page_html(m: dict, related: list[dict]) -> str:
 
 {nav_html()}
 
-<main style="position:relative;z-index:1;">
+<main class="mp-main">
 
 <!-- Breadcrumb -->
-<div style="border-bottom:1px solid #1E2B44;background:rgba(14,18,32,0.5);">
-  <div class="max-w-7xl mx-auto px-6 py-3" style="display:flex;align-items:center;gap:8px;font-size:13px;color:#7A8DB0;flex-wrap:wrap;">
-    <a href="/" style="color:#7A8DB0;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDF2FF'" onmouseout="this.style.color='#7A8DB0'">Home</a>
-    <span style="color:#1E2B44;">&#8250;</span>
-    <a href="/categories/{cat_slug}/" style="color:#7A8DB0;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDF2FF'" onmouseout="this.style.color='#7A8DB0'">{cat}</a>
-    <span style="color:#1E2B44;">&#8250;</span>
-    <span style="color:#EDF2FF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:320px;">{title}</span>
+<div class="mp-bc-bar">
+  <div class="max-w-7xl mx-auto px-6 py-3 mp-bc-inner">
+    <a href="/" class="mp-bc-link">Home</a>
+    <span class="mp-bc-sep">&#8250;</span>
+    <a href="/categories/{cat_slug}/" class="mp-bc-link">{cat}</a>
+    <span class="mp-bc-sep">&#8250;</span>
+    <span class="mp-bc-current">{title}</span>
   </div>
 </div>
 
 <!-- Model Hero -->
-<section style="padding:48px 24px;border-bottom:1px solid #1E2B44;">
+<section class="mp-hero-section">
   <div class="max-w-7xl mx-auto">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" class="md:grid-cols-2">
+    <div class="mp-hero-grid">
 
       <!-- Image -->
-      <div class="hero-img-frame" style="aspect-ratio:4/3;background:linear-gradient({gradient});">
+      <div class="hero-img-frame mp-hero-frame" style="--mp-cat-bg:linear-gradient({gradient});">
         {img_content}
       </div>
 
       <!-- Info -->
-      <div style="display:flex;flex-direction:column;gap:20px;">
+      <div class="mp-info-col">
 
-        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <div class="mp-badge-row">
           {cat_chip}
           {cert_html_hero}
         </div>
 
-        <h1 style="font-family:'Syne',sans-serif;font-size:clamp(20px,3vw,32px);font-weight:800;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.15;margin:0;">
+        <h1 class="mp-h1">
           {title}
         </h1>
 
         <!-- Price -->
-        <div style="display:flex;align-items:baseline;gap:10px;">
-          <span style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:#EDF2FF;letter-spacing:-0.04em;line-height:1;">{price_str}</span>
-          <span style="font-size:14px;color:#7A8DB0;font-weight:500;">USD on TurboSquid</span>
+        <div class="mp-price-row">
+          <span class="mp-price">{price_str}</span>
+          <span class="mp-price-label">USD on TurboSquid</span>
         </div>
 
         <!-- CTAs -->
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <a href="{ref_url}" target="_blank" rel="noopener" class="btn-primary" style="justify-content:center;">
+        <div class="mp-ctas">
+          <a href="{ref_url}" target="_blank" rel="noopener" class="btn-primary mp-btn-center">
             {LINK_ICON_MD}
             View on TurboSquid
           </a>
-          <a href="/categories/{cat_slug}/" class="btn-ghost" style="justify-content:center;font-size:13px;">
+          <a href="/categories/{cat_slug}/" class="btn-ghost mp-btn-browse">
             Browse {cat} Models
           </a>
         </div>
 
-
-
-        <!-- Industries -->
-        {'<div style="margin-top:4px;"><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:#4A5C7A;text-transform:uppercase;margin-bottom:10px;">Used In</div><div style="display:flex;flex-wrap:wrap;gap:6px;">' + ind_chips + '</div></div>' if industries else ''}
+        {industries_html}
 
       </div>
     </div>
@@ -478,51 +533,50 @@ def model_page_html(m: dict, related: list[dict]) -> str:
 </section>
 
 <!-- Details -->
-<section style="padding:48px 24px;border-bottom:1px solid #1E2B44;">
+<section class="mp-details-section">
   <div class="max-w-7xl mx-auto">
-    <div style="display:grid;grid-template-columns:2fr 1fr;gap:48px;align-items:start;">
+    <div class="mp-details-grid">
 
       <!-- Description + Use Cases -->
-      <div style="display:flex;flex-direction:column;gap:32px;">
+      <div class="mp-details-left">
 
         <div>
-          <div class="section-label" style="margin-bottom:12px;">About This Model</div>
-          <p style="font-size:15px;color:#C8D4EE;line-height:1.8;max-width:680px;">
+          <div class="section-label mp-mb12">About This Model</div>
+          <p class="mp-desc-text">
             {description}
           </p>
         </div>
 
-        {'<div><div class="section-label" style="margin-bottom:12px;">Use Cases</div><div style="display:flex;flex-wrap:wrap;gap:8px;">' + uc_chips + '</div></div>' if use_cases else ''}
+        {use_cases_html}
 
-        {'<div><div class="section-label" style="margin-bottom:12px;">Search Keywords</div><div style="display:flex;flex-wrap:wrap;gap:6px;">' + kw_chips + '</div></div>' if seo_kws else ''}
+        {keywords_html}
 
       </div>
 
       <!-- Cert + Quick Info -->
-      <div style="display:flex;flex-direction:column;gap:16px;">
-        <div style="background:#0E1220;border:1px solid #1E2B44;border-radius:12px;padding:20px;">
-          <div class="section-label" style="margin-bottom:14px;">Quick Info</div>
-          <div style="display:flex;flex-direction:column;gap:12px;">
-            <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1E2B44;padding-bottom:10px;">
-              <span style="font-size:13px;color:#7A8DB0;">Price</span>
-              <span style="font-size:14px;font-weight:600;color:#EDF2FF;">{price_str}</span>
+      <div class="mp-sidebar-col">
+        <div class="mp-info-card">
+          <div class="section-label mp-mb14">Quick Info</div>
+          <div class="mp-info-rows">
+            <div class="mp-info-row">
+              <span class="mp-info-row-label">Price</span>
+              <span class="mp-info-row-val">{price_str}</span>
             </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1E2B44;padding-bottom:10px;">
-              <span style="font-size:13px;color:#7A8DB0;">Category</span>
-              <a href="/categories/{cat_slug}/" style="font-size:13px;font-weight:600;color:#00E5C4;text-decoration:none;">{cat}</a>
+            <div class="mp-info-row">
+              <span class="mp-info-row-label">Category</span>
+              <a href="/categories/{cat_slug}/" class="mp-cat-link">{cat}</a>
             </div>
-            {'<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1E2B44;padding-bottom:10px;"><span style="font-size:13px;color:#7A8DB0;">Subcategory</span><span style="font-size:13px;font-weight:500;color:#EDF2FF;">' + subcat + '</span></div>' if subcat else ''}
-
-            <div style="display:flex;justify-content:space-between;align-items:center;">
-              <span style="font-size:13px;color:#7A8DB0;">Certification</span>
-              <span style="font-size:13px;font-weight:500;color:{'#FFC600' if 'CheckMate' in cert else ('#7C3AED' if 'Stem' in cert else '#4A5C7A')};">{cert if cert and cert != 'no certification' else 'None'}</span>
+            {subcat_row_html}
+            <div class="mp-info-row-last">
+              <span class="mp-info-row-label">Certification</span>
+              <span class="{cert_val_class}">{cert_val_text}</span>
             </div>
           </div>
         </div>
 
-        {'<div style="background:rgba(255,198,0,0.05);border:1px solid rgba(255,198,0,0.2);border-radius:12px;padding:18px;"><div style="font-size:11px;font-weight:600;letter-spacing:0.08em;color:#FFC600;text-transform:uppercase;margin-bottom:8px;">Quality Certified</div><p style="font-size:13px;color:#A89060;line-height:1.6;margin:0;">' + cert_detail + '</p></div>' if cert_detail else ''}
+        {cert_card_html}
 
-        <a href="{ref_url}" target="_blank" rel="noopener" class="btn-ts-lg" style="justify-content:center;width:100%;">
+        <a href="{ref_url}" target="_blank" rel="noopener" class="btn-ts-lg mp-btn-full">
           {LINK_ICON_SM}
           Buy on TurboSquid
         </a>
@@ -532,8 +586,7 @@ def model_page_html(m: dict, related: list[dict]) -> str:
   </div>
 </section>
 
-<!-- Related Models -->
-{'<section style="padding:48px 24px 72px;"><div class="max-w-7xl mx-auto"><div class="section-label" style="margin-bottom:8px;">More in ' + cat + '</div><h2 style="font-family:\'Syne\',sans-serif;font-size:clamp(18px,2.5vw,24px);font-weight:700;letter-spacing:-0.03em;color:#EDF2FF;line-height:1.1;margin-bottom:28px;">Related 3D Models</h2><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;">' + related_cards + '</div></div></section>' if related else ''}
+{related_section_html}
 
 </main>
 
