@@ -231,7 +231,7 @@ CATEGORIES = {
 def nav_html():
     return """<header class="cat-header sticky top-0 z-50 border-b border-[#e5e7eb]">
   <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-8">
-    <a href="/3D-Models/" class="flex items-center gap-2.5 shrink-0" style="text-decoration:none;">
+    <a href="/3D-Models/" class="flex items-center gap-2.5 shrink-0 nav-logo-link">
       <div class="cat-logo-icon">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
       </div>
@@ -343,7 +343,7 @@ def model_card_html(m, color, gradient):
 
     raw_img = m.get('image_url', '')
     if img:
-        img_html = f'<img src="{img}" data-src="{raw_img}" alt="{title} 3D model preview" loading="lazy" onerror="imgErr(this)"><div class="img-placeholder"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">{cat}</span></div>'
+        img_html = f'<img src="{img}" data-src="{raw_img}" alt="{title} 3D model preview" loading="lazy"><div class="img-placeholder"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">{cat}</span></div>'
     else:
         img_html = f'<div class="img-placeholder" style="display:flex;"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">{cat}</span></div>'
 
@@ -568,7 +568,7 @@ tailwind.config = {{
   <div class="max-w-7xl mx-auto">
     <div class="cat-rel-wrap">
       <div class="section-label">Explore More</div>
-      <h2 class="section-h2" style="margin-bottom:24px;">Related Categories</h2>
+      <h2 class="section-h2 section-h2--mb24">Related Categories</h2>
       <div class="rel-grid">
         {related_cards}
       </div>

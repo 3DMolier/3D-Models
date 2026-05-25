@@ -21,7 +21,7 @@ function loadMore() {
         ? '<span class="cert-badge" style="background:rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.25);color:#7C3AED;">SC</span>'
         : '';
     var imgHtml = m.img
-      ? '<img src="' + proxyImg(m.img) + '" data-src="' + m.img + '" alt="' + m.title.replace(/"/g,'&quot;') + '" loading="lazy" onerror="imgErr(this)"><div class="img-placeholder" style="color:' + color + ';display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:' + color + ';">' + m.cat + '</span></div>'
+      ? '<img src="' + proxyImg(m.img) + '" data-src="' + m.img + '" alt="' + m.title.replace(/"/g,'&quot;') + '" loading="lazy"><div class="img-placeholder" style="color:' + color + ';display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:' + color + ';">' + m.cat + '</span></div>'
       : '<div class="img-placeholder" style="color:' + color + ';"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:' + color + ';">' + m.cat + '</span></div>';
     var card = document.createElement('div');
     card.className = 'model-card card-glow';
@@ -62,5 +62,11 @@ function initFilterChips() {
 }
 
 document.addEventListener('DOMContentLoaded', initFilterChips);
+
+document.addEventListener('error', function(e) {
+  if (e.target && e.target.tagName === 'IMG' && typeof imgErr === 'function') {
+    imgErr(e.target);
+  }
+}, true);
 
 })();
