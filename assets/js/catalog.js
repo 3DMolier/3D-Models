@@ -74,11 +74,11 @@ function proxyImg(url) {
 function cardHtml(m) {
   const price = Number.isInteger(m.p) ? m.p : m.p.toFixed(0);
   const certBadge = certBadgeHtml(m.cert);
-  return `<a href=”/3D-Models/models/${m.s}/” class=”model-card”>
-    <div class=”card-img”>
-      <img src=”${m.img || ''}” data-src=”${proxyImg(m.img)}” alt=”${m.n} 3D model — ${m.c} by 3D Molier” loading=”lazy” onerror=”imgErr(this)”>
-      <div class=”img-fallback” style=”display:none;background:#f5f5f5;”>
-        <span style=”font-size:36px;”>&#128247;</span>
+  return `<a href="/3D-Models/models/${m.s}/" class="model-card">
+    <div class="card-img">
+      <img src="${m.img || ''}" data-src="${proxyImg(m.img)}" alt="${m.n} 3D model — ${m.c} by 3D Molier" width="800" height="450" loading="lazy" decoding="async" onerror="imgErr(this)">
+      <div class="img-fallback" style="display:none;background:#f5f5f5;">
+        <span style="font-size:36px;">&#128247;</span>
       </div>
       <div class="card-overlay"></div>
       <span class="card-cat-badge">${m.c}</span>
@@ -133,21 +133,21 @@ function updateActiveFilters() {
   const chips = [];
 
   selCats.forEach(c => {
-    chips.push(`<div class="active-chip">${c} <button onclick="removecat('${c}')" title="Remove">Г—</button></div>`);
+    chips.push(`<div class="active-chip">${c} <button onclick="removecat('${c}')" title="Remove">&times;</button></div>`);
   });
 
   if (priceMin > 0 || priceMax < 999999) {
-    const label = priceMax >= 999999 ? `$${priceMin}+` : `$${priceMin} –“ $${priceMax}`;
-    chips.push(`<div class="active-chip">${label} <button onclick="removeprice()" title="Remove">Г—</button></div>`);
+    const label = priceMax >= 999999 ? `$${priceMin}+` : `$${priceMin} – $${priceMax}`;
+    chips.push(`<div class="active-chip">${label} <button onclick="removeprice()" title="Remove">&times;</button></div>`);
   }
 
   selCerts.forEach(c => {
     const label = c === 'no certification' ? 'No Cert' : c;
-    chips.push(`<div class="active-chip">${label} <button onclick="removecert('${c}')" title="Remove">Г—</button></div>`);
+    chips.push(`<div class="active-chip">${label} <button onclick="removecert('${c}')" title="Remove">&times;</button></div>`);
   });
 
   if (searchQ) {
-    chips.push(`<div class="active-chip">Search: "${searchQ}" <button onclick="clearsearch()" title="Remove">Г—</button></div>`);
+    chips.push(`<div class="active-chip">Search: "${searchQ}" <button onclick="clearsearch()" title="Remove">&times;</button></div>`);
   }
 
   wrap.innerHTML = chips.join('');
