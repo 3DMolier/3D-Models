@@ -1,0 +1,69 @@
+name: Minify CSS and JS
+
+on:
+  push:
+    paths:
+      - 'assets/css/styles.css'
+      - 'assets/css/model-pages.css'
+      - 'assets/js/*.js'
+  workflow_dispatch:
+
+jobs:
+  minify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install tools
+        run: npm install -g clean-css-cli terser
+
+      - name: Validate JS syntax
+        run: |
+          ERRORS=0
+          for f in assets/js/site.js assets/js/catalog.js assets/js/search.js \
+                   assets/js/category-pages.js assets/js/full-catalog.js; do
+            if [ -f "$f" ]; then
+              node --check "$f" && echo "OK: $f" || { echo "SYNTAX ERROR: $f"; ERRORS=$((ERRORS+1)); }
+            fi
+          done
+          [ $ERRORS -eq 0 ] || exit 1
+
+      - name: Minify CSS
+        run: |
+          cleancss -o assets/css/styles.min.css assets/css/styles.css
+          echo "styles.min.css: $(wc -c < assets/css/styles.min.css) bytes"
+          cleancss -o assets/css/model-pages.min.css assets/css/model-pages.css
+          echo "model-pages.min.css: $(wc -c < assets/css/model-pages.min.css) bytes"
+
+      - name: Minify JS
+        run: |
+          for f in assets/js/site.js assets/js/catalog.js assets/js/search.js \
+                   assets/js/category-pages.js assets/js/full-catalog.js; do
+            if [ -f "$f" ]; then
+              terser "$f" -o "${f%.js}.min.js" --compress --mangle
+              echo "Minified $f"
+            fi
+          done
+
+      - name: Commit minified files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f assets/css/styles.min.css assets/css/model-pages.min.css \
+            assets/js/site.min.js assets/js/catalog.min.js assets/js/search.min.js \
+            assets/js/category-pages.min.js assets/js/full-catalog.min.js 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "chore: auto-minify CSS and JS [skip ci]"
+            git push origin HEAD
+          fi
