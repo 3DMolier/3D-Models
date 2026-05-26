@@ -8,6 +8,8 @@ on:
       - 'assets/css/catalog.css'
       - 'assets/css/search.css'
       - 'assets/css/full-catalog.css'
+      - 'assets/css/static-pages.css'
+      - 'assets/css/404.css'
       - 'assets/js/*.js'
   workflow_dispatch:
 
@@ -52,6 +54,10 @@ jobs:
           echo "search.min.css: $(wc -c < assets/css/search.min.css) bytes"
           cleancss -o assets/css/full-catalog.min.css assets/css/full-catalog.css
           echo "full-catalog.min.css: $(wc -c < assets/css/full-catalog.min.css) bytes"
+          cleancss -o assets/css/static-pages.min.css assets/css/static-pages.css
+          echo "static-pages.min.css: $(wc -c < assets/css/static-pages.min.css) bytes"
+          cleancss -o assets/css/404.min.css assets/css/404.css
+          echo "404.min.css: $(wc -c < assets/css/404.min.css) bytes"
 
       - name: Minify JS
         run: |
@@ -69,6 +75,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -f assets/css/styles.min.css assets/css/model-pages.min.css \
             assets/css/catalog.min.css assets/css/search.min.css assets/css/full-catalog.min.css \
+            assets/css/static-pages.min.css assets/css/404.min.css \
             assets/js/site.min.js assets/js/catalog.min.js assets/js/search.min.js \
             assets/js/category-pages.min.js assets/js/full-catalog.min.js 2>/dev/null || true
           if git diff --staged --quiet; then
