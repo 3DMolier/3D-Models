@@ -560,6 +560,19 @@ def model_page_html(m: dict, related: list[dict]) -> str:
 
 {related_section_html}
 
+<section class="mp-cta-section" aria-label="Custom order">
+  <div class="mp-cta-inner">
+    <div class="mp-cta-card">
+      <div class="mp-cta-text">
+        <div class="section-label mp-mb8">Custom Order</div>
+        <h2 class="mp-cta-heading">Need a similar custom 3D model?</h2>
+        <p class="mp-cta-desc">Get a model built to your exact specifications — dimensions, file format, topology, rigging or any technical requirement. Professional delivery within agreed timelines.</p>
+      </div>
+      <a href="/3D-Models/custom-order/" class="btn-primary mp-cta-btn">Request Custom Model &#8594;</a>
+    </div>
+  </div>
+</section>
+
 </main>
 
 {footer_html(cat, cat_slug)}
