@@ -250,7 +250,7 @@ def model_card_html(m: dict) -> str:
 
     if img:
         img_html = (
-            f'<img src="{img}" data-src="{raw_img}" alt="{title} 3D model preview" loading="lazy" '
+            f'<img src="{img}" data-src="{raw_img}" alt="{title} 3D model preview" width="800" height="450" decoding="async" loading="lazy" '
             f'onerror="imgErr(this)">'
             f'<div class="img-placeholder"><span class="mc-ph-icon">&#128247;</span>'
             f'<span class="mc-ph-label">{cat}</span></div>'

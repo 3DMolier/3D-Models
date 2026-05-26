@@ -294,7 +294,7 @@ def model_card(m):
         price_str = f"${float(m['price']):.0f}"
     except:
         price_str = f"${m['price']}"
-    img_tag = f'<img src="{img}" alt="{title} 3D model — {cat}" loading="lazy" onerror="this.style.display=\'none\'">' if img else ""
+    img_tag = f'<img src="{img}" alt="{title} 3D model — {cat}" width="800" height="450" decoding="async" loading="lazy" onerror="this.style.display=\'none\'">' if img else ""
     return f'''<a href="/3D-Models/models/{slug}/" class="model-card">
       {img_tag}
       <div class="model-card-body">

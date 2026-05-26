@@ -422,7 +422,7 @@ def model_card_html(m, color, gradient):
 
     raw_img = m.get('image_url', '')
     if img:
-        img_html = f'<img src="{img}" data-src="{raw_img}" alt="{title} 3D model preview" loading="lazy"><div class="img-placeholder"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">{cat}</span></div>'
+        img_html = f'<img src="{img}" data-src="{raw_img}" alt="{title} 3D model preview" width="800" height="450" decoding="async" loading="lazy"><div class="img-placeholder"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">{cat}</span></div>'
     else:
         img_html = f'<div class="img-placeholder" style="display:flex;"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">{cat}</span></div>'
 

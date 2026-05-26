@@ -202,7 +202,7 @@ def related_card_html(m: dict) -> str:
                if img and img.startswith("https://static.turbosquid") else img)
     if img:
         img_html = (
-            f'<img src="{img_src}" alt="{title}" loading="lazy" onerror="imgErr(this)">'
+            f'<img src="{img_src}" alt="{title}" width="800" height="450" decoding="async" loading="lazy" onerror="imgErr(this)">'
             f'<div class="img-placeholder">'
             f'<span class="mp-rc-placeholder-icon">&#128247;</span></div>'
         )
@@ -297,6 +297,7 @@ def model_page_html(m: dict, related: list[dict]) -> str:
     if img:
         img_content = (
             f'<img src="{img_proxied}" alt="{title} 3D model preview" '
+            f'width="1200" height="675" decoding="async" loading="eager" fetchpriority="high" '
             f'onerror="imgErr(this)" class="mp-hero-img">'
             f'<div class="img-placeholder mp-placeholder">'
             f'<span class="mp-placeholder-icon">&#128247;</span>'
