@@ -35,7 +35,7 @@ function onFirstChunk() {
   if(statusText)statusText.textContent='';
   if(sortSel)sortSel.disabled=false;
   if(qEl){qEl.disabled=false;qEl.placeholder='Search '+FC.n.length+' models…';}
-  if(filterBar)filterBar.style.display='';
+  if(filterBar)filterBar.classList.add('visible');
   applyFilters();
   var urlQ=new URLSearchParams(location.search).get('q');
   if(urlQ&&qEl){qEl.value=urlQ;searchQ=urlQ.toLowerCase();applyFilters();}

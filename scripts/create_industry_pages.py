@@ -223,6 +223,50 @@ INDUSTRIES = {
         "categories": [("Vehicles", "vehicles"), ("Aircraft", "aircraft"), ("Industrial Equipment", "industrial-equipment")],
         "formats": ["FBX", "OBJ", "3ds Max", "Cinema 4D", "Blender", "Octane"],
     },
+    "software-development": {
+        "slug": "software-development",
+        "title": "Software Development 3D Models — UI Assets & Tech Visuals | 3D Molier",
+        "h1": "Software Development 3D Models",
+        "desc": "High-quality 3D models for software companies, SaaS presentations, product demos, explainer videos and tech marketing. Clean and modern visuals for a digital-first audience.",
+        "color": "#06B6D4",
+        "intro": "High-quality 3D assets for software companies, SaaS presentations, product demos, explainer videos and tech marketing. Clean and modern visuals for a digital-first audience.",
+        "use_cases": ["Product demo videos and presentations", "SaaS marketing and landing pages", "Tech explainer animations", "Developer blog illustrations", "Conference keynote slides", "App store screenshots and previews"],
+        "categories": [("Electronics & Gadgets", "electronics-gadgets"), ("Industrial Equipment", "industrial-equipment"), ("Furniture & Interior", "furniture-interior")],
+        "formats": ["FBX", "OBJ", "Blender", "Cinema 4D", "3ds Max", "GLB"],
+    },
+    "event-management": {
+        "slug": "event-management",
+        "title": "Event Management 3D Models — Venues, Stages & Exhibition Assets | 3D Molier",
+        "h1": "Event Management 3D Models",
+        "desc": "Professional 3D assets for event designers, venue planners, trade show organizers and entertainment companies. Visualize your event before the first chair is placed.",
+        "color": "#EC4899",
+        "intro": "Professional 3D assets for event designers, venue planners, trade show organizers and entertainment companies. Visualize your event before the first chair is placed.",
+        "use_cases": ["Conference and trade show layout planning", "Stage and lighting design visualization", "Wedding and gala venue previews", "Corporate event marketing materials", "Concert and festival production", "Virtual event environment creation"],
+        "categories": [("Furniture & Interior", "furniture-interior"), ("Architecture Landmarks", "architecture-landmarks"), ("Characters & People", "characters-people")],
+        "formats": ["FBX", "OBJ", "Blender", "Cinema 4D", "3ds Max"],
+    },
+    "hardware": {
+        "slug": "hardware",
+        "title": "Hardware 3D Models — Electronics, Devices & Industrial Assets | 3D Molier",
+        "h1": "Hardware 3D Models",
+        "desc": "Precision 3D assets for hardware startups, electronics manufacturers, industrial designers and product teams. From a circuit board to a full assembly — visualized for manufacturing and marketing.",
+        "color": "#10B981",
+        "intro": "Precision 3D assets for hardware startups, electronics manufacturers, industrial designers and product teams. From a circuit board to a full assembly — visualized for manufacturing and marketing.",
+        "use_cases": ["Product packaging and marketing visuals", "Industrial design presentations", "Technical documentation illustrations", "Investor pitch decks", "Manufacturing process visualization", "IoT product demos and prototypes"],
+        "categories": [("Electronics & Gadgets", "electronics-gadgets"), ("Industrial Equipment", "industrial-equipment"), ("Vehicles", "vehicles")],
+        "formats": ["FBX", "OBJ", "Blender", "Cinema 4D", "3ds Max", "STEP"],
+    },
+    "3d-printing": {
+        "slug": "3d-printing",
+        "title": "3D Printing Models — Prototyping, Manufacturing & Fabrication Assets | 3D Molier",
+        "h1": "3D Printing 3D Models",
+        "desc": "Production-ready 3D assets with clean topology and real-world scale for 3D printing services, rapid prototyping, product visualization and additive manufacturing workflows.",
+        "color": "#84CC16",
+        "intro": "Production-ready 3D assets with clean topology and real-world scale for 3D printing services, rapid prototyping, product visualization and additive manufacturing workflows.",
+        "use_cases": ["Rapid prototyping and product design", "Custom manufacturing visualizations", "Educational STEM models", "Collectibles and figurines", "Architectural scale models", "Medical device prototypes"],
+        "categories": [("Industrial Equipment", "industrial-equipment"), ("Medical", "medical-3d-models"), ("Vehicles", "vehicles")],
+        "formats": ["OBJ", "STL", "FBX", "Blender", "3ds Max"],
+    },
 }
 
 def get_top_models_for_cats(cats_list, n=6):
@@ -280,7 +324,7 @@ def build_industry_page(slug, meta):
       <div class="model-grid">{models_html}</div>
       <div class="text-center mt-8">
         <a href="/3D-Models/catalog/" class="btn-primary">Browse Full Catalog</a>
-        <a href="/3D-Models/search/" class="btn-ghost btn-ghost--md" style="margin-left:12px;">Search Models</a>
+        <a href="/3D-Models/search/" class="btn-ghost btn-ghost--md ind-search-ml">Search Models</a>
       </div>
     </div>
   </section>''' if models_html else ""
@@ -294,8 +338,8 @@ def build_industry_page(slug, meta):
   <section class="page-section page-section--border-bottom">
     <div class="max-w-7xl mx-auto">
       <div class="section-label">Industry</div>
-      <h1 class="cat-page-h1" style="margin-bottom:20px;">{meta["h1"]}</h1>
-      <p class="section-desc" style="max-width:720px;margin-bottom:32px;">{meta["intro"]}</p>
+      <h1 class="cat-page-h1 ind-h1-mb">{meta["h1"]}</h1>
+      <p class="section-desc ind-desc-wide">{meta["intro"]}</p>
       <div class="flex gap-3 flex-wrap">
         <a href="/3D-Models/catalog/" class="btn-primary">Browse Catalog</a>
         <a href="/3D-Models/custom-order/" class="btn-ghost">Request Custom Model</a>
@@ -305,17 +349,17 @@ def build_industry_page(slug, meta):
 
   <!-- Content -->
   <section class="page-section">
-    <div class="max-w-7xl mx-auto" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;">
+    <div class="max-w-7xl mx-auto ind-two-col">
 
       <div>
         <h2 class="section-h2 section-h2--mb24">Common Use Cases</h2>
-        <ul style="list-style:none;padding:0;">{use_cases_html}</ul>
+        <ul class="ind-uc-list">{use_cases_html}</ul>
       </div>
 
       <div>
         <h2 class="section-h2 section-h2--mb24">Available Categories</h2>
-        <div style="margin-bottom:24px;">{cat_links_html}</div>
-        <h2 class="section-h2" style="margin-bottom:16px;">Supported Formats</h2>
+        <div class="ind-cat-list">{cat_links_html}</div>
+        <h2 class="section-h2 ind-h2-mb16">Supported Formats</h2>
         <div class="flex flex-wrap gap-2">{formats_html}</div>
       </div>
 
@@ -327,8 +371,8 @@ def build_industry_page(slug, meta):
   <!-- CTA -->
   <section class="page-section page-section--dark">
     <div class="max-w-2xl mx-auto text-center">
-      <h2 class="section-h2" style="color:#ffffff;margin-bottom:16px;">Need a Custom 3D Model?</h2>
-      <p class="section-desc mx-auto" style="color:#d1d5db;margin-bottom:28px;">We build any 3D model to your exact specifications — new assets or modifications to existing catalog models.</p>
+      <h2 class="section-h2 ind-cta-h2 ind-h2-mb16">Need a Custom 3D Model?</h2>
+      <p class="section-desc mx-auto ind-cta-text">We build any 3D model to your exact specifications — new assets or modifications to existing catalog models.</p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="/3D-Models/custom-order/" class="btn-primary">Request Custom Model</a>
         <a href="/3D-Models/contact/" class="btn-ghost--cta btn-ghost">Contact Us</a>
@@ -531,11 +575,7 @@ def fix_industry_links_in_existing_pages():
         "/industries/games/": "/3D-Models/industries/game-development/",
         "/industries/simulation/": "/3D-Models/industries/aerospace/",
         "/industries/virtualreality/": "/3D-Models/industries/virtual-reality/",
-        "/industries/aerospace/": "/3D-Models/industries/aerospace/",
         "/industries/militarydefense/": "/3D-Models/industries/military-defense/",
-        "/industries/medical/": "/3D-Models/industries/medical/",
-        "/industries/architecture/": "/3D-Models/industries/architecture/",
-        "/industries/advertising/": "/3D-Models/industries/advertising/",
     }
     updated = 0
     for p in ROOT.rglob("*.html"):
