@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -14,112 +14,7 @@
 <link rel="canonical" href="https://3dmolier.github.io/3D-Models/full-catalog/">
 <link rel="alternate" hreflang="en" href="https://3dmolier.github.io/3D-Models/full-catalog/">
 <link rel="alternate" hreflang="x-default" href="https://3dmolier.github.io/3D-Models/full-catalog/">
-<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css"><style>
-:root{--bg:#fafafa;--surface:#fff;--border:#e5e5e5;--text:#111;--muted:#6b7280}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Open Sans',sans-serif;font-size:15px;line-height:1.6}
-
-/* HERO */
-.hero{max-width:1400px;margin:0 auto;padding:36px 24px 24px;border-bottom:1px solid var(--border)}
-.hero h1{font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(24px,3.5vw,38px);letter-spacing:-0.03em;line-height:1.2}
-.hero-sub{color:var(--muted);margin-top:6px;font-size:14px}
-.hero-stats{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
-.hs{background:#f5f5f5;border:1px solid var(--border);border-radius:6px;padding:9px 16px}
-.hs .v{font-family:'Playfair Display',serif;font-size:17px;font-weight:700}
-.hs .l{font-size:11px;color:var(--muted);margin-top:1px}
-
-/* SEARCH */
-.search-row{display:flex;gap:12px;align-items:center;margin-top:16px;flex-wrap:wrap}
-.sw{position:relative;flex:1;min-width:260px;max-width:520px}
-.si{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
-#q{width:100%;background:#fff;border:1px solid var(--border);color:#111;font-family:'Open Sans',sans-serif;font-size:14px;padding:10px 14px 10px 38px;border-radius:6px;outline:none;transition:border-color .2s}
-#q:focus{border-color:#111}
-#q::placeholder{color:#bbb}
-.sort-inline{display:flex;align-items:center;gap:8px}
-.sort-inline label{font-size:13px;color:var(--muted)}
-#sort-select{background:#fff;border:1px solid var(--border);color:#111;font-family:'Open Sans',sans-serif;font-size:13px;padding:6px 10px;border-radius:6px;outline:none;cursor:pointer}
-
-/* STATUS BAR */
-.status-bar{max-width:1400px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--border);font-size:13px;color:var(--muted);min-height:44px}
-#status-msg{display:flex;align-items:center;gap:8px}
-.bar-spinner{width:14px;height:14px;border:2px solid #e5e5e5;border-top-color:#111;border-radius:50%;animation:spin .65s linear infinite;flex-shrink:0}
-@keyframes spin{to{transform:rotate(360deg)}}
-#results-count strong{color:#111}
-
-/* FILTERS */
-.filter-bar{max-width:1400px;margin:0 auto;padding:12px 24px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--border)}
-.fb-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#999;margin-right:4px}
-.ftag{background:#fff;border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:500;color:#555;cursor:pointer;transition:all .15s;white-space:nowrap}
-.ftag:hover{border-color:#888;color:#111}
-.ftag.active{background:#111;border-color:#111;color:#fff;font-weight:600}
-.ftag-sep{width:1px;height:18px;background:var(--border);flex-shrink:0;margin:0 4px}
-#clear-all{background:none;border:none;font-family:'Open Sans',sans-serif;font-size:12px;color:#cc3333;cursor:pointer;padding:4px 8px;border-radius:4px;display:none;transition:background .15s}
-#clear-all:hover{background:#fff0f0}
-#clear-all.show{display:inline-block}
-
-/* GRID */
-.grid-wrap{max-width:1400px;margin:0 auto;padding:24px 24px 80px}
-#model-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
-
-/* SKELETON CARDS */
-.sk{background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden}
-.sk-img{height:170px;background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);background-size:200% 100%;animation:shimmer 1.4s infinite}
-.sk-body{padding:12px}
-.sk-line{height:12px;border-radius:3px;background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;margin-bottom:8px}
-.sk-line.short{width:55%}
-@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-
-/* REAL CARDS */
-.mc{background:#fff;border:1px solid #e5e5e5;border-radius:6px;overflow:hidden;transition:transform .25s cubic-bezier(.4,0,.2,1),box-shadow .25s;text-decoration:none;display:flex;flex-direction:column;position:relative}
-.mc:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.09);border-color:#ccc}
-.mc-img{position:relative;height:170px;overflow:hidden;background:#f5f5f5;flex-shrink:0}
-.mc-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s cubic-bezier(.4,0,.2,1)}
-.mc:hover .mc-img img{transform:scale(1.04)}
-.mc-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:36px;opacity:.15}
-.mc-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.07) 0%,transparent 45%);pointer-events:none}
-.mc-cert{position:absolute;top:7px;right:7px;font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px;text-transform:uppercase;letter-spacing:.05em}
-.cert-sc{background:#f0e8ff;color:#6633cc;border:1px solid #d8c8ff}
-.cert-cm{background:#e8f0ff;color:#3366cc;border:1px solid #c8d8ff}
-.mc-qv{position:absolute;bottom:0;left:0;right:0;height:32px;display:flex;align-items:center;justify-content:center;background:rgba(17,17,17,.88);color:#fff;font-size:10px;font-weight:700;letter-spacing:.06em;transform:translateY(100%);transition:transform .18s cubic-bezier(.4,0,.2,1)}
-.mc:hover .mc-qv{transform:translateY(0)}
-.mc-body{padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:6px}
-.mc-name{font-size:12px;font-weight:600;color:#111;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.mc-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
-.mc-price{font-weight:700;font-size:14px;color:#111}
-.mc-sold{font-size:11px;color:#bbb}
-
-
-/* POPULAR SEARCHES */
-.popular-searches{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}
-.ps-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#999}
-.ps-tag{background:#fff;border:1px solid #e5e5e5;border-radius:16px;padding:4px 12px;font-size:12px;font-family:'Open Sans',sans-serif;color:#555;cursor:pointer;transition:all .15s}
-.ps-tag:hover{border-color:#111;color:#111}
-
-/* LOAD MORE */
-.lm-wrap{text-align:center;margin-top:32px}
-#lm-btn{background:#fff;border:1px solid #e5e5e5;color:#111;font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;padding:11px 44px;border-radius:4px;cursor:pointer;transition:border-color .2s,background .2s;display:none}
-#lm-btn:hover{border-color:#111;background:#f5f5f5}
-
-/* EMPTY */
-#empty{display:none;text-align:center;padding:64px 20px;color:var(--muted)}
-#empty .ei{font-size:56px;opacity:.25;margin-bottom:16px}
-#empty h3{font-size:20px;color:#111;margin-bottom:8px}
-
-/* FOOTER */
-footer{background:#111;color:#fff;padding:48px 0 24px;margin-top:40px}
-.fi{max-width:1400px;margin:0 auto;padding:0 24px}
-.fg{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;margin-bottom:40px}
-@media(max-width:768px){.fg{grid-template-columns:1fr 1fr}}
-.fb p{color:#888;font-size:13px;line-height:1.7;margin-top:8px;max-width:280px}
-.fc h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#555;margin-bottom:12px}
-.fc a{display:block;color:#999;font-size:13px;text-decoration:none;margin-bottom:8px;transition:color .2s}
-.fc a:hover{color:#fff}
-.fbot{border-top:1px solid #2a2a2a;padding-top:20px;display:flex;justify-content:space-between;align-items:center}
-.fbot p{color:#555;font-size:12px}
-.fbot a{color:#555;font-size:12px;text-decoration:none;transition:color .2s}
-.fbot a:hover{color:#fff}
-</style>
+<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css"><link rel="stylesheet" href="/3D-Models/assets/css/full-catalog.min.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
   {"@type":"CollectionPage","@id":"https://3dmolier.github.io/3D-Models/full-catalog/#page","url":"https://3dmolier.github.io/3D-Models/full-catalog/","name":"Full 3D Model Catalog — 86,865 Models by 3D Molier","description":"Browse all 86,865 professional 3D models by 3D Molier on TurboSquid. Search, filter by price, certification.","publisher":{"@id":"https://3dmolier.github.io/3D-Models/#org"}},
