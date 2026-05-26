@@ -483,7 +483,7 @@ def collections_index_html(all_cols: list[dict]) -> str:
             raw_desc = meta.get('short_desc', c['intro_text'])
             desc = raw_desc[:80] + '…'
 
-            cards_html += f'''<a href="/collections/{slug}/" class="coll-idx-card">
+            cards_html += f'''<a href="/3D-Models/collections/{slug}/" class="coll-idx-card">
               <div class="coll-idx-head">
                 <div class="coll-idx-icon">{icon}</div>
                 <div class="coll-idx-title">{title}</div>

@@ -10,6 +10,29 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).parent.parent
 
+# ── Industry name → slug mapping ────────────────────────────────────────────────
+INDUSTRY_SLUGS = {
+    "Film & Video Production": "film-video-production",
+    "Games":                   "game-development",
+    "Advertising":             "advertising",
+    "Simulation":              None,  # no page — links to full-catalog
+    "Architecture":            "architecture",
+    "Aerospace":               "aerospace",
+    "Virtual Reality":         "virtual-reality",
+    "Medical":                 "medical",
+    "Military / Defense":      "military-defense",
+    "Software Development":    "software-development",
+    "Event Management":        "event-management",
+    "3D Printing":             "3d-printing",
+    "Hardware":                "hardware",
+}
+
+def industry_href(ind: str) -> str:
+    slug = INDUSTRY_SLUGS.get(ind)
+    if slug is None:
+        return "/3D-Models/full-catalog/"
+    return f"/3D-Models/industries/{slug}/"
+
 # ── Per-category metadata ───────────────────────────────────────────────────────
 
 CATEGORIES = {
@@ -496,7 +519,7 @@ var COLOR = "{color}";
 
     # Industries
     industry_chips = ' '.join(
-        f'<a href="/industries/{ind.lower().replace(" ","").replace("/","-").replace("&","")}/" class="chip">{ind}</a>'
+        f'<a href="{industry_href(ind)}" class="chip">{ind}</a>'
         for ind in industries
     )
 
