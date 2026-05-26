@@ -484,6 +484,11 @@ def page_html(cat_name, meta, models):
             })
         extra_json = json.dumps(extra_list, ensure_ascii=False)
 
+    # Save extra models as external JSON (avoids large inline script)
+    cat_data_dir = BASE_DIR / 'data' / 'categories'
+    cat_data_dir.mkdir(parents=True, exist_ok=True)
+    (cat_data_dir / f'{slug}.json').write_text(extra_json, encoding='utf-8')
+
     load_more_btn = ''
     load_more_script = ''
     if extra_models:
@@ -493,7 +498,7 @@ def page_html(cat_name, meta, models):
         </button>
       </div>'''
         load_more_script = f'''<script>
-var EXTRA_MODELS = {extra_json};
+var EXTRA_MODELS_URL = '/3D-Models/data/categories/{slug}.json';
 var COLOR = "{color}";
 </script>'''
 
