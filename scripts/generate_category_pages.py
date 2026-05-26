@@ -333,21 +333,21 @@ def footer_html():
       <div>
         <div class="cat-footer-col-hd">Categories</div>
         <div class="cat-footer-links">
-          <a href="/categories/vehicles/" class="nav-link">Vehicles</a>
-          <a href="/categories/aircraft/" class="nav-link">Aircraft</a>
-          <a href="/categories/military-vehicles/" class="nav-link">Military</a>
-          <a href="/categories/medical-3d-models/" class="nav-link">Medical</a>
-          <a href="/categories/ships/" class="nav-link">Ships</a>
+          <a href="/3D-Models/categories/vehicles/" class="nav-link">Vehicles</a>
+          <a href="/3D-Models/categories/aircraft/" class="nav-link">Aircraft</a>
+          <a href="/3D-Models/categories/military-vehicles/" class="nav-link">Military</a>
+          <a href="/3D-Models/categories/medical-3d-models/" class="nav-link">Medical</a>
+          <a href="/3D-Models/categories/ships/" class="nav-link">Ships</a>
         </div>
       </div>
       <div>
         <div class="cat-footer-col-hd">Collections</div>
         <div class="cat-footer-links">
-          <a href="/collections/best-vehicle-3d-models/" class="nav-link">Best Vehicles</a>
-          <a href="/collections/best-aircraft-3d-models/" class="nav-link">Best Aircraft</a>
-          <a href="/collections/best-medical-3d-models/" class="nav-link">Best Medical</a>
-          <a href="/collections/best-military-vehicle-3d-models/" class="nav-link">Best Military</a>
-          <a href="/collections/" class="nav-link">View all →</a>
+          <a href="/3D-Models/collections/best-vehicle-3d-models/" class="nav-link">Best Vehicles</a>
+          <a href="/3D-Models/collections/best-aircraft-3d-models/" class="nav-link">Best Aircraft</a>
+          <a href="/3D-Models/collections/best-medical-3d-models/" class="nav-link">Best Medical</a>
+          <a href="/3D-Models/collections/best-military-vehicle-3d-models/" class="nav-link">Best Military</a>
+          <a href="/3D-Models/collections/" class="nav-link">View all →</a>
         </div>
       </div>
       <div>
@@ -480,7 +480,7 @@ var COLOR = "{color}";
         rel_meta = CATEGORIES.get(rel_name, {})
         rel_icon  = rel_meta.get('icon', '📦')
         rel_total = rel_meta.get('total_models', 0)
-        related_cards += f'''<a href="/categories/{rel_slug}/" class="related-card">
+        related_cards += f'''<a href="/3D-Models/categories/{rel_slug}/" class="related-card">
           <span class="mc-ph-icon">{rel_icon}</span>
           <div>
             <div class="cat-rel-name">{rel_name}</div>
@@ -507,6 +507,8 @@ var COLOR = "{color}";
         <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="margin-top:16px;display:inline-flex;">Browse all models on TurboSquid</a>
       </div>'''
 
+    canonical = f"https://3dmolier.github.io/3D-Models/categories/{slug}/"
+    breadcrumb_ld = f'''{{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{{"@type":"ListItem","position":1,"name":"Home","item":"https://3dmolier.github.io/3D-Models/"}},{{"@type":"ListItem","position":2,"name":"Categories","item":"https://3dmolier.github.io/3D-Models/catalog/"}},{{"@type":"ListItem","position":3,"name":"{meta["h1"]}","item":"{canonical}"}}]}}'''
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -514,25 +516,25 @@ var COLOR = "{color}";
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{meta["seo_title"]} | 3D Molier</title>
 <meta name="description" content="{meta["meta_desc"]}">
-<link rel="canonical" href="https://3dmolier.com/categories/{slug}/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{meta["seo_title"]} | 3D Molier">
+<meta property="og:description" content="{meta["meta_desc"]}">
+<meta property="og:url" content="{canonical}">
+<meta property="og:site_name" content="3D Molier Models">
+<meta property="og:image" content="https://3dmolier.github.io/3D-Models/assets/og/3d-molier-og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{meta["seo_title"]} | 3D Molier">
+<meta name="twitter:description" content="{meta["meta_desc"]}">
+<meta name="twitter:image" content="https://3dmolier.github.io/3D-Models/assets/og/3d-molier-og.jpg">
+<link rel="icon" href="/3D-Models/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="{canonical}">
+<link rel="alternate" hreflang="en" href="{canonical}">
+<link rel="alternate" hreflang="x-default" href="{canonical}">
+<script type="application/ld+json">{breadcrumb_ld}</script>
 <link rel="preload" href="/3D-Models/assets/fonts/font-13.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css">
 <link rel="stylesheet" href="/3D-Models/assets/css/fonts.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/3D-Models/assets/css/fonts.css"></noscript>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {{
-  theme: {{
-    extend: {{
-      colors: {{
-        base:'#fafafa', surface:'#ffffff', raised:'#f5f5f5',
-        border:'#e5e7eb', teal:'#00E5C4',
-      }},
-      fontFamily: {{ display:['Playfair Display','serif'], body:['Open Sans','sans-serif'] }},
-    }}
-  }}
-}}
-</script>
 <link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css">
 </head>
 <body class="relative min-h-screen">
@@ -546,7 +548,7 @@ tailwind.config = {{
   <div class="max-w-7xl mx-auto px-6 py-3 cat-bc-inner">
     <a href="/3D-Models/" class="bc-link">Home</a>
     <span class="bc-sep">›</span>
-    <a href="/catalog/" class="bc-link">Categories</a>
+    <a href="/3D-Models/catalog/" class="bc-link">Categories</a>
     <span class="bc-sep">›</span>
     <span class="bc-current">{cat_name}</span>
   </div>

@@ -365,6 +365,7 @@ html { scroll-behavior: smooth; }
 
 /* ── Chip / badge ──────────────────────────────────────────── */
 .chip { display: inline-flex; align-items: center; gap: 5px; background: #f5f5f5; border: 1px solid #e5e5e5; color: #555555; font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 100px; cursor: pointer; text-decoration: none; transition: background 0.2s, border-color 0.2s, color 0.2s; white-space: nowrap; }
+.tag  { display: inline-block; background: #f5f5f5; border: 1px solid #e5e5e5; color: #555555; font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 100px; white-space: nowrap; }
 .chip:hover { background: #111111; border-color: #111111; color: #ffffff; }
 .chip-teal { background: #f0f0f0; border-color: #d1d5db; color: #111111; }
 .chip-gold { background: rgba(255,198,0,0.07); border-color: rgba(255,198,0,0.2); color: #FFC600; }
@@ -476,7 +477,7 @@ footer .nav-dropdown a.active { color: #9ca3af !important; background: transpare
 
 /* ── Category page structural helpers ───────────────────── */
 .cat-main    { position: relative; z-index: 1; }
-.cat-header  { background: rgba(255,255,255,0.95); backdrop-filter: blur(16px); }
+.cat-header  { background: rgba(255,255,255,0.95); backdrop-filter: blur(16px); border-bottom: 1px solid #e5e7eb; }
 .cat-bc      { border-bottom: 1px solid #e5e7eb; background: #f9fafb; }
 .cat-bc-inner { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #6b7280; }
 .cat-hero-top { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }

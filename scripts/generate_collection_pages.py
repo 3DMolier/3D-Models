@@ -142,7 +142,7 @@ PROXY_BASE = "https://images.weserv.nl/?url="
 # ── Nav + Footer ──────────────────────────────────────────────────────────────
 
 def nav_html():
-    return """<header class="cat-header sticky top-0 z-50 border-b border-[#e5e7eb]">
+    return """<header class="cat-header sticky top-0 z-50">
   <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-8">
     <a href="/3D-Models/" class="flex items-center gap-2.5 shrink-0 nav-logo-link">
       <div class="cat-logo-icon">
@@ -151,13 +151,13 @@ def nav_html():
       <span class="cat-logo-text">3D Molier</span>
     </a>
     <div class="hidden md:flex items-center gap-6">
-      <a href="/catalog/" class="nav-link">Catalog</a>
-      <a href="/categories/vehicles/" class="nav-link">Vehicles</a>
-      <a href="/categories/aircraft/" class="nav-link">Aircraft</a>
-      <a href="/categories/military-vehicles/" class="nav-link">Military</a>
-      <a href="/categories/medical-3d-models/" class="nav-link">Medical</a>
-      <a href="/collections/" class="nav-link">Collections</a>
-      <a href="/search/" class="nav-link flex items-center gap-1" title="Search">
+      <a href="/3D-Models/catalog/" class="nav-link">Catalog</a>
+      <a href="/3D-Models/categories/vehicles/" class="nav-link">Vehicles</a>
+      <a href="/3D-Models/categories/aircraft/" class="nav-link">Aircraft</a>
+      <a href="/3D-Models/categories/military-vehicles/" class="nav-link">Military</a>
+      <a href="/3D-Models/categories/medical-3d-models/" class="nav-link">Medical</a>
+      <a href="/3D-Models/collections/" class="nav-link">Collections</a>
+      <a href="/3D-Models/search/" class="nav-link flex items-center gap-1" title="Search">
         <svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M15 15l-3.5-3.5"/></svg>
         Search
       </a>
@@ -188,21 +188,21 @@ def footer_html():
       <div>
         <div class="cat-footer-col-hd">Categories</div>
         <div class="cat-footer-links">
-          <a href="/categories/vehicles/" class="nav-link">Vehicles</a>
-          <a href="/categories/aircraft/" class="nav-link">Aircraft</a>
-          <a href="/categories/military-vehicles/" class="nav-link">Military</a>
-          <a href="/categories/medical-3d-models/" class="nav-link">Medical</a>
-          <a href="/categories/ships/" class="nav-link">Ships</a>
+          <a href="/3D-Models/categories/vehicles/" class="nav-link">Vehicles</a>
+          <a href="/3D-Models/categories/aircraft/" class="nav-link">Aircraft</a>
+          <a href="/3D-Models/categories/military-vehicles/" class="nav-link">Military</a>
+          <a href="/3D-Models/categories/medical-3d-models/" class="nav-link">Medical</a>
+          <a href="/3D-Models/categories/ships/" class="nav-link">Ships</a>
         </div>
       </div>
       <div>
         <div class="cat-footer-col-hd">Collections</div>
         <div class="cat-footer-links">
-          <a href="/collections/best-vehicle-3d-models/" class="nav-link">Best Vehicles</a>
-          <a href="/collections/best-aircraft-3d-models/" class="nav-link">Best Aircraft</a>
-          <a href="/collections/best-medical-3d-models/" class="nav-link">Best Medical</a>
-          <a href="/collections/best-military-vehicle-3d-models/" class="nav-link">Best Military</a>
-          <a href="/collections/" class="nav-link">View all →</a>
+          <a href="/3D-Models/collections/best-vehicle-3d-models/" class="nav-link">Best Vehicles</a>
+          <a href="/3D-Models/collections/best-aircraft-3d-models/" class="nav-link">Best Aircraft</a>
+          <a href="/3D-Models/collections/best-medical-3d-models/" class="nav-link">Best Medical</a>
+          <a href="/3D-Models/collections/best-military-vehicle-3d-models/" class="nav-link">Best Military</a>
+          <a href="/3D-Models/collections/" class="nav-link">View all →</a>
         </div>
       </div>
       <div>
@@ -289,25 +289,24 @@ def page_head(title: str, description: str, canonical: str) -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title}</title>
 <meta name="description" content="{description}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{description}">
+<meta property="og:url" content="{canonical}">
+<meta property="og:site_name" content="3D Molier Models">
+<meta property="og:image" content="https://3dmolier.github.io/3D-Models/assets/og/3d-molier-og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{description}">
+<meta name="twitter:image" content="https://3dmolier.github.io/3D-Models/assets/og/3d-molier-og.jpg">
+<link rel="icon" href="/3D-Models/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="{canonical}">
+<link rel="alternate" hreflang="en" href="{canonical}">
+<link rel="alternate" hreflang="x-default" href="{canonical}">
 <link rel="preload" href="/3D-Models/assets/fonts/font-13.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css">
 <link rel="stylesheet" href="/3D-Models/assets/css/fonts.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/3D-Models/assets/css/fonts.css"></noscript>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {{
-  theme: {{
-    extend: {{
-      colors: {{
-        base:'#fafafa', surface:'#ffffff', raised:'#f5f5f5',
-        border:'#e5e7eb', teal:'#00E5C4',
-      }},
-      fontFamily: {{ display:['Playfair Display','serif'], body:['Open Sans','sans-serif'] }},
-    }}
-  }}
-}}
-</script>
 <link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css">
 </head>"""
 
@@ -344,7 +343,7 @@ def collection_page_html(col: dict, models: list[dict], all_cols: list[dict]) ->
         rc_icon = rc_meta.get('icon', '📦')
         rc_raw_desc = rc_meta.get('short_desc', '')
         rc_desc = rc_raw_desc[:60] + '…' if rc_raw_desc else ''
-        related_html += f'''<a href="/collections/{rel_slug}/" class="coll-card">
+        related_html += f'''<a href="/3D-Models/collections/{rel_slug}/" class="coll-card">
           <div class="coll-icon">{rc_icon}</div>
           <div class="coll-content">
             <div class="coll-card-title">{rc['collection_title']}</div>
@@ -353,7 +352,7 @@ def collection_page_html(col: dict, models: list[dict], all_cols: list[dict]) ->
           <span class="coll-card-arrow">&#8594;</span>
         </a>\n'''
 
-    head = page_head(seo_t, meta_d, f"https://3dmolier.com/collections/{slug}/")
+    head = page_head(seo_t, meta_d, f"https://3dmolier.github.io/3D-Models/collections/{slug}/")
 
     return f'''<!DOCTYPE html>
 <html lang="en">
@@ -395,7 +394,7 @@ def collection_page_html(col: dict, models: list[dict], all_cols: list[dict]) ->
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Browse on TurboSquid
           </a>
-          <a href="/collections/" class="btn-ghost">&#8592; All Collections</a>
+          <a href="/3D-Models/collections/" class="btn-ghost">&#8592; All Collections</a>
         </div>
       </div>
 
@@ -510,7 +509,7 @@ def collections_index_html(all_cols: list[dict]) -> str:
     head = page_head(
         "3D Model Collections &#8212; Curated Sets by 3D Molier | TurboSquid",
         "19 curated 3D model collections by 3D Molier: best vehicles, aircraft, medical, military and more. Organized by category, industry and certification level.",
-        "https://3dmolier.com/collections/",
+        "https://3dmolier.github.io/3D-Models/collections/",
     )
 
     return f'''<!DOCTYPE html>

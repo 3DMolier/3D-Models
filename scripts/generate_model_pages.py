@@ -167,13 +167,13 @@ def nav_html():
       <span class="mp-brand-name">3D Molier</span>
     </a>
     <div class="hidden md:flex items-center gap-6">
-      <a href="/catalog/" class="nav-link">Catalog</a>
-      <a href="/categories/vehicles/" class="nav-link">Vehicles</a>
-      <a href="/categories/aircraft/" class="nav-link">Aircraft</a>
-      <a href="/categories/military-vehicles/" class="nav-link">Military</a>
-      <a href="/categories/medical-3d-models/" class="nav-link">Medical</a>
-      <a href="/collections/" class="nav-link">Collections</a>
-      <a href="/search/" class="nav-link mp-nav-search" title="Search">
+      <a href="/3D-Models/catalog/" class="nav-link">Catalog</a>
+      <a href="/3D-Models/categories/vehicles/" class="nav-link">Vehicles</a>
+      <a href="/3D-Models/categories/aircraft/" class="nav-link">Aircraft</a>
+      <a href="/3D-Models/categories/military-vehicles/" class="nav-link">Military</a>
+      <a href="/3D-Models/categories/medical-3d-models/" class="nav-link">Medical</a>
+      <a href="/3D-Models/collections/" class="nav-link">Collections</a>
+      <a href="/3D-Models/search/" class="nav-link mp-nav-search" title="Search">
         <svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M15 15l-3.5-3.5"/></svg>
         Search
       </a>
@@ -204,20 +204,20 @@ def footer_html(cat='', cat_slug=''):
       <div>
         <div class="mp-footer-col-hd">Categories</div>
         <div class="mp-footer-links">
-          <a href="/categories/vehicles/" class="nav-link mp-footer-link">Vehicles</a>
-          <a href="/categories/aircraft/" class="nav-link mp-footer-link">Aircraft</a>
-          <a href="/categories/military-vehicles/" class="nav-link mp-footer-link">Military</a>
-          <a href="/categories/medical-3d-models/" class="nav-link mp-footer-link">Medical</a>
-          <a href="/categories/ships/" class="nav-link mp-footer-link">Ships</a>
+          <a href="/3D-Models/categories/vehicles/" class="nav-link mp-footer-link">Vehicles</a>
+          <a href="/3D-Models/categories/aircraft/" class="nav-link mp-footer-link">Aircraft</a>
+          <a href="/3D-Models/categories/military-vehicles/" class="nav-link mp-footer-link">Military</a>
+          <a href="/3D-Models/categories/medical-3d-models/" class="nav-link mp-footer-link">Medical</a>
+          <a href="/3D-Models/categories/ships/" class="nav-link mp-footer-link">Ships</a>
         </div>
       </div>
       <div>
         <div class="mp-footer-col-hd">Collections</div>
         <div class="mp-footer-links">
-          <a href="/collections/best-vehicle-3d-models/" class="nav-link mp-footer-link">Best Vehicles</a>
-          <a href="/collections/best-aircraft-3d-models/" class="nav-link mp-footer-link">Best Aircraft</a>
-          <a href="/collections/best-medical-3d-models/" class="nav-link mp-footer-link">Best Medical</a>
-          <a href="/collections/" class="nav-link mp-footer-link">All Collections</a>
+          <a href="/3D-Models/collections/best-vehicle-3d-models/" class="nav-link mp-footer-link">Best Vehicles</a>
+          <a href="/3D-Models/collections/best-aircraft-3d-models/" class="nav-link mp-footer-link">Best Aircraft</a>
+          <a href="/3D-Models/collections/best-medical-3d-models/" class="nav-link mp-footer-link">Best Medical</a>
+          <a href="/3D-Models/collections/" class="nav-link mp-footer-link">All Collections</a>
         </div>
       </div>
       <div>
@@ -274,7 +274,7 @@ def related_card_html(m: dict) -> str:
             f'<span class="mp-rc-placeholder-icon">&#128247;</span></div>'
         )
 
-    return f'''<a href="/models/{slug}/" class="model-card card-glow mp-rc-link">
+    return f'''<a href="/3D-Models/models/{slug}/" class="model-card card-glow mp-rc-link">
         <div class="img-wrap mp-rc-img-wrap">
           {img_html}
         </div>
@@ -339,7 +339,7 @@ def model_page_html(m: dict, related: list[dict]) -> str:
         cert_detail    = 'StemCell — clean edge loops, consistent scale and universal rigging compatibility.'
 
     # Category chip
-    cat_chip = f'<a href="/categories/{cat_slug}/" class="chip chip-teal chip--sm">{cat}</a>'
+    cat_chip = f'<a href="/3D-Models/categories/{cat_slug}/" class="chip chip-teal chip--sm">{cat}</a>'
     if subcat:
         cat_chip += f' <span class="chip chip--sm">{subcat}</span>'
 
@@ -433,10 +433,12 @@ def model_page_html(m: dict, related: list[dict]) -> str:
         )
 
     # Schema.org JSON-LD
+    page_url = f"https://3dmolier.github.io/3D-Models/models/{slug}/"
     schema = json.dumps({
         "@context": "https://schema.org",
         "@type": "Product",
         "name": title,
+        "url": page_url,
         "image": img,
         "description": description,
         "brand": {"@type": "Brand", "name": "3D Molier"},
@@ -462,10 +464,24 @@ def model_page_html(m: dict, related: list[dict]) -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title} 3D Model &#8212; {price_str} | 3D Molier on TurboSquid</title>
 <meta name="description" content="{meta_desc}">
-<link rel="canonical" href="https://3dmolier.com/models/{slug}/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta property="og:type" content="product">
+<meta property="og:title" content="{title} 3D Model | 3D Molier">
+<meta property="og:description" content="{meta_desc}">
+<meta property="og:url" content="{page_url}">
+<meta property="og:site_name" content="3D Molier Models">
+<meta property="og:image" content="{img}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{title} 3D Model | 3D Molier">
+<meta name="twitter:description" content="{meta_desc}">
+<meta name="twitter:image" content="{img}">
+<link rel="icon" href="/3D-Models/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="{page_url}">
+<link rel="alternate" hreflang="en" href="{page_url}">
+<link rel="alternate" hreflang="x-default" href="{page_url}">
+<link rel="preload" href="/3D-Models/assets/fonts/font-13.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css">
+<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/3D-Models/assets/css/fonts.css"></noscript>
 <link rel="stylesheet" href="/3D-Models/assets/css/model-pages.min.css">
 <script type="application/ld+json">
 {schema}
@@ -483,7 +499,7 @@ def model_page_html(m: dict, related: list[dict]) -> str:
   <div class="max-w-7xl mx-auto px-6 py-3 mp-bc-inner">
     <a href="/3D-Models/" class="mp-bc-link">Home</a>
     <span class="mp-bc-sep">&#8250;</span>
-    <a href="/categories/{cat_slug}/" class="mp-bc-link">{cat}</a>
+    <a href="/3D-Models/categories/{cat_slug}/" class="mp-bc-link">{cat}</a>
     <span class="mp-bc-sep">&#8250;</span>
     <span class="mp-bc-current">{title}</span>
   </div>
@@ -523,7 +539,7 @@ def model_page_html(m: dict, related: list[dict]) -> str:
             {LINK_ICON_MD}
             View on TurboSquid
           </a>
-          <a href="/categories/{cat_slug}/" class="btn-ghost mp-btn-browse">
+          <a href="/3D-Models/categories/{cat_slug}/" class="btn-ghost mp-btn-browse">
             Browse {cat} Models
           </a>
         </div>
@@ -567,7 +583,7 @@ def model_page_html(m: dict, related: list[dict]) -> str:
             </div>
             <div class="mp-info-row">
               <span class="mp-info-row-label">Category</span>
-              <a href="/categories/{cat_slug}/" class="mp-cat-link">{cat}</a>
+              <a href="/3D-Models/categories/{cat_slug}/" class="mp-cat-link">{cat}</a>
             </div>
             {subcat_row_html}
             <div class="mp-info-row-last">
