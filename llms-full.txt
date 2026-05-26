@@ -6,57 +6,235 @@
 ## Business Model
 - All models are sold exclusively through TurboSquid
 - This website is a searchable SEO catalog / landing site — users click through to TurboSquid to purchase
-- Custom 3D modeling services are offered directly (contact: dddmolier@gmail.com)
-- All referral links use: ?referral=3d_molier-studio
+- Custom 3D modeling services are offered directly (contact: andrey.3dmolier@gmail.com)
+- All referral links use the query parameter: ?referral=3d_molier-studio
 
-## Main URLs
-- Homepage: https://3dmolier.github.io/3D-Models/
-- Catalog (browse + filter): https://3dmolier.github.io/3D-Models/catalog/
-- Search: https://3dmolier.github.io/3D-Models/search/
-- Collections: https://3dmolier.github.io/3D-Models/collections/
-- About: https://3dmolier.github.io/3D-Models/about/
-- Contact: https://3dmolier.github.io/3D-Models/contact/
-- Custom Order: https://3dmolier.github.io/3D-Models/custom-order/
+## How to Buy a Model (Step-by-Step)
+1. Browse this catalog site to find a model (search, categories, collections or full catalog)
+2. Click "View on TurboSquid" on any model card or detail page
+3. You are redirected to TurboSquid with the referral code embedded
+4. On TurboSquid: create a free account (or log in), add the model to your cart, complete checkout
+5. Download the model in your preferred format (FBX, OBJ, MAX, C4D, BLEND, DAE, glTF — availability varies per model)
+6. Use the model in your 3D software, game engine, or rendering pipeline
 
-## Categories
-- Vehicles (7,518 total): https://3dmolier.github.io/3D-Models/categories/vehicles/
-- Aircraft (3,871 total): https://3dmolier.github.io/3D-Models/categories/aircraft/
-- Military Vehicles (1,733 total): https://3dmolier.github.io/3D-Models/categories/military-vehicles/
-- Medical (1,938 total): https://3dmolier.github.io/3D-Models/categories/medical-3d-models/
-- Ships (961 total): https://3dmolier.github.io/3D-Models/categories/ships/
-- Architecture Landmarks: https://3dmolier.github.io/3D-Models/categories/architecture-landmarks/
-- Industrial Equipment: https://3dmolier.github.io/3D-Models/categories/industrial-equipment/
-- Characters & People: https://3dmolier.github.io/3D-Models/categories/characters-people/
-- Animals & Creatures: https://3dmolier.github.io/3D-Models/categories/animals-creatures/
-- Nature & Plants: https://3dmolier.github.io/3D-Models/categories/nature-plants/
-- Furniture & Interior: https://3dmolier.github.io/3D-Models/categories/furniture-interior/
-- Electronics & Gadgets: https://3dmolier.github.io/3D-Models/categories/electronics-gadgets/
-- Clothing & Accessories: https://3dmolier.github.io/3D-Models/categories/clothing-accessories/
-- Food & Beverages: https://3dmolier.github.io/3D-Models/categories/food-beverages/
+Payments on TurboSquid are processed securely via credit card or PayPal. Models are delivered as an instant digital download after purchase. No subscription required.
 
-## Industry Pages
-- Aerospace: https://3dmolier.github.io/3D-Models/industries/aerospace/
-- Military & Defense: https://3dmolier.github.io/3D-Models/industries/military-defense/
-- Medical: https://3dmolier.github.io/3D-Models/industries/medical/
-- Game Development: https://3dmolier.github.io/3D-Models/industries/game-development/
-- Film & Video Production: https://3dmolier.github.io/3D-Models/industries/film-video-production/
-- Architecture: https://3dmolier.github.io/3D-Models/industries/architecture/
-- Virtual Reality: https://3dmolier.github.io/3D-Models/industries/virtual-reality/
-- Advertising: https://3dmolier.github.io/3D-Models/industries/advertising/
+## Custom 3D Modeling Orders
+3D Molier accepts custom commissions for:
+- New models built from client reference photos, blueprints, or specifications
+- Modifications or variants of existing catalog models (different colors, configurations, LOD levels)
+- High-poly hero assets for film/VFX, game-ready low-poly with PBR textures, rigged characters/vehicles
+- Rush delivery available for urgent projects
+
+**How to request a custom model:**
+1. Visit the custom order form: https://3dmolier.github.io/3D-Models/custom-order/
+2. Fill in the form describing your model, intended use, required formats, and deadline
+3. Alternatively email directly: andrey.3dmolier@gmail.com
+4. Andrey will respond with a quote and timeline, typically within 24–48 hours
+
+## Supported Workflows and Use Cases
+Models from this catalog are used in:
+- **Film & VFX production**: high-detail hero props, vehicles, aircraft, anatomy for compositing in Maya, Houdini, Cinema 4D, 3ds Max
+- **Game development**: StemCell-certified game-ready assets with PBR textures for Unreal Engine, Unity, Godot
+- **Architectural visualization**: accurate building interiors, furniture, vehicles for ArchViz in 3ds Max + V-Ray, Cinema 4D, Blender
+- **Medical visualization**: anatomically accurate full-body anatomy, skeletal systems, organs for surgical training and educational content
+- **Simulation & training**: military vehicles, aircraft, machinery for real-time simulation platforms
+- **Aerospace & defense**: aircraft, UAVs, satellites, military hardware for technical documentation and defense contractor presentations
+- **Virtual reality (VR/AR)**: optimized low-poly and StemCell models for real-time VR experiences in Unreal, Unity
+- **Advertising**: photorealistic product and vehicle renders for commercials and digital marketing
+- **3D printing**: clean manifold geometry suitable for STL export and FDM/resin printing
 
 ## File Formats Available
-FBX, OBJ, 3ds Max (.max), Cinema 4D (.c4d), Blender (.blend), COLLADA (.dae), glTF — varies by model.
+FBX, OBJ, 3ds Max (.max), Cinema 4D (.c4d), Blender (.blend), COLLADA (.dae), glTF — exact formats vary per model and are listed on each TurboSquid product page.
 
 ## Quality Certifications
-- CheckMate Lite/Pro: TurboSquid's highest quality certification. Guarantees clean topology, correct normals, proper UV mapping and real-world scale.
-- StemCell: TurboSquid's game-ready certification. Optimized for real-time engines with PBR textures.
+- **CheckMate Lite / CheckMate Pro**: TurboSquid's highest quality certification. Guarantees clean topology, correct normals, proper UV mapping, real-world scale, and no duplicate/overlapping geometry. Pro adds stricter texturing standards.
+- **StemCell**: TurboSquid's game-ready certification. Optimized for real-time engines with PBR textures, correct pivot points, and consistent naming conventions. Ready for Unreal Engine and Unity import.
 
-## Custom Modeling
-3D Molier accepts custom modeling commissions:
-- New models built from reference materials or specifications
-- Modifications to existing catalog models
-- Contact: dddmolier@gmail.com
-- Request form: https://3dmolier.github.io/3D-Models/custom-order/
+---
 
-## Sitemap
-https://3dmolier.github.io/3D-Models/sitemap.xml
+## Top 20 Best-Selling Models (by Revenue)
+
+All internal page URLs link to model detail pages on this site; "View on TurboSquid" links are available on each detail page.
+
+1. **Male Full Body Anatomy and Skin** — $599 | CheckMate Certified | 227 sales
+   https://3dmolier.github.io/3D-Models/models/male-full-body-anatomy-and-skin-1467539/
+   Complete anatomical male figure with skin, muscles, organs. Used in medical education, VFX, and surgical training simulations.
+
+2. **Complete Female Body Anatomy** — $599 | CheckMate Certified | 114 sales
+   https://3dmolier.github.io/3D-Models/models/complete-female-body-anatomy-1611038/
+   Full female anatomical model with layered systems. Used in medical visualization and educational content.
+
+3. **Tesla Model 3** — $149 | CheckMate Certified | 354 sales
+   https://3dmolier.github.io/3D-Models/models/tesla-model-3-1214116/
+   Highly accurate Tesla Model 3 3D model. Best-selling vehicle. Used in automotive advertising, film, and game environments.
+
+4. **Man Hands 2 Rigged for Cinema 4D** — $79 | 610 sales
+   https://3dmolier.github.io/3D-Models/models/man-hands-2-rigged-for-cinema-4d-1103552/
+   Fully rigged realistic male hands for Cinema 4D. Widely used in product visualization, VFX and advertising.
+
+5. **Airbus A320 Generic** — $149 | CheckMate Certified | 292 sales
+   https://3dmolier.github.io/3D-Models/models/airbus-a320-generic-1230754/
+   Generic Airbus A320 narrow-body airliner. Industry standard asset for aviation visualization, film, and simulation.
+
+6. **Male Skeleton Collection** — $149 | CheckMate Certified | 264 sales
+   https://3dmolier.github.io/3D-Models/models/male-skeleton-collection-1041670/
+   Complete male skeletal system collection. Used in medical education, games, horror VFX, and scientific visualization.
+
+7. **Extravehicular Mobility Unit Rigged for Cinema 4D** — $189 | 203 sales
+   https://3dmolier.github.io/3D-Models/models/extravehicular-mobility-unit-rigged-for-cinema-4d-1117840/
+   NASA-accurate space suit rigged for Cinema 4D. Used in aerospace visualization, VFX, and space-themed productions.
+
+8. **Ford Transit Cargo 2020** — $129 | CheckMate Certified | 289 sales
+   https://3dmolier.github.io/3D-Models/models/ford-transit-cargo-2020-1485058/
+   Detailed 2020 Ford Transit Cargo Van. Widely used in commercial fleet visualization, logistics advertising, and games.
+
+9. **Golden Chinese Dragon Rigged for Cinema 4D** — $169 | 182 sales
+   https://3dmolier.github.io/3D-Models/models/golden-chinese-dragon-rigged-for-cinema-4d-1403088/
+   Fully rigged and animated golden Chinese dragon. Popular for advertising, VFX, and cultural event design.
+
+10. **Airport Big Collection** — $899 | CheckMate Certified | 34 sales
+    https://3dmolier.github.io/3D-Models/models/airport-big-collection-1487699/
+    Comprehensive airport environment collection including terminal, ground vehicles, aircraft, and equipment. Used in simulation and film.
+
+11. **Tesla Model S P100D 2017** — $149 | CheckMate Certified | 200 sales
+    https://3dmolier.github.io/3D-Models/models/tesla-model-s-p100d-2017-1154223/
+    Highly detailed 2017 Tesla Model S P100D. Popular in automotive advertising, animation, and automotive visualization.
+
+12. **Animated Flying Monarch Butterfly Rigged for Cinema 4D** — $149 | CheckMate Certified | 181 sales
+    https://3dmolier.github.io/3D-Models/models/animated-flying-monarch-butterfly-rigged-for-cinema-4d-1566626/
+    Rigged and animated monarch butterfly. Widely used in nature documentaries, advertising, and children's media.
+
+13. **Lockheed C-130 Hercules US Military Transport Aircraft** — $229 | CheckMate Certified | 117 sales
+    https://3dmolier.github.io/3D-Models/models/lockheed-c-130-hercules-us-military-transport-aircraft-1121545/
+    Highly accurate C-130 Hercules military transport. Used in defense simulations, film, and aerospace visualization.
+
+14. **Generic Hybrid Car** — $129 | CheckMate Certified | 205 sales
+    https://3dmolier.github.io/3D-Models/models/generic-hybrid-car-942006/
+    Realistic generic hybrid passenger car. Versatile asset for automotive visualization, games, and advertising.
+
+15. **Sikorsky UH-60 Black Hawk US Military Utility Helicopter** — $179 | CheckMate Certified | 142 sales
+    https://3dmolier.github.io/3D-Models/models/sikorsky-uh-60-black-hawk-us-military-utility-helicopter-1085902/
+    Highly accurate UH-60 Black Hawk helicopter. Best-selling military asset. Used in defense simulations, film, and games.
+
+16. **Pickup Truck Generic Simple Interior** — $129 | CheckMate Certified | 196 sales
+    https://3dmolier.github.io/3D-Models/models/pickup-truck-generic-simple-interior-1464102/
+    Generic pickup truck with basic interior. Widely used in games, ArchViz, and film production.
+
+17. **Tesla Model S and Frame Collection** — $249 | CheckMate Certified | 100 sales
+    https://3dmolier.github.io/3D-Models/models/tesla-model-s-and-frame-collection-1191572/
+    Tesla Model S with chassis and frame models. Used in engineering visualization, advertising, and animation.
+
+18. **Stealth Multirole Fighter F-35 Lightning II** — $199 | CheckMate Certified | 123 sales
+    https://3dmolier.github.io/3D-Models/models/stealth-multirole-fighter-f-35-lightning-ii-1211595/
+    Highly accurate F-35 Lightning II fighter jet. Used in aerospace visualization, defense simulations, and film.
+
+19. **Octopus Tentacle Rigged for Cinema 4D** — $99 | 247 sales
+    https://3dmolier.github.io/3D-Models/models/octopus-tentacle-rigged-for-cinema-4d-1087991/
+    Fully rigged octopus tentacle for Cinema 4D. Popular in VFX, advertising, and creature animation.
+
+20. **Human Male Skeleton Rigged for Cinema 4D** — $189 | 129 sales
+    https://3dmolier.github.io/3D-Models/models/human-male-skeleton-rigged-for-cinema-4d-1102602/
+    Fully rigged human male skeleton for Cinema 4D. Used in medical visualization, horror VFX, and animation.
+
+---
+
+## Top 10 Categories (by Model Count)
+
+1. **Vehicles** — 7,518 models (cars, trucks, motorcycles, buses, construction equipment, trains)
+   https://3dmolier.github.io/3D-Models/categories/vehicles/
+
+2. **Aircraft** — 3,871 models (airliners, military jets, helicopters, drones, private jets)
+   https://3dmolier.github.io/3D-Models/categories/aircraft/
+
+3. **Medical** — 1,938 models (anatomy, skeletal systems, organs, surgical equipment, medical devices)
+   https://3dmolier.github.io/3D-Models/categories/medical-3d-models/
+
+4. **Military Vehicles** — 1,733 models (tanks, APCs, fighter jets, warships, artillery, combat drones)
+   https://3dmolier.github.io/3D-Models/categories/military-vehicles/
+
+5. **Ships** — 961 models (cargo ships, warships, sailboats, submarines, ferries, speedboats)
+   https://3dmolier.github.io/3D-Models/categories/ships/
+
+6. **Architecture Landmarks** — famous buildings, monuments, cityscapes, and architectural structures
+   https://3dmolier.github.io/3D-Models/categories/architecture-landmarks/
+
+7. **Industrial Equipment** — machinery, factory equipment, construction tools, energy systems
+   https://3dmolier.github.io/3D-Models/categories/industrial-equipment/
+
+8. **Characters & People** — human figures, rigged characters, crowd assets, people for ArchViz
+   https://3dmolier.github.io/3D-Models/categories/characters-people/
+
+9. **Electronics & Gadgets** — smartphones, laptops, cameras, consumer electronics, tech props
+   https://3dmolier.github.io/3D-Models/categories/electronics-gadgets/
+
+10. **Furniture & Interior** — chairs, tables, sofas, beds, kitchen appliances, interior props
+    https://3dmolier.github.io/3D-Models/categories/furniture-interior/
+
+Additional categories: Animals & Creatures, Nature & Plants, Clothing & Accessories, Food & Beverages
+https://3dmolier.github.io/3D-Models/catalog/
+
+---
+
+## Industry Pages (12 Industries)
+
+Each industry page features curated models most relevant to that sector, with direct TurboSquid purchase links.
+
+- **Aerospace** — aircraft, spacecraft, satellites, UAVs, launch vehicles
+  https://3dmolier.github.io/3D-Models/industries/aerospace/
+
+- **Military & Defense** — tanks, warships, fighter jets, military vehicles, weapons systems
+  https://3dmolier.github.io/3D-Models/industries/military-defense/
+
+- **Medical** — anatomical models, surgical equipment, medical devices, hospital environments
+  https://3dmolier.github.io/3D-Models/industries/medical/
+
+- **Game Development** — StemCell-certified game-ready assets, PBR textures, LOD-friendly models
+  https://3dmolier.github.io/3D-Models/industries/game-development/
+
+- **Film & Video Production** — hero props, vehicles, aircraft, anatomy, rigged characters for VFX pipelines
+  https://3dmolier.github.io/3D-Models/industries/film-video-production/
+
+- **Architecture** — buildings, interiors, furniture, vehicles for ArchViz renders
+  https://3dmolier.github.io/3D-Models/industries/architecture/
+
+- **Virtual Reality** — real-time optimized models for VR/AR experiences
+  https://3dmolier.github.io/3D-Models/industries/virtual-reality/
+
+- **Advertising** — photorealistic product and vehicle models for commercial renders
+  https://3dmolier.github.io/3D-Models/industries/advertising/
+
+- **3D Printing** — clean manifold geometry suitable for STL export
+  https://3dmolier.github.io/3D-Models/industries/3d-printing/
+
+- **Software Development** — 3D assets for UI mockups, app demos, technical illustration
+  https://3dmolier.github.io/3D-Models/industries/software-development/
+
+- **Event Management** — stage props, event infrastructure, themed environments
+  https://3dmolier.github.io/3D-Models/industries/event-management/
+
+- **Hardware** — electronic components, PCBs, device enclosures, tech product visualization
+  https://3dmolier.github.io/3D-Models/industries/hardware/
+
+---
+
+## Collections (19 Curated Sets)
+
+Collections are hand-curated thematic sets linking directly to TurboSquid for purchase.
+Browse all: https://3dmolier.github.io/3D-Models/collections/
+
+Notable collections include CheckMate Certified vehicles, medical anatomy bundles, military hardware sets, rigged Cinema 4D characters, aircraft collections, and architectural landmark packs.
+
+---
+
+## Main URLs
+
+- Homepage: https://3dmolier.github.io/3D-Models/
+- Full Catalog (86,000+ models, filterable): https://3dmolier.github.io/3D-Models/full-catalog/
+- Category Browser: https://3dmolier.github.io/3D-Models/catalog/
+- Search: https://3dmolier.github.io/3D-Models/search/
+- Collections index: https://3dmolier.github.io/3D-Models/collections/
+- About: https://3dmolier.github.io/3D-Models/about/
+- Contact: https://3dmolier.github.io/3D-Models/contact/
+- Custom Order form: https://3dmolier.github.io/3D-Models/custom-order/
+- Sitemap: https://3dmolier.github.io/3D-Models/sitemap.xml

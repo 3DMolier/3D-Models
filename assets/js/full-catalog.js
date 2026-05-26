@@ -142,7 +142,7 @@ function renderGrid(){
 function modelCard(idx){
   var id=FC.i[idx],name=FC.n[idx],price=FC.p[idx],cert=FC.c[idx],sales=FC.s[idx];
   var imgHtml=IMGS[id]
-    ?'<img src="'+IMGS[id]+'" alt="'+name.replace(/"/g,'&quot;')+'" loading="lazy">'
+    ?'<img src="'+IMGS[id]+'" alt="'+name.replace(/"/g,'&quot;')+'" loading="lazy" width="800" height="450" decoding="async">'
     :'<div class="mc-ph">&#128246;</div>';
   var certBadge=cert===2?'<span class="mc-cert cert-cm">CheckMate</span>'
     :cert===1?'<span class="mc-cert cert-sc">StemCell</span>':'';
