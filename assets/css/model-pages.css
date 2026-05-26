@@ -2,6 +2,28 @@
 
 * { box-sizing: border-box; }
 body { background: #fafafa; font-family: 'Open Sans', sans-serif; color: #111111; }
+
+/* ── Layout utilities (used in nav/footer/breadcrumb containers) ─────────── */
+.relative      { position: relative; }
+.sticky        { position: sticky; }
+.top-0         { top: 0; }
+.z-50          { z-index: 50; }
+.min-h-screen  { min-height: 100vh; }
+.flex          { display: flex; }
+.hidden        { display: none; }
+.items-center  { align-items: center; }
+.justify-between { justify-content: space-between; }
+.shrink-0      { flex-shrink: 0; }
+.gap-2\.5      { gap: 10px; }
+.gap-3         { gap: 12px; }
+.gap-6         { gap: 24px; }
+.gap-8         { gap: 32px; }
+.max-w-7xl     { max-width: 80rem; }
+.mx-auto       { margin-left: auto; margin-right: auto; }
+.px-6          { padding-left: 24px; padding-right: 24px; }
+.py-3          { padding-top: 12px; padding-bottom: 12px; }
+.h-16          { height: 64px; }
+@media (min-width: 768px) { .md\:flex { display: flex; } }
 body::before {
   content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
