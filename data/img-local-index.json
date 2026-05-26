@@ -1,0 +1,12 @@
+{
+  "_schema": {
+    "product_id": {
+      "image_external": "https://images.weserv.nl/?url=...",
+      "image_preview": "/3D-Models/assets/img/models/{product_id}-preview.webp",
+      "image_large":   "/3D-Models/assets/img/models/{product_id}-large.webp",
+      "image_status":  "local"
+    }
+  },
+  "_note": "Override map for models with locally-hosted images. When image_status=local, generators use image_preview/image_large instead of image_external. When absent or image_status=external, generators use the external URL with weserv.nl proxy.",
+  "models": {}
+}

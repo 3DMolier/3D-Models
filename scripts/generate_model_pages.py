@@ -570,7 +570,22 @@ def model_page_html(m: dict, related: list[dict]) -> str:
 
 # ── Main ─────────────────────────────────────────────────────────────────────
 
+def resolve_image(product_id: str, external_url: str, local_index: dict) -> str:
+    """Return image URL: local WebP if available, else external (proxied) URL."""
+    entry = local_index.get(product_id)
+    if entry and entry.get('image_status') == 'local' and entry.get('image_preview'):
+        return entry['image_preview']
+    return external_url
+
+
 def main():
+    # Load local image override index (empty by default, used for future localization)
+    _img_local_path = BASE_DIR / 'data' / 'img-local-index.json'
+    local_img_index: dict = {}
+    if _img_local_path.exists():
+        with open(_img_local_path, encoding='utf-8') as f:
+            local_img_index = json.load(f).get('models', {})
+
     # Read all top models
     rows: list[dict] = []
     with open(BASE_DIR / 'data' / 'top_models.csv', encoding='utf-8') as f:
@@ -591,6 +606,13 @@ def main():
     for m in rows:
         slug = m['slug']
         cat  = m['category']
+        pid  = m.get('product_id', '')
+
+        # Apply local image override if available
+        if pid in local_img_index:
+            resolved = resolve_image(pid, m.get('image_url', ''), local_img_index)
+            if resolved != m.get('image_url', ''):
+                m = {**m, 'image_url': resolved}
 
         # Related: top 5 from same category, excluding self
         related = [r for r in cat_models[cat] if r['slug'] != slug][:4]
