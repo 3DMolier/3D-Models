@@ -283,8 +283,8 @@ def model_card_html(m: dict) -> str:
 
 # ── Page <head> (shared between collection pages and the index) ───────────────
 
-def page_head(title: str, description: str, canonical: str, breadcrumb_json: str = '') -> str:
-    bc_tag = f'\n<script type="application/ld+json">{breadcrumb_json}</script>' if breadcrumb_json else ''
+def page_head(title: str, description: str, canonical: str, *ld_blobs: str) -> str:
+    bc_tag = ''.join(f'\n<script type="application/ld+json">{b}</script>' for b in ld_blobs if b)
     return f"""<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -360,7 +360,13 @@ def collection_page_html(col: dict, models: list[dict], all_cols: list[dict]) ->
         {"@type":"ListItem","position":2,"name":"Collections","item":f"{base}/collections/"},
         {"@type":"ListItem","position":3,"name":title,"item":coll_url},
     ]}, ensure_ascii=False)
-    head = page_head(seo_t, meta_d, coll_url, bc)
+    il_elements = [
+        {"@type":"ListItem","position":i+1,"name":m['product_name'],"url":f"{base}/models/{m.get('slug','')}/"}
+        for i, m in enumerate(models[:50]) if m.get('slug')
+    ]
+    il = json.dumps({"@context":"https://schema.org","@type":"ItemList","name":title,"url":coll_url,
+        "numberOfItems":len(il_elements),"itemListElement":il_elements}, ensure_ascii=False)
+    head = page_head(seo_t, meta_d, coll_url, bc, il)
 
     return f'''<!DOCTYPE html>
 <html lang="en">

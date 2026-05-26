@@ -103,9 +103,9 @@ FOOTER = '''<footer class="site-footer">
   </div>
 </footer>'''
 
-def head(title, desc, canonical, color="#00E5C4", breadcrumb_json=''):
+def head(title, desc, canonical, color="#00E5C4", *ld_blobs):
     hreflang = canonical
-    bc_tag = f'\n<script type="application/ld+json">{breadcrumb_json}</script>' if breadcrumb_json else ''
+    bc_tag = ''.join(f'\n<script type="application/ld+json">{b}</script>' for b in ld_blobs if b)
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -306,12 +306,20 @@ def model_card(m):
 def build_industry_page(slug, meta):
     canonical = f"{BASE}/industries/{slug}/"
     color = meta["color"]
+    top_models = get_top_models_for_cats([c[0] for c in meta["categories"]], 50)
+
     bc = json.dumps({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
         {"@type":"ListItem","position":1,"name":"Home","item":f"{BASE}/"},
         {"@type":"ListItem","position":2,"name":"Industries","item":f"{BASE}/industries/"},
         {"@type":"ListItem","position":3,"name":meta["h1"],"item":canonical},
     ]}, ensure_ascii=False)
-    page_head = head(meta["title"], meta["desc"], canonical, color, bc)
+    il_elements = [
+        {"@type":"ListItem","position":i+1,"name":m['product_name'],"url":f"{BASE}/models/{m['slug']}/"}
+        for i, m in enumerate(top_models) if m.get('slug')
+    ]
+    il = json.dumps({"@context":"https://schema.org","@type":"ItemList","name":meta["h1"],"url":canonical,
+        "numberOfItems":len(il_elements),"itemListElement":il_elements}, ensure_ascii=False)
+    page_head = head(meta["title"], meta["desc"], canonical, color, bc, il)
 
     use_cases_html = "".join(f'<li class="ind-uc-item">{uc}</li>' for uc in meta["use_cases"])
     formats_html = "".join(f'<span class="chip">{fmt}</span> ' for fmt in meta["formats"])
@@ -320,10 +328,8 @@ def build_industry_page(slug, meta):
         for cat_name, cat_slug in meta["categories"]
     )
 
-    # Top models
-    cat_names = [c[0] for c in meta["categories"]]
-    top_models = get_top_models_for_cats(cat_names, 6)
-    models_html = "".join(model_card(m) for m in top_models) if top_models else ""
+    # Top models (first 6 shown in HTML)
+    models_html = "".join(model_card(m) for m in top_models[:6]) if top_models else ""
     models_section = f'''<section class="page-section">
     <div class="max-w-7xl mx-auto">
       <h2 class="section-h2 section-h2--mb24">Top 3D Models for {meta["h1"].replace(" 3D Models","")}</h2>

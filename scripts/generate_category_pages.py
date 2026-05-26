@@ -531,7 +531,18 @@ var COLOR = "{color}";
       </div>'''
 
     canonical = f"https://3dmolier.github.io/3D-Models/categories/{slug}/"
+    base = "https://3dmolier.github.io/3D-Models"
     breadcrumb_ld = f'''{{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{{"@type":"ListItem","position":1,"name":"Home","item":"https://3dmolier.github.io/3D-Models/"}},{{"@type":"ListItem","position":2,"name":"Categories","item":"https://3dmolier.github.io/3D-Models/catalog/"}},{{"@type":"ListItem","position":3,"name":"{meta["h1"]}","item":"{canonical}"}}]}}'''
+    item_list_elements = [
+        {"@type": "ListItem", "position": i + 1, "name": m['product_name'], "url": f"{base}/models/{m.get('slug', '')}/"}
+        for i, m in enumerate(models[:50]) if m.get('slug')
+    ]
+    item_list_ld = json.dumps({
+        "@context": "https://schema.org", "@type": "ItemList",
+        "name": meta["h1"], "url": canonical,
+        "numberOfItems": len(item_list_elements),
+        "itemListElement": item_list_elements,
+    }, ensure_ascii=False)
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -554,6 +565,7 @@ var COLOR = "{color}";
 <link rel="alternate" hreflang="en" href="{canonical}">
 <link rel="alternate" hreflang="x-default" href="{canonical}">
 <script type="application/ld+json">{breadcrumb_ld}</script>
+<script type="application/ld+json">{item_list_ld}</script>
 <link rel="preload" href="/3D-Models/assets/fonts/font-13.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css">
 <link rel="stylesheet" href="/3D-Models/assets/css/fonts.css" media="print" onload="this.media='all'">
