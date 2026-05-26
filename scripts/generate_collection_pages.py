@@ -283,7 +283,8 @@ def model_card_html(m: dict) -> str:
 
 # ── Page <head> (shared between collection pages and the index) ───────────────
 
-def page_head(title: str, description: str, canonical: str) -> str:
+def page_head(title: str, description: str, canonical: str, breadcrumb_json: str = '') -> str:
+    bc_tag = f'\n<script type="application/ld+json">{breadcrumb_json}</script>' if breadcrumb_json else ''
     return f"""<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -307,7 +308,7 @@ def page_head(title: str, description: str, canonical: str) -> str:
 <link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css">
 <link rel="stylesheet" href="/3D-Models/assets/css/fonts.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/3D-Models/assets/css/fonts.css"></noscript>
-<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css">
+<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css">{bc_tag}
 </head>"""
 
 
@@ -352,7 +353,14 @@ def collection_page_html(col: dict, models: list[dict], all_cols: list[dict]) ->
           <span class="coll-card-arrow">&#8594;</span>
         </a>\n'''
 
-    head = page_head(seo_t, meta_d, f"https://3dmolier.github.io/3D-Models/collections/{slug}/")
+    base = "https://3dmolier.github.io/3D-Models"
+    coll_url = f"{base}/collections/{slug}/"
+    bc = json.dumps({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":f"{base}/"},
+        {"@type":"ListItem","position":2,"name":"Collections","item":f"{base}/collections/"},
+        {"@type":"ListItem","position":3,"name":title,"item":coll_url},
+    ]}, ensure_ascii=False)
+    head = page_head(seo_t, meta_d, coll_url, bc)
 
     return f'''<!DOCTYPE html>
 <html lang="en">
@@ -506,10 +514,16 @@ def collections_index_html(all_cols: list[dict]) -> str:
       </div>
     </div>'''
 
+    base = "https://3dmolier.github.io/3D-Models"
+    idx_bc = json.dumps({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":f"{base}/"},
+        {"@type":"ListItem","position":2,"name":"Collections","item":f"{base}/collections/"},
+    ]}, ensure_ascii=False)
     head = page_head(
         "3D Model Collections &#8212; Curated Sets by 3D Molier | TurboSquid",
         "19 curated 3D model collections by 3D Molier: best vehicles, aircraft, medical, military and more. Organized by category, industry and certification level.",
-        "https://3dmolier.github.io/3D-Models/collections/",
+        f"{base}/collections/",
+        idx_bc,
     )
 
     return f'''<!DOCTYPE html>

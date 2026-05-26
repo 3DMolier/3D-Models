@@ -372,6 +372,7 @@ def model_page_html(m: dict, related: list[dict]) -> str:
 
     # Schema.org JSON-LD
     page_url = f"https://3dmolier.github.io/3D-Models/models/{slug}/"
+    base = "https://3dmolier.github.io/3D-Models"
     schema = json.dumps({
         "@context": "https://schema.org",
         "@type": "Product",
@@ -389,6 +390,16 @@ def model_page_html(m: dict, related: list[dict]) -> str:
             "url": ref_url,
             "seller": {"@type": "Organization", "name": "TurboSquid"}
         }
+    }, ensure_ascii=False)
+    breadcrumb = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{base}/"},
+            {"@type": "ListItem", "position": 2, "name": "Categories", "item": f"{base}/catalog/"},
+            {"@type": "ListItem", "position": 3, "name": cat, "item": f"{base}/categories/{cat_slug}/"},
+            {"@type": "ListItem", "position": 4, "name": title, "item": page_url},
+        ]
     }, ensure_ascii=False)
 
     # Meta description (clean, under 160 chars)
@@ -423,6 +434,9 @@ def model_page_html(m: dict, related: list[dict]) -> str:
 <link rel="stylesheet" href="/3D-Models/assets/css/model-pages.min.css">
 <script type="application/ld+json">
 {schema}
+</script>
+<script type="application/ld+json">
+{breadcrumb}
 </script>
 </head>
 <body class="relative min-h-screen">

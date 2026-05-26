@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Create 8 industry landing pages + llms.txt + llms-full.txt + update robots.txt + sitemap."""
-import pathlib, re, csv
+import pathlib, re, csv, json
 
 ROOT = pathlib.Path(__file__).parent.parent
 BASE = "https://3dmolier.github.io/3D-Models"
@@ -103,8 +103,9 @@ FOOTER = '''<footer class="site-footer">
   </div>
 </footer>'''
 
-def head(title, desc, canonical, color="#00E5C4"):
+def head(title, desc, canonical, color="#00E5C4", breadcrumb_json=''):
     hreflang = canonical
+    bc_tag = f'\n<script type="application/ld+json">{breadcrumb_json}</script>' if breadcrumb_json else ''
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -130,7 +131,7 @@ def head(title, desc, canonical, color="#00E5C4"):
 <link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css">
 <link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css">
 <link rel="stylesheet" href="/3D-Models/assets/css/fonts.css" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="/3D-Models/assets/css/fonts.css"></noscript>
+<noscript><link rel="stylesheet" href="/3D-Models/assets/css/fonts.css"></noscript>{bc_tag}
 </head>
 <body>'''
 
@@ -305,7 +306,12 @@ def model_card(m):
 def build_industry_page(slug, meta):
     canonical = f"{BASE}/industries/{slug}/"
     color = meta["color"]
-    page_head = head(meta["title"], meta["desc"], canonical, color)
+    bc = json.dumps({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":f"{BASE}/"},
+        {"@type":"ListItem","position":2,"name":"Industries","item":f"{BASE}/industries/"},
+        {"@type":"ListItem","position":3,"name":meta["h1"],"item":canonical},
+    ]}, ensure_ascii=False)
+    page_head = head(meta["title"], meta["desc"], canonical, color, bc)
 
     use_cases_html = "".join(f'<li class="ind-uc-item">{uc}</li>' for uc in meta["use_cases"])
     formats_html = "".join(f'<span class="chip">{fmt}</span> ' for fmt in meta["formats"])
