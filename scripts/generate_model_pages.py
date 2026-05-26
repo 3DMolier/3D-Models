@@ -188,8 +188,10 @@ def nav_html():
 </header>"""
 
 
-def footer_html():
-    return """<footer class="mp-footer">
+def footer_html(cat='', cat_slug=''):
+    back_label = f'All {cat}' if cat else 'Back to home'
+    back_href  = f'/3D-Models/categories/{cat_slug}/' if cat_slug else '/3D-Models/'
+    return f"""<footer class="mp-footer">
   <div class="max-w-7xl mx-auto">
     <div class="mp-footer-grid">
       <div>
@@ -230,7 +232,7 @@ def footer_html():
     </div>
     <div class="mp-footer-bottom">
       <p class="mp-footer-copy">&#169; 2025 3D Molier. All 3D models sold via TurboSquid.</p>
-      <a href="/3D-Models/" class="nav-link mp-back-link">&#8592; Back to home</a>
+      <a href="{back_href}" class="nav-link mp-back-link">&#8592; {back_label}</a>
     </div>
   </div>
 </footer>"""
@@ -591,7 +593,7 @@ def model_page_html(m: dict, related: list[dict]) -> str:
 
 </main>
 
-{footer_html()}
+{footer_html(cat, cat_slug)}
 <script src="/3D-Models/assets/js/site.min.js" defer></script>
 </body>
 </html>'''
