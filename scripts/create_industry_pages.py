@@ -283,17 +283,23 @@ def get_top_models_for_cats(cats_list, n=6):
     return rows[:n]
 
 def model_card(m):
+    from urllib.parse import quote as _q
+    _PLACEHOLDER = "/3D-Models/assets/og/3d-molier-og.jpg"
     slug = m["slug"]
     title = m["product_name"]
     cat = m["category"]
-    img = m.get("image_url", "")
-    if img and img.startswith("https://static.turbosquid"):
-        img = "https://images.weserv.nl/?url=" + img.replace("https://", "") + "&w=600&q=85&output=webp"
+    orig_img = m.get("image_url", "")
+    if orig_img and orig_img.startswith("https://static.turbosquid"):
+        _clean = orig_img.replace("https://", "")
+        img = "https://images.weserv.nl/?url=ssl:" + _q(_clean) + "&amp;w=600&amp;q=85&amp;output=webp"
+    else:
+        img = orig_img
     try:
         price_str = f"${float(m['price']):.0f}"
     except:
         price_str = f"${m['price']}"
-    img_tag = f'<img src="{img}" alt="{title} 3D model — {cat}" width="800" height="450" decoding="async" loading="lazy" onerror="this.style.display=\'none\'">' if img else ""
+    img_tag = (f'<img src="{img}" alt="{title} 3D model — {cat}" width="800" height="450" decoding="async" loading="lazy"'
+               f' data-fallback="{orig_img}" data-placeholder="{_PLACEHOLDER}" onerror="handleImageError(this)">') if orig_img else ""
     return f'''<a href="/3D-Models/models/{slug}/" class="model-card">
       {img_tag}
       <div class="model-card-body">

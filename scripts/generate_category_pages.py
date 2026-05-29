@@ -396,7 +396,8 @@ def footer_html():
 LINK_ICON = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>'
 
 
-PROXY_BASE = "https://images.weserv.nl/?url="
+from urllib.parse import quote as _url_quote
+_PLACEHOLDER = "/3D-Models/assets/og/3d-molier-og.jpg"
 
 def model_card_html(m, color, gradient):
     title = m['product_name']
@@ -408,21 +409,25 @@ def model_card_html(m, color, gradient):
         price_str = f"${price}"
     cert = m.get('certification', '')
     cat  = m.get('category', '')
-    img  = m.get('image_url', '')
+    orig_img = m.get('image_url', '')
     url  = m.get('referral_url', '#')
     is_cm = 'CheckMate' in cert
 
-    # Proxy TurboSquid images through weserv.nl
-    if img and img.startswith("https://static.turbosquid"):
-        img = PROXY_BASE + img.replace("https://", "") + "&w=600&q=85&output=webp"
+    if orig_img and orig_img.startswith("https://static.turbosquid"):
+        _clean = orig_img.replace("https://", "")
+        img = "https://images.weserv.nl/?url=ssl:" + _url_quote(_clean) + "&amp;w=600&amp;q=85&amp;output=webp"
+    else:
+        img = orig_img
 
     cert_html = '<span class="cert-badge">&#10003; CM</span>' if is_cm else \
                 '<span class="cert-badge" style="background:rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.25);color:#7C3AED;">SC</span>' \
                 if 'Stem' in cert else ''
 
-    raw_img = m.get('image_url', '')
-    if img:
-        img_html = f'<img src="{img}" data-src="{raw_img}" alt="{title} 3D model preview" width="800" height="450" decoding="async" loading="lazy"><div class="img-placeholder"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">{cat}</span></div>'
+    if orig_img:
+        img_html = (f'<img src="{img}" data-fallback="{orig_img}" data-placeholder="{_PLACEHOLDER}"'
+                    f' alt="{title} 3D model preview" width="800" height="450" decoding="async" loading="lazy"'
+                    f' onerror="handleImageError(this)">'
+                    f'<div class="img-placeholder"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">{cat}</span></div>')
     else:
         img_html = f'<div class="img-placeholder" style="display:flex;"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">{cat}</span></div>'
 

@@ -253,12 +253,17 @@ def related_card_html(m: dict) -> str:
     elif 'Stem' in cert:
         cert_html = '<span class="cert-badge cert-badge-sc mp-cert-sm">SC</span>'
 
-    PROXY = "https://images.weserv.nl/?url="
-    img_src = (PROXY + img.replace("https://", "") + "&w=600&q=85&output=webp"
-               if img and img.startswith("https://static.turbosquid") else img)
+    from urllib.parse import quote as _q
+    _PLACEHOLDER = "/3D-Models/assets/og/3d-molier-og.jpg"
+    if img and img.startswith("https://static.turbosquid"):
+        _clean = img.replace("https://", "")
+        img_src = "https://images.weserv.nl/?url=ssl:" + _q(_clean) + "&amp;w=600&amp;q=85&amp;output=webp"
+    else:
+        img_src = img
     if img:
         img_html = (
-            f'<img src="{img_src}" alt="{title}" width="800" height="450" decoding="async" loading="lazy" onerror="imgErr(this)">'
+            f'<img src="{img_src}" alt="{title}" width="800" height="450" decoding="async" loading="lazy"'
+            f' data-fallback="{img}" data-placeholder="{_PLACEHOLDER}" onerror="imgErr(this)">'
             f'<div class="img-placeholder">'
             f'<span class="mp-rc-placeholder-icon">&#128247;</span></div>'
         )
@@ -347,14 +352,18 @@ def model_page_html(m: dict, related: list[dict]) -> str:
     cert_val_text = cert if cert and cert != 'no certification' else 'None'
 
     # Hero image
-    PROXY = "https://images.weserv.nl/?url="
-    img_proxied = (PROXY + img.replace("https://", "") + "&w=600&q=85&output=webp"
-                   if img and img.startswith("https://static.turbosquid") else img)
+    from urllib.parse import quote as _q
+    _PLACEHOLDER = "/3D-Models/assets/og/3d-molier-og.jpg"
+    if img and img.startswith("https://static.turbosquid"):
+        _clean = img.replace("https://", "")
+        img_proxied = "https://images.weserv.nl/?url=ssl:" + _q(_clean) + "&amp;w=600&amp;q=85&amp;output=webp"
+    else:
+        img_proxied = img
     if img:
         img_content = (
             f'<img src="{img_proxied}" alt="{title} 3D model preview" '
             f'width="1200" height="675" decoding="async" loading="eager" fetchpriority="high" '
-            f'onerror="imgErr(this)" class="mp-hero-img">'
+            f'class="mp-hero-img" data-fallback="{img}" data-placeholder="{_PLACEHOLDER}" onerror="imgErr(this)">'
             f'<div class="img-placeholder mp-placeholder">'
             f'<span class="mp-placeholder-icon">&#128247;</span>'
             f'<span class="mp-placeholder-cat">{cat}</span>'
