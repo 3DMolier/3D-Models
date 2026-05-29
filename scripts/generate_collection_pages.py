@@ -361,10 +361,10 @@ def page_head(title: str, description: str, canonical: str, *ld_blobs: str) -> s
 <link rel="alternate" hreflang="en" href="{canonical}">
 <link rel="alternate" hreflang="x-default" href="{canonical}">
 <link rel="preload" href="/3D-Models/assets/fonts/font-13.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css?v=30">
-<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=30" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=30"></noscript>
-<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css?v=30">{bc_tag}
+<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css?v=31">
+<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=31" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=31"></noscript>
+<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css?v=31">{bc_tag}
 </head>"""
 
 
@@ -519,7 +519,7 @@ def collection_page_html(col: dict, models: list[dict], all_cols: list[dict]) ->
 </main>
 
 {footer_html()}
-<script src="/3D-Models/assets/js/site.min.js?v=30" defer></script>
+<script src="/3D-Models/assets/js/site.min.js?v=31" defer></script>
 </body>
 </html>'''
 
@@ -627,7 +627,7 @@ def collections_index_html(all_cols: list[dict]) -> str:
 </main>
 
 {footer_html()}
-<script src="/3D-Models/assets/js/site.min.js?v=30" defer></script>
+<script src="/3D-Models/assets/js/site.min.js?v=31" defer></script>
 </body>
 </html>'''
 
