@@ -11,6 +11,9 @@ function imgErr(img) {
 
 (function(){
 var p=location.pathname,d=document;
+// Legacy URL redirects (for old industry slugs without hyphens)
+var _r={'/3D-Models/industries/softwaredevelopment/':'/3D-Models/industries/software-development/','/3D-Models/industries/eventmanagement/':'/3D-Models/industries/event-management/','/3D-Models/industries/3dprinting/':'/3D-Models/industries/3d-printing/'};
+if(_r[p])location.replace(_r[p]);
 d.querySelectorAll('.nav-link,.nav-dropdown a,.nav-mobile a,.nav-mobile-sub a').forEach(function(el){
   var h=el.getAttribute('href');if(!h||h.indexOf('turbosquid')>-1)return;
   if(h===p||(h.length>14&&p.startsWith(h))){el.classList.add('active');el.setAttribute('aria-current','page');}

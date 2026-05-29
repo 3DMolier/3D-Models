@@ -76,16 +76,18 @@ if(hintCats){
   }).join('');
 }
 
-// ── Popular Searches (ТЗ 4 — updates URL) ─────────────────────────────────
-document.querySelectorAll('.search-tag').forEach(function(btn){
-  btn.addEventListener('click',function(){
-    var q=this.textContent.trim();
-    if(qEl)qEl.value=q;
-    if(clearBtn)clearBtn.classList.add('show');
-    updateUrl(q);
-    runSearch(q);
+// ── Popular Searches — bound in DOMContentLoaded (ТЗ 4) ───────────────────
+function bindPopularSearches(){
+  document.querySelectorAll('.search-tag').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var q=this.textContent.trim();
+      if(qEl)qEl.value=q;
+      if(clearBtn)clearBtn.classList.add('show');
+      updateUrl(q);
+      runSearch(q);
+    });
   });
-});
+}
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 function proxyImg(url){
@@ -246,6 +248,7 @@ function runSearch(q){
 
 // ── DOMContentLoaded ───────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded',function(){
+  bindPopularSearches();
   showHint();
 
   if(qEl){

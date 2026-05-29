@@ -128,10 +128,9 @@ def head(title, desc, canonical, color="#00E5C4", *ld_blobs):
 <meta name="twitter:description" content="{desc}">
 <meta name="twitter:image" content="https://3dmolier.github.io/3D-Models/assets/og/3d-molier-og.jpg">
 <link rel="icon" href="/3D-Models/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css?v=31">
-<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css?v=31">
-<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=31" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=31"></noscript>{bc_tag}
+<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css?v=32">
+<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css?v=32">
+<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=32">{bc_tag}
 </head>
 <body>'''
 

@@ -569,10 +569,9 @@ def page_html(cat_name, meta, models):
 <script type="application/ld+json">{breadcrumb_ld}</script>
 <script type="application/ld+json">{item_list_ld}</script>
 <link rel="preload" href="/3D-Models/assets/fonts/font-13.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css?v=31">
-<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=31" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=31"></noscript>
-<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css?v=31">
+<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css?v=32">
+<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=32">
+<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css?v=32">
 </head>
 <body class="relative min-h-screen"{body_data_attrs}>
 
@@ -674,8 +673,8 @@ def page_html(cat_name, meta, models):
 </main>
 
 {footer_html()}
-<script src="/3D-Models/assets/js/site.min.js?v=31" defer></script>
-<script src="/3D-Models/assets/js/category-pages.min.js?v=31" defer></script>
+<script src="/3D-Models/assets/js/site.min.js?v=32" defer></script>
+<script src="/3D-Models/assets/js/category-pages.min.js?v=32" defer></script>
 </body>
 </html>'''
 
