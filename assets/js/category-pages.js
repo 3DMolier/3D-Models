@@ -6,7 +6,8 @@ var EXTRA_MODELS_URL = document.body.dataset.extraModelsUrl
 var COLOR = document.body.dataset.color
   || (typeof window.COLOR !== 'undefined' ? window.COLOR : '#4F9EFF');
 
-function proxyImg(url){if(!url)return'';var b=url.replace(/^https?:\/\//,'');return'https://images.weserv.nl/?url='+b+'&w=600&q=85&output=webp';}
+function proxyImg(url){if(!url)return'';var c=String(url).replace(/^https?:\/\//,'');return'https://images.weserv.nl/?url=ssl:'+encodeURIComponent(c)+'&w=600&q=85&output=webp';}
+function originalImg(url){return url||'/3D-Models/assets/og/3d-molier-og.jpg';}
 
 var loaded = false;
 
@@ -21,7 +22,7 @@ function renderExtraModels(grid, btn, models) {
         ? '<span class="cert-badge" style="background:rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.25);color:#7C3AED;">SC</span>'
         : '';
     var imgHtml = m.img
-      ? '<img src="' + proxyImg(m.img) + '" data-src="' + m.img + '" alt="' + m.title.replace(/"/g,'&quot;') + '" loading="lazy" width="800" height="450" decoding="async"><div class="img-placeholder" style="color:' + color + ';display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:' + color + ';">' + m.cat + '</span></div>'
+      ? '<img src="' + proxyImg(m.img) + '" data-fallback="' + originalImg(m.img) + '" data-placeholder="/3D-Models/assets/og/3d-molier-og.jpg" alt="' + m.title.replace(/"/g,'&quot;') + '" loading="lazy" width="800" height="450" decoding="async" onerror="handleImageError(this)"><div class="img-placeholder" style="color:' + color + ';display:none;"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:' + color + ';">' + m.cat + '</span></div>'
       : '<div class="img-placeholder" style="color:' + color + ';"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:' + color + ';">' + m.cat + '</span></div>';
     var card = document.createElement('div');
     card.className = 'model-card card-glow';

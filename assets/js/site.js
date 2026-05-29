@@ -1,12 +1,28 @@
+function handleImageError(img) {
+  if (!img) return;
+  if (!img.dataset.triedFallback && img.dataset.fallback) {
+    img.dataset.triedFallback = '1';
+    img.src = img.dataset.fallback;
+    return;
+  }
+  if (!img.dataset.triedPlaceholder && img.dataset.placeholder) {
+    img.dataset.triedPlaceholder = '1';
+    img.src = img.dataset.placeholder;
+    return;
+  }
+  img.classList.add('img-error');
+}
+window.handleImageError = handleImageError;
+
 function imgErr(img) {
-  var direct = img.getAttribute('data-src');
+  var direct = img.getAttribute('data-fallback') || img.getAttribute('data-src');
   if (direct && img.src !== direct) {
     img.src = direct;
-  } else {
-    img.style.display = 'none';
-    var sib = img.nextElementSibling;
-    if (sib) sib.style.display = 'flex';
+    return;
   }
+  img.style.display = 'none';
+  var sib = img.nextElementSibling;
+  if (sib) sib.style.display = 'flex';
 }
 
 (function(){

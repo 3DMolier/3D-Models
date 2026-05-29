@@ -67,16 +67,18 @@ function certBadgeHtml(cert) {
 
 function proxyImg(url) {
   if (!url) return '';
-  var bare = url.replace(/^https?:\/\//, '');
-  return 'https://images.weserv.nl/?url=' + bare + '&w=600&q=85&output=webp';
+  var clean = String(url).replace(/^https?:\/\//, '');
+  return 'https://images.weserv.nl/?url=ssl:' + encodeURIComponent(clean) + '&w=600&q=85&output=webp';
 }
 
 function cardHtml(m) {
   const price = Number.isInteger(m.p) ? m.p : m.p.toFixed(0);
   const certBadge = certBadgeHtml(m.cert);
+  const src = m.img ? proxyImg(m.img) : '';
+  const fallback = m.img || '';
   return `<a href="/3D-Models/models/${m.s}/" class="model-card">
     <div class="card-img">
-      <img src="${m.img || ''}" data-src="${proxyImg(m.img)}" alt="${m.n} 3D model — ${m.c} by 3D Molier" width="800" height="450" loading="lazy" decoding="async" onerror="imgErr(this)">
+      <img src="${src}" data-fallback="${fallback}" data-placeholder="/3D-Models/assets/og/3d-molier-og.jpg" alt="${m.n} 3D model — ${m.c} by 3D Molier" width="800" height="450" loading="lazy" decoding="async" onerror="handleImageError(this)">
       <div class="img-fallback" style="display:none;background:#f5f5f5;">
         <span style="font-size:36px;">&#128247;</span>
       </div>

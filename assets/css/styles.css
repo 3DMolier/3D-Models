@@ -735,3 +735,5 @@ footer .nav-dropdown a.active { color: #9ca3af !important; background: transpare
   .footer-grid, .cat-footer-grid { grid-template-columns: 1fr; gap: 24px; }
   .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
 }
+
+.img-error { background: #f3f4f6; object-fit: contain; }
