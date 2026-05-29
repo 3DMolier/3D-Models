@@ -485,10 +485,10 @@ def model_page_html(m: dict, related: list[dict]) -> str:
 <link rel="alternate" hreflang="en" href="{page_url}">
 <link rel="alternate" hreflang="x-default" href="{page_url}">
 <link rel="preload" href="/3D-Models/assets/fonts/font-13.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css">
-<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css">
-<link rel="stylesheet" href="/3D-Models/assets/css/model-pages.min.css">
-<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css">
+<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css?v=30">
+<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css?v=30">
+<link rel="stylesheet" href="/3D-Models/assets/css/model-pages.min.css?v=30">
+<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=30">
 <script type="application/ld+json">
 {schema}
 </script>
@@ -632,7 +632,7 @@ def model_page_html(m: dict, related: list[dict]) -> str:
 </main>
 
 {footer_html(cat, cat_slug)}
-<script src="/3D-Models/assets/js/site.min.js" defer></script>
+<script src="/3D-Models/assets/js/site.min.js?v=30" defer></script>
 </body>
 </html>'''
 

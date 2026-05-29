@@ -23,4 +23,13 @@ setupDropdown('nav-ind-btn','nav-ind-wrap');
 function mobToggle(btnId,subId){var btn=d.getElementById(btnId),sub=d.getElementById(subId);if(btn&&sub){btn.addEventListener('click',function(){var o=sub.classList.toggle('open');btn.setAttribute('aria-expanded',''+o);var c=btn.querySelector('.nav-caret');if(c)c.style.transform=o?'rotate(180deg)':'';});}}
 mobToggle('mob-cat-toggle','mob-cat-sub');
 mobToggle('mob-ind-toggle','mob-ind-sub');
+
+// Homepage hero search → /search/?q=...
+var heroSearch=d.querySelector('.hero-search-wrap .search-input');
+var heroBtn=d.querySelector('.hero-search-wrap .search-btn');
+if(heroSearch&&heroBtn){
+  function doHeroSearch(){var q=heroSearch.value.trim();if(q)window.location.href='/3D-Models/search/?q='+encodeURIComponent(q);}
+  heroBtn.addEventListener('click',doHeroSearch);
+  heroSearch.addEventListener('keydown',function(e){if(e.key==='Enter')doHeroSearch();});
+}
 })();

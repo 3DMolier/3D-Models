@@ -572,10 +572,10 @@ var COLOR = "{color}";
 <script type="application/ld+json">{breadcrumb_ld}</script>
 <script type="application/ld+json">{item_list_ld}</script>
 <link rel="preload" href="/3D-Models/assets/fonts/font-13.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css">
-<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="/3D-Models/assets/css/fonts.css"></noscript>
-<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css">
+<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css?v=30">
+<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=30" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=30"></noscript>
+<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css?v=30">
 </head>
 <body class="relative min-h-screen">
 
@@ -678,8 +678,8 @@ var COLOR = "{color}";
 
 {footer_html()}
 {load_more_script}
-<script src="/3D-Models/assets/js/site.min.js" defer></script>
-<script src="/3D-Models/assets/js/category-pages.min.js" defer></script>
+<script src="/3D-Models/assets/js/site.min.js?v=30" defer></script>
+<script src="/3D-Models/assets/js/category-pages.min.js?v=30" defer></script>
 </body>
 </html>'''
 
