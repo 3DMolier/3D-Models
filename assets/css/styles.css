@@ -279,13 +279,7 @@
 .nav-mobile-sub a:hover{background:#f0f0f0;color:#111}
 @media(max-width:900px){.nav-links{display:none!important}.nav-cta{display:none!important}.nav-burger{display:flex!important}}
 
-/* Search model cards (no inline event handlers) */
-.s-mc{background:#fff;border:1px solid #e5e5e5;border-radius:6px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:box-shadow .15s}
-.s-mc:hover{box-shadow:0 4px 14px rgba(0,0,0,.09)}
-.s-mc-img{height:130px;overflow:hidden;background:#f5f5f5;flex-shrink:0}
-.s-mc-body{padding:8px 10px 10px;flex:1}
-.s-mc-name{font-size:11px;font-weight:600;color:#111;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.s-mc-price{margin-top:5px;font-size:12px;font-weight:700;color:#111}
+/* Search model cards — base (detail styles in search.css) */
 .s-pc{box-shadow:none;transition:box-shadow .15s}
 .s-pc:hover{box-shadow:0 2px 12px rgba(0,0,0,.08)}
 
@@ -669,8 +663,6 @@ footer .nav-dropdown a.active { color: #9ca3af !important; background: transpare
 .search-empty-state { text-align: center; padding: 60px 24px; color: #6b7280; }
 .search-tag { padding: 5px 14px; border-radius: 20px; border: 1px solid #e5e5e5; background: #fff; font-size: 12px; font-family: 'Open Sans', sans-serif; color: #555; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
 .search-tag:hover { border-color: #111; color: #111; }
-.s-mc-ts { display: block; margin-top: 6px; font-size: 11px; font-weight: 600; color: #1659c9; text-decoration: none; }
-.s-mc-ts:hover { text-decoration: underline; }
 
 /* ── Full-catalog page ──────────────────────────────────────────────────── */
 .fc-loading { text-align: center; padding: 80px 24px; }

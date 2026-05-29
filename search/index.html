@@ -16,8 +16,8 @@
 <meta name="twitter:description" content="Search 88,000+ professional 3D models by 3D Molier on TurboSquid. Find vehicles, aircraft, medical, architecture, characters and more.">
 <meta name="twitter:image" content="https://3dmolier.github.io/3D-Models/assets/og/3d-molier-og.jpg">
 <meta name="description" content="Search 88,000+ professional 3D models by 3D Molier on TurboSquid. Find vehicles, aircraft, medical, architecture, characters and more.">
-<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css?v=30">
-<link rel="stylesheet" href="/3D-Models/assets/css/search.min.css?v=30">
+<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css?v=31">
+<link rel="stylesheet" href="/3D-Models/assets/css/search.min.css?v=31">
 <link rel="icon" href="/3D-Models/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://3dmolier.github.io/3D-Models/search/">
 <link rel="alternate" hreflang="en" href="https://3dmolier.github.io/3D-Models/search/">
@@ -39,8 +39,8 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css?v=30">
-<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=30">
+<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css?v=31">
+<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=31">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://3dmolier.github.io/3D-Models/"},{"@type":"ListItem","position":2,"name":"Search","item":"https://3dmolier.github.io/3D-Models/search/"}]}</script>
 </head>
 <body>
@@ -148,9 +148,11 @@
   </div>
 </div>
 
+<div id="search-status" class="search-status" role="status" aria-live="polite" hidden></div>
+
 <div class="results-wrap">
   <!-- Hint: show categories when empty -->
-  
+
 <div class="search-empty-state">
   <div class="section-label">Popular Searches</div>
   <div class="search-chips-row">
@@ -185,6 +187,8 @@
 
   <!-- Results sections -->
   <div id="results"></div>
+  <div id="result-count" class="result-count" aria-live="polite"></div>
+  <button id="show-more" class="btn-ghost btn-ghost--sm" hidden>Show more</button>
 </div>
 
 <footer>
@@ -201,7 +205,7 @@
   </div>
 </footer>
 
-<script src="/3D-Models/assets/js/site.min.js?v=30" defer></script>
-<script src="/3D-Models/assets/js/search.min.js?v=30" defer></script>
+<script src="/3D-Models/assets/js/site.min.js?v=31" defer></script>
+<script src="/3D-Models/assets/js/search.min.js?v=31" defer></script>
 </body>
 </html>

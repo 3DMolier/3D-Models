@@ -1,11 +1,17 @@
 (function(){
 'use strict';
+// Read config from body data attributes (preferred) or legacy global vars
+var EXTRA_MODELS_URL = document.body.dataset.extraModelsUrl
+  || (typeof window.EXTRA_MODELS_URL !== 'undefined' ? window.EXTRA_MODELS_URL : '');
+var COLOR = document.body.dataset.color
+  || (typeof window.COLOR !== 'undefined' ? window.COLOR : '#4F9EFF');
+
 function proxyImg(url){if(!url)return'';var b=url.replace(/^https?:\/\//,'');return'https://images.weserv.nl/?url='+b+'&w=600&q=85&output=webp';}
 
 var loaded = false;
 
 function renderExtraModels(grid, btn, models) {
-  var color = (typeof COLOR !== 'undefined') ? COLOR : '#4F9EFF';
+  var color = COLOR;
   var LINK_ICON = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
   for (var i = 0; i < models.length; i++) {
     var m = models[i];
@@ -42,8 +48,8 @@ function loadMore() {
   var btn = document.getElementById('load-more-wrap');
   if (!grid) return;
 
-  // New approach: fetch external JSON (EXTRA_MODELS_URL set by generator)
-  if (typeof EXTRA_MODELS_URL !== 'undefined') {
+  // New approach: fetch external JSON (from data-extra-models-url or global)
+  if (EXTRA_MODELS_URL) {
     var btnEl = btn ? btn.querySelector('button') : null;
     if (btnEl) { btnEl.disabled = true; btnEl.textContent = 'Loading…'; }
     fetch(EXTRA_MODELS_URL)

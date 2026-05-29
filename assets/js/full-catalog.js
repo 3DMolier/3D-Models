@@ -4,6 +4,7 @@
 var FC={i:[],n:[],p:[],s:[],c:[]}, IMGS={}, fcReady=false;
 var searchQ='', selPrice=null, selCert=null, sortMode='sales';
 var filtered=[], page=0, PAGE_SIZE=60;
+var IDLE_PRELOAD_LIMIT=2, idlePreloaded=0;
 
 var qEl=document.getElementById('q');
 var sortSel=document.getElementById('sort-select');
@@ -40,17 +41,34 @@ function onFirstChunk() {
   var urlQ=new URLSearchParams(location.search).get('q');
   if(urlQ&&qEl){qEl.value=urlQ;searchQ=urlQ.toLowerCase();applyFilters();}
   if('IntersectionObserver' in window) setupInfiniteScroll();
+  scheduleIdlePreload();
+}
+
+function scheduleIdlePreload(){
+  if(idlePreloaded>=IDLE_PRELOAD_LIMIT||loadedChunks>=totalChunks)return;
+  function run(){
+    if(idlePreloaded>=IDLE_PRELOAD_LIMIT||loadedChunks>=totalChunks)return;
+    loadChunk(loadedChunks);
+    idlePreloaded++;
+  }
+  if('requestIdleCallback' in window)requestIdleCallback(run,{timeout:2000});
+  else setTimeout(run,1200);
+}
+
+function ensureRemainingChunks(){
+  if(loadedChunks>=totalChunks)return;
+  loadChunk(loadedChunks);
 }
 
 function loadChunk(i) {
-  fetch('/3D-Models/data/fc-chunk-'+i+'.json')
+  return fetch('/3D-Models/data/fc-chunk-'+i+'.json')
     .then(function(r){return r.json();})
     .then(function(chunk){
       mergeChunk(chunk);
       loadedChunks++;
       if(loadedChunks===1) onFirstChunk();
-      else if(fcReady){ applyFilters(); }
-      if(loadedChunks<totalChunks) setTimeout(function(){loadChunk(loadedChunks);}, 200);
+      else if(fcReady) applyFilters();
+      // scheduleIdlePreload handles further auto-loading; no serial chain here
     })
     .catch(function(err){
       console.error('Chunk '+i+' failed:',err);
@@ -163,7 +181,11 @@ if(qEl){
   var debT=null;
   qEl.addEventListener('input',function(){
     clearTimeout(debT);var val=this.value.trim();
-    debT=setTimeout(function(){searchQ=val.toLowerCase();applyFilters();},220);
+    debT=setTimeout(function(){
+      searchQ=val.toLowerCase();
+      applyFilters();
+      if(val.length>1)ensureRemainingChunks();
+    },220);
   });
 }
 if(sortSel)sortSel.addEventListener('change',function(){sortMode=this.value;applyFilters();});

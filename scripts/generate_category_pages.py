@@ -490,17 +490,14 @@ def page_html(cat_name, meta, models):
     (cat_data_dir / f'{slug}.json').write_text(extra_json, encoding='utf-8')
 
     load_more_btn = ''
-    load_more_script = ''
+    body_data_attrs = ''
     if extra_models:
         load_more_btn = f'''<div id="load-more-wrap" class="mc-load-more">
         <button id="load-more-btn" class="btn-ghost btn-ghost--md" onclick="loadMore()">
           Load more models ({len(extra_models)} remaining)
         </button>
       </div>'''
-        load_more_script = f'''<script>
-var EXTRA_MODELS_URL = '/3D-Models/data/categories/{slug}.json';
-var COLOR = "{color}";
-</script>'''
+        body_data_attrs = f' data-extra-models-url="/3D-Models/data/categories/{slug}.json" data-color="{color}"'
 
     # Related category cards
     related_cards = ''
@@ -572,12 +569,12 @@ var COLOR = "{color}";
 <script type="application/ld+json">{breadcrumb_ld}</script>
 <script type="application/ld+json">{item_list_ld}</script>
 <link rel="preload" href="/3D-Models/assets/fonts/font-13.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css?v=30">
-<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=30" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=30"></noscript>
-<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css?v=30">
+<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css?v=31">
+<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=31" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=31"></noscript>
+<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css?v=31">
 </head>
-<body class="relative min-h-screen">
+<body class="relative min-h-screen"{body_data_attrs}>
 
 {nav_html()}
 
@@ -677,9 +674,8 @@ var COLOR = "{color}";
 </main>
 
 {footer_html()}
-{load_more_script}
-<script src="/3D-Models/assets/js/site.min.js?v=30" defer></script>
-<script src="/3D-Models/assets/js/category-pages.min.js?v=30" defer></script>
+<script src="/3D-Models/assets/js/site.min.js?v=31" defer></script>
+<script src="/3D-Models/assets/js/category-pages.min.js?v=31" defer></script>
 </body>
 </html>'''
 
