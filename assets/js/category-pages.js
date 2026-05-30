@@ -6,7 +6,7 @@ var EXTRA_MODELS_URL = document.body.dataset.extraModelsUrl
 var COLOR = document.body.dataset.color
   || (typeof window.COLOR !== 'undefined' ? window.COLOR : '#4F9EFF');
 
-function proxyImg(url){if(!url)return'';if(url.indexOf('p.turbosquid.com')!==-1)return url;if(url.indexOf('static.turbosquid.com')!==-1)return url;var c=String(url).replace(/^https?:\/\//,'');return'https://images.weserv.nl/?url=ssl:'+encodeURIComponent(c)+'&w=600&q=85&output=webp';}
+function proxyImg(url){if(!url)return'';var c=String(url).trim();if(c.indexOf('p.turbosquid.com')!==-1)return c;var r=c.replace(/^https?:\/\//,'');return'https://images.weserv.nl/?url=ssl:'+encodeURIComponent(r)+'&w=600&q=85&output=webp';}
 function originalImg(url){return url||'/3D-Models/assets/og/3d-molier-og.jpg';}
 
 var loaded = false;

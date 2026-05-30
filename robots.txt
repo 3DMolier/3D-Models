@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Disallow: /data/
+Disallow: /3D-Models/data/
 
 # AI search crawlers
 User-agent: GPTBot

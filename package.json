@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "audit": "node scripts/audit-site.mjs",
+    "predeploy": "npm run audit"
+  },
   "devDependencies": {
     "puppeteer": "^25.0.2"
   },

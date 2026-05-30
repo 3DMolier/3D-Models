@@ -12,7 +12,7 @@ NAV = '''<a href="#main-content" class="skip-link">Skip to main content</a>
     <a href="/3D-Models/" class="nav-logo">3D Molier</a>
     <div class="nav-links" id="nav-links">
       <a href="/3D-Models/catalog/" class="nav-link">Top 1000</a>
-      <a href="/3D-Models/full-catalog/" class="nav-link">Full 86K Catalog</a>
+      <a href="/3D-Models/full-catalog/" class="nav-link">Full Catalog</a>
       <span class="nav-sep" aria-hidden="true"></span>
       <div class="nav-has-dropdown nav-has-mega" id="nav-cat-wrap">
         <button class="nav-link" id="nav-cat-btn" aria-haspopup="true" aria-expanded="false">Categories <span class="nav-caret" aria-hidden="true">&#9662;</span></button>
@@ -55,7 +55,7 @@ NAV = '''<a href="#main-content" class="skip-link">Skip to main content</a>
 </nav>
 <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
   <a href="/3D-Models/catalog/">Top 1000 Models</a>
-  <a href="/3D-Models/full-catalog/">Full 86K Catalog</a>
+  <a href="/3D-Models/full-catalog/">Full Catalog</a>
   <button class="nav-mobile-toggle" id="mob-cat-toggle" aria-expanded="false">Categories <span class="nav-caret">&#9662;</span></button>
   <div class="nav-mobile-sub" id="mob-cat-sub">
     <a href="/3D-Models/categories/vehicles/">Vehicles</a>
@@ -162,9 +162,9 @@ def head(title, desc, canonical, color="#00E5C4", *ld_blobs):
 <meta name="twitter:description" content="{desc}">
 <meta name="twitter:image" content="https://3dmolier.github.io/3D-Models/assets/og/3d-molier-og.jpg">
 <link rel="icon" href="/3D-Models/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css?v=32">
-<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css?v=32">
-<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=32">{bc_tag}
+<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css?v=33">
+<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css?v=33">
+<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=33">{bc_tag}
 </head>
 <body>'''
 
@@ -323,7 +323,13 @@ def model_card(m):
     title = m["product_name"]
     cat = m["category"]
     orig_img = m.get("image_url", "")
-    img = orig_img  # use direct URL; weserv proxy blocked by TurboSquid hotlink protection
+    if orig_img and orig_img.startswith("https://p.turbosquid.com"):
+        img = orig_img  # thumbnail CDN works directly
+    elif orig_img:
+        _clean = orig_img.replace("https://", "").replace("http://", "")
+        img = "https://images.weserv.nl/?url=ssl:" + _q(_clean, safe="") + "&w=600&q=85&output=webp"
+    else:
+        img = ""
     try:
         price_str = f"${float(m['price']):.0f}"
     except:
@@ -430,6 +436,7 @@ def build_industry_page(slug, meta):
 </main>
 
 {FOOTER}
+<script src="/3D-Models/assets/js/site.min.js?v=33" defer></script>
 </body>
 </html>'''
 

@@ -1,16 +1,23 @@
 function handleImageError(img) {
   if (!img) return;
-  if (!img.dataset.triedFallback && img.dataset.fallback) {
+  var fallback = img.getAttribute('data-fallback');
+  var placeholder = img.getAttribute('data-placeholder') || '/3D-Models/assets/og/3d-molier-og.jpg';
+  if (!img.dataset.triedFallback && fallback && img.src !== fallback) {
     img.dataset.triedFallback = '1';
-    img.src = img.dataset.fallback;
+    img.src = fallback;
     return;
   }
-  if (!img.dataset.triedPlaceholder && img.dataset.placeholder) {
+  if (!img.dataset.triedPlaceholder && placeholder && img.src !== placeholder) {
     img.dataset.triedPlaceholder = '1';
-    img.src = img.dataset.placeholder;
+    img.src = placeholder;
     return;
   }
   img.classList.add('img-error');
+  var sib = img.nextElementSibling;
+  if (sib && sib.classList.contains('img-placeholder')) {
+    img.style.display = 'none';
+    sib.style.display = 'flex';
+  }
 }
 window.handleImageError = handleImageError;
 
