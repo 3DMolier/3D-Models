@@ -5,7 +5,7 @@ var FC={i:[],n:[],p:[],s:[],c:[]}, IMGS={}, fcReady=false;
 var searchQ='', selPrice=null, selCert=null, sortMode='sales';
 var filtered=[], page=0, PAGE_SIZE=60;
 var IDLE_PRELOAD_LIMIT=2, idlePreloaded=0;
-var loadedImgChunkSet={}, IDLE_IMG_LIMIT=1, idleImgPreloaded=0;
+var loadedImgChunkSet={};
 
 var qEl=document.getElementById('q');
 var sortSel=document.getElementById('sort-select');
@@ -88,19 +88,24 @@ function loadImgChunk(i) {
     .then(function(chunk){
       Object.assign(IMGS, chunk);
       imgChunks++;
+      injectLoadedImages();
     })
     .catch(function(){delete loadedImgChunkSet[i];});
 }
 
-function scheduleIdleImgPreload(){
-  if(idleImgPreloaded>=IDLE_IMG_LIMIT)return;
-  var next=-1;
-  for(var i=0;i<totalImgChunks;i++){if(!loadedImgChunkSet[i]){next=i;break;}}
-  if(next===-1)return;
-  idleImgPreloaded++;
-  var run=function(){loadImgChunk(next);};
-  if('requestIdleCallback' in window)requestIdleCallback(run,{timeout:3000});
-  else setTimeout(run,1500);
+function injectLoadedImages(){
+  document.querySelectorAll('[data-img-pid]').forEach(function(el){
+    var pid=el.dataset.imgPid;
+    if(IMGS[pid]){
+      var img=document.createElement('img');
+      img.src=IMGS[pid];
+      img.loading='lazy';
+      img.setAttribute('width','800');
+      img.setAttribute('height','450');
+      img.decoding='async';
+      el.parentNode.replaceChild(img,el);
+    }
+  });
 }
 
 function ensureRemainingImgChunks(){
@@ -111,7 +116,7 @@ function startLoading(fcIdx, imgIdx) {
   totalChunks = fcIdx.chunks;
   totalImgChunks = imgIdx.chunks;
   loadChunk(0);
-  loadImgChunk(0).then(scheduleIdleImgPreload);
+  loadImgChunk(0).then(ensureRemainingImgChunks);
 }
 
 Promise.all([
@@ -177,7 +182,7 @@ function modelCard(idx){
   var id=FC.i[idx],name=FC.n[idx],price=FC.p[idx],cert=FC.c[idx],sales=FC.s[idx];
   var imgHtml=IMGS[id]
     ?'<img src="'+IMGS[id]+'" alt="'+name.replace(/"/g,'&quot;')+'" loading="lazy" width="800" height="450" decoding="async">'
-    :'<div class="mc-ph">&#128246;</div>';
+    :'<div class="mc-ph" data-img-pid="'+id+'">&#128246;</div>';
   var certBadge=cert===2?'<span class="mc-cert cert-cm">CheckMate</span>'
     :cert===1?'<span class="mc-cert cert-sc">StemCell</span>':'';
   var salesHtml=sales?'<span class="mc-sold">'+sales+' sold</span>':'';
