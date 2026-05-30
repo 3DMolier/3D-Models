@@ -2,14 +2,22 @@
 'use strict';
 
 var CATALOG_URL='/3D-Models/data/catalog.json';
+var FC_INDEX_URL='/3D-Models/data/fc-index.json';
+var FC_CHUNK_BASE='/3D-Models/data/fc-chunk-';
+var FC_IMG_CHUNK_BASE='/3D-Models/data/fc-img-chunk-';
+var FC_IMG_CHUNKS=6; // chunks 0-5 have real image data
 var PAGE_SIZE=24;
 
 var PAGES=[{"type":"category","title":"Vehicles","page":"/3D-Models/categories/vehicles/","icon":"🚗","count":292},{"type":"category","title":"Aircraft","page":"/3D-Models/categories/aircraft/","icon":"✈️","count":173},{"type":"category","title":"Military Vehicles","page":"/3D-Models/categories/military-vehicles/","icon":"🪖","count":79},{"type":"category","title":"Ships","page":"/3D-Models/categories/ships/","icon":"⚓","count":64},{"type":"category","title":"Medical","page":"/3D-Models/categories/medical-3d-models/","icon":"🧬","count":101},{"type":"category","title":"Industrial Equipment","page":"/3D-Models/categories/industrial-equipment/","icon":"⚙️","count":34},{"type":"category","title":"Architecture Landmarks","page":"/3D-Models/categories/architecture-landmarks/","icon":"🏛️","count":57},{"type":"category","title":"Characters & People","page":"/3D-Models/categories/characters-people/","icon":"👤","count":4},{"type":"category","title":"Animals & Creatures","page":"/3D-Models/categories/animals-creatures/","icon":"🐾","count":13},{"type":"category","title":"Nature & Plants","page":"/3D-Models/categories/nature-plants/","icon":"🌿","count":18},{"type":"category","title":"Furniture & Interior","page":"/3D-Models/categories/furniture-interior/","icon":"🪑","count":8},{"type":"category","title":"Electronics & Gadgets","page":"/3D-Models/categories/electronics-gadgets/","icon":"💻","count":10},{"type":"category","title":"Clothing & Accessories","page":"/3D-Models/categories/clothing-accessories/","icon":"👗","count":12},{"type":"category","title":"Food & Beverages","page":"/3D-Models/categories/food-beverages/","icon":"🍕","count":4},{"type":"category","title":"Other","page":"/3D-Models/categories/other/","icon":"📦","count":131},{"type":"collection","title":"Best Vehicle 3D Models","page":"/3D-Models/collections/best-vehicle-3d-models/","icon":"🚗"},{"type":"collection","title":"Best Military Vehicle 3D Models","page":"/3D-Models/collections/best-military-vehicle-3d-models/","icon":"🪖"},{"type":"collection","title":"Best Aircraft 3D Models","page":"/3D-Models/collections/best-aircraft-3d-models/","icon":"✈️"},{"type":"collection","title":"Best Ship 3D Models","page":"/3D-Models/collections/best-ship-3d-models/","icon":"⚓"},{"type":"collection","title":"Best Medical 3D Models","page":"/3D-Models/collections/best-medical-3d-models/","icon":"🧬"},{"type":"collection","title":"Best Architecture 3D Models","page":"/3D-Models/collections/best-architecture-landmark-3d-models/","icon":"🏛️"},{"type":"collection","title":"CheckMate Certified 3D Models","page":"/3D-Models/collections/checkmate-certified-3d-models/","icon":"✅"},{"type":"collection","title":"StemCell Certified 3D Models","page":"/3D-Models/collections/stemcell-certified-3d-models/","icon":"🔬"},{"type":"industry","title":"Aerospace","icon":"✈️","page":"/3D-Models/industries/aerospace/"},{"type":"industry","title":"Military & Defense","icon":"🪖","page":"/3D-Models/industries/military-defense/"},{"type":"industry","title":"Medical","icon":"🏥","page":"/3D-Models/industries/medical/"},{"type":"industry","title":"Game Development","icon":"🎮","page":"/3D-Models/industries/game-development/"},{"type":"industry","title":"Film Production","icon":"🎬","page":"/3D-Models/industries/film-video-production/"},{"type":"industry","title":"Architecture","icon":"🏛️","page":"/3D-Models/industries/architecture/"},{"type":"industry","title":"Virtual Reality","icon":"🥽","page":"/3D-Models/industries/virtual-reality/"},{"type":"industry","title":"Advertising","icon":"📢","page":"/3D-Models/industries/advertising/"},{"type":"industry","title":"Software Development","icon":"💻","page":"/3D-Models/industries/software-development/"},{"type":"industry","title":"Event Management","icon":"🎪","page":"/3D-Models/industries/event-management/"},{"type":"industry","title":"Hardware","icon":"⚙️","page":"/3D-Models/industries/hardware/"},{"type":"industry","title":"3D Printing","icon":"🖨️","page":"/3D-Models/industries/3d-printing/"}];
 
+// ── State ──────────────────────────────────────────────────────────────────
 var MODELS=[], catalogReady=false;
+var FC_MODELS=[], fcImgMap={}, fcReady=false, fcLoading=false;
+var topIdSet=new Set();
 var lastQ='', debT=null, activeFilter='all';
-var currentModelResults=[], renderedCount=0;
+var currentTopResults=[], currentFcResults=[], renderedTop=0, renderedFc=0;
 
+// ── DOM refs ───────────────────────────────────────────────────────────────
 var qEl=document.getElementById('q');
 var clearBtn=document.getElementById('clear-q');
 var resultsEl=document.getElementById('results');
@@ -20,14 +28,14 @@ var statusEl=document.getElementById('search-status');
 var countEl=document.getElementById('result-count');
 var showMoreBtn=document.getElementById('show-more');
 
-// ── Status (ТЗ 5) ──────────────────────────────────────────────────────────
+// ── Status ─────────────────────────────────────────────────────────────────
 function setStatus(msg){
   if(!statusEl)return;
   statusEl.textContent=msg||'';
   statusEl.hidden=!msg;
 }
 
-// ── URL sync (ТЗ 4) ───────────────────────────────────────────────────────
+// ── URL sync ───────────────────────────────────────────────────────────────
 function updateUrl(q){
   var url=new URL(window.location.href);
   if(q)url.searchParams.set('q',q);
@@ -35,7 +43,24 @@ function updateUrl(q){
   window.history.replaceState({},'',url.toString());
 }
 
-// ── Error fallback (ТЗ 2) ─────────────────────────────────────────────────
+// ── Helpers ────────────────────────────────────────────────────────────────
+function certBadge(cert){
+  if(!cert||cert==='no certification')return '';
+  if(cert.indexOf('CheckMate')>-1)return '<span class="s-cert cm-b">CheckMate</span>';
+  if(cert.indexOf('StemCell')>-1)return '<span class="s-cert sc-b">StemCell</span>';
+  return '';
+}
+function certBadgeCode(c){
+  if(c===2)return '<span class="s-cert cm-b">CheckMate</span>';
+  if(c===1)return '<span class="s-cert sc-b">StemCell</span>';
+  return '';
+}
+function getTsId(slug){
+  var m=String(slug||'').match(/-(\d+)$/);
+  return m?m[1]:'';
+}
+
+// ── Error state ────────────────────────────────────────────────────────────
 function showDataError(){
   if(hintState)hintState.style.display='none';
   if(showMoreBtn)showMoreBtn.hidden=true;
@@ -43,19 +68,23 @@ function showDataError(){
   if(!resultsEl)return;
   resultsEl.innerHTML='<div class="search-warning" role="status">'
     +'<h2>Search data is temporarily unavailable</h2>'
-    +'<p>Model search data could not be loaded right now. You can still browse the Full 86K Catalog or search the 3D Molier TurboSquid store.</p>'
+    +'<p>Model search data could not be loaded. You can browse the Full Catalog or search TurboSquid directly.</p>'
     +'<div class="search-warning-actions">'
-    +'<a class="btn-primary" href="/3D-Models/full-catalog/">Open Full 86K Catalog</a>'
+    +'<a class="btn-primary" href="/3D-Models/full-catalog/">Open Full Catalog</a>'
     +'<a class="btn-ghost" href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener">Search on TurboSquid ↗</a>'
     +'</div></div>';
 }
 
-// ── Load catalog.json ──────────────────────────────────────────────────────
+// ── Load catalog.json (top 1000) ───────────────────────────────────────────
 setStatus('Loading search index…');
 fetch(CATALOG_URL)
   .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
   .then(function(d){
     MODELS=Array.isArray(d)?d:[];
+    MODELS.forEach(function(m){
+      var id=getTsId(m.s||'');
+      if(id)topIdSet.add(Number(id));
+    });
     catalogReady=true;
     setStatus('');
     if(lastQ.length>1)runSearch(lastQ);
@@ -67,6 +96,61 @@ fetch(CATALOG_URL)
     console.warn('Search data load error:',err);
   });
 
+// ── Load FC chunks (86K full catalog) ─────────────────────────────────────
+function loadFcData(){
+  if(fcReady||fcLoading)return;
+  fcLoading=true;
+  setStatus('Loading full catalog (86,865 models)…');
+
+  var p1=fetch(FC_INDEX_URL)
+    .then(function(r){return r.json();})
+    .then(function(idx){
+      var fetches=[];
+      for(var i=0;i<idx.chunks;i++){
+        fetches.push(fetch(FC_CHUNK_BASE+i+'.json').then(function(r){return r.json();}));
+      }
+      return Promise.all(fetches);
+    })
+    .then(function(chunks){
+      FC_MODELS=[];
+      chunks.forEach(function(ch){
+        for(var i=0;i<ch.i.length;i++){
+          var id=ch.i[i];
+          if(!topIdSet.has(id)){
+            FC_MODELS.push({id:id,n:ch.n[i],p:ch.p[i],c:ch.c[i]});
+          }
+        }
+      });
+    });
+
+  var p2=Promise.all(
+    (function(){
+      var arr=[];
+      for(var i=0;i<FC_IMG_CHUNKS;i++){
+        arr.push(fetch(FC_IMG_CHUNK_BASE+i+'.json').then(function(r){return r.json();}));
+      }
+      return arr;
+    })()
+  ).then(function(imgChunks){
+    imgChunks.forEach(function(ch){
+      Object.keys(ch).forEach(function(k){fcImgMap[Number(k)]=ch[k];});
+    });
+  });
+
+  Promise.all([p1,p2])
+    .then(function(){
+      fcReady=true;
+      fcLoading=false;
+      setStatus('');
+      if(lastQ.length>1)runSearch(lastQ);
+    })
+    .catch(function(err){
+      fcLoading=false;
+      setStatus('');
+      console.warn('FC data load error:',err);
+    });
+}
+
 // ── Hint categories ────────────────────────────────────────────────────────
 var hintCats=document.getElementById('hint-cats');
 if(hintCats){
@@ -76,7 +160,7 @@ if(hintCats){
   }).join('');
 }
 
-// ── Popular Searches — bound in DOMContentLoaded (ТЗ 4) ───────────────────
+// ── Popular searches ───────────────────────────────────────────────────────
 function bindPopularSearches(){
   document.querySelectorAll('.search-tag').forEach(function(btn){
     btn.addEventListener('click',function(){
@@ -89,27 +173,7 @@ function bindPopularSearches(){
   });
 }
 
-// ── Helpers ────────────────────────────────────────────────────────────────
-function proxyImg(url){
-  if(!url)return '';
-  if(url.indexOf('static.turbosquid.com')>-1)
-    return 'https://images.weserv.nl/?url='+encodeURIComponent(url)+'&w=600&q=85&output=webp';
-  return url;
-}
-
-function certBadge(cert){
-  if(!cert||cert==='no certification')return '';
-  if(cert.indexOf('CheckMate')>-1)return '<span class="s-cert cm-b">CheckMate</span>';
-  if(cert.indexOf('StemCell')>-1)return '<span class="s-cert sc-b">StemCell</span>';
-  return '';
-}
-
-function getTsId(slug){
-  var m=String(slug||'').match(/-(\d+)$/);
-  return m?m[1]:'';
-}
-
-// ── Model card HTML (ТЗ 1 — article, no nested <a>) ──────────────────────
+// ── Card: top-1000 model (has local page) ─────────────────────────────────
 function modelCard(m){
   var slug=m.s||'';
   var localUrl='/3D-Models/models/'+slug+'/';
@@ -117,12 +181,12 @@ function modelCard(m){
   var tsUrl=id
     ?'https://www.turbosquid.com/FullPreview/'+id+'?referral=3d_molier-studio'
     :'https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio';
-  var src=proxyImg(m.img);
+  var src=m.img||'';
   var nameEsc=String(m.n||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
   var nameHtml=String(m.n||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
   var imgTag=src
-    ?'<img src="'+src+'" alt="'+nameEsc+' 3D model" width="800" height="450" loading="lazy" decoding="async">'
-    :'<div class="s-mc-ph">📶</div>';
+    ?'<img src="'+src+'" alt="'+nameEsc+' 3D model" width="800" height="450" loading="lazy" decoding="async" onerror="handleImageError(this)">'
+    :'<div class="s-mc-ph">📷</div>';
   return '<article class="s-mc">'
     +'<a href="'+localUrl+'" class="s-mc-img-link" aria-label="View '+nameEsc+' 3D Model">'
     +imgTag+certBadge(m.cert)
@@ -139,26 +203,62 @@ function modelCard(m){
     +'</article>';
 }
 
-// ── Pagination helpers (ТЗ 3) ─────────────────────────────────────────────
+// ── Card: full-catalog model (TurboSquid link only) ───────────────────────
+function modelCardFull(fc){
+  var tsUrl='https://www.turbosquid.com/FullPreview/'+fc.id+'?referral=3d_molier-studio';
+  var src=fcImgMap[fc.id]||'';
+  var nameEsc=String(fc.n||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+  var nameHtml=String(fc.n||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  var imgTag=src
+    ?'<img src="'+src+'" alt="'+nameEsc+' 3D model" width="800" height="450" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">'
+    :'<div class="s-mc-ph">📷</div>';
+  return '<article class="s-mc">'
+    +'<a href="'+tsUrl+'" class="s-mc-img-link" target="_blank" rel="noopener" aria-label="View '+nameEsc+' on TurboSquid">'
+    +imgTag+certBadgeCode(fc.c)
+    +'</a>'
+    +'<div class="s-mc-body">'
+    +'<h3 class="s-mc-title"><a href="'+tsUrl+'" target="_blank" rel="noopener">'+nameHtml+'</a></h3>'
+    +'<div class="s-mc-meta"><span class="s-mc-price">$'+fc.p+'</span></div>'
+    +'<div class="s-mc-actions">'
+    +'<a href="'+tsUrl+'" class="btn-primary btn-primary--sm" target="_blank" rel="noopener">TurboSquid ↗</a>'
+    +'</div>'
+    +'</div>'
+    +'</article>';
+}
+
+// ── Pagination ─────────────────────────────────────────────────────────────
+function totalResults(){return currentTopResults.length+currentFcResults.length;}
+function renderedTotal(){return renderedTop+renderedFc;}
+
 function updateCount(){
   if(!countEl)return;
-  var total=currentModelResults.length;
+  var total=totalResults();
   if(!total){countEl.textContent='';return;}
-  countEl.textContent='Showing '+Math.min(renderedCount,total)+' of '+total+' model'+(total===1?'':' results');
+  var shown=renderedTotal();
+  var suffix=fcLoading?' (loading more…)':'';
+  countEl.textContent='Showing '+Math.min(shown,total)+' of '+total+' model'+(total===1?'':' result'+(total===1?'':'s'))+suffix;
 }
 
 function updateShowMore(){
   if(!showMoreBtn)return;
-  showMoreBtn.hidden=renderedCount>=currentModelResults.length;
+  showMoreBtn.hidden=renderedTotal()>=totalResults();
 }
 
 function appendModelCards(){
-  var modelSection=document.getElementById('model-results');
-  if(!modelSection)return;
-  var next=currentModelResults.slice(renderedCount,renderedCount+PAGE_SIZE);
-  if(next.length){
-    modelSection.insertAdjacentHTML('beforeend',next.map(modelCard).join(''));
-    renderedCount+=next.length;
+  var grid=document.getElementById('model-results');
+  if(!grid)return;
+  // Fill from top results first, then fc results
+  var toAdd=PAGE_SIZE;
+  if(renderedTop<currentTopResults.length){
+    var slice=currentTopResults.slice(renderedTop,renderedTop+toAdd);
+    grid.insertAdjacentHTML('beforeend',slice.map(modelCard).join(''));
+    renderedTop+=slice.length;
+    toAdd-=slice.length;
+  }
+  if(toAdd>0&&renderedFc<currentFcResults.length){
+    var slice2=currentFcResults.slice(renderedFc,renderedFc+toAdd);
+    grid.insertAdjacentHTML('beforeend',slice2.map(modelCardFull).join(''));
+    renderedFc+=slice2.length;
   }
   updateCount();
   updateShowMore();
@@ -171,14 +271,14 @@ function showHint(){
   if(countEl)countEl.textContent='';
   if(showMoreBtn)showMoreBtn.hidden=true;
   if(resultsEl)resultsEl.innerHTML='';
-  currentModelResults=[];
-  renderedCount=0;
+  currentTopResults=[];currentFcResults=[];renderedTop=0;renderedFc=0;
 }
 
 // ── Render ─────────────────────────────────────────────────────────────────
-function render(pages,models,q){
+function render(pages,topModels,fcModels,q){
   if(hintState)hintState.style.display='none';
-  if(pages.length===0&&models.length===0){
+  var total=topModels.length+fcModels.length;
+  if(pages.length===0&&total===0&&!fcLoading){
     if(emptyState)emptyState.style.display='';
     if(tsLink)tsLink.href='https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio';
     if(countEl)countEl.textContent='';
@@ -202,21 +302,24 @@ function render(pages,models,q){
     });
     html+='</div></div>';
   }
-  if(models.length>0){
+  if(total>0||fcLoading){
+    var headerCount=total>0?(' <span class="section-count">'+total+(fcLoading?'+':'')+'</span>'):'';
     html+='<div class="result-section">';
     html+='<div class="section-header">';
-    html+='<span class="section-title">Models</span>';
-    html+='<a href="/3D-Models/full-catalog/?q='+encodeURIComponent(q)+'" style="color:#1659c9;text-decoration:none;font-size:11px;font-weight:600">see all in 86K catalog →</a>';
+    html+='<span class="section-title">Models'+headerCount+'</span>';
+    if(!fcLoading&&fcReady){
+      html+='<a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" style="color:#1659c9;text-decoration:none;font-size:11px;font-weight:600">more on TurboSquid →</a>';
+    }
     html+='</div>';
+    if(fcLoading){
+      html+='<div style="font-size:13px;color:#6b7280;padding:8px 0;">Searching full 86,865 model catalog…</div>';
+    }
     html+='<div class="s-mc-grid" id="model-results"></div>';
-    html+='<div class="ts-card" style="margin-top:16px">';
-    html+='<div class="ts-card-text"><h4>Search all 86,000+ models on TurboSquid</h4><p>Browse the complete catalog with advanced filters</p></div>';
-    html+='<a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener">Search TurboSquid ↗</a>';
-    html+='</div></div>';
+    html+='</div>';
   }
   if(resultsEl)resultsEl.innerHTML=html;
-  if(models.length>0){
-    renderedCount=0;
+  if(total>0){
+    renderedTop=0;renderedFc=0;
     appendModelCards();
   }
 }
@@ -226,24 +329,43 @@ function runSearch(q){
   lastQ=q;
   if(!q||q.length<2){showHint();return;}
   var ql=q.toLowerCase();
+
   var pages=PAGES.filter(function(x){
     if(activeFilter!=='all'&&x.type!==activeFilter)return false;
     return x.title.toLowerCase().indexOf(ql)>-1;
   });
-  var models=[];
+
+  var topModels=[];
   if(catalogReady&&(activeFilter==='all'||activeFilter==='model')){
     for(var i=0;i<MODELS.length;i++){
       var m=MODELS[i];
       if((m.n&&m.n.toLowerCase().indexOf(ql)>-1)
         ||(m.c&&m.c.toLowerCase().indexOf(ql)>-1)
         ||(m.s&&m.s.toLowerCase().indexOf(ql)>-1)){
-        models.push(m);
+        topModels.push(m);
       }
     }
   }
-  currentModelResults=models;
-  renderedCount=0;
-  render(pages,models,q);
+
+  var fcResults=[];
+  if(fcReady&&(activeFilter==='all'||activeFilter==='model')){
+    for(var j=0;j<FC_MODELS.length;j++){
+      var fc=FC_MODELS[j];
+      if(fc.n&&fc.n.toLowerCase().indexOf(ql)>-1){
+        fcResults.push(fc);
+      }
+    }
+  }
+
+  currentTopResults=topModels;
+  currentFcResults=fcResults;
+  renderedTop=0;renderedFc=0;
+  render(pages,topModels,fcResults,q);
+
+  // Trigger full catalog load on first search
+  if(!fcReady&&!fcLoading&&(activeFilter==='all'||activeFilter==='model')){
+    loadFcData();
+  }
 }
 
 // ── DOMContentLoaded ───────────────────────────────────────────────────────
@@ -256,7 +378,7 @@ document.addEventListener('DOMContentLoaded',function(){
       var q=this.value.trim();
       if(clearBtn)clearBtn.classList.toggle('show',!!q);
       clearTimeout(debT);
-      debT=setTimeout(function(){updateUrl(q);runSearch(q);},250);
+      debT=setTimeout(function(){updateUrl(q);runSearch(q);},300);
     });
   }
 
@@ -264,9 +386,7 @@ document.addEventListener('DOMContentLoaded',function(){
     clearBtn.addEventListener('click',function(){
       if(qEl)qEl.value='';
       clearBtn.classList.remove('show');
-      lastQ='';
-      updateUrl('');
-      showHint();
+      lastQ='';updateUrl('');showHint();
       if(qEl)qEl.focus();
     });
   }

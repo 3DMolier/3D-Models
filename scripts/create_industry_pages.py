@@ -5,6 +5,18 @@ import pathlib, re, csv, json
 ROOT = pathlib.Path(__file__).parent.parent
 BASE = "https://3dmolier.github.io/3D-Models"
 
+def _load_fc_img_map():
+    """Load product_id → p.turbosquid.com URL from fc-img-chunk-0..5 JSON files."""
+    img_map = {}
+    for i in range(6):
+        p = ROOT / "data" / f"fc-img-chunk-{i}.json"
+        if p.exists():
+            with open(p, encoding="utf-8") as f:
+                img_map.update(json.load(f))
+    return img_map  # keys are strings like "1230754"
+
+FC_IMG_MAP = _load_fc_img_map()
+
 NAV = '''<a href="#main-content" class="skip-link">Skip to main content</a>
 <header id="site-header">
 <nav id="main-nav">
@@ -323,8 +335,16 @@ def model_card(m):
     title = m["product_name"]
     cat = m["category"]
     orig_img = m.get("image_url", "")
-    if orig_img and orig_img.startswith("https://p.turbosquid.com"):
-        img = orig_img  # thumbnail CDN works directly
+    # Extract product ID from slug to look up p.turbosquid.com thumbnail
+    _id_match = re.search(r'-(\d+)$', slug)
+    _pid = _id_match.group(1) if _id_match else ""
+    p_img = FC_IMG_MAP.get(_pid, "")
+    if p_img:
+        # Prefer p.turbosquid.com — works without any proxy
+        img = p_img
+        orig_img = p_img
+    elif orig_img and orig_img.startswith("https://p.turbosquid.com"):
+        img = orig_img
     elif orig_img:
         _clean = orig_img.replace("https://", "").replace("http://", "")
         img = "https://images.weserv.nl/?url=ssl:" + _q(_clean, safe="") + "&w=600&q=85&output=webp"
