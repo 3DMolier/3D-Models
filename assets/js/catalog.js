@@ -67,6 +67,7 @@ function certBadgeHtml(cert) {
 
 function proxyImg(url) {
   if (!url) return '';
+  if (url.indexOf('p.turbosquid.com') !== -1) return url;
   var clean = String(url).replace(/^https?:\/\//, '');
   return 'https://images.weserv.nl/?url=ssl:' + encodeURIComponent(clean) + '&w=600&q=85&output=webp';
 }
