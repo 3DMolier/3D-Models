@@ -323,11 +323,7 @@ def model_card(m):
     title = m["product_name"]
     cat = m["category"]
     orig_img = m.get("image_url", "")
-    if orig_img and orig_img.startswith("https://static.turbosquid"):
-        _clean = orig_img.replace("https://", "")
-        img = "https://images.weserv.nl/?url=ssl:" + _q(_clean) + "&amp;w=600&amp;q=85&amp;output=webp"
-    else:
-        img = orig_img
+    img = orig_img  # use direct URL; weserv proxy blocked by TurboSquid hotlink protection
     try:
         price_str = f"${float(m['price']):.0f}"
     except:
