@@ -293,10 +293,13 @@ def model_card_html(m: dict) -> str:
     except (ValueError, TypeError):
         price_str = f"${m['price']}"
 
-    # Proxy TurboSquid images through weserv.nl
+    from urllib.parse import quote as _q
+    _PLACEHOLDER = "/3D-Models/assets/og/3d-molier-og.jpg"
     raw_img = img
     if img and img.startswith("https://static.turbosquid"):
-        img = PROXY_BASE + img.replace("https://", "") + "&w=600&q=85&output=webp"
+        _clean = img.replace("https://", "")
+        img = "https://images.weserv.nl/?url=ssl:" + _q(_clean) + "&amp;w=600&amp;q=85&amp;output=webp"
+    # p.turbosquid.com images used directly (no proxy needed)
 
     cert_html = ''
     if 'CheckMate' in cert:
@@ -306,8 +309,8 @@ def model_card_html(m: dict) -> str:
 
     if img:
         img_html = (
-            f'<img src="{img}" data-src="{raw_img}" alt="{title} 3D model preview" width="800" height="450" decoding="async" loading="lazy" '
-            f'onerror="imgErr(this)">'
+            f'<img src="{img}" data-fallback="{raw_img}" data-placeholder="{_PLACEHOLDER}" alt="{title} 3D model preview" width="800" height="450" decoding="async" loading="lazy" '
+            f'onerror="handleImageError(this)">'
             f'<div class="img-placeholder"><span class="mc-ph-icon">&#128247;</span>'
             f'<span class="mc-ph-label">{cat}</span></div>'
         )
