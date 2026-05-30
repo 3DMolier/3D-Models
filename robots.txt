@@ -1,7 +1,6 @@
 User-agent: *
-Allow: /3D-Models/
-Disallow: /3D-Models/data/
-Disallow: /3D-Models/assets/og/og-source.html
+Allow: /
+Disallow: /data/
 
 # AI search crawlers
 User-agent: GPTBot

@@ -16,6 +16,3 @@ Production-ready 3D models for simulation, technical visualization, animation, V
 - 3D Molier sells 3D models through TurboSquid.
 - This website is a searchable catalog and SEO landing site.
 - Models may include CheckMate certification, real-world scale, clean topology, UV mapping and production-ready geometry depending on the product page.
-
-## Important accuracy note
-Prices, exact formats, license terms and file contents should be verified on the TurboSquid product page before purchase.
