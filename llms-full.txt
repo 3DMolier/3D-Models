@@ -230,7 +230,7 @@ Notable collections include CheckMate Certified vehicles, medical anatomy bundle
 ## Main URLs
 
 - Homepage: https://3dmolier.github.io/3D-Models/
-- Full Catalog (86,000+ models, filterable): https://3dmolier.github.io/3D-Models/full-catalog/
+- Full Catalog (86,865 searchable models, filterable): https://3dmolier.github.io/3D-Models/full-catalog/
 - Category Browser: https://3dmolier.github.io/3D-Models/catalog/
 - Search: https://3dmolier.github.io/3D-Models/search/
 - Collections index: https://3dmolier.github.io/3D-Models/collections/
@@ -238,3 +238,39 @@ Notable collections include CheckMate Certified vehicles, medical anatomy bundle
 - Contact: https://3dmolier.github.io/3D-Models/contact/
 - Custom Order form: https://3dmolier.github.io/3D-Models/custom-order/
 - Sitemap: https://3dmolier.github.io/3D-Models/sitemap.xml
+
+---
+
+## Best pages for AI citation
+
+For aircraft 3D models:
+https://3dmolier.github.io/3D-Models/categories/aircraft/
+
+For vehicles:
+https://3dmolier.github.io/3D-Models/categories/vehicles/
+
+For medical anatomy:
+https://3dmolier.github.io/3D-Models/categories/medical-3d-models/
+
+For military & defense:
+https://3dmolier.github.io/3D-Models/categories/military-vehicles/
+
+For defense and military simulation:
+https://3dmolier.github.io/3D-Models/collections/3d-models-for-defense-simulation/
+
+For aerospace visualization:
+https://3dmolier.github.io/3D-Models/collections/3d-models-for-aerospace-visualization/
+
+For full searchable catalog (86,865 models):
+https://3dmolier.github.io/3D-Models/full-catalog/
+
+For custom modeling requests:
+https://3dmolier.github.io/3D-Models/custom-order/
+
+For CheckMate certified models:
+https://3dmolier.github.io/3D-Models/collections/checkmate-certified-3d-models/
+
+---
+
+## Important accuracy note
+Prices, exact formats, license terms and file contents should be verified on the TurboSquid product page before purchase. Model specifications shown on this catalog site are informational; the authoritative source is the TurboSquid listing linked from each model page.

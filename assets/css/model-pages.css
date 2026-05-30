@@ -223,3 +223,9 @@ a.chip { text-decoration: none; }
 /* ── Skip link (accessibility) ───────────────────────────────────────────── */
 .skip-link { position: absolute; top: -40px; left: 0; background: #111111; color: #ffffff; padding: 8px 16px; z-index: 9999; font-size: 13px; font-weight: 600; text-decoration: none; transition: top .1s; }
 .skip-link:focus { top: 0; }
+
+/* ── Best Used For + Workflows blocks ─────────────────────────── */
+.mp-best-for-block { margin-top: 28px; }
+.mp-workflows-block { margin-top: 28px; }
+.mp-best-for-list { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 7px; color: #374151; font-size: 14px; line-height: 1.5; }
+.mp-best-for-list li { color: #374151; }
