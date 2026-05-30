@@ -124,6 +124,15 @@
 <footer>
   <p>© 2026 3D Molier · All models on <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" class="link-accent" target="_blank" rel="noopener">TurboSquid</a></p>
 </footer>
+<script>
+// Redirect old /3dmolier-models/ paths to new /3D-Models/ location
+(function(){
+  var p=location.pathname;
+  if(p.indexOf('/3dmolier-models/')===0){
+    location.replace('/3D-Models/'+p.slice('/3dmolier-models/'.length)+location.search+location.hash);
+  }
+})();
+</script>
 <script src="/3D-Models/assets/js/site.min.js?v=33" defer></script>
 </body>
 </html>

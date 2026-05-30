@@ -34,6 +34,8 @@ function imgErr(img) {
 
 (function(){
 var p=location.pathname,d=document;
+// Redirect old /3dmolier-models/ → /3D-Models/
+if(p.indexOf('/3dmolier-models/')===0)location.replace('/3D-Models/'+p.slice('/3dmolier-models/'.length)+location.search+location.hash);
 // Legacy URL redirects (for old industry slugs without hyphens)
 var _r={'/3D-Models/industries/softwaredevelopment/':'/3D-Models/industries/software-development/','/3D-Models/industries/eventmanagement/':'/3D-Models/industries/event-management/','/3D-Models/industries/3dprinting/':'/3D-Models/industries/3d-printing/'};
 if(_r[p])location.replace(_r[p]);
