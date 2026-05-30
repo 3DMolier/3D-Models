@@ -6,7 +6,7 @@ var EXTRA_MODELS_URL = document.body.dataset.extraModelsUrl
 var COLOR = document.body.dataset.color
   || (typeof window.COLOR !== 'undefined' ? window.COLOR : '#4F9EFF');
 
-function proxyImg(url){if(!url)return'';if(url.indexOf('p.turbosquid.com')!==-1)return url;var c=String(url).replace(/^https?:\/\//,'');return'https://images.weserv.nl/?url=ssl:'+encodeURIComponent(c)+'&w=600&q=85&output=webp';}
+function proxyImg(url){if(!url)return'';if(url.indexOf('p.turbosquid.com')!==-1)return url;if(url.indexOf('static.turbosquid.com')!==-1)return url;var c=String(url).replace(/^https?:\/\//,'');return'https://images.weserv.nl/?url=ssl:'+encodeURIComponent(c)+'&w=600&q=85&output=webp';}
 function originalImg(url){return url||'/3D-Models/assets/og/3d-molier-og.jpg';}
 
 var loaded = false;
@@ -26,7 +26,8 @@ function renderExtraModels(grid, btn, models) {
       : '<div class="img-placeholder" style="color:' + color + ';"><span style="font-size:28px;opacity:0.5;">&#128247;</span><span style="color:' + color + ';">' + m.cat + '</span></div>';
     var card = document.createElement('div');
     card.className = 'model-card card-glow';
-    card.innerHTML = '<div class="img-wrap" style="height:180px;background:#f5f5f5;">' + imgHtml + '</div>'
+    card.dataset.tsUrl = m.url;
+    card.innerHTML = '<div class="img-wrap" style="height:180px;background:#f5f5f5;cursor:pointer;" onclick="window.open(\'' + m.url.replace(/'/g, "\\'") + '\',\'_blank\',\'noopener\')">' + imgHtml + '</div>'
       + '<div style="padding:16px;">'
       + '<div style="display:flex;align-items:start;justify-content:space-between;gap:8px;margin-bottom:10px;">'
       + '<h3 style="font-family:\'Open Sans\', sans-serif;font-size:14px;font-weight:700;color:#111111;line-height:1.3;letter-spacing:-0.01em;">' + m.title + '</h3>'

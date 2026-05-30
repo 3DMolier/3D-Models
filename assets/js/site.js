@@ -51,4 +51,14 @@ if(heroSearch&&heroBtn){
   heroBtn.addEventListener('click',doHeroSearch);
   heroSearch.addEventListener('keydown',function(e){if(e.key==='Enter')doHeroSearch();});
 }
+
+// Make model-card image area clickable — opens TurboSquid link for that card
+document.addEventListener('click',function(e){
+  var imgWrap=e.target.closest&&e.target.closest('.model-card .img-wrap');
+  if(!imgWrap)return;
+  var card=imgWrap.closest('.model-card');
+  if(!card)return;
+  var link=card.querySelector('.btn-ts, a[href*="turbosquid.com"]');
+  if(link){e.preventDefault();window.open(link.href,'_blank','noopener');}
+});
 })();

@@ -49,7 +49,7 @@ NAV = '''<a href="#main-content" class="skip-link">Skip to main content</a>
       <a href="/3D-Models/custom-order/" class="nav-link">Custom Order</a>
       <a href="/3D-Models/about/" class="nav-link">About</a>
     </div>
-    <a href="https://www.turbosquid.com/Search/3D-Models?include=true&media_typeid=2&artist_screenname=3d_molier-studio&referral=3d_molier-studio" class="nav-cta" target="_blank" rel="noopener">TurboSquid ↗</a>
+    <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" class="nav-cta" target="_blank" rel="noopener">TurboSquid ↗</a>
     <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -86,19 +86,53 @@ NAV = '''<a href="#main-content" class="skip-link">Skip to main content</a>
   <a href="/3D-Models/search/">Search</a>
   <a href="/3D-Models/custom-order/">Custom Order</a>
   <a href="/3D-Models/about/">About</a>
-  <a href="https://www.turbosquid.com/Search/3D-Models?include=true&media_typeid=2&artist_screenname=3d_molier-studio&referral=3d_molier-studio" class="mobile-cta" target="_blank" rel="noopener">TurboSquid Store &#8599;</a>
+  <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" class="mobile-cta" target="_blank" rel="noopener">TurboSquid Store &#8599;</a>
 </div>
 </header>'''
 
 FOOTER = '''<footer class="site-footer">
   <div class="max-w-7xl mx-auto">
-    <div class="footer-bottom">
-      <p class="footer-copy">&#169; 2025 3D Molier. All 3D models sold via TurboSquid.</p>
-      <div class="flex gap-5">
-        <a href="/3D-Models/about/" class="footer-link">About</a>
-        <a href="/3D-Models/contact/" class="footer-link">Contact</a>
-        <a href="/3D-Models/custom-order/" class="footer-link">Custom Order</a>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-row">
+          <div class="footer-logo-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <span class="footer-brand-name">3D Molier</span>
+        </div>
+        <p class="footer-brand-desc">Professional 3D models for film, games, architecture, medical and aerospace. All models sold on TurboSquid.</p>
       </div>
+      <div>
+        <div class="footer-col-hd">Categories</div>
+        <div class="footer-links">
+          <a href="/3D-Models/categories/vehicles/" class="footer-link">Vehicles</a>
+          <a href="/3D-Models/categories/aircraft/" class="footer-link">Aircraft</a>
+          <a href="/3D-Models/categories/military-vehicles/" class="footer-link">Military</a>
+          <a href="/3D-Models/categories/medical-3d-models/" class="footer-link">Medical</a>
+          <a href="/3D-Models/categories/ships/" class="footer-link">Ships</a>
+          <a href="/3D-Models/catalog/" class="footer-link">Top 1000 &#8594;</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-hd">Collections</div>
+        <div class="footer-links">
+          <a href="/3D-Models/collections/best-vehicle-3d-models/" class="footer-link">Best Vehicles</a>
+          <a href="/3D-Models/collections/best-aircraft-3d-models/" class="footer-link">Best Aircraft</a>
+          <a href="/3D-Models/collections/best-medical-3d-models/" class="footer-link">Best Medical</a>
+          <a href="/3D-Models/collections/best-military-vehicle-3d-models/" class="footer-link">Best Military</a>
+          <a href="/3D-Models/collections/" class="footer-link">View all &#8594;</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-hd">Company</div>
+        <div class="footer-links">
+          <a href="/3D-Models/about/" class="footer-link">About</a>
+          <a href="/3D-Models/contact/" class="footer-link">Contact</a>
+          <a href="/3D-Models/custom-order/" class="footer-link">Custom Order</a>
+          <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="footer-link">TurboSquid Store</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&#169; 2026 3D Molier. All 3D models sold via TurboSquid.</p>
     </div>
   </div>
 </footer>'''

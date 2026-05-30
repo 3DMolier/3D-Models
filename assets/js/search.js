@@ -180,7 +180,7 @@ function render(pages,models,q){
   if(hintState)hintState.style.display='none';
   if(pages.length===0&&models.length===0){
     if(emptyState)emptyState.style.display='';
-    if(tsLink)tsLink.href='https://www.turbosquid.com/Search/3D-Models?q='+encodeURIComponent(q)+'&referral=3d_molier-studio';
+    if(tsLink)tsLink.href='https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio';
     if(countEl)countEl.textContent='';
     if(showMoreBtn)showMoreBtn.hidden=true;
     if(resultsEl)resultsEl.innerHTML='';
@@ -211,7 +211,7 @@ function render(pages,models,q){
     html+='<div class="s-mc-grid" id="model-results"></div>';
     html+='<div class="ts-card" style="margin-top:16px">';
     html+='<div class="ts-card-text"><h4>Search all 86,000+ models on TurboSquid</h4><p>Browse the complete catalog with advanced filters</p></div>';
-    html+='<a href="https://www.turbosquid.com/Search/3D-Models?q='+encodeURIComponent(q)+'&referral=3d_molier-studio" target="_blank" rel="noopener">Search TurboSquid ↗</a>';
+    html+='<a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener">Search TurboSquid ↗</a>';
     html+='</div></div>';
   }
   if(resultsEl)resultsEl.innerHTML=html;
