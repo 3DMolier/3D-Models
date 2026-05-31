@@ -178,16 +178,22 @@ function renderGrid(){
   }
 }
 
+function makeSlug(name,id){
+  var s=name.toLowerCase().trim().replace(/[^\w\s-]/g,'').replace(/[\s_]+/g,'-').replace(/-+/g,'-').replace(/^-+|-+$/g,'');
+  return s+'-'+id;
+}
+
 function modelCard(idx){
   var id=FC.i[idx],name=FC.n[idx],price=FC.p[idx],cert=FC.c[idx],sales=FC.s[idx];
+  var slug=makeSlug(name,id);
   var imgHtml=IMGS[id]
     ?'<img src="'+IMGS[id]+'" alt="'+name.replace(/"/g,'&quot;')+'" loading="lazy" width="800" height="450" decoding="async">'
     :'<div class="mc-ph" data-img-pid="'+id+'">&#128246;</div>';
   var certBadge=cert===2?'<span class="mc-cert cert-cm">CheckMate</span>'
     :cert===1?'<span class="mc-cert cert-sc">StemCell</span>':'';
   var salesHtml=sales?'<span class="mc-sold">'+sales+' sold</span>':'';
-  return '<a href="https://www.turbosquid.com/FullPreview/'+id+'?referral=3d_molier-studio" target="_blank" rel="noopener" class="mc" role="listitem">'
-    +'<div class="mc-img">'+imgHtml+'<div class="mc-ov"></div>'+certBadge+'<div class="mc-qv">Quick View</div></div>'
+  return '<a href="/3D-Models/models/'+slug+'/" class="mc" role="listitem">'
+    +'<div class="mc-img">'+imgHtml+'<div class="mc-ov"></div>'+certBadge+'<div class="mc-qv">View Model</div></div>'
     +'<div class="mc-body"><div class="mc-name">'+name+'</div>'
     +'<div class="mc-foot"><span class="mc-price">$'+price+'</span>'+salesHtml+'</div>'
     +'</div></a>';
