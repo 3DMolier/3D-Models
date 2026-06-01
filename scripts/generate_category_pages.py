@@ -30,8 +30,8 @@ INDUSTRY_SLUGS = {
 def industry_href(ind: str) -> str:
     slug = INDUSTRY_SLUGS.get(ind)
     if slug is None:
-        return "/3D-Models/full-catalog/"
-    return f"/3D-Models/industries/{slug}/"
+        return "/full-catalog/"
+    return f"/industries/{slug}/"
 
 # ── Per-category metadata ───────────────────────────────────────────────────────
 
@@ -255,84 +255,84 @@ def nav_html():
     return """<header id="site-header">
 <nav id="main-nav">
   <div class="nav-inner">
-    <a href="/3D-Models/" class="nav-logo">3D Molier</a>
+    <a href="/" class="nav-logo">3D Molier</a>
     <div class="nav-links" id="nav-links">
-      <a href="/3D-Models/catalog/" class="nav-link">Top 1000</a>
-      <a href="/3D-Models/full-catalog/" class="nav-link">Full 86K Catalog</a>
+      <a href="/catalog/" class="nav-link">Top 1000</a>
+      <a href="/full-catalog/" class="nav-link">Full 86K Catalog</a>
       <span class="nav-sep" aria-hidden="true"></span>
       <div class="nav-has-dropdown nav-has-mega" id="nav-cat-wrap">
         <button class="nav-link" id="nav-cat-btn" aria-haspopup="true" aria-expanded="false" aria-controls="nav-categories-menu">Categories <span class="nav-caret" aria-hidden="true">&#9662;</span></button>
         <div class="nav-dropdown nav-mega" id="nav-categories-menu" role="menu">
-          <a href="/3D-Models/categories/vehicles/" role="menuitem" class="mega-item"><span class="mega-name">Vehicles</span><span class="mega-desc">cars, trucks, motorcycles</span></a>
-          <a href="/3D-Models/categories/aircraft/" role="menuitem" class="mega-item"><span class="mega-name">Aircraft</span><span class="mega-desc">airplanes, helicopters, drones</span></a>
-          <a href="/3D-Models/categories/military-vehicles/" role="menuitem" class="mega-item"><span class="mega-name">Military</span><span class="mega-desc">defense, tanks, equipment</span></a>
-          <a href="/3D-Models/categories/ships/" role="menuitem" class="mega-item"><span class="mega-name">Ships</span><span class="mega-desc">naval, cargo, yachts</span></a>
-          <a href="/3D-Models/categories/medical-3d-models/" role="menuitem" class="mega-item"><span class="mega-name">Medical</span><span class="mega-desc">anatomy, surgery, pharma</span></a>
-          <a href="/3D-Models/categories/industrial-equipment/" role="menuitem" class="mega-item"><span class="mega-name">Industrial</span><span class="mega-desc">machinery, HVAC, cranes</span></a>
-          <a href="/3D-Models/categories/architecture-landmarks/" role="menuitem" class="mega-item"><span class="mega-name">Architecture</span><span class="mega-desc">buildings, monuments</span></a>
-          <a href="/3D-Models/categories/other/" role="menuitem" class="mega-item"><span class="mega-name">Other</span><span class="mega-desc">characters, animals, props</span></a>
+          <a href="/categories/vehicles/" role="menuitem" class="mega-item"><span class="mega-name">Vehicles</span><span class="mega-desc">cars, trucks, motorcycles</span></a>
+          <a href="/categories/aircraft/" role="menuitem" class="mega-item"><span class="mega-name">Aircraft</span><span class="mega-desc">airplanes, helicopters, drones</span></a>
+          <a href="/categories/military-vehicles/" role="menuitem" class="mega-item"><span class="mega-name">Military</span><span class="mega-desc">defense, tanks, equipment</span></a>
+          <a href="/categories/ships/" role="menuitem" class="mega-item"><span class="mega-name">Ships</span><span class="mega-desc">naval, cargo, yachts</span></a>
+          <a href="/categories/medical-3d-models/" role="menuitem" class="mega-item"><span class="mega-name">Medical</span><span class="mega-desc">anatomy, surgery, pharma</span></a>
+          <a href="/categories/industrial-equipment/" role="menuitem" class="mega-item"><span class="mega-name">Industrial</span><span class="mega-desc">machinery, HVAC, cranes</span></a>
+          <a href="/categories/architecture-landmarks/" role="menuitem" class="mega-item"><span class="mega-name">Architecture</span><span class="mega-desc">buildings, monuments</span></a>
+          <a href="/categories/other/" role="menuitem" class="mega-item"><span class="mega-name">Other</span><span class="mega-desc">characters, animals, props</span></a>
         </div>
       </div>
       <div class="nav-has-dropdown nav-has-mega" id="nav-ind-wrap">
         <button class="nav-link" id="nav-ind-btn" aria-haspopup="true" aria-expanded="false" aria-controls="nav-industries-menu">Industries <span class="nav-caret" aria-hidden="true">&#9662;</span></button>
         <div class="nav-dropdown nav-mega" id="nav-industries-menu" role="menu">
-          <a href="/3D-Models/industries/aerospace/" role="menuitem" class="mega-item"><span class="mega-name">Aerospace</span><span class="mega-desc">aviation, rockets, satellites</span></a>
-          <a href="/3D-Models/industries/military-defense/" role="menuitem" class="mega-item"><span class="mega-name">Military &amp; Defense</span><span class="mega-desc">defense, simulation, training</span></a>
-          <a href="/3D-Models/industries/medical/" role="menuitem" class="mega-item"><span class="mega-name">Medical</span><span class="mega-desc">anatomy, surgery, education</span></a>
-          <a href="/3D-Models/industries/game-development/" role="menuitem" class="mega-item"><span class="mega-name">Game Development</span><span class="mega-desc">Unity, Unreal, real-time</span></a>
-          <a href="/3D-Models/industries/film-video-production/" role="menuitem" class="mega-item"><span class="mega-name">Film Production</span><span class="mega-desc">VFX, animation, commercials</span></a>
-          <a href="/3D-Models/industries/architecture/" role="menuitem" class="mega-item"><span class="mega-name">Architecture</span><span class="mega-desc">buildings, landmarks, viz</span></a>
-          <a href="/3D-Models/industries/virtual-reality/" role="menuitem" class="mega-item"><span class="mega-name">Virtual Reality</span><span class="mega-desc">VR, AR, immersive scenes</span></a>
-          <a href="/3D-Models/industries/advertising/" role="menuitem" class="mega-item"><span class="mega-name">Advertising</span><span class="mega-desc">product rendering, campaigns</span></a>
-          <a href="/3D-Models/industries/software-development/" role="menuitem" class="mega-item"><span class="mega-name">Software Dev</span><span class="mega-desc">apps, demos, UI assets</span></a>
-          <a href="/3D-Models/industries/event-management/" role="menuitem" class="mega-item"><span class="mega-name">Event Management</span><span class="mega-desc">exhibitions, staging, shows</span></a>
-          <a href="/3D-Models/industries/hardware/" role="menuitem" class="mega-item"><span class="mega-name">Hardware</span><span class="mega-desc">devices, components, tech</span></a>
-          <a href="/3D-Models/industries/3d-printing/" role="menuitem" class="mega-item"><span class="mega-name">3D Printing</span><span class="mega-desc">printing, prototyping, fab</span></a>
+          <a href="/industries/aerospace/" role="menuitem" class="mega-item"><span class="mega-name">Aerospace</span><span class="mega-desc">aviation, rockets, satellites</span></a>
+          <a href="/industries/military-defense/" role="menuitem" class="mega-item"><span class="mega-name">Military &amp; Defense</span><span class="mega-desc">defense, simulation, training</span></a>
+          <a href="/industries/medical/" role="menuitem" class="mega-item"><span class="mega-name">Medical</span><span class="mega-desc">anatomy, surgery, education</span></a>
+          <a href="/industries/game-development/" role="menuitem" class="mega-item"><span class="mega-name">Game Development</span><span class="mega-desc">Unity, Unreal, real-time</span></a>
+          <a href="/industries/film-video-production/" role="menuitem" class="mega-item"><span class="mega-name">Film Production</span><span class="mega-desc">VFX, animation, commercials</span></a>
+          <a href="/industries/architecture/" role="menuitem" class="mega-item"><span class="mega-name">Architecture</span><span class="mega-desc">buildings, landmarks, viz</span></a>
+          <a href="/industries/virtual-reality/" role="menuitem" class="mega-item"><span class="mega-name">Virtual Reality</span><span class="mega-desc">VR, AR, immersive scenes</span></a>
+          <a href="/industries/advertising/" role="menuitem" class="mega-item"><span class="mega-name">Advertising</span><span class="mega-desc">product rendering, campaigns</span></a>
+          <a href="/industries/software-development/" role="menuitem" class="mega-item"><span class="mega-name">Software Dev</span><span class="mega-desc">apps, demos, UI assets</span></a>
+          <a href="/industries/event-management/" role="menuitem" class="mega-item"><span class="mega-name">Event Management</span><span class="mega-desc">exhibitions, staging, shows</span></a>
+          <a href="/industries/hardware/" role="menuitem" class="mega-item"><span class="mega-name">Hardware</span><span class="mega-desc">devices, components, tech</span></a>
+          <a href="/industries/3d-printing/" role="menuitem" class="mega-item"><span class="mega-name">3D Printing</span><span class="mega-desc">printing, prototyping, fab</span></a>
         </div>
       </div>
-      <a href="/3D-Models/collections/" class="nav-link">Collections</a>
-      <a href="/3D-Models/search/" class="nav-link">Search</a>
-      <a href="/3D-Models/custom-order/" class="nav-link">Custom Order</a>
-      <a href="/3D-Models/about/" class="nav-link">About</a>
+      <a href="/collections/" class="nav-link">Collections</a>
+      <a href="/search/" class="nav-link">Search</a>
+      <a href="/custom-order/" class="nav-link">Custom Order</a>
+      <a href="/about/" class="nav-link">About</a>
     </div>
     <a href="https://www.turbosquid.com/Search/3D-Models?include=true&media_typeid=2&artist_screenname=3d_molier-studio&referral=3d_molier-studio" class="nav-cta" target="_blank" rel="noopener">TurboSquid &#8599;</a>
     <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
-  <a href="/3D-Models/catalog/">Top 1000 Models</a>
-  <a href="/3D-Models/full-catalog/">Full 86K Catalog</a>
+  <a href="/catalog/">Top 1000 Models</a>
+  <a href="/full-catalog/">Full 86K Catalog</a>
   <button class="nav-mobile-toggle" id="mob-cat-toggle" aria-expanded="false">Categories <span class="nav-caret">&#9662;</span></button>
   <div class="nav-mobile-sub" id="mob-cat-sub">
-    <a href="/3D-Models/categories/vehicles/">Vehicles</a>
-    <a href="/3D-Models/categories/aircraft/">Aircraft</a>
-    <a href="/3D-Models/categories/military-vehicles/">Military</a>
-    <a href="/3D-Models/categories/ships/">Ships</a>
-    <a href="/3D-Models/categories/medical-3d-models/">Medical</a>
-    <a href="/3D-Models/categories/industrial-equipment/">Industrial</a>
-    <a href="/3D-Models/categories/architecture-landmarks/">Architecture</a>
-    <a href="/3D-Models/categories/other/">Other</a>
+    <a href="/categories/vehicles/">Vehicles</a>
+    <a href="/categories/aircraft/">Aircraft</a>
+    <a href="/categories/military-vehicles/">Military</a>
+    <a href="/categories/ships/">Ships</a>
+    <a href="/categories/medical-3d-models/">Medical</a>
+    <a href="/categories/industrial-equipment/">Industrial</a>
+    <a href="/categories/architecture-landmarks/">Architecture</a>
+    <a href="/categories/other/">Other</a>
   </div>
   <button class="nav-mobile-toggle" id="mob-ind-toggle" aria-expanded="false">Industries <span class="nav-caret">&#9662;</span></button>
   <div class="nav-mobile-sub" id="mob-ind-sub">
-    <a href="/3D-Models/industries/aerospace/">Aerospace</a>
-    <a href="/3D-Models/industries/military-defense/">Military &amp; Defense</a>
-    <a href="/3D-Models/industries/medical/">Medical</a>
-    <a href="/3D-Models/industries/game-development/">Game Development</a>
-    <a href="/3D-Models/industries/film-video-production/">Film Production</a>
-    <a href="/3D-Models/industries/architecture/">Architecture</a>
-    <a href="/3D-Models/industries/virtual-reality/">Virtual Reality</a>
-    <a href="/3D-Models/industries/advertising/">Advertising</a>
-    <a href="/3D-Models/industries/software-development/">Software Development</a>
-    <a href="/3D-Models/industries/event-management/">Event Management</a>
-    <a href="/3D-Models/industries/hardware/">Hardware</a>
-    <a href="/3D-Models/industries/3d-printing/">3D Printing</a>
+    <a href="/industries/aerospace/">Aerospace</a>
+    <a href="/industries/military-defense/">Military &amp; Defense</a>
+    <a href="/industries/medical/">Medical</a>
+    <a href="/industries/game-development/">Game Development</a>
+    <a href="/industries/film-video-production/">Film Production</a>
+    <a href="/industries/architecture/">Architecture</a>
+    <a href="/industries/virtual-reality/">Virtual Reality</a>
+    <a href="/industries/advertising/">Advertising</a>
+    <a href="/industries/software-development/">Software Development</a>
+    <a href="/industries/event-management/">Event Management</a>
+    <a href="/industries/hardware/">Hardware</a>
+    <a href="/industries/3d-printing/">3D Printing</a>
   </div>
-  <a href="/3D-Models/collections/">Collections</a>
-  <a href="/3D-Models/search/">Search</a>
-  <a href="/3D-Models/custom-order/">Custom Order</a>
-  <a href="/3D-Models/about/">About</a>
-  <a href="/3D-Models/contact/">Contact</a>
+  <a href="/collections/">Collections</a>
+  <a href="/search/">Search</a>
+  <a href="/custom-order/">Custom Order</a>
+  <a href="/about/">About</a>
+  <a href="/contact/">Contact</a>
   <a href="https://www.turbosquid.com/Search/3D-Models?include=true&media_typeid=2&artist_screenname=3d_molier-studio&referral=3d_molier-studio" target="_blank" rel="noopener" class="mobile-cta">TurboSquid Store &#8599;</a>
 </div>
 </header>"""
@@ -356,36 +356,36 @@ def footer_html():
       <div>
         <div class="cat-footer-col-hd">Categories</div>
         <div class="cat-footer-links">
-          <a href="/3D-Models/categories/vehicles/" class="nav-link">Vehicles</a>
-          <a href="/3D-Models/categories/aircraft/" class="nav-link">Aircraft</a>
-          <a href="/3D-Models/categories/military-vehicles/" class="nav-link">Military</a>
-          <a href="/3D-Models/categories/medical-3d-models/" class="nav-link">Medical</a>
-          <a href="/3D-Models/categories/ships/" class="nav-link">Ships</a>
+          <a href="/categories/vehicles/" class="nav-link">Vehicles</a>
+          <a href="/categories/aircraft/" class="nav-link">Aircraft</a>
+          <a href="/categories/military-vehicles/" class="nav-link">Military</a>
+          <a href="/categories/medical-3d-models/" class="nav-link">Medical</a>
+          <a href="/categories/ships/" class="nav-link">Ships</a>
         </div>
       </div>
       <div>
         <div class="cat-footer-col-hd">Collections</div>
         <div class="cat-footer-links">
-          <a href="/3D-Models/collections/best-vehicle-3d-models/" class="nav-link">Best Vehicles</a>
-          <a href="/3D-Models/collections/best-aircraft-3d-models/" class="nav-link">Best Aircraft</a>
-          <a href="/3D-Models/collections/best-medical-3d-models/" class="nav-link">Best Medical</a>
-          <a href="/3D-Models/collections/best-military-vehicle-3d-models/" class="nav-link">Best Military</a>
-          <a href="/3D-Models/collections/" class="nav-link">View all →</a>
+          <a href="/collections/best-vehicle-3d-models/" class="nav-link">Best Vehicles</a>
+          <a href="/collections/best-aircraft-3d-models/" class="nav-link">Best Aircraft</a>
+          <a href="/collections/best-medical-3d-models/" class="nav-link">Best Medical</a>
+          <a href="/collections/best-military-vehicle-3d-models/" class="nav-link">Best Military</a>
+          <a href="/collections/" class="nav-link">View all →</a>
         </div>
       </div>
       <div>
         <div class="cat-footer-col-hd">TurboSquid</div>
         <div class="cat-footer-links">
           <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link">Artist Store</a>
-          <a href="https://www.turbosquid.com/Search/3D-Models/vehicle?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link">Vehicle Models</a>
-          <a href="https://www.turbosquid.com/Search/3D-Models/aircraft?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link">Aircraft Models</a>
-          <a href="https://www.turbosquid.com/Search/3D-Models/medical?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link">Medical Models</a>
+          <a href="https://www.turbosquid.com/Search/vehicle?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link">Vehicle Models</a>
+          <a href="https://www.turbosquid.com/Search/aircraft?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link">Aircraft Models</a>
+          <a href="https://www.turbosquid.com/Search/medical?referral=3d_molier-studio" target="_blank" rel="noopener" class="nav-link">Medical Models</a>
         </div>
       </div>
     </div>
     <div class="cat-footer-bottom">
       <p class="cat-footer-copy">© 2025 3D Molier. All 3D models sold via TurboSquid.</p>
-      <a href="/3D-Models/" class="nav-link">← Back to home</a>
+      <a href="/" class="nav-link">← Back to home</a>
     </div>
   </div>
 </footer>"""
@@ -397,7 +397,7 @@ LINK_ICON = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke=
 
 
 from urllib.parse import quote as _url_quote
-_PLACEHOLDER = "/3D-Models/assets/og/3d-molier-og.jpg"
+_PLACEHOLDER = "/assets/og/3d-molier-og.jpg"
 
 def model_card_html(m, color, gradient):
     title = m['product_name']
@@ -431,7 +431,7 @@ def model_card_html(m, color, gradient):
     else:
         img_html = f'<div class="img-placeholder" style="display:flex;"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">{cat}</span></div>'
 
-    internal_link = f"/3D-Models/models/{slug}/" if slug else url
+    internal_link = f"/models/{slug}/" if slug else url
 
     return f'''<a href="{internal_link}" class="model-card card-glow">
         <div class="img-wrap mc-img">{img_html}</div>
@@ -502,7 +502,7 @@ def page_html(cat_name, meta, models):
           Load more models ({len(extra_models)} remaining)
         </button>
       </div>'''
-        body_data_attrs = f' data-extra-models-url="/3D-Models/data/categories/{slug}.json" data-color="{color}"'
+        body_data_attrs = f' data-extra-models-url="/data/categories/{slug}.json" data-color="{color}"'
 
     # Related category cards
     related_cards = ''
@@ -510,7 +510,7 @@ def page_html(cat_name, meta, models):
         rel_meta = CATEGORIES.get(rel_name, {})
         rel_icon  = rel_meta.get('icon', '📦')
         rel_total = rel_meta.get('total_models', 0)
-        related_cards += f'''<a href="/3D-Models/categories/{rel_slug}/" class="related-card">
+        related_cards += f'''<a href="/categories/{rel_slug}/" class="related-card">
           <span class="mc-ph-icon">{rel_icon}</span>
           <div>
             <div class="cat-rel-name">{rel_name}</div>
@@ -537,9 +537,9 @@ def page_html(cat_name, meta, models):
         <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="btn-ts" style="margin-top:16px;display:inline-flex;">Browse all models on TurboSquid</a>
       </div>'''
 
-    canonical = f"https://3dmolier.github.io/3D-Models/categories/{slug}/"
-    base = "https://3dmolier.github.io/3D-Models"
-    breadcrumb_ld = f'''{{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{{"@type":"ListItem","position":1,"name":"Home","item":"https://3dmolier.github.io/3D-Models/"}},{{"@type":"ListItem","position":2,"name":"Categories","item":"https://3dmolier.github.io/3D-Models/catalog/"}},{{"@type":"ListItem","position":3,"name":"{meta["h1"]}","item":"{canonical}"}}]}}'''
+    canonical = f"https://3dmolierstudio.com/categories/{slug}/"
+    base = "https://3dmolierstudio.com"
+    breadcrumb_ld = f'''{{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{{"@type":"ListItem","position":1,"name":"Home","item":"https://3dmolierstudio.com/"}},{{"@type":"ListItem","position":2,"name":"Categories","item":"https://3dmolierstudio.com/catalog/"}},{{"@type":"ListItem","position":3,"name":"{meta["h1"]}","item":"{canonical}"}}]}}'''
     item_list_elements = [
         {"@type": "ListItem", "position": i + 1, "name": m['product_name'], "url": f"{base}/models/{m.get('slug', '')}/"}
         for i, m in enumerate(models[:50]) if m.get('slug')
@@ -562,21 +562,21 @@ def page_html(cat_name, meta, models):
 <meta property="og:description" content="{meta["meta_desc"]}">
 <meta property="og:url" content="{canonical}">
 <meta property="og:site_name" content="3D Molier Models">
-<meta property="og:image" content="https://3dmolier.github.io/3D-Models/assets/og/3d-molier-og.jpg">
+<meta property="og:image" content="https://3dmolierstudio.com/assets/og/3d-molier-og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{meta["seo_title"]} | 3D Molier">
 <meta name="twitter:description" content="{meta["meta_desc"]}">
-<meta name="twitter:image" content="https://3dmolier.github.io/3D-Models/assets/og/3d-molier-og.jpg">
-<link rel="icon" href="/3D-Models/favicon.svg" type="image/svg+xml">
+<meta name="twitter:image" content="https://3dmolierstudio.com/assets/og/3d-molier-og.jpg">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="{canonical}">
 <link rel="alternate" hreflang="en" href="{canonical}">
 <link rel="alternate" hreflang="x-default" href="{canonical}">
 <script type="application/ld+json">{breadcrumb_ld}</script>
 <script type="application/ld+json">{item_list_ld}</script>
-<link rel="preload" href="/3D-Models/assets/fonts/font-13.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css?v=32">
-<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=32">
-<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css?v=32">
+<link rel="preload" href="/assets/fonts/font-13.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/critical-fonts.css?v=32">
+<link rel="stylesheet" href="/assets/css/fonts.css?v=32">
+<link rel="stylesheet" href="/assets/css/styles.min.css?v=32">
 </head>
 <body class="relative min-h-screen"{body_data_attrs}>
 
@@ -587,9 +587,9 @@ def page_html(cat_name, meta, models):
 <!-- Breadcrumb -->
 <div class="cat-bc">
   <div class="max-w-7xl mx-auto px-6 py-3 cat-bc-inner">
-    <a href="/3D-Models/" class="bc-link">Home</a>
+    <a href="/" class="bc-link">Home</a>
     <span class="bc-sep">›</span>
-    <a href="/3D-Models/catalog/" class="bc-link">Categories</a>
+    <a href="/catalog/" class="bc-link">Categories</a>
     <span class="bc-sep">›</span>
     <span class="bc-current">{cat_name}</span>
   </div>
@@ -615,7 +615,7 @@ def page_html(cat_name, meta, models):
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Browse on TurboSquid
           </a>
-          <a href="/3D-Models/" class="btn-ghost">← All Categories</a>
+          <a href="/" class="btn-ghost">← All Categories</a>
         </div>
       </div>
 
@@ -678,8 +678,8 @@ def page_html(cat_name, meta, models):
 </main>
 
 {footer_html()}
-<script src="/3D-Models/assets/js/site.min.js?v=32" defer></script>
-<script src="/3D-Models/assets/js/category-pages.min.js?v=32" defer></script>
+<script src="/assets/js/site.min.js?v=32" defer></script>
+<script src="/assets/js/category-pages.min.js?v=32" defer></script>
 </body>
 </html>'''
 

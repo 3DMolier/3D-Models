@@ -3,7 +3,7 @@
 master_fixes_v3.py — Comprehensive automated fixes:
 1. Remove duplicate About link from homepage nav
 2. Fix copyright 2024/2025 -> 2026
-3. Fix collection breadcrumbs (/ -> /3D-Models/)
+3. Fix collection breadcrumbs (/ -> /)
 4. Add og:image fallback to pages missing it
 5. Fix Product.url on 1000 model pages
 6. Add aria-labels to catalog/search inputs
@@ -11,7 +11,7 @@ master_fixes_v3.py — Comprehensive automated fixes:
 import re, pathlib
 
 ROOT = pathlib.Path(__file__).parent.parent
-BASE = "https://3dmolier.github.io/3D-Models"
+BASE = "https://3dmolierstudio.com"
 OG_FALLBACK = f"{BASE}/assets/og/3d-molier-og.jpg"
 
 def read(p):
@@ -27,19 +27,19 @@ def fix_homepage_nav_duplicate():
     txt = read(p)
     # The duplicate: two identical About links close together
     # Keep the first, remove the second
-    first  = '<a href="/3D-Models/about/" class="nav-link">About</a>\n      <a href="/3D-Models/custom-order/" class="nav-link">Custom Order</a>'
-    bad    = '<a href="/3D-Models/about/" class="nav-link">About</a>\n      <a href="/3D-Models/contact/" class="nav-link">Contact</a>\n      <a href="/3D-Models/about/" class="nav-link">About</a>'
+    first  = '<a href="/about/" class="nav-link">About</a>\n      <a href="/custom-order/" class="nav-link">Custom Order</a>'
+    bad    = '<a href="/about/" class="nav-link">About</a>\n      <a href="/contact/" class="nav-link">Contact</a>\n      <a href="/about/" class="nav-link">About</a>'
     if bad in txt:
-        good = '<a href="/3D-Models/about/" class="nav-link">About</a>\n      <a href="/3D-Models/contact/" class="nav-link">Contact</a>'
+        good = '<a href="/about/" class="nav-link">About</a>\n      <a href="/contact/" class="nav-link">Contact</a>'
         write(p, txt.replace(bad, good))
         print("  Homepage nav: removed duplicate About link")
         return
     # Broader fallback — find any second occurrence of About nav link
-    count = txt.count('<a href="/3D-Models/about/" class="nav-link">About</a>')
+    count = txt.count('<a href="/about/" class="nav-link">About</a>')
     if count > 1:
         # Remove last occurrence
-        idx = txt.rfind('<a href="/3D-Models/about/" class="nav-link">About</a>')
-        new = txt[:idx] + txt[idx:].replace('<a href="/3D-Models/about/" class="nav-link">About</a>', '', 1)
+        idx = txt.rfind('<a href="/about/" class="nav-link">About</a>')
+        new = txt[:idx] + txt[idx:].replace('<a href="/about/" class="nav-link">About</a>', '', 1)
         write(p, new)
         print("  Homepage nav: removed duplicate About link (fallback)")
     else:
@@ -66,9 +66,9 @@ def fix_collection_breadcrumbs():
         txt = read(p)
         new = txt
         # Fix Home breadcrumb link
-        new = new.replace('href="/" style="color:#7A8DB0', 'href="/3D-Models/" style="color:#7A8DB0')
+        new = new.replace('href="/" style="color:#7A8DB0', 'href="/" style="color:#7A8DB0')
         # Fix Collections breadcrumb link
-        new = new.replace('href="/collections/" style="color:#7A8DB0', 'href="/3D-Models/collections/" style="color:#7A8DB0')
+        new = new.replace('href="/collections/" style="color:#7A8DB0', 'href="/collections/" style="color:#7A8DB0')
         if new != txt:
             write(p, new)
             updated += 1
@@ -77,8 +77,8 @@ def fix_collection_breadcrumbs():
     # Also fix the generator
     gen = ROOT / "scripts" / "generate_collection_pages.py"
     gt = read(gen)
-    gn = gt.replace('href="/" style="color:#7A8DB0', 'href="/3D-Models/" style="color:#7A8DB0')
-    gn = gn.replace('href="/collections/" style="color:#7A8DB0', 'href="/3D-Models/collections/" style="color:#7A8DB0')
+    gn = gt.replace('href="/" style="color:#7A8DB0', 'href="/" style="color:#7A8DB0')
+    gn = gn.replace('href="/collections/" style="color:#7A8DB0', 'href="/collections/" style="color:#7A8DB0')
     if gn != gt:
         write(gen, gn)
         print("  Generator breadcrumbs: fixed")

@@ -62,7 +62,7 @@ function ensureRemainingChunks(){
 }
 
 function loadChunk(i) {
-  return fetch('/3D-Models/data/fc-chunk-'+i+'.json')
+  return fetch('/data/fc-chunk-'+i+'.json')
     .then(function(r){return r.json();})
     .then(function(chunk){
       mergeChunk(chunk);
@@ -83,7 +83,7 @@ function loadChunk(i) {
 function loadImgChunk(i) {
   if(i>=totalImgChunks||loadedImgChunkSet[i])return Promise.resolve();
   loadedImgChunkSet[i]=true;
-  return fetch('/3D-Models/data/fc-img-chunk-'+i+'.json')
+  return fetch('/data/fc-img-chunk-'+i+'.json')
     .then(function(r){return r.json();})
     .then(function(chunk){
       Object.assign(IMGS, chunk);
@@ -120,8 +120,8 @@ function startLoading(fcIdx, imgIdx) {
 }
 
 Promise.all([
-  fetch('/3D-Models/data/fc-index.json').then(function(r){return r.json();}),
-  fetch('/3D-Models/data/fc-img-index.json').then(function(r){return r.json();})
+  fetch('/data/fc-index.json').then(function(r){return r.json();}),
+  fetch('/data/fc-img-index.json').then(function(r){return r.json();})
 ]).then(function(res){ startLoading(res[0], res[1]); })
   .catch(function(){
     if(statusText)statusText.textContent='Failed to load catalog. Please refresh.';
@@ -192,7 +192,7 @@ function modelCard(idx){
   var certBadge=cert===2?'<span class="mc-cert cert-cm">CheckMate</span>'
     :cert===1?'<span class="mc-cert cert-sc">StemCell</span>':'';
   var salesHtml=sales?'<span class="mc-sold">'+sales+' sold</span>':'';
-  return '<a href="/3D-Models/models/'+slug+'/" class="mc" role="listitem">'
+  return '<a href="/models/'+slug+'/" class="mc" role="listitem">'
     +'<div class="mc-img">'+imgHtml+'<div class="mc-ov"></div>'+certBadge+'<div class="mc-qv">View Model</div></div>'
     +'<div class="mc-body"><div class="mc-name">'+name+'</div>'
     +'<div class="mc-foot"><span class="mc-price">$'+price+'</span>'+salesHtml+'</div>'

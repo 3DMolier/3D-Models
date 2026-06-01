@@ -1,7 +1,7 @@
 function handleImageError(img) {
   if (!img) return;
   var fallback = img.getAttribute('data-fallback');
-  var placeholder = img.getAttribute('data-placeholder') || '/3D-Models/assets/og/3d-molier-og.jpg';
+  var placeholder = img.getAttribute('data-placeholder') || '/assets/og/3d-molier-og.jpg';
   if (!img.dataset.triedFallback && fallback && img.src !== fallback) {
     img.dataset.triedFallback = '1';
     img.src = fallback;
@@ -34,10 +34,10 @@ function imgErr(img) {
 
 (function(){
 var p=location.pathname,d=document;
-// Redirect old /3dmolier-models/ → /3D-Models/
-if(p.indexOf('/3dmolier-models/')===0)location.replace('/3D-Models/'+p.slice('/3dmolier-models/'.length)+location.search+location.hash);
+// Redirect old /3dmolier-models/ → /
+if(p.indexOf('/3dmolier-models/')===0)location.replace('/'+p.slice('/3dmolier-models/'.length)+location.search+location.hash);
 // Legacy URL redirects (for old industry slugs without hyphens)
-var _r={'/3D-Models/industries/softwaredevelopment/':'/3D-Models/industries/software-development/','/3D-Models/industries/eventmanagement/':'/3D-Models/industries/event-management/','/3D-Models/industries/3dprinting/':'/3D-Models/industries/3d-printing/'};
+var _r={'/industries/softwaredevelopment/':'/industries/software-development/','/industries/eventmanagement/':'/industries/event-management/','/industries/3dprinting/':'/industries/3d-printing/'};
 if(_r[p])location.replace(_r[p]);
 d.querySelectorAll('.nav-link,.nav-dropdown a,.nav-mobile a,.nav-mobile-sub a').forEach(function(el){
   var h=el.getAttribute('href');if(!h||h.indexOf('turbosquid')>-1)return;
@@ -56,7 +56,7 @@ mobToggle('mob-ind-toggle','mob-ind-sub');
 var heroSearch=d.querySelector('.hero-search-wrap .search-input');
 var heroBtn=d.querySelector('.hero-search-wrap .search-btn');
 if(heroSearch&&heroBtn){
-  function doHeroSearch(){var q=heroSearch.value.trim();if(q)window.location.href='/3D-Models/search/?q='+encodeURIComponent(q);}
+  function doHeroSearch(){var q=heroSearch.value.trim();if(q)window.location.href='/search/?q='+encodeURIComponent(q);}
   heroBtn.addEventListener('click',doHeroSearch);
   heroSearch.addEventListener('keydown',function(e){if(e.key==='Enter')doHeroSearch();});
 }

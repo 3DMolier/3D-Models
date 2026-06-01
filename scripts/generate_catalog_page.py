@@ -115,7 +115,7 @@ def generate():
         except:
             price_str = f"${r['price']}"
         cert = r.get("certification", "")
-        static_cards += f'''<a href="/3D-Models/models/{slug}/" style="text-decoration:none;display:block;background:#0D1117;border:1px solid rgba(255,255,255,0.07);border-radius:14px;overflow:hidden;">
+        static_cards += f'''<a href="/models/{slug}/" style="text-decoration:none;display:block;background:#0D1117;border:1px solid rgba(255,255,255,0.07);border-radius:14px;overflow:hidden;">
           <div style="height:200px;background:#131A22;overflow:hidden;position:relative;">
             <img src="{img_proxied}" alt="{title} 3D model — {cat} by 3D Molier" loading="lazy" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display=\'none\'">
             <span style="position:absolute;top:8px;left:8px;font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;background:{col}22;color:{col};border:1px solid {col}44;">{cat}</span>
@@ -135,12 +135,12 @@ def generate():
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Browse 3D Models Catalog — 88,000+ Assets | 3D Molier on TurboSquid</title>
 <meta name="description" content="Browse 88,000+ professional 3D models by 3D Molier on TurboSquid. Filter by category, price, and certification. Vehicles, Aircraft, Medical, Architecture and more.">
-<link rel="icon" href="/3D-Models/favicon.svg" type="image/svg+xml">
-<link rel="canonical" href="https://3dmolier.github.io/3D-Models/catalog/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://3dmolierstudio.com/catalog/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Browse 3D Models Catalog — 88,000+ Assets | 3D Molier">
 <meta property="og:description" content="Browse 88,000+ professional 3D models. Filter by category, price, and certification.">
-<meta property="og:url" content="https://3dmolier.github.io/3D-Models/catalog/">
+<meta property="og:url" content="https://3dmolierstudio.com/catalog/">
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -310,17 +310,17 @@ def generate():
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="/3D-Models/" class="nav-logo">3D <span>Molier</span></a>
+    <a href="/" class="nav-logo">3D <span>Molier</span></a>
     <div class="nav-links">
-      <a href="/3D-Models/catalog/">Catalog</a>
-      <a href="/3D-Models/categories/vehicles/">Vehicles</a>
-      <a href="/3D-Models/categories/aircraft/">Aircraft</a>
-      <a href="/3D-Models/categories/military-vehicles/">Military</a>
-      <a href="/3D-Models/categories/medical-3d-models/">Medical</a>
-      <a href="/3D-Models/collections/">Collections</a>
-      <a href="/3D-Models/about/">About</a>
-      <a href="/3D-Models/custom-order/">Custom Order</a>
-      <a href="/3D-Models/contact/">Contact</a>
+      <a href="/catalog/">Catalog</a>
+      <a href="/categories/vehicles/">Vehicles</a>
+      <a href="/categories/aircraft/">Aircraft</a>
+      <a href="/categories/military-vehicles/">Military</a>
+      <a href="/categories/medical-3d-models/">Medical</a>
+      <a href="/collections/">Collections</a>
+      <a href="/about/">About</a>
+      <a href="/custom-order/">Custom Order</a>
+      <a href="/contact/">Contact</a>
     </div>
     <a href="https://www.turbosquid.com/Search/3D-Models?include=true&media_typeid=2&artist_screenname=3d_molier-studio&referral=3d_molier-studio" class="btn-ts" target="_blank" rel="noopener">TurboSquid ↗</a>
   </div>
@@ -519,7 +519,7 @@ function cardHtml(m) {{
   const price = Number.isInteger(m.p) ? m.p : m.p.toFixed(0);
   const imgSrc = proxyImg(m.img);
   const certBadge = certBadgeHtml(m.cert);
-  return `<a href="/3D-Models/models/${{m.s}}/" class="model-card">
+  return `<a href="/models/${{m.s}}/" class="model-card">
     <div class="card-img">
       <img src="${{imgSrc}}" alt="${{m.n}} 3D model — ${{m.c}} by 3D Molier" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="img-fallback" style="display:none;background:linear-gradient(135deg,${{m.col}}22,${{m.col}}08)">

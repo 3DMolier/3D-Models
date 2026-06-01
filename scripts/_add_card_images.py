@@ -1,6 +1,6 @@
 import re
 
-PH = "/3D-Models/assets/og/3d-molier-og.jpg"
+PH = "/assets/og/3d-molier-og.jpg"
 
 IMGS = {
   'A320':     'https://p.turbosquid.com/ts-thumb/pi/DyjmYF/wKi9psVt/airbusa320generic3dmodel002/jpg/1512451344/1920x1080/fit_q87/e890b6bbba43d7da1e344e2f760a87c9d8f25b9b/airbusa320generic3dmodel002.jpg',
@@ -35,14 +35,14 @@ def img_strip(cls, key, alt):
 html = open('index.html', encoding='utf-8').read()
 
 ind_map = {
-  '/3D-Models/industries/aerospace/':             ('A320',     'Aerospace 3D models'),
-  '/3D-Models/industries/military-defense/':      ('SIKORSKY', 'Military and Defense 3D models'),
-  '/3D-Models/industries/medical/':               ('BODY',     'Medical 3D models'),
-  '/3D-Models/industries/game-development/':      ('HANDS',    'Game Development 3D models'),
-  '/3D-Models/industries/film-video-production/': ('A400M',    'Film and Video 3D models'),
-  '/3D-Models/industries/architecture/':          ('EIFFEL',   'Architecture 3D models'),
-  '/3D-Models/industries/virtual-reality/':       ('HAT',      'Virtual Reality 3D models'),
-  '/3D-Models/industries/advertising/':           ('TRANSIT',  'Advertising 3D models'),
+  '/industries/aerospace/':             ('A320',     'Aerospace 3D models'),
+  '/industries/military-defense/':      ('SIKORSKY', 'Military and Defense 3D models'),
+  '/industries/medical/':               ('BODY',     'Medical 3D models'),
+  '/industries/game-development/':      ('HANDS',    'Game Development 3D models'),
+  '/industries/film-video-production/': ('A400M',    'Film and Video 3D models'),
+  '/industries/architecture/':          ('EIFFEL',   'Architecture 3D models'),
+  '/industries/virtual-reality/':       ('HAT',      'Virtual Reality 3D models'),
+  '/industries/advertising/':           ('TRANSIT',  'Advertising 3D models'),
 }
 
 for href, (key, alt) in ind_map.items():
@@ -54,12 +54,12 @@ for href, (key, alt) in ind_map.items():
         print('WARN ind-card not found: ' + href)
 
 col_map = {
-  '/3D-Models/collections/best-vehicle-3d-models/':          ('TESLA',   'Best Vehicle 3D Models'),
-  '/3D-Models/collections/best-aircraft-3d-models/':         ('A320',    'Best Aircraft 3D Models'),
-  '/3D-Models/collections/best-medical-3d-models/':          ('BODY',    'Best Medical 3D Models'),
-  '/3D-Models/collections/checkmate-certified-3d-models/':   ('HANDS',   'CheckMate Certified 3D Models'),
-  '/3D-Models/collections/best-military-vehicle-3d-models/': ('F35',     'Best Military Vehicle 3D Models'),
-  '/3D-Models/collections/best-ship-3d-models/':             ('BOAT',    'Best Ship 3D Models'),
+  '/collections/best-vehicle-3d-models/':          ('TESLA',   'Best Vehicle 3D Models'),
+  '/collections/best-aircraft-3d-models/':         ('A320',    'Best Aircraft 3D Models'),
+  '/collections/best-medical-3d-models/':          ('BODY',    'Best Medical 3D Models'),
+  '/collections/checkmate-certified-3d-models/':   ('HANDS',   'CheckMate Certified 3D Models'),
+  '/collections/best-military-vehicle-3d-models/': ('F35',     'Best Military Vehicle 3D Models'),
+  '/collections/best-ship-3d-models/':             ('BOAT',    'Best Ship 3D Models'),
 }
 
 for href, (key, alt) in col_map.items():
@@ -77,25 +77,25 @@ print('index.html done')
 html2 = open('collections/index.html', encoding='utf-8').read()
 
 coll_map = {
-  '/3D-Models/collections/best-vehicle-3d-models/':                    ('TESLA',    'Best Vehicle 3D Models'),
-  '/3D-Models/collections/best-military-vehicle-3d-models/':           ('F35',      'Best Military Vehicle 3D Models'),
-  '/3D-Models/collections/best-aircraft-3d-models/':                   ('A320',     'Best Aircraft 3D Models'),
-  '/3D-Models/collections/best-ship-3d-models/':                       ('BOAT',     'Best Ship 3D Models'),
-  '/3D-Models/collections/best-industrial-equipment-3d-models/':       ('CONVBELT', 'Best Industrial Equipment 3D Models'),
-  '/3D-Models/collections/best-medical-3d-models/':                    ('BODY',     'Best Medical 3D Models'),
-  '/3D-Models/collections/best-architecture-landmark-3d-models/':      ('EIFFEL',   'Best Architecture Landmark 3D Models'),
-  '/3D-Models/collections/3d-models-for-aerospace-visualization/':     ('A400M',    '3D Models for Aerospace'),
-  '/3D-Models/collections/3d-models-for-medical-visualization/':       ('SKELETON', '3D Models for Medical Visualization'),
-  '/3D-Models/collections/3d-models-for-defense-simulation/':          ('SUBM',     '3D Models for Defense Simulation'),
-  '/3D-Models/collections/3d-models-for-film-production/':             ('HANDS',    '3D Models for Film Production'),
-  '/3D-Models/collections/3d-models-for-vr-projects/':                 ('HAT',      '3D Models for VR Projects'),
-  '/3D-Models/collections/3d-models-for-game-development/':            ('TESLA',    '3D Models for Game Development'),
-  '/3D-Models/collections/3d-models-for-advertising/':                 ('TRANSIT',  '3D Models for Advertising'),
-  '/3D-Models/collections/3d-models-for-architecture-visualization/':  ('SHANGHAI', '3D Models for Architecture Visualization'),
-  '/3D-Models/collections/3d-models-for-event-management/':            ('COLOSS',   '3D Models for Event Management'),
-  '/3D-Models/collections/3d-models-for-hardware-presentation/':       ('PHONE',    '3D Models for Hardware Presentation'),
-  '/3D-Models/collections/checkmate-certified-3d-models/':             ('DESTR',    'CheckMate Certified 3D Models'),
-  '/3D-Models/collections/stemcell-certified-3d-models/':              ('ORCHID',   'StemCell Certified 3D Models'),
+  '/collections/best-vehicle-3d-models/':                    ('TESLA',    'Best Vehicle 3D Models'),
+  '/collections/best-military-vehicle-3d-models/':           ('F35',      'Best Military Vehicle 3D Models'),
+  '/collections/best-aircraft-3d-models/':                   ('A320',     'Best Aircraft 3D Models'),
+  '/collections/best-ship-3d-models/':                       ('BOAT',     'Best Ship 3D Models'),
+  '/collections/best-industrial-equipment-3d-models/':       ('CONVBELT', 'Best Industrial Equipment 3D Models'),
+  '/collections/best-medical-3d-models/':                    ('BODY',     'Best Medical 3D Models'),
+  '/collections/best-architecture-landmark-3d-models/':      ('EIFFEL',   'Best Architecture Landmark 3D Models'),
+  '/collections/3d-models-for-aerospace-visualization/':     ('A400M',    '3D Models for Aerospace'),
+  '/collections/3d-models-for-medical-visualization/':       ('SKELETON', '3D Models for Medical Visualization'),
+  '/collections/3d-models-for-defense-simulation/':          ('SUBM',     '3D Models for Defense Simulation'),
+  '/collections/3d-models-for-film-production/':             ('HANDS',    '3D Models for Film Production'),
+  '/collections/3d-models-for-vr-projects/':                 ('HAT',      '3D Models for VR Projects'),
+  '/collections/3d-models-for-game-development/':            ('TESLA',    '3D Models for Game Development'),
+  '/collections/3d-models-for-advertising/':                 ('TRANSIT',  '3D Models for Advertising'),
+  '/collections/3d-models-for-architecture-visualization/':  ('SHANGHAI', '3D Models for Architecture Visualization'),
+  '/collections/3d-models-for-event-management/':            ('COLOSS',   '3D Models for Event Management'),
+  '/collections/3d-models-for-hardware-presentation/':       ('PHONE',    '3D Models for Hardware Presentation'),
+  '/collections/checkmate-certified-3d-models/':             ('DESTR',    'CheckMate Certified 3D Models'),
+  '/collections/stemcell-certified-3d-models/':              ('ORCHID',   'StemCell Certified 3D Models'),
 }
 
 for href, (key, alt) in coll_map.items():

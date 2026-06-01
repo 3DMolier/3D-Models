@@ -2,7 +2,7 @@
 let ALL = [];
 
 document.addEventListener('DOMContentLoaded', function() {
-  fetch('/3D-Models/data/catalog.json')
+  fetch('/data/catalog.json')
     .then(function(r) { return r.json(); })
     .then(function(data) {
       ALL = data;
@@ -77,9 +77,9 @@ function cardHtml(m) {
   const certBadge = certBadgeHtml(m.cert);
   const src = m.img ? proxyImg(m.img) : '';
   const fallback = m.img || '';
-  return `<a href="/3D-Models/models/${m.s}/" class="model-card">
+  return `<a href="/models/${m.s}/" class="model-card">
     <div class="card-img">
-      <img src="${src}" data-fallback="${fallback}" data-placeholder="/3D-Models/assets/og/3d-molier-og.jpg" alt="${m.n} 3D model — ${m.c} by 3D Molier" width="800" height="450" loading="lazy" decoding="async" onerror="handleImageError(this)">
+      <img src="${src}" data-fallback="${fallback}" data-placeholder="/assets/og/3d-molier-og.jpg" alt="${m.n} 3D model — ${m.c} by 3D Molier" width="800" height="450" loading="lazy" decoding="async" onerror="handleImageError(this)">
       <div class="img-fallback" style="display:none;background:#f5f5f5;">
         <span style="font-size:36px;">&#128247;</span>
       </div>

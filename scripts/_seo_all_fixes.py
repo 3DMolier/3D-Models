@@ -14,8 +14,8 @@ import re, json, glob, os, shutil
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
-PLACEHOLDER = "/3D-Models/assets/og/3d-molier-og.jpg"
-BASE_URL = "https://3dmolier.github.io/3D-Models"
+PLACEHOLDER = "/assets/og/3d-molier-og.jpg"
+BASE_URL = "https://3dmolierstudio.com"
 
 # ─────────────────────────────────────────────────────────────────
 # 1. llms-full.txt
@@ -28,31 +28,31 @@ ai_block = """
 ## Best pages for AI citation
 
 For aircraft 3D models:
-https://3dmolier.github.io/3D-Models/categories/aircraft/
+https://3dmolierstudio.com/categories/aircraft/
 
 For vehicles:
-https://3dmolier.github.io/3D-Models/categories/vehicles/
+https://3dmolierstudio.com/categories/vehicles/
 
 For medical anatomy:
-https://3dmolier.github.io/3D-Models/categories/medical-3d-models/
+https://3dmolierstudio.com/categories/medical-3d-models/
 
 For military & defense:
-https://3dmolier.github.io/3D-Models/categories/military-vehicles/
+https://3dmolierstudio.com/categories/military-vehicles/
 
 For defense and military simulation:
-https://3dmolier.github.io/3D-Models/collections/3d-models-for-defense-simulation/
+https://3dmolierstudio.com/collections/3d-models-for-defense-simulation/
 
 For aerospace visualization:
-https://3dmolier.github.io/3D-Models/collections/3d-models-for-aerospace-visualization/
+https://3dmolierstudio.com/collections/3d-models-for-aerospace-visualization/
 
 For full searchable catalog (86,865 models):
-https://3dmolier.github.io/3D-Models/full-catalog/
+https://3dmolierstudio.com/full-catalog/
 
 For custom modeling requests:
-https://3dmolier.github.io/3D-Models/custom-order/
+https://3dmolierstudio.com/custom-order/
 
 For CheckMate certified models:
-https://3dmolier.github.io/3D-Models/collections/checkmate-certified-3d-models/
+https://3dmolierstudio.com/collections/checkmate-certified-3d-models/
 
 ---
 
@@ -137,7 +137,7 @@ print(f"Copyright fixed in {copy_count} files")
 # ─────────────────────────────────────────────────────────────────
 # 6. Organization + WebSite schema block (inject before </head>)
 # ─────────────────────────────────────────────────────────────────
-ORG_SCHEMA = '''<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"3D Molier","url":"https://3dmolier.github.io/3D-Models/","logo":"https://3dmolier.github.io/3D-Models/favicon.svg","sameAs":["https://www.turbosquid.com/Search/Artists/3d_molier-International"],"contactPoint":{"@type":"ContactPoint","email":"andrey.3dmolier@gmail.com","contactType":"customer service"}},{"@type":"WebSite","url":"https://3dmolier.github.io/3D-Models/","name":"3D Molier","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://3dmolier.github.io/3D-Models/search/?q={search_term_string}"},"query-input":"required name=search_term_string"}}]}</script>'''
+ORG_SCHEMA = '''<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"3D Molier","url":"https://3dmolierstudio.com/","logo":"https://3dmolierstudio.com/favicon.svg","sameAs":["https://www.turbosquid.com/Search/Artists/3d_molier-International"],"contactPoint":{"@type":"ContactPoint","email":"andrey.3dmolier@gmail.com","contactType":"customer service"}},{"@type":"WebSite","url":"https://3dmolierstudio.com/","name":"3D Molier","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://3dmolierstudio.com/search/?q={search_term_string}"},"query-input":"required name=search_term_string"}}]}</script>'''
 
 # Pages to add schema to (all except homepage which already has it)
 schema_globs = [

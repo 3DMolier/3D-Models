@@ -9,16 +9,16 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OLD_CTA = "https://www.turbosquid.com/Search/3D-Models?include=true&media_typeid=2&artist_screenname=3d_molier-studio&referral=3d_molier-studio"
 NEW_CTA = "https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio"
 
-OLD_VEH = "https://www.turbosquid.com/Search/3D-Models/vehicle?referral=3d_molier-studio"
+OLD_VEH = "https://www.turbosquid.com/Search/vehicle?referral=3d_molier-studio"
 NEW_VEH = "https://www.turbosquid.com/Search/Index.cfm?keyword=Vehicle&media_typeid=2&include_artist=3d_molier-International"
 
-OLD_AIR = "https://www.turbosquid.com/Search/3D-Models/aircraft?referral=3d_molier-studio"
+OLD_AIR = "https://www.turbosquid.com/Search/aircraft?referral=3d_molier-studio"
 NEW_AIR = "https://www.turbosquid.com/Search/Index.cfm?keyword=aircraft&media_typeid=2&include_artist=3d_molier-International"
 
-OLD_MED = "https://www.turbosquid.com/Search/3D-Models/medical?referral=3d_molier-studio"
+OLD_MED = "https://www.turbosquid.com/Search/medical?referral=3d_molier-studio"
 NEW_MED = "https://www.turbosquid.com/Search/Index.cfm?keyword=medical&media_typeid=2&include_artist=3d_molier-International"
 
-SEARCH_BASE = "/3D-Models/search/?q="
+SEARCH_BASE = "/search/?q="
 
 def encode_q(text):
     return urllib.parse.quote_plus(text)

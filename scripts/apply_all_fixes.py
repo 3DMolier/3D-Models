@@ -178,7 +178,7 @@ def fix_homepage():
         print("WARNING: category grid not found, skipping")
 
     # 3c. Fix homepage search bar — add JS handler (only if not already present)
-    if "/3D-Models/search/?q=" not in content:
+    if "/search/?q=" not in content:
         search_js = """
 <script>
 (function(){

@@ -140,7 +140,7 @@ COLLECTION_DEFS = [
      "seo_title": "Best Vehicle 3D Models for Film, Games & Advertising | 3D Molier",
      "meta_desc": "Browse the best vehicle 3D models by 3D Molier — cars, trucks, motorcycles and more. Selected for film, advertising, games and simulation.",
      "intro": "Explore selected vehicle 3D models for film production, advertising campaigns, game environments and simulation projects. Open each model directly on TurboSquid.",
-     "ts_url": "https://www.turbosquid.com/Search/3D-Models/vehicle?referral=3d_molier-studio"},
+     "ts_url": "https://www.turbosquid.com/Search/vehicle?referral=3d_molier-studio"},
 
     {"slug": "best-military-vehicle-3d-models",
      "title": "Best Military Vehicle 3D Models",
@@ -148,7 +148,7 @@ COLLECTION_DEFS = [
      "seo_title": "Best Military Vehicle 3D Models for Games, Film & Simulation | 3D Molier",
      "meta_desc": "Browse military vehicle 3D models by 3D Molier — tanks, APCs, warplanes, warships and more. For defense simulation, game development and film production.",
      "intro": "Selected military vehicle 3D models for defense simulation, game environments, film production and training visualization. View each model on TurboSquid.",
-     "ts_url": "https://www.turbosquid.com/Search/3D-Models/military?referral=3d_molier-studio"},
+     "ts_url": "https://www.turbosquid.com/Search/military?referral=3d_molier-studio"},
 
     {"slug": "best-aircraft-3d-models",
      "title": "Best Aircraft 3D Models",
@@ -156,7 +156,7 @@ COLLECTION_DEFS = [
      "seo_title": "Best Aircraft 3D Models for Aerospace, Film, Games & Simulation | 3D Molier",
      "meta_desc": "Browse selected aircraft 3D models by 3D Molier — planes, helicopters, drones, jets and more. For aerospace visualization, film, simulation and VR.",
      "intro": "Selected aircraft and aviation 3D models for aerospace visualization, film production, simulation, VR experiences and game development. View on TurboSquid.",
-     "ts_url": "https://www.turbosquid.com/Search/3D-Models/aircraft?referral=3d_molier-studio"},
+     "ts_url": "https://www.turbosquid.com/Search/aircraft?referral=3d_molier-studio"},
 
     {"slug": "best-ship-3d-models",
      "title": "Best Ship 3D Models",
@@ -164,7 +164,7 @@ COLLECTION_DEFS = [
      "seo_title": "Best Ship & Boat 3D Models for Film, Games & Simulation | 3D Molier",
      "meta_desc": "Browse ship and boat 3D models by 3D Molier — yachts, cruise liners, cargo ships and more. For film production, game environments and simulation.",
      "intro": "Selected ship and maritime 3D models for film production, game environments, simulation and event visualization. View each model on TurboSquid.",
-     "ts_url": "https://www.turbosquid.com/Search/3D-Models/ship?referral=3d_molier-studio"},
+     "ts_url": "https://www.turbosquid.com/Search/ship?referral=3d_molier-studio"},
 
     {"slug": "best-industrial-equipment-3d-models",
      "title": "Best Industrial Equipment 3D Models",
@@ -172,7 +172,7 @@ COLLECTION_DEFS = [
      "seo_title": "Best Industrial Equipment 3D Models for Hardware, Simulation & Advertising | 3D Molier",
      "meta_desc": "Browse industrial equipment 3D models by 3D Molier — machinery, robot arms, HVAC, pipelines and more. For hardware presentations and simulation.",
      "intro": "Selected industrial equipment and machinery 3D models for hardware presentations, simulation, software visualization and advertising campaigns.",
-     "ts_url": "https://www.turbosquid.com/Search/3D-Models/industrial?referral=3d_molier-studio"},
+     "ts_url": "https://www.turbosquid.com/Search/industrial?referral=3d_molier-studio"},
 
     {"slug": "best-medical-3d-models",
      "title": "Best Medical 3D Models",
@@ -180,7 +180,7 @@ COLLECTION_DEFS = [
      "seo_title": "Best Medical 3D Models for Visualization, Training & VR | 3D Molier",
      "meta_desc": "Browse medical and anatomy 3D models by 3D Molier — human organs, skeletons, surgical tools and more. For medical education and healthcare visualization.",
      "intro": "Selected medical and anatomy 3D models for healthcare visualization, medical education, training simulation and VR experiences.",
-     "ts_url": "https://www.turbosquid.com/Search/3D-Models/medical?referral=3d_molier-studio"},
+     "ts_url": "https://www.turbosquid.com/Search/medical?referral=3d_molier-studio"},
 
     {"slug": "best-architecture-landmark-3d-models",
      "title": "Best Architecture & Landmark 3D Models",
@@ -188,7 +188,7 @@ COLLECTION_DEFS = [
      "seo_title": "Best Architecture & Landmark 3D Models for Visualization & Games | 3D Molier",
      "meta_desc": "Browse architecture and landmark 3D models by 3D Molier — buildings, towers, monuments, interiors and more. For architecture visualization and game environments.",
      "intro": "Selected architecture and landmark 3D models for architecture visualization, event staging, VR experiences, advertising and game environments.",
-     "ts_url": "https://www.turbosquid.com/Search/3D-Models/architecture?referral=3d_molier-studio"},
+     "ts_url": "https://www.turbosquid.com/Search/architecture?referral=3d_molier-studio"},
 
     # Industry-based
     {"slug": "3d-models-for-aerospace-visualization",
@@ -197,7 +197,7 @@ COLLECTION_DEFS = [
      "seo_title": "3D Models for Aerospace Visualization | 3D Molier",
      "meta_desc": "Selected 3D models for aerospace visualization projects — aircraft, spacecraft, aviation equipment and more by 3D Molier.",
      "intro": "3D models selected for aerospace visualization, flight simulation, engineering presentations and aviation film production.",
-     "ts_url": "https://www.turbosquid.com/Search/3D-Models/aerospace?referral=3d_molier-studio"},
+     "ts_url": "https://www.turbosquid.com/Search/aerospace?referral=3d_molier-studio"},
 
     {"slug": "3d-models-for-medical-visualization",
      "title": "3D Models for Medical Visualization",
@@ -205,7 +205,7 @@ COLLECTION_DEFS = [
      "seo_title": "3D Models for Medical Visualization & Training | 3D Molier",
      "meta_desc": "Selected medical 3D models for healthcare visualization, training simulations and patient education by 3D Molier.",
      "intro": "3D models for medical visualization, anatomy education, surgical training and healthcare VR applications.",
-     "ts_url": "https://www.turbosquid.com/Search/3D-Models/medical?referral=3d_molier-studio"},
+     "ts_url": "https://www.turbosquid.com/Search/medical?referral=3d_molier-studio"},
 
     {"slug": "3d-models-for-defense-simulation",
      "title": "3D Models for Defense & Simulation",
@@ -213,7 +213,7 @@ COLLECTION_DEFS = [
      "seo_title": "3D Models for Defense & Military Simulation | 3D Molier",
      "meta_desc": "Selected military 3D models for defense simulation, training applications and tactical visualization by 3D Molier.",
      "intro": "3D models for defense simulation, military training, tactical visualization and game development in the defense sector.",
-     "ts_url": "https://www.turbosquid.com/Search/3D-Models/military?referral=3d_molier-studio"},
+     "ts_url": "https://www.turbosquid.com/Search/military?referral=3d_molier-studio"},
 
     {"slug": "3d-models-for-film-production",
      "title": "3D Models for Film Production",
@@ -253,7 +253,7 @@ COLLECTION_DEFS = [
      "seo_title": "3D Models for Architecture Visualization | 3D Molier",
      "meta_desc": "Selected 3D models for architecture visualization by 3D Molier — buildings, interiors, landmarks and environments.",
      "intro": "3D models for architectural visualization, interior design presentations, urban planning and real estate marketing.",
-     "ts_url": "https://www.turbosquid.com/Search/3D-Models/architecture?referral=3d_molier-studio"},
+     "ts_url": "https://www.turbosquid.com/Search/architecture?referral=3d_molier-studio"},
 
     {"slug": "3d-models-for-event-management",
      "title": "3D Models for Event Management",
@@ -269,7 +269,7 @@ COLLECTION_DEFS = [
      "seo_title": "3D Models for Hardware & Product Presentation | 3D Molier",
      "meta_desc": "Selected industrial and equipment 3D models for hardware presentations and product visualization by 3D Molier.",
      "intro": "3D models for hardware product presentations, technical visualization and industrial equipment demonstrations.",
-     "ts_url": "https://www.turbosquid.com/Search/3D-Models/industrial?referral=3d_molier-studio"},
+     "ts_url": "https://www.turbosquid.com/Search/industrial?referral=3d_molier-studio"},
 
     # Certification-based
     {"slug": "checkmate-certified-3d-models",

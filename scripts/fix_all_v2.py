@@ -7,7 +7,7 @@ Product schema url field, CTA on model pages, aria-labels.
 import re, pathlib, csv, json
 
 ROOT = pathlib.Path(__file__).parent.parent
-BASE = "https://3dmolier.github.io/3D-Models"
+BASE = "https://3dmolierstudio.com"
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -20,8 +20,8 @@ def write_html(p, txt):
 # ── 1. Fix /categories/catalog/ -> /catalog/ (Other slug bug) ────────────────
 
 def fix_catalog_links():
-    bad  = "/3D-Models/categories/catalog/"
-    good = "/3D-Models/catalog/"
+    bad  = "/categories/catalog/"
+    good = "/catalog/"
     total = 0
     for p in ROOT.rglob("*.html"):
         txt = read_html(p)
@@ -158,10 +158,10 @@ def fix_schema_url():
 
 # ── 5. Nav update — add Custom 3D Model link to all pages ────────────────────
 
-NAV_STANDARD = '''<a href="/3D-Models/collections/" class="nav-link">Collections</a>
-      <a href="/3D-Models/about/" class="nav-link">About</a>
-      <a href="/3D-Models/custom-order/" class="nav-link">Custom Order</a>
-      <a href="/3D-Models/contact/" class="nav-link">Contact</a>'''
+NAV_STANDARD = '''<a href="/collections/" class="nav-link">Collections</a>
+      <a href="/about/" class="nav-link">About</a>
+      <a href="/custom-order/" class="nav-link">Custom Order</a>
+      <a href="/contact/" class="nav-link">Contact</a>'''
 
 def fix_nav():
     """Add Custom Order and Contact to nav where missing."""
@@ -171,13 +171,13 @@ def fix_nav():
         changed = False
 
         # Pattern: nav has Collections but no custom-order
-        if '/3D-Models/collections/' in txt and '/3D-Models/custom-order/' not in txt:
+        if '/collections/' in txt and '/custom-order/' not in txt:
             # Find the Collections nav link and add after it
             new = re.sub(
-                r'(<a[^>]+href="/3D-Models/collections/"[^>]*>Collections</a>)',
-                r'\1\n      <a href="/3D-Models/about/" class="nav-link">About</a>'
-                r'\n      <a href="/3D-Models/custom-order/" class="nav-link">Custom Order</a>'
-                r'\n      <a href="/3D-Models/contact/" class="nav-link">Contact</a>',
+                r'(<a[^>]+href="/collections/"[^>]*>Collections</a>)',
+                r'\1\n      <a href="/about/" class="nav-link">About</a>'
+                r'\n      <a href="/custom-order/" class="nav-link">Custom Order</a>'
+                r'\n      <a href="/contact/" class="nav-link">Contact</a>',
                 txt
             )
             if new != txt:
@@ -185,10 +185,10 @@ def fix_nav():
                 changed = True
 
         # Fix simple nav patterns (in about/contact/custom-order pages with inline style nav)
-        if '/3D-Models/contact/' in txt and '/3D-Models/custom-order/' not in txt:
+        if '/contact/' in txt and '/custom-order/' not in txt:
             new = txt.replace(
-                '<a href="/3D-Models/contact/"',
-                '<a href="/3D-Models/custom-order/" style="color:#6B7280;text-decoration:none;font-size:14px;font-weight:500;">Custom Order</a>\n      <a href="/3D-Models/contact/"'
+                '<a href="/contact/"',
+                '<a href="/custom-order/" style="color:#6B7280;text-decoration:none;font-size:14px;font-weight:500;">Custom Order</a>\n      <a href="/contact/"'
             )
             if new != txt:
                 txt = new
@@ -201,7 +201,7 @@ def fix_nav():
 
 # ── 6. Add CTA on model pages ─────────────────────────────────────────────────
 
-CTA_CUSTOM = '''<a href="/3D-Models/custom-order/" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px 20px;background:rgba(0,229,196,0.08);border:1px solid rgba(0,229,196,0.25);border-radius:10px;text-decoration:none;font-size:13px;font-weight:600;color:#00E5C4;transition:background 0.2s;margin-top:10px;" onmouseover="this.style.background='rgba(0,229,196,0.14)'" onmouseout="this.style.background='rgba(0,229,196,0.08)'">
+CTA_CUSTOM = '''<a href="/custom-order/" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px 20px;background:rgba(0,229,196,0.08);border:1px solid rgba(0,229,196,0.25);border-radius:10px;text-decoration:none;font-size:13px;font-weight:600;color:#00E5C4;transition:background 0.2s;margin-top:10px;" onmouseover="this.style.background='rgba(0,229,196,0.14)'" onmouseout="this.style.background='rgba(0,229,196,0.08)'">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
                 Request Similar Custom Model
               </a>'''

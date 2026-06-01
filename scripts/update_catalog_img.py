@@ -13,7 +13,7 @@ for m in models:
     slug = m.get('s', '')
     local = PREV_DIR / f'{slug}.webp'
     if local.exists():
-        m['img'] = f'/3D-Models/previews/{slug}.webp'
+        m['img'] = f'/previews/{slug}.webp'
         updated += 1
 
 with open(CATALOG, 'w', encoding='utf-8') as f:

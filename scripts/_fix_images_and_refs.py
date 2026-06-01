@@ -39,7 +39,7 @@ for jf in glob.glob(str(ROOT / "data" / "categories" / "*.json")):
         pid = id_m.group(1)
         # Prefer local preview
         if pid in slug_map:
-            new_img = f"/3D-Models/previews/{slug_map[pid]}.webp"
+            new_img = f"/previews/{slug_map[pid]}.webp"
         elif pid in fc_img:
             new_img = fc_img[pid]
         else:

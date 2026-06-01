@@ -1,6 +1,6 @@
 """
 Prepend /3D-Models to all internal absolute links in generated HTML files.
-Run once before deploying to GitHub Pages at https://3dmolier.github.io/3D-Models/
+Run once before deploying to GitHub Pages at https://3dmolierstudio.com/
 
 This patches:
   - HTML href="/..." attributes

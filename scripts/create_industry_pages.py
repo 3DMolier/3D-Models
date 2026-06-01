@@ -3,7 +3,7 @@
 import pathlib, re, csv, json
 
 ROOT = pathlib.Path(__file__).parent.parent
-BASE = "https://3dmolier.github.io/3D-Models"
+BASE = "https://3dmolierstudio.com"
 
 def _load_fc_img_map():
     """Load product_id → p.turbosquid.com URL from fc-img-chunk-0..5 JSON files."""
@@ -21,83 +21,83 @@ NAV = '''<a href="#main-content" class="skip-link">Skip to main content</a>
 <header id="site-header">
 <nav id="main-nav">
   <div class="nav-inner">
-    <a href="/3D-Models/" class="nav-logo">3D Molier</a>
+    <a href="/" class="nav-logo">3D Molier</a>
     <div class="nav-links" id="nav-links">
-      <a href="/3D-Models/catalog/" class="nav-link">Top 1000</a>
-      <a href="/3D-Models/full-catalog/" class="nav-link">Full Catalog</a>
+      <a href="/catalog/" class="nav-link">Top 1000</a>
+      <a href="/full-catalog/" class="nav-link">Full Catalog</a>
       <span class="nav-sep" aria-hidden="true"></span>
       <div class="nav-has-dropdown nav-has-mega" id="nav-cat-wrap">
         <button class="nav-link" id="nav-cat-btn" aria-haspopup="true" aria-expanded="false">Categories <span class="nav-caret" aria-hidden="true">&#9662;</span></button>
         <div class="nav-dropdown nav-mega" role="menu">
-          <a href="/3D-Models/categories/vehicles/" role="menuitem" class="mega-item"><span class="mega-name">Vehicles</span><span class="mega-desc">cars, trucks, motorcycles</span></a>
-          <a href="/3D-Models/categories/aircraft/" role="menuitem" class="mega-item"><span class="mega-name">Aircraft</span><span class="mega-desc">airplanes, helicopters, drones</span></a>
-          <a href="/3D-Models/categories/military-vehicles/" role="menuitem" class="mega-item"><span class="mega-name">Military</span><span class="mega-desc">defense, tanks, equipment</span></a>
-          <a href="/3D-Models/categories/ships/" role="menuitem" class="mega-item"><span class="mega-name">Ships</span><span class="mega-desc">naval, cargo, yachts</span></a>
-          <a href="/3D-Models/categories/medical-3d-models/" role="menuitem" class="mega-item"><span class="mega-name">Medical</span><span class="mega-desc">anatomy, surgery, pharma</span></a>
-          <a href="/3D-Models/categories/industrial-equipment/" role="menuitem" class="mega-item"><span class="mega-name">Industrial</span><span class="mega-desc">machinery, HVAC, cranes</span></a>
-          <a href="/3D-Models/categories/architecture-landmarks/" role="menuitem" class="mega-item"><span class="mega-name">Architecture</span><span class="mega-desc">buildings, monuments</span></a>
-          <a href="/3D-Models/categories/other/" role="menuitem" class="mega-item"><span class="mega-name">Other</span><span class="mega-desc">characters, animals, props</span></a>
+          <a href="/categories/vehicles/" role="menuitem" class="mega-item"><span class="mega-name">Vehicles</span><span class="mega-desc">cars, trucks, motorcycles</span></a>
+          <a href="/categories/aircraft/" role="menuitem" class="mega-item"><span class="mega-name">Aircraft</span><span class="mega-desc">airplanes, helicopters, drones</span></a>
+          <a href="/categories/military-vehicles/" role="menuitem" class="mega-item"><span class="mega-name">Military</span><span class="mega-desc">defense, tanks, equipment</span></a>
+          <a href="/categories/ships/" role="menuitem" class="mega-item"><span class="mega-name">Ships</span><span class="mega-desc">naval, cargo, yachts</span></a>
+          <a href="/categories/medical-3d-models/" role="menuitem" class="mega-item"><span class="mega-name">Medical</span><span class="mega-desc">anatomy, surgery, pharma</span></a>
+          <a href="/categories/industrial-equipment/" role="menuitem" class="mega-item"><span class="mega-name">Industrial</span><span class="mega-desc">machinery, HVAC, cranes</span></a>
+          <a href="/categories/architecture-landmarks/" role="menuitem" class="mega-item"><span class="mega-name">Architecture</span><span class="mega-desc">buildings, monuments</span></a>
+          <a href="/categories/other/" role="menuitem" class="mega-item"><span class="mega-name">Other</span><span class="mega-desc">characters, animals, props</span></a>
         </div>
       </div>
       <div class="nav-has-dropdown nav-has-mega" id="nav-ind-wrap">
         <button class="nav-link" id="nav-ind-btn" aria-haspopup="true" aria-expanded="false">Industries <span class="nav-caret" aria-hidden="true">&#9662;</span></button>
         <div class="nav-dropdown nav-mega" role="menu">
-          <a href="/3D-Models/industries/aerospace/" role="menuitem" class="mega-item"><span class="mega-name">Aerospace</span><span class="mega-desc">aviation, rockets, satellites</span></a>
-          <a href="/3D-Models/industries/military-defense/" role="menuitem" class="mega-item"><span class="mega-name">Military &amp; Defense</span><span class="mega-desc">defense, simulation, training</span></a>
-          <a href="/3D-Models/industries/medical/" role="menuitem" class="mega-item"><span class="mega-name">Medical</span><span class="mega-desc">anatomy, surgery, education</span></a>
-          <a href="/3D-Models/industries/game-development/" role="menuitem" class="mega-item"><span class="mega-name">Game Development</span><span class="mega-desc">Unity, Unreal, real-time</span></a>
-          <a href="/3D-Models/industries/film-video-production/" role="menuitem" class="mega-item"><span class="mega-name">Film Production</span><span class="mega-desc">VFX, animation, commercials</span></a>
-          <a href="/3D-Models/industries/architecture/" role="menuitem" class="mega-item"><span class="mega-name">Architecture</span><span class="mega-desc">buildings, landmarks, viz</span></a>
-          <a href="/3D-Models/industries/virtual-reality/" role="menuitem" class="mega-item"><span class="mega-name">Virtual Reality</span><span class="mega-desc">VR, AR, immersive scenes</span></a>
-          <a href="/3D-Models/industries/advertising/" role="menuitem" class="mega-item"><span class="mega-name">Advertising</span><span class="mega-desc">product rendering, campaigns</span></a>
-          <a href="/3D-Models/industries/software-development/" role="menuitem" class="mega-item"><span class="mega-name">Software Dev</span><span class="mega-desc">apps, demos, UI assets</span></a>
-          <a href="/3D-Models/industries/event-management/" role="menuitem" class="mega-item"><span class="mega-name">Event Management</span><span class="mega-desc">exhibitions, staging, shows</span></a>
-          <a href="/3D-Models/industries/hardware/" role="menuitem" class="mega-item"><span class="mega-name">Hardware</span><span class="mega-desc">devices, components, tech</span></a>
-          <a href="/3D-Models/industries/3d-printing/" role="menuitem" class="mega-item"><span class="mega-name">3D Printing</span><span class="mega-desc">printing, prototyping, fab</span></a>
+          <a href="/industries/aerospace/" role="menuitem" class="mega-item"><span class="mega-name">Aerospace</span><span class="mega-desc">aviation, rockets, satellites</span></a>
+          <a href="/industries/military-defense/" role="menuitem" class="mega-item"><span class="mega-name">Military &amp; Defense</span><span class="mega-desc">defense, simulation, training</span></a>
+          <a href="/industries/medical/" role="menuitem" class="mega-item"><span class="mega-name">Medical</span><span class="mega-desc">anatomy, surgery, education</span></a>
+          <a href="/industries/game-development/" role="menuitem" class="mega-item"><span class="mega-name">Game Development</span><span class="mega-desc">Unity, Unreal, real-time</span></a>
+          <a href="/industries/film-video-production/" role="menuitem" class="mega-item"><span class="mega-name">Film Production</span><span class="mega-desc">VFX, animation, commercials</span></a>
+          <a href="/industries/architecture/" role="menuitem" class="mega-item"><span class="mega-name">Architecture</span><span class="mega-desc">buildings, landmarks, viz</span></a>
+          <a href="/industries/virtual-reality/" role="menuitem" class="mega-item"><span class="mega-name">Virtual Reality</span><span class="mega-desc">VR, AR, immersive scenes</span></a>
+          <a href="/industries/advertising/" role="menuitem" class="mega-item"><span class="mega-name">Advertising</span><span class="mega-desc">product rendering, campaigns</span></a>
+          <a href="/industries/software-development/" role="menuitem" class="mega-item"><span class="mega-name">Software Dev</span><span class="mega-desc">apps, demos, UI assets</span></a>
+          <a href="/industries/event-management/" role="menuitem" class="mega-item"><span class="mega-name">Event Management</span><span class="mega-desc">exhibitions, staging, shows</span></a>
+          <a href="/industries/hardware/" role="menuitem" class="mega-item"><span class="mega-name">Hardware</span><span class="mega-desc">devices, components, tech</span></a>
+          <a href="/industries/3d-printing/" role="menuitem" class="mega-item"><span class="mega-name">3D Printing</span><span class="mega-desc">printing, prototyping, fab</span></a>
         </div>
       </div>
-      <a href="/3D-Models/collections/" class="nav-link">Collections</a>
-      <a href="/3D-Models/search/" class="nav-link">Search</a>
-      <a href="/3D-Models/custom-order/" class="nav-link">Custom Order</a>
-      <a href="/3D-Models/about/" class="nav-link">About</a>
+      <a href="/collections/" class="nav-link">Collections</a>
+      <a href="/search/" class="nav-link">Search</a>
+      <a href="/custom-order/" class="nav-link">Custom Order</a>
+      <a href="/about/" class="nav-link">About</a>
     </div>
     <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" class="nav-cta" target="_blank" rel="noopener">TurboSquid ↗</a>
     <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
-  <a href="/3D-Models/catalog/">Top 1000 Models</a>
-  <a href="/3D-Models/full-catalog/">Full Catalog</a>
+  <a href="/catalog/">Top 1000 Models</a>
+  <a href="/full-catalog/">Full Catalog</a>
   <button class="nav-mobile-toggle" id="mob-cat-toggle" aria-expanded="false">Categories <span class="nav-caret">&#9662;</span></button>
   <div class="nav-mobile-sub" id="mob-cat-sub">
-    <a href="/3D-Models/categories/vehicles/">Vehicles</a>
-    <a href="/3D-Models/categories/aircraft/">Aircraft</a>
-    <a href="/3D-Models/categories/military-vehicles/">Military</a>
-    <a href="/3D-Models/categories/ships/">Ships</a>
-    <a href="/3D-Models/categories/medical-3d-models/">Medical</a>
-    <a href="/3D-Models/categories/industrial-equipment/">Industrial</a>
-    <a href="/3D-Models/categories/architecture-landmarks/">Architecture</a>
-    <a href="/3D-Models/categories/other/">Other</a>
+    <a href="/categories/vehicles/">Vehicles</a>
+    <a href="/categories/aircraft/">Aircraft</a>
+    <a href="/categories/military-vehicles/">Military</a>
+    <a href="/categories/ships/">Ships</a>
+    <a href="/categories/medical-3d-models/">Medical</a>
+    <a href="/categories/industrial-equipment/">Industrial</a>
+    <a href="/categories/architecture-landmarks/">Architecture</a>
+    <a href="/categories/other/">Other</a>
   </div>
   <button class="nav-mobile-toggle" id="mob-ind-toggle" aria-expanded="false">Industries <span class="nav-caret">&#9662;</span></button>
   <div class="nav-mobile-sub" id="mob-ind-sub">
-    <a href="/3D-Models/industries/aerospace/">Aerospace</a>
-    <a href="/3D-Models/industries/military-defense/">Military &amp; Defense</a>
-    <a href="/3D-Models/industries/medical/">Medical</a>
-    <a href="/3D-Models/industries/game-development/">Game Development</a>
-    <a href="/3D-Models/industries/film-video-production/">Film Production</a>
-    <a href="/3D-Models/industries/architecture/">Architecture</a>
-    <a href="/3D-Models/industries/virtual-reality/">Virtual Reality</a>
-    <a href="/3D-Models/industries/advertising/">Advertising</a>
-    <a href="/3D-Models/industries/software-development/">Software Development</a>
-    <a href="/3D-Models/industries/event-management/">Event Management</a>
-    <a href="/3D-Models/industries/hardware/">Hardware</a>
-    <a href="/3D-Models/industries/3d-printing/">3D Printing</a>
+    <a href="/industries/aerospace/">Aerospace</a>
+    <a href="/industries/military-defense/">Military &amp; Defense</a>
+    <a href="/industries/medical/">Medical</a>
+    <a href="/industries/game-development/">Game Development</a>
+    <a href="/industries/film-video-production/">Film Production</a>
+    <a href="/industries/architecture/">Architecture</a>
+    <a href="/industries/virtual-reality/">Virtual Reality</a>
+    <a href="/industries/advertising/">Advertising</a>
+    <a href="/industries/software-development/">Software Development</a>
+    <a href="/industries/event-management/">Event Management</a>
+    <a href="/industries/hardware/">Hardware</a>
+    <a href="/industries/3d-printing/">3D Printing</a>
   </div>
-  <a href="/3D-Models/collections/">Collections</a>
-  <a href="/3D-Models/search/">Search</a>
-  <a href="/3D-Models/custom-order/">Custom Order</a>
-  <a href="/3D-Models/about/">About</a>
+  <a href="/collections/">Collections</a>
+  <a href="/search/">Search</a>
+  <a href="/custom-order/">Custom Order</a>
+  <a href="/about/">About</a>
   <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" class="mobile-cta" target="_blank" rel="noopener">TurboSquid Store &#8599;</a>
 </div>
 </header>'''
@@ -115,30 +115,30 @@ FOOTER = '''<footer class="site-footer">
       <div>
         <div class="footer-col-hd">Categories</div>
         <div class="footer-links">
-          <a href="/3D-Models/categories/vehicles/" class="footer-link">Vehicles</a>
-          <a href="/3D-Models/categories/aircraft/" class="footer-link">Aircraft</a>
-          <a href="/3D-Models/categories/military-vehicles/" class="footer-link">Military</a>
-          <a href="/3D-Models/categories/medical-3d-models/" class="footer-link">Medical</a>
-          <a href="/3D-Models/categories/ships/" class="footer-link">Ships</a>
-          <a href="/3D-Models/catalog/" class="footer-link">Top 1000 &#8594;</a>
+          <a href="/categories/vehicles/" class="footer-link">Vehicles</a>
+          <a href="/categories/aircraft/" class="footer-link">Aircraft</a>
+          <a href="/categories/military-vehicles/" class="footer-link">Military</a>
+          <a href="/categories/medical-3d-models/" class="footer-link">Medical</a>
+          <a href="/categories/ships/" class="footer-link">Ships</a>
+          <a href="/catalog/" class="footer-link">Top 1000 &#8594;</a>
         </div>
       </div>
       <div>
         <div class="footer-col-hd">Collections</div>
         <div class="footer-links">
-          <a href="/3D-Models/collections/best-vehicle-3d-models/" class="footer-link">Best Vehicles</a>
-          <a href="/3D-Models/collections/best-aircraft-3d-models/" class="footer-link">Best Aircraft</a>
-          <a href="/3D-Models/collections/best-medical-3d-models/" class="footer-link">Best Medical</a>
-          <a href="/3D-Models/collections/best-military-vehicle-3d-models/" class="footer-link">Best Military</a>
-          <a href="/3D-Models/collections/" class="footer-link">View all &#8594;</a>
+          <a href="/collections/best-vehicle-3d-models/" class="footer-link">Best Vehicles</a>
+          <a href="/collections/best-aircraft-3d-models/" class="footer-link">Best Aircraft</a>
+          <a href="/collections/best-medical-3d-models/" class="footer-link">Best Medical</a>
+          <a href="/collections/best-military-vehicle-3d-models/" class="footer-link">Best Military</a>
+          <a href="/collections/" class="footer-link">View all &#8594;</a>
         </div>
       </div>
       <div>
         <div class="footer-col-hd">Company</div>
         <div class="footer-links">
-          <a href="/3D-Models/about/" class="footer-link">About</a>
-          <a href="/3D-Models/contact/" class="footer-link">Contact</a>
-          <a href="/3D-Models/custom-order/" class="footer-link">Custom Order</a>
+          <a href="/about/" class="footer-link">About</a>
+          <a href="/contact/" class="footer-link">Contact</a>
+          <a href="/custom-order/" class="footer-link">Custom Order</a>
           <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" class="footer-link">TurboSquid Store</a>
         </div>
       </div>
@@ -166,17 +166,17 @@ def head(title, desc, canonical, color="#00E5C4", *ld_blobs):
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{canonical}">
-<meta property="og:image" content="https://3dmolier.github.io/3D-Models/assets/og/3d-molier-og.jpg">
+<meta property="og:image" content="https://3dmolierstudio.com/assets/og/3d-molier-og.jpg">
 <meta property="og:site_name" content="3D Molier">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@3dmolier">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{desc}">
-<meta name="twitter:image" content="https://3dmolier.github.io/3D-Models/assets/og/3d-molier-og.jpg">
-<link rel="icon" href="/3D-Models/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/3D-Models/assets/css/styles.min.css?v=33">
-<link rel="stylesheet" href="/3D-Models/assets/css/critical-fonts.css?v=33">
-<link rel="stylesheet" href="/3D-Models/assets/css/fonts.css?v=33">{bc_tag}
+<meta name="twitter:image" content="https://3dmolierstudio.com/assets/og/3d-molier-og.jpg">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/styles.min.css?v=33">
+<link rel="stylesheet" href="/assets/css/critical-fonts.css?v=33">
+<link rel="stylesheet" href="/assets/css/fonts.css?v=33">{bc_tag}
 </head>
 <body>'''
 
@@ -330,7 +330,7 @@ def get_top_models_for_cats(cats_list, n=6):
 
 def model_card(m):
     from urllib.parse import quote as _q
-    _PLACEHOLDER = "/3D-Models/assets/og/3d-molier-og.jpg"
+    _PLACEHOLDER = "/assets/og/3d-molier-og.jpg"
     slug = m["slug"]
     title = m["product_name"]
     cat = m["category"]
@@ -356,7 +356,7 @@ def model_card(m):
         price_str = f"${m['price']}"
     img_tag = (f'<img src="{img}" alt="{title} 3D model — {cat}" width="800" height="450" decoding="async" loading="lazy"'
                f' data-fallback="{orig_img}" data-placeholder="{_PLACEHOLDER}" onerror="handleImageError(this)">') if orig_img else ""
-    return f'''<a href="/3D-Models/models/{slug}/" class="model-card">
+    return f'''<a href="/models/{slug}/" class="model-card">
       {img_tag}
       <div class="model-card-body">
         <div class="model-card-name">{title}</div>
@@ -385,7 +385,7 @@ def build_industry_page(slug, meta):
     use_cases_html = "".join(f'<li class="ind-uc-item">{uc}</li>' for uc in meta["use_cases"])
     formats_html = "".join(f'<span class="chip">{fmt}</span> ' for fmt in meta["formats"])
     cat_links_html = "".join(
-        f'<a href="/3D-Models/categories/{cat_slug}/" class="ind-cat-link">{cat_name} 3D Models</a><br>'
+        f'<a href="/categories/{cat_slug}/" class="ind-cat-link">{cat_name} 3D Models</a><br>'
         for cat_name, cat_slug in meta["categories"]
     )
 
@@ -396,8 +396,8 @@ def build_industry_page(slug, meta):
       <h2 class="section-h2 section-h2--mb24">Top 3D Models for {meta["h1"].replace(" 3D Models","")}</h2>
       <div class="model-grid">{models_html}</div>
       <div class="text-center mt-8">
-        <a href="/3D-Models/catalog/" class="btn-primary">Browse Full Catalog</a>
-        <a href="/3D-Models/search/" class="btn-ghost btn-ghost--md ind-search-ml">Search Models</a>
+        <a href="/catalog/" class="btn-primary">Browse Full Catalog</a>
+        <a href="/search/" class="btn-ghost btn-ghost--md ind-search-ml">Search Models</a>
       </div>
     </div>
   </section>''' if models_html else ""
@@ -414,8 +414,8 @@ def build_industry_page(slug, meta):
       <h1 class="cat-page-h1 ind-h1-mb">{meta["h1"]}</h1>
       <p class="section-desc ind-desc-wide">{meta["intro"]}</p>
       <div class="flex gap-3 flex-wrap">
-        <a href="/3D-Models/catalog/" class="btn-primary">Browse Catalog</a>
-        <a href="/3D-Models/custom-order/" class="btn-ghost">Request Custom Model</a>
+        <a href="/catalog/" class="btn-primary">Browse Catalog</a>
+        <a href="/custom-order/" class="btn-ghost">Request Custom Model</a>
       </div>
     </div>
   </section>
@@ -447,8 +447,8 @@ def build_industry_page(slug, meta):
       <h2 class="section-h2 ind-cta-h2 ind-h2-mb16">Need a Custom 3D Model?</h2>
       <p class="section-desc mx-auto ind-cta-text">We build any 3D model to your exact specifications — new assets or modifications to existing catalog models.</p>
       <div class="flex gap-3 justify-center flex-wrap">
-        <a href="/3D-Models/custom-order/" class="btn-primary">Request Custom Model</a>
-        <a href="/3D-Models/contact/" class="btn-ghost--cta btn-ghost">Contact Us</a>
+        <a href="/custom-order/" class="btn-primary">Request Custom Model</a>
+        <a href="/contact/" class="btn-ghost--cta btn-ghost">Contact Us</a>
       </div>
     </div>
   </section>
@@ -456,7 +456,7 @@ def build_industry_page(slug, meta):
 </main>
 
 {FOOTER}
-<script src="/3D-Models/assets/js/site.min.js?v=33" defer></script>
+<script src="/assets/js/site.min.js?v=33" defer></script>
 </body>
 </html>'''
 
@@ -479,13 +479,13 @@ def create_llms_txt():
 Production-ready 3D models for simulation, technical visualization, animation, VFX, training scenes, games, advertising, architecture, medical visualization and real-time engines.
 
 ## Main pages
-- Catalog: https://3dmolier.github.io/3D-Models/catalog/
-- Search: https://3dmolier.github.io/3D-Models/search/
-- Vehicles: https://3dmolier.github.io/3D-Models/categories/vehicles/
-- Aircraft: https://3dmolier.github.io/3D-Models/categories/aircraft/
-- Military: https://3dmolier.github.io/3D-Models/categories/military-vehicles/
-- Medical: https://3dmolier.github.io/3D-Models/categories/medical-3d-models/
-- Ships: https://3dmolier.github.io/3D-Models/categories/ships/
+- Catalog: https://3dmolierstudio.com/catalog/
+- Search: https://3dmolierstudio.com/search/
+- Vehicles: https://3dmolierstudio.com/categories/vehicles/
+- Aircraft: https://3dmolierstudio.com/categories/aircraft/
+- Military: https://3dmolierstudio.com/categories/military-vehicles/
+- Medical: https://3dmolierstudio.com/categories/medical-3d-models/
+- Ships: https://3dmolierstudio.com/categories/ships/
 
 ## Important facts
 - 3D Molier sells 3D models through TurboSquid.
@@ -507,39 +507,39 @@ Production-ready 3D models for simulation, technical visualization, animation, V
 - All referral links use: ?referral=3d_molier-studio
 
 ## Main URLs
-- Homepage: https://3dmolier.github.io/3D-Models/
-- Catalog (browse + filter): https://3dmolier.github.io/3D-Models/catalog/
-- Search: https://3dmolier.github.io/3D-Models/search/
-- Collections: https://3dmolier.github.io/3D-Models/collections/
-- About: https://3dmolier.github.io/3D-Models/about/
-- Contact: https://3dmolier.github.io/3D-Models/contact/
-- Custom Order: https://3dmolier.github.io/3D-Models/custom-order/
+- Homepage: https://3dmolierstudio.com/
+- Catalog (browse + filter): https://3dmolierstudio.com/catalog/
+- Search: https://3dmolierstudio.com/search/
+- Collections: https://3dmolierstudio.com/collections/
+- About: https://3dmolierstudio.com/about/
+- Contact: https://3dmolierstudio.com/contact/
+- Custom Order: https://3dmolierstudio.com/custom-order/
 
 ## Categories
-- Vehicles (7,518 total): https://3dmolier.github.io/3D-Models/categories/vehicles/
-- Aircraft (3,871 total): https://3dmolier.github.io/3D-Models/categories/aircraft/
-- Military Vehicles (1,733 total): https://3dmolier.github.io/3D-Models/categories/military-vehicles/
-- Medical (1,938 total): https://3dmolier.github.io/3D-Models/categories/medical-3d-models/
-- Ships (961 total): https://3dmolier.github.io/3D-Models/categories/ships/
-- Architecture Landmarks: https://3dmolier.github.io/3D-Models/categories/architecture-landmarks/
-- Industrial Equipment: https://3dmolier.github.io/3D-Models/categories/industrial-equipment/
-- Characters & People: https://3dmolier.github.io/3D-Models/categories/characters-people/
-- Animals & Creatures: https://3dmolier.github.io/3D-Models/categories/animals-creatures/
-- Nature & Plants: https://3dmolier.github.io/3D-Models/categories/nature-plants/
-- Furniture & Interior: https://3dmolier.github.io/3D-Models/categories/furniture-interior/
-- Electronics & Gadgets: https://3dmolier.github.io/3D-Models/categories/electronics-gadgets/
-- Clothing & Accessories: https://3dmolier.github.io/3D-Models/categories/clothing-accessories/
-- Food & Beverages: https://3dmolier.github.io/3D-Models/categories/food-beverages/
+- Vehicles (7,518 total): https://3dmolierstudio.com/categories/vehicles/
+- Aircraft (3,871 total): https://3dmolierstudio.com/categories/aircraft/
+- Military Vehicles (1,733 total): https://3dmolierstudio.com/categories/military-vehicles/
+- Medical (1,938 total): https://3dmolierstudio.com/categories/medical-3d-models/
+- Ships (961 total): https://3dmolierstudio.com/categories/ships/
+- Architecture Landmarks: https://3dmolierstudio.com/categories/architecture-landmarks/
+- Industrial Equipment: https://3dmolierstudio.com/categories/industrial-equipment/
+- Characters & People: https://3dmolierstudio.com/categories/characters-people/
+- Animals & Creatures: https://3dmolierstudio.com/categories/animals-creatures/
+- Nature & Plants: https://3dmolierstudio.com/categories/nature-plants/
+- Furniture & Interior: https://3dmolierstudio.com/categories/furniture-interior/
+- Electronics & Gadgets: https://3dmolierstudio.com/categories/electronics-gadgets/
+- Clothing & Accessories: https://3dmolierstudio.com/categories/clothing-accessories/
+- Food & Beverages: https://3dmolierstudio.com/categories/food-beverages/
 
 ## Industry Pages
-- Aerospace: https://3dmolier.github.io/3D-Models/industries/aerospace/
-- Military & Defense: https://3dmolier.github.io/3D-Models/industries/military-defense/
-- Medical: https://3dmolier.github.io/3D-Models/industries/medical/
-- Game Development: https://3dmolier.github.io/3D-Models/industries/game-development/
-- Film & Video Production: https://3dmolier.github.io/3D-Models/industries/film-video-production/
-- Architecture: https://3dmolier.github.io/3D-Models/industries/architecture/
-- Virtual Reality: https://3dmolier.github.io/3D-Models/industries/virtual-reality/
-- Advertising: https://3dmolier.github.io/3D-Models/industries/advertising/
+- Aerospace: https://3dmolierstudio.com/industries/aerospace/
+- Military & Defense: https://3dmolierstudio.com/industries/military-defense/
+- Medical: https://3dmolierstudio.com/industries/medical/
+- Game Development: https://3dmolierstudio.com/industries/game-development/
+- Film & Video Production: https://3dmolierstudio.com/industries/film-video-production/
+- Architecture: https://3dmolierstudio.com/industries/architecture/
+- Virtual Reality: https://3dmolierstudio.com/industries/virtual-reality/
+- Advertising: https://3dmolierstudio.com/industries/advertising/
 
 ## File Formats Available
 FBX, OBJ, 3ds Max (.max), Cinema 4D (.c4d), Blender (.blend), COLLADA (.dae), glTF — varies by model.
@@ -553,10 +553,10 @@ FBX, OBJ, 3ds Max (.max), Cinema 4D (.c4d), Blender (.blend), COLLADA (.dae), gl
 - New models built from reference materials or specifications
 - Modifications to existing catalog models
 - Contact: dddmolier@gmail.com
-- Request form: https://3dmolier.github.io/3D-Models/custom-order/
+- Request form: https://3dmolierstudio.com/custom-order/
 
 ## Sitemap
-https://3dmolier.github.io/3D-Models/sitemap.xml
+https://3dmolierstudio.com/sitemap.xml
 """
     (ROOT / "llms-full.txt").write_text(full_content, encoding="utf-8")
     print("  llms-full.txt written")
@@ -592,9 +592,9 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
-Sitemap: https://3dmolier.github.io/3D-Models/sitemap.xml
-LLMs-txt: https://3dmolier.github.io/3D-Models/llms.txt
-LLMs-full: https://3dmolier.github.io/3D-Models/llms-full.txt
+Sitemap: https://3dmolierstudio.com/sitemap.xml
+LLMs-txt: https://3dmolierstudio.com/llms.txt
+LLMs-full: https://3dmolierstudio.com/llms-full.txt
 """
     (ROOT / "robots.txt").write_text(content, encoding="utf-8")
     print("  robots.txt updated")
@@ -609,7 +609,7 @@ def update_sitemap():
 
     from datetime import date
     today = date.today().isoformat()
-    BASE_DOMAIN = "https://3dmolier.github.io/3D-Models"
+    BASE_DOMAIN = "https://3dmolierstudio.com"
 
     new_entries = ""
     for slug in INDUSTRIES.keys():
@@ -645,11 +645,11 @@ def update_sitemap():
 def fix_industry_links_in_existing_pages():
     """Fix broken industry links in category pages (filmvideoproduction -> film-video-production, etc.)"""
     slug_fixes = {
-        "/industries/filmvideoproduction/": "/3D-Models/industries/film-video-production/",
-        "/industries/games/": "/3D-Models/industries/game-development/",
-        "/industries/simulation/": "/3D-Models/industries/aerospace/",
-        "/industries/virtualreality/": "/3D-Models/industries/virtual-reality/",
-        "/industries/militarydefense/": "/3D-Models/industries/military-defense/",
+        "/industries/filmvideoproduction/": "/industries/film-video-production/",
+        "/industries/games/": "/industries/game-development/",
+        "/industries/simulation/": "/industries/aerospace/",
+        "/industries/virtualreality/": "/industries/virtual-reality/",
+        "/industries/militarydefense/": "/industries/military-defense/",
     }
     updated = 0
     for p in ROOT.rglob("*.html"):

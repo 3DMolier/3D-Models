@@ -8,8 +8,8 @@ Run from repo root: python scripts/_fix_all_3.py
 import os, re, glob, urllib.parse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SEARCH_BASE = "/3D-Models/search/?q="
-IND_BASE    = "/3D-Models/industries/"
+SEARCH_BASE = "/search/?q="
+IND_BASE    = "/industries/"
 
 # ── 1. Use Cases → Industry page URLs ────────────────────────────────────────
 # Exact match first (longer phrases take priority), then keyword fallback.

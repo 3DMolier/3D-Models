@@ -7,7 +7,7 @@ import re, shutil
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
-BASE_URL = "https://3dmolier.github.io/3D-Models"
+BASE_URL = "https://3dmolierstudio.com"
 
 NEW_COLLECTIONS = [
     {
@@ -20,9 +20,9 @@ NEW_COLLECTIONS = [
         "intro": "Accurate aircraft 3D assets for flight simulation platforms, training software and aerospace visualization tools. All models feature real-world scale, correct proportions and clean topology — verified by TurboSquid's CheckMate certification.",
         "icon": "✈️",
         "label": "Flight Simulation",
-        "related_cat": "/3D-Models/categories/aircraft/",
+        "related_cat": "/categories/aircraft/",
         "related_cat_label": "All Aircraft Models",
-        "ts_url": "https://www.turbosquid.com/Search/3D-Models/aircraft?referral=3d_molier-studio",
+        "ts_url": "https://www.turbosquid.com/Search/aircraft?referral=3d_molier-studio",
     },
     {
         "slug": "uav-drone-3d-models-for-defense-visualization",
@@ -34,9 +34,9 @@ NEW_COLLECTIONS = [
         "intro": "Military UAVs, combat drones, surveillance aircraft and unmanned vehicle 3D assets for defense visualization, simulation briefings and contractor presentations. Production-quality models used by defense agencies and simulation studios.",
         "icon": "🛡️",
         "label": "Defense Visualization",
-        "related_cat": "/3D-Models/categories/military-vehicles/",
+        "related_cat": "/categories/military-vehicles/",
         "related_cat_label": "All Military Models",
-        "ts_url": "https://www.turbosquid.com/Search/3D-Models/military?referral=3d_molier-studio",
+        "ts_url": "https://www.turbosquid.com/Search/military?referral=3d_molier-studio",
     },
     {
         "slug": "medical-anatomy-3d-models-for-education",
@@ -48,9 +48,9 @@ NEW_COLLECTIONS = [
         "intro": "Anatomically accurate full-body, skeletal and organ 3D models for medical education, surgical training simulations and healthcare visualization. Each model is built to real anatomical proportions and optimized for medical software, VR surgical training platforms and educational publishing.",
         "icon": "🔬",
         "label": "Medical Education",
-        "related_cat": "/3D-Models/categories/medical-3d-models/",
+        "related_cat": "/categories/medical-3d-models/",
         "related_cat_label": "All Medical Models",
-        "ts_url": "https://www.turbosquid.com/Search/3D-Models/medical?referral=3d_molier-studio",
+        "ts_url": "https://www.turbosquid.com/Search/medical?referral=3d_molier-studio",
     },
     {
         "slug": "industrial-equipment-3d-models-for-technical-animation",
@@ -62,9 +62,9 @@ NEW_COLLECTIONS = [
         "intro": "Detailed industrial machinery, factory equipment, conveyor systems and manufacturing assets for technical animation, engineering visualization and industrial training videos. Models are optimized for 3ds Max, Cinema 4D and Blender rendering pipelines.",
         "icon": "⚙️",
         "label": "Technical Animation",
-        "related_cat": "/3D-Models/categories/industrial-equipment/",
+        "related_cat": "/categories/industrial-equipment/",
         "related_cat_label": "All Industrial Models",
-        "ts_url": "https://www.turbosquid.com/Search/3D-Models/industrial?referral=3d_molier-studio",
+        "ts_url": "https://www.turbosquid.com/Search/industrial?referral=3d_molier-studio",
     },
     {
         "slug": "ship-3d-models-for-maritime-simulation",
@@ -76,9 +76,9 @@ NEW_COLLECTIONS = [
         "intro": "Naval vessels, cargo ships, coast guard cutters, tankers and pleasure craft 3D assets for maritime simulation, port and logistics training, and naval visualization tools. All models are built to real-world scale with accurate hull geometry.",
         "icon": "🚢",
         "label": "Maritime Simulation",
-        "related_cat": "/3D-Models/categories/ships/",
+        "related_cat": "/categories/ships/",
         "related_cat_label": "All Ship Models",
-        "ts_url": "https://www.turbosquid.com/Search/3D-Models/ship?referral=3d_molier-studio",
+        "ts_url": "https://www.turbosquid.com/Search/ship?referral=3d_molier-studio",
     },
     {
         "slug": "vehicle-3d-models-for-advertising",
@@ -90,13 +90,13 @@ NEW_COLLECTIONS = [
         "intro": "Photorealistic car, truck, van and specialty vehicle 3D assets for automotive advertising, commercial film campaigns, product launches and digital marketing renders. Every model features clean, render-ready geometry and accurate brand proportions.",
         "icon": "🚗",
         "label": "Advertising",
-        "related_cat": "/3D-Models/categories/vehicles/",
+        "related_cat": "/categories/vehicles/",
         "related_cat_label": "All Vehicle Models",
-        "ts_url": "https://www.turbosquid.com/Search/3D-Models/vehicle?referral=3d_molier-studio",
+        "ts_url": "https://www.turbosquid.com/Search/vehicle?referral=3d_molier-studio",
     },
 ]
 
-ORG_SCHEMA = '{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"3D Molier","url":"https://3dmolier.github.io/3D-Models/","logo":"https://3dmolier.github.io/3D-Models/favicon.svg","sameAs":["https://www.turbosquid.com/Search/Artists/3d_molier-International"]},{"@type":"WebSite","url":"https://3dmolier.github.io/3D-Models/","name":"3D Molier","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://3dmolier.github.io/3D-Models/search/?q={search_term_string}"},"query-input":"required name=search_term_string"}}]}'
+ORG_SCHEMA = '{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"3D Molier","url":"https://3dmolierstudio.com/","logo":"https://3dmolierstudio.com/favicon.svg","sameAs":["https://www.turbosquid.com/Search/Artists/3d_molier-International"]},{"@type":"WebSite","url":"https://3dmolierstudio.com/","name":"3D Molier","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://3dmolierstudio.com/search/?q={search_term_string}"},"query-input":"required name=search_term_string"}}]}'
 
 for col in NEW_COLLECTIONS:
     dest_dir = ROOT / "collections" / col["slug"]
@@ -120,7 +120,7 @@ for col in NEW_COLLECTIONS:
     url = f"{BASE_URL}/collections/{new_slug}/"
 
     # Replace URL references
-    html = html.replace(f"/3D-Models/collections/{src_slug}/", f"/3D-Models/collections/{new_slug}/")
+    html = html.replace(f"/collections/{src_slug}/", f"/collections/{new_slug}/")
     html = html.replace(f"{BASE_URL}/collections/{src_slug}/", url)
 
     # Replace title/meta/h1
