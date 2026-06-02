@@ -4,13 +4,13 @@
 Production-ready 3D models for simulation, technical visualization, animation, VFX, training scenes, games, advertising, architecture, medical visualization and real-time engines.
 
 ## Main pages
-- Catalog: https://3dmolier.github.io/3D-Models/catalog/
-- Search: https://3dmolier.github.io/3D-Models/search/
-- Vehicles: https://3dmolier.github.io/3D-Models/categories/vehicles/
-- Aircraft: https://3dmolier.github.io/3D-Models/categories/aircraft/
-- Military: https://3dmolier.github.io/3D-Models/categories/military-vehicles/
-- Medical: https://3dmolier.github.io/3D-Models/categories/medical-3d-models/
-- Ships: https://3dmolier.github.io/3D-Models/categories/ships/
+- Catalog: https://3dmolierstudio.com/catalog/
+- Search: https://3dmolierstudio.com/search/
+- Vehicles: https://3dmolierstudio.com/categories/vehicles/
+- Aircraft: https://3dmolierstudio.com/categories/aircraft/
+- Military: https://3dmolierstudio.com/categories/military-vehicles/
+- Medical: https://3dmolierstudio.com/categories/medical-3d-models/
+- Ships: https://3dmolierstudio.com/categories/ships/
 
 ## Important facts
 - 3D Molier sells 3D models through TurboSquid.

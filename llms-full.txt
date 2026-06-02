@@ -10,39 +10,39 @@
 - All referral links use: ?referral=3d_molier-studio
 
 ## Main URLs
-- Homepage: https://3dmolier.github.io/3D-Models/
-- Catalog (browse + filter): https://3dmolier.github.io/3D-Models/catalog/
-- Search: https://3dmolier.github.io/3D-Models/search/
-- Collections: https://3dmolier.github.io/3D-Models/collections/
-- About: https://3dmolier.github.io/3D-Models/about/
-- Contact: https://3dmolier.github.io/3D-Models/contact/
-- Custom Order: https://3dmolier.github.io/3D-Models/custom-order/
+- Homepage: https://3dmolierstudio.com/
+- Catalog (browse + filter): https://3dmolierstudio.com/catalog/
+- Search: https://3dmolierstudio.com/search/
+- Collections: https://3dmolierstudio.com/collections/
+- About: https://3dmolierstudio.com/about/
+- Contact: https://3dmolierstudio.com/contact/
+- Custom Order: https://3dmolierstudio.com/custom-order/
 
 ## Categories
-- Vehicles (7,518 total): https://3dmolier.github.io/3D-Models/categories/vehicles/
-- Aircraft (3,871 total): https://3dmolier.github.io/3D-Models/categories/aircraft/
-- Military Vehicles (1,733 total): https://3dmolier.github.io/3D-Models/categories/military-vehicles/
-- Medical (1,938 total): https://3dmolier.github.io/3D-Models/categories/medical-3d-models/
-- Ships (961 total): https://3dmolier.github.io/3D-Models/categories/ships/
-- Architecture Landmarks: https://3dmolier.github.io/3D-Models/categories/architecture-landmarks/
-- Industrial Equipment: https://3dmolier.github.io/3D-Models/categories/industrial-equipment/
-- Characters & People: https://3dmolier.github.io/3D-Models/categories/characters-people/
-- Animals & Creatures: https://3dmolier.github.io/3D-Models/categories/animals-creatures/
-- Nature & Plants: https://3dmolier.github.io/3D-Models/categories/nature-plants/
-- Furniture & Interior: https://3dmolier.github.io/3D-Models/categories/furniture-interior/
-- Electronics & Gadgets: https://3dmolier.github.io/3D-Models/categories/electronics-gadgets/
-- Clothing & Accessories: https://3dmolier.github.io/3D-Models/categories/clothing-accessories/
-- Food & Beverages: https://3dmolier.github.io/3D-Models/categories/food-beverages/
+- Vehicles (7,518 total): https://3dmolierstudio.com/categories/vehicles/
+- Aircraft (3,871 total): https://3dmolierstudio.com/categories/aircraft/
+- Military Vehicles (1,733 total): https://3dmolierstudio.com/categories/military-vehicles/
+- Medical (1,938 total): https://3dmolierstudio.com/categories/medical-3d-models/
+- Ships (961 total): https://3dmolierstudio.com/categories/ships/
+- Architecture Landmarks: https://3dmolierstudio.com/categories/architecture-landmarks/
+- Industrial Equipment: https://3dmolierstudio.com/categories/industrial-equipment/
+- Characters & People: https://3dmolierstudio.com/categories/characters-people/
+- Animals & Creatures: https://3dmolierstudio.com/categories/animals-creatures/
+- Nature & Plants: https://3dmolierstudio.com/categories/nature-plants/
+- Furniture & Interior: https://3dmolierstudio.com/categories/furniture-interior/
+- Electronics & Gadgets: https://3dmolierstudio.com/categories/electronics-gadgets/
+- Clothing & Accessories: https://3dmolierstudio.com/categories/clothing-accessories/
+- Food & Beverages: https://3dmolierstudio.com/categories/food-beverages/
 
 ## Industry Pages
-- Aerospace: https://3dmolier.github.io/3D-Models/industries/aerospace/
-- Military & Defense: https://3dmolier.github.io/3D-Models/industries/military-defense/
-- Medical: https://3dmolier.github.io/3D-Models/industries/medical/
-- Game Development: https://3dmolier.github.io/3D-Models/industries/game-development/
-- Film & Video Production: https://3dmolier.github.io/3D-Models/industries/film-video-production/
-- Architecture: https://3dmolier.github.io/3D-Models/industries/architecture/
-- Virtual Reality: https://3dmolier.github.io/3D-Models/industries/virtual-reality/
-- Advertising: https://3dmolier.github.io/3D-Models/industries/advertising/
+- Aerospace: https://3dmolierstudio.com/industries/aerospace/
+- Military & Defense: https://3dmolierstudio.com/industries/military-defense/
+- Medical: https://3dmolierstudio.com/industries/medical/
+- Game Development: https://3dmolierstudio.com/industries/game-development/
+- Film & Video Production: https://3dmolierstudio.com/industries/film-video-production/
+- Architecture: https://3dmolierstudio.com/industries/architecture/
+- Virtual Reality: https://3dmolierstudio.com/industries/virtual-reality/
+- Advertising: https://3dmolierstudio.com/industries/advertising/
 
 ## File Formats Available
 FBX, OBJ, 3ds Max (.max), Cinema 4D (.c4d), Blender (.blend), COLLADA (.dae), glTF — varies by model.
@@ -56,7 +56,7 @@ FBX, OBJ, 3ds Max (.max), Cinema 4D (.c4d), Blender (.blend), COLLADA (.dae), gl
 - New models built from reference materials or specifications
 - Modifications to existing catalog models
 - Contact: dddmolier@gmail.com
-- Request form: https://3dmolier.github.io/3D-Models/custom-order/
+- Request form: https://3dmolierstudio.com/custom-order/
 
 ## Sitemap
-https://3dmolier.github.io/3D-Models/sitemap.xml
+https://3dmolierstudio.com/sitemap.xml
