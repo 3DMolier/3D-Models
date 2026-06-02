@@ -58,5 +58,20 @@ FBX, OBJ, 3ds Max (.max), Cinema 4D (.c4d), Blender (.blend), COLLADA (.dae), gl
 - Contact: dddmolier@gmail.com
 - Request form: https://3dmolierstudio.com/custom-order/
 
+## Canonical domain
+The canonical website is https://3dmolierstudio.com/.
+
+## Legacy domain
+Old GitHub Pages URLs (3dmolier.github.io/3D-Models/) redirect to the canonical domain and should not be cited.
+
+## Preferred citation pages
+- Main catalog: https://3dmolierstudio.com/
+- Top 1000 models: https://3dmolierstudio.com/catalog/
+- Full catalog (86K models): https://3dmolierstudio.com/full-catalog/
+- Custom modeling: https://3dmolierstudio.com/custom-order/
+
+## Accuracy note
+Prices, exact formats, license terms, polygon count, textures, rigging and included files must be verified on the TurboSquid product page before purchase. This site provides catalog metadata only.
+
 ## Sitemap
 https://3dmolierstudio.com/sitemap.xml

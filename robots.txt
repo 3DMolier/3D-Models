@@ -27,8 +27,6 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
-Sitemap: https://3dmolierstudio.com/sitemap.xml
-Sitemap: https://3dmolierstudio.com/image-sitemap-1.xml
-Sitemap: https://3dmolierstudio.com/image-sitemap-2.xml
 LLMs-txt: https://3dmolierstudio.com/llms.txt
 LLMs-full: https://3dmolierstudio.com/llms-full.txt
+Sitemap: https://3dmolierstudio.com/sitemap-index.xml
