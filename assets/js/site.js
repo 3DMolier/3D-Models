@@ -70,4 +70,27 @@ document.addEventListener('click',function(e){
   var link=card.querySelector('.btn-ts, a[href*="turbosquid.com"]');
   if(link){e.preventDefault();window.open(link.href,'_blank','noopener');}
 });
+
+// GA4 event tracking
+function gaEvent(name,params){if(typeof gtag==='function')gtag('event',name,params||{});}
+document.addEventListener('click',function(e){
+  // TurboSquid click
+  var tsLink=e.target.closest&&e.target.closest('a[href*="turbosquid.com"]');
+  if(tsLink){
+    var slug=location.pathname.replace(/^\/models\//,'').replace(/\/$/,'');
+    gaEvent('turbosquid_click',{model_slug:slug,page:location.pathname});
+  }
+  // Custom order click
+  if(e.target.closest&&e.target.closest('a[href*="custom-order"]'))gaEvent('custom_order_click',{page:location.pathname});
+  // Load more click
+  if(e.target.closest&&e.target.closest('#lm-btn'))gaEvent('load_more_click',{page:location.pathname});
+});
+// Image fallback tracking
+var _origImgErr=window.imgErr;
+window.imgErr=function(img){gaEvent('image_fallback_triggered',{src:img&&img.src?img.src.substring(0,80):''});if(_origImgErr)_origImgErr(img);};
+// Search query tracking
+(function(){
+  var sq=new URLSearchParams(location.search).get('q');
+  if(sq&&location.pathname.indexOf('/search/')>-1)gaEvent('search_query',{query:sq});
+})();
 })();

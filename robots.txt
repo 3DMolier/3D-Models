@@ -1,8 +1,12 @@
 User-agent: *
 Allow: /
+Allow: /data/fc-index.json
+Allow: /data/fc-img-index.json
+Allow: /data/catalog.json
+Allow: /data/fc-chunk-
+Allow: /data/fc-img-chunk-
 Disallow: /data/
 
-# AI search crawlers
 User-agent: GPTBot
 Allow: /
 
@@ -27,6 +31,6 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
+Sitemap: https://3dmolierstudio.com/sitemap-index.xml
 LLMs-txt: https://3dmolierstudio.com/llms.txt
 LLMs-full: https://3dmolierstudio.com/llms-full.txt
-Sitemap: https://3dmolierstudio.com/sitemap-index.xml

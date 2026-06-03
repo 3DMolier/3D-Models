@@ -13,10 +13,19 @@
     <loc>https://3dmolierstudio.com/sitemaps/sitemap-industries.xml</loc>
   </sitemap>
   <sitemap>
-    <loc>https://3dmolierstudio.com/sitemaps/sitemap-models-1.xml</loc>
+    <loc>https://3dmolierstudio.com/sitemaps/sitemap-models-top1000.xml</loc>
   </sitemap>
   <sitemap>
-    <loc>https://3dmolierstudio.com/sitemaps/sitemap-models-2.xml</loc>
+    <loc>https://3dmolierstudio.com/sitemaps/sitemap-models-checkmate.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://3dmolierstudio.com/sitemaps/sitemap-models-high-price.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://3dmolierstudio.com/sitemaps/sitemap-models-longtail-1.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://3dmolierstudio.com/sitemaps/sitemap-models-longtail-2.xml</loc>
   </sitemap>
   <sitemap>
     <loc>https://3dmolierstudio.com/sitemaps/image-sitemap-1.xml</loc>
