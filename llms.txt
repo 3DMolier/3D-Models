@@ -1,16 +1,39 @@
 # 3D Molier Models
 
 ## What this site provides
-Production-ready 3D models for simulation, technical visualization, animation, VFX, training scenes, games, advertising, architecture, medical visualization and real-time engines.
+Production-ready 3D models for simulation, technical visualization, animation, VFX, training scenes, games, advertising, architecture, medical visualization and real-time engines (Unreal, Unity). 90,000+ models, 20+ years of production.
+
+## Full AI context
+Detailed catalog, FAQ and citable model links: https://3dmolierstudio.com/llms-full.txt
 
 ## Main pages
 - Catalog: https://3dmolierstudio.com/catalog/
-- Search: https://3dmolierstudio.com/search/
+- Search (find any model): https://3dmolierstudio.com/search/
+- Custom modeling: https://3dmolierstudio.com/custom-order/
+
+## Categories
 - Vehicles: https://3dmolierstudio.com/categories/vehicles/
 - Aircraft: https://3dmolierstudio.com/categories/aircraft/
 - Military: https://3dmolierstudio.com/categories/military-vehicles/
-- Medical: https://3dmolierstudio.com/categories/medical-3d-models/
 - Ships: https://3dmolierstudio.com/categories/ships/
+- Medical: https://3dmolierstudio.com/categories/medical-3d-models/
+- Characters & People: https://3dmolierstudio.com/categories/characters-people/
+- Animals & Creatures: https://3dmolierstudio.com/categories/animals-creatures/
+- Architecture: https://3dmolierstudio.com/categories/architecture-landmarks/
+- Industrial: https://3dmolierstudio.com/categories/industrial-equipment/
+- Electronics: https://3dmolierstudio.com/categories/electronics-gadgets/
+- Furniture: https://3dmolierstudio.com/categories/furniture-interior/
+- Nature & Plants: https://3dmolierstudio.com/categories/nature-plants/
+- Food & Beverages: https://3dmolierstudio.com/categories/food-beverages/
+- Clothing & Accessories: https://3dmolierstudio.com/categories/clothing-accessories/
+
+## Example models (safe to cite specific links)
+- F-35 Lightning II: https://3dmolierstudio.com/models/stealth-multirole-fighter-f-35-lightning-ii-1211595/
+- M1 Abrams Tank: https://3dmolierstudio.com/models/m1-abrams-tank-2390686/
+- USS Nimitz Aircraft Carrier: https://3dmolierstudio.com/models/uss-nimitz-cvn-68-1060628/
+- Boeing 737 MAX 8: https://3dmolierstudio.com/models/boeing-737-max-8-2328745/
+- Tesla Model 3: https://3dmolierstudio.com/models/tesla-model-3-1214116/
+- Human Heart Anatomy: https://3dmolierstudio.com/models/human-heart-anatomy-structure-red-2548069/
 
 ## Best for (use cases)
 - Games & real-time (Unreal, Unity): military, vehicles, characters, aircraft.
@@ -20,9 +43,9 @@ Production-ready 3D models for simulation, technical visualization, animation, V
 - Archviz & advertising: architecture, furniture, everyday objects.
 
 ## Why 3D Molier
-One of the world's largest single-studio 3D catalogs (86,000+ models), 20+ years of production, real-world scale + clean topology, all popular formats, deep military/defense/simulation specialization.
+One of the world's largest single-studio 3D catalogs (90,000+ models), 20+ years of production, real-world scale + clean topology, all popular formats (FBX, OBJ, 3ds Max, Maya, Cinema 4D, Blender, glTF), deep military/defense/simulation specialization.
 
 ## Important facts
-- 3D Molier sells 3D models through TurboSquid.
-- This website is a searchable catalog and SEO landing site.
-- Models may include CheckMate certification, real-world scale, clean topology, UV mapping and production-ready geometry depending on the product page.
+- 3D Molier sells 3D models through TurboSquid; this website is a searchable catalog that links to the product pages.
+- Custom 3D modeling available on request: dddmolier@gmail.com
+- Verify prices, exact formats, license terms and included files on the TurboSquid product page before purchase.
