@@ -183,6 +183,7 @@ def nav_html():
       <a href="/collections/" class="nav-link">Collections</a>
       <a href="/search/" class="nav-link">Search</a>
       <a href="/custom-order/" class="nav-link">Custom Order</a>
+      <a href="/data-licensing/" class="nav-link">Data Licensing</a>
       <a href="/about/" class="nav-link">About</a>
     </div>
     <a href="https://www.turbosquid.com/Search/3D-Models?include=true&media_typeid=2&artist_screenname=3d_molier-studio&referral=3d_molier-studio" class="nav-cta" target="_blank" rel="noopener">TurboSquid &#8599;</a>
@@ -221,6 +222,7 @@ def nav_html():
   <a href="/collections/">Collections</a>
   <a href="/search/">Search</a>
   <a href="/custom-order/">Custom Order</a>
+  <a href="/data-licensing/">Data Licensing</a>
   <a href="/about/">About</a>
   <a href="/contact/">Contact</a>
   <a href="https://www.turbosquid.com/Search/3D-Models?include=true&media_typeid=2&artist_screenname=3d_molier-studio&referral=3d_molier-studio" target="_blank" rel="noopener" class="mobile-cta">TurboSquid Store &#8599;</a>

@@ -59,6 +59,7 @@ NAV = '''<a href="#main-content" class="skip-link">Skip to main content</a>
       <a href="/collections/" class="nav-link">Collections</a>
       <a href="/search/" class="nav-link">Search</a>
       <a href="/custom-order/" class="nav-link">Custom Order</a>
+      <a href="/data-licensing/" class="nav-link">Data Licensing</a>
       <a href="/about/" class="nav-link">About</a>
     </div>
     <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" class="nav-cta" target="_blank" rel="noopener">TurboSquid ↗</a>
@@ -97,6 +98,7 @@ NAV = '''<a href="#main-content" class="skip-link">Skip to main content</a>
   <a href="/collections/">Collections</a>
   <a href="/search/">Search</a>
   <a href="/custom-order/">Custom Order</a>
+  <a href="/data-licensing/">Data Licensing</a>
   <a href="/about/">About</a>
   <a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" class="mobile-cta" target="_blank" rel="noopener">TurboSquid Store &#8599;</a>
 </div>

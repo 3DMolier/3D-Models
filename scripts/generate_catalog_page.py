@@ -320,6 +320,7 @@ def generate():
       <a href="/collections/">Collections</a>
       <a href="/about/">About</a>
       <a href="/custom-order/">Custom Order</a>
+  <a href="/data-licensing/">Data Licensing</a>
       <a href="/contact/">Contact</a>
     </div>
     <a href="https://www.turbosquid.com/Search/3D-Models?include=true&media_typeid=2&artist_screenname=3d_molier-studio&referral=3d_molier-studio" class="btn-ts" target="_blank" rel="noopener">TurboSquid ↗</a>
