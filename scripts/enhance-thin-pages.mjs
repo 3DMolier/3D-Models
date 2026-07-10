@@ -26,18 +26,19 @@ const tokensOf = s => [...new Set(s.toLowerCase().match(/[a-z0-9]+/g) || [])].fi
 
 // ---- категории (порядок = приоритет; проверка по вхождению слова в имя) ----
 const CATS = [
-  ['medical-3d-models', 'Medical', ['anatomy','anatomical','skeleton','skull','bone','muscle','organ','heart','brain','tooth','teeth','medical','surgical','surgery','vein','artery','virus','prosthetic','x-ray']],
+  ['medical-3d-models', 'Medical', ['anatomy','anatomical','skeleton','skull','bone','muscle','organ','heart','brain','tooth','teeth','medical','surgical','surgery','vein','artery','virus','prosthetic']],
   ['aircraft', 'Aircraft', ['helicopter','aircraft','airplane','airliner','jet','fighter','bomber','drone','uav','ucav','chopper','boeing','airbus','mig','sukhoi','tucano','biplane','glider','warplane','airbus']],
-  ['ships', 'Ships', ['ship','boat','warship','naval','navy','yacht','submarine','frigate','destroyer','carrier','cruiser','vessel','galleon','buoy','lcs','tanker','barge','sailboat','canoe','ferry','corvette']],
+  ['ships', 'Ships', ['ship','boat','warship','naval','navy','yacht','submarine','frigate','destroyer','carrier','cruiser','vessel','galleon','buoy','lcs','tanker','barge','sailboat','canoe','ferry']],
   ['military-vehicles', 'Military Vehicles', ['tank','artillery','howitzer','mlrs','launcher','missile','rocket','armored','armoured','apc','humvee','ifv','cannon','mortar','combat','army','military','weapon','rifle','gun','ammo','grenade','bomb','warfare']],
   ['vehicles', 'Vehicles', ['car','truck','van','suv','sedan','coupe','bus','motorcycle','motorbike','scooter','vehicle','cadillac','chevrolet','chevy','toyota','mercedes','ford','bmw','audi','honda','nissan','tesla','limousine','pickup','wheel','tire','tyre','trailer','tractor','forklift','wagon','automobile']],
   ['industrial-equipment', 'Industrial Equipment', ['crane','machine','machinery','industrial','hvac','pump','valve','conveyor','generator','compressor','excavator','bulldozer','drill','turbine','boiler','pipe','pipeline','gearbox','cnc','robot','robotic','equipment','hydraulic']],
   ['architecture-landmarks', 'Architecture Landmarks', ['building','house','home','tower','monument','statue','landmark','colosseum','stadium','bridge','church','cathedral','castle','temple','mosque','architecture','structure','facade','skyscraper','apartment','villa','pavilion','fountain','gate','arch']],
 ];
 function classify(name) {
-  const n = ' ' + name.toLowerCase() + ' ';
+  // матчим по ЦЕЛЫМ токенам (не подстроке) — иначе 'car' ловит 'carrier', 'arch' ловит слова и т.п.
+  const toks = new Set(name.toLowerCase().match(/[a-z0-9]+/g) || []);
   for (const [slug, disp, kws] of CATS) {
-    const hit = kws.find(k => n.includes(k));
+    const hit = kws.find(k => toks.has(k));
     if (hit) return { slug, disp, subject: hit[0].toUpperCase() + hit.slice(1) };
   }
   return { slug: 'other', disp: 'Other', subject: '' };
@@ -266,11 +267,11 @@ function breadcrumbSchema(d) {
 }
 
 // ---- обработка одной страницы ----
-function enhance(slug, all, img) {
+function enhance(slug, all, img, force) {
   const file = path.join(MODELS, slug, 'index.html');
   if (!fs.existsSync(file)) return { slug, skip: 'нет файла' };
   let html = fs.readFileSync(file, 'utf8');
-  if (html.includes('mp-related-section')) return { slug, skip: 'уже обогащена' };
+  if (!force && html.includes('mp-related-section')) return { slug, skip: 'уже обогащена' };
 
   const id = (slug.match(/-(\d+)$/) || [])[1];
   const name = (html.match(/<h1 class="mp-h1">\s*([\s\S]*?)\s*<\/h1>/) || [])[1]?.replace(/\s+/g, ' ').trim();
@@ -294,7 +295,7 @@ function enhance(slug, all, img) {
   html = html.replace(/<script type="application\/ld\+json">\s*\{[^]*?"@type":\s*"Product"[^]*?<\/script>/, productSchema(d));
   html = html.replace(/<script type="application\/ld\+json">\s*\{[^]*?"BreadcrumbList"[^]*?<\/script>/, breadcrumbSchema(d));
   // 3) футер back-link
-  html = html.replace(/<a href="\/full-catalog\/" class="nav-link mp-back-link">&#8592; Full Catalog<\/a>/,
+  html = html.replace(/<a href="\/(?:full-catalog|categories\/[a-z0-9-]+)\/" class="nav-link mp-back-link">&#8592; (?:Full Catalog|All [^<]+)<\/a>/,
     `<a href="/categories/${cls.slug}/" class="nav-link mp-back-link">&#8592; All ${cls.disp} Models</a>`);
 
   return { slug, html, cls: cls.disp, rel: rel.length };
@@ -308,11 +309,14 @@ function listThinSlugs() {
 function main() {
   const args = process.argv.slice(2);
   const dry = args.includes('--dry');
+  const force = args.includes('--force');
   const { all, img } = loadAll();
   console.error(`Каталог: ${all.length} моделей, ${Object.keys(img).length} картинок.`);
 
   let targets;
-  if (args.includes('--slugs')) {
+  if (args.includes('--file')) {
+    targets = fs.readFileSync(args[args.indexOf('--file') + 1], 'utf8').split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+  } else if (args.includes('--slugs')) {
     targets = args[args.indexOf('--slugs') + 1].split(',');
   } else if (args.includes('--pilot')) {
     const N = +args[args.indexOf('--pilot') + 1] || 500;
@@ -340,7 +344,7 @@ function main() {
 
   let ok = 0, skip = 0; const skips = {}; const written = [];
   for (const slug of targets) {
-    const r = enhance(slug.trim(), all, img);
+    const r = enhance(slug.trim(), all, img, force);
     if (r.skip) { skip++; skips[r.skip] = (skips[r.skip] || 0) + 1; continue; }
     if (!dry) { fs.writeFileSync(path.join(MODELS, r.slug, 'index.html'), r.html); written.push(r.slug); }
     ok++;
