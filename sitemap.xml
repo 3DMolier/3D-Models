@@ -2,35 +2,54 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>https://3dmolierstudio.com/sitemaps/sitemap-main.xml</loc>
+    <lastmod>2026-07-09</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://3dmolierstudio.com/sitemaps/sitemap-categories.xml</loc>
+    <lastmod>2026-06-02</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://3dmolierstudio.com/sitemaps/sitemap-collections.xml</loc>
+    <lastmod>2026-06-02</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://3dmolierstudio.com/sitemaps/sitemap-industries.xml</loc>
+    <lastmod>2026-06-02</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://3dmolierstudio.com/sitemaps/sitemap-models-1.xml</loc>
+    <lastmod>2026-06-02</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://3dmolierstudio.com/sitemaps/sitemap-models-2.xml</loc>
+    <lastmod>2026-06-02</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://3dmolierstudio.com/sitemaps/sitemap-models-top1000.xml</loc>
+    <lastmod>2026-06-03</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://3dmolierstudio.com/sitemaps/sitemap-models-checkmate.xml</loc>
+    <lastmod>2026-06-19</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://3dmolierstudio.com/sitemaps/sitemap-models-high-price.xml</loc>
+    <lastmod>2026-06-19</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://3dmolierstudio.com/sitemaps/sitemap-models-longtail-1.xml</loc>
+    <lastmod>2026-06-19</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://3dmolierstudio.com/sitemaps/sitemap-models-longtail-2.xml</loc>
+    <lastmod>2026-06-03</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://3dmolierstudio.com/sitemaps/image-sitemap-1.xml</loc>
+    <lastmod>2026-06-19</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://3dmolierstudio.com/sitemaps/image-sitemap-2.xml</loc>
+    <lastmod>2026-06-19</lastmod>
   </sitemap>
 </sitemapindex>

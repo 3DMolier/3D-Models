@@ -6,6 +6,8 @@ Allow: /data/catalog.json
 Allow: /data/fc-chunk-
 Allow: /data/fc-img-chunk-
 Disallow: /data/
+# Страницы результатов поиска (?q=...) не индексируются (canonical на /search/) - не тратим на них краул-бюджет
+Disallow: /search/?
 
 User-agent: GPTBot
 Allow: /
