@@ -93,19 +93,21 @@ function loadAll() {
 }
 
 // ---- подбор похожих ----
-function relatedFor(model, all, img, k = 6) {
+function relatedFor(model, all, img, toks, k = 6) {
+  // toks[j] — предподсчитанный массив токенов all[j] (не токенизируем на каждой странице заново).
   const st = new Set(tokensOf(model.name));
   const scored = [];
-  for (const m of all) {
-    if (m.id === model.id) continue;
-    const t = tokensOf(m.name);
-    let inter = 0; for (const x of t) if (st.has(x)) inter++;
+  for (let j = 0; j < all.length; j++) {
+    if (all[j].id === model.id) continue;
+    const t = toks[j];
+    let inter = 0; for (let x = 0; x < t.length; x++) if (st.has(t[x])) inter++;
     if (inter === 0) continue;
-    scored.push({ m, s: inter });
+    scored.push({ j, s: inter, p: all[j].price });
   }
-  scored.sort((a, b) => b.s - a.s || b.m.price - a.m.price);
+  scored.sort((a, b) => b.s - a.s || b.p - a.p);
   const out = [];
-  for (const { m } of scored) {
+  for (const { j } of scored) {
+    const m = all[j];
     if (!img[m.id]) continue;
     const slug = slugify(m.name) + '-' + m.id;
     if (!fs.existsSync(path.join(MODELS, slug, 'index.html'))) continue;
@@ -267,7 +269,7 @@ function breadcrumbSchema(d) {
 }
 
 // ---- обработка одной страницы ----
-function enhance(slug, all, img, force) {
+function enhance(slug, all, img, toks, force) {
   const file = path.join(MODELS, slug, 'index.html');
   if (!fs.existsSync(file)) return { slug, skip: 'нет файла' };
   let html = fs.readFileSync(file, 'utf8');
@@ -283,7 +285,7 @@ function enhance(slug, all, img, force) {
   const cls = classify(name);
   const rigged = /\brig(ged)?\b/i.test(name);
   const cert = /CheckMate/i.test(html);
-  const rel = relatedFor({ id: +id, name }, all, img, 6);
+  const rel = relatedFor({ id: +id, name }, all, img, toks, 6);
   if (rel.length < 3) return { slug, skip: `мало похожих (${rel.length})` };
   const kws = [...tokensOf(name).slice(0, 4), cls.disp.split(' ')[0].toLowerCase()].filter((v, i, a) => a.indexOf(v) === i).slice(0, 6);
   const desc = description(name, price, cls, rigged, cert);
@@ -311,10 +313,13 @@ function main() {
   const dry = args.includes('--dry');
   const force = args.includes('--force');
   const { all, img } = loadAll();
+  const toks = all.map(m => tokensOf(m.name)); // предподсчёт токенов (для быстрого подбора похожих)
   console.error(`Каталог: ${all.length} моделей, ${Object.keys(img).length} картинок.`);
 
   let targets;
-  if (args.includes('--file')) {
+  if (args.includes('--all')) {
+    targets = listThinSlugs(); // все папки; enhance() пропустит уже обогащённые
+  } else if (args.includes('--file')) {
     targets = fs.readFileSync(args[args.indexOf('--file') + 1], 'utf8').split(/\r?\n/).map(s => s.trim()).filter(Boolean);
   } else if (args.includes('--slugs')) {
     targets = args[args.indexOf('--slugs') + 1].split(',');
@@ -342,12 +347,13 @@ function main() {
     console.error('Укажи --pilot N | --all | --slugs a,b'); process.exit(1);
   }
 
-  let ok = 0, skip = 0; const skips = {}; const written = [];
+  let ok = 0, skip = 0, done = 0; const skips = {}; const written = [];
+  const t0 = Date.now();
   for (const slug of targets) {
-    const r = enhance(slug.trim(), all, img, force);
-    if (r.skip) { skip++; skips[r.skip] = (skips[r.skip] || 0) + 1; continue; }
-    if (!dry) { fs.writeFileSync(path.join(MODELS, r.slug, 'index.html'), r.html); written.push(r.slug); }
-    ok++;
+    const r = enhance(slug.trim(), all, img, toks, force);
+    if (r.skip) { skip++; skips[r.skip] = (skips[r.skip] || 0) + 1; }
+    else { if (!dry) { fs.writeFileSync(path.join(MODELS, r.slug, 'index.html'), r.html); written.push(r.slug); } ok++; }
+    if (++done % 5000 === 0) console.error(`  прогресс: ${done}/${targets.length} (обогащено ${ok}, ${((Date.now()-t0)/1000).toFixed(0)}s)`);
   }
   if (!dry && written.length) {
     fs.writeFileSync(path.join(ROOT, 'scripts', 'enhanced-batch.txt'), written.join('\n') + '\n');
