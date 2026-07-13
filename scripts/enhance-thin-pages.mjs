@@ -25,17 +25,10 @@ const STOP = new Set(['3d','model','models','for','the','and','of','with','a','a
 const tokensOf = s => [...new Set(s.toLowerCase().match(/[a-z0-9]+/g) || [])].filter(t => t.length > 1 && !STOP.has(t) && !/^\d+$/.test(t));
 
 // ---- категории (порядок = приоритет; проверка по вхождению слова в имя) ----
-const CATS = [
-  ['medical-3d-models', 'Medical', ['anatomy','anatomical','skeleton','skull','bone','muscle','organ','heart','brain','tooth','teeth','medical','surgical','surgery','vein','artery','virus','prosthetic']],
-  ['aircraft', 'Aircraft', ['helicopter','aircraft','airplane','airliner','jet','fighter','bomber','drone','uav','ucav','chopper','boeing','airbus','mig','sukhoi','tucano','biplane','glider','warplane','airbus']],
-  ['ships', 'Ships', ['ship','boat','warship','naval','navy','yacht','submarine','frigate','destroyer','carrier','cruiser','vessel','galleon','buoy','lcs','tanker','barge','sailboat','canoe','ferry']],
-  ['military-vehicles', 'Military Vehicles', ['tank','artillery','howitzer','mlrs','launcher','missile','rocket','armored','armoured','apc','humvee','ifv','cannon','mortar','combat','army','military','weapon','rifle','gun','ammo','grenade','bomb','warfare']],
-  ['vehicles', 'Vehicles', ['car','truck','van','suv','sedan','coupe','bus','motorcycle','motorbike','scooter','vehicle','cadillac','chevrolet','chevy','toyota','mercedes','ford','bmw','audi','honda','nissan','tesla','limousine','pickup','wheel','tire','tyre','trailer','tractor','forklift','wagon','automobile']],
-  ['industrial-equipment', 'Industrial Equipment', ['crane','machine','machinery','industrial','hvac','pump','valve','conveyor','generator','compressor','excavator','bulldozer','drill','turbine','boiler','pipe','pipeline','gearbox','cnc','robot','robotic','equipment','hydraulic']],
-  ['architecture-landmarks', 'Architecture Landmarks', ['building','house','home','tower','monument','statue','landmark','colosseum','stadium','bridge','church','cathedral','castle','temple','mosque','architecture','structure','facade','skyscraper','apartment','villa','pavilion','fountain','gate','arch']],
-];
+// ЕДИНЫЙ 25-кат классификатор из classify15.mjs (крошки карточек ДОЛЖНЫ совпадать с хабами).
+const _clsSrc = fs.readFileSync(path.join(ROOT, 'scripts', 'classify15.mjs'), 'utf8');
+const CATS = eval('[' + _clsSrc.split('const CATS = [')[1].split('];')[0] + ']');
 function classify(name) {
-  // матчим по ЦЕЛЫМ токенам (не подстроке) — иначе 'car' ловит 'carrier', 'arch' ловит слова и т.п.
   const toks = new Set(name.toLowerCase().match(/[a-z0-9]+/g) || []);
   for (const [slug, disp, kws] of CATS) {
     const hit = kws.find(k => toks.has(k));
@@ -126,15 +119,15 @@ function description(name, price, cls, rigged, cert) {
   else if (cert) s += ` It is CheckMate certified, so you get clean topology, correct real-world scale and reliable, production-grade geometry.`;
   else if (rigged) s += ` It ships rigged for animation, with clean topology and correct real-world scale.`;
   else s += ` It is built with clean topology and correct real-world scale for production use.`;
-  s += ` ${USE_SENTENCE[cls.slug]}`;
+  s += ` ${(USE_SENTENCE[cls.slug]||USE_SENTENCE.other)}`;
   return s;
 }
 
 function renderMain(d) {
   const { name, id, price, hero, tsUrl, cls, rel, rigged, cert, keywords } = d;
   const catHref = `/categories/${cls.slug}/`;
-  const used = IND[cls.slug].map(([n]) => `<span class="chip chip--sm">${n}</span>`).join(' ');
-  const uses = USES[cls.slug].map(([l, h]) => `<a href="/industries/${h}/" class="chip chip--sm">${l}</a>`).join(' ');
+  const used = (IND[cls.slug]||IND.other).map(([n]) => `<span class="chip chip--sm">${n}</span>`).join(' ');
+  const uses = (USES[cls.slug]||USES.other).map(([l, h]) => `<a href="/industries/${h}/" class="chip chip--sm">${l}</a>`).join(' ');
   const kw = keywords.map(k => `<a href="/search/?q=${encodeURIComponent(k)}" class="chip chip--kw">${esc(k)}</a>`).join(' ');
   const subjectChip = cls.subject ? ` <span class="chip chip--sm">${esc(cls.subject)}</span>` : '';
   const cards = rel.map(r => `        <a href="/models/${r.slug}/" class="model-card card-glow mp-rc-link">
