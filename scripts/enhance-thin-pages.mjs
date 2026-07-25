@@ -126,7 +126,7 @@ function description(name, price, cls, rigged, cert) {
 function renderMain(d) {
   const { name, id, price, hero, tsUrl, cls, rel, rigged, cert, keywords } = d;
   const catHref = `/categories/${cls.slug}/`;
-  const used = (IND[cls.slug]||IND.other).map(([n]) => `<span class="chip chip--sm">${n}</span>`).join(' ');
+  const used = (IND[cls.slug]||IND.other).map(([n, h]) => `<a href="/industries/${h}/" class="chip chip--sm">${n}</a>`).join(' ');
   const uses = (USES[cls.slug]||USES.other).map(([l, h]) => `<a href="/industries/${h}/" class="chip chip--sm">${l}</a>`).join(' ');
   const kw = keywords.map(k => `<a href="/search/?q=${encodeURIComponent(k)}" class="chip chip--kw">${esc(k)}</a>`).join(' ');
   const subjectChip = cls.subject ? ` <span class="chip chip--sm">${esc(cls.subject)}</span>` : '';
