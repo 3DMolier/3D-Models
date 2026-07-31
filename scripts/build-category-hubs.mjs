@@ -8,6 +8,7 @@
 //          node scripts/build-category-hubs.mjs <cat>     (одна категория)
 import fs from 'node:fs';
 import path from 'node:path';
+import { anchorClassify } from './anchors25.mjs';
 
 const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
 const DATA = path.join(ROOT, 'data');
@@ -25,10 +26,12 @@ const CATS = eval('[' + clsSrc.split('const CATS = [')[1].split('];')[0] + ']');
 const dispOf = Object.fromEntries(CATS.map(c => [c[0], c[1]]));
 dispOf['other'] = 'Other';
 const ALL_SLUGS = CATS.map(c => c[0]).concat('other');
+// весовой добор: срабатывает, только если основной список промолчал
+// (иначе 27% моделей уходили в мусорную корзину 'other')
 const classify = name => {
   const t = new Set(name.toLowerCase().match(/[a-z0-9]+/g) || []);
   for (const [s, d, k] of CATS) if (k.find(x => t.has(x))) return s;
-  return 'other';
+  return anchorClassify(name) || 'other';
 };
 
 // ---- hero-конфиг для 9 новых категорий (иконка + описание) ----
