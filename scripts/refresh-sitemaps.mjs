@@ -73,7 +73,7 @@ for (const f of OBSOLETE) {
 
 // ---- 3. остальным страничным сайтмапам - свежий lastmod ----
 const touch = ['sitemap-main.xml', 'sitemap-collections.xml', 'sitemap-industries.xml',
-  'sitemap-category-hubs.xml'];
+  'sitemap-category-hubs.xml', 'sitemap-browse.xml'];
 for (const f of touch) {
   const p = path.join(SM, f);
   if (!fs.existsSync(p)) continue;
@@ -89,7 +89,7 @@ for (const f of fs.readdirSync(SM).filter(f => f.endsWith('.xml'))) {
 }
 
 // ---- 5. индекс ----
-const ORDER = ['sitemap-main.xml', 'sitemap-categories.xml', 'sitemap-category-hubs.xml',
+const ORDER = ['sitemap-main.xml', 'sitemap-categories.xml', 'sitemap-category-hubs.xml', 'sitemap-browse.xml',
   'sitemap-collections.xml', 'sitemap-industries.xml', 'sitemap-models-1.xml', 'sitemap-models-2.xml',
   'image-sitemap-1.xml', 'image-sitemap-2.xml'];
 const present = ORDER.filter(f => fs.existsSync(path.join(SM, f)));
