@@ -505,7 +505,7 @@ Production-ready 3D models for simulation, technical visualization, animation, V
 ## Business Model
 - All models are sold exclusively through TurboSquid
 - This website is a searchable SEO catalog / landing site — users click through to TurboSquid to purchase
-- Custom 3D modeling services are offered directly (contact: dddmolier@gmail.com)
+- Custom 3D modeling services are offered directly (contact: 3dmolier@3dmolier.com)
 - All referral links use: ?referral=3d_molier-studio
 
 ## Main URLs
@@ -554,7 +554,7 @@ FBX, OBJ, 3ds Max (.max), Cinema 4D (.c4d), Blender (.blend), COLLADA (.dae), gl
 3D Molier accepts custom modeling commissions:
 - New models built from reference materials or specifications
 - Modifications to existing catalog models
-- Contact: dddmolier@gmail.com
+- Contact: 3dmolier@3dmolier.com
 - Request form: https://3dmolierstudio.com/custom-order/
 
 ## Sitemap
