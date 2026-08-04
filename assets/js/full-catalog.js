@@ -112,11 +112,26 @@ function ensureRemainingImgChunks(){
   for(var i=0;i<totalImgChunks;i++){if(!loadedImgChunkSet[i])loadImgChunk(i);}
 }
 
+// Остальные чанки картинок откладываем. Раньше сразу после первого шёл
+// ensureRemainingImgChunks, и страница тянула ВСЕ 18 файлов fc-img-chunk —
+// 6.2 МБ JSON на первой загрузке (замер показал вес страницы 7.8 МБ).
+// Первый чанк покрывает видимые карточки; остальные нужны при листании и поиске,
+// поэтому запускаем их по первому действию пользователя либо в простое.
+function scheduleRemainingImgChunks(){
+  var started=false;
+  function go(){ if(started)return; started=true; ensureRemainingImgChunks(); }
+  ['scroll','keydown','pointerdown'].forEach(function(ev){
+    window.addEventListener(ev, go, {once:true, passive:true});
+  });
+  if(window.requestIdleCallback) requestIdleCallback(go,{timeout:15000});
+  else setTimeout(go,15000);
+}
+
 function startLoading(fcIdx, imgIdx) {
   totalChunks = fcIdx.chunks;
   totalImgChunks = imgIdx.chunks;
   loadChunk(0);
-  loadImgChunk(0).then(ensureRemainingImgChunks);
+  loadImgChunk(0).then(scheduleRemainingImgChunks);
 }
 
 Promise.all([

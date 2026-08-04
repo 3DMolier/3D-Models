@@ -770,3 +770,14 @@ footer .nav-dropdown a.active { color: #9ca3af !important; background: transpare
 @media (max-width:640px){.legal-wrap{padding:40px 20px 64px}.legal-body h2{font-size:17px;margin-top:32px}}
 .cat-footer-legal{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px}
 .cat-footer-legal .nav-link{font-size:13px}
+
+/* ── Починка меню: инлайн display перебивал скрытие ─────────────────────────
+   У мега-меню категорий в разметке стоит style="display:grid;...". Инлайн-стиль
+   сильнее любого правила таблицы, поэтому display:none не работал и меню висело
+   раскрытым на всех страницах. Переписать разметку — это проход по 88 тысячам
+   файлов, поэтому перебиваем через !important: он сильнее инлайна.
+   Селектор [style*="grid"] бьёт только по меню категорий; меню отраслей
+   инлайн-стиля не имеет и остаётся display:block. */
+.nav-has-dropdown .nav-dropdown{display:none !important}
+.nav-has-dropdown.open .nav-dropdown{display:block !important}
+.nav-has-dropdown.open .nav-dropdown[style*="grid"]{display:grid !important}
