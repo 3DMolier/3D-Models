@@ -17,6 +17,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { anchorClassify } from './anchors25.mjs';
+import { portedClassify } from './anchors-ported.mjs';
 
 const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
 const MODELS = path.join(ROOT, 'models');
@@ -49,7 +50,10 @@ for (const d of dirs) {
 
   const t = html.match(/<title>([^<]+?)\s+3D Model/i);
   const name = t ? t[1] : d.replace(/-\d+$/, '').replace(/-/g, ' ');
-  const cat = anchorClassify(name);
+  // Сначала свой словарь сайта, затем перенесённый из кликера CGTrader.
+  // Порядок важен: anchors25 вылизан под наш каталог и точнее, перенесённый
+  // добирает то, о чём он молчит.
+  const cat = anchorClassify(name) || portedClassify(name);
   if (!cat || cat === 'other') { skipped++; continue; }
   const label = disp[cat] || cat;
   const before = html;

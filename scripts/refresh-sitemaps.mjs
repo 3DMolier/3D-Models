@@ -44,6 +44,21 @@ const cats = dirsWithIndex('categories');
 console.log(`Категории на диске: ${cats.length}`);
 writeUrlset('sitemap-categories.xml', cats.map(c => urlEntry(`${BASE}/categories/${c}/`, 'weekly', '0.9')));
 
+// ---- 2а. коллекции и отрасли — тоже из фактических папок ----
+// Раньше этим двум файлам правилась только дата, а список URL оставался прежним.
+// 06.08.2026 после удаления 23 коллекций-дублей в сайтмапе остались все 20 адресов,
+// из которых 17 отдавали 404. Теперь список собирается с диска, как у категорий.
+for (const [dir, file, freq, prio] of [
+  ['collections', 'sitemap-collections.xml', 'weekly', '0.7'],
+  ['industries', 'sitemap-industries.xml', 'monthly', '0.6'],
+]) {
+  const items = dirsWithIndex(dir);
+  const entries = [urlEntry(`${BASE}/${dir}/`, freq, prio)]
+    .concat(items.map(x => urlEntry(`${BASE}/${dir}/${x}/`, freq, prio)));
+  writeUrlset(file, entries);
+  console.log(`${dir} на диске: ${items.length}  ->  ${file}: ${entries.length} URL`);
+}
+
 // ---- 2б. убираем ТЕМАТИЧЕСКИЕ сайтмапы ----
 // checkmate/longtail/high-price/top1000 - это ПОДМНОЖЕСТВА models-1/2, они не добавляли
 // ни одного нового URL: 174 414 записей на 87 783 уникальных страницы (50% дублей).
@@ -72,8 +87,9 @@ for (const f of OBSOLETE) {
 }
 
 // ---- 3. остальным страничным сайтмапам - свежий lastmod ----
-const touch = ['sitemap-main.xml', 'sitemap-collections.xml', 'sitemap-industries.xml',
-  'sitemap-category-hubs.xml', 'sitemap-browse.xml'];
+// collections и industries сюда больше не входят: их списки пересобираются с диска
+// в шаге 2а, и дата там уже проставлена.
+const touch = ['sitemap-main.xml', 'sitemap-category-hubs.xml', 'sitemap-browse.xml'];
 for (const f of touch) {
   const p = path.join(SM, f);
   if (!fs.existsSync(p)) continue;

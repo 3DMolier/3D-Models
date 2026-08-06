@@ -30,7 +30,7 @@ console.log('собранных превью: ' + slugs.length);
 let ok = 0, skip = 0; const reasons = {};
 for (const slug of slugs) {
   const url = map[slug];
-  if (!url || !url.includes('ts-thumb')) { skip++; reasons['ссылка не похожа на превью'] = (reasons['ссылка не похожа на превью'] || 0) + 1; continue; }
+  if (!url || !/p.turbosquid.com/.test(url)) { skip++; reasons["ссылка не похожа на превью"] = (reasons['ссылка не похожа на превью'] || 0) + 1; continue; }
   const file = path.join(MODELS, slug, 'index.html');
   if (!fs.existsSync(file)) { skip++; reasons['нет страницы'] = (reasons['нет страницы'] || 0) + 1; continue; }
 
