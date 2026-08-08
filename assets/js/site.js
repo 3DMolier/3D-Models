@@ -94,3 +94,23 @@ window.imgErr=function(img){gaEvent('image_fallback_triggered',{src:img&&img.src
   if(sq&&location.pathname.indexOf('/search/')>-1)gaEvent('search_query',{query:sq});
 })();
 })();
+
+// Галерея объединённой карточки: клик по миниатюре меняет крупное изображение.
+// Разметка статическая — без скрипта видны все снимки, просто не переключаются.
+(function(){
+  var gal = d.querySelector('[data-gallery]');
+  if(!gal) return;
+  var hero = d.querySelector('.mp-hero-img');
+  if(!hero) return;
+  gal.addEventListener('click', function(e){
+    var btn = e.target.closest ? e.target.closest('.mp-gal-thumb') : null;
+    if(!btn) return;
+    var full = btn.getAttribute('data-full');
+    if(!full) return;
+    hero.src = full;
+    hero.setAttribute('data-fallback', full);
+    var on = gal.querySelector('.mp-gal-thumb.is-on');
+    if(on) on.classList.remove('is-on');
+    btn.classList.add('is-on');
+  });
+})();
