@@ -109,6 +109,11 @@ window.imgErr=function(img){gaEvent('image_fallback_triggered',{src:img&&img.src
     if(!full) return;
     hero.src = full;
     hero.setAttribute('data-fallback', full);
+    // Подпись под крупным снимком должна меняться вместе с ним, иначе на карточке
+    // серии непонятно, какой именно выпуск сейчас открыт.
+    var cap = gal.querySelector('[data-gal-cap]');
+    var capText = btn.getAttribute('data-cap');
+    if(cap && capText) cap.textContent = capText;
     var on = gal.querySelector('.mp-gal-thumb.is-on');
     if(on) on.classList.remove('is-on');
     btn.classList.add('is-on');

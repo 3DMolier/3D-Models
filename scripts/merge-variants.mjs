@@ -26,7 +26,17 @@ const ONLY = oi !== -1 ? process.argv[oi + 1] : null;
 const si = process.argv.indexOf('--sample');
 const SAMPLE = si !== -1 ? process.argv[si + 1] : null;
 
-const SOFT = /\s+for\s+(maya|cinema\s*4d|c4d|blender|3ds\s*max|max|unity|unreal|houdini|modo|lightwave|sketchup)\s*$/i;
+// Софт ищем ГДЕ УГОДНО в названии, не только в конце. «African Animals Rigged
+// for Maya Collection» и «… for Cinema Collection» — одна модель, но маркер стоит
+// в середине, и при поиске только по концовке они оставались двумя карточками.
+// Таких названий 571.
+const SOFT = /\s+for\s+(maya|cinema\s*4d|cinema|c4d|blender|3ds\s*max|max|unity|unreal|houdini|modo|lightwave|sketchup)\b/i;
+// «Simplified» в конце — упрощённая версия той же модели, отдельный товар дешевле
+// базового (Honda Accord 2025 против того же Simplified). Берём ТОЛЬКО концовку:
+// в середине «Simple» значит другое — «Trolleybus Simple Interior» это описание
+// салона, а не вариант. По каталогу: 476 с концовкой против 570 прочих.
+const SIMPL = /\s+simplified\s*$/i;
+const hasSimpl = n => SIMPL.test(n);
 const COLOR = /\s+(sand|khaki|green|black|white|red|blue|yellow|orange|grey|gray|silver|gold|brown|camo|camouflage|desert|olive|beige|pink|purple)\s*$/i;
 // «Fur» — это та же модель с мехом, отдельный товар дороже базового
 // (Virginia Deer Rigged $179 против Virginia Deer Fur Rigged $199).
@@ -68,11 +78,13 @@ const COLL = /\bcollections?\s+([1-9]|1\d|20)\s*$|\bcollections?\s*$/i;
 // софту и склеивалось там в пару Maya+Cinema 4D — вместо того чтобы войти в общую
 // серию. Так вокруг African Animals осталось девять мелких пар вместо одной карточки.
 const isColl = n => COLL.test(String(n).replace(SOFT, '').trim());
+// Номер выпуска идёт сразу за словом Collection, но НЕ обязательно в конце имени:
+// «Rigged African Animals Collection 7 for Cinema 4D». Поиск только по концовке
+// терял номер у 44 выпусков серии — подписи превращались в «Collection · Rigged ·
+// Cinema 4D (2)», а список выстраивался по алфавиту вместо порядка выпусков.
 const collLabel = n => {
-  const m = n.match(/\b(collections?)\s*(\d{1,2})?\s*$/i);
-  if (!m) return 'Collection';
-  const word = m[1].replace(/\b\w/g, c => c.toUpperCase());
-  return m[2] ? word + ' ' + m[2] : word;
+  const m = String(n).replace(SOFT, '').match(/\bcollections?\s+(\d{1,2})\b/i);
+  return m ? 'Collection ' + m[1] : 'Collection';
 };
 
 // ── данные каталога ──
@@ -88,6 +100,7 @@ for (let i = 1; i < L.length; i++) {
     id: r[ix('product_id')], name: r[ix('product_name')], slug: r[ix('slug')],
     url: r[ix('referral_url')] || r[ix('turbosquid_url')],
     price: +r[ix('price')] || 0, sales: +r[ix('sales_qty')] || 0,
+    img: r[ix('image_url')] || '', cat: r[ix('category')] || '',
   });
 }
 // В models_master.csv реферальный код устарел: там 3d_molier-studio, а на карточках
@@ -101,7 +114,81 @@ const fixRef = u => {
 };
 for (const r of rows) r.url = fixRef(r.url);
 
+// Правила по цвету и по «Simplified» смотрят на КОНЕЦ названия, а у части товаров
+// в конце висит «3D Model»: «Side Loading Forklift Truck Orange 3D Model». Цвет
+// оказывался не последним, и три одинаковых погрузчика разного цвета оставались
+// тремя карточками. Для группировки берём имя без этого хвоста; в подписях и
+// заголовках используется по-прежнему полное имя.
+const TRAIL3D = /\s*\b3d\s+models?\s*$/i;
+for (const r of rows) r.gname = String(r.name || '').replace(TRAIL3D, '').trim();
+
 const bySlug = new Map(rows.map(r => [r.slug, r]));
+
+// ── проход «одна машина — одна карточка» ────────────────────────────────────
+// Одна и та же техника выложена карточками с разными окончаниями: Simplified,
+// Rigid, Rigid for Cinema, Rigid for Maya, Low Poly, другой цвет. Правила по софту
+// и по цвету их не сводят — основы различаются описаниями: «1955 Mercedes Benz
+// 300SL Gullwing», «Mercedes-Benz 300SL Coupe Black», «Mercedes-Benz 300SL Classic
+// Sports Car Red», «Mercedes-Benz 300SL Gullwing Coupe Blue Simplified».
+//
+// Личность техники — марка и код модели. В ключ идут токены с цифрой (300sl, g580),
+// короткие обозначения комплектаций (se, sl, amg) и частые по каталогу слова —
+// так марки определяются сами, без ручного списка. Описания отбрасываем.
+const TECH_CATS = /^(vehicles|military vehicles|aircraft|ships|industrial equipment)$/i;
+const IDENT_FILLER = new Set(['the', 'and', 'of', 'with', 'for', 'a', 'an',
+  'car', 'cars', 'vehicle', 'vehicles', 'auto', 'automobile', 'aircraft', 'airplane',
+  'plane', 'jet', 'helicopter', 'chopper', 'boat', 'ship', 'vessel',
+  'sports', 'sport', 'classic', 'vintage', 'retro', 'old', 'new', 'modern',
+  'coupe', 'sedan', 'hatchback', 'wagon', 'estate', 'liftback', 'fastback',
+  'suv', 'crossover', 'compact', 'luxury', 'concept', 'custom', 'tuning', 'edition',
+  'rigged', 'rigid', 'animated', 'simplified', 'simple', 'basic', 'full', 'detailed',
+  'interior', 'exterior', 'lights', 'dirty', 'clean', 'used',
+  'low', 'poly', 'polygon', 'game', 'ready', 'pbr', 'realistic', 'model', 'models', '3d']);
+// Запчасти — отдельные товары, а не варианты. Без списка «Tesla Model 3 Right Seat»
+// и чехол попадали в группу к самой машине.
+const IDENT_PART = /\b(seat|seats|cover|covers|frame|frameset|fork|wheel|wheels|wheelset|tire|tires|rim|rims|engine|suspension|hitch|mirror|bumper|hood|door|steering|dashboard|cockpit|propeller|rotor|tunnel|garage|hangar|showroom|stand|display|logo|badge|emblem|part|parts|kit)\b/i;
+// Сцена с человеком — другой товар: «Woman Riding Vespa 125» стоит $239 против $79.
+const IDENT_FIGURE = /\b(woman|women|man|men|girl|boy|kid|kids|rider|riding|driver|driving|pilot|person|people|character|couple|family|crew)\b/i;
+// Сцена или комплект — тоже другой товар. «Airport Runway with Airbus A400M» ($199)
+// и «… A400M with Humvee Inside» ($229) не варианты самолёта за $179.
+const IDENT_SCENE = /\b(runway|airport|terminal|hangar|dock|harbou?r|scene|diorama|environment|street|road|parking|circuit|racetrack|track|station|platform|warehouse|factory|inside)\b/i;
+const COLOR_ANY = /\b(sand|khaki|green|black|white|red|blue|yellow|orange|grey|gray|silver|gold|brown|camo|camouflage|olive|beige|pink|purple|maroon)\b/ig;
+// Та же выборка без флага g — для match() с группой: у глобального регэкспа
+// match возвращает список совпадений, а не группы, и цвет из подписи пропадал.
+const COLOR_ANY_ONE = /\b(sand|khaki|green|black|white|red|blue|yellow|orange|grey|gray|silver|gold|brown|camo|camouflage|olive|beige|pink|purple|maroon)\b/i;
+const isYear = t => /^(19|20)\d{2}$/.test(t);
+// Код модели: не короче трёх знаков и с цифрой — 300sl, 350, g580, 911, a320.
+// Одиночная «3» из «Tesla Model 3» кодом не считается: по ней в одну группу
+// попадали сиденья и чехлы. «3d» отсеивается длиной.
+const isCode = t => t.length >= 3 && /\d/.test(t) && !isYear(t);
+
+function identTokens(name) {
+  return String(name).toLowerCase()
+    .replace(SOFT, ' ')
+    .replace(COLOR_ANY, ' ')
+    .replace(/[^a-z0-9]+/g, ' ')
+    // «300 SL» и «300SL» — одно и то же. Без склейки карточки одной машины
+    // расходились по двум группам только из-за пробела в названии.
+    .replace(/\b(\d{2,4})\s+([a-z]{1,3})\b/g, '$1$2')
+    .split(' ').filter(Boolean).filter(t => !IDENT_FILLER.has(t));
+}
+
+const identRows = rows.filter(r => TECH_CATS.test(r.cat) && !isColl(r.name));
+const identDf = new Map();
+for (const r of identRows) for (const t of new Set(identTokens(r.name))) identDf.set(t, (identDf.get(t) || 0) + 1);
+const IDENT_BRAND_DF = 100;
+
+function identityOf(r) {
+  if (!TECH_CATS.test(r.cat) || isColl(r.name)) return null;
+  if (IDENT_PART.test(r.name) || IDENT_FIGURE.test(r.name) || IDENT_SCENE.test(r.name)) return null;
+  const toks = identTokens(r.name);
+  const years = [...new Set(toks.filter(isYear))].sort().join(' ');
+  const core = [...new Set(toks.filter(t => !isYear(t)
+    && (isCode(t) || t.length <= 3 || (identDf.get(t) || 0) >= IDENT_BRAND_DF)))].sort();
+  if (!core.some(isCode)) return null;          // без кода модели не рискуем
+  if (core.length < 2) return null;             // одного токена мало
+  return { core: core.join(' '), years };
+}
 
 // ── группировка ──
 function buildGroups(kind) {
@@ -125,16 +212,21 @@ function buildGroups(kind) {
     // попадали в разные группы. Слова «3D Models» и «Rigged» из основы убираем,
     // при этом в списке вариантов они остаются видны в подписи.
     const base = (kind === 'soft'
-      ? r.name.replace(re, '').replace(FUR, ' ').replace(ANIM, ' ').replace(POSE, ' ').replace(RIG, ' ').replace(/\s{2,}/g, ' ')
+      // Цвет снимаем и здесь. Иначе проход по софту забирал «Side Loading Forklift
+      // Truck Yellow» вместе с «… Yellow Rigged» раньше, чем цветовой проход успевал
+      // собрать Yellow + Red + Orange, — и погрузчик оставался тремя карточками.
+      ? r.gname.replace(re, '').replace(SIMPL, '').replace(COLOR, '').replace(FUR, ' ').replace(ANIM, ' ')
+        .replace(POSE, ' ').replace(RIG, ' ').replace(/\s{2,}/g, ' ')
       : kind === 'collection'
         // Порядок важен: сперва снимаем суффикс софта, и только потом индекс.
         // У «African Animals Rigged Collection 2 for Maya» индекс стоит НЕ в конце,
         // и при обратном порядке он оставался в основе — выпуск не попадал в серию.
         ? r.name.replace(SOFT, '').replace(re, '').replace(/\s*\b3d\s+models?\b\s*/ig, ' ')
           .replace(RIG, ' ').replace(/\s{2,}/g, ' ')
-        : r.name.replace(re, '')).trim();
+        : r.gname.replace(re, '')).trim();
     if (base.length < 8) continue;
     const key = base.toLowerCase();
+    if (process.env.DBG && r.slug.startsWith(process.env.DBG)) console.log('DBG ' + kind + '  key=«' + key + '»  ' + r.slug);
     (g[key] = g[key] || { base, items: [] }).items.push(r);
   }
   const out = [];
@@ -142,10 +234,11 @@ function buildGroups(kind) {
     if (grp.items.length < 2) continue;
     // группа считается вариантами, если внутри есть различие по софту ИЛИ по меху;
     // иначе это просто одинаково названные разные товары — их не трогаем
-    const varies = grp.items.some(x => re.test(x.name))
+    const varies = grp.items.some(x => re.test(x.gname))
       || (kind === 'soft' && new Set(grp.items.map(x => hasFur(x.name))).size > 1)
       || (kind === 'soft' && new Set(grp.items.map(x => hasAnim(x.name))).size > 1)
-      || (kind === 'soft' && new Set(grp.items.map(x => (poseOf(x.name) || '') + hasRig(x.name))).size > 1);
+      || (kind === 'soft' && new Set(grp.items.map(x => (poseOf(x.name) || '') + hasRig(x.name))).size > 1)
+      || (kind === 'soft' && new Set(grp.items.map(x => hasSimpl(x.name))).size > 1);
     if (!varies) continue;
     // Главная — САМАЯ БАЗОВАЯ версия: без суффикса софта и без меха, то есть под
     // 3ds Max. Сортировка по продажам тут не годится: у меховой версии их обычно
@@ -153,11 +246,12 @@ function buildGroups(kind) {
     // у Virginia Deer Rigged). Продажи решают только внутри равных по «базовости».
     // Главная — самая «голая» версия: без софта, без меха, без анимации, без позы
     // и без оснастки. Веса убывающие, чтобы порядок был предсказуем.
-    const rank = x => (re.test(x.name) ? 16 : 0)
+    const rank = x => (re.test(x.gname) ? 16 : 0)
       + (kind === 'soft' && hasFur(x.name) ? 8 : 0)
       + (kind === 'soft' && hasAnim(x.name) ? 4 : 0)
       + (kind === 'soft' && poseOf(x.name) ? 2 : 0)
       + (kind === 'soft' && hasRig(x.name) ? 1 : 0)
+      + (kind === 'soft' && hasSimpl(x.gname) ? 32 : 0)
       // Для набора главной должна стать самая «чистая» запись серии: без софта,
       // без индекса, без «Rigged» и «3D Models». Иначе карточку на 42 выпуска
       // возглавляла «…Collection 7 for Maya» — как заголовок серии это бессмыслица.
@@ -165,7 +259,13 @@ function buildGroups(kind) {
       + (kind === 'collection' && IDX.test(x.name.replace(SOFT, '')) ? 4 : 0)
       + (kind === 'collection' && hasRig(x.name) ? 2 : 0)
       + (kind === 'collection' && /\b3d\s+models?\b/i.test(x.name) ? 1 : 0);
-    const main = grp.items.slice().sort((a, b) => (rank(a) - rank(b)) || (b.sales - a.sales))[0];
+    // Главной может быть только ЖИВАЯ страница. Правила «базовости» со временем
+    // менялись, и после правки весов главной становилась запись, которую прошлый
+    // прогон уже свернул и удалил: слияние падало с «главной страницы уже нет»
+    // (122 группы), карта не пополнялась, а на диске оставалась старая карточка.
+    // Так две «African Animals … for Maya/Cinema Collection» и жили отдельно.
+    const order = grp.items.slice().sort((a, b) => (rank(a) - rank(b)) || (b.sales - a.sales));
+    const main = order.find(x => fs.existsSync(path.join(MODELS, x.slug, 'index.html'))) || order[0];
     const rest = grp.items.filter(x => x.slug !== main.slug);
     if (!rest.length) continue;
     // Заголовок берём ОТ ГЛАВНОЙ карточки, сняв только суффикс софта. Если брать
@@ -184,12 +284,109 @@ function buildGroups(kind) {
   return out;
 }
 
+// Маркеры исполнения, которые снимаем с заголовка объединённой карточки техники.
+const IDENT_MARKS = [
+  SOFT,
+  /\s*\b(?:low\s+poly|lowpoly)\b\s*/ig,
+  /\s*\b(?:rigged|rigid|animated|simplified)\b\s*/ig,
+  /\s*\b(?:simple|basic|full|detailed)\s+interior\b\s*/ig,
+  /\s*\b(?:dirty|clean)\b\s*/ig,
+  COLOR_ANY,
+  /\s*\bcolor\b\s*/ig,
+];
+// Описательный «хвост» в заголовке объединённой карточки не нужен: главной может
+// оказаться «Mercedes-Benz 300SL Classic Sports Car Red», и серия из 11 исполнений
+// получала заголовок с чужим описанием. Убираем только общие слова — Gullwing,
+// Atlas и прочие имена остаются.
+const IDENT_TITLE_FILLER = /\b(classic|vintage|retro|sports?|car|cars|vehicle|automobile|coupe|sedan|suv|crossover|luxury|modern|airlines?|airways)\b/ig;
+const identTitle = n => {
+  let s = String(n);
+  for (const re of IDENT_MARKS) s = s.replace(re, ' ');
+  s = s.replace(IDENT_TITLE_FILLER, ' ').replace(/\s{2,}/g, ' ').trim();
+  // Если после чистки осталось меньше двух слов, чистка съела слишком много —
+  // возвращаем исходное имя без маркеров исполнения.
+  if (s.split(/\s+/).filter(Boolean).length < 2) {
+    s = String(n);
+    for (const re of IDENT_MARKS) s = s.replace(re, ' ');
+    s = s.replace(/\s{2,}/g, ' ').trim();
+  }
+  return s.replace(/\s+([,.])/g, '$1').trim();
+};
+
+// Заголовок объединённой карточки техники — только то, что общее у ВСЕХ версий.
+// Иначе главной оказывается «Jet Airliner Airbus A330-200 Qatar», а внутри ещё
+// Emirates, Lufthansa и Cathay Pacific: название обещает не то, что на странице.
+// Слово остаётся, если встречается в имени каждой версии (без учёта дефисов
+// и регистра: «Mercedes-Benz» и «Mercedes Benz» — одно и то же).
+const normTok = w => w.toLowerCase().replace(/[^a-z0-9]+/g, '');
+function commonTitle(main, rest) {
+  const setsOf = n => new Set(String(n).split(/\s+/).map(normTok).filter(Boolean));
+  const others = rest.map(x => setsOf(x.name));
+  const kept = String(main.name).split(/\s+/)
+    .filter(w => { const t = normTok(w); return t && others.every(s => s.has(t)); });
+  const title = identTitle(kept.join(' '));
+  // Чистка могла срезать слишком много: у группы Porsche Cayenne общими остались
+  // только «AWD 4dr» — как название карточки это бессмыслица. Требуем хотя бы одно
+  // полноценное слово и разумную длину, иначе берём имя главной.
+  const ws = title.split(/\s+/).filter(Boolean);
+  const meaningful = ws.length >= 2 && title.length >= 10 && ws.some(w => w.length >= 4 && !/\d/.test(w));
+  return meaningful ? title : identTitle(main.name);
+}
+
+function buildIdentityGroups() {
+  const byCore = new Map();
+  for (const r of rows) {
+    const id = identityOf(r);
+    if (!id) continue;
+    if (!byCore.has(id.core)) byCore.set(id.core, []);
+    byCore.get(id.core).push({ r, years: id.years });
+  }
+
+  const out = [];
+  const emit = items => {
+    if (items.length < 2) return;
+    // Главная — самая «голая» версия: без софта, без оснастки, без упрощения,
+    // без Low Poly. Продажи решают только внутри равных по «базовости».
+    const rank = x => (SOFT.test(x.name) ? 16 : 0)
+      + (hasSimpl(x.name) || /\bsimplified\b/i.test(x.name) ? 8 : 0)
+      + (/\blow\s*poly\b/i.test(x.name) ? 4 : 0)
+      + (hasRig(x.name) ? 2 : 0)
+      + (/\bsimple\s+interior\b/i.test(x.name) ? 1 : 0);
+    const order = items.map(x => x.r).sort((a, b) => (rank(a) - rank(b)) || (b.sales - a.sales));
+    const main = order.find(x => fs.existsSync(path.join(MODELS, x.slug, 'index.html'))) || order[0];
+    const rest = order.filter(x => x.slug !== main.slug);
+    if (!rest.length) return;
+    out.push({ base: commonTitle(main, rest), main, rest, kind: 'identity' });
+  };
+
+  for (const [, items] of byCore) {
+    const yearSets = [...new Set(items.map(x => x.years).filter(Boolean))];
+    if (yearSets.length <= 1) { emit(items); continue; }
+    // Несколько поколений в одном ряду: «Porsche 911 1970» и «Porsche 911 2020» —
+    // разные машины. Сливаем только внутри своего года, безгодовые не трогаем.
+    for (const y of yearSets) emit(items.filter(x => x.years === y));
+  }
+  return out;
+}
+
 // ── превью варианта: берём из его страницы, там уже проверенные ссылки ──
+// Снимок варианта. Страницы вариантов из прошлых прогонов уже удалены, читать
+// og:image не с чего — и галерея серии из 44 выпусков схлопывалась до трёх
+// картинок. Запасной источник — data/preview-index.json (см. build-preview-index.mjs).
+// Колонка image_url из выгрузки для этого не годится: там угаданный адрес
+// static.turbosquid.com/Preview/…_D_Main.jpg, он отдаёт 404.
+const PREVIEW_INDEX = path.join(ROOT, 'data', 'preview-index.json');
+const prevIdx = fs.existsSync(PREVIEW_INDEX) ? JSON.parse(fs.readFileSync(PREVIEW_INDEX, 'utf8')) : {};
+let prevIdxAdded = 0;
 function previewOf(slug) {
   try {
     const h = fs.readFileSync(path.join(MODELS, slug, 'index.html'), 'utf8');
-    return (h.match(/property="og:image" content="([^"]+)"/) || [])[1] || null;
-  } catch (e) { return null; }
+    const og = (h.match(/property="og:image" content="([^"]+)"/) || [])[1];
+    // Запоминаем до удаления страницы, чтобы галерея не потерялась в следующий раз.
+    if (og && prevIdx[slug] !== og) { prevIdx[slug] = Buffer.from(og, 'utf8').toString('utf8'); prevIdxAdded++; }
+    if (og) return og;
+  } catch (e) { /* страница свёрнута прошлым прогоном — берём из индекса */ }
+  return prevIdx[slug] || null;
 }
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -197,19 +394,25 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(
 // ── разметка галереи и списка вариантов ──
 function buildBlocks(g) {
   const all = [g.main, ...g.rest];
-  const shots = all.map(x => ({ r: x, img: previewOf(x.slug) })).filter(x => x.img);
+  // Не больше 12 миниатюр: в серии бывает и 44 выпуска, полоса превью тогда
+  // разъезжается, а страница тяжелеет впустую. Полный список — ниже, в вариантах.
+  const shots = all.map(x => ({ r: x, img: previewOf(x.slug) })).filter(x => x.img).slice(0, 12);
   // Метка должна читаться сама по себе: «Maya · Fur» понятно, «Maya» рядом с
   // «Maya» из меховой версии — нет.
   const label = x => {
     if (g.kind === 'soft') {
       const m = x.name.match(SOFT);
       const soft = m ? m[1].replace(/\s+/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'Autodesk 3ds Max';
-      const bits = [soft];
+      // Цвет теперь снимается и с основы этого прохода, значит он различает версии
+      // внутри группы — без него «Yellow» и «Red» получили бы одну подпись.
+      const cm = x.gname.match(COLOR);
+      const bits = cm ? [cm[1].replace(/\b\w/g, c => c.toUpperCase()), soft] : [soft];
       if (hasFur(x.name)) bits.push('Fur');
       if (hasAnim(x.name)) bits.push('Animated');
       const p = poseOf(x.name);
       if (p) bits.push(p);
       else if (hasRig(x.name)) bits.push('Rigged');
+      if (hasSimpl(x.name)) bits.push('Simplified');
       return bits.join(' · ');
     }
     if (g.kind === 'collection') {
@@ -223,8 +426,58 @@ function buildBlocks(g) {
       if (sm) bits.push(sm[1].replace(/\s+/g, ' ').replace(/\b\w/g, c => c.toUpperCase()));
       return bits.join(' · ');
     }
-    const m = x.name.match(COLOR);
+    if (g.kind === 'identity') {
+      // Подпись описывает исполнение: цвет, софт, оснастка, упрощение, Low Poly.
+      const bits = [];
+      const cm = x.name.match(COLOR_ANY_ONE);
+      if (cm) bits.push(cm[1].replace(/\b\w/g, c => c.toUpperCase()));
+      const sm = x.name.match(SOFT);
+      if (sm) bits.push(sm[1].replace(/\s+/g, ' ').replace(/\b\w/g, c => c.toUpperCase()));
+      if (hasRig(x.name)) bits.push('Rigged');
+      if (/\blow\s*poly\b/i.test(x.name)) bits.push('Low Poly');
+      if (/\bsimplified\b/i.test(x.name)) bits.push('Simplified');
+      if (/\bsimple\s+interior\b/i.test(x.name)) bits.push('Simple Interior');
+      if (hasAnim(x.name)) bits.push('Animated');
+      return bits.length ? bits.join(' · ') : 'Standard';
+    }
+    const m = x.gname.match(COLOR);
     return m ? m[1].replace(/\b\w/g, c => c.toUpperCase()) : g.base;
+  };
+
+  // Короткая подпись под миниатюрой: в плитку 108px полная метка не влезает, а без
+  // подписи по одинаковым машинам разного цвета не понять, где что.
+  const shortLabel = x => {
+    if (g.kind === 'collection') {
+      const m = collLabel(x.name).match(/\d+/);
+      return m ? 'Set ' + m[0] : 'Set';
+    }
+    if (g.kind === 'color') {
+      const m = x.gname.match(COLOR);
+      return m ? m[1].replace(/\b\w/g, c => c.toUpperCase()) : 'Base';
+    }
+    if (g.kind === 'identity') {
+      const cm = x.name.match(COLOR_ANY_ONE);
+      if (cm) return cm[1].replace(/\b\w/g, c => c.toUpperCase());
+      const sm = x.name.match(SOFT);
+      if (sm) return sm[1].replace(/\s+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      if (/\blow\s*poly\b/i.test(x.name)) return 'Low Poly';
+      if (/\bsimplified\b/i.test(x.name)) return 'Simplified';
+      if (hasRig(x.name)) return 'Rigged';
+      return 'Standard';
+    }
+    // Для форматов подписываем ОТЛИЧИЕ, а не общий софт. У Ragdoll Cat почти все
+    // версии под 3ds Max, и подпись «3ds Max» под каждой миниатюрой ничего не
+    // говорит: различают их поза, мех и анимация.
+    const cs = x.gname.match(COLOR);
+    if (cs) return cs[1].replace(/\b\w/g, c => c.toUpperCase());
+    const p = poseOf(x.name);
+    if (p) return p;
+    if (hasFur(x.name)) return 'Fur';
+    if (hasAnim(x.name)) return 'Animated';
+    if (hasSimpl(x.gname)) return 'Simplified';
+    if (hasRig(x.name)) return 'Rigged';
+    const m = x.name.match(SOFT);
+    return m ? m[1].replace(/\s+/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'Standard';
   };
 
   // Галерея статическая: все снимки лежат в разметке, поэтому их видят и поисковик,
@@ -232,11 +485,16 @@ function buildBlocks(g) {
   let gal = '';
   if (shots.length > 1) {
     gal = '<div class="mp-gallery" data-gallery>'
+      // Подпись к крупному снимку. Без неё непонятно, какой выпуск сейчас открыт:
+      // на карточке серии из 44 наборов картинки различаются, а чем — не сказано.
+      + '<div class="mp-gal-cap" data-gal-cap>' + esc(label(shots[0].r)) + '</div>'
       + '<div class="mp-gal-strip">'
       + shots.map((s, i) => '<button type="button" class="mp-gal-thumb' + (i ? '' : ' is-on')
-        + '" data-full="' + esc(s.img) + '" aria-label="' + esc(label(s.r)) + '">'
+        + '" data-full="' + esc(s.img) + '" data-cap="' + esc(label(s.r)) + '"'
+        + ' title="' + esc(label(s.r)) + '" aria-label="' + esc(label(s.r)) + '">'
         + '<img src="' + esc(s.img) + '" alt="' + esc(g.base + ' — ' + label(s.r)) + '"'
-        + ' width="200" height="113" loading="lazy" decoding="async"></button>').join('')
+        + ' width="200" height="113" loading="lazy" decoding="async">'
+        + '<span class="mp-gal-lbl">' + esc(shortLabel(s.r)) + '</span></button>').join('')
       + '</div></div>';
   }
 
@@ -251,10 +509,17 @@ function buildBlocks(g) {
   };
 
   const head = g.kind === 'soft' ? 'Available Formats'
-    : g.kind === 'collection' ? 'All Sets in This Series' : 'Available Colors';
+    : g.kind === 'collection' ? 'All Sets in This Series'
+      : g.kind === 'identity' ? 'All Versions of This Model' : 'Available Colors';
   const list = '<section class="mp-variants"><h2 class="mp-block-h2">' + head + '</h2>'
     + '<ul class="mp-var-list">'
     + all.map((x, i) => '<li class="mp-var' + (i ? '' : ' is-main') + '">'
+      // Превью в строке: по одной подписи «Collection 7 · Rigged» не понять, что
+      // входит в набор. Картинка слева отвечает на это сразу.
+      + (previewOf(x.slug)
+        ? '<img class="mp-var-thumb" src="' + esc(previewOf(x.slug)) + '" alt=""'
+        + ' width="72" height="41" loading="lazy" decoding="async">'
+        : '<span class="mp-var-thumb mp-var-thumb-empty"></span>')
       + '<span class="mp-var-name">' + esc(uniqLabel(x))
       + (i ? '' : ' <span class="mp-var-badge">main</span>') + '</span>'
       + '<span class="mp-var-price">$' + x.price + '</span>'
@@ -294,8 +559,12 @@ function mergeInto(g) {
   html = html.replace(/<section class="mp-variants">[\s\S]*?<\/section>/g, '');
   const before = html;
   let { gallery, list, shots, priceText } = buildBlocks(g);
-  // берём ту галерею, где снимков больше
-  if (oldShots > shots) { gallery = oldGal; shots = oldShots; }
+  // Страховка «оставить галерею, где снимков больше» больше не нужна: превью
+  // берутся из постоянного индекса, а не со страниц вариантов. Хуже того, она
+  // вредила — держала разметку прошлого прогона, ещё без подписей к снимкам
+  // (у Ragdoll Cat старых 18 против нынешних 12 из-за потолка). Старую берём,
+  // только если новую собрать не из чего.
+  if (shots < 2 && oldShots >= 2) { gallery = oldGal; shots = oldShots; }
   if (shots < 2) return { ok: false, why: 'меньше двух превью' };
 
   // цена в характеристиках — диапазоном, если варианты стоят по-разному
@@ -306,12 +575,59 @@ function mergeInto(g) {
 
   // заголовок и H1 — на базовое имя без суффикса
   const baseEsc = esc(g.base);
+  // Что стояло в H1 ДО замены. Страницу пересобирают многократно, и во вкладке
+  // остаётся заголовок прошлого прогона, а не имя из выгрузки: у Lexus GX 550
+  // H1 уже был «Lexus GX 550», а вкладка держала «Lexus GX 550 2024».
+  const prevH1 = (html.match(/<h1 class="mp-h1">([\s\S]*?)<\/h1>/) || [])[1] || '';
   html = html.replace(/<h1 class="mp-h1">[\s\S]*?<\/h1>/, () => '<h1 class="mp-h1">' + baseEsc + '</h1>');
 
-  // галерея — сразу после героя
+  // Вкладка, соцпревью и хлебные крошки должны говорить то же, что H1. Иначе на
+  // странице «Mercedes-Benz 300SL» вкладка остаётся «…300SL Classic Sports Car Red»
+  // — это и разнобой для читателя, и разные заголовки для поиска на одной странице.
+  // Меняем и имя из выгрузки, и заголовок прошлого прогона — что найдётся.
+  // Длинные варианты первыми, иначе короткий съест часть длинного.
+  // Собираем заново, а не подменяем строку: карточку пересобирали несколько раз,
+  // и во вкладке мог остаться заголовок позапрошлого прогона, которого нет ни в
+  // выгрузке, ни в текущем H1. У Lexus GX 550 так и было — H1 уже верный, а
+  // вкладка держала «Lexus GX 550 2024». Хвост после «3D Model» (цена, имя сайта)
+  // сохраняем как есть.
+  const olds = [esc(g.main.name), prevH1].filter(x => x && x !== baseEsc)
+    .sort((a, b) => b.length - a.length);
+  const swap = s => { for (const o of olds) if (s.includes(o)) return s.split(o).join(baseEsc); return s; };
+  // Замена ТОЛЬКО функцией. Строкой нельзя: хвост заголовка содержит цену, и
+  // «$159» в строке замены читается как ссылка на группу 1 — заголовок размножался
+  // сам в себя («… 3D Model &#8212;  3D Model &#8212; … $159 | 3D Molier</title>59 |
+  // 3D Molier</title>»). Так испортились 4442 страницы.
+  // Хвост заголовка приклеивать нельзя: он начинается со слов «3D Model», а имя
+  // товара тоже бывает кончается на «3D Model» («Side Loading Forklift Truck
+  // Yellow 3D Model»). Каждый прогон дописывал ещё одно, и во вкладке набралось
+  // восемь повторов подряд. Собираем заголовок целиком, из имени и цены.
+  const titleName = baseEsc.replace(/\s*\b3d\s+models?\s*$/i, '');
+  const retitle = (re, open, close) => {
+    const m = html.match(re);
+    if (!m) return;
+    if (m[1] === undefined) { html = html.replace(re, swap); return; }
+    const price = (m[1].match(/\$([\d.,]+)/) || [])[1];
+    const withPrice = /\$[\d.,]+/.test(m[1]);
+    const built = open + titleName + ' 3D Model'
+      + (withPrice && price ? ' &#8212; $' + price : '') + ' | 3D Molier' + close;
+    html = html.replace(re, () => built);
+  };
+  retitle(/<title>[\s\S]*?(\s*3D Model[\s\S]*?)<\/title>/, '<title>', '</title>');
+  retitle(/<meta property="og:title" content="[^"]*?(\s*3D Model[^"]*?)"/, '<meta property="og:title" content="', '"');
+  retitle(/<meta name="twitter:title" content="[^"]*?(\s*3D Model[^"]*?)"/, '<meta name="twitter:title" content="', '"');
+  html = html.replace(/<span class="mp-bc-current">[\s\S]*?<\/span>/,
+    '<span class="mp-bc-current">' + baseEsc + '</span>');
+
+  // Галерея — ПОД большой картинкой, третьим элементом сетки героя. Раньше якорем
+  // был «</div> сразу за героем», но между ними стоит заглушка img-placeholder,
+  // совпадения не было, и срабатывал запасной вариант — полоса превью уезжала в
+  // правую колонку над заголовком. Место в первой колонке задаёт CSS.
   if (!html.includes('data-gallery')) {
-    html = html.replace(/(<img[^>]*class="mp-hero-img"[^>]*>\s*<\/div>)/, (m) => m + gallery);
-    if (!html.includes('data-gallery')) html = html.replace(/(<\/div>\s*)(<h1 class="mp-h1")/, (m, a, b) => a + gallery + b);
+    html = html.replace(/(<div class="mp-info-col">)/, m => gallery + m);
+    if (!html.includes('data-gallery')) {
+      html = html.replace(/(<img[^>]*class="mp-hero-img"[^>]*>\s*<\/div>)/, m => m + gallery);
+    }
   }
   // список вариантов — перед характеристиками
   if (!html.includes('mp-variants')) {
@@ -332,6 +648,7 @@ function mergeInto(g) {
 
 // ── ход работы ──
 const groups = [];
+if (!ONLY || ONLY === 'identity') groups.push(...buildIdentityGroups());
 if (!ONLY || ONLY === 'soft') groups.push(...buildGroups('soft'));
 if (!ONLY || ONLY === 'color') groups.push(...buildGroups('color'));
 if (!ONLY || ONLY === 'collection') groups.push(...buildGroups('collection'));
@@ -357,8 +674,24 @@ if (!ONLY || ONLY === 'collection') groups.push(...buildGroups('collection'));
 console.log('групп: ' + groups.length
   + '  (софт ' + groups.filter(g => g.kind === 'soft').length
   + ', цвет ' + groups.filter(g => g.kind === 'color').length
-  + ', наборы ' + groups.filter(g => g.kind === 'collection').length + ')');
+  + ', наборы ' + groups.filter(g => g.kind === 'collection').length
+  + ', техника ' + groups.filter(g => g.kind === 'identity').length + ')');
 console.log('страниц свернётся: ' + groups.reduce((s, g) => s + g.rest.length, 0));
+
+// Список групп прохода для глазной проверки:  --dry --list identity 20
+const li = process.argv.indexOf('--list');
+if (li !== -1) {
+  const kind = process.argv[li + 1] || 'identity';
+  const n = +process.argv[li + 2] || 15;
+  const gs = groups.filter(g => g.kind === kind).sort((a, b) => b.rest.length - a.rest.length);
+  console.log('\nгрупп «' + kind + '»: ' + gs.length
+    + ', свернётся ' + gs.reduce((s, g) => s + g.rest.length, 0));
+  for (const g of gs.slice(0, n)) {
+    console.log('\n[' + (g.rest.length + 1) + '] ' + g.base);
+    for (const x of [g.main, ...g.rest]) console.log('    $' + x.price + '  ' + x.name);
+  }
+  process.exit(0);
+}
 
 if (SAMPLE) {
   const g = groups.find(x => x.main.slug === SAMPLE) || groups.find(x => x.rest.length >= 2);
@@ -402,6 +735,52 @@ for (const g of groups) {
   if (merged % 500 === 0) { flush(); console.log('  объединено ' + merged + ', удалено ' + deleted); }
 }
 flush();
+
+// Индекс превью пополняем ДО выхода: страницы вариантов уже удалены, и в
+// следующий прогон их og:image взять будет неоткуда.
+if (!DRY && prevIdxAdded) {
+  fs.writeFileSync(PREVIEW_INDEX, JSON.stringify(prevIdx));
+  console.log('\nв индекс превью добавлено: ' + prevIdxAdded);
+}
+
+// ── уборка осиротевших блоков ───────────────────────────────────────────────
+// Когда появился проход по технике, часть цветовых групп лишилась участников и
+// исчезла. Их бывшие главные остались живы, но с блоком вариантов от прошлого
+// прогона: заголовок «2025 Straight Truck», а во вкладке и крошках «…Blue».
+// Снимаем блок и возвращаем имя из выгрузки.
+if (!DRY) {
+  const mains = new Set(groups.map(g => g.main.slug));
+  let cleaned = 0;
+  for (const slug of fs.readdirSync(MODELS)) {
+    if (mains.has(slug)) continue;
+    const file = path.join(MODELS, slug, 'index.html');
+    let h;
+    try { h = fs.readFileSync(file, 'utf8'); } catch (e) { continue; }
+    if (!h.includes('<section class="mp-variants">')) continue;
+    const real = (bySlug.get(slug) || {}).name;
+    if (!real) continue;
+    const out0 = h.replace(/<div class="mp-gallery" data-gallery>[\s\S]*?<\/div><\/div>/g, '')
+      .replace(/<section class="mp-variants">[\s\S]*?<\/section>/g, '');
+    const nameEsc = esc(real);
+    const shortName = nameEsc.replace(/\s*3d\s+models?\s*$/i, '');
+    let out = out0.replace(/<h1 class="mp-h1">[\s\S]*?<\/h1>/, '<h1 class="mp-h1">' + nameEsc + '</h1>')
+      .replace(/<span class="mp-bc-current">[\s\S]*?<\/span>/, '<span class="mp-bc-current">' + nameEsc + '</span>')
+      // Имя тоже может кончаться на «3D Model» — приклеивать хвост нельзя,
+      // иначе слова копятся с каждым прогоном. Собираем заголовок заново.
+      .replace(/<title>[\s\S]*?\s*3D Model([\s\S]*?)<\/title>/, (m, tail) => {
+        const pr = (tail.match(/\$([\d.,]+)/) || [])[1];
+        return '<title>' + shortName + ' 3D Model'
+          + (pr ? ' &#8212; $' + pr : '') + ' | 3D Molier</title>';
+      })
+      .replace(/<meta property="og:title" content="[^"]*?\s*3D Model[^"]*"/,
+        () => '<meta property="og:title" content="' + shortName + ' 3D Model | 3D Molier"');
+    if (out === h) continue;
+    if (!out.includes('<a href="/categories/other/" role="menuitem"')) continue;
+    fs.writeFileSync(file, out);
+    cleaned++;
+  }
+  if (cleaned) console.log('\nосиротевших блоков убрано: ' + cleaned);
+}
 
 console.log('\nобъединено групп: ' + merged);
 console.log('удалено страниц:  ' + deleted);

@@ -27,6 +27,26 @@ const map = JSON.parse(fs.readFileSync(mapFile, 'utf8'));
 const dead = Object.keys(map);
 console.log('свёрнутых слагов: ' + dead.length);
 
+// Карта бывает цепочкой и даже кольцом: правила менялись между прогонами, и одна
+// и та же карточка успевала побыть и главной, и вариантом (A -> B, B -> A, обе
+// удалены). Разворачиваем цепочку до ЖИВОЙ страницы, с защитой от зацикливания;
+// если по пути живой нет — берём живую из того же кольца.
+const alive = new Set(fs.readdirSync(path.join(ROOT, 'models')));
+const resolved = new Map();
+function resolve(slug) {
+  if (resolved.has(slug)) return resolved.get(slug);
+  const seen = [];
+  let cur = slug;
+  while (cur && !alive.has(cur) && !seen.includes(cur)) { seen.push(cur); cur = map[cur]; }
+  const dest = (cur && alive.has(cur)) ? cur : (seen.find(x => alive.has(x)) || null);
+  for (const s of seen) resolved.set(s, dest);
+  resolved.set(slug, dest);
+  return dest;
+}
+let cyclic = 0;
+for (const s of dead) if (!resolve(s)) cyclic++;
+if (cyclic) console.log('  без живой цели: ' + cyclic);
+
 // Обходить 68 тысяч страниц регуляркой по каждому из 18 тысяч слагов нельзя —
 // это часы. Вместо этого вытаскиваем ссылки со страницы и сверяем по карте.
 const LINK = /href="\/models\/([^"\/]+)\//g;
@@ -59,8 +79,9 @@ for (const f of targets) {
 
   let changed = 0;
   const out = html.replace(LINK, (m, slug) => {
-    const to = map[slug];
-    if (!to) return m;
+    if (alive.has(slug)) return m;              // страница на месте, трогать нечего
+    const to = resolve(slug);
+    if (!to || to === slug) return m;
     changed++;
     return 'href="/models/' + to + '/';
   });

@@ -25,7 +25,41 @@ const DRY = process.argv.includes('--dry');
 const fixHeading = h => h
   .replace(/\$1<\/h2>/g, '<h2 class="mp-block-h2">Specifications</h2>')
   .replace(/<h2 class="mp-block-h2">Specifications<\/h2>\s*<h2 class="mp-block-h2">Specifications<\/h2>/g,
-    '<h2 class="mp-block-h2">Specifications</h2>');
+    '<h2 class="mp-block-h2">Specifications</h2>')
+  // Второй след того же литерала: там, где стоял открывающий тег таблицы
+  // характеристик, осталось «$1>» — таблица разваливалась в сплошной текст
+  // («$1>ModelSharks CollectionCategory…»). Таких страниц 196.
+  .replace(/\$1>\s*<tbody/g, '<table class="mp-spec-table"><tbody');
+
+// Заголовок вкладки, размноженный подстановкой цены. В строке замены «$159»
+// читается как ссылка на группу 1, и заголовок вставлял сам себя по кругу:
+// «… 3D Model &#8212;  3D Model &#8212; … $159 | 3D Molier</title>59 | 3D Molier</title>».
+// Собираем заново из H1 и цены, хвостовой мусор после первого </title> срезаем.
+// Второй вид того же накопления: имя товара само кончается на «3D Model», хвост
+// заголовка приклеивался к нему, и слова копились — «… Yellow 3D Model 3D Model
+// 3D Model …» (746 страниц). Ловим оба вида: и повтор слов, и мусор после </title>.
+function fixTitle(h) {
+  const m = h.match(/<title>([\s\S]*?)<\/title>((?:[^<]*<\/title>)*)/);
+  if (!m) return h;
+  const doubled = /(?:3D Model\s*){2,}/i.test(m[1]) || /3D Model &#8212;[\s\S]*3D Model/.test(m[1]);
+  if (!doubled && !m[2]) return h;
+  const h1 = (h.match(/<h1 class="mp-h1">([^<]*)<\/h1>/) || [])[1];
+  if (!h1) return h;
+  const name = h1.replace(/\s*\b3d\s+models?\s*$/i, '');
+  const price = (m[1].match(/\$([\d.,]+)/) || [])[1];
+  const clean = '<title>' + name + ' 3D Model'
+    + (price ? ' &#8212; $' + price : '') + ' | 3D Molier</title>';
+  return h.replace(m[0], () => clean);
+}
+
+// og:title и twitter:title копили те же повторы.
+function fixMetaTitle(h) {
+  return h.replace(/(<meta (?:property="og:title"|name="twitter:title") content=")([^"]*)(")/g,
+    (all, open, val, close) => {
+      if (!/(?:3D Model\s*){2,}/i.test(val)) return all;
+      return open + val.replace(/(?:\s*3D Model){2,}/i, ' 3D Model') + close;
+    });
+}
 
 // ── 2. дубли в блоке похожих ──
 function dedupeRelated(h, selfSlug) {
@@ -95,7 +129,7 @@ function sortVariants(h) {
 
 // ── обход ──
 const slugs = fs.readdirSync(MODELS);
-let touched = 0, headings = 0, deduped = 0, sorted = 0, titles = 0, checked = 0;
+let touched = 0, headings = 0, deduped = 0, sorted = 0, titles = 0, checked = 0, titlesFixed = 0;
 for (const s of slugs) {
   const f = path.join(MODELS, s, 'index.html');
   let h;
@@ -103,7 +137,9 @@ for (const s of slugs) {
   if (++checked % 20000 === 0) console.log('  ' + checked + '/' + slugs.length + '  исправлено ' + touched);
 
   const before = h;
-  const a = fixHeading(h); if (a !== h) headings++;
+  const a0 = fixHeading(h); if (a0 !== h) headings++;
+  const am = fixTitle(a0);
+  const a = fixMetaTitle(am); if (a !== a0) titlesFixed++;
   const b = dedupeRelated(a, s); if (b !== a) deduped++;
   const t = fixSeriesTitle(b); if (t !== b) titles++;
   const c = sortVariants(t); if (c !== t) sorted++;
@@ -123,3 +159,4 @@ console.log('  заголовок Specifications восстановлен: ' + h
 console.log('  дублей в блоке похожих убрано:         ' + deduped);
 console.log('  списков вариантов упорядочено:         ' + sorted);
 console.log('  заголовков серий поправлено:           ' + titles);
+console.log('  вкладок восстановлено:                 ' + titlesFixed);

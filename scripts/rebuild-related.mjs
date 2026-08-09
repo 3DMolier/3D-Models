@@ -40,8 +40,36 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(
 // слова названия без служебных — по ним и меряем схожесть
 const STOP = new Set(['3d', 'model', 'models', 'the', 'and', 'for', 'with', 'of', 'a', 'an', 'in', 'on',
   'rigged', 'rigid', 'animated', 'pose', 'collection', 'set', 'new', 'old', 'blue', 'red', 'green',
-  'black', 'white', 'grey', 'gray', 'silver', 'gold', 'yellow', 'orange', 'pink', 'purple', 'brown']);
+  'black', 'white', 'grey', 'gray', 'silver', 'gold', 'yellow', 'orange', 'pink', 'purple', 'brown',
+  // Названия софта и технические слова — это не тема модели. Из-за них «African
+  // Animals … for Maya» подбирал «African American Boxer … for Maya»: общим было
+  // слово maya, которое есть у 384 карточек и не значит ничего.
+  'maya', 'cinema', 'c4d', 'max', 'blender', 'unity', 'unreal', 'houdini', 'modo', 'lightwave',
+  'sketchup', 'vray', 'corona', 'obj', 'fbx', 'low', 'high', 'poly', 'polygon', 'game', 'ready',
+  'pbr', 'realistic', 'detailed', 'simplified', 'simple', 'version', 'sets', 'pack', 'bundle', 'kit']);
 const words = n => new Set(String(n).toLowerCase().match(/[a-z]{3,}/g)?.filter(w => !STOP.has(w)) || []);
+
+// «Отпечаток» модели: имя без маркеров исполнения. Две записи с одинаковым
+// отпечатком — одна и та же модель, и рядом в блоке им стоять нельзя, даже если
+// объединение их почему-то не свело. Именно так в блоке оказывались
+// «African Animals Rigged for Maya Collection» и «… for Cinema Collection».
+const VARIANT_MARKS = [
+  // Идёт первым: иначе отдельное «Simple» снимется раньше, а «Interior» останется,
+  // и «Mercedes Benz 350 SE Blue Simple Interior» встанет рядом с «… Blue».
+  // Только в связке — одинокое «Interior» бывает самим предметом («Office Interior»).
+  /\s*\b(?:simple|basic|full|detailed|no)\s+interior\b\s*/ig,
+  /\s+for\s+(maya|cinema\s*4d|cinema|c4d|blender|3ds\s*max|max|unity|unreal|houdini|modo|lightwave|sketchup)\b/ig,
+  /\s*\b(?:rigged|rigid|animated|fur|simplified|simple)\b\s*/ig,
+  /\s*\b(?:t[\s-]?pose|standing|sitting|walking|running|swimming|flying|jumping|lying|neutral|eating|pose)\b\s*/ig,
+  /\s+(?:sand|khaki|green|black|white|red|blue|yellow|orange|grey|gray|silver|gold|brown|camo|beige|pink|purple)\s*$/ig,
+  /\s+([1-9]|1\d|20)\s*$/g,
+  /\s*\b3d\s+models?\b\s*/ig,
+];
+function fingerprint(name) {
+  let s = String(name || '');
+  for (const re of VARIANT_MARKS) s = s.replace(re, ' ');
+  return s.replace(/\s{2,}/g, ' ').trim().toLowerCase();
+}
 
 const byCat = new Map();
 const wordsOf = new Map();
@@ -83,13 +111,24 @@ function card(slug) {
 // перебиралась вся её категория, а в «Other» их больше десяти тысяч — прогон
 // не укладывался и в десять минут. Теперь смотрим только тех, кто делит слово.
 const byWord = new Map();
+const df = new Map();                          // в скольких названиях встречается слово
 for (const [slug, w] of wordsOf) {
   for (const x of w) {
+    df.set(x, (df.get(x) || 0) + 1);
     if (!byWord.has(x)) byWord.set(x, []);
     const arr = byWord.get(x);
     if (arr.length < 400) arr.push(slug);      // очень частые слова не раздуваем
   }
 }
+
+// Вес слова — обратная частота. Считать совпадения штуками нельзя: у «African
+// Animals Collection» слово animals есть у 26 карточек, а african — у 258. При
+// равном счёте наверх лезли африканские люди вместо африканских животных.
+const N = wordsOf.size;
+const idf = w => Math.log(N / (df.get(w) || 1));
+const weight = ws => { let s = 0; for (const w of ws) s += idf(w); return s; };
+const weightOf = new Map();
+for (const [slug, w] of wordsOf) weightOf.set(slug, weight(w));
 
 // ── подбор: сперва по общим словам названия, потом по подкатегории, потом по категории ──
 function pick(slug) {
@@ -104,29 +143,64 @@ function pick(slug) {
       if (cand === slug) continue;
       const c = info.get(cand);
       if (!c || c.cat !== me.cat) continue;    // держимся своей категории
-      hits.set(cand, (hits.get(cand) || 0) + 1);
+      hits.set(cand, (hits.get(cand) || 0) + idf(x));
     }
   }
+  // Взвешенная мера Жаккара: важно не только сколько слов совпало, но и насколько
+  // кандидат сам «про то же». «African Mammals Collection» из двух слов ближе, чем
+  // «African American Boxer Red Suit», где общее слово тонет среди чужих.
+  const myW = weightOf.get(slug) || 1;
   const scored = [];
-  for (const [cand, common] of hits) {
-    const sub = (info.get(cand) || {}).sub === me.sub ? 1 : 0;
-    scored.push({ cand, score: common * 10 + sub });
+  for (const [cand, shared] of hits) {
+    const candW = weightOf.get(cand) || 1;
+    const sim = shared / (myW + candW - shared);
+    const sub = (info.get(cand) || {}).sub && (info.get(cand) || {}).sub === me.sub ? 0.01 : 0;
+    scored.push({ cand, score: sim + sub });
   }
   scored.sort((a, b) => b.score - a.score);
 
+  // Один отпечаток — одна карточка в блоке. Отсекаем и совпадение с самой страницей:
+  // её варианты уже перечислены выше, в списке форматов.
+  const usedPrints = new Set([fingerprint(me.name)]);
   const out = [];
-  for (const s of scored) { if (out.length >= WANT) break; const c = card(s.cand); if (c) out.push(c); }
+  for (const s of scored) {
+    if (out.length >= WANT) break;
+    const fp = fingerprint((info.get(s.cand) || {}).name);
+    if (usedPrints.has(fp)) continue;
+    const c = card(s.cand);
+    if (!c) continue;
+    usedPrints.add(fp);
+    out.push(c);
+  }
   // добираем по категории, если схожих не хватило
   if (out.length < WANT) {
     const start = Math.abs([...slug].reduce((a, c) => a + c.charCodeAt(0), 0)) % pool.length;
     for (let k = 0; k < pool.length && out.length < WANT; k++) {
       const cand = pool[(start + k) % pool.length];
-      if (cand === slug || scored.some(x => x.cand === cand)) continue;
+      if (cand === slug) continue;
+      const fp = fingerprint((info.get(cand) || {}).name);
+      if (usedPrints.has(fp)) continue;
       const c = card(cand);
-      if (c) out.push(c);
+      if (!c) continue;
+      usedPrints.add(fp);
+      out.push(c);
     }
   }
   return out;
+}
+
+// Быстрая проверка подбора без прогона по всему каталогу:
+//   node scripts/rebuild-related.mjs --show slug1 slug2
+const shi = process.argv.indexOf('--show');
+if (shi !== -1) {
+  for (const s of process.argv.slice(shi + 1)) {
+    console.log('\n' + (info.get(s) || {}).name + '  [' + s.slice(0, 40) + ']');
+    for (const c of pick(s)) {
+      const m = c.match(/mp-rc-title">([^<]*)/);
+      console.log('   ' + (m ? m[1] : '?'));
+    }
+  }
+  process.exit(0);
 }
 
 let touched = 0, checked = 0, noGrid = 0, thin = 0;
