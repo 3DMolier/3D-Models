@@ -104,7 +104,10 @@ function buildGroups(kind) {
   const re = kind === 'soft' ? SOFT : (kind === 'collection' ? IDX : COLOR);
   const g = {};
   for (const r of rows) {
-    if (!fs.existsSync(path.join(MODELS, r.slug, 'index.html'))) continue;
+    // Существование страницы здесь НЕ проверяем. Раньше проверяли — и уже удалённые
+    // варианты выпадали из групп, а значит не попадали в карту «вариант -> главная».
+    // После обрыва 08.08 это оставило 6247 ссылок в никуда: страницы удалены, а чем
+    // их заменить, неизвестно. Отсутствие файла обрабатывается ниже, при слиянии.
     if (kind === 'collection' && !COLL.test(r.name)) continue;      // только наборы
     if (kind !== 'collection' && isColl(r.name)) continue;          // их разбирает свой проход
     if (kind === 'color' && SOFT.test(r.name)) continue;   // софт разбирается отдельно
@@ -231,7 +234,14 @@ function buildBlocks(g) {
 // ── применение к странице главной ──
 function mergeInto(g) {
   const file = path.join(MODELS, g.main.slug, 'index.html');
-  let html = fs.readFileSync(file, 'utf8');
+  // Читаем через try: слаг может оказаться главным в одной группе и вариантом в
+  // другой. 08.08.2026 такой случай (volkswagen-beetle-1966-rigged-red) обрушил
+  // прогон на середине — страница была удалена раньше, чем дошла очередь до её
+  // собственной группы. Ниже группы ещё и разводятся по claimed, но защита нужна.
+  let html;
+  try { html = fs.readFileSync(file, 'utf8'); }
+  catch (e) { return { ok: false, why: 'главной страницы уже нет' }; }
+  if (html.includes('mp-variants')) return { ok: false, why: 'уже объединена' };
   const before = html;
   const { gallery, list, shots, priceText } = buildBlocks(g);
   if (shots < 2) return { ok: false, why: 'меньше двух превью' };
@@ -272,6 +282,24 @@ if (!ONLY || ONLY === 'soft') groups.push(...buildGroups('soft'));
 if (!ONLY || ONLY === 'color') groups.push(...buildGroups('color'));
 if (!ONLY || ONLY === 'collection') groups.push(...buildGroups('collection'));
 
+// Один слаг не должен попасть в две группы: иначе он удаляется как вариант в первой,
+// а во второй оказывается главным — и группа рушится на чтении несуществующего файла.
+// Проходы идут в порядке приоритета: софт, затем цвет, затем наборы.
+{
+  const claimed = new Set();
+  const kept = [];
+  for (const g of groups) {
+    if (claimed.has(g.main.slug)) continue;
+    const rest = g.rest.filter(r => !claimed.has(r.slug));
+    if (!rest.length) continue;
+    claimed.add(g.main.slug);
+    for (const r of rest) claimed.add(r.slug);
+    kept.push({ ...g, rest });
+  }
+  groups.length = 0;
+  groups.push(...kept);
+}
+
 console.log('групп: ' + groups.length
   + '  (софт ' + groups.filter(g => g.kind === 'soft').length
   + ', цвет ' + groups.filter(g => g.kind === 'color').length
@@ -287,15 +315,24 @@ if (SAMPLE) {
   process.exit(0);
 }
 
+// Карту пишем ПО ХОДУ, а не в конце. 08.08.2026 прогон рухнул на середине, карта
+// не записалась вовсе — и починить ссылки на уже удалённые страницы стало нечем.
 let merged = 0, deleted = 0, skipped = 0; const reasons = {};
-const map = {};
+const MAP_FILE = path.join(ROOT, 'data', 'merged-variants.json');
+const map = (!DRY && fs.existsSync(MAP_FILE)) ? JSON.parse(fs.readFileSync(MAP_FILE, 'utf8')) : {};
+const flush = () => { if (!DRY) fs.writeFileSync(MAP_FILE, JSON.stringify(map, null, 1)); };
 for (const g of groups) {
+  // Соответствие «вариант -> главная» записываем ДО попытки слияния и независимо
+  // от её исхода. Иначе группы, уже объединённые прошлым прогоном, не попадут в
+  // карту — а их варианты с диска удалены, и чинить ссылки на них будет нечем.
+  const mainAlive = fs.existsSync(path.join(MODELS, g.main.slug, 'index.html'));
+  if (mainAlive) for (const r of g.rest) map[r.slug] = g.main.slug;
+
   const res = mergeInto(g);
   if (!res.ok) { skipped++; reasons[res.why] = (reasons[res.why] || 0) + 1; continue; }
   if (!DRY) fs.writeFileSync(path.join(MODELS, g.main.slug, 'index.html'), res.html);
   merged++;
   for (const r of g.rest) {
-    map[r.slug] = g.main.slug;
     const dir = path.join(MODELS, r.slug);
     if (!DRY) {
       try {
@@ -308,14 +345,15 @@ for (const g of groups) {
       } catch (e) { }
     } else deleted++;
   }
-  if (merged % 500 === 0) console.log('  объединено ' + merged + ', удалено ' + deleted);
+  if (merged % 500 === 0) { flush(); console.log('  объединено ' + merged + ', удалено ' + deleted); }
 }
+flush();
 
 console.log('\nобъединено групп: ' + merged);
 console.log('удалено страниц:  ' + deleted);
 if (skipped) console.log('пропущено групп:  ' + skipped + '  ' + JSON.stringify(reasons));
 if (!DRY) {
-  fs.writeFileSync(path.join(ROOT, 'data', 'merged-variants.json'), JSON.stringify(map, null, 1));
+  flush();
   console.log('\nкарта свёрнутых: data/merged-variants.json');
   console.log('ДАЛЬШЕ ОБЯЗАТЕЛЬНО:');
   console.log('  node scripts/build-category-hubs.mjs');
