@@ -113,9 +113,17 @@ function buildGroups(kind) {
     if (kind === 'color' && SOFT.test(r.name)) continue;   // софт разбирается отдельно
     // Для группы «софт» снимаем ещё Fur и Animated: мех, анимация и базовая версия —
     // одна и та же модель в разных исполнениях.
+    // Для наборов основу тоже чистим. Одна серия бывает названа по-разному:
+    // «African Animals 3D Models Collection 4» ($449) и «African Animals Collection 5»
+    // ($499) — это выпуски 4 и 5 одного ряда, цены идут непрерывно. Без чистки они
+    // попадали в разные группы. Слова «3D Models» и «Rigged» из основы убираем,
+    // при этом в списке вариантов они остаются видны в подписи.
     const base = (kind === 'soft'
       ? r.name.replace(re, '').replace(FUR, ' ').replace(ANIM, ' ').replace(POSE, ' ').replace(RIG, ' ').replace(/\s{2,}/g, ' ')
-      : r.name.replace(re, '')).trim();
+      : kind === 'collection'
+        ? r.name.replace(re, '').replace(SOFT, '').replace(/\s*\b3d\s+models?\b\s*/ig, ' ')
+          .replace(RIG, ' ').replace(/\s{2,}/g, ' ')
+        : r.name.replace(re, '')).trim();
     if (base.length < 8) continue;
     const key = base.toLowerCase();
     (g[key] = g[key] || { base, items: [] }).items.push(r);
@@ -182,7 +190,17 @@ function buildBlocks(g) {
       else if (hasRig(x.name)) bits.push('Rigged');
       return bits.join(' · ');
     }
-    if (g.kind === 'collection') return collLabel(x.name);
+    if (g.kind === 'collection') {
+      // Подпись должна различать выпуски РАЗНЫХ рядов внутри одной серии:
+      // «Collection 4» из ряда 3D Models и «Collection 4» из ряда Rigged — это
+      // разные товары с разной ценой, и по одной цифре их не отличить.
+      const bits = [collLabel(x.name)];
+      if (/\b3d\s+models?\b/i.test(x.name)) bits.push('3D Models');
+      if (hasRig(x.name)) bits.push('Rigged');
+      const sm = x.name.match(SOFT);
+      if (sm) bits.push(sm[1].replace(/\s+/g, ' ').replace(/\b\w/g, c => c.toUpperCase()));
+      return bits.join(' · ');
+    }
     const m = x.name.match(COLOR);
     return m ? m[1].replace(/\b\w/g, c => c.toUpperCase()) : g.base;
   };
@@ -241,9 +259,21 @@ function mergeInto(g) {
   let html;
   try { html = fs.readFileSync(file, 'utf8'); }
   catch (e) { return { ok: false, why: 'главной страницы уже нет' }; }
-  if (html.includes('mp-variants')) return { ok: false, why: 'уже объединена' };
+
+  // Уже объединённую карточку не пропускаем, а ПЕРЕСОБИРАЕМ: состав группы мог
+  // вырасти. Так и вышло с African Animals — после чистки основы от «3D Models»
+  // и «Rigged» серия выросла с 4 выпусков до 26, но старый блок мешал обновиться.
+  // Старую галерею запоминаем. Превью варианта читаются с его страницы, а она уже
+  // удалена прошлым прогоном — заново собрать столько же снимков не выйдет. Если
+  // новая галерея беднее старой, оставляем старую: терять снимки нельзя.
+  const oldGal = (html.match(/<div class="mp-gallery" data-gallery>[\s\S]*?<\/div><\/div>/) || [])[0] || '';
+  const oldShots = (oldGal.match(/mp-gal-thumb/g) || []).length;
+  html = html.replace(/<div class="mp-gallery" data-gallery>[\s\S]*?<\/div><\/div>/g, '');
+  html = html.replace(/<section class="mp-variants">[\s\S]*?<\/section>/g, '');
   const before = html;
-  const { gallery, list, shots, priceText } = buildBlocks(g);
+  let { gallery, list, shots, priceText } = buildBlocks(g);
+  // берём ту галерею, где снимков больше
+  if (oldShots > shots) { gallery = oldGal; shots = oldShots; }
   if (shots < 2) return { ok: false, why: 'меньше двух превью' };
 
   // цена в характеристиках — диапазоном, если варианты стоят по-разному
@@ -263,8 +293,10 @@ function mergeInto(g) {
   }
   // список вариантов — перед характеристиками
   if (!html.includes('mp-variants')) {
-    html = html.replace(/(<h2 class="mp-block-h2">\s*Specifications)/i, () => list + '$1');
-    if (!html.includes('mp-variants')) html = html.replace(/(<table class="mp-spec-table")/, () => list + '$1');
+    // В функции замены '$1' — ЛИТЕРАЛ, а не подстановка группы: из-за этого
+    // заголовок Specifications затирался строкой «$1» на 9158 страницах.
+    html = html.replace(/(<h2 class="mp-block-h2">\s*Specifications)/i, m => list + m);
+    if (!html.includes('mp-variants')) html = html.replace(/(<table class="mp-spec-table")/, m => list + m);
   }
 
   if (!html.includes('mp-variants')) return { ok: false, why: 'не нашёл, куда вставить список' };

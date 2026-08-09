@@ -18,10 +18,17 @@ const MODELS = path.join(ROOT, 'models');
 const DRY = process.argv.includes('--dry');
 
 // ── 1. заголовок Specifications ──
-const fixHeading = h => h.replace(/<\/section>\$1<\/h2>/g, '</section><h2 class="mp-block-h2">Specifications</h2>');
+// Литерал «$1» стоит там, где был открывающий тег заголовка вместе со словом
+// Specifications, а закрывающий </h2> уцелел. Встречается в двух окружениях —
+// сразу после </section> и внутри <div class="mp-spec-block">, поэтому чиним
+// по самому литералу с закрывающим тегом, а не по соседям.
+const fixHeading = h => h
+  .replace(/\$1<\/h2>/g, '<h2 class="mp-block-h2">Specifications</h2>')
+  .replace(/<h2 class="mp-block-h2">Specifications<\/h2>\s*<h2 class="mp-block-h2">Specifications<\/h2>/g,
+    '<h2 class="mp-block-h2">Specifications</h2>');
 
 // ── 2. дубли в блоке похожих ──
-function dedupeRelated(h) {
+function dedupeRelated(h, selfSlug) {
   const start = h.indexOf('Related 3D Models');
   if (start === -1) return h;
   const secStart = h.lastIndexOf('<section', start);
@@ -32,10 +39,13 @@ function dedupeRelated(h) {
   // карточка = <a href="/models/SLUG/" …> … </a>
   const cards = [...sec.matchAll(/<a href="\/models\/([^"\/]+)\/"[\s\S]*?<\/a>/g)];
   if (cards.length < 2) return h;
+  // Убираем повторы и ссылку на саму себя: после объединения карточки вариантов
+  // ведут на главную, и в блоке «похожие» появлялась ссылка страницы на себя же.
+  // Варианты и так перечислены выше, в списке форматов.
   const seen = new Set();
   let out = sec;
   for (const c of cards) {
-    if (seen.has(c[1])) out = out.replace(c[0], '');   // повтор того же адреса
+    if (c[1] === selfSlug || seen.has(c[1])) out = out.replace(c[0], '');
     else seen.add(c[1]);
   }
   return out === sec ? h : h.slice(0, secStart) + out + h.slice(secEnd + 10);
@@ -51,8 +61,10 @@ function sortVariants(h) {
   const key = li => {
     if (/is-main/.test(li)) return [-1, ''];                  // главный всегда первым
     const name = (li.match(/mp-var-name">([^<]*)/) || [])[1] || '';
-    const num = name.match(/(\d+)/);
-    return [num ? +num[1] : 9999, name];
+    // Номер берём ТОЛЬКО после слова Collection. Иначе первая цифра находилась
+    // в «3D Models», и подпись «Collection 7 · 3D Models» сортировалась как 3.
+    const num = name.match(/\bcollections?\s+(\d+)/i);
+    return [num ? +num[1] : 0, name];
   };
   const sorted = items.slice().sort((a, b) => {
     const ka = key(a), kb = key(b);
@@ -73,7 +85,7 @@ for (const s of slugs) {
 
   const before = h;
   const a = fixHeading(h); if (a !== h) headings++;
-  const b = dedupeRelated(a); if (b !== a) deduped++;
+  const b = dedupeRelated(a, s); if (b !== a) deduped++;
   const c = sortVariants(b); if (c !== b) sorted++;
   if (c === before) continue;
 
