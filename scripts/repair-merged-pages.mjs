@@ -51,7 +51,26 @@ function dedupeRelated(h, selfSlug) {
   return out === sec ? h : h.slice(0, secStart) + out + h.slice(secEnd + 10);
 }
 
-// ── 3. порядок вариантов ──
+// ── 3. заголовок серии ──
+// У карточек-серий заголовок остался от главной записи: «Rigged African Animals
+// Collection 7 for Maya» на карточке из 42 выпусков. Как название серии это
+// бессмыслица. Приводим к нормализованному виду — «African Animals Collection».
+const SOFT_T = /\s+for\s+(maya|cinema\s*4d|c4d|blender|3ds\s*max|max|unity|unreal|houdini|modo|lightwave|sketchup)\s*$/i;
+function fixSeriesTitle(h) {
+  if (!h.includes('All Sets in This Series')) return h;
+  const m = h.match(/<h1 class="mp-h1">([^<]*)<\/h1>/);
+  if (!m) return h;
+  const clean = m[1]
+    .replace(SOFT_T, '')
+    .replace(/\s+(?:[1-9]|1\d|20)\s*$/, '')
+    .replace(/\s*\b3d\s+models?\b\s*/ig, ' ')
+    .replace(/\s*\b(?:rigged|rigid)\b\s*/ig, ' ')
+    .replace(/\s{2,}/g, ' ').trim();
+  if (!clean || clean === m[1] || clean.length < 6) return h;
+  return h.replace(m[0], '<h1 class="mp-h1">' + clean + '</h1>');
+}
+
+// ── 4. порядок вариантов ──
 function sortVariants(h) {
   const m = h.match(/(<ul class="mp-var-list">)([\s\S]*?)(<\/ul>)/);
   if (!m) return h;
@@ -76,7 +95,7 @@ function sortVariants(h) {
 
 // ── обход ──
 const slugs = fs.readdirSync(MODELS);
-let touched = 0, headings = 0, deduped = 0, sorted = 0, checked = 0;
+let touched = 0, headings = 0, deduped = 0, sorted = 0, titles = 0, checked = 0;
 for (const s of slugs) {
   const f = path.join(MODELS, s, 'index.html');
   let h;
@@ -86,7 +105,8 @@ for (const s of slugs) {
   const before = h;
   const a = fixHeading(h); if (a !== h) headings++;
   const b = dedupeRelated(a, s); if (b !== a) deduped++;
-  const c = sortVariants(b); if (c !== b) sorted++;
+  const t = fixSeriesTitle(b); if (t !== b) titles++;
+  const c = sortVariants(t); if (c !== t) sorted++;
   if (c === before) continue;
 
   if (!c.includes('<a href="/categories/other/" role="menuitem"')) { console.log('СТОП: меню на ' + s); process.exit(1); }
@@ -102,3 +122,4 @@ console.log('\nстраниц изменено: ' + touched + (DRY ? '  (--dry)'
 console.log('  заголовок Specifications восстановлен: ' + headings);
 console.log('  дублей в блоке похожих убрано:         ' + deduped);
 console.log('  списков вариантов упорядочено:         ' + sorted);
+console.log('  заголовков серий поправлено:           ' + titles);

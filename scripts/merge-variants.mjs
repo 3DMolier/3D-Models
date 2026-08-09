@@ -63,7 +63,11 @@ const hasRig = n => /\b(rigged|rigid)\b/i.test(n);
 // а не к выпуску серии. Так под правило не попадает ничего спорного.
 const IDX = /\s+([1-9]|1\d|20)\s*$/;
 const COLL = /\bcollections?\s+([1-9]|1\d|20)\s*$|\bcollections?\s*$/i;
-const isColl = n => COLL.test(n);
+// Проверяем БЕЗ суффикса софта. Иначе «African Animals Rigged Collection 2 for Maya»
+// не опознавалось как коллекция (имя кончается на «for Maya»), уходило в проход по
+// софту и склеивалось там в пару Maya+Cinema 4D — вместо того чтобы войти в общую
+// серию. Так вокруг African Animals осталось девять мелких пар вместо одной карточки.
+const isColl = n => COLL.test(String(n).replace(SOFT, '').trim());
 const collLabel = n => {
   const m = n.match(/\b(collections?)\s*(\d{1,2})?\s*$/i);
   if (!m) return 'Collection';
@@ -108,7 +112,9 @@ function buildGroups(kind) {
     // варианты выпадали из групп, а значит не попадали в карту «вариант -> главная».
     // После обрыва 08.08 это оставило 6247 ссылок в никуда: страницы удалены, а чем
     // их заменить, неизвестно. Отсутствие файла обрабатывается ниже, при слиянии.
-    if (kind === 'collection' && !COLL.test(r.name)) continue;      // только наборы
+    // Через isColl, а не COLL напрямую: имя с суффиксом софта иначе не проходит
+    // ни сюда, ни в проход по софту — и товар выпадает из объединения совсем.
+    if (kind === 'collection' && !isColl(r.name)) continue;      // только наборы
     if (kind !== 'collection' && isColl(r.name)) continue;          // их разбирает свой проход
     if (kind === 'color' && SOFT.test(r.name)) continue;   // софт разбирается отдельно
     // Для группы «софт» снимаем ещё Fur и Animated: мех, анимация и базовая версия —
@@ -121,7 +127,10 @@ function buildGroups(kind) {
     const base = (kind === 'soft'
       ? r.name.replace(re, '').replace(FUR, ' ').replace(ANIM, ' ').replace(POSE, ' ').replace(RIG, ' ').replace(/\s{2,}/g, ' ')
       : kind === 'collection'
-        ? r.name.replace(re, '').replace(SOFT, '').replace(/\s*\b3d\s+models?\b\s*/ig, ' ')
+        // Порядок важен: сперва снимаем суффикс софта, и только потом индекс.
+        // У «African Animals Rigged Collection 2 for Maya» индекс стоит НЕ в конце,
+        // и при обратном порядке он оставался в основе — выпуск не попадал в серию.
+        ? r.name.replace(SOFT, '').replace(re, '').replace(/\s*\b3d\s+models?\b\s*/ig, ' ')
           .replace(RIG, ' ').replace(/\s{2,}/g, ' ')
         : r.name.replace(re, '')).trim();
     if (base.length < 8) continue;
@@ -148,7 +157,14 @@ function buildGroups(kind) {
       + (kind === 'soft' && hasFur(x.name) ? 8 : 0)
       + (kind === 'soft' && hasAnim(x.name) ? 4 : 0)
       + (kind === 'soft' && poseOf(x.name) ? 2 : 0)
-      + (kind === 'soft' && hasRig(x.name) ? 1 : 0);
+      + (kind === 'soft' && hasRig(x.name) ? 1 : 0)
+      // Для набора главной должна стать самая «чистая» запись серии: без софта,
+      // без индекса, без «Rigged» и «3D Models». Иначе карточку на 42 выпуска
+      // возглавляла «…Collection 7 for Maya» — как заголовок серии это бессмыслица.
+      + (kind === 'collection' && SOFT.test(x.name) ? 8 : 0)
+      + (kind === 'collection' && IDX.test(x.name.replace(SOFT, '')) ? 4 : 0)
+      + (kind === 'collection' && hasRig(x.name) ? 2 : 0)
+      + (kind === 'collection' && /\b3d\s+models?\b/i.test(x.name) ? 1 : 0);
     const main = grp.items.slice().sort((a, b) => (rank(a) - rank(b)) || (b.sales - a.sales))[0];
     const rest = grp.items.filter(x => x.slug !== main.slug);
     if (!rest.length) continue;
@@ -156,7 +172,13 @@ function buildGroups(kind) {
     // нормализованный ключ группы, из названия исчезнут Fur и Animated — а они там
     // могут быть по делу: у «Animated Flight Bhutan Glory Butterfly» неанимированной
     // версии не существует вовсе, и заголовок без Animated был бы просто неверным.
-    const title = main.name.replace(re, '').trim();
+    // Для серии заголовок — нормализованное имя ряда, а не имя главной записи.
+    // Самые «чистые» страницы серии удалены прошлыми прогонами, и главной остаётся
+    // случайная: карточку на 42 выпуска возглавляла «…Collection 7 for Maya».
+    // Как заголовок серии это бессмыслица, а «African Animals Collection» — верно.
+    const title = kind === 'collection'
+      ? grp.base
+      : main.name.replace(re, '').trim();
     out.push({ base: title, main, rest, kind });
   }
   return out;
