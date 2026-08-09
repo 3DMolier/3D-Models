@@ -98,9 +98,9 @@ window.imgErr=function(img){gaEvent('image_fallback_triggered',{src:img&&img.src
 // Галерея объединённой карточки: клик по миниатюре меняет крупное изображение.
 // Разметка статическая — без скрипта видны все снимки, просто не переключаются.
 (function(){
-  var gal = d.querySelector('[data-gallery]');
+  var gal = document.querySelector('[data-gallery]');
   if(!gal) return;
-  var hero = d.querySelector('.mp-hero-img');
+  var hero = document.querySelector('.mp-hero-img');
   if(!hero) return;
   gal.addEventListener('click', function(e){
     var btn = e.target.closest ? e.target.closest('.mp-gal-thumb') : null;

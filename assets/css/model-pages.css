@@ -281,3 +281,10 @@ a.chip { text-decoration: none; }
 .mp-var-link{color:#1659c9;text-decoration:none;font-weight:600;font-size:13px;white-space:nowrap}
 .mp-var-link:hover{text-decoration:underline}
 @media(max-width:520px){.mp-var{gap:6px}.mp-var-name{flex:1 1 100%}}
+
+/* ── Герой объединённой карточки ────────────────────────────────────────────
+   Рамка была 4:3 при overflow:hidden, а превью TurboSquid — 16:9. Машину
+   обрезало спереди и сзади. Приводим рамку к пропорции самих превью и
+   вписываем изображение целиком. */
+.mp-hero-frame{aspect-ratio:16/9}
+.mp-hero-img{width:100%;height:100%;object-fit:contain;display:block}
