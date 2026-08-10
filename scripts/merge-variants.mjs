@@ -190,6 +190,20 @@ function identityOf(r) {
   return { core: core.join(' '), years };
 }
 
+// Настоящая карточка, а не страница-перенаправление. Главной группы может быть
+// только настоящая: если выбрать заглушку, вставлять список вариантов некуда —
+// 1761 группа так и не слилась, молча, с пометкой «не нашёл, куда вставить».
+const CARD_HEAD = 400;
+const cardBuf = Buffer.alloc(CARD_HEAD);
+function isRealCard(slug) {
+  let fd;
+  try { fd = fs.openSync(path.join(MODELS, slug, 'index.html'), 'r'); } catch (e) { return false; }
+  try {
+    const n = fs.readSync(fd, cardBuf, 0, CARD_HEAD, 0);
+    return !/http-equiv="refresh"/.test(cardBuf.slice(0, n).toString('utf8'));
+  } finally { fs.closeSync(fd); }
+}
+
 // ── группировка ──
 function buildGroups(kind) {
   const re = kind === 'soft' ? SOFT : (kind === 'collection' ? IDX : COLOR);
@@ -265,7 +279,7 @@ function buildGroups(kind) {
     // (122 группы), карта не пополнялась, а на диске оставалась старая карточка.
     // Так две «African Animals … for Maya/Cinema Collection» и жили отдельно.
     const order = grp.items.slice().sort((a, b) => (rank(a) - rank(b)) || (b.sales - a.sales));
-    const main = order.find(x => fs.existsSync(path.join(MODELS, x.slug, 'index.html'))) || order[0];
+    const main = order.find(x => isRealCard(x.slug)) || order.find(x => fs.existsSync(path.join(MODELS, x.slug, 'index.html'))) || order[0];
     const rest = grp.items.filter(x => x.slug !== main.slug);
     if (!rest.length) continue;
     // Заголовок берём ОТ ГЛАВНОЙ карточки, сняв только суффикс софта. Если брать
@@ -333,6 +347,72 @@ function commonTitle(main, rest) {
   return meaningful ? title : identTitle(main.name);
 }
 
+// ── проход по Root ID из отчёта «Product Report» ────────────────────────────
+//
+// Root ID доказывает, что модели сделаны из одного исходника. Это снимает старое
+// ограничение: «Blue Sultana Grape Cluster» и «Sultana Blue Grape Cluster Lying»
+// по именам разные, по корню — одна модель.
+//
+// Но корень НЕ означает «одна карточка». Внутри одного корня законно лежат и сам
+// предмет, и его детали: в корне «Gas Pump» вместе с колонками лежат сопла, в
+// корне «Summer Workwear» — комплект и отдельно ботинки, каска, брюки. Поэтому:
+//   • детали (is_split из отчёта) из объединения исключаются, остаются своими
+//     карточками;
+//   • остальное сводится по набору слов имени без маркеров исполнения — набор,
+//     а не строка, поэтому перестановка слов не мешает.
+const REPORT = path.join(ROOT, 'data', 'product-report.json');
+const report = fs.existsSync(REPORT) ? JSON.parse(fs.readFileSync(REPORT, 'utf8')) : [];
+const byPid = new Map(report.map(r => [String(r.pid), r]));
+
+const ROOT_MARKS = [
+  SOFT,
+  /\b(rigged|rigid|animated|simplified|simple|lowpoly|low\s*poly|generic)\b/ig,
+  /\b(t[\s-]?pose|standing|sitting|walking|running|swimming|flying|jumping|lying|neutral|pose)\b/ig,
+  /\b(sand|khaki|green|black|white|red|blue|yellow|orange|grey|gray|silver|gold|brown|camo|camouflage|beige|pink|purple|maroon|bronze|copper)\b/ig,
+  /\b3d\s*(model|models)\b/ig,
+  /\b(19|20)\d{2}\b/g,
+];
+const ROOT_STOP = new Set(['the', 'a', 'an', 'and', 'of', 'with', 'for', 'in', 'on', 'to', 'by']);
+function rootPrint(name) {
+  let s = String(name || '').toLowerCase();
+  for (const re of ROOT_MARKS) s = s.replace(re, ' ');
+  const toks = s.replace(/[^a-z0-9]+/g, ' ').split(' ').filter(t => t && !ROOT_STOP.has(t));
+  return [...new Set(toks)].sort().join(' ');
+}
+
+function buildRootGroups() {
+  if (!report.length) return [];
+  const g = new Map();
+  for (const r of rows) {
+    const rep = byPid.get(String(r.id));
+    if (!rep || !rep.root) continue;
+    if (rep.split) continue;                 // деталь — своя карточка
+    if (isColl(r.name)) continue;            // наборы разбирает свой проход
+    const p = rootPrint(rep.name || r.name);
+    if (!p || p.length < 3) continue;
+    const key = rep.root + '|' + p;
+    if (!g.has(key)) g.set(key, []);
+    g.get(key).push(r);
+  }
+
+  const out = [];
+  for (const [, items] of g) {
+    if (items.length < 2) continue;
+    // Главная — самое «голое» исполнение; при равенстве решают продажи.
+    const rank = x => (SOFT.test(x.name) ? 16 : 0)
+      + (/\bsimplified\b/i.test(x.name) ? 8 : 0)
+      + (/\blow\s*poly\b/i.test(x.name) ? 4 : 0)
+      + (hasRig(x.name) ? 2 : 0)
+      + (poseOf(x.name) ? 1 : 0);
+    const order = items.slice().sort((a, b) => (rank(a) - rank(b)) || (b.sales - a.sales));
+    const main = order.find(x => isRealCard(x.slug)) || order.find(x => fs.existsSync(path.join(MODELS, x.slug, 'index.html'))) || order[0];
+    const rest = order.filter(x => x.slug !== main.slug);
+    if (!rest.length) continue;
+    out.push({ base: commonTitle(main, rest), main, rest, kind: 'root' });
+  }
+  return out;
+}
+
 function buildIdentityGroups() {
   const byCore = new Map();
   for (const r of rows) {
@@ -353,7 +433,7 @@ function buildIdentityGroups() {
       + (hasRig(x.name) ? 2 : 0)
       + (/\bsimple\s+interior\b/i.test(x.name) ? 1 : 0);
     const order = items.map(x => x.r).sort((a, b) => (rank(a) - rank(b)) || (b.sales - a.sales));
-    const main = order.find(x => fs.existsSync(path.join(MODELS, x.slug, 'index.html'))) || order[0];
+    const main = order.find(x => isRealCard(x.slug)) || order.find(x => fs.existsSync(path.join(MODELS, x.slug, 'index.html'))) || order[0];
     const rest = order.filter(x => x.slug !== main.slug);
     if (!rest.length) return;
     out.push({ base: commonTitle(main, rest), main, rest, kind: 'identity' });
@@ -426,7 +506,7 @@ function buildBlocks(g) {
       if (sm) bits.push(sm[1].replace(/\s+/g, ' ').replace(/\b\w/g, c => c.toUpperCase()));
       return bits.join(' · ');
     }
-    if (g.kind === 'identity') {
+    if (g.kind === 'identity' || g.kind === 'root') {
       // Подпись описывает исполнение: цвет, софт, оснастка, упрощение, Low Poly.
       const bits = [];
       const cm = x.name.match(COLOR_ANY_ONE);
@@ -455,7 +535,7 @@ function buildBlocks(g) {
       const m = x.gname.match(COLOR);
       return m ? m[1].replace(/\b\w/g, c => c.toUpperCase()) : 'Base';
     }
-    if (g.kind === 'identity') {
+    if (g.kind === 'identity' || g.kind === 'root') {
       const cm = x.name.match(COLOR_ANY_ONE);
       if (cm) return cm[1].replace(/\b\w/g, c => c.toUpperCase());
       const sm = x.name.match(SOFT);
@@ -510,7 +590,7 @@ function buildBlocks(g) {
 
   const head = g.kind === 'soft' ? 'Available Formats'
     : g.kind === 'collection' ? 'All Sets in This Series'
-      : g.kind === 'identity' ? 'All Versions of This Model' : 'Available Colors';
+      : (g.kind === 'identity' || g.kind === 'root') ? 'All Versions of This Model' : 'Available Colors';
   const list = '<section class="mp-variants"><h2 class="mp-block-h2">' + head + '</h2>'
     + '<ul class="mp-var-list">'
     + all.map((x, i) => '<li class="mp-var' + (i ? '' : ' is-main') + '">'
@@ -648,6 +728,7 @@ function mergeInto(g) {
 
 // ── ход работы ──
 const groups = [];
+if (!ONLY || ONLY === 'root') groups.push(...buildRootGroups());
 if (!ONLY || ONLY === 'identity') groups.push(...buildIdentityGroups());
 if (!ONLY || ONLY === 'soft') groups.push(...buildGroups('soft'));
 if (!ONLY || ONLY === 'color') groups.push(...buildGroups('color'));
@@ -675,7 +756,8 @@ console.log('групп: ' + groups.length
   + '  (софт ' + groups.filter(g => g.kind === 'soft').length
   + ', цвет ' + groups.filter(g => g.kind === 'color').length
   + ', наборы ' + groups.filter(g => g.kind === 'collection').length
-  + ', техника ' + groups.filter(g => g.kind === 'identity').length + ')');
+  + ', техника ' + groups.filter(g => g.kind === 'identity').length
+  + ', по Root ID ' + groups.filter(g => g.kind === 'root').length + ')');
 console.log('страниц свернётся: ' + groups.reduce((s, g) => s + g.rest.length, 0));
 
 // Список групп прохода для глазной проверки:  --dry --list identity 20
