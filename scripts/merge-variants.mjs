@@ -509,8 +509,11 @@ function buildBlocks(g) {
     if (g.kind === 'identity' || g.kind === 'root') {
       // Подпись описывает исполнение: цвет, софт, оснастка, упрощение, Low Poly.
       const bits = [];
-      const cm = x.name.match(COLOR_ANY_ONE);
-      if (cm) bits.push(cm[1].replace(/\b\w/g, c => c.toUpperCase()));
+      // Цветов в названии бывает несколько: у фески свой цвет у шапки и свой у
+      // кисточки. Берём ВСЕ — иначе двенадцать вариантов получают подписи «Black»
+      // и «Black (2)», по которым ничего не выбрать.
+      const cs = [...new Set((x.name.match(COLOR_ANY) || []).map(c => c.toLowerCase()))];
+      if (cs.length) bits.push(cs.map(c => c.replace(/\b\w/g, ch => ch.toUpperCase())).join(' + '));
       const sm = x.name.match(SOFT);
       if (sm) bits.push(sm[1].replace(/\s+/g, ' ').replace(/\b\w/g, c => c.toUpperCase()));
       if (hasRig(x.name)) bits.push('Rigged');
@@ -536,8 +539,8 @@ function buildBlocks(g) {
       return m ? m[1].replace(/\b\w/g, c => c.toUpperCase()) : 'Base';
     }
     if (g.kind === 'identity' || g.kind === 'root') {
-      const cm = x.name.match(COLOR_ANY_ONE);
-      if (cm) return cm[1].replace(/\b\w/g, c => c.toUpperCase());
+      const cs2 = [...new Set((x.name.match(COLOR_ANY) || []).map(c => c.toLowerCase()))];
+      if (cs2.length) return cs2.map(c => c.replace(/\b\w/g, ch => ch.toUpperCase())).join('+');
       const sm = x.name.match(SOFT);
       if (sm) return sm[1].replace(/\s+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
       if (/\blow\s*poly\b/i.test(x.name)) return 'Low Poly';
