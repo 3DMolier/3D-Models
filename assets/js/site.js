@@ -119,3 +119,132 @@ window.imgErr=function(img){gaEvent('image_fallback_triggered',{src:img&&img.src
     btn.classList.add('is-on');
   });
 })();
+
+// ── Просмотр снимка во весь экран ────────────────────────────────────────────
+//
+// Исходники превью - 1920x1080, а в карточке они показываются в рамке около
+// 530 пикселей. Деталей втрое больше, чем видит посетитель, и для 3D-модели это
+// как раз то, ради чего её и разглядывают.
+//
+// Разметку страниц не трогаем: полный адрес уже стоит в src героя и в data-full
+// у миниатюр. Слой создаётся скриптом при первом открытии.
+//
+// По клику на сам снимок - приближение один к одному, а не закрытие: закрывать
+// кликом по картинке неудобно, в неё как раз тычут, чтобы рассмотреть. Закрытие -
+// по фону, по крестику и по Esc.
+(function(){
+  var hero = document.querySelector('.mp-hero-img');
+  if(!hero) return;
+  var gal = document.querySelector('[data-gallery]');
+
+  var box, img, cap, counter, prevBtn, nextBtn, lastFocus, zoom = false;
+
+  function shots(){
+    if(!gal) return [{ src: hero.getAttribute('src'), cap: '' }];
+    var list = [];
+    gal.querySelectorAll('.mp-gal-thumb').forEach(function(b){
+      var f = b.getAttribute('data-full');
+      if(f) list.push({ src: f, cap: b.getAttribute('data-cap') || '' });
+    });
+    return list.length ? list : [{ src: hero.getAttribute('src'), cap: '' }];
+  }
+  var items = [], idx = 0;
+
+  function build(){
+    box = document.createElement('div');
+    box.className = 'mp-lb';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', 'Full size preview');
+    box.innerHTML =
+      '<button type="button" class="mp-lb-close" aria-label="Close">&#10005;</button>' +
+      '<button type="button" class="mp-lb-nav mp-lb-prev" aria-label="Previous image">&#8249;</button>' +
+      '<button type="button" class="mp-lb-nav mp-lb-next" aria-label="Next image">&#8250;</button>' +
+      '<div class="mp-lb-stage"><img class="mp-lb-img" alt=""></div>' +
+      '<div class="mp-lb-bar"><span class="mp-lb-cap"></span><span class="mp-lb-count"></span></div>';
+    document.body.appendChild(box);
+    img = box.querySelector('.mp-lb-img');
+    cap = box.querySelector('.mp-lb-cap');
+    counter = box.querySelector('.mp-lb-count');
+    prevBtn = box.querySelector('.mp-lb-prev');
+    nextBtn = box.querySelector('.mp-lb-next');
+
+    box.addEventListener('click', function(e){
+      if(e.target === box || e.target.classList.contains('mp-lb-stage')) close();
+    });
+    box.querySelector('.mp-lb-close').addEventListener('click', close);
+    prevBtn.addEventListener('click', function(e){ e.stopPropagation(); step(-1); });
+    nextBtn.addEventListener('click', function(e){ e.stopPropagation(); step(1); });
+    img.addEventListener('click', function(e){ e.stopPropagation(); toggleZoom(); });
+
+    // Свайп на телефоне.
+    var x0 = null;
+    box.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, { passive: true });
+    box.addEventListener('touchend', function(e){
+      if(x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      if(Math.abs(dx) > 60) step(dx < 0 ? 1 : -1);
+      x0 = null;
+    }, { passive: true });
+  }
+
+  function show(){
+    var it = items[idx] || items[0];
+    if(!it) return;
+    img.src = it.src;
+    img.alt = it.cap || (document.querySelector('.mp-h1') || {}).textContent || '';
+    cap.textContent = it.cap || '';
+    counter.textContent = items.length > 1 ? (idx + 1) + ' / ' + items.length : '';
+    var many = items.length > 1;
+    prevBtn.hidden = !many; nextBtn.hidden = !many;
+    if(zoom) toggleZoom();
+  }
+  function step(d){
+    if(items.length < 2) return;
+    idx = (idx + d + items.length) % items.length;
+    show();
+  }
+  function toggleZoom(){
+    zoom = !zoom;
+    box.classList.toggle('is-zoom', zoom);
+    img.style.cursor = zoom ? 'zoom-out' : 'zoom-in';
+  }
+  function onKey(e){
+    if(e.key === 'Escape') close();
+    else if(e.key === 'ArrowLeft') step(-1);
+    else if(e.key === 'ArrowRight') step(1);
+  }
+  function open(startSrc){
+    if(!box) build();
+    items = shots();
+    idx = Math.max(0, items.findIndex(function(x){ return x.src === startSrc; }));
+    lastFocus = document.activeElement;
+    show();
+    box.classList.add('is-open');
+    document.documentElement.classList.add('mp-lb-lock');
+    document.addEventListener('keydown', onKey);
+    box.querySelector('.mp-lb-close').focus();
+  }
+  function close(){
+    if(!box) return;
+    box.classList.remove('is-open', 'is-zoom');
+    zoom = false;
+    document.documentElement.classList.remove('mp-lb-lock');
+    document.removeEventListener('keydown', onKey);
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  hero.style.cursor = 'zoom-in';
+  hero.addEventListener('click', function(){ open(hero.getAttribute('src')); });
+
+  // С клавиатуры герой тоже должен открываться.
+  var frame = hero.closest ? hero.closest('.mp-hero-frame') : null;
+  if(frame){
+    frame.setAttribute('tabindex', '0');
+    frame.setAttribute('role', 'button');
+    frame.setAttribute('aria-label', 'Open full size preview');
+    frame.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(hero.getAttribute('src')); }
+    });
+  }
+})();

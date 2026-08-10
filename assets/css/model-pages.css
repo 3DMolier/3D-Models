@@ -270,6 +270,38 @@ a.chip { text-decoration: none; }
 .mp-gal-thumb:focus-visible{outline:2px solid #1659c9;outline-offset:2px}
 
 /* ── Список вариантов: форматы или расцветки ── */
+/* ── Просмотр снимка во весь экран ──────────────────────────────────────────
+   Исходники 1920x1080 показываются в рамке ~530px. Слой открывает их целиком.
+   Разметка страниц не меняется: слой создаёт скрипт. */
+.mp-lb{position:fixed;inset:0;z-index:9999;display:none;background:rgba(12,12,14,.94);
+  align-items:center;justify-content:center}
+.mp-lb.is-open{display:flex}
+.mp-lb-lock{overflow:hidden}
+.mp-lb-stage{max-width:96vw;max-height:88vh;display:flex;align-items:center;justify-content:center}
+.mp-lb-img{max-width:96vw;max-height:88vh;width:auto;height:auto;object-fit:contain;
+  cursor:zoom-in;display:block;border-radius:2px}
+/* Приближение один к одному: полотно становится прокручиваемым. */
+.mp-lb.is-zoom .mp-lb-stage{max-width:100vw;max-height:100vh;overflow:auto;width:100vw;height:100vh;
+  align-items:flex-start;justify-content:flex-start}
+.mp-lb.is-zoom .mp-lb-img{max-width:none;max-height:none;width:auto;height:auto}
+.mp-lb-close{position:absolute;top:14px;right:16px;width:40px;height:40px;border:0;border-radius:50%;
+  background:rgba(255,255,255,.12);color:#fff;font-size:17px;line-height:1;cursor:pointer}
+.mp-lb-close:hover{background:rgba(255,255,255,.22)}
+.mp-lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:64px;border:0;
+  background:rgba(255,255,255,.10);color:#fff;font-size:30px;line-height:1;cursor:pointer;border-radius:3px}
+.mp-lb-nav:hover{background:rgba(255,255,255,.2)}
+.mp-lb-prev{left:12px}
+.mp-lb-next{right:12px}
+.mp-lb-bar{position:absolute;left:0;right:0;bottom:14px;display:flex;gap:14px;justify-content:center;
+  align-items:center;color:#e5e7eb;font-size:13px;pointer-events:none;padding:0 16px}
+.mp-lb-count{opacity:.65;font-variant-numeric:tabular-nums}
+.mp-lb-close:focus-visible,.mp-lb-nav:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.mp-hero-frame:focus-visible{outline:2px solid #1659c9;outline-offset:3px}
+@media(max-width:640px){
+  .mp-lb-nav{width:38px;height:52px;font-size:24px}
+  .mp-lb-img,.mp-lb-stage{max-width:100vw;max-height:80vh}
+}
+
 /* Подпись к открытому крупному снимку и короткая подпись под каждой миниатюрой. */
 .mp-gal-cap{font-size:12px;color:#4b5563;margin:0 0 6px;min-height:16px;font-weight:600;
   letter-spacing:.01em}
