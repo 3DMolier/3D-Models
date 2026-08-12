@@ -73,6 +73,19 @@ for (let i = 0; i < pages; i++) {
   const links = part.map(s => `<li><a href="/models/${s}/">${esc(pretty(s))}</a></li>`).join('\n');
   const prev = n > 1 ? `<a href="/browse/${n - 1}/" rel="prev">&#8592; Previous</a>` : '';
   const next = n < pages ? `<a href="/browse/${n + 1}/" rel="next">Next &#8594;</a>` : '';
+
+  // Плоская нумерация. Раньше со страницы вели только «назад» и «вперёд», и до
+  // последней из 174 приходилось идти 174 клика - обход туда практически не
+  // доходил, а 6612 карточек держались только на этих страницах. Теперь на
+  // каждой странице есть соседи, десятки и края: до любой страницы два-три клика.
+  const jumps = new Set([1, pages]);
+  for (let d = -3; d <= 3; d++) jumps.add(n + d);          // соседи
+  for (let p = 10; p <= pages; p += 10) jumps.add(p);      // каждая десятая
+  const ladder = [...jumps]
+    .filter(p => p >= 1 && p <= pages && p !== n)
+    .sort((a, b) => a - b)
+    .map(p => `<a href="/browse/${p}/">${p}</a>`)
+    .join(' ');
   const body = `<section class="page-section">
   <div class="max-w-7xl mx-auto">
     <nav aria-label="Breadcrumb"><a href="/">Home</a> &#8250; <a href="/browse/">All Models</a> &#8250; Page ${n}</nav>
@@ -81,7 +94,9 @@ for (let i = 0; i < pages; i++) {
     <ul class="browse-list">
 ${links}
     </ul>
-    <nav class="browse-pagination">${prev} ${next} &#183; <a href="/browse/">All pages</a></nav>
+    <nav class="browse-pagination" aria-label="Pagination">${prev} ${next} &#183; <a href="/browse/">All pages</a>
+      <span class="browse-jumps">${ladder}</span>
+    </nav>
   </div>
 </section>`;
   const rel = (n > 1 ? `<link rel="prev" href="${BASE}/browse/${n - 1}/">` : '') +
