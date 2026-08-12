@@ -48,13 +48,29 @@ writeUrlset('sitemap-categories.xml', cats.map(c => urlEntry(`${BASE}/categories
 // Раньше этим двум файлам правилась только дата, а список URL оставался прежним.
 // 06.08.2026 после удаления 23 коллекций-дублей в сайтмапе остались все 20 адресов,
 // из которых 17 отдавали 404. Теперь список собирается с диска, как у категорий.
+// Страницы-перенаправления в сайтмап не попадают: у 19 старых подборок
+// (/collections/best-vehicle-3d-models/ и т.п.) на месте остался только meta
+// refresh на новую тему, и звать туда обход незачем.
+const isRedirectStub = p => {
+  try { return /http-equiv="refresh"/i.test(fs.readFileSync(p, 'utf8').slice(0, 400)); }
+  catch { return false; }
+};
 for (const [dir, file, freq, prio] of [
   ['collections', 'sitemap-collections.xml', 'weekly', '0.7'],
   ['industries', 'sitemap-industries.xml', 'monthly', '0.6'],
 ]) {
-  const items = dirsWithIndex(dir);
-  const entries = [urlEntry(`${BASE}/${dir}/`, freq, prio)]
-    .concat(items.map(x => urlEntry(`${BASE}/${dir}/${x}/`, freq, prio)));
+  const items = dirsWithIndex(dir).filter(x => !isRedirectStub(path.join(ROOT, dir, x, 'index.html')));
+  const entries = [urlEntry(`${BASE}/${dir}/`, freq, prio)];
+  for (const x of items) {
+    entries.push(urlEntry(`${BASE}/${dir}/${x}/`, freq, prio));
+    // страницы пагинации темы, если они есть
+    const pageDir = path.join(ROOT, dir, x, 'page');
+    if (!fs.existsSync(pageDir)) continue;
+    for (const n of fs.readdirSync(pageDir).map(Number).filter(n => n > 0).sort((a, b) => a - b)) {
+      if (!fs.existsSync(path.join(pageDir, String(n), 'index.html'))) continue;
+      entries.push(urlEntry(`${BASE}/${dir}/${x}/page/${n}/`, freq, '0.5'));
+    }
+  }
   writeUrlset(file, entries);
   console.log(`${dir} на диске: ${items.length}  ->  ${file}: ${entries.length} URL`);
 }
