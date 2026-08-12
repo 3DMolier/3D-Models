@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="/assets/css/critical-fonts.css?v=32">
 <link rel="stylesheet" href="/assets/css/fonts.css?v=32">
 <link rel="stylesheet" href="/assets/css/styles.min.css?v=32">
+<style>.coll-idx-cover{margin:-1px -1px 14px;border-radius:10px 10px 0 0;overflow:hidden;aspect-ratio:16/9;background:#f3f4f6}.coll-idx-cover img{width:100%;height:100%;object-fit:cover;display:block}@media(prefers-color-scheme:dark){.coll-idx-cover{background:#1f2229}}</style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://3dmolierstudio.com/"}, {"@type": "ListItem", "position": 2, "name": "Collections", "item": "https://3dmolierstudio.com/collections/"}]}</script>
 </head>
 <body>
@@ -37,16 +38,7 @@
       <span class="nav-sep" aria-hidden="true"></span>
       <div class="nav-has-dropdown nav-has-mega" id="nav-cat-wrap">
         <button class="nav-link" id="nav-cat-btn" aria-haspopup="true" aria-expanded="false" aria-controls="nav-categories-menu">Categories <span class="nav-caret" aria-hidden="true">&#9662;</span></button>
-        <div class="nav-dropdown nav-mega" id="nav-categories-menu" role="menu">
-          <a href="/categories/vehicles/" role="menuitem" class="mega-item"><span class="mega-name">Vehicles</span><span class="mega-desc">cars, trucks, motorcycles</span></a>
-          <a href="/categories/aircraft/" role="menuitem" class="mega-item"><span class="mega-name">Aircraft</span><span class="mega-desc">airplanes, helicopters, drones</span></a>
-          <a href="/categories/military-vehicles/" role="menuitem" class="mega-item"><span class="mega-name">Military</span><span class="mega-desc">defense, tanks, equipment</span></a>
-          <a href="/categories/ships/" role="menuitem" class="mega-item"><span class="mega-name">Ships</span><span class="mega-desc">naval, cargo, yachts</span></a>
-          <a href="/categories/medical-3d-models/" role="menuitem" class="mega-item"><span class="mega-name">Medical</span><span class="mega-desc">anatomy, surgery, pharma</span></a>
-          <a href="/categories/industrial-equipment/" role="menuitem" class="mega-item"><span class="mega-name">Industrial</span><span class="mega-desc">machinery, HVAC, cranes</span></a>
-          <a href="/categories/architecture-landmarks/" role="menuitem" class="mega-item"><span class="mega-name">Architecture</span><span class="mega-desc">buildings, monuments</span></a>
-          <a href="/categories/other/" role="menuitem" class="mega-item"><span class="mega-name">Other</span><span class="mega-desc">characters, animals, props</span></a>
-        </div>
+        <div class="nav-dropdown nav-mega" role="menu" style="display:grid;grid-template-columns:repeat(3,minmax(150px,1fr));min-width:520px;gap:0 4px"><a href="/categories/vehicles/" role="menuitem" class="mega-item"><span class="mega-name">Vehicles</span></a><a href="/categories/aircraft/" role="menuitem" class="mega-item"><span class="mega-name">Aircraft</span></a><a href="/categories/military-vehicles/" role="menuitem" class="mega-item"><span class="mega-name">Military Vehicles</span></a><a href="/categories/weapons/" role="menuitem" class="mega-item"><span class="mega-name">Weapons</span></a><a href="/categories/tools/" role="menuitem" class="mega-item"><span class="mega-name">Tools</span></a><a href="/categories/ships/" role="menuitem" class="mega-item"><span class="mega-name">Ships</span></a><a href="/categories/animals-creatures/" role="menuitem" class="mega-item"><span class="mega-name">Animals & Creatures</span></a><a href="/categories/characters-people/" role="menuitem" class="mega-item"><span class="mega-name">Characters & People</span></a><a href="/categories/nature-plants/" role="menuitem" class="mega-item"><span class="mega-name">Nature & Plants</span></a><a href="/categories/medical-3d-models/" role="menuitem" class="mega-item"><span class="mega-name">Medical</span></a><a href="/categories/architecture-landmarks/" role="menuitem" class="mega-item"><span class="mega-name">Architecture</span></a><a href="/categories/furniture-interior/" role="menuitem" class="mega-item"><span class="mega-name">Furniture & Interior</span></a><a href="/categories/lighting/" role="menuitem" class="mega-item"><span class="mega-name">Lighting</span></a><a href="/categories/kitchen-tableware/" role="menuitem" class="mega-item"><span class="mega-name">Kitchen & Tableware</span></a><a href="/categories/food-beverages/" role="menuitem" class="mega-item"><span class="mega-name">Food & Beverages</span></a><a href="/categories/electronics-gadgets/" role="menuitem" class="mega-item"><span class="mega-name">Electronics</span></a><a href="/categories/industrial-equipment/" role="menuitem" class="mega-item"><span class="mega-name">Industrial</span></a><a href="/categories/containers-storage/" role="menuitem" class="mega-item"><span class="mega-name">Containers & Storage</span></a><a href="/categories/clothing-accessories/" role="menuitem" class="mega-item"><span class="mega-name">Clothing & Accessories</span></a><a href="/categories/sports-recreation/" role="menuitem" class="mega-item"><span class="mega-name">Sports & Recreation</span></a><a href="/categories/toys-games/" role="menuitem" class="mega-item"><span class="mega-name">Toys & Games</span></a><a href="/categories/musical-instruments/" role="menuitem" class="mega-item"><span class="mega-name">Musical Instruments</span></a><a href="/categories/signage-decor/" role="menuitem" class="mega-item"><span class="mega-name">Signage & Decor</span></a><a href="/categories/space-scifi/" role="menuitem" class="mega-item"><span class="mega-name">Space & Sci-Fi</span></a><a href="/categories/collections-sets/" role="menuitem" class="mega-item"><span class="mega-name">Collections & Sets</span></a><a href="/categories/other/" role="menuitem" class="mega-item"><span class="mega-name">Other</span></a></div>
       </div>
       <div class="nav-has-dropdown nav-has-mega" id="nav-ind-wrap">
         <button class="nav-link" id="nav-ind-btn" aria-haspopup="true" aria-expanded="false" aria-controls="nav-industries-menu">Industries <span class="nav-caret" aria-hidden="true">&#9662;</span></button>
@@ -79,16 +71,7 @@
   <a href="/catalog/">Top 1000 Models</a>
   <a href="/full-catalog/">Full 86K Catalog</a>
   <button class="nav-mobile-toggle" id="mob-cat-toggle" aria-expanded="false">Categories <span class="nav-caret">&#9662;</span></button>
-  <div class="nav-mobile-sub" id="mob-cat-sub">
-    <a href="/categories/vehicles/">Vehicles</a>
-    <a href="/categories/aircraft/">Aircraft</a>
-    <a href="/categories/military-vehicles/">Military</a>
-    <a href="/categories/ships/">Ships</a>
-    <a href="/categories/medical-3d-models/">Medical</a>
-    <a href="/categories/industrial-equipment/">Industrial</a>
-    <a href="/categories/architecture-landmarks/">Architecture</a>
-    <a href="/categories/other/">Other</a>
-  </div>
+  <div class="nav-mobile-sub" id="mob-cat-sub"><a href="/categories/vehicles/">Vehicles</a><a href="/categories/aircraft/">Aircraft</a><a href="/categories/military-vehicles/">Military Vehicles</a><a href="/categories/weapons/">Weapons</a><a href="/categories/tools/">Tools</a><a href="/categories/ships/">Ships</a><a href="/categories/animals-creatures/">Animals & Creatures</a><a href="/categories/characters-people/">Characters & People</a><a href="/categories/nature-plants/">Nature & Plants</a><a href="/categories/medical-3d-models/">Medical</a><a href="/categories/architecture-landmarks/">Architecture</a><a href="/categories/furniture-interior/">Furniture & Interior</a><a href="/categories/lighting/">Lighting</a><a href="/categories/kitchen-tableware/">Kitchen & Tableware</a><a href="/categories/food-beverages/">Food & Beverages</a><a href="/categories/electronics-gadgets/">Electronics</a><a href="/categories/industrial-equipment/">Industrial</a><a href="/categories/containers-storage/">Containers & Storage</a><a href="/categories/clothing-accessories/">Clothing & Accessories</a><a href="/categories/sports-recreation/">Sports & Recreation</a><a href="/categories/toys-games/">Toys & Games</a><a href="/categories/musical-instruments/">Musical Instruments</a><a href="/categories/signage-decor/">Signage & Decor</a><a href="/categories/space-scifi/">Space & Sci-Fi</a><a href="/categories/collections-sets/">Collections & Sets</a><a href="/categories/other/">Other</a></div>
   <button class="nav-mobile-toggle" id="mob-ind-toggle" aria-expanded="false">Industries <span class="nav-caret">&#9662;</span></button>
   <div class="nav-mobile-sub" id="mob-ind-sub">
     <a href="/industries/aerospace/">Aerospace</a>
@@ -147,6 +130,7 @@
       </div>
       <div class="model-grid">
         <a href="/collections/best-vehicle-3d-models/" class="coll-idx-card">
+              <div class="coll-idx-cover"><img src="https://p.turbosquid.com/ts-thumb/6I/BNMOUr/TV/tesla_model_3_002/jpg/1625762643/1920x1080/fit_q87/4e96882f57561f81063dbba6aa0893596a3b5ec1/tesla_model_3_002.jpg" alt="Best Vehicle 3D Models preview" width="800" height="450" loading="lazy" decoding="async"></div>
               <div class="coll-idx-head">
                 <div class="coll-idx-icon">🚗</div>
                 <div class="coll-idx-title">Best Vehicle 3D Models</div>
@@ -158,6 +142,7 @@
               </div>
             </a>
 <a href="/collections/best-military-vehicle-3d-models/" class="coll-idx-card">
+              <div class="coll-idx-cover"><img src="https://p.turbosquid.com/ts-thumb/34/5G5ITt/9uwrFmvi/sikorskyuh60blackhawkusmilitaryutilityhelicopterc4dmodel002/jpg/1477311781/1920x1080/fit_q87/0d8ee50de73df309fe971dd667db85a7ad6249e0/sikorskyuh60blackhawkusmilitaryutilityhelicopterc4dmodel002.jpg" alt="Best Military Vehicle 3D Models preview" width="800" height="450" loading="lazy" decoding="async"></div>
               <div class="coll-idx-head">
                 <div class="coll-idx-icon">🪖</div>
                 <div class="coll-idx-title">Best Military Vehicle 3D Models</div>
@@ -169,6 +154,7 @@
               </div>
             </a>
 <a href="/collections/best-aircraft-3d-models/" class="coll-idx-card">
+              <div class="coll-idx-cover"><img src="https://p.turbosquid.com/ts-thumb/pi/DyjmYF/wKi9psVt/airbusa320generic3dmodel002/jpg/1512451344/1920x1080/fit_q87/e890b6bbba43d7da1e344e2f760a87c9d8f25b9b/airbusa320generic3dmodel002.jpg" alt="Best Aircraft 3D Models preview" width="800" height="450" loading="lazy" decoding="async"></div>
               <div class="coll-idx-head">
                 <div class="coll-idx-icon">✈️</div>
                 <div class="coll-idx-title">Best Aircraft 3D Models</div>
@@ -180,6 +166,7 @@
               </div>
             </a>
 <a href="/collections/best-ship-3d-models/" class="coll-idx-card">
+              <div class="coll-idx-cover"><img src="https://p.turbosquid.com/ts-thumb/O3/bhZ45W/hTY2ccZL/qatartraditionalboatc4dmodel001/jpg/1545056663/1920x1080/fit_q87/dcd83f6d4101b05b7552cf7f3288bf819c7e701d/qatartraditionalboatc4dmodel001.jpg" alt="Best Ship 3D Models preview" width="800" height="450" loading="lazy" decoding="async"></div>
               <div class="coll-idx-head">
                 <div class="coll-idx-icon">🚢</div>
                 <div class="coll-idx-title">Best Ship 3D Models</div>
@@ -191,6 +178,7 @@
               </div>
             </a>
 <a href="/collections/best-industrial-equipment-3d-models/" class="coll-idx-card">
+              <div class="coll-idx-cover"><img src="https://p.turbosquid.com/ts-thumb/0L/t5K4g9/Vq/20_ft_iso_container_white_001/jpg/1626862042/1920x1080/fit_q87/21052b7a860ff95aeca4b001b17ed64015059e9a/20_ft_iso_container_white_001.jpg" alt="Best Industrial Equipment 3D Models preview" width="800" height="450" loading="lazy" decoding="async"></div>
               <div class="coll-idx-head">
                 <div class="coll-idx-icon">⚙️</div>
                 <div class="coll-idx-title">Best Industrial Equipment 3D Models</div>
@@ -202,6 +190,7 @@
               </div>
             </a>
 <a href="/collections/best-medical-3d-models/" class="coll-idx-card">
+              <div class="coll-idx-cover"><img src="https://p.turbosquid.com/ts-thumb/Af/2AjP8g/vfRF5a8r/malefullbodyanatomyandskinmb3dmodel002/jpg/1572784988/1920x1080/fit_q87/4f7061185e55a42558f6035ce2fc92145ef25ed1/malefullbodyanatomyandskinmb3dmodel002.jpg" alt="Best Medical 3D Models preview" width="800" height="450" loading="lazy" decoding="async"></div>
               <div class="coll-idx-head">
                 <div class="coll-idx-icon">🏥</div>
                 <div class="coll-idx-title">Best Medical 3D Models</div>
@@ -213,6 +202,7 @@
               </div>
             </a>
 <a href="/collections/best-architecture-landmark-3d-models/" class="coll-idx-card">
+              <div class="coll-idx-cover"><img src="https://p.turbosquid.com/ts-thumb/5V/qfh6M1/teDcBu23/eiffeltowervray3dmodel001/jpg/1600848155/1920x1080/fit_q87/b35b13af1bfb07140a8bfb19e60e094a46287b76/eiffeltowervray3dmodel001.jpg" alt="Best Architecture & Landmark 3D Models preview" width="800" height="450" loading="lazy" decoding="async"></div>
               <div class="coll-idx-head">
                 <div class="coll-idx-icon">🏛️</div>
                 <div class="coll-idx-title">Best Architecture & Landmark 3D Models</div>
@@ -233,6 +223,7 @@
       </div>
       <div class="model-grid">
         <a href="/collections/3d-models-for-aerospace-visualization/" class="coll-idx-card">
+              <div class="coll-idx-cover"><img src="https://p.turbosquid.com/ts-thumb/pi/DyjmYF/wKi9psVt/airbusa320generic3dmodel002/jpg/1512451344/1920x1080/fit_q87/e890b6bbba43d7da1e344e2f760a87c9d8f25b9b/airbusa320generic3dmodel002.jpg" alt="3D Models for Aerospace Visualization preview" width="800" height="450" loading="lazy" decoding="async"></div>
               <div class="coll-idx-head">
                 <div class="coll-idx-icon">🚀</div>
                 <div class="coll-idx-title">3D Models for Aerospace Visualization</div>
@@ -244,6 +235,7 @@
               </div>
             </a>
 <a href="/collections/3d-models-for-medical-visualization/" class="coll-idx-card">
+              <div class="coll-idx-cover"><img src="https://p.turbosquid.com/ts-thumb/Af/2AjP8g/vfRF5a8r/malefullbodyanatomyandskinmb3dmodel002/jpg/1572784988/1920x1080/fit_q87/4f7061185e55a42558f6035ce2fc92145ef25ed1/malefullbodyanatomyandskinmb3dmodel002.jpg" alt="3D Models for Medical Visualization preview" width="800" height="450" loading="lazy" decoding="async"></div>
               <div class="coll-idx-head">
                 <div class="coll-idx-icon">🔬</div>
                 <div class="coll-idx-title">3D Models for Medical Visualization</div>
@@ -255,6 +247,7 @@
               </div>
             </a>
 <a href="/collections/3d-models-for-defense-simulation/" class="coll-idx-card">
+              <div class="coll-idx-cover"><img src="https://p.turbosquid.com/ts-thumb/34/5G5ITt/9uwrFmvi/sikorskyuh60blackhawkusmilitaryutilityhelicopterc4dmodel002/jpg/1477311781/1920x1080/fit_q87/0d8ee50de73df309fe971dd667db85a7ad6249e0/sikorskyuh60blackhawkusmilitaryutilityhelicopterc4dmodel002.jpg" alt="3D Models for Defense & Simulation preview" width="800" height="450" loading="lazy" decoding="async"></div>
               <div class="coll-idx-head">
                 <div class="coll-idx-icon">🛡️</div>
                 <div class="coll-idx-title">3D Models for Defense & Simulation</div>
@@ -266,6 +259,7 @@
               </div>
             </a>
 <a href="/collections/3d-models-for-film-production/" class="coll-idx-card">
+              <div class="coll-idx-cover"><img src="https://p.turbosquid.com/ts-thumb/Af/2AjP8g/vfRF5a8r/malefullbodyanatomyandskinmb3dmodel002/jpg/1572784988/1920x1080/fit_q87/4f7061185e55a42558f6035ce2fc92145ef25ed1/malefullbodyanatomyandskinmb3dmodel002.jpg" alt="3D Models for Film Production preview" width="800" height="450" loading="lazy" decoding="async"></div>
               <div class="coll-idx-head">
                 <div class="coll-idx-icon">🎬</div>
                 <div class="coll-idx-title">3D Models for Film Production</div>
@@ -277,6 +271,7 @@
               </div>
             </a>
 <a href="/collections/3d-models-for-vr-projects/" class="coll-idx-card">
+              <div class="coll-idx-cover"><img src="https://p.turbosquid.com/ts-thumb/Af/2AjP8g/vfRF5a8r/malefullbodyanatomyandskinmb3dmodel002/jpg/1572784988/1920x1080/fit_q87/4f7061185e55a42558f6035ce2fc92145ef25ed1/malefullbodyanatomyandskinmb3dmodel002.jpg" alt="3D Models for VR Projects preview" width="800" height="450" loading="lazy" decoding="async"></div>
               <div class="coll-idx-head">
                 <div class="coll-idx-icon">🥽</div>
                 <div class="coll-idx-title">3D Models for VR Projects</div>
@@ -288,6 +283,7 @@
               </div>
             </a>
 <a href="/collections/3d-models-for-game-development/" class="coll-idx-card">
+              <div class="coll-idx-cover"><img src="https://p.turbosquid.com/ts-thumb/6x/gvz1ss/MxAGaphD/manhandsriggedcinema4d3dmodel01/jpg/1481983483/1920x1080/fit_q87/d75506941b4abdc56d0c83c7bf2e0b6a9cc7b4b9/manhandsriggedcinema4d3dmodel01.jpg" alt="3D Models for Game Development preview" width="800" height="450" loading="lazy" decoding="async"></div>
               <div class="coll-idx-head">
                 <div class="coll-idx-icon">🎮</div>
                 <div class="coll-idx-title">3D Models for Game Development</div>
@@ -299,6 +295,7 @@
               </div>
             </a>
 <a href="/collections/3d-models-for-advertising/" class="coll-idx-card">
+              <div class="coll-idx-cover"><img src="https://p.turbosquid.com/ts-thumb/6x/gvz1ss/MxAGaphD/manhandsriggedcinema4d3dmodel01/jpg/1481983483/1920x1080/fit_q87/d75506941b4abdc56d0c83c7bf2e0b6a9cc7b4b9/manhandsriggedcinema4d3dmodel01.jpg" alt="3D Models for Advertising preview" width="800" height="450" loading="lazy" decoding="async"></div>
               <div class="coll-idx-head">
                 <div class="coll-idx-icon">📢</div>
                 <div class="coll-idx-title">3D Models for Advertising</div>
@@ -310,6 +307,7 @@
               </div>
             </a>
 <a href="/collections/3d-models-for-architecture-visualization/" class="coll-idx-card">
+              <div class="coll-idx-cover"><img src="https://p.turbosquid.com/ts-thumb/6I/BNMOUr/TV/tesla_model_3_002/jpg/1625762643/1920x1080/fit_q87/4e96882f57561f81063dbba6aa0893596a3b5ec1/tesla_model_3_002.jpg" alt="3D Models for Architecture Visualization preview" width="800" height="450" loading="lazy" decoding="async"></div>
               <div class="coll-idx-head">
                 <div class="coll-idx-icon">🏗️</div>
                 <div class="coll-idx-title">3D Models for Architecture Visualization</div>
@@ -321,6 +319,7 @@
               </div>
             </a>
 <a href="/collections/3d-models-for-event-management/" class="coll-idx-card">
+              <div class="coll-idx-cover"><img src="https://p.turbosquid.com/ts-thumb/5V/qfh6M1/teDcBu23/eiffeltowervray3dmodel001/jpg/1600848155/1920x1080/fit_q87/b35b13af1bfb07140a8bfb19e60e094a46287b76/eiffeltowervray3dmodel001.jpg" alt="3D Models for Event Management preview" width="800" height="450" loading="lazy" decoding="async"></div>
               <div class="coll-idx-head">
                 <div class="coll-idx-icon">🎪</div>
                 <div class="coll-idx-title">3D Models for Event Management</div>
@@ -332,6 +331,7 @@
               </div>
             </a>
 <a href="/collections/3d-models-for-hardware-presentation/" class="coll-idx-card">
+              <div class="coll-idx-cover"><img src="https://p.turbosquid.com/ts-thumb/0L/t5K4g9/Vq/20_ft_iso_container_white_001/jpg/1626862042/1920x1080/fit_q87/21052b7a860ff95aeca4b001b17ed64015059e9a/20_ft_iso_container_white_001.jpg" alt="3D Models for Hardware Presentation preview" width="800" height="450" loading="lazy" decoding="async"></div>
               <div class="coll-idx-head">
                 <div class="coll-idx-icon">💻</div>
                 <div class="coll-idx-title">3D Models for Hardware Presentation</div>
@@ -352,6 +352,7 @@
       </div>
       <div class="model-grid">
         <a href="/collections/checkmate-certified-3d-models/" class="coll-idx-card">
+              <div class="coll-idx-cover"><img src="https://p.turbosquid.com/ts-thumb/Af/2AjP8g/vfRF5a8r/malefullbodyanatomyandskinmb3dmodel002/jpg/1572784988/1920x1080/fit_q87/4f7061185e55a42558f6035ce2fc92145ef25ed1/malefullbodyanatomyandskinmb3dmodel002.jpg" alt="CheckMate Certified 3D Models preview" width="800" height="450" loading="lazy" decoding="async"></div>
               <div class="coll-idx-head">
                 <div class="coll-idx-icon">✅</div>
                 <div class="coll-idx-title">CheckMate Certified 3D Models</div>
@@ -363,6 +364,7 @@
               </div>
             </a>
 <a href="/collections/stemcell-certified-3d-models/" class="coll-idx-card">
+              <div class="coll-idx-cover"><img src="https://p.turbosquid.com/ts-thumb/Nf/0GxHyD/aK/orchid_flower_002/jpg/1625801442/1920x1080/fit_q87/fecc8615a0d29360bcd125e476c8ad8a2ee593f2/orchid_flower_002.jpg" alt="StemCell Certified 3D Models preview" width="800" height="450" loading="lazy" decoding="async"></div>
               <div class="coll-idx-head">
                 <div class="coll-idx-icon">⭐</div>
                 <div class="coll-idx-title">StemCell Certified 3D Models</div>

@@ -49,6 +49,8 @@ const HERO = {
   'signage-decor': ['🪧', 'Signage and decor 3D models - signs, banners, frames and decorative objects for archviz, advertising and set dressing.'],
   'musical-instruments': ['🎸', 'Musical instrument 3D models - guitars, pianos, drums and more for film, music videos, games and product renders.'],
   'collections-sets': ['📚', 'Multi-model collections, sets, packs and bundles - grouped 3D assets that save time when dressing full scenes.'],
+  'weapons': ['⚔️', 'Weapon 3D models - firearms, blades, munitions, armour and military-grade equipment for games, film, defense simulation and historical visualization.'],
+  'tools': ['🔧', 'Tool 3D models - hand tools, power tools, gardening, cleaning, cutting and workshop equipment for industrial visualization, archviz and product rendering.'],
 };
 
 // ---- константы (header/footer) из vehicles ----

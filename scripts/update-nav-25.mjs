@@ -10,7 +10,7 @@ const SKIP = new Set(['node_modules', 'data', 'assets', 'large_images', 'preview
 // 25 категорий: [slug, display]
 const CATS25 = [
   ['vehicles','Vehicles'], ['aircraft','Aircraft'], ['military-vehicles','Military Vehicles'],
-  ['weapons-tools','Weapons & Tools'], ['ships','Ships'], ['animals-creatures','Animals & Creatures'],
+  ['weapons','Weapons'], ['tools','Tools'], ['ships','Ships'], ['animals-creatures','Animals & Creatures'],
   ['characters-people','Characters & People'], ['nature-plants','Nature & Plants'], ['medical-3d-models','Medical'],
   ['architecture-landmarks','Architecture'], ['furniture-interior','Furniture & Interior'], ['lighting','Lighting'],
   ['kitchen-tableware','Kitchen & Tableware'], ['food-beverages','Food & Beverages'], ['electronics-gadgets','Electronics'],
@@ -26,8 +26,13 @@ const DESKTOP = `<div class="nav-dropdown nav-mega" role="menu" style="display:g
 const mobileItems = CATS25.map(([s, d]) => `<a href="/categories/${s}/">${d}</a>`).join('');
 const MOBILE = `<div class="nav-mobile-sub" id="mob-cat-sub">${mobileItems}</div>`;
 
-// матчим ИМЕННО категорийный дропдаун (начинается со ссылки vehicles), в обоих вариантах (с id и без)
-const reDesktop = /<div class="nav-dropdown nav-mega"[^>]*role="menu">\s*<a href="\/categories\/vehicles\/"[\s\S]*?<\/div>/;
+// Матчим ИМЕННО категорийный дропдаун (начинается со ссылки vehicles), во всех
+// вариантах разметки. Раньше шаблон требовал, чтобы за role="menu" сразу шла
+// закрывающая скобка - и потому не находил меню, уже переведённое этим же
+// скриптом в грид (там дальше идёт style="display:grid…"). В результате при
+// повторном запуске обновлялись только страницы со старой разметкой, а
+// однажды сконвертированные молча оставались со старым списком категорий.
+const reDesktop = /<div class="nav-dropdown nav-mega"[^>]*role="menu"[^>]*>\s*<a href="\/categories\/vehicles\/"[\s\S]*?<\/div>/;
 const reMobile = /<div class="nav-mobile-sub" id="mob-cat-sub">[\s\S]*?<\/div>/;
 
 function processFile(file) {

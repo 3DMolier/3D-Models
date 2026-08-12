@@ -71,19 +71,29 @@ for (const f of OBSOLETE) {
   if (fs.existsSync(p)) { fs.unlinkSync(p); console.log(`  удалён дублирующий ${f}`); }
 }
 
-// ---- 2в. из хабов убираем 1-ю страницу каждой категории ----
-// /categories/<cat>/ уже есть в sitemap-categories.xml - в хабах оставляем только /page/N/
+// ---- 2в. хабы категорий: пересобираем СПИСКОМ С ДИСКА ----
+// /categories/<cat>/ уже есть в sitemap-categories.xml - здесь только /page/N/.
+//
+// Раньше файл собирался один раз и потом лишь фильтровался, поэтому расходился
+// с диском в обе стороны: страницы удалённых категорий висели в нём вечно
+// (после разделения «Weapons & Tools» - 16 несуществующих URL, то есть 404 для
+// обхода), а страницы новых категорий не попадали вовсе (204 URL, включая всю
+// пагинацию Weapons и Tools). Теперь список всегда строится заново.
 {
   const p = path.join(SM, 'sitemap-category-hubs.xml');
-  if (fs.existsSync(p)) {
-    const s = fs.readFileSync(p, 'utf8');
-    const blocks = s.match(/<url>[\s\S]*?<\/url>/g) || [];
-    const kept = blocks.filter(b => /\/page\/\d+\//.test(b));
-    if (kept.length !== blocks.length) {
-      fs.writeFileSync(p, `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${kept.join('\n')}\n</urlset>\n`, 'utf8');
-      console.log(`  sitemap-category-hubs.xml: убрано ${blocks.length - kept.length} дублей 1-й страницы -> ${kept.length} URL`);
+  const CATS_DIR = path.join(ROOT, 'categories');
+  const urls = [];
+  for (const cat of fs.readdirSync(CATS_DIR).sort()) {
+    const pageDir = path.join(CATS_DIR, cat, 'page');
+    if (!fs.existsSync(pageDir)) continue;
+    const nums = fs.readdirSync(pageDir).map(Number).filter(n => n > 0).sort((a, b) => a - b);
+    for (const n of nums) {
+      if (!fs.existsSync(path.join(pageDir, String(n), 'index.html'))) continue;
+      urls.push(`  <url>\n    <loc>${BASE}/categories/${cat}/page/${n}/</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.5</priority>\n  </url>`);
     }
   }
+  fs.writeFileSync(p, `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`, 'utf8');
+  console.log(`  sitemap-category-hubs.xml: пересобран с диска -> ${urls.length} URL`);
 }
 
 // ---- 3. остальным страничным сайтмапам - свежий lastmod ----

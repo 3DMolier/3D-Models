@@ -139,6 +139,26 @@ LINK_ICON = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke=
 PROXY_BASE = "https://images.weserv.nl/?url="
 
 
+def _load_fc_img_map() -> dict:
+    """product_id -> рабочая ссылка на превью p.turbosquid.com.
+
+    image_url в top_models.csv собран по шаблону static.turbosquid.com из имени
+    модели - этот шаблон давно не работает и отдаёт 404, поэтому на страницах
+    коллекций вместо превью показывалась заглушка. Хабы категорий и страницы
+    индустрий уже берут картинки отсюда; коллекции остались на старом пути.
+    """
+    img_map: dict = {}
+    for i in range(6):
+        p = BASE_DIR / "data" / f"fc-img-chunk-{i}.json"
+        if p.exists():
+            with open(p, encoding="utf-8") as f:
+                img_map.update(json.load(f))
+    return img_map
+
+
+FC_IMG_MAP = _load_fc_img_map()
+
+
 # ── Nav + Footer ──────────────────────────────────────────────────────────────
 
 def nav_html():
@@ -297,10 +317,17 @@ def model_card_html(m: dict) -> str:
 
     from urllib.parse import quote as _q
     _PLACEHOLDER = "/assets/og/3d-molier-og.jpg"
-    raw_img = img
-    if img and img.startswith("https://static.turbosquid"):
-        _clean = img.replace("https://", "")
-        img = "https://images.weserv.nl/?url=ssl:" + _q(_clean) + "&amp;w=600&amp;q=85&amp;output=webp"
+
+    # Сначала пробуем рабочую ссылку из карты превью по product_id; шаблонный
+    # static.turbosquid-адрес из CSV оставляем только как запасной вариант.
+    p_img = FC_IMG_MAP.get(str(m.get('product_id', '')), '')
+    if p_img:
+        img = raw_img = p_img
+    else:
+        raw_img = img
+        if img and img.startswith("https://static.turbosquid"):
+            _clean = img.replace("https://", "")
+            img = "https://images.weserv.nl/?url=ssl:" + _q(_clean) + "&amp;w=600&amp;q=85&amp;output=webp"
     # p.turbosquid.com images used directly (no proxy needed)
 
     cert_html = ''
@@ -368,7 +395,8 @@ def page_head(title: str, description: str, canonical: str, *ld_blobs: str) -> s
 <link rel="preload" href="/assets/fonts/font-13.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/critical-fonts.css?v=32">
 <link rel="stylesheet" href="/assets/css/fonts.css?v=32">
-<link rel="stylesheet" href="/assets/css/styles.min.css?v=32">{bc_tag}
+<link rel="stylesheet" href="/assets/css/styles.min.css?v=32">
+<style>.coll-idx-cover{{margin:-1px -1px 14px;border-radius:10px 10px 0 0;overflow:hidden;aspect-ratio:16/9;background:#f3f4f6}}.coll-idx-cover img{{width:100%;height:100%;object-fit:cover;display:block}}@media(prefers-color-scheme:dark){{.coll-idx-cover{{background:#1f2229}}}}</style>{bc_tag}
 </head>"""
 
 
@@ -557,7 +585,14 @@ def collections_index_html(all_cols: list[dict]) -> str:
             raw_desc = meta.get('short_desc', c['intro_text'])
             desc = raw_desc[:80] + '…'
 
+            # Обложка плитки - превью первой модели коллекции. Раньше на плитках
+            # была только эмодзи-иконка, и список коллекций выглядел пустым.
+            cover = next((FC_IMG_MAP[mid] for mid in c['model_ids'] if mid in FC_IMG_MAP), '')
+            cover_html = (f'<div class="coll-idx-cover"><img src="{cover}" alt="{title} preview"'
+                          f' width="800" height="450" loading="lazy" decoding="async"></div>') if cover else ''
+
             cards_html += f'''<a href="/collections/{slug}/" class="coll-idx-card">
+              {cover_html}
               <div class="coll-idx-head">
                 <div class="coll-idx-icon">{icon}</div>
                 <div class="coll-idx-title">{title}</div>
