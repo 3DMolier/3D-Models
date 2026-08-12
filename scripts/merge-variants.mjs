@@ -380,6 +380,61 @@ function rootPrint(name) {
   return [...new Set(toks)].sort().join(' ');
 }
 
+
+// ── проход «корень внутри техники» ──────────────────────────────────────────
+//
+// Критерий основателя: если предмет тот же, а отличие - добавка или другое
+// название, это одна карточка. «Eurofighter Typhoon Jet» и «… Jet with Weaponry»
+// - один самолёт; «Devil Emoji» и «Angry Emoji» - разные предметы.
+//
+// Автоматически различить это по названию не вышло. Перебрал: полное совпадение
+// слов (развело Eurofighter), отказ от проверки имени (43 364 карточки в кашу),
+// самое редкое общее слово (слило 21 разный пельмень и 17 эмодзи), имя корня из
+// отчёта (у Eurofighter оно пустое). Сработало другое - три ограничителя:
+//
+//   • только техника: там корень почти всегда означает одну машину, тогда как
+//     в еде и мелочёвке - вид товара;
+//   • корень не «0»: это пустое значение, в нём 139 несвязанных вещей, от шасси
+//     седана до DeLorean;
+//   • не больше шести карточек: крупные корни - это семейства, а не машины,
+//     в одном лежат Airbus A321, Boeing 767 и 737. Таких 393, их не трогаем.
+const ROOTCAT = /^(vehicles|military vehicles|aircraft|ships|industrial equipment)$/i;
+const ROOTCAT_MAX = 6;
+
+function buildRootCatGroups() {
+  if (!report.length) return [];
+  const byRoot = new Map();
+  for (const r of rows) {
+    const rep = byPid.get(String(r.id));
+    if (!rep || !rep.root || rep.root === '0' || rep.split) continue;
+    if (!ROOTCAT.test(rep.cat1 || '')) continue;
+    if (isColl(r.name)) continue;
+    if (!byRoot.has(rep.root)) byRoot.set(rep.root, []);
+    byRoot.get(rep.root).push(r);
+  }
+
+  const out = [];
+  for (const [, items] of byRoot) {
+    // Потолок считаем по ЖИВЫМ карточкам, а не по всем строкам корня. В корне
+    // Eurofighter 14 позиций, но 10 из них уже свёрнуты прошлыми проходами -
+    // живых всего 4. Счёт по всем строкам отбрасывал такие корни целиком.
+    const alive = items.filter(x => isRealCard(x.slug));
+    if (alive.length < 2 || alive.length > ROOTCAT_MAX) continue;
+    const rank = x => (SOFT.test(x.name) ? 16 : 0)
+      + (/simplified/i.test(x.name) ? 8 : 0)
+      + (/low\s*poly/i.test(x.name) ? 4 : 0)
+      + (hasRig(x.name) ? 2 : 0)
+      + (poseOf(x.name) ? 1 : 0);
+    const order = items.slice().sort((a, b) => (rank(a) - rank(b)) || (b.sales - a.sales));
+    const main = order.find(x => isRealCard(x.slug))
+      || order.find(x => fs.existsSync(path.join(MODELS, x.slug, 'index.html'))) || order[0];
+    const rest = order.filter(x => x.slug !== main.slug);
+    if (!rest.length) continue;
+    out.push({ base: commonTitle(main, rest), main, rest, kind: 'rootcat' });
+  }
+  return out;
+}
+
 function buildRootGroups() {
   if (!report.length) return [];
   const g = new Map();
@@ -506,7 +561,7 @@ function buildBlocks(g) {
       if (sm) bits.push(sm[1].replace(/\s+/g, ' ').replace(/\b\w/g, c => c.toUpperCase()));
       return bits.join(' · ');
     }
-    if (g.kind === 'identity' || g.kind === 'root') {
+    if (g.kind === 'identity' || g.kind === 'root' || g.kind === 'rootcat') {
       // Подпись описывает исполнение: цвет, софт, оснастка, упрощение, Low Poly.
       const bits = [];
       // Цветов в названии бывает несколько: у фески свой цвет у шапки и свой у
@@ -538,7 +593,7 @@ function buildBlocks(g) {
       const m = x.gname.match(COLOR);
       return m ? m[1].replace(/\b\w/g, c => c.toUpperCase()) : 'Base';
     }
-    if (g.kind === 'identity' || g.kind === 'root') {
+    if (g.kind === 'identity' || g.kind === 'root' || g.kind === 'rootcat') {
       const cs2 = [...new Set((x.name.match(COLOR_ANY) || []).map(c => c.toLowerCase()))];
       if (cs2.length) return cs2.map(c => c.replace(/\b\w/g, ch => ch.toUpperCase())).join('+');
       const sm = x.name.match(SOFT);
@@ -593,7 +648,7 @@ function buildBlocks(g) {
 
   const head = g.kind === 'soft' ? 'Available Formats'
     : g.kind === 'collection' ? 'All Sets in This Series'
-      : (g.kind === 'identity' || g.kind === 'root') ? 'All Versions of This Model' : 'Available Colors';
+      : (g.kind === 'identity' || g.kind === 'root' || g.kind === 'rootcat') ? 'All Versions of This Model' : 'Available Colors';
   const list = '<section class="mp-variants"><h2 class="mp-block-h2">' + head + '</h2>'
     + '<ul class="mp-var-list">'
     + all.map((x, i) => '<li class="mp-var' + (i ? '' : ' is-main') + '">'
@@ -731,6 +786,7 @@ function mergeInto(g) {
 
 // ── ход работы ──
 const groups = [];
+if (!ONLY || ONLY === 'rootcat') groups.push(...buildRootCatGroups());
 if (!ONLY || ONLY === 'root') groups.push(...buildRootGroups());
 if (!ONLY || ONLY === 'identity') groups.push(...buildIdentityGroups());
 if (!ONLY || ONLY === 'soft') groups.push(...buildGroups('soft'));
@@ -760,7 +816,8 @@ console.log('групп: ' + groups.length
   + ', цвет ' + groups.filter(g => g.kind === 'color').length
   + ', наборы ' + groups.filter(g => g.kind === 'collection').length
   + ', техника ' + groups.filter(g => g.kind === 'identity').length
-  + ', по Root ID ' + groups.filter(g => g.kind === 'root').length + ')');
+  + ', по Root ID ' + groups.filter(g => g.kind === 'root').length
+  + ', корень+категория ' + groups.filter(g => g.kind === 'rootcat').length + ')');
 console.log('страниц свернётся: ' + groups.reduce((s, g) => s + g.rest.length, 0));
 
 // Список групп прохода для глазной проверки:  --dry --list identity 20
