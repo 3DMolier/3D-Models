@@ -203,6 +203,9 @@ INDUSTRIES = {
         "intro": "The most comprehensive collection of military and defense 3D models available. Spanning all branches and eras — ground forces, air power, naval vessels and special operations equipment. Used by defense training programs, serious games, military simulations and film productions.",
         "use_cases": ["Defense training simulators", "Wargame development", "Military museum exhibits", "Mission planning visualization", "Recruitment materials", "Documentary production"],
         "categories": [("Military Vehicles", "military-vehicles"), ("Aircraft", "aircraft"), ("Ships", "ships")],
+        # Aircraft/Ships категории широкие - без фильтра сюда попадают гражданские
+        # авиалайнеры и обычные парусники. Военная техника видна по названию.
+        "keyword": r"military|army|navy|air force|marine corps|fighter|bomber|warplane|attack helicopter|gunship|warship|frigate|destroyer|corvette|submarine|aircraft carrier|patrol boat|missile|tank|artillery|howitzer|apc|ifv|armored|armoured|combat|special forces|nato|abrams|leopard|bradley|humvee|f-16|f-35|f/a-18|su-57|mig-|b-2|b-52|apache|black\s*hawk|chinook|osprey",
         "formats": ["FBX", "OBJ", "3ds Max", "Cinema 4D", "Blender", "COLLADA"],
     },
     "medical": {
@@ -279,7 +282,10 @@ INDUSTRIES = {
         "color": "#06B6D4",
         "intro": "High-quality 3D assets for software companies, SaaS presentations, product demos, explainer videos and tech marketing. Clean and modern visuals for a digital-first audience.",
         "use_cases": ["Product demo videos and presentations", "SaaS marketing and landing pages", "Tech explainer animations", "Developer blog illustrations", "Conference keynote slides", "App store screenshots and previews"],
-        "categories": [("Electronics & Gadgets", "electronics-gadgets"), ("Industrial Equipment", "industrial-equipment"), ("Furniture & Interior", "furniture-interior")],
+        # Industrial Equipment и Furniture & Interior убраны - в топе там были
+        # конвейеры и промышленные линии, никак не связанные с разработкой софта.
+        "categories": [("Electronics & Gadgets", "electronics-gadgets")],
+        "keyword": r"laptop|notebook|macbook|desktop|computer|pc\b|monitor|keyboard|mouse|tablet|ipad|smartphone|phone|server|workstation|webcam|headset|vr\s*headset",
         "formats": ["FBX", "OBJ", "Blender", "Cinema 4D", "3ds Max", "GLB"],
     },
     "event-management": {
@@ -290,7 +296,10 @@ INDUSTRIES = {
         "color": "#EC4899",
         "intro": "Professional 3D assets for event designers, venue planners, trade show organizers and entertainment companies. Visualize your event before the first chair is placed.",
         "use_cases": ["Conference and trade show layout planning", "Stage and lighting design visualization", "Wedding and gala venue previews", "Corporate event marketing materials", "Concert and festival production", "Virtual event environment creation"],
-        "categories": [("Furniture & Interior", "furniture-interior"), ("Architecture Landmarks", "architecture-landmarks"), ("Characters & People", "characters-people")],
+        "categories": [("Furniture & Interior", "furniture-interior"), ("Architecture Landmarks", "architecture-landmarks")],
+        # Characters & People отсюда убрана - в топе там оказывались модели рук и
+        # жестов, никак не связанные с площадками и мероприятиями.
+        "keyword": r"stadium|arena|stage|concert|festival|venue|tent|marquee|pavilion|podium|auditorium|convention|exhibition|ballroom|banquet|hall\b|amphitheater|amphitheatre|grandstand|bleacher|booth|trade\s*show|red\s*carpet",
         "formats": ["FBX", "OBJ", "Blender", "Cinema 4D", "3ds Max"],
     },
     "hardware": {
@@ -301,7 +310,10 @@ INDUSTRIES = {
         "color": "#10B981",
         "intro": "Precision 3D assets for hardware startups, electronics manufacturers, industrial designers and product teams. From a circuit board to a full assembly — visualized for manufacturing and marketing.",
         "use_cases": ["Product packaging and marketing visuals", "Industrial design presentations", "Technical documentation illustrations", "Investor pitch decks", "Manufacturing process visualization", "IoT product demos and prototypes"],
-        "categories": [("Electronics & Gadgets", "electronics-gadgets"), ("Industrial Equipment", "industrial-equipment"), ("Vehicles", "vehicles")],
+        # Vehicles убраны - это дало посторонние машины в топе. Industrial Equipment
+        # ограничена ключевыми словами про электронику/компоненты, а не любую технику.
+        "categories": [("Electronics & Gadgets", "electronics-gadgets"), ("Industrial Equipment", "industrial-equipment")],
+        "keyword": r"circuit|pcb|chip|processor|sensor|server|rack|gauge|meter|wiring|component|assembly|robot|robotic|electronic|device|gadget|smartphone|phone|laptop|computer|tablet|camera|headphone|console|drone|3d\s*print",
         "formats": ["FBX", "OBJ", "Blender", "Cinema 4D", "3ds Max", "STEP"],
     },
     "3d-printing": {
@@ -312,22 +324,60 @@ INDUSTRIES = {
         "color": "#84CC16",
         "intro": "Production-ready 3D assets with clean topology and real-world scale for 3D printing services, rapid prototyping, product visualization and additive manufacturing workflows.",
         "use_cases": ["Rapid prototyping and product design", "Custom manufacturing visualizations", "Educational STEM models", "Collectibles and figurines", "Architectural scale models", "Medical device prototypes"],
-        "categories": [("Industrial Equipment", "industrial-equipment"), ("Medical", "medical-3d-models"), ("Vehicles", "vehicles")],
+        # Категория условная - реальный фильтр ниже: только модели, у которых в
+        # названии буквально стоит «for 3D Print» (так их называет сам основатель
+        # в каталоге), а не всё подряд из Industrial/Medical/Vehicles.
+        "categories": [],
+        "keyword_only": True,
+        "keyword": r"for\s+3d\s*print",
         "formats": ["OBJ", "STL", "FBX", "Blender", "3ds Max"],
     },
 }
 
-def get_top_models_for_cats(cats_list, n=6):
-    """Read top_models.csv and return top N models for given categories."""
-    data_path = ROOT / "data" / "top_models.csv"
-    if not data_path.exists():
-        return []
+import re as _re
+
+_TOP_MODELS_CACHE = None
+_MASTER_MODELS_CACHE = None
+
+def _load_top_models():
+    global _TOP_MODELS_CACHE
+    if _TOP_MODELS_CACHE is None:
+        data_path = ROOT / "data" / "top_models.csv"
+        _TOP_MODELS_CACHE = list(csv.DictReader(open(data_path, encoding="utf-8"))) if data_path.exists() else []
+    return _TOP_MODELS_CACHE
+
+
+def _load_master_models():
+    # top_models.csv - это только ~5000 бестселлеров; специфичные ключевые
+    # запросы вроде "for 3D Print" (118 штук) там почти не встречаются -
+    # такие подборки нужно искать по всему каталогу, а не только по топу.
+    global _MASTER_MODELS_CACHE
+    if _MASTER_MODELS_CACHE is None:
+        data_path = ROOT / "data" / "models_master.csv"
+        _MASTER_MODELS_CACHE = list(csv.DictReader(open(data_path, encoding="utf-8"))) if data_path.exists() else []
+    return _MASTER_MODELS_CACHE
+
+
+def get_top_models_for_cats(cats_list, n=6, keyword=None, keyword_only=False, exclude_ids=None):
+    """Top N models for given categories, optionally narrowed by a name keyword
+    regex and steered away from ids already used by an earlier-rendered industry
+    (exclude_ids) so industries with overlapping categories don't show identical
+    top picks."""
+    exclude_ids = exclude_ids or set()
+    kw_re = _re.compile(keyword, _re.I) if keyword else None
+    source = _load_master_models() if keyword_only else _load_top_models()
     rows = []
-    with open(data_path, encoding="utf-8") as f:
-        for r in csv.DictReader(f):
-            if r["category"] in cats_list:
-                rows.append(r)
-    rows.sort(key=lambda r: float(r.get("priority_score", 0) or 0), reverse=True)
+    for r in source:
+        if not keyword_only and r["category"] not in cats_list:
+            continue
+        if kw_re and not kw_re.search(r["product_name"] or ""):
+            continue
+        if keyword_only and not (ROOT / "models" / r["slug"] / "index.html").exists():
+            continue
+        rows.append(r)
+    # непретендованные модели раньше в сортировке - иначе несколько индустрий
+    # с пересекающимися категориями показывают один и тот же топ-6
+    rows.sort(key=lambda r: (r["product_id"] in exclude_ids, -float(r.get("priority_score", 0) or 0)))
     return rows[:n]
 
 def model_card(m):
@@ -366,10 +416,14 @@ def model_card(m):
       </div>
     </a>'''
 
-def build_industry_page(slug, meta):
+def build_industry_page(slug, meta, exclude_ids=None):
     canonical = f"{BASE}/industries/{slug}/"
     color = meta["color"]
-    top_models = get_top_models_for_cats([c[0] for c in meta["categories"]], 50)
+    top_models = get_top_models_for_cats(
+        [c[0] for c in meta["categories"]], 50,
+        keyword=meta.get("keyword"), keyword_only=meta.get("keyword_only", False),
+        exclude_ids=exclude_ids,
+    )
 
     bc = json.dumps({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
         {"@type":"ListItem","position":1,"name":"Home","item":f"{BASE}/"},
@@ -391,14 +445,23 @@ def build_industry_page(slug, meta):
         for cat_name, cat_slug in meta["categories"]
     )
 
+    # "Browse Catalog" обычно ведёт в общий каталог; для 3D Printing это должно
+    # сразу включать поиск по ключевым словам "for 3D Print" - иначе кнопка ведёт
+    # на несортированный каталог, где нужных моделей почти не видно.
+    from urllib.parse import quote as _uq
+    browse_url = f"/search/?q={_uq('for 3D Print')}" if meta.get("keyword_only") else "/catalog/"
+
     # Top models (first 6 shown in HTML)
-    models_html = "".join(model_card(m) for m in top_models[:6]) if top_models else ""
+    shown = top_models[:6]
+    if exclude_ids is not None:
+        exclude_ids.update(m["product_id"] for m in shown)
+    models_html = "".join(model_card(m) for m in shown) if top_models else ""
     models_section = f'''<section class="page-section">
     <div class="max-w-7xl mx-auto">
       <h2 class="section-h2 section-h2--mb24">Top 3D Models for {meta["h1"].replace(" 3D Models","")}</h2>
       <div class="model-grid">{models_html}</div>
       <div class="text-center mt-8">
-        <a href="/catalog/" class="btn-primary">Browse Full Catalog</a>
+        <a href="{browse_url}" class="btn-primary">Browse Full Catalog</a>
         <a href="/search/" class="btn-ghost btn-ghost--md ind-search-ml">Search Models</a>
       </div>
     </div>
@@ -416,7 +479,7 @@ def build_industry_page(slug, meta):
       <h1 class="cat-page-h1 ind-h1-mb">{meta["h1"]}</h1>
       <p class="section-desc ind-desc-wide">{meta["intro"]}</p>
       <div class="flex gap-3 flex-wrap">
-        <a href="/catalog/" class="btn-primary">Browse Catalog</a>
+        <a href="{browse_url}" class="btn-primary">Browse Catalog</a>
         <a href="/custom-order/" class="btn-ghost">Request Custom Model</a>
       </div>
     </div>
@@ -465,10 +528,16 @@ def build_industry_page(slug, meta):
 
 def create_industry_pages():
     created = 0
+    # Общий для всех индустрий набор - иначе Vehicles/Aircraft/Military Vehicles
+    # (они входят в категории сразу нескольких индустрий) дают одну и ту же
+    # шестёрку бестселлеров на Game Dev, Film Production и Advertising.
+    # aerospace/military-defense/medical идут первыми - у них самый узкий,
+    # предметный список категорий, и они должны получить свои модели первыми.
+    used_ids = set()
     for slug, meta in INDUSTRIES.items():
         out_dir = ROOT / "industries" / slug
         out_dir.mkdir(parents=True, exist_ok=True)
-        html = build_industry_page(slug, meta)
+        html = build_industry_page(slug, meta, exclude_ids=used_ids)
         (out_dir / "index.html").write_text(html, encoding="utf-8")
         created += 1
     print(f"  Industry pages: {created} created")

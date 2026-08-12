@@ -9,6 +9,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { anchorClassify } from './anchors25.mjs';
+import { classifyByReport } from './category-map.mjs';
 
 const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
 const DATA = path.join(ROOT, 'data');
@@ -26,13 +27,16 @@ const CATS = eval('[' + clsSrc.split('const CATS = [')[1].split('];')[0] + ']');
 const dispOf = Object.fromEntries(CATS.map(c => [c[0], c[1]]));
 dispOf['other'] = 'Other';
 const ALL_SLUGS = CATS.map(c => c[0]).concat('other');
-// весовой добор: срабатывает, только если основной список промолчал
-// (иначе 27% моделей уходили в мусорную корзину 'other')
-const classify = name => {
+// Источник истины — реальная категория TurboSquid (cat1/cat2 из отчёта продаж).
+// Ключевые слова в названии — только запасной вариант для моделей вне отчёта
+// (0.1% каталога), иначе слово может случайно совпасть не с той категорией
+// (авианосец -> "Characters & People" из-за общих токенов в имени и т.п.).
+const keywordClassify = name => {
   const t = new Set(name.toLowerCase().match(/[a-z0-9]+/g) || []);
   for (const [s, d, k] of CATS) if (k.find(x => t.has(x))) return s;
   return anchorClassify(name) || 'other';
 };
+const classify = (name, id) => classifyByReport(id, name) || keywordClassify(name);
 
 // ---- hero-конфиг для 9 новых категорий (иконка + описание) ----
 const HERO = {
@@ -163,7 +167,7 @@ function buildCategory(cat, all, img) {
   const catDisp = dispOf[cat] || cat;
   let list = [];
   for (const m of all) {
-    if (classify(m.name) !== cat) continue;
+    if (classify(m.name, m.id) !== cat) continue;
     if (!img[m.id]) continue;
     const slug = slugify(m.name) + '-' + m.id;
     if (!fs.existsSync(path.join(MODELS, slug, 'index.html'))) continue;

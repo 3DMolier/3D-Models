@@ -34,10 +34,29 @@ const ref = fs.readFileSync(path.join(ROOT, 'categories', 'vehicles', 'index.htm
 const HEADER = (ref.match(/<header id="site-header">[\s\S]*?<\/header>/) || [''])[0];
 const FOOTER = (ref.match(/<footer class="cat-footer">[\s\S]*?<\/footer>/) || [''])[0];
 
+// Только живые карточки. Раньше сюда попадали и страницы-перенаправления
+// (объединённые варианты) - список раздувался почти вдвое ссылками, которые
+// сразу уводят на другую страницу, и было незнятно, что реально на сайте.
+const HEAD = 400;
+const stubBuf = Buffer.alloc(HEAD);
+function isStub(dir) {
+  let fd;
+  try { fd = fs.openSync(path.join(MODELS, dir, 'index.html'), 'r'); } catch (e) { return true; }
+  try {
+    const n = fs.readSync(fd, stubBuf, 0, HEAD, 0);
+    return /http-equiv="refresh"/.test(stubBuf.slice(0, n).toString('utf8'));
+  } finally { fs.closeSync(fd); }
+}
 const slugs = fs.readdirSync(MODELS, { withFileTypes: true })
-  .filter(d => d.isDirectory() && fs.existsSync(path.join(MODELS, d.name, 'index.html')))
+  .filter(d => d.isDirectory() && fs.existsSync(path.join(MODELS, d.name, 'index.html')) && !isStub(d.name))
   .map(d => d.name).sort();
 console.log('моделей: ' + slugs.length);
+
+// Лёгкий фильтр без сборки и зависимостей - на странице уже есть все 500 <li>,
+// JS просто скрывает те, что не совпали. Работает мгновенно, не требует сети.
+const FILTER_JS = `<script>(function(){var i=document.getElementById('browse-filter');if(!i)return;var items=[].slice.call(document.querySelectorAll('.browse-list li'));var cnt=document.getElementById('browse-filter-count');i.addEventListener('input',function(){var q=i.value.trim().toLowerCase();var shown=0;items.forEach(function(li){var m=!q||li.textContent.toLowerCase().indexOf(q)>-1;li.style.display=m?'':'none';if(m)shown++;});if(cnt)cnt.textContent=q?(shown+' of '+items.length+' match'):'';});})();</script>`;
+const FILTER_BOX = `<div class="browse-filter-box"><input id="browse-filter" type="search" placeholder="Filter models on this page…" aria-label="Filter models on this page"><span id="browse-filter-count" class="browse-filter-count"></span></div>
+    <p class="browse-search-hint">Looking for something specific across the whole catalog? Use <a href="/search/">Search</a> or the <a href="/full-catalog/">Full Catalog</a> instead — this index is a flat link list meant for browsing page by page.</p>`;
 
 const pages = Math.ceil(slugs.length / PER);
 fs.mkdirSync(OUT, { recursive: true });
@@ -53,6 +72,7 @@ function shell(title, desc, canonical, body, extraHead = '') {
 <link rel="canonical" href="${canonical}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/css/styles.min.css?v=33">
+<style>.browse-filter-box{display:flex;align-items:center;gap:10px;margin:16px 0}#browse-filter{flex:1;max-width:420px;padding:10px 14px;border:1px solid rgba(0,0,0,.15);border-radius:8px;font-size:14px}.browse-filter-count{font-size:13px;opacity:.65;white-space:nowrap}.browse-search-hint{font-size:13px;opacity:.75;margin:0 0 20px}@media(prefers-color-scheme:dark){#browse-filter{border-color:rgba(255,255,255,.2);background:transparent;color:inherit}}</style>
 ${extraHead}
 </head>
 <body>
@@ -91,6 +111,7 @@ for (let i = 0; i < pages; i++) {
     <nav aria-label="Breadcrumb"><a href="/">Home</a> &#8250; <a href="/browse/">All Models</a> &#8250; Page ${n}</nav>
     <h1>All 3D Models &#8212; Page ${n} of ${pages}</h1>
     <p>Models ${i * PER + 1}&#8211;${i * PER + part.length} of ${slugs.length} in the 3D Molier catalog.</p>
+    ${FILTER_BOX}
     <ul class="browse-list">
 ${links}
     </ul>
@@ -98,7 +119,8 @@ ${links}
       <span class="browse-jumps">${ladder}</span>
     </nav>
   </div>
-</section>`;
+</section>
+${FILTER_JS}`;
   const rel = (n > 1 ? `<link rel="prev" href="${BASE}/browse/${n - 1}/">` : '') +
               (n < pages ? `<link rel="next" href="${BASE}/browse/${n + 1}/">` : '');
   const dir = path.join(OUT, String(n));
@@ -120,11 +142,13 @@ const idxBody = `<section class="page-section">
     <h1>Complete 3D Model Index</h1>
     <p>Direct links to all ${slugs.length} models in the 3D Molier catalog, split into ${pages} pages of ${PER}.
        Looking for a category instead? See <a href="/">all categories</a> or the <a href="/catalog/">top 1000</a>.</p>
+    ${FILTER_BOX}
     <ul class="browse-list browse-toc">
 ${toc}
     </ul>
   </div>
-</section>`;
+</section>
+${FILTER_JS}`;
 fs.writeFileSync(path.join(OUT, 'index.html'),
   shell(`Complete 3D Model Index — ${slugs.length} Models | 3D Molier`,
     `Full index of all ${slugs.length} 3D models by 3D Molier. Direct links to every model page.`,

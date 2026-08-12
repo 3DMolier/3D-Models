@@ -381,6 +381,32 @@ function rootPrint(name) {
 }
 
 
+// ── точечные объединения по прямому указанию основателя ─────────────────────
+//
+// Общий корень у этих карточек проходит через root+category-проход, но в самом
+// корне ещё 150+ других самолётов/зданий (та же исходная модель, перекрашенная
+// под разные авиакомпании и типы) - автоматический потолок ROOTCAT_MAX режет
+// такие корни целиком, и нужную пару внутри они не выделяют. Основатель указал
+// эти пары явно - тот же критерий, что и для Eurofighter: тот же предмет плюс
+// добавка/переименование = одна карточка.
+const MANUAL_GROUPS = [
+  { main: '2377479', rest: ['2377666'] },   // United 737-900 / -900 ER — тот же борт
+  { main: '2015826', rest: ['899043'] },    // Caesars Superdome = Mercedes-Benz Superdome (переименование)
+  { main: '1439041', rest: ['1435958', '1439217'] }, // Disneyland Cinderella Castle / Cinderella Castle / Magic Castle
+  { main: '2026371', rest: ['2025434', '2344240', '2346155'] }, // HMS Queen Elizabeth + варианты с вооружением
+];
+function buildManualGroups() {
+  const byId = new Map(rows.map(r => [r.id, r]));
+  const out = [];
+  for (const { main: mainId, rest: restIds } of MANUAL_GROUPS) {
+    const main = byId.get(mainId);
+    const rest = restIds.map(id => byId.get(id)).filter(Boolean);
+    if (!main || !rest.length) continue;
+    out.push({ base: commonTitle(main, rest), main, rest, kind: 'manual' });
+  }
+  return out;
+}
+
 // ── проход «корень внутри техники» ──────────────────────────────────────────
 //
 // Критерий основателя: если предмет тот же, а отличие - добавка или другое
@@ -786,6 +812,7 @@ function mergeInto(g) {
 
 // ── ход работы ──
 const groups = [];
+if (!ONLY || ONLY === 'manual') groups.push(...buildManualGroups());
 if (!ONLY || ONLY === 'rootcat') groups.push(...buildRootCatGroups());
 if (!ONLY || ONLY === 'root') groups.push(...buildRootGroups());
 if (!ONLY || ONLY === 'identity') groups.push(...buildIdentityGroups());
