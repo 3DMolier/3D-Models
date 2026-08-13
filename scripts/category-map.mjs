@@ -83,6 +83,10 @@ export function classifyByReport(pid, name = '') {
   // TurboSquid держит светильники внутри Interior Design/fixtures вместе с
   // сантехникой - на сайте под них есть отдельная категория Lighting.
   if (slug === 'furniture-interior' && /\b(lamp|lamps|light|lights|bulb|bulbs|lantern|chandelier|sconce|luminaire)\b/i.test(name)) slug = 'lighting';
+  // Шторы и жалюзи лежат в housewares вместе с посудой, и по продажам они
+  // возглавляли «Kitchen & Tableware» - первым, что видел посетитель кухонной
+  // категории, была «Stage Curtain». Это убранство комнаты, а не посуда.
+  if (slug === 'kitchen-tableware' && /\b(curtain|curtains|drape|drapes|drapery|blind|blinds|valance)\b/i.test(name)) slug = 'furniture-interior';
   return slug;
 }
 

@@ -74,7 +74,7 @@ function heroFor(cat, catDisp, count) {
 function loadCatalog() {
   const files = fs.readdirSync(DATA).filter(f => /^fc-chunk-\d+\.json$/.test(f));
   const all = [];
-  for (const f of files) { const d = JSON.parse(fs.readFileSync(path.join(DATA, f))); for (let j = 0; j < d.i.length; j++) all.push({ id: d.i[j], name: d.n[j], price: d.p[j] }); }
+  for (const f of files) { const d = JSON.parse(fs.readFileSync(path.join(DATA, f))); for (let j = 0; j < d.i.length; j++) all.push({ id: d.i[j], name: d.n[j], price: d.p[j], sales: (d.s && d.s[j]) || 0 }); }
   const img = {};
   for (const f of fs.readdirSync(DATA).filter(f => /^fc-img-chunk-\d+\.json$/.test(f))) { try { Object.assign(img, JSON.parse(fs.readFileSync(path.join(DATA, f)))); } catch {} }
   return { all, img };
@@ -175,7 +175,14 @@ function buildCategory(cat, all, img) {
     if (!fs.existsSync(path.join(MODELS, slug, 'index.html'))) continue;
     list.push({ ...m, img: img[m.id] });
   }
-  list.sort((a, b) => b.price - a.price);
+  // Сортировка по продажам, а не по цене. По цене наверх вылезали самые дорогие
+  // товары - а это сложные СЦЕНЫ из многих объектов с нулём продаж: в «Nature &
+  // Plants» первыми шли «Pirate Treasure Cave» и «Marine Shipwreck», в «Furniture
+  // & Interior» - «Operating Room with People». Сцена приписана к категории по
+  // одному из объектов внутри, и для посетителя первый экран выглядел мусорным.
+  // По продажам наверх выходит типовой предмет категории: у Nature & Plants это
+  // Orchid Flower и Cherry Leaf, у Kitchen - Silverware Set и Solo Cup.
+  list.sort((a, b) => (b.sales - a.sales) || (b.price - a.price));
   const total = Math.max(1, Math.ceil(list.length / PERPAGE));
   const heroHtml = heroFor(cat, catDisp, list.length);
   for (let page = 1; page <= total; page++) {
