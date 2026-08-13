@@ -664,8 +664,11 @@ User-agent: cohere-ai
 Allow: /
 
 Sitemap: https://3dmolierstudio.com/sitemap.xml
-LLMs-txt: https://3dmolierstudio.com/llms.txt
-LLMs-full: https://3dmolierstudio.com/llms-full.txt
+
+# LLMs-txt / LLMs-full не входят в стандарт robots.txt - Lighthouse из-за них
+# считал файл невалидным, и SEO-оценка была 0.92 на каждой странице сайта.
+# llms.txt:      https://3dmolierstudio.com/llms.txt
+# llms-full.txt: https://3dmolierstudio.com/llms-full.txt
 """
     (ROOT / "robots.txt").write_text(content, encoding="utf-8")
     print("  robots.txt updated")

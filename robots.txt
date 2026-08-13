@@ -34,5 +34,9 @@ User-agent: cohere-ai
 Allow: /
 
 Sitemap: https://3dmolierstudio.com/sitemap-index.xml
-LLMs-txt: https://3dmolierstudio.com/llms.txt
-LLMs-full: https://3dmolierstudio.com/llms-full.txt
+
+# LLMs-txt / LLMs-full не входят в стандарт robots.txt. Lighthouse из-за этих
+# двух строк считал файл невалидным, и SEO-оценка была 0.92 на КАЖДОЙ странице
+# сайта. Оставляем комментарием: адреса задокументированы, файл валиден.
+# llms.txt:      https://3dmolierstudio.com/llms.txt
+# llms-full.txt: https://3dmolierstudio.com/llms-full.txt

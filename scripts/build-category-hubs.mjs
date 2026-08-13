@@ -80,10 +80,19 @@ function loadCatalog() {
   return { all, img };
 }
 
-function card(m, catDisp) {
+// Первые карточки сетки - это и есть главный элемент первого экрана (LCP).
+// Они грузились с loading="lazy", и браузер начинал качать их только после
+// раскладки: Lighthouse ругался «LCP image was lazily loaded» на 181 странице
+// из 200, медиана LCP была 4.8 с, у худших страниц 7.2 с. Верхнему ряду ставим
+// eager + высокий приоритет, остальным оставляем lazy.
+const EAGER_CARDS = 4;
+
+function card(m, catDisp, i = 99) {
   const slug = slugify(m.name) + '-' + m.id;
+  const eager = i < EAGER_CARDS;
+  const loadAttrs = eager ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
   return `      <a href="/models/${slug}/" class="model-card card-glow">
-        <div class="img-wrap mc-img"><img src="${m.img}" alt="${esc(m.name)} 3D model preview" width="800" height="450" decoding="async" loading="lazy" data-fallback="${m.img}" data-placeholder="${PLACEHOLDER}" onerror="imgErr(this)"><div class="img-placeholder"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">${esc(catDisp)}</span></div></div>
+        <div class="img-wrap mc-img"><img src="${m.img}" alt="${esc(m.name)} 3D model preview" width="800" height="450" decoding="async" ${loadAttrs} data-fallback="${m.img}" data-placeholder="${PLACEHOLDER}" onerror="imgErr(this)"><div class="img-placeholder"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">${esc(catDisp)}</span></div></div>
         <div class="mc-body">
           <div class="mc-meta"><h3 class="mc-title">${esc(m.name)}</h3></div>
           <div class="mc-foot"><span class="chip mc-chip">${esc(catDisp)}</span><span class="mc-price">$${m.price}</span></div>
@@ -123,7 +132,13 @@ function renderPage(cat, catDisp, page, total, models, heroHtml, totalCount) {
     page < total ? `<link rel="next" href="${base}/categories/${cat}/page/${page + 1}/">` : '',
   ].filter(Boolean).join('\n');
   const bcCurrent = page === 1 ? esc(catDisp) : `<a href="/categories/${cat}/" class="bc-link">${esc(catDisp)}</a> <span class="bc-sep">&#8250;</span> Page ${page}`;
-  const cards = models.map(m => card(m, catDisp)).join('\n');
+  const cards = models.map((m, i) => card(m, catDisp, i)).join('\n');
+  // Предзагрузка самой верхней картинки сетки: браузер начинает качать её из
+  // <head>, не дожидаясь разбора разметки и раскладки. Вместе с eager это и
+  // лечит LCP - он упирался именно в первую карточку.
+  const preload = models.length
+    ? `<link rel="preload" as="image" href="${models[0].img}" fetchpriority="high">`
+    : '';
   const h2 = page === 1 ? `Best ${esc(catDisp)} 3D Models` : `${esc(catDisp)} 3D Models - Page ${page} of ${total}`;
   const rangeFrom = (page - 1) * PERPAGE + 1, rangeTo = (page - 1) * PERPAGE + models.length;
   return `<!DOCTYPE html>
@@ -134,6 +149,7 @@ function renderPage(cat, catDisp, page, total, models, heroHtml, totalCount) {
 <title>${esc(title)}</title>
 <meta name="description" content="Browse ${esc(catDisp)} 3D models by 3D Molier. Real-world scale, clean topology, PBR materials, all popular formats. Page ${page} of ${total}.">
 <link rel="canonical" href="${canonical}">
+${preload}
 ${relLinks}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/css/critical-fonts.css?v=33">
