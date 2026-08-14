@@ -711,6 +711,15 @@ function mergeInto(g) {
   try { html = fs.readFileSync(file, 'utf8'); }
   catch (e) { return { ok: false, why: 'главной страницы уже нет' }; }
 
+  // Главная может оказаться страницей-перенаправлением: все участники группы уже
+  // свёрнуты прошлым прогоном по другим правилам, и isRealCard в buildGroups не нашёл
+  // ни одной живой — сработал запасной выбор «лишь бы файл существовал». Вставлять
+  // список вариантов в заглушку некуда, в ней нет ни характеристик, ни таблицы, и
+  // раньше такие 2547 групп падали с невнятным «не нашёл, куда вставить список».
+  if (/http-equiv="refresh"/.test(html.slice(0, 400))) {
+    return { ok: false, why: 'главная уже свёрнута в заглушку' };
+  }
+
   // Уже объединённую карточку не пропускаем, а ПЕРЕСОБИРАЕМ: состав группы мог
   // вырасти. Так и вышло с African Animals — после чистки основы от «3D Models»
   // и «Rigged» серия выросла с 4 выпусков до 26, но старый блок мешал обновиться.
@@ -875,17 +884,64 @@ if (SAMPLE) {
 // не записалась вовсе — и починить ссылки на уже удалённые страницы стало нечем.
 let merged = 0, deleted = 0, skipped = 0; const reasons = {};
 const MAP_FILE = path.join(ROOT, 'data', 'merged-variants.json');
-const map = (!DRY && fs.existsSync(MAP_FILE)) ? JSON.parse(fs.readFileSync(MAP_FILE, 'utf8')) : {};
+// Карту читаем и в --dry: без неё сухой прогон не показывает, что с ней станет.
+// Записи наружу не идут — flush при DRY ничего не делает.
+const map = fs.existsSync(MAP_FILE) ? JSON.parse(fs.readFileSync(MAP_FILE, 'utf8')) : {};
 const flush = () => { if (!DRY) fs.writeFileSync(MAP_FILE, JSON.stringify(map, null, 1)); };
+
+// ── приведение карты в порядок ───────────────────────────────────────────────
+// Карта копилась прогонами и никогда не чистилась. Правила выбора главной со
+// временем менялись, и одна и та же пара записывалась в ОБЕ стороны: «black -> base»
+// от старого прогона и «base -> black» от нового. Таких взаимных пар накопилось 392,
+// а цепочек «вариант -> главная, которая сама уже свёрнута» — 5889.
+//
+// Вред не косметический. fix-catalog-json идёт по карте от ЖИВОЙ страницы, упирается
+// во вторую половину взаимной пары (заглушку) и выбрасывает запись как свёрнутую —
+// из каталога и поиска так пропали живые карточки. build-redirect-stubs спасала
+// только собственная проверка «дошли до живой».
+//
+// Правило простое: ключ карты — это свёрнутый адрес. Если на диске по нему лежит
+// НАСТОЯЩАЯ карточка, запись ложная и её быть не должно. Цепочки доводим до конечной
+// живой страницы. Записи без живой цели оставляем как есть: по ним ещё строятся
+// перенаправления, и удалить их значит превратить старый адрес в 404.
+function normalizeMap(m) {
+  const cache = new Map();
+  const real = s => { if (!cache.has(s)) cache.set(s, isRealCard(s)); return cache.get(s); };
+  const resolve = s => {
+    const seen = new Set();
+    let cur = s;
+    while (cur && !real(cur) && !seen.has(cur)) { seen.add(cur); cur = m[cur]; }
+    return (cur && real(cur)) ? cur : null;
+  };
+  let dropped = 0, rewired = 0;
+  for (const v of Object.keys(m)) {
+    if (real(v)) { delete m[v]; dropped++; continue; }
+    const dest = resolve(m[v]);
+    if (dest && dest !== m[v]) { m[v] = dest; rewired++; }
+  }
+  if (dropped || rewired) console.log('карта до работы: убрано ложных ' + dropped + ', цепочек сведено ' + rewired);
+}
+normalizeMap(map);
 for (const g of groups) {
   // Соответствие «вариант -> главная» записываем ДО попытки слияния и независимо
   // от её исхода. Иначе группы, уже объединённые прошлым прогоном, не попадут в
   // карту — а их варианты с диска удалены, и чинить ссылки на них будет нечем.
-  const mainAlive = fs.existsSync(path.join(MODELS, g.main.slug, 'index.html'));
+  // Главная должна быть НАСТОЯЩЕЙ карточкой, а не заглушкой. existsSync принимал
+  // и заглушку — и группы, все участники которых уже свёрнуты прошлым прогоном по
+  // другим правилам (таких 2547), писали в карту «вариант -> заглушка», а следом
+  // падали на вставке списка. Именно так в карте и завелись взаимные пары: живая
+  // страница получала запись «я свёрнута» в сторону заглушки, которая ведёт на неё же.
+  const mainAlive = isRealCard(g.main.slug);
   if (mainAlive) for (const r of g.rest) map[r.slug] = g.main.slug;
 
   const res = mergeInto(g);
-  if (!res.ok) { skipped++; reasons[res.why] = (reasons[res.why] || 0) + 1; continue; }
+  // WHY=1 — вывести слаг каждой непрошедшей группы. Без этого причина «не нашёл,
+  // куда вставить список» видна только счётчиком, и разбирать её не на чем.
+  if (!res.ok) {
+    skipped++; reasons[res.why] = (reasons[res.why] || 0) + 1;
+    if (process.env.WHY) console.log('SKIP\t' + res.why + '\t' + g.main.slug);
+    continue;
+  }
   if (!DRY) fs.writeFileSync(path.join(MODELS, g.main.slug, 'index.html'), res.html);
   merged++;
   for (const r of g.rest) {
