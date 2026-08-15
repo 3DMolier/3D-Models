@@ -883,6 +883,9 @@ if (SAMPLE) {
 // Карту пишем ПО ХОДУ, а не в конце. 08.08.2026 прогон рухнул на середине, карта
 // не записалась вовсе — и починить ссылки на уже удалённые страницы стало нечем.
 let merged = 0, deleted = 0, skipped = 0; const reasons = {};
+// Главные, которым список собран текущим прогоном. Пасс витрины ниже их пропускает:
+// в --dry страницы не пишутся, и без этой пометки он посчитал бы их своими.
+const mergedMains = new Set();
 const MAP_FILE = path.join(ROOT, 'data', 'merged-variants.json');
 // Карту читаем и в --dry: без неё сухой прогон не показывает, что с ней станет.
 // Записи наружу не идут — flush при DRY ничего не делает.
@@ -904,13 +907,32 @@ const flush = () => { if (!DRY) fs.writeFileSync(MAP_FILE, JSON.stringify(map, n
 // НАСТОЯЩАЯ карточка, запись ложная и её быть не должно. Цепочки доводим до конечной
 // живой страницы. Записи без живой цели оставляем как есть: по ним ещё строятся
 // перенаправления, и удалить их значит превратить старый адрес в 404.
+// Цель самой заглушки. Цепочка в карте бывает замкнутой: две заглушки записаны
+// друг на друга, а живая страница, куда обе ведут НА ДИСКЕ, в карте не значится —
+// её свёл другой проход. Ход только по карте упирается в цикл и возвращает null,
+// запись остаётся смотреть на заглушку, и посетитель получает двойной переход,
+// а canonical указывает на страницу-перенаправление. Таких главных 7.
+function redirectOf(slug) {
+  try {
+    const h = fs.readFileSync(path.join(MODELS, slug, 'index.html'), 'utf8');
+    return (h.match(/http-equiv="refresh" content="0; url=\/models\/([^"\/]+)\//) || [])[1] || null;
+  } catch (e) { return null; }
+}
+
 function normalizeMap(m) {
   const cache = new Map();
   const real = s => { if (!cache.has(s)) cache.set(s, isRealCard(s)); return cache.get(s); };
   const resolve = s => {
     const seen = new Set();
     let cur = s;
-    while (cur && !real(cur) && !seen.has(cur)) { seen.add(cur); cur = m[cur]; }
+    while (cur && !real(cur)) {
+      if (seen.has(cur)) break;
+      seen.add(cur);
+      const next = m[cur];
+      // Карта в приоритете; когда она обрывается или заворачивает на уже пройденное,
+      // спрашиваем саму заглушку, куда она перенаправляет.
+      cur = (next && !seen.has(next)) ? next : redirectOf(cur);
+    }
     return (cur && real(cur)) ? cur : null;
   };
   let dropped = 0, rewired = 0;
@@ -943,7 +965,7 @@ for (const g of groups) {
     continue;
   }
   if (!DRY) fs.writeFileSync(path.join(MODELS, g.main.slug, 'index.html'), res.html);
-  merged++;
+  merged++; mergedMains.add(g.main.slug);
   for (const r of g.rest) {
     const dir = path.join(MODELS, r.slug);
     if (!DRY) {
@@ -960,6 +982,57 @@ for (const g of groups) {
   if (merged % 500 === 0) { flush(); console.log('  объединено ' + merged + ', удалено ' + deleted); }
 }
 flush();
+
+// ── витрина на карточках, объединённых прошлыми прогонами ────────────────────
+// Группы собираются из выгрузки, а главной берётся первая ЖИВАЯ запись группы.
+// Когда все записи группы уже свёрнуты прошлым прогоном в главную ИЗ ДРУГОЙ группы
+// (порядок проходов со временем менялся), живой среди них нет — и группа падает с
+// «главная уже свёрнута в заглушку», таких 2553. Само объединение при этом работает:
+// посетитель с любого старого адреса попадает на живую карточку. Не хватает только
+// списка вариантов НА НЕЙ — 1098 главных стоят без витрины.
+//
+// Поэтому состав берём не из группы, а из КАРТЫ: она знает всех свёрнутых и их
+// главную, в том числе сведённых разными проходами. Трогаем только карточки БЕЗ
+// блока: где список собран текущим прогоном, он полнее, и перебивать его нечем.
+let showcased = 0, showSkipped = 0; const showReasons = {};
+{
+  const byMain = new Map();
+  for (const [v, mainSlug] of Object.entries(map)) {
+    if (v === mainSlug) continue;
+    if (!byMain.has(mainSlug)) byMain.set(mainSlug, []);
+    byMain.get(mainSlug).push(v);
+  }
+  for (const [mainSlug, variants] of byMain) {
+    if (mergedMains.has(mainSlug)) continue;
+    const mainRow = bySlug.get(mainSlug);
+    if (!mainRow) continue;
+    let html;
+    try { html = fs.readFileSync(path.join(MODELS, mainSlug, 'index.html'), 'utf8'); } catch (e) { continue; }
+    if (html.includes('<section class="mp-variants">')) continue;
+    if (/http-equiv="refresh"/.test(html.slice(0, 400))) continue;
+    const rest = variants.map(s => bySlug.get(s)).filter(x => x && x.slug !== mainSlug);
+    if (!rest.length) continue;
+    // Заголовок НЕ переписываем: он собран прошлым прогоном и уже верен. Берём его
+    // же из H1 — тогда замена в mergeInto ничего не меняет. Обратное преобразование
+    // мнемоник обязательно: mergeInto экранирует base заново, иначе «&amp;» на
+    // странице превратится в «&amp;amp;».
+    const h1 = (html.match(/<h1 class="mp-h1">([\s\S]*?)<\/h1>/) || [])[1];
+    const base = h1
+      ? h1.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;/g, '&')
+      : mainRow.name;
+    const kind = isColl(mainRow.name) ? 'collection' : 'identity';
+    const res = mergeInto({ base, main: mainRow, rest, kind });
+    if (!res.ok) {
+      showSkipped++; showReasons[res.why] = (showReasons[res.why] || 0) + 1;
+      if (process.env.WHY) console.log('SHOW-SKIP\t' + res.why + '\t' + mainSlug);
+      continue;
+    }
+    if (!DRY) fs.writeFileSync(path.join(MODELS, mainSlug, 'index.html'), res.html);
+    showcased++;
+  }
+}
+console.log('\nвитрина восстановлена на карточках: ' + showcased + (DRY ? '  (--dry)' : ''));
+if (showSkipped) console.log('  без витрины осталось: ' + showSkipped + '  ' + JSON.stringify(showReasons));
 
 // Индекс превью пополняем ДО выхода: страницы вариантов уже удалены, и в
 // следующий прогон их og:image взять будет неоткуда.

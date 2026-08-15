@@ -32,10 +32,23 @@ const writeUrlset = (file, entries) => {
   console.log(`  ${file}: ${entries.length} URL`);
 };
 
+// Страница-перенаправление, оставленная на месте свёрнутой карточки.
+const isRedirectStub = p => {
+  try { return /http-equiv="refresh"/i.test(fs.readFileSync(p, 'utf8').slice(0, 400)); }
+  catch { return false; }
+};
+
 // ---- 1. модели ----
-const models = dirsWithIndex('models');
+// Заглушки в сайтмап НЕ идут. Фильтр стоял только на коллекциях и отраслях, а
+// моделей после объединений свёрнуто 28 391 из 86 914 — и мы сами звали обход на
+// каждый старый адрес. Для Google это заявка «страница жива, индексируй»: дубли
+// держались в выдаче именно поэтому, при том что на самой странице стоит canonical
+// на главную карточку. В сайтмапе должны быть только живые карточки.
+const allModelDirs = dirsWithIndex('models');
+const models = allModelDirs.filter(s => !isRedirectStub(path.join(ROOT, 'models', s, 'index.html')));
 const mEntries = models.map(s => urlEntry(`${BASE}/models/${s}/`, 'monthly', '0.7'));
-console.log(`Модели на диске: ${models.length}`);
+console.log(`Модели на диске: ${allModelDirs.length}, из них живых: ${models.length}`
+  + `, заглушек не включено: ${allModelDirs.length - models.length}`);
 writeUrlset('sitemap-models-1.xml', mEntries.slice(0, LIMIT));
 writeUrlset('sitemap-models-2.xml', mEntries.slice(LIMIT));
 
@@ -50,11 +63,8 @@ writeUrlset('sitemap-categories.xml', cats.map(c => urlEntry(`${BASE}/categories
 // из которых 17 отдавали 404. Теперь список собирается с диска, как у категорий.
 // Страницы-перенаправления в сайтмап не попадают: у 19 старых подборок
 // (/collections/best-vehicle-3d-models/ и т.п.) на месте остался только meta
-// refresh на новую тему, и звать туда обход незачем.
-const isRedirectStub = p => {
-  try { return /http-equiv="refresh"/i.test(fs.readFileSync(p, 'utf8').slice(0, 400)); }
-  catch { return false; }
-};
+// refresh на новую тему, и звать туда обход незачем. Сама проверка объявлена выше:
+// теперь через неё проходят и модели.
 for (const [dir, file, freq, prio] of [
   ['collections', 'sitemap-collections.xml', 'weekly', '0.7'],
   ['industries', 'sitemap-industries.xml', 'monthly', '0.6'],
