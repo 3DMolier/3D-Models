@@ -479,7 +479,7 @@ def model_page_html(m: dict, related: list[dict]) -> str:
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{title} 3D Model &#8212; {price_str} | 3D Molier on TurboSquid</title>
+<title>{title} 3D Model - {price_str} | 3D Molier on TurboSquid</title>
 <meta name="description" content="{meta_desc}">
 <meta property="og:type" content="product">
 <meta property="og:title" content="{title} 3D Model | 3D Molier">

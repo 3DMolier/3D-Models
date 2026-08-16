@@ -782,8 +782,10 @@ function mergeInto(g) {
     if (m[1] === undefined) { html = html.replace(re, swap); return; }
     const price = (m[1].match(/\$([\d.,]+)/) || [])[1];
     const withPrice = /\$[\d.,]+/.test(m[1]);
+    // Разделитель — дефис, не длинное тире: правило проекта. Генератор ставил
+    // «&#8212;», и оно висело в заголовке каждой карточки.
     const built = open + titleName + ' 3D Model'
-      + (withPrice && price ? ' &#8212; $' + price : '') + ' | 3D Molier' + close;
+      + (withPrice && price ? ' - $' + price : '') + ' | 3D Molier' + close;
     html = html.replace(re, () => built);
   };
   retitle(/<title>[\s\S]*?(\s*3D Model[\s\S]*?)<\/title>/, '<title>', '</title>');

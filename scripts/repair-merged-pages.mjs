@@ -47,8 +47,9 @@ function fixTitle(h) {
   if (!h1) return h;
   const name = h1.replace(/\s*\b3d\s+models?\s*$/i, '');
   const price = (m[1].match(/\$([\d.,]+)/) || [])[1];
+  // Разделитель — дефис, не длинное тире: правило проекта.
   const clean = '<title>' + name + ' 3D Model'
-    + (price ? ' &#8212; $' + price : '') + ' | 3D Molier</title>';
+    + (price ? ' - $' + price : '') + ' | 3D Molier</title>';
   return h.replace(m[0], () => clean);
 }
 
