@@ -87,6 +87,36 @@ export function classifyByReport(pid, name = '') {
   // возглавляли «Kitchen & Tableware» - первым, что видел посетитель кухонной
   // категории, была «Stage Curtain». Это убранство комнаты, а не посуда.
   if (slug === 'kitchen-tableware' && /\b(curtain|curtains|drape|drapes|drapery|blind|blinds|valance)\b/i.test(name)) slug = 'furniture-interior';
+
+  // TurboSquid складывает в Weaponry/armour ВСЮ защитную экипировку, включая
+  // мотоциклетные, велосипедные и спортивные шлемы, каски и защиту слуха.
+  // Для их каталога это последовательно, для нашей витрины - нет: посетитель
+  // категории «Оружие» находил там шлем Bell и наушники 3M PELTOR.
+  // Боевые и исторические доспехи остаются на месте, уезжает только гражданское.
+  if (r.cat1 === 'Weaponry') {
+    const military = /\b(military|combat|tactical|army|soldier|pilot|aviator|swat|riot|police|knight|viking|medieval|samurai|gladiator|roman|greek|spartan|crusader|cuirassier)\b/i.test(name);
+    if (/\b(ear\s?muffs?|earmuffs?|ear\s?plugs?|earplugs?|ear\s?defender|ear\s?protection|hearing\s?protection)\b/i.test(name)) return 'clothing-accessories';
+    const isHead = /\b(helmets?|headgear)\b/i.test(name);
+    // Рабочая защита - не оружие и не спорт: каски строителей, сварщиков,
+    // пожарных и спасателей уходят к промышленному оборудованию.
+    if (!military && isHead && /\b(fire|firefighter|firefighting|welding|welder|construction|hard\s?hat|miner|mining|rescue|industrial|safety)\b/i.test(name)) return 'industrial-equipment';
+    if (!military && isHead
+      && /\b(motorcycle|motorbike|moped|motocross|off[\s-]?road|bicycle|bike|cycling|cycle|skate|skateboard|skateboarding|ski|snowboard|hockey|football|baseball|equestrian|jockey|racing|race|f1|formula|aerodynamic|kart|rally|snowmobile|paintball|airsoft|climbing|bmx|scooter|skydiving|parachute|sport|sports)\b/i.test(name)) return 'sports-recreation';
+    if (!military && /\b(hats?|beanie|bandana|balaclava|headband)\b/i.test(name)) return 'clothing-accessories';
+  }
+
+  // Architecture/site components у TurboSquid - это всё, что раскладывают по
+  // участку, вместе с уличным мусором: газеты, битое стекло, мятые стаканчики,
+  // бетонный лом, стружка от токарной обработки. Беседки, фонтаны и площадки
+  // тут по делу и остаются; уезжает именно мусор и лом.
+  if (slug === 'architecture-landmarks' && (r.cat2 || '') === 'site components') {
+    const keepsArch = /\b(tower|monument|pedestal|window|building|house|wall|bridge|statue|memorial|facade|roof)\b/i.test(name);
+    if (!keepsArch) {
+      if (/\b(trash\s?can|waste\s?bin|garbage\s?can|dustbin|recycle\s?bin)\b/i.test(name)) return 'containers-storage';
+      if (/\b(litter|trash|garbage|waste|debris|rubble|scrap|junk|shavings)\b/i.test(name)
+        || /\b(crumpled|crushed|broken)\b/i.test(name)) return 'other';
+    }
+  }
   return slug;
 }
 

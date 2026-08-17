@@ -238,7 +238,15 @@ function buildGroups(kind) {
         ? r.name.replace(SOFT, '').replace(re, '').replace(/\s*\b3d\s+models?\b\s*/ig, ' ')
           .replace(RIG, ' ').replace(/\s{2,}/g, ' ')
         : r.gname.replace(re, '')).trim();
-    if (base.length < 8) continue;
+    // Отсечка по длине основы. Была 8 знаков, и она молча выбрасывала целые
+    // семейства коротко названных моделей: «Dolphin» это 7 знаков, поэтому
+    // «Dolphin Rigged», «… for Cinema 4D» и «… for Maya» так и остались тремя
+    // карточками. Тем же способом терялись Raccoon, Meerkat, Hyena, Leopard,
+    // Elk, Bat, Cow - всего 94 группы и 437 карточек.
+    // Опущено до 3: группа всё равно не собирается без второго участника и без
+    // различия по софту, меху, анимации, позе или оснастке (проверка varies
+    // ниже), так что склеить двух разных «Bat» это правило не может.
+    if (base.length < 3) continue;
     const key = base.toLowerCase();
     if (process.env.DBG && r.slug.startsWith(process.env.DBG)) console.log('DBG ' + kind + '  key=«' + key + '»  ' + r.slug);
     (g[key] = g[key] || { base, items: [] }).items.push(r);
@@ -461,12 +469,29 @@ function buildRootCatGroups() {
   return out;
 }
 
-function buildRootGroups() {
+// zero=false — модели с НАСТОЯЩИМ корнем из отчёта. Это самый надёжный признак
+// родства, поэтому проход идёт рано.
+// zero=true  — модели, у которых в отчёте root="0", то есть корня нет вовсе.
+//
+// Почему их пришлось развести. Строка "0" в JS истинна, поэтому проверка
+// !rep.root её не отсекала, и 4669 моделей (5% каталога) группировались по
+// фальшивому ключу «0|отпечаток имени». Сам по себе такой ключ работает - по
+// имени родство видно, - но проход шёл РАНЬШЕ прохода по софту и забирал
+// участников себе. Три дельфина («Dolphin Rigged», «… for Cinema 4D»,
+// «… for Maya») из-за этого стали двумя карточками: две с root="0" слиплись
+// между собой, третья с настоящим корнем осталась снаружи, и общая группа уже
+// не собиралась - её участники были заняты.
+// Просто выключить группировку по "0" нельзя: без неё перестают сливаться 935
+// карточек, которые сливались верно (Samsung Galaxy, Apple Watch, KUKA Robot).
+// Поэтому проход не выключен, а перенесён в конец очереди: сперва софт, цвет и
+// техника собирают полные семьи, а «нулевой корень» подбирает то, что осталось.
+function buildRootGroups(zero = false) {
   if (!report.length) return [];
   const g = new Map();
   for (const r of rows) {
     const rep = byPid.get(String(r.id));
     if (!rep || !rep.root) continue;
+    if (zero ? rep.root !== '0' : rep.root === '0') continue;
     if (rep.split) continue;                 // деталь — своя карточка
     if (isColl(r.name)) continue;            // наборы разбирает свой проход
     const p = rootPrint(rep.name || r.name);
@@ -489,7 +514,7 @@ function buildRootGroups() {
     const main = order.find(x => isRealCard(x.slug)) || order.find(x => fs.existsSync(path.join(MODELS, x.slug, 'index.html'))) || order[0];
     const rest = order.filter(x => x.slug !== main.slug);
     if (!rest.length) continue;
-    out.push({ base: commonTitle(main, rest), main, rest, kind: 'root' });
+    out.push({ base: commonTitle(main, rest), main, rest, kind: zero ? 'root0' : 'root' });
   }
   return out;
 }
@@ -829,6 +854,10 @@ if (!ONLY || ONLY === 'root') groups.push(...buildRootGroups());
 if (!ONLY || ONLY === 'identity') groups.push(...buildIdentityGroups());
 if (!ONLY || ONLY === 'soft') groups.push(...buildGroups('soft'));
 if (!ONLY || ONLY === 'color') groups.push(...buildGroups('color'));
+// «Нулевой корень» — последним: он подбирает родство по имени там, где точные
+// проходы выше уже разобрали свои семьи. Раньше он стоял вместе с настоящим
+// корнем и перехватывал участников (см. комментарий у buildRootGroups).
+if (!ONLY || ONLY === 'root0') groups.push(...buildRootGroups(true));
 if (!ONLY || ONLY === 'collection') groups.push(...buildGroups('collection'));
 
 // Один слаг не должен попасть в две группы: иначе он удаляется как вариант в первой,
@@ -855,6 +884,7 @@ console.log('групп: ' + groups.length
   + ', наборы ' + groups.filter(g => g.kind === 'collection').length
   + ', техника ' + groups.filter(g => g.kind === 'identity').length
   + ', по Root ID ' + groups.filter(g => g.kind === 'root').length
+  + ', нулевой корень ' + groups.filter(g => g.kind === 'root0').length
   + ', корень+категория ' + groups.filter(g => g.kind === 'rootcat').length + ')');
 console.log('страниц свернётся: ' + groups.reduce((s, g) => s + g.rest.length, 0));
 
