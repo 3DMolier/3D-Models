@@ -182,12 +182,15 @@ function buildPage(p) {
   const industriesHtml = (f.industries || []).map(i =>
     '<a href="/industries/' + (IND_SLUG[i] || slugify(i)) + '/" class="chip chip--sm">' + esc(i) + '</a>').join('');
 
+  // Без видимой нумерации: номера под миниатюрами ничего не сообщают о кадре и
+  // только сорят. Заголовок галереи тоже снят — он показывал тот же номер.
+  // aria-label остаётся: кнопке нужно доступное имя, на экране оно не видно.
   const galleryHtml = gallery.length > 1
-    ? '<div class="mp-gallery" data-gallery><div class="mp-gal-cap" data-gal-cap>View 1</div><div class="mp-gal-strip">'
+    ? '<div class="mp-gallery" data-gallery><div class="mp-gal-strip">'
     + gallery.map((g, i) => '<button type="button" class="mp-gal-thumb' + (i ? '' : ' is-on')
-      + '" data-full="' + esc(g) + '" data-cap="View ' + (i + 1) + '" title="View ' + (i + 1) + '" aria-label="View ' + (i + 1) + '">'
+      + '" data-full="' + esc(g) + '" aria-label="View ' + (i + 1) + ' of ' + gallery.length + '">'
       + '<img src="' + esc(g) + '" alt="' + esc(proseName(name)) + ' - view ' + (i + 1) + '" width="200" height="113" loading="lazy" decoding="async">'
-      + '<span class="mp-gal-lbl">' + (i + 1) + '</span></button>').join('')
+      + '</button>').join('')
     + '</div></div>' : '';
 
   const head = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">'
