@@ -76,8 +76,17 @@ const num = v => {
 const parseDetails = d => {
   const s = String(d || '');
   const tex = [...s.matchAll(/(\d{2,5})\s*[xх×]\s*(\d{2,5})/gi)].map(m => m[1] + 'x' + m[2]);
-  const dim = (s.match(/Dimensions?\s+([^\n]+)/i) || [])[1];
-  return { textureSizes: [...new Set(tex)], dimensions: dim ? dim.trim() : null };
+  let dim = (s.match(/Dimensions?\s+([^\n]+)/i) || [])[1];
+  // Студия пишет дробную часть через запятую («42,82 x 16,63 x H27,04m»).
+  // Страница английская, там разделитель — точка, иначе число читается как
+  // перечисление. Пробел перед единицей ставим тоже.
+  if (dim) {
+    dim = dim.trim()
+      .replace(/(\d),(\d)/g, '$1.$2')
+      .replace(/([\d.])\s*([a-z]{1,2})\b/gi, '$1 $2')
+      .replace(/\s{2,}/g, ' ');
+  }
+  return { textureSizes: [...new Set(tex)], dimensions: dim || null };
 };
 
 let specAdded = 0;

@@ -106,10 +106,71 @@ const USE_SENT = {
   'Other': 'It is ready for game assets, film and TV VFX, product rendering and VR experiences.',
 };
 
+// ── предложения из ИЗМЕРЕННЫХ данных ─────────────────────────────────────────
+// Полигоны, вершины, разрешение текстур и габариты собраны из нашего inventory
+// (scripts/studio-inventory-collect.js). Это единственная часть описания, где
+// числа у каждой модели свои, поэтому она даёт уникальность не перестановкой
+// слов, а фактами. Пишем их только если они есть: выдумывать нечего.
+const fmtInt = n => Number(n).toLocaleString('en-US');
+const MESH = [
+  (p, v) => `The mesh carries ${fmtInt(p)} polygons and ${fmtInt(v)} vertices.`,
+  (p, v) => `Geometry weighs in at ${fmtInt(p)} polygons over ${fmtInt(v)} vertices.`,
+  (p, v) => `Counted at the source, the model is ${fmtInt(p)} polygons and ${fmtInt(v)} vertices.`,
+  (p, v) => `You are getting ${fmtInt(p)} polygons and ${fmtInt(v)} vertices, measured rather than estimated.`,
+];
+const MESH_WEIGHT = [
+  [12000, `That sits in low-poly territory, so it stays cheap to instance across a crowd scene or a game level.`],
+  [120000, `That is a mid-weight build: detailed enough for a foreground shot, light enough to duplicate freely.`],
+  [600000, `That is a heavy, close-up-grade build, so plan for it as a hero object rather than background filler.`],
+  [Infinity, `That is a very dense build meant for close inspection; for wide shots a decimated copy will serve better.`],
+];
+const TEX = [
+  (n, r) => `Texturing runs to ${n} maps at ${r}.`,
+  (n, r) => `It ships with ${n} textures, authored at ${r}.`,
+  (n, r) => `${n} texture maps come with it, at ${r} resolution.`,
+];
+const DIM = [
+  d => `Real-world footprint is ${d}, so it drops into a scene at correct scale without a rescaling pass.`,
+  d => `The object measures ${d}, modelled at true scale.`,
+  d => `Dimensions are ${d}, which is what you get on import, with no unit guessing.`,
+];
+
+function specSentences(f, seed) {
+  const s = f.specs;
+  if (!s) return [];
+  const out = [];
+  if (s.polygons && s.vertices) {
+    out.push(pick(MESH, seed * 29 + 4)(s.polygons, s.vertices));
+    const band = MESH_WEIGHT.find(([lim]) => s.polygons <= lim);
+    if (band) out.push(band[1]);
+  }
+  if (s.textures && s.textureSizes && s.textureSizes.length) {
+    const r = s.textureSizes.length === 1 ? s.textureSizes[0] : s.textureSizes.slice(0, 2).join(' and ');
+    out.push(pick(TEX, seed * 31 + 6)(s.textures, r.replace(/x/gi, ' x ')));
+  }
+  if (s.dimensions) out.push(pick(DIM, seed * 37 + 9)(esc(s.dimensions)));
+  if (s.rigged && /jointed|rigged/i.test(s.rigged) && !/not\s+jointed/i.test(s.rigged)) {
+    out.push(`The model arrives rigged, so it can be posed without building a skeleton first.`);
+  }
+  if (s.animated && !/not\s+animated/i.test(s.animated)) {
+    out.push(`Animation is included on the asset rather than left as an exercise.`);
+  }
+  return out;
+}
+
 export function description(f, name, cat, price, seed) {
   const n = esc(proseName(name)), c = esc(cat), yr = yearOf(f);
   const parts = [pick(OPEN, seed)(n, c, price)];
-  parts.push(pick(CERT_TXT[f.cert] || CERT_TXT['no certification'], seed * 7 + 3));
+  parts.push(...specSentences(f, seed));
+  // Когда полигонаж измерен и он большой, нельзя ставить рядом заготовку про
+  // «намеренно простую топологию, которая держит сцену лёгкой»: абзац начинает
+  // спорить сам с собой — «тяжёлая сборка» и тут же «лёгкая сцена».
+  let certPool = CERT_TXT[f.cert] || CERT_TXT['no certification'];
+  if (f.specs && f.specs.polygons > 120000) {
+    const filtered = certPool.filter(t => !/deliberately simple|keeps the scene light|efficient/i.test(t));
+    if (filtered.length) certPool = filtered;
+  }
+  parts.push(pick(certPool, seed * 7 + 3));
   parts.push(pick(SCALE, seed * 11 + 5));
   // предложение из СВОИХ данных модели — самая уникальная часть абзаца
   if (f.uses && f.uses.length) {
@@ -120,7 +181,10 @@ export function description(f, name, cat, price, seed) {
       u => `It is catalogued for ${u}.`,
     ], seed * 13 + 1)(listy(f.uses.slice(0, 3).map(esc))));
   }
-  if (yr) parts.push(pick(AGE, seed * 17 + 2)(yr));
+  // Заготовки про возраст листинга говорят о «нескольких кругах студийного
+  // использования». Для модели, вышедшей пару месяцев назад, это неправда,
+  // поэтому возраст упоминаем только у листингов старше года.
+  if (yr && f.days > 365) parts.push(pick(AGE, seed * 17 + 2)(yr));
   parts.push(USE_SENT[cat] || USE_SENT['Other']);
   return parts.join(' ');
 }
@@ -136,6 +200,20 @@ export function specTable(f, name, cat, catSlug, price) {
   rows.push(['Certification', f.cert === 'no certification' ? 'Standard (uncertified)' : esc(f.cert)]);
   if (yr) rows.push(['On sale since', String(yr)]);
   rows.push(['Real-world scale', 'Yes']);
+  // Измеренные характеристики из нашего inventory. Строки появляются только там,
+  // где число действительно есть, иначе таблица начнёт врать прочерками.
+  const s = f.specs;
+  if (s) {
+    if (s.polygons) rows.push(['Polygons', fmtInt(s.polygons)]);
+    if (s.vertices) rows.push(['Vertices', fmtInt(s.vertices)]);
+    if (s.geometry) rows.push(['Geometry', esc(s.geometry)]);
+    if (s.unwrappedUVs) rows.push(['UV mapping', esc(s.unwrappedUVs)]);
+    if (s.textures) rows.push(['Textures', String(s.textures)
+      + (s.textureSizes && s.textureSizes.length ? ' at ' + esc(s.textureSizes.slice(0, 2).join(', ').replace(/x/gi, ' x ')) : '')]);
+    if (s.dimensions) rows.push(['Dimensions', esc(s.dimensions)]);
+    if (s.rigged) rows.push(['Rigging', esc(s.rigged)]);
+    if (s.animated) rows.push(['Animation', esc(s.animated)]);
+  }
   rows.push(['Licence', 'Royalty Free (TurboSquid)']);
   rows.push(['Price', `$${price} USD`]);
   if (f.industries && f.industries.length) rows.push(['Primary industries', esc(f.industries.slice(0, 4).join(', '))]);
@@ -223,6 +301,27 @@ function questionPool(f, n, cat, price, tsUrl, seed) {
     `Editing is allowed — remesh it, strip detail for real-time use, or rebuild the shaders. The one restriction is that the model file cannot be resold or given away as an asset.`,
     `Yes, modification is covered by the licence. Most buyers adjust materials or decimate the mesh for their engine; only redistribution of the source file is off-limits.`,
   ], seed * 19 + 8)]);
+
+  // Вопросы по измеренным данным. Их задают чаще всего перед покупкой, и ответ
+  // здесь конкретный, а не отсылка к листингу.
+  const sp = f.specs;
+  if (sp && sp.polygons) {
+    pool.push([`How heavy is the ${n} mesh?`,
+      `${fmtInt(sp.polygons)} polygons and ${fmtInt(sp.vertices || 0)} vertices${sp.geometry ? ', built as ' + esc(sp.geometry) : ''}. `
+      + (sp.polygons <= 12000 ? 'That is light enough to instance across a scene without a decimation pass.'
+        : sp.polygons <= 120000 ? 'That is a mid-weight asset: fine in the foreground, still cheap enough to duplicate.'
+          : 'Treat it as a hero object; for wide shots a reduced copy will render faster.')]);
+  }
+  if (sp && sp.textures && sp.textureSizes && sp.textureSizes.length) {
+    pool.push([`What texture resolution ships with the ${n}?`,
+      `${sp.textures} maps at ${esc(sp.textureSizes.slice(0, 2).join(' and ').replace(/x/gi, ' x '))}`
+      + `${sp.unwrappedUVs ? ', with ' + esc(String(sp.unwrappedUVs).toLowerCase()) + ' UVs' : ''}. `
+      + `That is enough for close framing without resampling.`]);
+  }
+  if (sp && sp.dimensions) {
+    pool.push([`What size is the ${n} in real-world units?`,
+      `${esc(sp.dimensions)}. The model is built at true scale, so it lands at the right size next to other objects instead of needing a unit fix on import.`]);
+  }
 
   if (kw.length) pool.push([`What should I search for to find models like the ${n}?`,
     `Useful search terms are ${listy(kw)}. Browsing the <a href="/categories/${(cat || 'other').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}/">${esc(cat)}</a> category shows the closest alternatives at a range of prices.`]);
