@@ -64,7 +64,12 @@ function heroFor(cat, catDisp, count) {
   if (fs.existsSync(file)) {
     const s = fs.readFileSync(file, 'utf8');
     const h = (s.match(/<section class="page-section page-section--border-bottom">[\s\S]*?<\/section>/) || [''])[0];
-    if (h) return h;
+    // Hero переиспользуется целиком, вместе со счётчиком «Total Models» — а он
+    // в нём захардкожен разметкой прошлой сборки. Число под сеткой пересчитывалось
+    // каждый раз, а в шапке нет: у Weapons висело 2005 при реальных 1901, у
+    // Architecture 1165 при 4450. Обновляем при переиспользовании.
+    if (h) return h.replace(/(<div class="cat-stat-num">)[^<]*(<\/div>)/,
+      (m, a, b) => a + count.toLocaleString('en-US') + b);
   }
   // новая категория - генерируем
   const [icon, desc] = HERO[cat] || ['🧩', `${catDisp} 3D models by 3D Molier. Real-world scale, clean topology, PBR materials, all popular formats.`];
