@@ -17,6 +17,9 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+// Категория новых товаров по данным отчёта TurboSquid — тот же источник, по
+// которому построены хабы категорий.
+import { classifyByReport } from './category-map.mjs';
 
 const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
 const MODELS = path.join(ROOT, 'models');
@@ -113,6 +116,46 @@ const fixRef = u => {
   return u + (u.includes('?') ? '&' : '?') + REFERRAL;
 };
 for (const r of rows) r.url = fixRef(r.url);
+
+// ── новые товары, которых ещё нет в выгрузке ────────────────────────────────
+// models_master.csv собран в мае и не знает о 2550 моделях, вышедших позже. Их
+// карточки уже стоят на сайте (scripts/build-new-cards.mjs), но объединение их
+// не видело вовсе: проходы строятся по rows, а rows приходили только из CSV.
+// Значит новый цветовой или софтовый вариант существующей модели оставался
+// отдельной карточкой — ровно тот дубль, который мы всё это время вычищаем.
+// Подмешиваем их сюда, а не правим CSV: выгрузку пересобирают, правка пропала бы.
+{
+  const NP = path.join(ROOT, 'data', 'new-products.json');
+  if (fs.existsSync(NP)) {
+    const known = new Set(rows.map(r => String(r.id)));
+    const np = JSON.parse(fs.readFileSync(NP, 'utf8'));
+    const prevFile = path.join(ROOT, 'data', 'new-previews.json');
+    const prev = fs.existsSync(prevFile) ? JSON.parse(fs.readFileSync(prevFile, 'utf8')) : {};
+    const slugify = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    // Категория в CSV — отображаемое имя («Animals & Creatures»), тем же должно
+    // быть и здесь: по ней работает проход «одна машина — одна карточка».
+    const clsSrc2 = fs.readFileSync(path.join(ROOT, 'scripts', 'classify15.mjs'), 'utf8');
+    const CATS2 = eval('[' + clsSrc2.split('const CATS = [')[1].split('];')[0] + ']');
+    const disp2 = Object.fromEntries(CATS2.map(c => [c[0], c[1]])); disp2.other = 'Other';
+    let added = 0;
+    for (const p of np) {
+      const id = String(p.pid);
+      if (known.has(id)) continue;
+      const slug = slugify(p.name) + '-' + id;
+      // Только те, у кого карточка реально существует: иначе группа соберётся
+      // вокруг страницы, которой нет, и слияние упадёт на чтении файла.
+      if (!fs.existsSync(path.join(MODELS, slug, 'index.html'))) continue;
+      const cat = disp2[classifyByReport(id, p.name) || 'other'] || 'Other';
+      rows.push({
+        id, name: p.name, slug,
+        url: fixRef(p.link || ('https://www.turbosquid.com/3d-models/' + slug)),
+        price: +p.price || 0, sales: 0, img: prev[id] || '', cat,
+      });
+      added++;
+    }
+    if (added) console.log('подмешано новых товаров вне выгрузки: ' + added);
+  }
+}
 
 // Правила по цвету и по «Simplified» смотрят на КОНЕЦ названия, а у части товаров
 // в конце висит «3D Model»: «Side Loading Forklift Truck Orange 3D Model». Цвет
