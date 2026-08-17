@@ -214,12 +214,16 @@ function buildPage(p) {
     + '<a href="/categories/' + cat + '/" class="btn-ghost mp-btn-browse">Browse ' + esc(catDisp) + ' Models</a></div>'
     + '<div class="mp-industries"><div class="mp-field-label">Used In</div><div class="mp-chip-row">' + industriesHtml + '</div></div>'
     + '</div></div></div></section>'
+    // Описание слева, характеристики — в правую колонку сетки (она была пустой),
+    // вопросы — отдельным блоком во всю ширину под сеткой.
     + '<section class="mp-details-section"><div class="max-w-7xl mx-auto"><div class="mp-details-grid"><div class="mp-details-left">'
     + '<div><div class="section-label mp-mb12">About This Model</div><p class="mp-desc-text">' + desc + '</p>'
     + dateLine(f, UPDATED_ISO, UPDATED_HUMAN) + '</div>'
+    + '</div><div class="mp-details-right">'
     + specTable(f, name, catDisp, cat, price)
-    + faqBlock(f, name, catDisp, cat, price, ts, seed)
-    + '</div></div></div></section></main>';
+    + '</div></div>'
+    + '<div class="mp-faq-wide">' + faqBlock(f, name, catDisp, cat, price, ts, seed) + '</div>'
+    + '</div></section></main>';
 
   return { slug, cat, html: head + '<body class="relative min-h-screen">' + HEADER + main + FOOTER + TAIL };
 }

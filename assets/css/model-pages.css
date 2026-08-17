@@ -245,6 +245,19 @@ a.chip { text-decoration: none; }
 .mp-faq-a a{color:#0d9488;text-decoration:none}
 .mp-faq-a a:hover{text-decoration:underline}
 @media (max-width:640px){.mp-spec-table th{width:44%;font-size:13px}.mp-spec-table td{font-size:13.5px}}
+/* ── Раскладка новых карточек ───────────────────────────────────────────────
+   Сетка .mp-details-grid всегда была 2fr 1fr, но правую колонку никто не
+   заполнял — рядом с описанием оставалась пустая треть экрана. Характеристики
+   уходят туда, а вопросы разворачиваются на всю ширину под сеткой: у ответов
+   строка была обрезана до 680px и читалась узкой колонкой.
+   Правила висят на обёртках .mp-details-right и .mp-faq-wide, которых нет у
+   58 тысяч прежних карточек, поэтому их вид не меняется. */
+.mp-details-right{display:flex;flex-direction:column;gap:16px}
+.mp-details-right .mp-spec-block{max-width:none}
+.mp-faq-wide{margin-top:40px}
+.mp-faq-wide .mp-faq-block{max-width:none}
+.mp-faq-wide .mp-faq-q{margin-top:24px}
+@media (max-width:900px){.mp-faq-wide{margin-top:28px}}
 .mp-footer-legal{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px}
 .mp-footer-legal a{font-size:13px;color:#6b7280;text-decoration:none}
 .mp-footer-legal a:hover{color:#111;text-decoration:underline}
