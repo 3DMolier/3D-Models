@@ -190,7 +190,10 @@ export function description(f, name, cat, price, seed) {
 }
 
 // ── таблица характеристик ─────────────────────────────────────────────────────
-export function specTable(f, name, cat, catSlug, price) {
+// Строки вынесены отдельно: их же использует раскладка в две колонки, где
+// характеристики рисуются сеткой пар, а не таблицей (таблицу на две колонки
+// не разложить).
+export function specRows(f, name, cat, catSlug, price) {
   const yr = yearOf(f);
   const rows = [
     ['Model', esc(name)],
@@ -218,11 +221,29 @@ export function specTable(f, name, cat, catSlug, price) {
   rows.push(['Price', `$${price} USD`]);
   if (f.industries && f.industries.length) rows.push(['Primary industries', esc(f.industries.slice(0, 4).join(', '))]);
   if (f.uses && f.uses.length) rows.push(['Typical use', esc(f.uses.slice(0, 3).join(', '))]);
+  return rows;
+}
+
+export function specTable(f, name, cat, catSlug, price) {
+  const rows = specRows(f, name, cat, catSlug, price);
   return `        <div class="mp-spec-block">
           <h2 class="mp-block-h2">Specifications</h2>
           <table class="mp-spec-table"><tbody>
 ${rows.map(([k, v]) => `            <tr><th scope="row">${k}</th><td>${v}</td></tr>`).join('\n')}
           </tbody></table>
+        </div>`;
+}
+
+// Характеристики в две колонки. Таблицу разложить на две колонки нельзя, поэтому
+// здесь это сетка пар «подпись — значение»: пары идут в поток и раскладываются
+// колонками средствами CSS, порядок чтения сохраняется.
+export function specGrid(f, name, cat, catSlug, price) {
+  const rows = specRows(f, name, cat, catSlug, price);
+  return `        <div class="mp-spec-block mp-spec-2col">
+          <h2 class="mp-block-h2">Specifications</h2>
+          <div class="mp-spec-pairs">
+${rows.map(([k, v]) => `            <div class="mp-spec-pair"><span class="mp-spec-k">${k}</span><span class="mp-spec-v">${v}</span></div>`).join('\n')}
+          </div>
         </div>`;
 }
 

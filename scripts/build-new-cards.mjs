@@ -20,7 +20,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { esc, description, specTable, faqBlock, productSchema, dateLine, pageSchema, proseName } from './card-content.mjs';
+import { esc, description, specTable, specGrid, faqBlock, productSchema, dateLine, pageSchema, proseName } from './card-content.mjs';
 
 const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
 const MODELS = path.join(ROOT, 'models');
@@ -35,6 +35,12 @@ const DUMP = args.find(a => /\.json$/i.test(a));
 const DRY = args.includes('--dry');
 const LIMIT = args.includes('--limit') ? +args[args.indexOf('--limit') + 1] : 0;
 const ONLY = args.includes('--only') ? args[args.indexOf('--only') + 1].split(',') : null;
+// Раскладка нижней части: faq-left (по умолчанию) или spec-2col.
+const LAYOUT = args.includes('--layout') ? args[args.indexOf('--layout') + 1] : 'faq-left';
+// Куда писать. Для показа вариантов рядом второй складывается во временную
+// папку и помечается noindex, чтобы не попасть в выдачу как дубль.
+const OUTDIR = args.includes('--outdir') ? args[args.indexOf('--outdir') + 1] : null;
+const NOINDEX = args.includes('--noindex');
 
 // ── классификатор: тот же, что у хабов ───────────────────────────────────────
 const { anchorClassify } = await import(pathToFileURL(path.join(ROOT, 'scripts', 'anchors25.mjs')).href);
@@ -112,6 +118,30 @@ const TAIL = tpl.slice(tpl.indexOf('</footer>') + 9);          // скрипты
 const HEAD_CSS = (tpl.match(/<link rel="stylesheet"[\s\S]*?(?=<script|<\/head>)/) || [''])[0];
 const GTAG = (tpl.match(/<!-- Google tag[\s\S]*?<\/script>\s*<script>[\s\S]*?<\/script>/) || [''])[0];
 if (!HEADER || !FOOTER) { console.log('СТОП: не разобран образец ' + TEMPLATE); process.exit(1); }
+
+// ── раскладка нижней части карточки ──────────────────────────────────────────
+// faq-left  — вопросы идут сразу под описанием, в левой колонке. Пустоты между
+//             описанием и вопросами не остаётся вовсе.
+// spec-2col — вопросы во всю ширину под сеткой, а характеристики сложены в две
+//             колонки: правый блок становится вдвое ниже и разрыв схлопывается.
+function detailsSection(f, name, catDisp, cat, price, desc, ts, seed) {
+  const about = '<div><div class="section-label mp-mb12">About This Model</div><p class="mp-desc-text">' + desc + '</p>'
+    + dateLine(f, UPDATED_ISO, UPDATED_HUMAN) + '</div>';
+  const faq = faqBlock(f, name, catDisp, cat, price, ts, seed);
+  const open = '<section class="mp-details-section"><div class="max-w-7xl mx-auto">';
+
+  if (LAYOUT === 'faq-left') {
+    return open + '<div class="mp-details-grid"><div class="mp-details-left">'
+      + about + faq
+      + '</div><div class="mp-details-right">' + specTable(f, name, catDisp, cat, price) + '</div>'
+      + '</div></div></section>';
+  }
+  // spec-2col
+  return open + '<div class="mp-details-grid mp-details-grid--half"><div class="mp-details-left">'
+    + about
+    + '</div><div class="mp-details-right">' + specGrid(f, name, catDisp, cat, price) + '</div>'
+    + '</div><div class="mp-faq-wide">' + faq + '</div></div></section>';
+}
 
 function buildPage(p) {
   const id = String(p.pid);
@@ -214,16 +244,8 @@ function buildPage(p) {
     + '<a href="/categories/' + cat + '/" class="btn-ghost mp-btn-browse">Browse ' + esc(catDisp) + ' Models</a></div>'
     + '<div class="mp-industries"><div class="mp-field-label">Used In</div><div class="mp-chip-row">' + industriesHtml + '</div></div>'
     + '</div></div></div></section>'
-    // Описание слева, характеристики — в правую колонку сетки (она была пустой),
-    // вопросы — отдельным блоком во всю ширину под сеткой.
-    + '<section class="mp-details-section"><div class="max-w-7xl mx-auto"><div class="mp-details-grid"><div class="mp-details-left">'
-    + '<div><div class="section-label mp-mb12">About This Model</div><p class="mp-desc-text">' + desc + '</p>'
-    + dateLine(f, UPDATED_ISO, UPDATED_HUMAN) + '</div>'
-    + '</div><div class="mp-details-right">'
-    + specTable(f, name, catDisp, cat, price)
-    + '</div></div>'
-    + '<div class="mp-faq-wide">' + faqBlock(f, name, catDisp, cat, price, ts, seed) + '</div>'
-    + '</div></section></main>';
+    + detailsSection(f, name, catDisp, cat, price, desc, ts, seed)
+    + '</main>';
 
   return { slug, cat, html: head + '<body class="relative min-h-screen">' + HEADER + main + FOOTER + TAIL };
 }
@@ -240,7 +262,8 @@ for (const p of list) {
   if (!specs[id]) { skipNoSpec++; continue; }
   if (!previews[id]) { skipNoImg++; continue; }
   const built = buildPage(p);
-  const dir = path.join(MODELS, built.slug);
+  if (NOINDEX) built.html = built.html.replace('</title>', '</title><meta name="robots" content="noindex,nofollow">');
+  const dir = OUTDIR ? path.join(ROOT, OUTDIR, built.slug) : path.join(MODELS, built.slug);
   if (fs.existsSync(path.join(dir, 'index.html'))) { skipExists++; continue; }
 
   // преграды: меню на месте, разметка разбирается, заголовок не пуст

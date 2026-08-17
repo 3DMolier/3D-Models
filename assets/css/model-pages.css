@@ -253,11 +253,28 @@ a.chip { text-decoration: none; }
    Правила висят на обёртках .mp-details-right и .mp-faq-wide, которых нет у
    58 тысяч прежних карточек, поэтому их вид не меняется. */
 .mp-details-right{display:flex;flex-direction:column;gap:16px}
+/* Вопросы внутри левой колонки занимают её целиком: иначе они обрезаны до 680px
+   и рядом с ними снова остаётся полоса пустоты. */
+.mp-details-left .mp-faq-block{max-width:none}
 .mp-details-right .mp-spec-block{max-width:none}
 .mp-faq-wide{margin-top:40px}
 .mp-faq-wide .mp-faq-block{max-width:none}
 .mp-faq-wide .mp-faq-q{margin-top:24px}
 @media (max-width:900px){.mp-faq-wide{margin-top:28px}}
+/* Вариант с характеристиками в две колонки. Правая колонка сетки при этом
+   расширяется до половины: на 411px две колонки не помещаются, значения вроде
+   длинного имени модели ломались бы в три строки. */
+.mp-details-grid--half{grid-template-columns:1fr 1fr}
+.mp-spec-pairs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px}
+/* Подпись и значение в ОДНУ строку. Если ставить подпись над значением, каждая
+   пара занимает два ряда, блок остаётся прежней высоты и разрыв под описанием
+   никуда не девается — ради этого вариант и затевался. */
+.mp-spec-pair{display:flex;gap:10px;align-items:baseline;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eceff3;min-width:0}
+.mp-spec-k{flex:0 0 auto;font-size:12.5px;font-weight:500;color:#6b7280;letter-spacing:.01em}
+.mp-spec-v{font-size:13.5px;color:#1f2937;text-align:right;overflow-wrap:anywhere;min-width:0}
+.mp-spec-v a{color:#0d9488;text-decoration:none}
+.mp-spec-v a:hover{text-decoration:underline}
+@media (max-width:900px){.mp-details-grid--half{grid-template-columns:1fr}.mp-spec-pairs{grid-template-columns:1fr}}
 .mp-footer-legal{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px}
 .mp-footer-legal a{font-size:13px;color:#6b7280;text-decoration:none}
 .mp-footer-legal a:hover{color:#111;text-decoration:underline}
