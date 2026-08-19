@@ -70,7 +70,15 @@ for (const [dir, file, freq, prio] of [
   ['industries', 'sitemap-industries.xml', 'monthly', '0.6'],
 ]) {
   const items = dirsWithIndex(dir).filter(x => !isRedirectStub(path.join(ROOT, dir, x, 'index.html')));
-  const entries = [urlEntry(`${BASE}/${dir}/`, freq, prio)];
+  // Корень раздела добавляем только если страница действительно есть. У
+  // /collections/ она есть, у /industries/ - нет, и до августа 2026 карта звала
+  // обход на 404: Ahrefs его там и нашёл.
+  const entries = [];
+  if (fs.existsSync(path.join(ROOT, dir, 'index.html'))) {
+    entries.push(urlEntry(`${BASE}/${dir}/`, freq, prio));
+  } else {
+    console.log('  ' + dir + '/: корневой страницы нет, в сайтмап не добавляю');
+  }
   for (const x of items) {
     entries.push(urlEntry(`${BASE}/${dir}/${x}/`, freq, prio));
     // страницы пагинации темы, если они есть

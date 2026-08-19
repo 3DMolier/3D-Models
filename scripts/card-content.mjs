@@ -23,6 +23,19 @@ export const proseName = s => String(s)
   .replace(/\s+3D\s+Models?\s+(Set|Collection)$/i, ' $1')
   .trim() || String(s);
 const yearOf = f => f.days ? new Date(Date.now() - f.days * 86400000).getFullYear() : null;
+
+// Адрес хаба категории. Раньше он вычислялся из названия по общему правилу, и для
+// двух категорий это давало несуществующие страницы: «Medical» -> /categories/medical/
+// (на деле medical-3d-models) и «Space & Sci-Fi» -> /categories/space-sci-fi/
+// (на деле space-scifi). Ahrefs нашёл эти 404 в августе 2026: 804 и 225 карточек
+// вели в пустоту. Общее правило верно для остальных 25 категорий, поэтому оставляем
+// его как запасное, а расхождения держим списком.
+const CAT_SLUG_FIX = {
+  'Medical': 'medical-3d-models',
+  'Space & Sci-Fi': 'space-scifi',
+};
+export const catSlug = cat => CAT_SLUG_FIX[String(cat || '').trim()]
+  || String(cat || 'other').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 // список в человеческом виде: «a, b and c»
 const listy = a => a.length <= 1 ? (a[0] || '') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1];
 
@@ -345,7 +358,7 @@ function questionPool(f, n, cat, price, tsUrl, seed) {
   }
 
   if (kw.length) pool.push([`What should I search for to find models like the ${n}?`,
-    `Useful search terms are ${listy(kw)}. Browsing the <a href="/categories/${(cat || 'other').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}/">${esc(cat)}</a> category shows the closest alternatives at a range of prices.`]);
+    `Useful search terms are ${listy(kw)}. Browsing the <a href="/categories/${catSlug(cat)}/">${esc(cat)}</a> category shows the closest alternatives at a range of prices.`]);
 
   return pool;
 }
