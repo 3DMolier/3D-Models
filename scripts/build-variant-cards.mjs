@@ -69,6 +69,21 @@ function parseVersions(html) {
   return out;
 }
 
+// Позиция ПЕРЕД закрывающим </div> блока, начинающегося на start. Считаем
+// вложенность: иначе вставка попадает внутрь первой вложенной карточки.
+function endOfDiv(html, start) {
+  if (start < 0) return -1;
+  let depth = 0, i = start;
+  const re = /<div\b|<\/div>/g;
+  re.lastIndex = start;
+  let m;
+  while ((m = re.exec(html))) {
+    if (m[0] === '</div>') { depth--; if (depth === 0) return m.index; }
+    else depth++;
+  }
+  return -1;
+}
+
 // Кадры версии из инвентаря. Ключ - идентификатор TurboSquid, он же в ссылке.
 function framesFor(group, id) {
   if (group.main.id === id) return (group.main.data.images || []);
@@ -77,13 +92,30 @@ function framesFor(group, id) {
 }
 
 const STYLE = `<style>
-/* Лента кадров: была горизонтальная прокрутка, её легко не заметить. Теперь
-   сетка, по умолчанию два ряда, остальное - по кнопке. */
-.mp-gal-strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px;overflow:visible;max-height:none}
+/* Лента кадров. Горизонтальная прокрутка была незаметна, а раскрытие всех кадров
+   в высоту растягивало страницу на экраны вниз: крупный снимок уезжал наверх, и
+   после клика по миниатюре приходилось скроллить обратно, чтобы его увидеть.
+   Плюс справа от растянутой ленты зияла пустая колонка.
+   Поэтому лента - панель ФИКСИРОВАННОЙ высоты со своей прокруткой. Длина
+   страницы от числа кадров больше не зависит вообще. */
+.mp-gal-strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px;
+  max-height:236px;overflow-y:auto;overflow-x:hidden;padding-right:4px;scrollbar-width:thin;
+  overscroll-behavior:contain}
 .mp-gal-strip .mp-gal-thumb{width:auto}
-.mp-gal-grid--clipped{max-height:232px;overflow:hidden}
+.mp-gal-strip--tall{max-height:62vh}
 .mp-gal-more{display:inline-block;margin-top:10px;background:none;border:1px solid #d4d4d4;border-radius:4px;padding:7px 14px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;color:#111}
 .mp-gal-more:hover{border-color:#111}
+.mp-gal-hint{font-size:12px;color:#6b7280;margin-top:8px}
+/* Липкий крупный снимок пробовали - он конфликтует с шапкой сайта и оставляет
+   провал над собой. Вместо этого лента фиксированной высоты: снимок и лента
+   помещаются на один экран, и подтягивать ничего не нужно. */
+/* Лента - во всю ширину под героем. Раньше она стояла в левой колонке под
+   снимком, и справа от неё зияла пустота: блок с ценой заметно короче. Теперь
+   верхний ряд это снимок и блок покупки (327 и 338 пикселей - вровень), а лента
+   идёт отдельной строкой. Заодно в ряд помещается вдвое больше кадров. */
+/* Селектор должен быть не слабее «.mp-hero-grid > .mp-gallery» в model-pages.css,
+   иначе правило сайта перебивает это по точности. */
+@media(min-width:900px){ .mp-hero-grid > .mp-gallery{grid-column:1/-1;grid-row:2} }
 /* Отбивка между кадрами модели и кадрами версий. Намеренно сдержанная: линия и
    подпись в том же стиле, что section-label, без цветных плашек. */
 .mp-gal-split{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin:16px 0 2px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6b7280}
@@ -97,7 +129,33 @@ const STYLE = `<style>
 /* Секция версий - той же сеткой, что related, чтобы читалась как часть страницы. */
 .mp-versions-section{margin:34px 0 0}
 .mp-ver-chip{font-size:11px}
+/* Характеристики переезжают в правую колонку - так договаривались, и заодно это
+   лечит пустоту: раньше слева стояли описание, характеристики и вопросы, а
+   справа болталась одна карточка Quick Info. Колонка узкая, поэтому таблица
+   раскладывается строками «подпись - значение», как в Quick Info. */
+.mp-sidebar-col .mp-spec-block{max-width:none;margin:0}
+.mp-sidebar-col .mp-spec-block .mp-block-h2{font-size:15px;margin:0 0 12px}
+.mp-sidebar-col .mp-spec-table{width:100%;border-collapse:collapse;font-size:13px}
+.mp-sidebar-col .mp-spec-table th,.mp-sidebar-col .mp-spec-table td{display:block;width:auto}
+.mp-sidebar-col .mp-spec-table tr{display:flex;justify-content:space-between;gap:12px;align-items:baseline;
+  padding:8px 0;border-bottom:1px solid #ececec}
+.mp-sidebar-col .mp-spec-table tr:last-child{border-bottom:0}
+.mp-sidebar-col .mp-spec-table th{color:#6b7280;font-weight:500;text-align:left;flex:0 0 auto}
+.mp-sidebar-col .mp-spec-table td{text-align:right;flex:1 1 auto;overflow-wrap:anywhere}
+.mp-spec-card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:20px}
+/* Колонки уравниваем, а характеристики внутри правой раскладываем в два столбца.
+   При сетке 2fr 1fr правая колонка выходила на 447 пикселей выше левой, и под
+   текстом оставалась дыра; так разница падает до ~180. Только на широком экране:
+   на узком карточка и так в одну колонку. */
+@media(min-width:900px){
+  .mp-details-grid{grid-template-columns:1fr 1fr}
+  .mp-sidebar-col .mp-spec-table tbody{display:grid;grid-template-columns:1fr 1fr;gap:0 22px}
+}
 @media(prefers-color-scheme:dark){
+ .mp-spec-card{background:#171a1f;border-color:#2b2f37}
+ .mp-sidebar-col .mp-spec-table tr{border-color:#2b2f37}
+ .mp-sidebar-col .mp-spec-table th{color:#9ca3af}
+ .mp-gal-hint{color:#9ca3af}
  .mp-gal-more{border-color:#3a3f4a;color:#e5e7eb}
  .mp-gal-more:hover{border-color:#e5e7eb}
  .mp-gal-split{color:#9ca3af}
@@ -128,17 +186,30 @@ const SCRIPT = `<script>
       var id=card.getAttribute('data-show-version');
       var t=document.querySelector('.mp-gal-thumb[data-owner="'+id+'"]');
       if(t){ e.preventDefault(); t.click();
+        // Прокручиваем ВНУТРИ ленты, а не страницу: страница остаётся на месте,
+        // и крупный снимок никуда не уезжает.
         var strip=document.querySelector('.mp-gal-strip');
-        if(strip&&strip.classList.contains('mp-gal-grid--clipped')){ var m=document.querySelector('.mp-gal-more'); if(m) m.click(); }
-        t.scrollIntoView({behavior:'smooth',block:'center'});
+        if(strip) strip.scrollTop = Math.max(0, t.offsetTop - strip.offsetTop - 8);
+        var frame=document.querySelector('.mp-hero-frame');
+        if(frame) frame.scrollIntoView({behavior:'smooth',block:'nearest'});
       }
     }
   });
   var more=document.querySelector('.mp-gal-more');
   if(more) more.addEventListener('click',function(){
     var strip=document.querySelector('.mp-gal-strip');
-    var open=strip.classList.toggle('mp-gal-grid--clipped');
-    more.textContent = open ? more.getAttribute('data-more') : more.getAttribute('data-less');
+    var tall=strip.classList.toggle('mp-gal-strip--tall');
+    more.textContent = tall ? more.getAttribute('data-less') : more.getAttribute('data-more');
+  });
+  // Если крупный снимок ушёл выше экрана, подтягиваем его к глазам: щёлкать по
+  // миниатюре и не видеть результата - ровно та беда, из-за которой ленту и
+  // переделывали.
+  document.addEventListener('click',function(e){
+    if(!e.target.closest||!e.target.closest('.mp-gal-thumb')) return;
+    var frame=document.querySelector('.mp-hero-frame')||document.querySelector('.mp-hero-img');
+    if(!frame) return;
+    var r=frame.getBoundingClientRect();
+    if(r.top < 0 || r.bottom > window.innerHeight) frame.scrollIntoView({behavior:'smooth',block:'nearest'});
   });
 })();
 </script>`;
@@ -182,8 +253,9 @@ function build(group) {
   const clipped = total > 12;
 
   html = html.replace(/<div class="mp-gal-strip">[\s\S]*?<\/div>(?=<\/div>)/, () =>
-    `<div class="mp-gal-strip${clipped ? ' mp-gal-grid--clipped' : ''}">${strip}</div>`
-    + (clipped ? `<button type="button" class="mp-gal-more" data-more="Show all ${total} frames" data-less="Show fewer frames">Show all ${total} frames</button>` : ''));
+    `<div class="mp-gal-strip">${strip}</div>`
+    + `<div class="mp-gal-hint">${total} frames &#183; scroll inside the strip to see them all</div>`
+    + (clipped ? `<button type="button" class="mp-gal-more" data-more="Taller strip" data-less="Shorter strip">Taller strip</button>` : ''));
 
   // Подпись: имя ведёт штатный скрипт, цену и ссылку дописываем строкой ниже.
   // Замену задаём функцией, а не строкой: цены содержат «$», а в строке замены
@@ -218,13 +290,32 @@ function build(group) {
   // Тоже функцией: в карточках версий есть цены со знаком «$».
   html = html.replace('<section class="mp-related-section">', () => verSection + '<section class="mp-related-section">');
 
-  // ── 3. стили, скрипт, служебное ───────────────────────────────────────────
+  // ── 3. характеристики - в правую колонку ──────────────────────────────────
+  // Слева оставались описание, характеристики и вопросы, а справа висела одна
+  // карточка Quick Info, из-за чего колонка обрывалась и ниже зияла пустота.
+  const specM = html.match(/<div class="mp-spec-block">[\s\S]*?(?=<div class="mp-faq-block">)/);
+  if (specM) {
+    const spec = specM[0];
+    html = html.replace(spec, '');
+    // Границу колонки ищем счётом тегов, а не первым попавшимся «</div></div>»:
+    // при наивном поиске блок характеристик уехал ВНУТРЬ карточки Quick Info.
+    const at = endOfDiv(html, html.indexOf('<div class="mp-sidebar-col">'));
+    if (at > 0) html = html.slice(0, at) + '<div class="mp-spec-card">' + spec + '</div>' + html.slice(at);
+    else console.log('  не нашёл конец правой колонки: ' + slug);
+  }
+
+  // ── 4. стили, скрипт, служебное ───────────────────────────────────────────
   html = html.replace('</head>', STYLE + '</head>');
   html = html.replace('</body>', SCRIPT + '</body>');
   if (NOINDEX && !/name="robots"/.test(html)) {
     html = html.replace('</title>', '</title>\n<meta name="robots" content="noindex, nofollow">');
   }
-  return { slug, html, total, versions: versions.length };
+  // Длинного тире в текстах быть не должно - правило проекта. В генераторе
+  // card-content.mjs оно уже убрано, но выпущенные карточки его ещё несут
+  // (59 672 страницы на 20.08.2026), поэтому чистим и здесь.
+  const dashes = (html.match(/—|–|&#8212;|&mdash;|&#8211;|&ndash;/g) || []).length;
+  html = html.replace(/\s*(?:—|–|&#8212;|&mdash;|&#8211;|&ndash;)\s*/g, ' - ');
+  return { slug, html, total, versions: versions.length, dashes };
 }
 
 const outBase = path.join(ROOT, OUTDIR);
@@ -237,7 +328,7 @@ for (const g of GROUPS) {
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'index.html'), r.html);
   made.push(r);
-  console.log('  собрано: ' + r.slug + '  версий ' + r.versions + ', кадров ' + r.total);
+  console.log('  собрано: ' + r.slug + '  версий ' + r.versions + ', кадров ' + r.total + ', тире убрано ' + r.dashes);
 }
 console.log('\nготово, страниц: ' + made.length);
 made.forEach(r => console.log('   https://3dmolierstudio.com/' + OUTDIR + '/' + r.slug + '/'));
