@@ -69,6 +69,15 @@ function parseVersions(html) {
   return out;
 }
 
+// Подвал главной страницы: карточки должны носить его же, а не свой обрезанный.
+const HOME_FOOTER = (() => {
+  try {
+    const h = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+    const i = h.lastIndexOf('<footer');
+    return i < 0 ? null : h.slice(i, h.indexOf('</footer>', i) + '</footer>'.length);
+  } catch { return null; }
+})();
+
 // Позиция ПЕРЕД закрывающим </div> блока, начинающегося на start. Считаем
 // вложенность: иначе вставка попадает внутрь первой вложенной карточки.
 function endOfDiv(html, start) {
@@ -98,24 +107,30 @@ const STYLE = `<style>
    Плюс справа от растянутой ленты зияла пустая колонка.
    Поэтому лента - панель ФИКСИРОВАННОЙ высоты со своей прокруткой. Длина
    страницы от числа кадров больше не зависит вообще. */
-.mp-gal-strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px;
-  max-height:236px;overflow-y:auto;overflow-x:hidden;padding-right:4px;scrollbar-width:thin;
-  overscroll-behavior:contain}
-.mp-gal-strip .mp-gal-thumb{width:auto}
-.mp-gal-strip--tall{max-height:62vh}
-.mp-gal-more{display:inline-block;margin-top:10px;background:none;border:1px solid #d4d4d4;border-radius:4px;padding:7px 14px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;color:#111}
-.mp-gal-more:hover{border-color:#111}
+/* Одна строка кадров со стрелками по бокам, как на TurboSquid. Сетка в несколько
+   рядов давала простыню и заезжала под правый блок. */
+.mp-gal-row{display:flex;align-items:center;gap:8px}
+.mp-gal-strip{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;overflow-y:hidden;
+  scroll-behavior:smooth;scrollbar-width:none;flex:1 1 auto;min-width:0;padding-bottom:2px}
+.mp-gal-strip::-webkit-scrollbar{display:none}
+.mp-gal-strip .mp-gal-thumb{flex:0 0 104px;width:104px;height:auto;aspect-ratio:16/10}
+.mp-gal-strip .mp-gal-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.mp-gal-arrow{flex:0 0 auto;width:30px;height:56px;display:flex;align-items:center;justify-content:center;
+  background:#fff;border:1px solid #d4d4d4;border-radius:4px;font-size:19px;line-height:1;color:#111;cursor:pointer}
+.mp-gal-arrow:hover{border-color:#111}
+.mp-gal-arrow[disabled]{opacity:.3;cursor:default}
 .mp-gal-hint{font-size:12px;color:#6b7280;margin-top:8px}
 /* Липкий крупный снимок пробовали - он конфликтует с шапкой сайта и оставляет
    провал над собой. Вместо этого лента фиксированной высоты: снимок и лента
    помещаются на один экран, и подтягивать ничего не нужно. */
-/* Лента - во всю ширину под героем. Раньше она стояла в левой колонке под
-   снимком, и справа от неё зияла пустота: блок с ценой заметно короче. Теперь
-   верхний ряд это снимок и блок покупки (327 и 338 пикселей - вровень), а лента
-   идёт отдельной строкой. Заодно в ряд помещается вдвое больше кадров. */
-/* Селектор должен быть не слабее «.mp-hero-grid > .mp-gallery» в model-pages.css,
+/* Лента остаётся в левой колонке под снимком и НЕ лезет под правый блок:
+   во всю ширину она наезжала на карточку с ценой. Левую колонку делаем шире,
+   правую уже. Селектор не слабее «.mp-hero-grid > .mp-gallery» в model-pages.css,
    иначе правило сайта перебивает это по точности. */
-@media(min-width:900px){ .mp-hero-grid > .mp-gallery{grid-column:1/-1;grid-row:2} }
+@media(min-width:900px){
+  .mp-hero-grid{grid-template-columns:1.55fr 1fr}
+  .mp-hero-grid > .mp-gallery{grid-column:1;grid-row:2}
+}
 /* Отбивка между кадрами модели и кадрами версий. Намеренно сдержанная: линия и
    подпись в том же стиле, что section-label, без цветных плашек. */
 .mp-gal-split{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin:16px 0 2px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6b7280}
@@ -143,15 +158,16 @@ const STYLE = `<style>
 .mp-sidebar-col .mp-spec-table th{color:#6b7280;font-weight:500;text-align:left;flex:0 0 auto}
 .mp-sidebar-col .mp-spec-table td{text-align:right;flex:1 1 auto;overflow-wrap:anywhere}
 .mp-spec-card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:20px}
-/* Колонки уравниваем, а характеристики внутри правой раскладываем в два столбца.
-   При сетке 2fr 1fr правая колонка выходила на 447 пикселей выше левой, и под
-   текстом оставалась дыра; так разница падает до ~180. Только на широком экране:
-   на узком карточка и так в одну колонку. */
-@media(min-width:900px){
-  .mp-details-grid{grid-template-columns:1fr 1fr}
-  .mp-sidebar-col .mp-spec-table tbody{display:grid;grid-template-columns:1fr 1fr;gap:0 22px}
-}
+/* Характеристики в ОДНУ колонку - так решил основатель. Двухстолбцовую раскладку
+   пробовали ради выравнивания высот, от неё отказались. Левый блок шире правого. */
+@media(min-width:900px){ .mp-details-grid{grid-template-columns:1.55fr 1fr} }
+/* Полоса-разделитель между «All Versions» и «Related 3D Models». */
+.mp-section-split{height:1px;background:#e5e5e5;margin:34px 0 0}
+.mp-footer-back{padding-top:14px}
 @media(prefers-color-scheme:dark){
+ .mp-section-split{background:#2b2f37}
+ .mp-gal-arrow{background:#171a1f;border-color:#3a3f4a;color:#e5e7eb}
+ .mp-gal-arrow:hover{border-color:#e5e7eb}
  .mp-spec-card{background:#171a1f;border-color:#2b2f37}
  .mp-sidebar-col .mp-spec-table tr{border-color:#2b2f37}
  .mp-sidebar-col .mp-spec-table th{color:#9ca3af}
@@ -167,50 +183,31 @@ const STYLE = `<style>
 
 const SCRIPT = `<script>
 (function(){
-  // Подпись под крупным кадром: имя версии меняет штатный скрипт сайта, а цену
-  // и ссылку на TurboSquid дописываем здесь, чтобы из презентации можно было
-  // сразу уйти к покупке той версии, которую человек сейчас смотрит.
-  var row=document.querySelector('[data-cap-row]'); if(!row) return;
-  var priceEl=row.querySelector('[data-cap-price]'), linkEl=row.querySelector('[data-cap-link]'), tagEl=row.querySelector('[data-cap-tag]');
-  function apply(btn){
-    var p=btn.getAttribute('data-price')||'', l=btn.getAttribute('data-link')||'', v=btn.getAttribute('data-variant');
-    priceEl.textContent=p;
-    if(l){ linkEl.href=l; linkEl.style.display=''; } else { linkEl.style.display='none'; }
-    tagEl.textContent = v ? 'Variation' : 'Base model';
+  var strip=document.querySelector('.mp-gal-strip');
+  var prev=document.querySelector('.mp-gal-prev'), next=document.querySelector('.mp-gal-next');
+  if(!strip||!prev||!next) return;
+
+  // Стрелки листают ленту на видимую ширину, как на TurboSquid.
+  function page(dir){ strip.scrollLeft += dir * Math.max(120, strip.clientWidth - 40); }
+  prev.addEventListener('click',function(){ page(-1); });
+  next.addEventListener('click',function(){ page(1); });
+
+  // Гасим стрелку, когда листать в её сторону больше нечего.
+  function sync(){
+    var max=strip.scrollWidth-strip.clientWidth-1;
+    prev.disabled = strip.scrollLeft<=0;
+    next.disabled = strip.scrollLeft>=max;
   }
-  document.addEventListener('click',function(e){
-    var btn=e.target.closest?e.target.closest('.mp-gal-thumb'):null;
-    if(btn){ apply(btn); return; }
-    var card=e.target.closest?e.target.closest('[data-show-version]'):null;
-    if(card){
-      var id=card.getAttribute('data-show-version');
-      var t=document.querySelector('.mp-gal-thumb[data-owner="'+id+'"]');
-      if(t){ e.preventDefault(); t.click();
-        // Прокручиваем ВНУТРИ ленты, а не страницу: страница остаётся на месте,
-        // и крупный снимок никуда не уезжает.
-        var strip=document.querySelector('.mp-gal-strip');
-        if(strip) strip.scrollTop = Math.max(0, t.offsetTop - strip.offsetTop - 8);
-        var frame=document.querySelector('.mp-hero-frame');
-        if(frame) frame.scrollIntoView({behavior:'smooth',block:'nearest'});
-      }
-    }
-  });
-  var more=document.querySelector('.mp-gal-more');
-  if(more) more.addEventListener('click',function(){
-    var strip=document.querySelector('.mp-gal-strip');
-    var tall=strip.classList.toggle('mp-gal-strip--tall');
-    more.textContent = tall ? more.getAttribute('data-less') : more.getAttribute('data-more');
-  });
-  // Если крупный снимок ушёл выше экрана, подтягиваем его к глазам: щёлкать по
-  // миниатюре и не видеть результата - ровно та беда, из-за которой ленту и
-  // переделывали.
-  document.addEventListener('click',function(e){
-    if(!e.target.closest||!e.target.closest('.mp-gal-thumb')) return;
-    var frame=document.querySelector('.mp-hero-frame')||document.querySelector('.mp-hero-img');
-    if(!frame) return;
-    var r=frame.getBoundingClientRect();
-    if(r.top < 0 || r.bottom > window.innerHeight) frame.scrollIntoView({behavior:'smooth',block:'nearest'});
-  });
+  strip.addEventListener('scroll',sync);
+  window.addEventListener('resize',sync);
+  sync();
+
+  // Колесо мыши над лентой листает её вбок, а не крутит страницу.
+  strip.addEventListener('wheel',function(e){
+    if(Math.abs(e.deltaY)<=Math.abs(e.deltaX)) return;
+    if(strip.scrollWidth<=strip.clientWidth) return;
+    e.preventDefault(); strip.scrollLeft += e.deltaY;
+  },{passive:false});
 })();
 </script>`;
 
@@ -225,45 +222,35 @@ function build(group) {
   const main = versions.find(v => v.isMain) || versions[0];
 
   // ── 1. лента кадров ────────────────────────────────────────────────────────
-  const mkThumb = (srcUrl, ver, isVar) =>
-    `<button type="button" class="mp-gal-thumb${isVar ? ' mp-gal-thumb--var' : ''}" data-full="${esc(srcUrl)}"`
+  // Только кадры САМОЙ модели. Кадры сшитых версий из презентации убраны: их
+  // было под полторы сотни, и они сбивали - версия показывается одним главным
+  // ракурсом в секции ниже, оттуда же переход на TurboSquid.
+  // Раскладка как на TurboSquid: одна строка, остальное листается стрелками.
+  const mkThumb = (srcUrl, ver) =>
+    `<button type="button" class="mp-gal-thumb" data-full="${esc(srcUrl)}"`
     + ` data-cap="${esc(ver.name)}" data-owner="${esc(ver.id)}" data-price="${esc(ver.price)}" data-link="${esc(ver.link)}"`
-    + (isVar ? ' data-variant="1"' : '')
     + ` title="${esc(ver.name)}" aria-label="${esc(ver.name)}">`
     + `<img src="${esc(srcUrl)}" alt="${esc(ver.name)}" width="200" height="113" loading="lazy" decoding="async">`
-    + `<span class="mp-gal-lbl">${esc(ver.name)}</span></button>`;
+    + `</button>`;
 
   const mainFrames = framesFor(group, main.id);
   if (!mainFrames.length) { console.log('  нет кадров в инвентаре: ' + slug); return null; }
 
-  let strip = mainFrames.map((u, i) => mkThumb(u, main, false)).join('');
-  let varCount = 0;
-  const varParts = [];
-  for (const v of versions) {
-    if (v.isMain) continue;
-    const fr = framesFor(group, v.id);
-    if (!fr.length) continue;
-    varCount += fr.length;
-    varParts.push(fr.map(u => mkThumb(u, v, true)).join(''));
-  }
-  if (varParts.length) {
-    strip += `<div class="mp-gal-split">Frames of other versions</div>` + varParts.join('');
-  }
-  const total = mainFrames.length + varCount;
-  const clipped = total > 12;
+  const strip = mainFrames.map(u => mkThumb(u, main)).join('');
+  const total = mainFrames.length;
 
   html = html.replace(/<div class="mp-gal-strip">[\s\S]*?<\/div>(?=<\/div>)/, () =>
-    `<div class="mp-gal-strip">${strip}</div>`
-    + `<div class="mp-gal-hint">${total} frames &#183; scroll inside the strip to see them all</div>`
-    + (clipped ? `<button type="button" class="mp-gal-more" data-more="Taller strip" data-less="Shorter strip">Taller strip</button>` : ''));
+    `<div class="mp-gal-row">`
+    + `<button type="button" class="mp-gal-arrow mp-gal-prev" aria-label="Previous frames">&#8249;</button>`
+    + `<div class="mp-gal-strip">${strip}</div>`
+    + `<button type="button" class="mp-gal-arrow mp-gal-next" aria-label="Next frames">&#8250;</button>`
+    + `</div>`
+    + `<div class="mp-gal-hint">${total} frames</div>`);
 
-  // Подпись: имя ведёт штатный скрипт, цену и ссылку дописываем строкой ниже.
-  // Замену задаём функцией, а не строкой: цены содержат «$», а в строке замены
-  // «$1» означает первую группу. Из-за этого «$179» превращалось в «Standard79».
-  html = html.replace(/<div class="mp-gal-cap" data-gal-cap>([\s\S]*?)<\/div>/, (m, inner) =>
-    `<div class="mp-gal-cap" data-gal-cap>${inner}</div>`
-    + `<div class="mp-gal-cap-row" data-cap-row>`
-    + `<span class="mp-gal-cap-tag" data-cap-tag>Base model</span>`
+  // Подпись под крупным снимком. Версий в презентации больше нет, поэтому здесь
+  // всегда основная модель - оставляем цену и переход на TurboSquid.
+  html = html.replace(/<div class="mp-gal-cap" data-gal-cap>([\s\S]*?)<\/div>/, () =>
+    `<div class="mp-gal-cap-row" data-cap-row>`
     + `<span class="mp-gal-cap-price" data-cap-price>${esc(main.price)}</span>`
     + `<a class="mp-gal-cap-link" data-cap-link href="${esc(main.link)}" target="_blank" rel="noopener">View on TurboSquid &#8599;</a>`
     + `</div>`);
@@ -271,37 +258,68 @@ function build(group) {
   // ── 2. секция версий вниз, сеткой как related ─────────────────────────────
   html = html.replace(/<section class="mp-variants">[\s\S]*?<\/section>/, '');
 
-  const verCards = versions.map(v => {
-    const frames = framesFor(group, v.id).length;
-    return `<a href="${esc(v.link)}" target="_blank" rel="noopener" class="model-card card-glow mp-rc-link" data-show-version="${esc(v.id)}">`
-      + `<div class="img-wrap mp-rc-img-wrap">`
-      + `<img src="${esc(v.thumb)}" alt="${esc(v.name)}" width="800" height="450" decoding="async" loading="lazy" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">`
-      + `<div class="img-placeholder"><span class="mp-rc-placeholder-icon">&#128247;</span></div></div>`
-      + `<div class="mp-rc-body"><div class="mp-rc-head"><div class="mp-rc-title">${esc(v.name)}${v.isMain ? ' <span class="mp-var-badge">main</span>' : ''}</div></div>`
-      + `<div class="mp-rc-foot"><span class="chip chip-teal mp-rc-chip mp-ver-chip">${v.tag ? esc(v.tag) : (frames ? frames + ' frames' : 'View')}</span>`
-      + `<span class="mp-rc-price">${esc(v.price)}</span></div></div></a>`;
-  }).join('');
+  // Каждая версия - один главный ракурс, название, цена и переход на TurboSquid.
+  // Больше ничего: галерей у сшитых карточек нет.
+  const verCards = versions.map(v =>
+    `<a href="${esc(v.link)}" target="_blank" rel="noopener" class="model-card card-glow mp-rc-link">`
+    + `<div class="img-wrap mp-rc-img-wrap">`
+    + `<img src="${esc(v.thumb)}" alt="${esc(v.name)}" width="800" height="450" decoding="async" loading="lazy" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">`
+    + `<div class="img-placeholder"><span class="mp-rc-placeholder-icon">&#128247;</span></div></div>`
+    + `<div class="mp-rc-body"><div class="mp-rc-head"><div class="mp-rc-title">${esc(v.name)}${v.isMain ? ' <span class="mp-var-badge">main</span>' : ''}</div></div>`
+    + `<div class="mp-rc-foot"><span class="chip chip-teal mp-rc-chip mp-ver-chip">${v.tag ? esc(v.tag) : 'View on TurboSquid'}</span>`
+    + `<span class="mp-rc-price">${esc(v.price)}</span></div></div></a>`).join('');
 
   const verSection = `<section class="mp-related-section mp-versions-section"><div class="max-w-7xl mx-auto">`
     + `<div class="section-label mp-mb8">Same model, other versions</div>`
     + `<h2 class="mp-related-h2">All Versions of This Model</h2>`
-    + `<div class="mp-related-grid">${verCards}</div></div></section>`;
+    + `<div class="mp-related-grid">${verCards}</div>`
+    + `<div class="mp-section-split" role="separator"></div>`
+    + `</div></section>`;
 
   // Тоже функцией: в карточках версий есть цены со знаком «$».
   html = html.replace('<section class="mp-related-section">', () => verSection + '<section class="mp-related-section">');
 
-  // ── 3. характеристики - в правую колонку ──────────────────────────────────
-  // Слева оставались описание, характеристики и вопросы, а справа висела одна
-  // карточка Quick Info, из-за чего колонка обрывалась и ниже зияла пустота.
+  // ── 3. характеристики - в правую колонку, Quick Info внутрь них ───────────
+  // Quick Info дублировал характеристики: цена, категория и сертификация были в
+  // обоих блоках. Оставляем один блок, а уникальную строку Quick Info («Rig»)
+  // переносим в него.
+  const quick = {};
+  const qiM = html.match(/<div class="mp-info-card">[\s\S]*?<div class="mp-info-rows">([\s\S]*?)<\/div><\/div>/);
+  if (qiM) {
+    for (const m of qiM[1].matchAll(/<span class="mp-info-row-label">([^<]*)<\/span>\s*(<span[^>]*>|<a[^>]*>)([^<]*)/g)) {
+      quick[m[1].trim()] = { html: m[2] + m[3] + (m[2].startsWith('<a') ? '</a>' : '</span>'), text: m[3].trim() };
+    }
+    html = html.replace(/<div class="mp-info-card">[\s\S]*?<div class="mp-info-rows">[\s\S]*?<\/div><\/div>/, '');
+  }
+
   const specM = html.match(/<div class="mp-spec-block">[\s\S]*?(?=<div class="mp-faq-block">)/);
   if (specM) {
-    const spec = specM[0];
+    let spec = specM[0];
     html = html.replace(spec, '');
+    // Строки Quick Info, которых нет в характеристиках, дописываем в таблицу.
+    const have = [...spec.matchAll(/<th[^>]*>([\s\S]*?)<\/th>/g)].map(m => m[1].replace(/<[^>]+>/g, '').trim().toLowerCase());
+    const extra = Object.entries(quick)
+      .filter(([k]) => !have.includes(k.toLowerCase()))
+      .map(([k, v]) => `<tr><th>${esc(k)}</th><td>${v.html}</td></tr>`).join('');
+    if (extra) spec = spec.replace('</tbody>', extra + '</tbody>');
     // Границу колонки ищем счётом тегов, а не первым попавшимся «</div></div>»:
     // при наивном поиске блок характеристик уехал ВНУТРЬ карточки Quick Info.
     const at = endOfDiv(html, html.indexOf('<div class="mp-sidebar-col">'));
     if (at > 0) html = html.slice(0, at) + '<div class="mp-spec-card">' + spec + '</div>' + html.slice(at);
     else console.log('  не нашёл конец правой колонки: ' + slug);
+  }
+
+  // ── 3б. подвал как на главной ─────────────────────────────────────────────
+  // У карточек стоял свой обрезанный подвал в одну строку, у главной - полный,
+  // с четырьмя колонками ссылок. Ставим общий, а ссылку «назад в категорию»
+  // сохраняем: она полезна и была только здесь.
+  if (HOME_FOOTER) {
+    const cur = html.match(/<footer class="mp-footer">[\s\S]*?<\/footer>/);
+    if (cur) {
+      const back = (cur[0].match(/<a[^>]*class="nav-link mp-back-link"[\s\S]*?<\/a>/) || [''])[0];
+      html = html.replace(cur[0], () => HOME_FOOTER.replace('</footer>',
+        (back ? `<div class="max-w-7xl mx-auto mp-footer-back">${back}</div>` : '') + '</footer>'));
+    }
   }
 
   // ── 4. стили, скрипт, служебное ───────────────────────────────────────────
