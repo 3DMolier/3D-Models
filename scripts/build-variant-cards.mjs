@@ -206,7 +206,13 @@ function framesFor(group, id) {
   const raw = group.main.id === id
     ? (group.main.data.images || [])
     : ((group.vars.find(x => x.id === id) || {}).data || {}).images || [];
-  return raw.slice().sort((a, b) => frameOrder(a) - frameOrder(b));
+  const sorted = raw.slice().sort((a, b) => frameOrder(a) - frameOrder(b));
+  // Кадр «_000» - квадратная миниатюра 1200x1200, повторяющая следующий кадр
+  // 1480x800. Проверено на выборке: из 14 моделей квадратными оказались все 14.
+  // В презентации она лишняя, но если других кадров нет - оставляем, иначе
+  // карточка останется вовсе без картинки.
+  if (sorted.length > 1 && frameOrder(sorted[0]) === 0) return sorted.slice(1);
+  return sorted;
 }
 
 const STYLE = `<style>
@@ -280,6 +286,15 @@ const STYLE = `<style>
    чтобы блок не выглядел приезжим. */
 .mp-kw-block{margin-top:26px}
 .mp-footer-back{padding-top:14px}
+/* Описание было уже вопросов: у .mp-desc-text стоит max-width 680px, а у блока
+   вопросов ограничение снято. Рядом это читалось как разная вёрстка. */
+.mp-details-left .mp-desc-text{max-width:none}
+/* Зум в просмотрщике. При увеличении картинка становится больше сцены, а
+   flex-центрирование вместе с прокруткой прижимает её к левому верхнему углу -
+   отсюда «скачок». margin:auto центрирует корректно и при переполнении, а
+   прокрутку сцены выставляет скрипт ниже, по точке, куда человек нажал. */
+.mp-lb.is-zoom .mp-lb-stage{overflow:auto;align-items:flex-start;justify-content:flex-start}
+.mp-lb.is-zoom .mp-lb-img{margin:auto}
 @media(prefers-color-scheme:dark){
  .mp-section-split{background:#2b2f37}
  .mp-gal-arrow{background:#171a1f;border-color:#3a3f4a;color:#e5e7eb}
@@ -324,6 +339,57 @@ const SCRIPT = `<script>
     if(strip.scrollWidth<=strip.clientWidth) return;
     e.preventDefault(); strip.scrollLeft += e.deltaY;
   },{passive:false});
+})();
+
+(function(){
+  // Зум в просмотрщике не должен прыгать в левый верхний угол. Сам просмотрщик
+  // живёт в site.js и создаётся при первом открытии, поэтому ждём его появления
+  // и следим за классом is-zoom. Запоминаем точку, куда человек нажал, и после
+  // увеличения ставим прокрутку так, чтобы эта точка осталась на месте.
+  var anchor = null;
+  document.addEventListener('mousedown', function(e){
+    var im = e.target.closest ? e.target.closest('.mp-lb-img') : null;
+    if(!im) { anchor = null; return; }
+    var r = im.getBoundingClientRect();
+    anchor = {
+      fx: (e.clientX - r.left) / (r.width || 1),   // доля по ширине
+      fy: (e.clientY - r.top) / (r.height || 1),
+      cx: e.clientX, cy: e.clientY
+    };
+  }, true);
+
+  function centre(box){
+    var stage = box.querySelector('.mp-lb-stage');
+    var im = box.querySelector('.mp-lb-img');
+    if(!stage || !im) return;
+    var apply = function(){
+      var maxX = stage.scrollWidth - stage.clientWidth;
+      var maxY = stage.scrollHeight - stage.clientHeight;
+      if(maxX <= 0 && maxY <= 0) return;
+      var a = anchor || { fx:.5, fy:.5, cx: stage.getBoundingClientRect().left + stage.clientWidth/2,
+                          cy: stage.getBoundingClientRect().top + stage.clientHeight/2 };
+      var sr = stage.getBoundingClientRect();
+      // Точка a.fx/a.fy внутри увеличенной картинки должна оказаться там же на
+      // экране, где была до увеличения.
+      stage.scrollLeft = Math.max(0, Math.min(maxX, a.fx * im.offsetWidth - (a.cx - sr.left)));
+      stage.scrollTop  = Math.max(0, Math.min(maxY, a.fy * im.offsetHeight - (a.cy - sr.top)));
+    };
+    if(im.complete) apply(); else im.addEventListener('load', apply, { once:true });
+    requestAnimationFrame(apply);
+  }
+
+  function watch(box){
+    new MutationObserver(function(){
+      if(box.classList.contains('is-zoom')) centre(box);
+    }).observe(box, { attributes:true, attributeFilter:['class'] });
+  }
+
+  var seen = document.querySelector('.mp-lb');
+  if(seen) watch(seen);
+  else new MutationObserver(function(_, obs){
+    var b = document.querySelector('.mp-lb');
+    if(b){ watch(b); obs.disconnect(); }
+  }).observe(document.body, { childList:true });
 })();
 </script>`;
 
