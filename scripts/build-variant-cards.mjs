@@ -7,20 +7,24 @@
  * карточка и правится точечно - остальное остаётся ровно таким, как было.
  *
  * Что делаем:
- *   1. Галерея. Сейчас в ней по одному кадру на версию. Подставляем все кадры из
- *      инвентаря: сначала кадры самой модели, затем, за отбивкой, кадры версий.
- *      Отбивка сдержанная - подпись и тонкая линия, без цветных плашек: те
- *      выбивались из оформления сайта.
- *   2. Лента кадров. Была горизонтальная прокрутка, которую легко не заметить.
- *      Теперь сетка в два ряда и кнопка «показать все N кадров».
+ *   1. Галерея. В карточке был один кадр на версию - подставляем все кадры САМОЙ
+ *      модели из инвентаря. Кадры сшитых версий в презентацию не идут: их бывает
+ *      под полторы сотни и модель в них тонет.
+ *   2. Лента кадров - одна строка со стрелками по бокам, как на TurboSquid.
+ *      Остаётся в левой колонке и не заезжает под блок покупки.
  *   3. Секция версий. Была узким списком у характеристик - переносим вниз, к
- *      related, и оформляем такой же сеткой карточек: превью того же размера,
- *      название, цена, переход на TurboSquid.
- *   4. Подпись под крупным кадром показывает, чей это кадр, и для версии
- *      добавляет цену и ссылку на TurboSquid.
+ *      related, и оформляем такой же сеткой: превью, название, цена, переход на
+ *      TurboSquid. Снизу линия, отделяющая её от «Related 3D Models».
+ *   4. Характеристики - в правую колонку, одной колонкой. Quick Info убран: он
+ *      дублировал цену, категорию и сертификацию.
+ *   5. Из инвентаря добавляем то, чего в каталоге нет вовсе: полигоны, вершины,
+ *      геометрию, риг, число текстур, развёртку - и ключевые слова (у 84%
+ *      моделей их там 20-25 против четырёх на карточке).
+ *   6. Похожие модели дополняем до 10 - два полных ряда вместо ряда и огрызка.
+ *   7. Подвал - общий с главной страницей.
  *
  * Данные берём из самой карточки (цены, ссылки, превью версий - они там уже
- * выверены) и из инвентаря (кадры). Ничего не выдумываем.
+ * выверены) и из инвентаря (кадры, геометрия, слова). Ничего не выдумываем.
  *
  * Запуск:  node build-variant-cards.mjs [--outdir preview/cards] [--noindex]
  */
@@ -65,6 +69,68 @@ function parseVersions(html) {
     const bare = name.trim().replace(/\s*\(\d+\)$/, '');
     const weak = /^standard$/i.test(bare);
     out.push({ isMain, thumb, name: pretty || name, tag: weak ? '' : bare, price, link, id });
+  }
+  return out;
+}
+
+// ── похожие модели: доводим до 10 ───────────────────────────────────────────
+// В сетке помещается пять в ряд, а карточек стояло шесть: второй ряд с одной
+// штукой выглядел обрубком. Берём тех же соседей по категории, что и
+// rebuild-related.mjs (тот же models_master.csv, тот же отбор по общим словам
+// названия), и дополняем до десяти - двух полных рядов.
+const RELATED_WANT = 10;
+const master = (() => {
+  const map = new Map();
+  try {
+    const L = fs.readFileSync(path.join(ROOT, 'data', 'models_master.csv'), 'utf8').split(/\r?\n/);
+    const H = L[0].split(',');
+    const ix = n => H.indexOf(n);
+    const pc = l => { const o = []; let c = '', q = false; for (const ch of l) { if (ch === '"') q = !q; else if (ch === ',' && !q) { o.push(c); c = ''; } else c += ch; } o.push(c); return o; };
+    for (let i = 1; i < L.length; i++) {
+      if (!L[i]) continue;
+      const r = pc(L[i]);
+      map.set(r[ix('slug')], { name: r[ix('product_name')] || '', price: +r[ix('price')] || 0, cat: r[ix('category')] || '' });
+    }
+  } catch (e) { console.log('  models_master.csv не прочитан: похожие не дополняю'); }
+  return map;
+})();
+const STOP = new Set(['3d', 'model', 'models', 'the', 'and', 'for', 'with', 'of', 'set', 'collection',
+  'rigged', 'animated', 'low', 'high', 'poly', 'pbr', 'game', 'ready', 'realistic', 'generic', 'new', 'old']);
+const titleWords = n => new Set(String(n).toLowerCase().match(/[a-z]{3,}/g)?.filter(w => !STOP.has(w)) || []);
+
+function extraRelated(slug, exclude, want) {
+  const me = master.get(slug);
+  if (!me || !me.cat) return [];
+  const mine = titleWords(me.name);
+  const scored = [];
+  for (const [s, m] of master) {
+    if (m.cat !== me.cat || exclude.has(s) || s === slug) continue;
+    if (!fs.existsSync(path.join(ROOT, 'models', s, 'index.html'))) continue;
+    let score = 0;
+    for (const w of titleWords(m.name)) if (mine.has(w)) score++;
+    // Совпадение слов - лучший признак, но одним им ряд не набрать: у «Pig Sow
+    // Landrace» соседей по словам нет вовсе. Поэтому берём и просто соседей по
+    // категории, ставя их после совпавших и предпочитая близкие по цене.
+    scored.push({ s, m, score, near: Math.abs((m.price || 0) - (me.price || 0)) });
+    if (scored.length > 1200) break;
+  }
+  scored.sort((a, b) => b.score - a.score || a.near - b.near);
+  const out = [];
+  for (const { s, m } of scored) {
+    if (out.length >= want) break;
+    let img = null;
+    try {
+      const h = fs.readFileSync(path.join(ROOT, 'models', s, 'index.html'), 'utf8');
+      img = (h.match(/property="og:image" content="([^"]+)"/) || [])[1] || null;
+    } catch (e) { }
+    if (!img) continue;
+    out.push(`<a href="/models/${s}/" class="model-card card-glow mp-rc-link">`
+      + `<div class="img-wrap mp-rc-img-wrap"><img src="${esc(img)}" alt="${esc(m.name)}" width="800" height="450"`
+      + ` decoding="async" loading="lazy" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">`
+      + `<div class="img-placeholder"><span class="mp-rc-placeholder-icon">&#128247;</span></div></div>`
+      + `<div class="mp-rc-body"><div class="mp-rc-head"><div class="mp-rc-title">${esc(m.name)}</div></div>`
+      + `<div class="mp-rc-foot"><span class="chip chip-teal mp-rc-chip">${esc(m.cat)}</span>`
+      + `<span class="mp-rc-price">$${m.price}</span></div></div></a>`);
   }
   return out;
 }
@@ -128,7 +194,7 @@ const STYLE = `<style>
    правую уже. Селектор не слабее «.mp-hero-grid > .mp-gallery» в model-pages.css,
    иначе правило сайта перебивает это по точности. */
 @media(min-width:900px){
-  .mp-hero-grid{grid-template-columns:1.55fr 1fr}
+  .mp-hero-grid{grid-template-columns:1.9fr 1fr}
   .mp-hero-grid > .mp-gallery{grid-column:1;grid-row:2}
 }
 /* Отбивка между кадрами модели и кадрами версий. Намеренно сдержанная: линия и
@@ -159,10 +225,18 @@ const STYLE = `<style>
 .mp-sidebar-col .mp-spec-table td{text-align:right;flex:1 1 auto;overflow-wrap:anywhere}
 .mp-spec-card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:20px}
 /* Характеристики в ОДНУ колонку - так решил основатель. Двухстолбцовую раскладку
-   пробовали ради выравнивания высот, от неё отказались. Левый блок шире правого. */
-@media(min-width:900px){ .mp-details-grid{grid-template-columns:1.55fr 1fr} }
-/* Полоса-разделитель между «All Versions» и «Related 3D Models». */
-.mp-section-split{height:1px;background:#e5e5e5;margin:34px 0 0}
+   пробовали ради выравнивания высот, от неё отказались. Левый блок шире правого:
+   в узкой колонке подпись и значение перестают расползаться по краям. */
+@media(min-width:900px){ .mp-details-grid{grid-template-columns:1.9fr 1fr} }
+/* Разделитель между «All Versions» и «Related 3D Models». Внутренний блок был
+   шириной с контейнер и не совпадал с линией над секцией версий - та идёт во всю
+   ширину окна. Поэтому граница у самой секции. */
+.mp-versions-section{border-bottom:1px solid #e5e5e5}
+/* Ключевые слова из инвентаря: у 84% моделей они там есть и их заметно больше
+   тех четырёх, что стояли на карточке. */
+.mp-kw-block{margin-top:26px}
+.mp-kw-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.mp-kw{font-size:12px;color:#374151;background:#f3f4f6;border-radius:20px;padding:4px 11px}
 .mp-footer-back{padding-top:14px}
 @media(prefers-color-scheme:dark){
  .mp-section-split{background:#2b2f37}
@@ -298,15 +372,60 @@ function build(group) {
     html = html.replace(spec, '');
     // Строки Quick Info, которых нет в характеристиках, дописываем в таблицу.
     const have = [...spec.matchAll(/<th[^>]*>([\s\S]*?)<\/th>/g)].map(m => m[1].replace(/<[^>]+>/g, '').trim().toLowerCase());
-    const extra = Object.entries(quick)
-      .filter(([k]) => !have.includes(k.toLowerCase()))
-      .map(([k, v]) => `<tr><th>${esc(k)}</th><td>${v.html}</td></tr>`).join('');
+    // Главное, ради чего собирался инвентарь: полигоны, вершины, риг и остальная
+    // геометрия. На карточке их не было - каталог таких данных не содержит.
+    const d = group.main.data || {};
+    const rows = [
+      ['Polygons', d.polygons ? Number(d.polygons).toLocaleString('en-US') : null],
+      ['Vertices', d.vertices ? Number(d.vertices).toLocaleString('en-US') : null],
+      ['Geometry', d.geometry || null],
+      ['Rig', /is jointed/i.test(d.rigged || '') ? 'Rigged' : (d.rigged ? 'Static' : null)],
+      ['Animation', /is animated/i.test(d.animated || '') ? 'Animated' : null],
+      ['Textures', d.ntextures ? String(d.ntextures) : null],
+      ['UV mapping', d.unwrapped_uvs || null],
+    ];
+    let extra = '';
+    for (const [k, v] of rows) {
+      if (!v) continue;
+      // Если такая строка уже есть в таблице - заменяем значение, а не плодим
+      // вторую: именно так «Rig» оказывался в списке дважды.
+      if (have.includes(k.toLowerCase())) {
+        spec = spec.replace(new RegExp('(<th[^>]*>\\s*' + k + '\\s*</th>\\s*<td[^>]*>)[\\s\\S]*?(</td>)', 'i'),
+          (m, a, b) => a + esc(v) + b);
+      } else {
+        extra += `<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`;
+        have.push(k.toLowerCase());
+      }
+    }
+    // Quick Info добавляем последним и только то, чего ещё нет: инвентарь точнее.
+    for (const [k, v] of Object.entries(quick)) {
+      if (have.includes(k.toLowerCase())) continue;
+      extra += `<tr><th>${esc(k)}</th><td>${v.html}</td></tr>`;
+      have.push(k.toLowerCase());
+    }
     if (extra) spec = spec.replace('</tbody>', extra + '</tbody>');
     // Границу колонки ищем счётом тегов, а не первым попавшимся «</div></div>»:
     // при наивном поиске блок характеристик уехал ВНУТРЬ карточки Quick Info.
     const at = endOfDiv(html, html.indexOf('<div class="mp-sidebar-col">'));
     if (at > 0) html = html.slice(0, at) + '<div class="mp-spec-card">' + spec + '</div>' + html.slice(at);
     else console.log('  не нашёл конец правой колонки: ' + slug);
+  }
+
+  // ── 3а. ключевые слова из инвентаря ───────────────────────────────────────
+  // На карточке их было четыре, собранных из названия. В инвентаре у 84% моделей
+  // лежит настоящий список - у выбранных здесь по 20-25 штук. Русские слова
+  // отбрасываем: сайт английский.
+  const kw = (group.main.data && group.main.data.kwList) ? group.main.data.kwList : [];
+  const clean = [...new Set(kw
+    .map(s => String(s).trim().toLowerCase())
+    .filter(s => s.length > 2 && s.length < 46 && /^[a-z0-9][a-z0-9 \-'/&.]*$/.test(s)))]
+    .slice(0, 24);
+  if (clean.length) {
+    const block = `<div class="mp-kw-block"><div class="section-label">Keywords</div>`
+      + `<div class="mp-kw-list">${clean.map(k => `<span class="mp-kw">${esc(k)}</span>`).join('')}</div></div>`;
+    // Кладём под вопросы, в левую колонку: это текст, а не характеристика.
+    const faqEnd = endOfDiv(html, html.indexOf('<div class="mp-faq-block">'));
+    if (faqEnd > 0) html = html.slice(0, faqEnd + '</div>'.length) + block + html.slice(faqEnd + '</div>'.length);
   }
 
   // ── 3б. подвал как на главной ─────────────────────────────────────────────
@@ -322,6 +441,23 @@ function build(group) {
     }
   }
 
+  // ── 3в. похожие модели до полных двух рядов ───────────────────────────────
+  const relM = html.match(/<section class="mp-related-section">[\s\S]*?<div class="mp-related-grid">([\s\S]*?)<\/div><\/div><\/section>/);
+  let relAdded = 0;
+  if (relM) {
+    const already = new Set([...relM[1].matchAll(/href="\/models\/([^/"]+)\//g)].map(m => m[1]));
+    // Считаем ТОЛЬКО реально стоящие карточки. Раньше сюда подмешивались
+    // идентификаторы версий, счётчик показывал 10 и добор не срабатывал.
+    const need = RELATED_WANT - already.size;
+    // Версии в похожие попадать не должны, но на размер ряда не влияют.
+    versions.forEach(v => { if (v.slugPath) already.add(v.slugPath); });
+    if (need > 0) {
+      const add = extraRelated(slug, already, need);
+      relAdded = add.length;
+      if (add.length) html = html.replace(relM[1], () => relM[1] + add.join(''));
+    }
+  }
+
   // ── 4. стили, скрипт, служебное ───────────────────────────────────────────
   html = html.replace('</head>', STYLE + '</head>');
   html = html.replace('</body>', SCRIPT + '</body>');
@@ -333,7 +469,7 @@ function build(group) {
   // (59 672 страницы на 20.08.2026), поэтому чистим и здесь.
   const dashes = (html.match(/—|–|&#8212;|&mdash;|&#8211;|&ndash;/g) || []).length;
   html = html.replace(/\s*(?:—|–|&#8212;|&mdash;|&#8211;|&ndash;)\s*/g, ' - ');
-  return { slug, html, total, versions: versions.length, dashes };
+  return { slug, html, total, versions: versions.length, dashes, relAdded, kw: clean.length };
 }
 
 const outBase = path.join(ROOT, OUTDIR);
@@ -346,7 +482,7 @@ for (const g of GROUPS) {
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'index.html'), r.html);
   made.push(r);
-  console.log('  собрано: ' + r.slug + '  версий ' + r.versions + ', кадров ' + r.total + ', тире убрано ' + r.dashes);
+  console.log("  собрано: " + r.slug + "  версий " + r.versions + ", кадров " + r.total + ", похожих +" + r.relAdded + ", слов " + r.kw + ", тире убрано " + r.dashes);
 }
 console.log('\nготово, страниц: ' + made.length);
 made.forEach(r => console.log('   https://3dmolierstudio.com/' + OUTDIR + '/' + r.slug + '/'));
