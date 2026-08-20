@@ -166,6 +166,35 @@ function endOfDiv(html, start) {
 // самой студией в имени файла: «..._000.jpg», «..._001.jpg» и так далее, причём
 // красивые рендеры идут в начале нумерации, а техническое - в хвосте (и почти
 // всегда в png). Поэтому сортируем по этому числу.
+// Разбор текста на предложения. Режем по точке перед заглавной буквой, но не
+// внутри тегов: в описании встречаются ссылки, и разрыв посреди тега испортил бы
+// разметку. Поэтому куски с незакрытым тегом склеиваем обратно.
+function sentences(text) {
+  const raw = String(text).trim().split(/(?<=[.!?])\s+(?=[A-Z])/);
+  const out = [];
+  for (const piece of raw) {
+    const prev = out[out.length - 1];
+    const unbalanced = prev !== undefined
+      && (prev.split('<').length !== prev.split('>').length
+        || /<a\b[^>]*>(?:(?!<\/a>)[\s\S])*$/i.test(prev));
+    if (unbalanced) out[out.length - 1] = prev + ' ' + piece;
+    else out.push(piece);
+  }
+  return out;
+}
+
+// Группировка предложений в абзацы. Одинокое предложение в конце выглядит
+// обрывком, поэтому приклеиваем его к предыдущему абзацу.
+function paras(list, per) {
+  const out = [];
+  for (let i = 0; i < list.length; i += per) out.push(list.slice(i, i + per).join(' '));
+  if (out.length > 1 && list.length % per === 1) {
+    const tail = out.pop();
+    out[out.length - 1] += ' ' + tail;
+  }
+  return out;
+}
+
 // Текстуры: одно число покупателю ничего не говорит, а размеры карт говорят
 // многое. Поле details инвентаря хранит их построчно:
 //   «- 10.png (4096 x 4096)\n- 5.png (2048 x 2048)»
@@ -289,6 +318,10 @@ const STYLE = `<style>
 /* Описание было уже вопросов: у .mp-desc-text стоит max-width 680px, а у блока
    вопросов ограничение снято. Рядом это читалось как разная вёрстка. */
 .mp-details-left .mp-desc-text{max-width:none}
+/* Абзацный отступ по умолчанию (15px) меньше межстрочного расстояния (27px),
+   и абзацы читались слитно. Делаем зазор заметнее строки. */
+.mp-details-left .mp-desc-text{margin:0 0 20px}
+.mp-details-left .mp-desc-text:last-of-type{margin-bottom:0}
 /* Зум в просмотрщике. При увеличении картинка становится больше сцены, а
    flex-центрирование вместе с прокруткой прижимает её к левому верхнему углу -
    отсюда «скачок». margin:auto центрирует корректно и при переполнении, а
@@ -562,7 +595,12 @@ function build(group) {
     const pickN = (arr, k) => arr.length ? arr[Math.abs(seed + k) % arr.length] : '';
     const add = [pickN(MESH, 0), pickN(TEX, 3), pickN(RIG, 0)].filter(Boolean).join(' ');
     if (add) {
-      html = html.replace(/(<p class="mp-desc-text">[\s\S]*?)(<\/p>)/, (m, a, b) => a + ' ' + add + b);
+      // Раньше всё это шло одним абзацем в девять предложений - читать тяжело.
+      // Разбиваем: исходный текст по три предложения, а числа геометрии выносим
+      // в отдельный последний абзац, они и по смыслу стоят особняком.
+      html = html.replace(/<p class="mp-desc-text">([\s\S]*?)<\/p>/, (m, body) =>
+        paras(sentences(body), 3).concat([add])
+          .map(p => `<p class="mp-desc-text">${p}</p>`).join(''));
     }
   }
 
