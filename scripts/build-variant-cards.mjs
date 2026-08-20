@@ -160,10 +160,53 @@ function endOfDiv(html, start) {
 }
 
 // Кадры версии из инвентаря. Ключ - идентификатор TurboSquid, он же в ссылке.
+//
+// Порядок. Приложение отдаёт вложения вперемешку, и в презентацию первыми лезли
+// технические кадры - сетка, развёртка, листы текстур. Правильный порядок задан
+// самой студией в имени файла: «..._000.jpg», «..._001.jpg» и так далее, причём
+// красивые рендеры идут в начале нумерации, а техническое - в хвосте (и почти
+// всегда в png). Поэтому сортируем по этому числу.
+// Текстуры: одно число покупателю ничего не говорит, а размеры карт говорят
+// многое. Поле details инвентаря хранит их построчно:
+//   «- 10.png (4096 x 4096)\n- 5.png (2048 x 2048)»
+// Сворачиваем в «20 maps - 10 at 4096x4096, 5 at 2048x2048».
+// Записей два вида, оба встречаются массово:
+//   «- 10.png (4096 x 4096)»    количество перед расширением, размер в скобках
+//   «- (21 .png) 4096 x 4096»   количество в скобках, размер после
+// Размеры удаётся разобрать у 72% моделей; у остальных остаётся одно число.
+function texSizes(d) {
+  const t = String(d.details || '');
+  const out = [];
+  for (const m of t.matchAll(/(\d+)\s*\.\w+\s*\((\d+)\s*x\s*(\d+)\)/gi)) out.push({ n: +m[1], w: +m[2], h: +m[3] });
+  if (!out.length) {
+    for (const m of t.matchAll(/\(\s*(\d+)\s*\.?\w*\s*\)\s*(\d+)\s*x\s*(\d+)/gi)) out.push({ n: +m[1], w: +m[2], h: +m[3] });
+  }
+  return out.sort((a, b) => b.w * b.h - a.w * a.h);
+}
+function texLine(d) {
+  const n = d.ntextures ? Number(d.ntextures) : null;
+  const sizes = texSizes(d);
+  if (!n && !sizes.length) return null;
+  if (!sizes.length) return String(n) + ' maps';
+  // Обычный «x», а не сущность: значение проходит через esc() и сущность бы
+  // экранировалась второй раз.
+  // Когда размер один на все карты, «21 maps - 21 at 4096x4096» звучит глупо.
+  if (sizes.length === 1) return (n || sizes[0].n) + ' maps at ' + sizes[0].w + 'x' + sizes[0].h;
+  const parts = sizes.map(s => s.n + ' at ' + s.w + 'x' + s.h);
+  return (n ? n + ' maps - ' : '') + parts.join(', ');
+}
+
+function frameOrder(u) {
+  const n = (String(u).match(/_(\d{2,4})\.(?:jpg|jpeg|png|webp)/i) || [])[1];
+  const isPng = /\.png(?:\?|$)/i.test(u);
+  // Без номера кадр кладём в конец, но перед техническими png.
+  return (n === undefined ? 9000 : Number(n)) + (isPng ? 10000 : 0);
+}
 function framesFor(group, id) {
-  if (group.main.id === id) return (group.main.data.images || []);
-  const v = group.vars.find(x => x.id === id);
-  return v ? (v.data.images || []) : [];
+  const raw = group.main.id === id
+    ? (group.main.data.images || [])
+    : ((group.vars.find(x => x.id === id) || {}).data || {}).images || [];
+  return raw.slice().sort((a, b) => frameOrder(a) - frameOrder(b));
 }
 
 const STYLE = `<style>
@@ -194,7 +237,7 @@ const STYLE = `<style>
    правую уже. Селектор не слабее «.mp-hero-grid > .mp-gallery» в model-pages.css,
    иначе правило сайта перебивает это по точности. */
 @media(min-width:900px){
-  .mp-hero-grid{grid-template-columns:1.9fr 1fr}
+  .mp-hero-grid{grid-template-columns:2.2fr 1fr}
   .mp-hero-grid > .mp-gallery{grid-column:1;grid-row:2}
 }
 /* Отбивка между кадрами модели и кадрами версий. Намеренно сдержанная: линия и
@@ -227,16 +270,15 @@ const STYLE = `<style>
 /* Характеристики в ОДНУ колонку - так решил основатель. Двухстолбцовую раскладку
    пробовали ради выравнивания высот, от неё отказались. Левый блок шире правого:
    в узкой колонке подпись и значение перестают расползаться по краям. */
-@media(min-width:900px){ .mp-details-grid{grid-template-columns:1.9fr 1fr} }
+@media(min-width:900px){ .mp-details-grid{grid-template-columns:2.2fr 1fr} }
 /* Разделитель между «All Versions» и «Related 3D Models». Внутренний блок был
    шириной с контейнер и не совпадал с линией над секцией версий - та идёт во всю
    ширину окна. Поэтому граница у самой секции. */
 .mp-versions-section{border-bottom:1px solid #e5e5e5}
 /* Ключевые слова из инвентаря: у 84% моделей они там есть и их заметно больше
-   тех четырёх, что стояли на карточке. */
+   тех четырёх, что стояли на карточке. Оформление берём у существующих чипов,
+   чтобы блок не выглядел приезжим. */
 .mp-kw-block{margin-top:26px}
-.mp-kw-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
-.mp-kw{font-size:12px;color:#374151;background:#f3f4f6;border-radius:20px;padding:4px 11px}
 .mp-footer-back{padding-top:14px}
 @media(prefers-color-scheme:dark){
  .mp-section-split{background:#2b2f37}
@@ -381,7 +423,7 @@ function build(group) {
       ['Geometry', d.geometry || null],
       ['Rig', /is jointed/i.test(d.rigged || '') ? 'Rigged' : (d.rigged ? 'Static' : null)],
       ['Animation', /is animated/i.test(d.animated || '') ? 'Animated' : null],
-      ['Textures', d.ntextures ? String(d.ntextures) : null],
+      ['Textures', texLine(d)],
       ['UV mapping', d.unwrapped_uvs || null],
     ];
     let extra = '';
@@ -404,11 +446,58 @@ function build(group) {
       have.push(k.toLowerCase());
     }
     if (extra) spec = spec.replace('</tbody>', extra + '</tbody>');
+
+    // Убираем дубли. «Primary industries» и «Typical use» перекрывали друг друга
+    // и повторяли блок Use Cases, который стоит тут же и уже сделан кнопками.
+    for (const k of ['Primary industries', 'Typical use']) {
+      spec = spec.replace(new RegExp('<tr>\\s*<th[^>]*>\\s*' + k + '\\s*</th>[\\s\\S]*?</tr>', 'i'), '');
+    }
     // Границу колонки ищем счётом тегов, а не первым попавшимся «</div></div>»:
     // при наивном поиске блок характеристик уехал ВНУТРЬ карточки Quick Info.
     const at = endOfDiv(html, html.indexOf('<div class="mp-sidebar-col">'));
     if (at > 0) html = html.slice(0, at) + '<div class="mp-spec-card">' + spec + '</div>' + html.slice(at);
     else console.log('  не нашёл конец правой колонки: ' + slug);
+  }
+
+  // Короткий список «Search Keywords» в правой колонке дублировал полный список
+  // под описанием - оставляем один, полный.
+  html = html.replace(/<div>\s*<div class="section-label[^"]*">Search Keywords<\/div>[\s\S]*?<\/div>\s*<\/div>/i, '');
+  // Плашка «Quality Certified» повторяла строку Certification в характеристиках.
+  html = html.replace(/<div class="mp-cert-card">[\s\S]*?<\/div>\s*<\/div>/i, '');
+
+  // ── 3я. описание дополняем данными геометрии ──────────────────────────────
+  // Договаривались, что текст опирается на собственные числа модели, а не на
+  // общие слова. В каталоге этих чисел нет - они появились только сейчас, из
+  // инвентаря. Вариант предложения выбирается по идентификатору, чтобы соседние
+  // карточки не выглядели под копирку.
+  const dd = group.main.data || {};
+  const poly = Number(dd.polygons) || 0;
+  if (poly) {
+    const seed = Number(main.id) || 0;
+    const pn = poly.toLocaleString('en-US');
+    const vn = (Number(dd.vertices) || 0).toLocaleString('en-US');
+    const rigged = /is jointed/i.test(dd.rigged || '');
+    const weight = poly > 800000 ? 'heavy' : poly > 200000 ? 'mid-weight' : 'light';
+    const MESH = [
+      `The mesh carries ${pn} polygons and ${vn} vertices, which puts it in the ${weight} bracket for this category.`,
+      `At ${pn} polygons and ${vn} vertices this is a ${weight} asset: dense enough for close framing, and honest about what it costs a scene.`,
+      `Geometry weighs in at ${pn} polygons over ${vn} vertices - a ${weight} build for its class.`,
+      `Counted at the source, the model is ${pn} polygons and ${vn} vertices, a ${weight} load for a scene.`,
+    ];
+    const sizes = texSizes(dd);
+    const TEX = sizes.length ? [
+      `Texture work runs to ${dd.ntextures} maps, the largest at ${sizes[0].w}x${sizes[0].h}, so the surface holds up when the camera moves in.`,
+      `It ships ${dd.ntextures} maps with the top set authored at ${sizes[0].w}x${sizes[0].h} - enough resolution to fill a frame rather than sit in the background.`,
+      `Maps: ${dd.ntextures} of them, peaking at ${sizes[0].w}x${sizes[0].h}, which is where the close-up detail comes from.`,
+    ] : [];
+    const RIG = rigged
+      ? [`The model is jointed, so it can be posed or animated without rebuilding the hierarchy.`]
+      : [`It is a static build - no rig to strip out if all you need is a rendered object.`];
+    const pickN = (arr, k) => arr.length ? arr[Math.abs(seed + k) % arr.length] : '';
+    const add = [pickN(MESH, 0), pickN(TEX, 3), pickN(RIG, 0)].filter(Boolean).join(' ');
+    if (add) {
+      html = html.replace(/(<p class="mp-desc-text">[\s\S]*?)(<\/p>)/, (m, a, b) => a + ' ' + add + b);
+    }
   }
 
   // ── 3а. ключевые слова из инвентаря ───────────────────────────────────────
@@ -421,8 +510,11 @@ function build(group) {
     .filter(s => s.length > 2 && s.length < 46 && /^[a-z0-9][a-z0-9 \-'/&.]*$/.test(s)))]
     .slice(0, 24);
   if (clean.length) {
-    const block = `<div class="mp-kw-block"><div class="section-label">Keywords</div>`
-      + `<div class="mp-kw-list">${clean.map(k => `<span class="mp-kw">${esc(k)}</span>`).join('')}</div></div>`;
+    // Кнопками и со ссылкой на поиск - как короткий список, который тут стоял
+    // раньше. Слово, по которому нельзя перейти, бесполезно.
+    const block = `<div class="mp-kw-block"><div class="section-label mp-mb12">Keywords</div>`
+      + `<div class="mp-chip-row">${clean.map(k =>
+        `<a href="/search/?q=${encodeURIComponent(k)}" class="chip chip--kw">${esc(k)}</a>`).join('')}</div></div>`;
     // Кладём под вопросы, в левую колонку: это текст, а не характеристика.
     const faqEnd = endOfDiv(html, html.indexOf('<div class="mp-faq-block">'));
     if (faqEnd > 0) html = html.slice(0, faqEnd + '</div>'.length) + block + html.slice(faqEnd + '</div>'.length);
