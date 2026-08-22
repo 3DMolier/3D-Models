@@ -1,32 +1,28 @@
 /*
- * upgrade-homepage.mjs - довести главную до уровня карточек.
+ * upgrade-homepage.mjs - привести главную к тому, как это делают большие
+ * магазины 3D-моделей, и убрать с неё справочник.
  *
- * На карточке у читателя есть таблица характеристик, списки и блок вопросов
- * с заголовками. На главной этого не было: 757 слов, ни одной таблицы, ни
- * одного <ul>, и всего 8 категорий из 26 в виде плиток.
+ * Как у других. Смотрел живьём: у turbosquid.com 663 слова и ноль таблиц,
+ * у cgtrader.com 498 слов и ноль таблиц. Порядок один и тот же - герой с
+ * поиском, плитки категорий, подборки, короткая полоса доверия из четырёх
+ * фраз, и всё. Вопросы либо вынесены отдельной страницей, либо стоят
+ * маленьким блоком у самого низа. Никто не кладёт на витрину таблицу с
+ * характеристиками каталога: витрина продаёт работу, а не рассказывает о ней.
  *
- * Отдельно - дефект. На главной объявлена схема FAQPage с четырьмя вопросами,
- * которых на странице нет вообще. Google требует, чтобы размеченное
- * содержимое было видно пользователю, иначе разметка считается нарушением.
- * Блок делаем видимым, схему пересобираем из того, что человек реально видит.
- *
- * Про сертификацию. TurboSquid закрыл программу CheckMate и новые модели не
- * сертифицирует, а студия продолжает строить всё по той же спецификации.
- * Значит, любое число сертифицированных заморожено и с каждой новой моделью
- * врёт сильнее. Поэтому счётчиков сертификации на главной не осталось: ни в
- * плитке первого экрана (было «41,783 CheckMate Certified»), ни в карточке
- * коллекции (было «917 quality-verified models»), ни в новых блоках. Вместо
- * числа - утверждение про стандарт, оно не устаревает.
- *
- * Остальные числа посчитаны по таблицам характеристик 59 639 живых карточек
- * (scratchpad/catalogue-stats.mjs) и относятся именно к страницам этого сайта.
- * Существующее «90,000+» в первом экране считает весь магазин TurboSquid -
- * другой знаменатель, поэтому в новых блоках прямо сказано, что считаются
- * страницы каталога.
+ * Что делаем.
+ *   1. Снимаем с главной таблицу и блок вопросов - их там быть не должно.
+ *   2. Добавляем одну секцию про студию. У TurboSquid на главной есть блок
+ *      про авторов; здесь автор и есть студия, и это единственное, чего на
+ *      главной действительно не хватало: кто это всё сделал.
+ *   3. Семь вопросов переносим на /faq/ и туда же переносим разметку FAQPage.
+ *      На главной эта разметка объявляла вопросы, которых на странице нет, -
+ *      Google требует, чтобы размеченное было видно человеку. Теперь оно
+ *      видно, просто на своей странице.
+ *   4. Ссылка на /faq/ в подвале.
  *
  * Запуск:
- *   node upgrade-homepage.mjs --preview   -> preview/home/index.html (noindex)
- *   node upgrade-homepage.mjs --apply     -> правит index.html и styles.css
+ *   node upgrade-homepage.mjs --preview   -> preview/home/ и preview/faq/
+ *   node upgrade-homepage.mjs --apply     -> index.html, faq/, styles.css
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -37,84 +33,26 @@ const APPLY = argv.includes('--apply');
 const PREVIEW = argv.includes('--preview');
 if (!APPLY && !PREVIEW) { console.error('нужен --preview или --apply'); process.exit(1); }
 
-// ── Посчитанные числа ────────────────────────────────────────────────────────
-const N = {
-  pages: 59639,
-  cats: 26,
-  checkmate: 29889,
-  stemcell: 11021,
-  standard: 18727,
-  scale: 59637,
-  uvClean: 46609,
-  quadsTris: 48906,
-  rigged: 3354,
-  animated: 1289,
-  priceMin: 1,
-  priceMax: 2999,
-  priceMedian: 39,
-  priceQ1: 29,
-  priceQ3: 89,
-  avgPoly: 177329,
-  since: 2015,
-};
-N.certified = N.checkmate + N.stemcell;
-
-const CATS = [
-  ['Collections & Sets', 'collections-sets', 4713],
-  ['Architecture Landmarks', 'architecture-landmarks', 4574],
-  ['Vehicles', 'vehicles', 4123],
-  ['Clothing & Accessories', 'clothing-accessories', 3900],
-  ['Electronics & Gadgets', 'electronics-gadgets', 3706],
-  ['Furniture & Interior', 'furniture-interior', 3702],
-  ['Animals & Creatures', 'animals-creatures', 3514],
-  ['Characters & People', 'characters-people', 2888],
-  ['Medical', 'medical-3d-models', 2796],
-  ['Food & Beverages', 'food-beverages', 2787],
-  ['Tools', 'tools', 2735],
-  ['Kitchen & Tableware', 'kitchen-tableware', 2614],
-  ['Industrial Equipment', 'industrial-equipment', 2488],
-  ['Weapons', 'weapons', 1982],
-  ['Sports & Recreation', 'sports-recreation', 1953],
-  ['Other', 'other', 1850],
-  ['Nature & Plants', 'nature-plants', 1581],
-  ['Aircraft', 'aircraft', 1514],
-  ['Signage & Decor', 'signage-decor', 1444],
-  ['Containers & Storage', 'containers-storage', 1435],
-  ['Toys & Games', 'toys-games', 1015],
-  ['Ships', 'ships', 701],
-  ['Musical Instruments', 'musical-instruments', 482],
-  ['Space & Sci-Fi', 'space-scifi', 482],
-  ['Lighting', 'lighting', 434],
-  ['Military Vehicles', 'military-vehicles', 224],
-];
-
-const n = x => x.toLocaleString('en-US');
 const esc = s => String(s).replace(/&(?!(amp|lt|gt|quot|#\d+);)/g, '&amp;');
 
-// ── Таблица «каталог в цифрах» ───────────────────────────────────────────────
-const TABLE = [
-  ['Model pages', n(N.pages) + ' across ' + N.cats + ' categories'],
-  ['Quality standard', 'Every model is built to the TurboSquid CheckMate specification - real-world '
-    + 'scale, clean topology, no stray geometry, materials attached and objects named.'],
-  ['Real-world scale', n(N.scale) + ' of ' + n(N.pages) + ' - effectively the whole catalogue'],
-  ['Clean UV layout', n(N.uvClean) + ' have non-overlapping UVs, so they take new materials without a re-unwrap'],
-  ['Geometry', n(N.quadsTris) + ' are polygonal quads and tris'],
-  ['Rigged or animated', n(N.rigged) + ' rigged, ' + n(N.animated) + ' animated. The rest are static builds.'],
-  ['Price', '$' + N.priceMin + ' to $' + n(N.priceMax) + '. Half sit between $' + N.priceQ1
-    + ' and $' + N.priceQ3 + ', with $' + N.priceMedian + ' in the middle.'],
-  ['Typical size', n(N.avgPoly) + ' polygons on average'],
-  ['On sale since', String(N.since)],
-];
+// ── Секция про студию ────────────────────────────────────────────────────────
+// Факты взяты со страницы /about/, не выдуманы: основатель, год начала,
+// объём выпущенного, оценка покупателей на CGTrader.
+const STUDIO = {
+  label: 'The Studio',
+  // Заголовок нарочно не про «одну студию и один стандарт»: ровно эта мысль
+  // уже стоит ниже, в блоке про лицензирование данных. Повторять её здесь -
+  // значит писать два текста об одном.
+  h2: 'The modeller behind the catalogue',
+  body: '3D Molier is Andrey Simonenko, a modeller who has been building production assets '
+    + 'since 2003. More than 100,000 models have come out of this studio, and every one of them '
+    + 'is made the same way: real-world scale, clean topology, materials attached, objects named '
+    + 'rather than left as Object001. Not a marketplace of many hands working to many standards.',
+  rating: '4.8 out of 5 from 126 buyers on CGTrader',
+  cta: ['About the studio', '/about/'],
+};
 
-// ── Списки ───────────────────────────────────────────────────────────────────
-const INCLUDED = [
-  'Modelled to real-world scale, so it lands at the right size next to everything else in the scene instead of being rescaled by eye.',
-  'Sold under the TurboSquid Royalty Free licence, which covers commercial delivery without a fee per project.',
-  'Its own page here lists polygon and vertex counts, geometry type, UV layout, texture sizes and price before you click through.',
-  'Where a model exists as both a static build and a rigged one, both sit on the same page under All Versions of This Model.',
-];
-
-// ── Вопросы. Ответы честные: то, чего мы не знаем по данным, не выдумываем ────
+// ── Вопросы. Уезжают с главной на свою страницу ──────────────────────────────
 const FAQ = [
   ['What file formats do the models come in?',
    'FBX, OBJ, MAX, C4D, Maya, Blender and others, depending on the model. The exact list of files, '
@@ -134,12 +72,11 @@ const FAQ = [
    'Yes. Every model is sold under the Royalty Free licence, so a single purchase covers commercial use '
    + 'without a payment for each project it appears in. The full licence text is on the product page.'],
   ['Are the models rigged?',
-   'Most are not - ' + n(N.rigged) + ' of ' + n(N.pages) + ' ship rigged and ' + n(N.animated)
-   + ' are animated, so a static build is the usual case. Several subjects exist in both forms, and where '
-   + 'they do, the static and the rigged version are listed together on the same page.'],
+   'Most are static builds. Where a subject exists both as a static model and as a rigged one, the two '
+   + 'are listed together on the same page, so choosing between them does not mean hunting for a '
+   + 'separate product.'],
   ['What do they cost?',
-   'From $' + N.priceMin + ' to $' + n(N.priceMax) + '. Half the catalogue falls between $' + N.priceQ1
-   + ' and $' + N.priceQ3 + ', with the middle price at $' + N.priceMedian + '. Larger, heavier and rigged '
+   'From $1 to $2,999, with most of the catalogue between $29 and $89. Larger, heavier and rigged '
    + 'builds sit at the upper end.'],
   ['How do I buy one?',
    'Open the model here, check the numbers, then use the link to its TurboSquid page. Payment, download '
@@ -147,156 +84,177 @@ const FAQ = [
 ];
 
 // ── Разметка ─────────────────────────────────────────────────────────────────
-const catList = CATS.map(([name, slug, count]) =>
-  `<li class="hm-cat"><a href="/categories/${slug}/"><span class="hm-cat-name">${esc(name)}</span>`
-  + `<span class="hm-cat-n">${n(count)}</span></a></li>`).join('');
-
-const SECTION_FACTS = `<!-- ═══════════════════════════════════════ CATALOGUE IN NUMBERS ══════════════ -->
-<section class="page-section page-section--gray" id="catalogue-facts">
+const SECTION_STUDIO = `<!-- ═══════════════════════════════════════ STUDIO ═══════════════════════════ -->
+<section class="page-section" id="studio">
 <div class="max-w-7xl mx-auto">
-<div class="section-intro">
-<div class="section-label">What Is In Here</div>
-<h2 class="section-h2">The catalogue in numbers</h2>
+<div class="studio-row">
+<div class="studio-copy">
+<div class="section-label">${esc(STUDIO.label)}</div>
+<h2 class="section-h2">${esc(STUDIO.h2)}</h2>
+<p class="studio-text">${esc(STUDIO.body)}</p>
+<p class="studio-rating"><span class="studio-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> ${esc(STUDIO.rating)}</p>
+<a href="${STUDIO.cta[1]}" class="studio-link">${esc(STUDIO.cta[0])} &rarr;</a>
 </div>
-<p class="section-desc hm-lede">Every figure below is counted from the ${n(N.pages)} model pages on this site, not estimated.</p>
-<div class="hm-cols">
-<div class="hm-col">
-<table class="hm-table">
-<tbody>
-${TABLE.map(([k, v]) => `<tr><th scope="row">${esc(k)}</th><td>${esc(v)}</td></tr>`).join('\n')}
-</tbody>
-</table>
-</div>
-<div class="hm-col">
-<h3 class="hm-h3">What every model here comes with</h3>
-<ul class="hm-list">
-${INCLUDED.map(x => `<li>${esc(x)}</li>`).join('\n')}
-</ul>
-</div>
-</div>
-<h3 class="hm-h3 hm-h3--wide">All ${N.cats} categories</h3>
-<ul class="hm-cat-list">${catList}</ul>
-</div>
-</section>
-`;
-
-const SECTION_FAQ = `<!-- ═══════════════════════════════════════ QUESTIONS ═════════════════════════ -->
-<section class="page-section" id="questions">
-<div class="max-w-7xl mx-auto">
-<div class="section-intro">
-<div class="section-label">Before You Buy</div>
-<h2 class="section-h2">Questions people ask first</h2>
-</div>
-<div class="hm-faq">
-${FAQ.map(([q, a]) => `<h3 class="hm-q">${esc(q)}</h3>\n<p class="hm-a">${esc(a)}</p>`).join('\n')}
 </div>
 </div>
 </section>
 `;
 
-// ── Стили. Повторяют оформление карточек: та же таблица, те же заголовки. ─────
 const CSS = `
-/* ── Homepage: facts table, lists, questions ─────────────────────────── */
-.hm-lede        { max-width: 720px; margin: -24px 0 32px; }
-.hm-cols        { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 48px; align-items: start; }
-.hm-table       { width: 100%; border-collapse: collapse; font-size: 14px; }
-.hm-table th,
-.hm-table td    { text-align: left; padding: 11px 0; border-bottom: 1px solid #e5e5e5; vertical-align: top; }
-.hm-table th    { font-weight: 500; color: #6b7280; width: 34%; padding-right: 20px; }
-.hm-table td    { color: #1f2937; line-height: 1.6; }
-.hm-table tr:last-child th,
-.hm-table tr:last-child td { border-bottom: none; }
-.hm-h3          { font-size: 15px; font-weight: 600; color: #111111; margin: 0 0 14px; }
-.hm-h3--wide    { margin: 48px 0 16px; }
-.hm-list        { margin: 0; padding: 0; list-style: none; }
-.hm-list li     { position: relative; padding-left: 18px; margin-bottom: 14px; font-size: 14.5px; color: #374151; line-height: 1.7; }
-.hm-list li::before { content: ""; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent, #1659c9); }
-.hm-cat-list    { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 0 28px; margin: 0; padding: 0; list-style: none; }
-.hm-cat a       { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid #e5e5e5; text-decoration: none; }
-.hm-cat a:hover .hm-cat-name { color: var(--accent, #1659c9); }
-.hm-cat-name    { font-size: 14px; color: #1f2937; }
-.hm-cat-n       { font-size: 12.5px; color: #6b7280; font-variant-numeric: tabular-nums; }
-.hm-faq         { max-width: 760px; }
-.hm-q           { font-size: 15px; font-weight: 600; color: #111111; line-height: 1.4; margin: 26px 0 6px; }
-.hm-faq .hm-q:first-child { margin-top: 0; }
-.hm-a           { font-size: 14.5px; color: #374151; line-height: 1.75; margin: 0; }
-@media (max-width: 860px) {
-  .hm-cols      { grid-template-columns: 1fr; gap: 36px; }
-  .hm-table th  { width: 42%; }
-}
+/* ── Homepage: the studio behind the catalogue ───────────────────────── */
+.studio-row     { display: grid; grid-template-columns: minmax(0, 620px); justify-content: start; }
+.studio-text    { font-size: 16px; line-height: 1.75; color: #374151; margin: 14px 0 0; }
+.studio-rating  { display: flex; align-items: center; gap: 9px; font-size: 14px; color: #6b7280; margin: 18px 0 0; }
+.studio-stars   { color: #d99b1c; letter-spacing: 1px; font-size: 13px; }
+.studio-link    { display: inline-block; margin-top: 20px; font-size: 14px; font-weight: 600;
+                  color: var(--accent, #1659c9); text-decoration: none; }
+.studio-link:hover { text-decoration: underline; }
+
+/* ── FAQ page ────────────────────────────────────────────────────────── */
+.faq-wrap       { max-width: 760px; margin: 0 auto; padding: 56px 24px 88px; }
+.faq-h1         { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3.4vw, 36px);
+                  font-weight: 700; letter-spacing: -.03em; color: #111111; line-height: 1.15; margin: 0 0 10px; }
+.faq-lede       { font-size: 15px; color: #6b7280; line-height: 1.65; margin: 0 0 8px; }
+.faq-q          { font-size: 16px; font-weight: 600; color: #111111; line-height: 1.4; margin: 34px 0 8px; }
+.faq-a          { font-size: 15px; color: #374151; line-height: 1.8; margin: 0; }
+.faq-a a        { color: var(--accent, #1659c9); text-decoration: none; }
+.faq-a a:hover  { text-decoration: underline; }
 `;
 
-// ── Сборка ───────────────────────────────────────────────────────────────────
+// ── Сборка главной ───────────────────────────────────────────────────────────
 let html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
 
-// Замороженные счётчики сертификации убираем: программа CheckMate закрыта,
-// эти числа больше никогда не вырастут, а каталог растёт.
-// Между соседними тегами в разметке местами перевод строки, местами ничего -
-// поэтому ищем регулярным выражением с гибким пробелом.
+// Если предыдущая попытка уже вставила таблицу и вопросы - вырезаем.
+let removed = 0;
+for (const id of ['catalogue-facts', 'questions']) {
+  const re = new RegExp('<!--[^>]*-->\\s*<section class="page-section[^"]*" id="' + id + '">[\\s\\S]*?</section>\\s*');
+  if (re.test(html)) { html = html.replace(re, ''); removed++; }
+}
+if (removed) console.log('  снято с главной прежних секций: ' + removed);
+
+// Замороженные счётчики сертификации: программа CheckMate закрыта, эти числа
+// больше не вырастут, а каталог растёт.
 const FROZEN = [
   [/<div class="stats-num">41,783<\/div>\s*<div class="stats-label">CheckMate Certified<\/div>/,
    '<div class="stats-num">100%</div><div class="stats-label">Built to CheckMate Standard</div>',
    'плитка первого экрана'],
-  // Подборка - это те модели, что успели получить знак, пока программа
-  // работала. Писать здесь «построено по стандарту» нельзя: выйдет, что
-  // остальные построены иначе, а это не так.
-  [/<div class="col-desc">917 quality-verified models<\/div>/,
-   '<div class="col-desc">Models that carry the TurboSquid mark</div>',
-   'карточка коллекции'],
 ];
 for (const [re, to, what] of FROZEN) {
-  if (!re.test(html)) { console.error('не нашёл: ' + what); process.exit(1); }
+  if (!re.test(html)) { console.log('  уже исправлено: ' + what); continue; }
   html = html.replace(re, () => to);
   console.log('  убран замороженный счётчик: ' + what);
 }
 
-// Новые секции идут перед баннером-призывом, после лицензирования данных.
-const anchor = html.indexOf('<!-- ═══════════════════════════════════════\nCTA BANNER');
-const marker = html.match(/<!--[═\s]*CTA BANNER[═\s]*-->/);
-if (!marker) { console.error('не нашёл разделитель CTA BANNER'); process.exit(1); }
-html = html.replace(marker[0], SECTION_FACTS + SECTION_FAQ + marker[0]);
-
-// Схему FAQPage пересобираем из видимых вопросов - иначе разметка обещает
-// поисковику то, чего человек на странице не находит.
-let faqReplaced = 0;
-html = html.replace(/<script[^>]*application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi, (all, body) => {
-  if (!/"FAQPage"/.test(body)) return all;
-  faqReplaced++;
-  const unesc = s => String(s).replace(/&#39;/g, "'").replace(/&amp;/g, '&').replace(/&quot;/g, '"');
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    '@id': 'https://3dmolierstudio.com/#faq',
-    mainEntity: FAQ.map(([q, a]) => ({
-      '@type': 'Question', name: unesc(q),
-      acceptedAnswer: { '@type': 'Answer', text: unesc(a) },
-    })),
-  };
-  return '<script type="application/ld+json">'
-    + JSON.stringify(schema).replace(/</g, '\\u003c') + '</script>';
-});
-if (faqReplaced !== 1) { console.error('ожидал ровно один блок FAQPage, нашёл ' + faqReplaced); process.exit(1); }
-
-if (PREVIEW) {
-  // В предпросмотре стили кладём прямо в страницу, чтобы её можно было
-  // смотреть до того, как обновится общий css.
-  html = html.replace('</head>', '<style>' + CSS + '</style>\n<meta name="robots" content="noindex, nofollow">\n</head>');
-  const out = path.join(ROOT, 'preview', 'home');
-  fs.mkdirSync(out, { recursive: true });
-  fs.writeFileSync(path.join(out, 'index.html'), html);
-  console.log('предпросмотр: preview/home/index.html');
-  console.log('  https://3dmolierstudio.com/preview/home/');
-} else {
-  const cssFile = path.join(ROOT, 'assets', 'css', 'styles.css');
-  let css = fs.readFileSync(cssFile, 'utf8');
-  if (css.includes('.hm-table')) console.log('стили уже на месте, css не трогаю');
-  else fs.writeFileSync(cssFile, css.replace(/\s*$/, '\n') + CSS);
-  // Ссылки на css с версией - поднимаем, иначе браузер отдаст старый файл.
-  html = html.replace(/(assets\/css\/[a-z-]+\.(?:min\.)?css\?v=)(\d+)/g, (m, a, v) => a + (+v + 1));
-  fs.writeFileSync(path.join(ROOT, 'index.html'), html);
-  console.log('главная обновлена, стили добавлены в assets/css/styles.css');
+// Секция про студию - перед лицензированием данных, то есть после подборок.
+if (html.includes('id="studio"')) console.log('  секция про студию уже стоит');
+else {
+  const marker = html.match(/<!--[═\s]*DATA LICENSING[═\s]*-->/);
+  if (!marker) { console.error('не нашёл разделитель DATA LICENSING'); process.exit(1); }
+  html = html.replace(marker[0], SECTION_STUDIO + marker[0]);
+  console.log('  добавлена секция про студию');
 }
 
-console.log('  секций добавлено: 2, вопросов: ' + FAQ.length + ', строк в таблице: ' + TABLE.length
-  + ', категорий в списке: ' + CATS.length);
-console.log('  сумма по категориям: ' + n(CATS.reduce((a, c) => a + c[2], 0)) + ' (должно быть ' + n(N.pages) + ')');
+// Разметку FAQPage снимаем с главной - она уезжает на /faq/.
+let faqDropped = 0;
+html = html.replace(/<script[^>]*application\/ld\+json[^>]*>([\s\S]*?)<\/script>\s*/gi, (all, body) => {
+  if (!/"FAQPage"/.test(body)) return all;
+  faqDropped++;
+  return '';
+});
+console.log('  снято блоков FAQPage с главной: ' + faqDropped);
+
+// Ссылка на вопросы в подвале, рядом с About.
+if (html.includes('href="/faq/"')) console.log('  ссылка в подвале уже есть');
+else {
+  const re = /(<a href="\/about\/" class="footer-link">[^<]*<\/a>)/;
+  if (!re.test(html)) console.log('  ВНИМАНИЕ: не нашёл ссылку About в подвале, добавь вручную');
+  else {
+    html = html.replace(re, (m, a) => a + '<a href="/faq/" class="footer-link">FAQ</a>');
+    console.log('  добавлена ссылка на /faq/ в подвал');
+  }
+}
+
+// ── Сборка страницы вопросов из оболочки About ───────────────────────────────
+// Берём готовую страницу: у неё та же шапка, меню и подвал, значит новая
+// страница гарантированно не разъедется с остальным сайтом.
+function buildFaq(homeHtml) {
+  let a = fs.readFileSync(path.join(ROOT, 'about', 'index.html'), 'utf8');
+
+  const body = '<main id="main-content" class="faq-wrap">\n'
+    + '<h1 class="faq-h1">Questions about buying these models</h1>\n'
+    + '<p class="faq-lede">Everything people ask before they click through to TurboSquid.</p>\n'
+    + FAQ.map(([q, ans]) => `<h2 class="faq-q">${esc(q)}</h2>\n<p class="faq-a">${esc(ans)}</p>`).join('\n')
+    + '\n</main>';
+
+  // Меняем только содержимое <main>, шапка и подвал остаются от about.
+  const start = a.indexOf('<main id="main-content"');
+  const end = a.indexOf('</main>', start);
+  if (start < 0 || end < 0) throw new Error('не разобрал оболочку about');
+  a = a.slice(0, start) + body + '\n' + a.slice(end + 7);
+
+  // Заголовок, описание, канонический адрес.
+  const title = 'FAQ - Buying 3D Models | 3D Molier';
+  const desc = 'Formats, licensing, the CheckMate standard, rigging and prices - the questions '
+    + 'people ask before buying a 3D Molier model.';
+  a = a.replace(/<title>[\s\S]*?<\/title>/, '<title>' + title + '</title>');
+  a = a.replace(/(<meta name="description" content=")[^"]*(")/, (m, x, y) => x + desc + y);
+  a = a.replace(/(<meta property="og:description" content=")[^"]*(")/, (m, x, y) => x + desc + y);
+  a = a.replace(/(<meta property="og:title" content=")[^"]*(")/, (m, x, y) => x + title + y);
+  a = a.replace(/(<link rel="canonical" href=")[^"]*(")/, () => '<link rel="canonical" href="https://3dmolierstudio.com/faq/"');
+
+  // Разметку с about убираем и кладём свою, собранную из видимых вопросов.
+  a = a.replace(/<script[^>]*application\/ld\+json[^>]*>[\s\S]*?<\/script>\s*/gi, '');
+  const unesc = s => String(s).replace(/&#39;/g, "'").replace(/&amp;/g, '&').replace(/&quot;/g, '"');
+  const schema = {
+    '@context': 'https://schema.org', '@type': 'FAQPage',
+    '@id': 'https://3dmolierstudio.com/faq/#faq',
+    mainEntity: FAQ.map(([q, ans]) => ({
+      '@type': 'Question', name: unesc(q),
+      acceptedAnswer: { '@type': 'Answer', text: unesc(ans) },
+    })),
+  };
+  const tag = '<script type="application/ld+json">'
+    + JSON.stringify(schema).replace(/</g, '\\u003c') + '</script>';
+  a = a.replace('</body>', tag + '</body>');
+
+  // Подвал берём с уже поправленной главной, чтобы ссылка на /faq/ была и тут.
+  const fA = a.lastIndexOf('<footer'), fH = homeHtml.lastIndexOf('<footer');
+  if (fA > 0 && fH > 0) {
+    const endA = a.indexOf('</footer>', fA), endH = homeHtml.indexOf('</footer>', fH);
+    if (endA > 0 && endH > 0) a = a.slice(0, fA) + homeHtml.slice(fH, endH + 9) + a.slice(endA + 9);
+  }
+  return a;
+}
+
+const faqHtml = buildFaq(html);
+
+// ── Запись ───────────────────────────────────────────────────────────────────
+if (PREVIEW) {
+  const put = (dir, text) => {
+    const out = path.join(ROOT, 'preview', dir);
+    fs.mkdirSync(out, { recursive: true });
+    fs.writeFileSync(path.join(out, 'index.html'),
+      text.replace('</head>', '<style>' + CSS + '</style>\n<meta name="robots" content="noindex, nofollow">\n</head>'));
+  };
+  put('home', html);
+  put('faq', faqHtml);
+  console.log('\nпредпросмотр:');
+  console.log('  https://3dmolierstudio.com/preview/home/');
+  console.log('  https://3dmolierstudio.com/preview/faq/');
+} else {
+  const cssFile = path.join(ROOT, 'assets', 'css', 'styles.css');
+  const css = fs.readFileSync(cssFile, 'utf8');
+  if (css.includes('.studio-row')) console.log('  стили уже на месте');
+  else fs.writeFileSync(cssFile, css.replace(/\s*$/, '\n') + CSS);
+  html = html.replace(/(assets\/css\/[a-z-]+\.(?:min\.)?css\?v=)(\d+)/g, (m, a, v) => a + (+v + 1));
+  fs.writeFileSync(path.join(ROOT, 'index.html'), html);
+  fs.mkdirSync(path.join(ROOT, 'faq'), { recursive: true });
+  fs.writeFileSync(path.join(ROOT, 'faq', 'index.html'), faqHtml);
+  console.log('\nзаписано: index.html, faq/index.html, assets/css/styles.css');
+}
+
+const words = t => t.slice(t.indexOf('<body')).replace(/<script[\s\S]*?<\/script>/g, ' ')
+  .replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().split(' ').length;
+console.log('\nслов на главной: ' + words(html) + '   (turbosquid.com 663, cgtrader.com 498)');
+console.log('таблиц на главной: ' + (html.match(/<table/g) || []).length);
+console.log('вопросов на /faq/: ' + FAQ.length);
