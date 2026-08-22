@@ -33,10 +33,15 @@ function isStub(dir) {
   } finally { fs.closeSync(fd); }
 }
 
-// Текст ответа очищаем от тегов, но сущности оставляем как есть: они попадут
-// в JSON-строку и корректно отрисуются.
+// Текст ответа очищаем от тегов И раскрываем HTML-сущности. Содержимое
+// <script type="application/ld+json"> как HTML не разбирается, поэтому «&amp;»
+// внутри него остаётся пятью символами - поисковик читает «Film &amp; Video».
+// Так и вышло на 37 112 карточках, чинили скриптом fix-entities-in-jsonld.mjs.
 const strip = s => s
   .replace(/<[^>]+>/g, '')
+  .replace(/&#8212;/g, ' - ')
+  .replace(/&(quot|#39|#x27|apos|lt|gt|nbsp|amp);/g, (m, e) =>
+    ({ quot: '"', '#39': "'", '#x27': "'", apos: "'", lt: '<', gt: '>', nbsp: ' ', amp: '&' })[e])
   .replace(/\s+/g, ' ')
   .trim();
 
@@ -70,7 +75,10 @@ for (const slug of fs.readdirSync(MODELS)) {
       acceptedAnswer: { '@type': 'Answer', text: p.a },
     })),
   };
-  const tag = '<script type="application/ld+json">\n' + JSON.stringify(schema) + '\n</script>';
+  // «<» экранируем как \u003c: иначе текст, содержащий «</script>», закрыл бы
+  // тег раньше времени. Для JSON это законная запись, читается как обычный «<».
+  const tag = '<script type="application/ld+json">\n'
+    + JSON.stringify(schema).replace(/</g, '\\u003c') + '\n</script>';
 
   // Вставляем перед закрытием body — рядом с остальными блоками разметки.
   let out;
