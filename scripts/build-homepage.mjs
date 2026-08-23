@@ -70,13 +70,69 @@ const TILES = [
 const HERO_SLUG = 'international-airport-1475439';
 const STUDIO_SLUG = 'equipped-military-drone-airbase-with-uav-desert-2530374';
 
+// ── Топ-продажи ──────────────────────────────────────────────────────────────
+// Те же восемь моделей, что и были, но карточка теперь - сама картинка, а имя
+// и цена лежат поверх неё. Первая идёт крупной плиткой 6x2: у витрины должна
+// быть одна вещь, на которую смотришь первой.
+const TOP = [
+  { slug: 'railroad-amtrak-passenger-car-2-930528', name: 'Railroad Amtrak Passenger Car 2', price: '$79', cat: 'Vehicles', cols: 6, rows: 2 },
+  { slug: 'airbus-a400m-atlas-military-transport-aircraft-rigged-1550640', name: 'Airbus A400M Atlas Rigged', price: '$219', cat: 'Aircraft', cols: 3, rows: 1 },
+  { slug: 'sigma-class-indonesian-frigate-1394359', name: 'Sigma Class Indonesian Frigate', price: '$199', cat: 'Military Vehicles', cols: 3, rows: 1 },
+  { slug: 'viking-ship-dragon-head-1786441', name: 'Viking Ship Dragon Head', price: '$39', cat: 'Ships', cols: 3, rows: 1 },
+  { slug: 'boiler-suit-coverall-with-safety-helmet-1138628', name: 'Boiler Suit with Safety Helmet', price: '$99', cat: 'Industrial', cols: 3, rows: 1 },
+  { slug: 'shanghai-tower-china-904226', name: 'Shanghai Tower China', price: '$99', cat: 'Architecture', cols: 6, rows: 1 },
+  { slug: 'golden-chinese-dragon-3d-model-1379923', name: 'Golden Chinese Dragon', price: '$99', cat: 'Animals', cols: 3, rows: 1 },
+  { slug: 'male-pelvis-skeleton-1023424', name: 'Male Pelvis Skeleton', price: '$49', cat: 'Medical', cols: 3, rows: 1 },
+];
+
+// ── Отрасли ──────────────────────────────────────────────────────────────────
+// Ритм нарочно другой: полоса низких плиток по четыре в ряд. Три одинаковые
+// мозаики подряд читались бы как одна длинная, а это разные вопросы -
+// «что искать» и «для чего это берут».
+// Счётчики убраны: они считали весь магазин TurboSquid (Film & Video - 83 145),
+// а числа на плитках категорий считают страницы этого сайта. Рядом две системы
+// счёта на одной странице сбивают с толку.
+const INDUSTRIES = [
+  { key: 'aerospace', name: 'Aerospace', slug: 'x-madis-anti-drone-system-1896205' },
+  { key: 'military-defense', name: 'Military & Defense', slug: 'stealth-bomber-b-2-spirit-1127231' },
+  { key: 'medical', name: 'Medical', slug: 'complete-female-body-anatomy-1611038' },
+  { key: 'game-development', name: 'Game Development', slug: 'boeing-737-interior-1191819' },
+  { key: 'film-video-production', name: 'Film & Video', slug: 'train-es40dc-csx-blue-and-covered-hopper-car-949756' },
+  { key: 'architecture', name: 'Architecture', slug: 'cape-town-stadium-green-point-3d-model-1031144' },
+  { key: 'virtual-reality', name: 'Virtual Reality', slug: 'boeing-c17-globemaster-iii-cargo-door-open-1892082' },
+  { key: 'advertising', name: 'Advertising', slug: 'airbus-a220-300-detailed-interior-1608806' },
+];
+
+// ── Подборки ─────────────────────────────────────────────────────────────────
+// Прежние пять «Curated Collections» вели на /categories/vehicles/,
+// /categories/aircraft/ и так далее - то есть ровно туда же, куда плитки
+// категорий выше. Секция дублировала предыдущую. Здесь настоящие страницы
+// подборок из /collections/, и темы взяты те, которых нет среди плиток.
+const COLLECTIONS = [
+  { key: 'holidays', name: 'Holidays', desc: 'Gifts, decorations and seasonal props', slug: 'wedding-presents-3d-models-set-2-997567' },
+  { key: 'food-drink', name: 'Food & Drink', desc: 'Packaging, produce and tableware', slug: 'beer-kegs-set-1622300' },
+  { key: 'fashion', name: 'Fashion', desc: 'Garments, footwear and accessories', slug: 'ballet-shoes-set-1066973' },
+  { key: 'sports', name: 'Sports', desc: 'Kit, equipment and arenas', slug: 'hockey-goalie-protection-kit-red-2-1046985' },
+  { key: 'art-media', name: 'Art & Media', desc: 'Instruments, studio and stage gear', slug: 'yamaha-concert-timpani-set-1362555' },
+  { key: 'toys-games', name: 'Toys & Games', desc: 'Playsets, models and board pieces', slug: 'classical-train-toy-set-locomotive-with-wagons-1342305' },
+];
+
 // ── Картинка модели берётся из её же карточки ────────────────────────────────
+// Часть страниц - варианты, слитые в основную карточку: у них вместо
+// содержимого стоит перенаправление и картинки нет. Для таких берём основную,
+// но ссылку на TurboSquid оставляем ту, что была: это отдельный товар с
+// отдельным идентификатором.
+const merged = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'merged-variants.json'), 'utf8'));
 function heroImage(slug) {
-  const file = path.join(ROOT, 'models', slug, 'index.html');
-  const h = fs.readFileSync(file, 'utf8');
-  const img = (h.match(/<meta property="og:image" content="([^"]+)"/) || [])[1];
+  const read = s => {
+    const f = path.join(ROOT, 'models', s, 'index.html');
+    return fs.existsSync(f) ? fs.readFileSync(f, 'utf8') : '';
+  };
+  let h = read(slug);
+  let img = (h.match(/<meta property="og:image" content="([^"]+)"/) || [])[1];
+  if (!img && merged[slug]) { h = read(merged[slug]); img = (h.match(/<meta property="og:image" content="([^"]+)"/) || [])[1]; }
   if (!img) throw new Error('нет картинки у ' + slug);
-  const name = (h.match(/<h1[^>]*>([\s\S]*?)<\/h1>/) || [])[1].replace(/<[^>]+>/g, '').trim();
+  const name = ((h.match(/<h1[^>]*>([\s\S]*?)<\/h1>/) || [])[1] || slug).replace(/<[^>]+>/g, '').trim();
   return { img, name };
 }
 
@@ -89,6 +145,21 @@ for (const t of TILES) {
 }
 const hero = heroImage(HERO_SLUG);
 const studioImg = heroImage(STUDIO_SLUG);
+
+// Одна и та же картинка в двух местах - главная причина, по которой каталог
+// выглядел беднее, чем он есть. Проверяем это, а не надеемся.
+for (const list of [TOP, INDUSTRIES, COLLECTIONS]) {
+  for (const x of list) {
+    const { img, name } = heroImage(x.slug);
+    if (seen.has(img)) throw new Error('повтор картинки: ' + x.slug);
+    seen.add(img);
+    x.img = img; x.modelName = name;
+  }
+}
+for (const one of [hero, studioImg]) {
+  if (seen.has(one.img)) throw new Error('повтор картинки в первом экране или полосе студии');
+  seen.add(one.img);
+}
 
 // ── Разметка мозаики ─────────────────────────────────────────────────────────
 const mosaic = TILES.map(t => `<a href="${t.href}" class="tile tile--${t.cols}x${t.rows}">
@@ -105,6 +176,70 @@ const SECTION_MOSAIC = `<!-- ═════════════════
 </div>
 <div class="mosaic">
 ${mosaic}
+</div>
+</div>
+</section>
+`;
+
+// ── Топ-продажи ──────────────────────────────────────────────────────────────
+const TS = 'https://www.turbosquid.com/3d-models/';
+const REF = '?referral=3d_molier-international';
+const topTiles = TOP.map(t => `<a href="${TS}${t.slug}${REF}" target="_blank" rel="noopener" class="tile tile--${t.cols}x${t.rows} tile--buy">
+<img src="${t.img}" alt="${esc(t.modelName)}" loading="lazy" decoding="async" width="800" height="450" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
+<span class="tile-tag">${esc(t.cat)}</span>
+<span class="tile-cap"><span class="tile-name">${esc(t.name)}</span><span class="tile-price">${t.price}</span></span>
+</a>`).join('\n');
+
+const SECTION_TOP = `<!-- ═══════════════════════════════════════ TOP MODELS ═══════════════════════ -->
+<section class="page-section page-section--gray" id="best-sellers">
+<div class="max-w-7xl mx-auto">
+<div class="sec-head">
+<h2 class="section-h2">Best sellers on TurboSquid</h2>
+<a href="/catalog/" class="sec-more">Top 1000 &rarr;</a>
+</div>
+<div class="mosaic">
+${topTiles}
+</div>
+</div>
+</section>
+`;
+
+// ── Отрасли: полоса низких плиток ────────────────────────────────────────────
+const indTiles = INDUSTRIES.map(i => `<a href="/industries/${i.key}/" class="tile tile--3x1 tile--flat">
+<img src="${i.img}" alt="3D models for ${esc(i.name)} - ${esc(i.modelName)}" loading="lazy" decoding="async" width="600" height="340" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
+<span class="tile-cap"><span class="tile-name">${esc(i.name)}</span></span>
+</a>`).join('\n');
+
+const SECTION_INDUSTRIES = `<!-- ═══════════════════════════════════════ INDUSTRIES ═══════════════════════ -->
+<section class="page-section" id="industries">
+<div class="max-w-7xl mx-auto">
+<div class="sec-head">
+<h2 class="section-h2">Where these models get used</h2>
+<a href="/industries/" class="sec-more">All industries &rarr;</a>
+</div>
+<div class="mosaic mosaic--flat">
+${indTiles}
+</div>
+</div>
+</section>
+`;
+
+// ── Подборки: карточка с подписью под картинкой ──────────────────────────────
+const colCards = COLLECTIONS.map(c => `<a href="/collections/${c.key}/" class="col-tile">
+<span class="col-shot"><img src="${c.img}" alt="${esc(c.name)} 3D models - ${esc(c.modelName)}" loading="lazy" decoding="async" width="600" height="400" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></span>
+<span class="col-name">${esc(c.name)}</span>
+<span class="col-line">${esc(c.desc)}</span>
+</a>`).join('\n');
+
+const SECTION_COLLECTIONS = `<!-- ═══════════════════════════════════════ COLLECTIONS ══════════════════════ -->
+<section class="page-section page-section--gray" id="collections">
+<div class="max-w-7xl mx-auto">
+<div class="sec-head">
+<h2 class="section-h2">Curated collections</h2>
+<a href="/collections/" class="sec-more">All collections &rarr;</a>
+</div>
+<div class="col-grid">
+${colCards}
 </div>
 </div>
 </section>
@@ -158,8 +293,39 @@ const CSS = `
 .tile-n { color: rgba(255,255,255,.78); font-size: 12px; font-variant-numeric: tabular-nums;
   text-shadow: 0 1px 3px rgba(0,0,0,.4); }
 .tile--6x1 { grid-column: span 6; grid-row: span 1; }
+.tile--6x2 { grid-column: span 6; grid-row: span 2; }
 .tile--3x1 { grid-column: span 3; grid-row: span 1; }
 .tile--3x2 { grid-column: span 3; grid-row: span 2; }
+
+/* Товарная плитка: категория сверху, имя и цена внизу. Затемнение с двух
+   сторон - иначе подпись тонет в светлом рендере. */
+.tile--buy::after { background:
+  linear-gradient(180deg, rgba(9,11,14,.42) 0%, rgba(9,11,14,0) 26%, rgba(9,11,14,0) 48%, rgba(9,11,14,.76) 100%); }
+.tile-tag { position: absolute; top: 11px; left: 13px; z-index: 1; font-size: 11px; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.86);
+  text-shadow: 0 1px 3px rgba(0,0,0,.5); }
+.tile-price { color: #fff; font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 3px rgba(0,0,0,.45); }
+.tile--buy .tile-name { font-size: 14px; font-weight: 600; }
+
+/* Отрасли - низкая полоса: другой вопрос, другой ритм. */
+.mosaic--flat { grid-auto-rows: 132px; }
+.tile--flat .tile-cap { justify-content: flex-start; }
+.tile--flat .tile-name { font-size: 14px; }
+.tile--flat::after { background: linear-gradient(180deg, rgba(9,11,14,.12) 0%, rgba(9,11,14,.74) 100%); }
+
+/* Подборки - подпись под картинкой, а не поверх: третья фактура на странице. */
+/* Ровно три колонки, а не auto-fit: шесть карточек должны лечь 3+3. При
+   автоподборе на широком экране выходит 4+2, и во втором ряду зияет дыра. */
+.col-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px 20px; }
+.col-tile { display: block; text-decoration: none; color: inherit; }
+.col-shot { display: block; overflow: hidden; border-radius: 6px; background: #e9e9e9; aspect-ratio: 3 / 2; }
+.col-shot img { width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .45s cubic-bezier(.2,.7,.3,1); }
+.col-tile:hover .col-shot img { transform: scale(1.045); }
+.col-name { display: block; margin-top: 11px; font-size: 15.5px; font-weight: 600; color: #111111; }
+.col-tile:hover .col-name { color: var(--accent, #1659c9); }
+.col-line { display: block; margin-top: 3px; font-size: 13.5px; color: #6b7280; line-height: 1.5; }
 
 .studio-band { display: grid; grid-template-columns: 1fr 1fr; background: #0e1116; color: #f2efe9; }
 .studio-media { min-height: 380px; }
@@ -180,6 +346,8 @@ const CSS = `
 @media (max-width: 900px) {
   /* Ряды ниже, но высокая плитка остаётся высокой - на ней держится ритм. */
   .mosaic { grid-auto-rows: 158px; }
+  .mosaic--flat { grid-auto-rows: 110px; }
+  .col-grid { grid-template-columns: repeat(2, 1fr); }
   .studio-band { grid-template-columns: 1fr; }
   .studio-media { min-height: 220px; }
   .studio-copy { padding: 36px 24px 44px; }
@@ -189,9 +357,14 @@ const CSS = `
    полос подряд читались бы как список, а не как витрина. */
 @media (max-width: 560px) {
   .mosaic { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 116px; gap: 8px; }
+  .mosaic--flat { grid-auto-rows: 96px; }
   .tile--3x1 { grid-column: span 3; grid-row: span 1; }
   .tile--3x2 { grid-column: span 3; grid-row: span 2; }
   .tile--6x1 { grid-column: span 6; grid-row: span 1; }
+  .tile--6x2 { grid-column: span 6; grid-row: span 2; }
+  .col-grid { grid-template-columns: 1fr 1fr; gap: 18px 14px; }
+  .col-name { font-size: 14px; }
+  .col-line { font-size: 12.5px; }
   .tile-name { font-size: 13px; }
   .tile-n { font-size: 11px; }
   .tile-cap { left: 10px; right: 10px; bottom: 9px; }
@@ -232,7 +405,20 @@ const catSec = /<!--[^>]*CATEGORIES[^>]*-->\s*<section[\s\S]*?<\/section>\s*/;
 if (catSec.test(html)) { html = html.replace(catSec, SECTION_MOSAIC); step.push('  заменено: 8 карточек категорий -> мозаика из ' + TILES.length + ' плиток'); }
 else step.push('  не найдена секция категорий');
 
-// 5. Полоса студии перед лицензированием данных.
+// 5. Топ-продажи, отрасли и подборки - в том же языке плиток, но с разным
+//    ритмом, чтобы страница не превратилась в три одинаковые мозаики.
+const swap = [
+  [/<!--[^>]*TOP MODELS[^>]*-->\s*<section[\s\S]*?<\/section>\s*/, SECTION_TOP, 'топ-продажи'],
+  [/<!--[^>]*INDUSTRIES[^>]*-->\s*<section[\s\S]*?<\/section>\s*/, SECTION_INDUSTRIES, 'отрасли'],
+  [/<!--[^>]*COLLECTIONS[^>]*-->\s*<section[\s\S]*?<\/section>\s*/, SECTION_COLLECTIONS, 'подборки'],
+];
+for (const [re, block, what] of swap) {
+  if (!re.test(html)) { step.push('  не найдена секция: ' + what); continue; }
+  html = html.replace(re, block);
+  step.push('  переделано: ' + what);
+}
+
+// 6. Полоса студии перед лицензированием данных.
 const dl = html.match(/<!--[═\s]*DATA LICENSING[═\s]*-->/);
 if (!dl) { console.error('не нашёл раздел лицензирования'); process.exit(1); }
 html = html.replace(dl[0], SECTION_STUDIO + dl[0]);

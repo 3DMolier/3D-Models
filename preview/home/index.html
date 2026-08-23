@@ -36,8 +36,39 @@ gtag('config', 'G-GDY5KTLBP1');
 .tile-n { color: rgba(255,255,255,.78); font-size: 12px; font-variant-numeric: tabular-nums;
   text-shadow: 0 1px 3px rgba(0,0,0,.4); }
 .tile--6x1 { grid-column: span 6; grid-row: span 1; }
+.tile--6x2 { grid-column: span 6; grid-row: span 2; }
 .tile--3x1 { grid-column: span 3; grid-row: span 1; }
 .tile--3x2 { grid-column: span 3; grid-row: span 2; }
+
+/* Товарная плитка: категория сверху, имя и цена внизу. Затемнение с двух
+   сторон - иначе подпись тонет в светлом рендере. */
+.tile--buy::after { background:
+  linear-gradient(180deg, rgba(9,11,14,.42) 0%, rgba(9,11,14,0) 26%, rgba(9,11,14,0) 48%, rgba(9,11,14,.76) 100%); }
+.tile-tag { position: absolute; top: 11px; left: 13px; z-index: 1; font-size: 11px; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.86);
+  text-shadow: 0 1px 3px rgba(0,0,0,.5); }
+.tile-price { color: #fff; font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 3px rgba(0,0,0,.45); }
+.tile--buy .tile-name { font-size: 14px; font-weight: 600; }
+
+/* Отрасли - низкая полоса: другой вопрос, другой ритм. */
+.mosaic--flat { grid-auto-rows: 132px; }
+.tile--flat .tile-cap { justify-content: flex-start; }
+.tile--flat .tile-name { font-size: 14px; }
+.tile--flat::after { background: linear-gradient(180deg, rgba(9,11,14,.12) 0%, rgba(9,11,14,.74) 100%); }
+
+/* Подборки - подпись под картинкой, а не поверх: третья фактура на странице. */
+/* Ровно три колонки, а не auto-fit: шесть карточек должны лечь 3+3. При
+   автоподборе на широком экране выходит 4+2, и во втором ряду зияет дыра. */
+.col-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px 20px; }
+.col-tile { display: block; text-decoration: none; color: inherit; }
+.col-shot { display: block; overflow: hidden; border-radius: 6px; background: #e9e9e9; aspect-ratio: 3 / 2; }
+.col-shot img { width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .45s cubic-bezier(.2,.7,.3,1); }
+.col-tile:hover .col-shot img { transform: scale(1.045); }
+.col-name { display: block; margin-top: 11px; font-size: 15.5px; font-weight: 600; color: #111111; }
+.col-tile:hover .col-name { color: var(--accent, #1659c9); }
+.col-line { display: block; margin-top: 3px; font-size: 13.5px; color: #6b7280; line-height: 1.5; }
 
 .studio-band { display: grid; grid-template-columns: 1fr 1fr; background: #0e1116; color: #f2efe9; }
 .studio-media { min-height: 380px; }
@@ -58,6 +89,8 @@ gtag('config', 'G-GDY5KTLBP1');
 @media (max-width: 900px) {
   /* Ряды ниже, но высокая плитка остаётся высокой - на ней держится ритм. */
   .mosaic { grid-auto-rows: 158px; }
+  .mosaic--flat { grid-auto-rows: 110px; }
+  .col-grid { grid-template-columns: repeat(2, 1fr); }
   .studio-band { grid-template-columns: 1fr; }
   .studio-media { min-height: 220px; }
   .studio-copy { padding: 36px 24px 44px; }
@@ -67,9 +100,14 @@ gtag('config', 'G-GDY5KTLBP1');
    полос подряд читались бы как список, а не как витрина. */
 @media (max-width: 560px) {
   .mosaic { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 116px; gap: 8px; }
+  .mosaic--flat { grid-auto-rows: 96px; }
   .tile--3x1 { grid-column: span 3; grid-row: span 1; }
   .tile--3x2 { grid-column: span 3; grid-row: span 2; }
   .tile--6x1 { grid-column: span 6; grid-row: span 1; }
+  .tile--6x2 { grid-column: span 6; grid-row: span 2; }
+  .col-grid { grid-template-columns: 1fr 1fr; gap: 18px 14px; }
+  .col-name { font-size: 14px; }
+  .col-line { font-size: 12.5px; }
   .tile-name { font-size: 13px; }
   .tile-n { font-size: 11px; }
   .tile-cap { left: 10px; right: 10px; bottom: 9px; }
@@ -149,37 +187,142 @@ View TurboSquid Store
 </div>
 </div>
 </section>
-<!-- ═══════════════════════════════════════ TOP MODELS ════════════════════════ --><section class="page-section page-section--gray"><div class="max-w-7xl mx-auto"><div class="section-header"><div><div class="section-label">Best Sellers</div><h2 class="section-h2">
-Top Selling 3D Models on TurboSquid
-</h2></div><a href="/catalog/" class="btn-ghost btn-ghost--sm">View all models</a></div><div class="model-grid"><!-- 1: Vehicles — Railroad Amtrak Passenger Car 2 --><div class="model-card card-glow"><div class="img-wrap mc-img"><img src="https://p.turbosquid.com/ts-thumb/04/skwvXd/uoK2mjth/3dmodelofrailroadamtrakpassengercar02/jpg/1432654146/1920x1080/fit_q87/302059a0f7a854bf7f82fe46d043c78ff5e50b6a/3dmodelofrailroadamtrakpassengercar02.jpg" alt="Railroad Amtrak Passenger Car 2" width="300" height="200" loading="lazy"
-onerror="imgErr(this)" decoding="async"><div class="img-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><span class="mc-ph-label">Vehicles</span></div></div><div class="mc-body"><div class="mc-meta"><h3 class="mc-title">Railroad Amtrak Passenger Car 2</h3><span class="cert-badge">✓ CM</span></div><div class="mc-foot"><span class="chip mc-chip">Vehicles</span><span class="mc-price">$79</span></div><a href="https://www.turbosquid.com/3d-models/railroad-amtrak-passenger-car-2-930528?referral=3d_molier-international" target="_blank" rel="noopener" class="btn-ts"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-View on TurboSquid
-</a></div></div><!-- 2: Aircraft — Airbus A400M --><div class="model-card card-glow"><div class="img-wrap mc-img"><img src="https://p.turbosquid.com/ts-thumb/A7/rK78NN/VzNPX9hE/airbusa400matlasmilitarytransportaircraftriggedmb3dmodel001/jpg/1588190727/1920x1080/fit_q87/830ab8199cdf4bef09f27e1dc5f4cc57bcdc184f/airbusa400matlasmilitarytransportaircraftriggedmb3dmodel001.jpg" alt="Airbus A400M Atlas Military Transport Aircraft Rigged" width="300" height="200" loading="lazy"
-onerror="imgErr(this)" decoding="async"><div class="img-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg><span class="mc-ph-label">Aircraft</span></div></div><div class="mc-body"><div class="mc-meta"><h3 class="mc-title">Airbus A400M Atlas Military Transport Rigged</h3><span class="cert-badge">✓ CM</span></div><div class="mc-foot"><span class="chip mc-chip">Aircraft</span><span class="mc-price">$219</span></div><a href="https://www.turbosquid.com/3d-models/airbus-a400m-atlas-military-transport-aircraft-rigged-1550640?referral=3d_molier-international" target="_blank" rel="noopener" class="btn-ts"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-View on TurboSquid
-</a></div></div><!-- 3: Military Vehicles — Sigma Frigate --><div class="model-card card-glow"><div class="img-wrap mc-img"><img src="https://p.turbosquid.com/ts-thumb/7Y/nWQoVG/DobuW2iZ/sigmaclassindonesianfrigatevray3dmodel001/jpg/1554236127/1920x1080/fit_q87/73d1b3e3a8aba23f16db3bdd053685a7d0d416ac/sigmaclassindonesianfrigatevray3dmodel001.jpg" alt="Sigma Class Indonesian Frigate" width="300" height="200" loading="lazy"
-onerror="imgErr(this)" decoding="async"><div class="img-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"><path d="M3 12h18M3 12l4-4M3 12l4 4M21 12l-4-4M21 12l-4 4"/></svg><span class="mc-ph-label">Military</span></div></div><div class="mc-body"><div class="mc-meta"><h3 class="mc-title">Sigma Class Indonesian Frigate</h3><span class="cert-badge">✓ CM</span></div><div class="mc-foot"><span class="chip mc-chip">Military Vehicles</span><span class="mc-price">$199</span></div><a href="https://www.turbosquid.com/3d-models/sigma-class-indonesian-frigate-1394359?referral=3d_molier-international" target="_blank" rel="noopener" class="btn-ts"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-View on TurboSquid
-</a></div></div><!-- 4: Ships — Viking Ship --><div class="model-card card-glow"><div class="img-wrap mc-img"><img src="https://p.turbosquid.com/ts-thumb/zo/WZOqpU/UH/vikingshipdragonhead3dmodel001/jpg/1631286260/1920x1080/fit_q87/adc7ca29d160a8a59ca0133e15da3b5e4103cfc7/vikingshipdragonhead3dmodel001.jpg" alt="Viking Ship Dragon Head" width="300" height="200" loading="lazy"
-onerror="imgErr(this)" decoding="async"><div class="img-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"><path d="M2 20h20l-2-8H4l-2 8zM4 12V8a8 8 0 0116 0v4"/></svg><span class="mc-ph-label">Ships</span></div></div><div class="mc-body"><div class="mc-meta"><h3 class="mc-title">Viking Ship Dragon Head</h3><span class="cert-badge">✓ CM</span></div><div class="mc-foot"><span class="chip mc-chip">Ships</span><span class="mc-price">$39</span></div><a href="https://www.turbosquid.com/3d-models/viking-ship-dragon-head-1786441?referral=3d_molier-international" target="_blank" rel="noopener" class="btn-ts"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-View on TurboSquid
-</a></div></div><!-- 5: Industrial Equipment — Boiler Suit --><div class="model-card card-glow"><div class="img-wrap mc-img"><img src="https://p.turbosquid.com/ts-thumb/t1/gXpldy/nSKsOZj4/boilersuitcoverallwithsafetyhelmetvray3dmodel060/jpg/1490008888/1920x1080/fit_q87/c3e9155fcca3e9abba90967e900f424cc07c757e/boilersuitcoverallwithsafetyhelmetvray3dmodel060.jpg" alt="Boiler Suit Coverall with Safety Helmet" width="300" height="200" loading="lazy"
-onerror="imgErr(this)" decoding="async"><div class="img-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span class="mc-ph-label">Industrial</span></div></div><div class="mc-body"><div class="mc-meta"><h3 class="mc-title">Boiler Suit Coverall with Safety Helmet</h3><span class="cert-badge">✓ CM</span></div><div class="mc-foot"><span class="chip mc-chip">Industrial</span><span class="mc-price">$99</span></div><a href="https://www.turbosquid.com/3d-models/boiler-suit-coverall-with-safety-helmet-1138628?referral=3d_molier-international" target="_blank" rel="noopener" class="btn-ts"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-View on TurboSquid
-</a></div></div><!-- 6: Medical — Male Pelvis Skeleton --><div class="model-card card-glow"><div class="img-wrap mc-img"><img src="https://p.turbosquid.com/ts-thumb/dZ/Taq67V/13BuUfm6/malepelvisskeleton3dmodel01/jpg/1459570253/1920x1080/fit_q87/cc5903981ac044cc0618a67aa4872d818203cfb2/malepelvisskeleton3dmodel01.jpg" alt="Male Pelvis Skeleton" width="300" height="200" loading="lazy"
-onerror="imgErr(this)" decoding="async"><div class="img-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="mc-ph-label">Medical</span></div></div><div class="mc-body"><div class="mc-meta"><h3 class="mc-title">Male Pelvis Skeleton</h3><span class="cert-badge">✓ CM</span></div><div class="mc-foot"><span class="chip mc-chip">Medical</span><span class="mc-price">$49</span></div><a href="https://www.turbosquid.com/3d-models/male-pelvis-skeleton-1023424?referral=3d_molier-international" target="_blank" rel="noopener" class="btn-ts"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-View on TurboSquid
-</a></div></div><!-- 7: Architecture Landmarks — Shanghai Tower --><div class="model-card card-glow"><div class="img-wrap mc-img"><img src="https://p.turbosquid.com/ts-thumb/ew/MC3eK6/wD7dE3o4/shanghaitowerchina3dmodel01/jpg/1425888870/1920x1080/fit_q87/70c293e6fbda56881baafbcd355682e8d6a6beb9/shanghaitowerchina3dmodel01.jpg" alt="Shanghai Tower China" width="300" height="200" loading="lazy"
-onerror="imgErr(this)" decoding="async"><div class="img-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span class="mc-ph-label">Architecture</span></div></div><div class="mc-body"><div class="mc-meta"><h3 class="mc-title">Shanghai Tower China</h3><span class="cert-badge">✓ CM</span></div><div class="mc-foot"><span class="chip mc-chip">Architecture</span><span class="mc-price">$99</span></div><a href="https://www.turbosquid.com/3d-models/shanghai-tower-china-904226?referral=3d_molier-international" target="_blank" rel="noopener" class="btn-ts"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-View on TurboSquid
-</a></div></div><!-- 8: Animals & Creatures — Golden Chinese Dragon --><div class="model-card card-glow"><div class="img-wrap mc-img"><img src="https://p.turbosquid.com/ts-thumb/Rw/vX3VIT/QRFKNWAL/goldenchinesedragon3dmodel001/jpg/1550621680/1920x1080/fit_q87/88b00392dec4d7b121f29dd453cf3c4c2fceef57/goldenchinesedragon3dmodel001.jpg" alt="Golden Chinese Dragon 3D Model" width="300" height="200" loading="lazy"
-onerror="imgErr(this)" decoding="async"><div class="img-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="mc-ph-label">Animals & Creatures</span></div></div><div class="mc-body"><div class="mc-meta"><h3 class="mc-title">Golden Chinese Dragon 3D Model</h3><span class="cert-badge">✓ CM</span></div><div class="mc-foot"><span class="chip mc-chip">Animals</span><span class="mc-price">$99</span></div><a href="https://www.turbosquid.com/3d-models/golden-chinese-dragon-3d-model-1379923?referral=3d_molier-international" target="_blank" rel="noopener" class="btn-ts"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-View on TurboSquid
-</a></div></div></div></div></section><!-- ═══════════════════════════════════════ INDUSTRIES ═══════════════════════ --><section class="page-section"><div class="max-w-7xl mx-auto"><div class="section-intro"><div class="section-label">Who Uses These Models</div><h2 class="section-h2">
-High-Value Industries
-</h2></div><div class="ind-grid"><!-- Industry chips — large format --><a href="/industries/aerospace/" class="ind-card" ><div class="ind-card-img"><img src="https://p.turbosquid.com/ts-thumb/pi/DyjmYF/wKi9psVt/airbusa320generic3dmodel002/jpg/1512451344/1920x1080/fit_q87/e890b6bbba43d7da1e344e2f760a87c9d8f25b9b/airbusa320generic3dmodel002.jpg" alt="Aerospace 3D models" loading="lazy" width="800" height="450" decoding="async"  data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></div><span class="ind-icon">🚀</span><span class="ind-name">Aerospace</span><span class="ind-count">3,871 models</span></a><a href="/industries/military-defense/" class="ind-card" ><div class="ind-card-img"><img src="https://p.turbosquid.com/ts-thumb/34/5G5ITt/9uwrFmvi/sikorskyuh60blackhawkusmilitaryutilityhelicopterc4dmodel002/jpg/1477311781/1920x1080/fit_q87/0d8ee50de73df309fe971dd667db85a7ad6249e0/sikorskyuh60blackhawkusmilitaryutilityhelicopterc4dmodel002.jpg" alt="Military and Defense 3D models" loading="lazy" width="800" height="450" decoding="async"  data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></div><span class="ind-icon">🛡️</span><span class="ind-name">Military / Defense</span><span class="ind-count">1,727 models</span></a><a href="/industries/medical/" class="ind-card" ><div class="ind-card-img"><img src="https://p.turbosquid.com/ts-thumb/Af/2AjP8g/vfRF5a8r/malefullbodyanatomyandskinmb3dmodel002/jpg/1572784988/1920x1080/fit_q87/4f7061185e55a42558f6035ce2fc92145ef25ed1/malefullbodyanatomyandskinmb3dmodel002.jpg" alt="Medical 3D models" loading="lazy" width="800" height="450" decoding="async"  data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></div><span class="ind-icon">🏥</span><span class="ind-name">Medical</span><span class="ind-count">2,125 models</span></a><a href="/industries/game-development/" class="ind-card" ><div class="ind-card-img"><img src="https://p.turbosquid.com/ts-thumb/6x/gvz1ss/MxAGaphD/manhandsriggedcinema4d3dmodel01/jpg/1481983483/1920x1080/fit_q87/d75506941b4abdc56d0c83c7bf2e0b6a9cc7b4b9/manhandsriggedcinema4d3dmodel01.jpg" alt="Game Development 3D models" loading="lazy" width="800" height="450" decoding="async"  data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></div><span class="ind-icon">🎮</span><span class="ind-name">Game Development</span><span class="ind-count">16,031 models</span></a><a href="/industries/film-video-production/" class="ind-card" ><div class="ind-card-img"><img src="https://p.turbosquid.com/ts-thumb/A7/rK78NN/VzNPX9hE/airbusa400matlasmilitarytransportaircraftriggedmb3dmodel001/jpg/1588190727/1920x1080/fit_q87/830ab8199cdf4bef09f27e1dc5f4cc57bcdc184f/airbusa400matlasmilitarytransportaircraftriggedmb3dmodel001.jpg" alt="Film and Video 3D models" loading="lazy" width="800" height="450" decoding="async"  data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></div><span class="ind-icon">🎬</span><span class="ind-name">Film & Video</span><span class="ind-count">83,145 models</span></a><a href="/industries/architecture/" class="ind-card" ><div class="ind-card-img"><img src="https://p.turbosquid.com/ts-thumb/5V/qfh6M1/teDcBu23/eiffeltowervray3dmodel001/jpg/1600848155/1920x1080/fit_q87/b35b13af1bfb07140a8bfb19e60e094a46287b76/eiffeltowervray3dmodel001.jpg" alt="Architecture 3D models" loading="lazy" width="800" height="450" decoding="async"  data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></div><span class="ind-icon">🏗️</span><span class="ind-name">Architecture</span><span class="ind-count">9,450 models</span></a><a href="/industries/virtual-reality/" class="ind-card" ><div class="ind-card-img"><img src="https://p.turbosquid.com/ts-thumb/4q/1vAjNW/J9/baseball_hat_3_001/jpg/1626786034/1920x1080/fit_q87/47e19e3348fa441aadd838d6f77ff0eb5c74d2b6/baseball_hat_3_001.jpg" alt="Virtual Reality 3D models" loading="lazy" width="800" height="450" decoding="async"  data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></div><span class="ind-icon">🥽</span><span class="ind-name">Virtual Reality</span><span class="ind-count">8,313 models</span></a><a href="/industries/advertising/" class="ind-card" ><div class="ind-card-img"><img src="https://p.turbosquid.com/ts-thumb/Hs/wp2JO0/vS/ford_transit_cargo_2020_002/jpg/1625749741/1920x1080/fit_q87/9b4ec2e34fdad9b933be803227c827b1b2f29580/ford_transit_cargo_2020_002.jpg" alt="Advertising 3D models" loading="lazy" width="800" height="450" decoding="async"  data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></div><span class="ind-icon">📢</span><span class="ind-name">Advertising</span><span class="ind-count">78,159 models</span></a></div></div></section><!-- ═══════════════════════════════════════ COLLECTIONS ═════════════════════ --><section class="page-section page-section--gray"><div class="max-w-7xl mx-auto"><div class="section-header"><div><div class="section-label">Handpicked</div><h2 class="section-h2">
-Curated Collections
-</h2></div><a href="/collections/" class="btn-ghost btn-ghost--sm">View all collections</a></div><div class="cat-grid"><a href="/categories/vehicles/"  class="col-card"><div class="col-card-img"><img src="https://p.turbosquid.com/ts-thumb/6I/BNMOUr/TV/tesla_model_3_002/jpg/1625762643/1920x1080/fit_q87/4e96882f57561f81063dbba6aa0893596a3b5ec1/tesla_model_3_002.jpg" alt="Best Vehicle 3D Models" loading="lazy" width="800" height="450" decoding="async"  data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></div><div class="col-icon">&#x1F697;</div><div class="col-title">Best Vehicle Models</div><div class="col-desc">Top cars, trucks &amp; motorcycles</div></a><a href="/categories/aircraft/"  class="col-card"><div class="col-card-img"><img src="https://p.turbosquid.com/ts-thumb/pi/DyjmYF/wKi9psVt/airbusa320generic3dmodel002/jpg/1512451344/1920x1080/fit_q87/e890b6bbba43d7da1e344e2f760a87c9d8f25b9b/airbusa320generic3dmodel002.jpg" alt="Best Aircraft 3D Models" loading="lazy" width="800" height="450" decoding="async"  data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></div><div class="col-icon">&#x2708;&#xFE0F;</div><div class="col-title">Best Aircraft Models</div><div class="col-desc">Airplanes, helicopters &amp; drones</div></a><a href="/categories/medical-3d-models/"  class="col-card"><div class="col-card-img"><img src="https://p.turbosquid.com/ts-thumb/Af/2AjP8g/vfRF5a8r/malefullbodyanatomyandskinmb3dmodel002/jpg/1572784988/1920x1080/fit_q87/4f7061185e55a42558f6035ce2fc92145ef25ed1/malefullbodyanatomyandskinmb3dmodel002.jpg" alt="Best Medical 3D Models" loading="lazy" width="800" height="450" decoding="async"  data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></div><div class="col-icon">&#x1F9EC;</div><div class="col-title">Best Medical Models</div><div class="col-desc">Anatomy, surgery &amp; pharma</div></a><a href="/categories/military-vehicles/"  class="col-card"><div class="col-card-img"><img src="https://p.turbosquid.com/ts-thumb/y8/ZPe3Ro/pHNzwZ2P/stealth_multirole_fighter_f_35_lightning_ii_001/jpg/1507269841/1920x1080/fit_q87/c431d6e7a58a86045a60fc001168651ea9986c8b/stealth_multirole_fighter_f_35_lightning_ii_001.jpg" alt="Best Military Vehicle 3D Models" loading="lazy" width="800" height="450" decoding="async"  data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></div><div class="col-icon">&#x1FA96;</div><div class="col-title">Best Military Models</div><div class="col-desc">Defense, tanks &amp; equipment</div></a><a href="/categories/ships/"  class="col-card"><div class="col-card-img"><img src="https://p.turbosquid.com/ts-thumb/O3/bhZ45W/hTY2ccZL/qatartraditionalboatc4dmodel001/jpg/1545056663/1920x1080/fit_q87/dcd83f6d4101b05b7552cf7f3288bf819c7e701d/qatartraditionalboatc4dmodel001.jpg" alt="Best Ship 3D Models" loading="lazy" width="800" height="450" decoding="async"  data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></div><div class="col-icon">&#x1F6A2;</div><div class="col-title">Best Ship Models</div><div class="col-desc">Naval, cargo &amp; yachts</div></a></div></div></section><!-- ═══════════════════════════════════════ STUDIO ═══════════════════════════ -->
+<!-- ═══════════════════════════════════════ TOP MODELS ═══════════════════════ -->
+<section class="page-section page-section--gray" id="best-sellers">
+<div class="max-w-7xl mx-auto">
+<div class="sec-head">
+<h2 class="section-h2">Best sellers on TurboSquid</h2>
+<a href="/catalog/" class="sec-more">Top 1000 &rarr;</a>
+</div>
+<div class="mosaic">
+<a href="https://www.turbosquid.com/3d-models/railroad-amtrak-passenger-car-2-930528?referral=3d_molier-international" target="_blank" rel="noopener" class="tile tile--6x2 tile--buy">
+<img src="https://p.turbosquid.com/ts-thumb/04/skwvXd/uoK2mjth/3dmodelofrailroadamtrakpassengercar02/jpg/1432654146/1920x1080/fit_q87/302059a0f7a854bf7f82fe46d043c78ff5e50b6a/3dmodelofrailroadamtrakpassengercar02.jpg" alt="Railroad Amtrak Passenger Car 2" loading="lazy" decoding="async" width="800" height="450" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
+<span class="tile-tag">Vehicles</span>
+<span class="tile-cap"><span class="tile-name">Railroad Amtrak Passenger Car 2</span><span class="tile-price">$79</span></span>
+</a>
+<a href="https://www.turbosquid.com/3d-models/airbus-a400m-atlas-military-transport-aircraft-rigged-1550640?referral=3d_molier-international" target="_blank" rel="noopener" class="tile tile--3x1 tile--buy">
+<img src="https://p.turbosquid.com/ts-thumb/Cw/P6GKEN/wW1OYplx/airbusa400matlasturbopropmilitarytransportaircraft3dmodel001/jpg/1597347519/1920x1080/fit_q87/a147215377d686b5b0860bf55c07bcb313bfe15b/airbusa400matlasturbopropmilitarytransportaircraft3dmodel001.jpg" alt="Airbus Military Transport" loading="lazy" decoding="async" width="800" height="450" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
+<span class="tile-tag">Aircraft</span>
+<span class="tile-cap"><span class="tile-name">Airbus A400M Atlas Rigged</span><span class="tile-price">$219</span></span>
+</a>
+<a href="https://www.turbosquid.com/3d-models/sigma-class-indonesian-frigate-1394359?referral=3d_molier-international" target="_blank" rel="noopener" class="tile tile--3x1 tile--buy">
+<img src="https://p.turbosquid.com/ts-thumb/7Y/nWQoVG/DobuW2iZ/sigmaclassindonesianfrigatevray3dmodel001/jpg/1554236127/1920x1080/fit_q87/73d1b3e3a8aba23f16db3bdd053685a7d0d416ac/sigmaclassindonesianfrigatevray3dmodel001.jpg" alt="Sigma Class Indonesian Frigate" loading="lazy" decoding="async" width="800" height="450" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
+<span class="tile-tag">Military Vehicles</span>
+<span class="tile-cap"><span class="tile-name">Sigma Class Indonesian Frigate</span><span class="tile-price">$199</span></span>
+</a>
+<a href="https://www.turbosquid.com/3d-models/viking-ship-dragon-head-1786441?referral=3d_molier-international" target="_blank" rel="noopener" class="tile tile--3x1 tile--buy">
+<img src="https://p.turbosquid.com/ts-thumb/zo/WZOqpU/UH/vikingshipdragonhead3dmodel001/jpg/1631286260/1920x1080/fit_q87/adc7ca29d160a8a59ca0133e15da3b5e4103cfc7/vikingshipdragonhead3dmodel001.jpg" alt="Viking Ship Dragon Head" loading="lazy" decoding="async" width="800" height="450" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
+<span class="tile-tag">Ships</span>
+<span class="tile-cap"><span class="tile-name">Viking Ship Dragon Head</span><span class="tile-price">$39</span></span>
+</a>
+<a href="https://www.turbosquid.com/3d-models/boiler-suit-coverall-with-safety-helmet-1138628?referral=3d_molier-international" target="_blank" rel="noopener" class="tile tile--3x1 tile--buy">
+<img src="https://p.turbosquid.com/ts-thumb/t1/gXpldy/nSKsOZj4/boilersuitcoverallwithsafetyhelmetvray3dmodel060/jpg/1490008888/1920x1080/fit_q87/c3e9155fcca3e9abba90967e900f424cc07c757e/boilersuitcoverallwithsafetyhelmetvray3dmodel060.jpg" alt="Boiler Suit Coverall with Safety Helmet" loading="lazy" decoding="async" width="800" height="450" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
+<span class="tile-tag">Industrial</span>
+<span class="tile-cap"><span class="tile-name">Boiler Suit with Safety Helmet</span><span class="tile-price">$99</span></span>
+</a>
+<a href="https://www.turbosquid.com/3d-models/shanghai-tower-china-904226?referral=3d_molier-international" target="_blank" rel="noopener" class="tile tile--6x1 tile--buy">
+<img src="https://p.turbosquid.com/ts-thumb/ew/MC3eK6/wD7dE3o4/shanghaitowerchina3dmodel01/jpg/1425888870/1920x1080/fit_q87/70c293e6fbda56881baafbcd355682e8d6a6beb9/shanghaitowerchina3dmodel01.jpg" alt="Shanghai Tower China" loading="lazy" decoding="async" width="800" height="450" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
+<span class="tile-tag">Architecture</span>
+<span class="tile-cap"><span class="tile-name">Shanghai Tower China</span><span class="tile-price">$99</span></span>
+</a>
+<a href="https://www.turbosquid.com/3d-models/golden-chinese-dragon-3d-model-1379923?referral=3d_molier-international" target="_blank" rel="noopener" class="tile tile--3x1 tile--buy">
+<img src="https://p.turbosquid.com/ts-thumb/Rw/vX3VIT/QRFKNWAL/goldenchinesedragon3dmodel001/jpg/1550621680/1920x1080/fit_q87/88b00392dec4d7b121f29dd453cf3c4c2fceef57/goldenchinesedragon3dmodel001.jpg" alt="Golden Chinese Dragon" loading="lazy" decoding="async" width="800" height="450" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
+<span class="tile-tag">Animals</span>
+<span class="tile-cap"><span class="tile-name">Golden Chinese Dragon</span><span class="tile-price">$99</span></span>
+</a>
+<a href="https://www.turbosquid.com/3d-models/male-pelvis-skeleton-1023424?referral=3d_molier-international" target="_blank" rel="noopener" class="tile tile--3x1 tile--buy">
+<img src="https://p.turbosquid.com/ts-thumb/dZ/Taq67V/13BuUfm6/malepelvisskeleton3dmodel01/jpg/1459570253/1920x1080/fit_q87/cc5903981ac044cc0618a67aa4872d818203cfb2/malepelvisskeleton3dmodel01.jpg" alt="Male Pelvis Skeleton" loading="lazy" decoding="async" width="800" height="450" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
+<span class="tile-tag">Medical</span>
+<span class="tile-cap"><span class="tile-name">Male Pelvis Skeleton</span><span class="tile-price">$49</span></span>
+</a>
+</div>
+</div>
+</section>
+<!-- ═══════════════════════════════════════ INDUSTRIES ═══════════════════════ -->
+<section class="page-section" id="industries">
+<div class="max-w-7xl mx-auto">
+<div class="sec-head">
+<h2 class="section-h2">Where these models get used</h2>
+<a href="/industries/" class="sec-more">All industries &rarr;</a>
+</div>
+<div class="mosaic mosaic--flat">
+<a href="/industries/aerospace/" class="tile tile--3x1 tile--flat">
+<img src="https://p.turbosquid.com/ts-thumb/Iy/sD84E3/DV/xmadisantidronesystem3dsmodel001/jpg/1652259281/1920x1080/fit_q87/0b7440fb450ec639b0167de733966930012a50b7/xmadisantidronesystem3dsmodel001.jpg" alt="3D models for Aerospace - X-MADIS Anti Drone System" loading="lazy" decoding="async" width="600" height="340" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
+<span class="tile-cap"><span class="tile-name">Aerospace</span></span>
+</a>
+<a href="/industries/military-defense/" class="tile tile--3x1 tile--flat">
+<img src="https://p.turbosquid.com/ts-thumb/3F/wdfd3p/Hq1RKI36/stealthbomberb2spirit3dmodel001/jpg/1487939988/1920x1080/fit_q87/40d93b957d00c84558573a8c416fe979f6c15b39/stealthbomberb2spirit3dmodel001.jpg" alt="3D models for Military &amp; Defense - Stealth Bomber B-2 Spirit" loading="lazy" decoding="async" width="600" height="340" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
+<span class="tile-cap"><span class="tile-name">Military &amp; Defense</span></span>
+</a>
+<a href="/industries/medical/" class="tile tile--3x1 tile--flat">
+<img src="https://p.turbosquid.com/ts-thumb/N1/Ou5Ovc/kT4PjSbE/completefemalebodyanatomy3dsmodel000/jpg/1598300576/1920x1080/fit_q87/57a81575f9b448a006569f5f40b93432035177ff/completefemalebodyanatomy3dsmodel000.jpg" alt="3D models for Medical - Complete Female Body Anatomy" loading="lazy" decoding="async" width="600" height="340" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
+<span class="tile-cap"><span class="tile-name">Medical</span></span>
+</a>
+<a href="/industries/game-development/" class="tile tile--3x1 tile--flat">
+<img src="https://p.turbosquid.com/ts-thumb/jz/bS7rTY/mI28x8YK/boeing737interiormb3dmodel061/jpg/1502633651/1920x1080/fit_q87/9b3a3521750d7c7bcccbbbef2bab6722fb02f660/boeing737interiormb3dmodel061.jpg" alt="3D models for Game Development - Boeing 737 Interior" loading="lazy" decoding="async" width="600" height="340" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
+<span class="tile-cap"><span class="tile-name">Game Development</span></span>
+</a>
+<a href="/industries/film-video-production/" class="tile tile--3x1 tile--flat">
+<img src="https://p.turbosquid.com/ts-thumb/dZ/o1yx5v/ky4ETL42/traines40dccsxblueandcoveredhoppercar3dmodel00/jpg/1438785483/1920x1080/fit_q87/df52b9ae4a74024294386dcf511ad480ce0b4bc9/traines40dccsxblueandcoveredhoppercar3dmodel00.jpg" alt="3D models for Film &amp; Video - Train ES40DC CSX Blue and Covered Hopper Car" loading="lazy" decoding="async" width="600" height="340" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
+<span class="tile-cap"><span class="tile-name">Film &amp; Video</span></span>
+</a>
+<a href="/industries/architecture/" class="tile tile--3x1 tile--flat">
+<img src="https://p.turbosquid.com/ts-thumb/cS/R2t5vl/fm3570l1/capetownstadiumgreenpoint3dmodel01/jpg/1461613881/1920x1080/fit_q87/100e586f690fac505b90cf0181fcfea6254e3530/capetownstadiumgreenpoint3dmodel01.jpg" alt="3D models for Architecture - Cape Town Stadium Green Point 3D Model" loading="lazy" decoding="async" width="600" height="340" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
+<span class="tile-cap"><span class="tile-name">Architecture</span></span>
+</a>
+<a href="/industries/virtual-reality/" class="tile tile--3x1 tile--flat">
+<img src="https://p.turbosquid.com/ts-thumb/ph/jd1Cqo/E7/boeingc17globemasteriiicargodooropenmb3dmodel001/jpg/1651254556/1920x1080/fit_q87/e0397c6ad98fbcb84b792fa56419d6cc480cf721/boeingc17globemasteriiicargodooropenmb3dmodel001.jpg" alt="3D models for Virtual Reality - Boeing C17 Globemaster III Cargo Door Open" loading="lazy" decoding="async" width="600" height="340" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
+<span class="tile-cap"><span class="tile-name">Virtual Reality</span></span>
+</a>
+<a href="/industries/advertising/" class="tile tile--3x1 tile--flat">
+<img src="https://p.turbosquid.com/ts-thumb/VI/GKBtGP/DYExSdOk/airbusa220300detailedinterior3dmodel001/jpg/1597858906/1920x1080/fit_q87/e1be5cff3010e3c8ff83615d4f1bca46f579f859/airbusa220300detailedinterior3dmodel001.jpg" alt="3D models for Advertising - Airbus A220 300" loading="lazy" decoding="async" width="600" height="340" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
+<span class="tile-cap"><span class="tile-name">Advertising</span></span>
+</a>
+</div>
+</div>
+</section>
+<!-- ═══════════════════════════════════════ COLLECTIONS ══════════════════════ -->
+<section class="page-section page-section--gray" id="collections">
+<div class="max-w-7xl mx-auto">
+<div class="sec-head">
+<h2 class="section-h2">Curated collections</h2>
+<a href="/collections/" class="sec-more">All collections &rarr;</a>
+</div>
+<div class="col-grid">
+<a href="/collections/holidays/" class="col-tile">
+<span class="col-shot"><img src="https://p.turbosquid.com/ts-thumb/rC/hVWvNf/NLTBwRL8/weddingpresentsset3dmodels00/jpg/1453370678/1920x1080/fit_q87/b081d086906b956b7d5aaf5552e231818bb6771e/weddingpresentsset3dmodels00.jpg" alt="Holidays 3D models - Wedding Presents 3D Models Set 2" loading="lazy" decoding="async" width="600" height="400" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></span>
+<span class="col-name">Holidays</span>
+<span class="col-line">Gifts, decorations and seasonal props</span>
+</a>
+<a href="/collections/food-drink/" class="col-tile">
+<span class="col-shot"><img src="https://p.turbosquid.com/ts-thumb/uN/iGo2Uj/vpnNamnZ/beerkegssetc4dmodel000/jpg/1600394193/1920x1080/fit_q87/1dad31b0e011d4100e0db6b51bb9bf84ec86c099/beerkegssetc4dmodel000.jpg" alt="Food &amp; Drink 3D models - Beer Kegs Set" loading="lazy" decoding="async" width="600" height="400" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></span>
+<span class="col-name">Food &amp; Drink</span>
+<span class="col-line">Packaging, produce and tableware</span>
+</a>
+<a href="/collections/fashion/" class="col-tile">
+<span class="col-shot"><img src="https://p.turbosquid.com/ts-thumb/2p/PT1zx4/JWgRpnFv/balletshoessetvray3dmodel00/jpg/1472025257/1920x1080/fit_q87/d6519ca9e7c0fc17c4c8997da1080aefff0af65a/balletshoessetvray3dmodel00.jpg" alt="Fashion 3D models - Ballet Shoes Set" loading="lazy" decoding="async" width="600" height="400" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></span>
+<span class="col-name">Fashion</span>
+<span class="col-line">Garments, footwear and accessories</span>
+</a>
+<a href="/collections/sports/" class="col-tile">
+<span class="col-shot"><img src="https://p.turbosquid.com/ts-thumb/FW/Tb5ysp/eLFHV7hZ/hockeygoalieprotectionkitred3dmodel00/jpg/1466161425/1920x1080/fit_q87/167537c9f681853497111904bb403793c7af2fd7/hockeygoalieprotectionkitred3dmodel00.jpg" alt="Sports 3D models - Hockey Goalie Protection Kit 2" loading="lazy" decoding="async" width="600" height="400" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></span>
+<span class="col-name">Sports</span>
+<span class="col-line">Kit, equipment and arenas</span>
+</a>
+<a href="/collections/art-media/" class="col-tile">
+<span class="col-shot"><img src="https://p.turbosquid.com/ts-thumb/VX/E4UVbj/lF2L9JLA/yamahaconcerttimpaniset3dsmodel001/jpg/1546428442/1920x1080/fit_q87/31d5eca1c3e9c5ab2a16952f75ee080297efd016/yamahaconcerttimpaniset3dsmodel001.jpg" alt="Art &amp; Media 3D models - Yamaha Concert Timpani Set" loading="lazy" decoding="async" width="600" height="400" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></span>
+<span class="col-name">Art &amp; Media</span>
+<span class="col-line">Instruments, studio and stage gear</span>
+</a>
+<a href="/collections/toys-games/" class="col-tile">
+<span class="col-shot"><img src="https://p.turbosquid.com/ts-thumb/G2/gAiYNP/8yGSrZ3L/classicaltraintoysetlocomotivewithwagonsvray3dmodel001/jpg/1541011821/1920x1080/fit_q87/65816b56aebc54fe3453f1b6920564d5cbcceef4/classicaltraintoysetlocomotivewithwagonsvray3dmodel001.jpg" alt="Toys &amp; Games 3D models - Classical Train Toy Set Locomotive with Wagons" loading="lazy" decoding="async" width="600" height="400" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></span>
+<span class="col-name">Toys &amp; Games</span>
+<span class="col-line">Playsets, models and board pieces</span>
+</a>
+</div>
+</div>
+</section>
+<!-- ═══════════════════════════════════════ STUDIO ═══════════════════════════ -->
 <section class="studio-band" id="studio">
 <div class="studio-media"><img src="https://p.turbosquid.com/ts-thumb/uS/Eijrhg/DT/equipped_military_drone_airbase_with_uav_desert_002/jpg/1771227689/1920x1080/fit_q87/c10f73dade7710eb1b0359f9bb31fe4997f75d5d/equipped_military_drone_airbase_with_uav_desert_002.jpg" alt="Equipped Military Drone Airbase with UAV Desert" loading="lazy" decoding="async" width="1200" height="675" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></div>
 <div class="studio-copy">
