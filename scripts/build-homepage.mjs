@@ -48,41 +48,57 @@ const n = x => x.toLocaleString('en-US');
 //
 // Ряды складываются ровно, без дырок: 6+3+3, потом 3(высокая)+3+3+3,
 // её продолжение +3+3+3, и 3+3+6.
+// Поле img - картинка, выбранная основателем вручную; там, где его нет,
+// картинка берётся из карточки указанной модели.
+const P = 'https://p.turbosquid.com/ts-thumb/';
 const TILES = [
-  { slug: 'boeing-737-900-aircraft-with-luxury-interior-and-cockpit-2367696', cat: 'Aircraft', href: '/categories/aircraft/', count: 1514, cols: 6, rows: 1 },
+  { slug: 'boeing-737-900-aircraft-with-luxury-interior-and-cockpit-2367696', cat: 'Aircraft', href: '/categories/aircraft/', count: 1514, cols: 6, rows: 1,
+    img: P + 'Bt/vhMXo7/p8/long_range_wide_body_passenger_aircraft_003/jpg/1782980072/1920x1080/fit_q87/f1477a95a095f8bb5cf8024e399df51faa9ba1c4/long_range_wide_body_passenger_aircraft_003.jpg' },
   { slug: 'sport-lisboa-e-benfica-stadium-2208619', cat: 'Architecture', href: '/categories/architecture-landmarks/', count: 4574, cols: 3, rows: 1 },
   { slug: 'locomotive-with-car-transporter-loaded-2384760', cat: 'Vehicles', href: '/categories/vehicles/', count: 4123, cols: 3, rows: 1 },
 
   { slug: 'medieval-merchant-with-market-stall-2282241', cat: 'Characters & People', href: '/categories/characters-people/', count: 2888, cols: 3, rows: 2 },
-  { slug: 'black-marlin-heavy-load-carrier-with-drilling-rig-1878441', cat: 'Ships', href: '/categories/ships/', count: 701, cols: 3, rows: 1 },
+  { slug: 'black-marlin-heavy-load-carrier-with-drilling-rig-1878441', cat: 'Ships', href: '/categories/ships/', count: 701, cols: 3, rows: 1,
+    img: P + 'xO/QSifMr/65N6uDfv/oasisclasscruiseshipoasisoftheseas3dmodel003/jpg/1538744061/1920x1080/fit_q87/f03cae4a25a0e633acd59be73de39435fea8be3d/oasisclasscruiseshipoasisoftheseas3dmodel003.jpg' },
   { slug: 'mining-multi-bucket-wheel-excavator-with-mining-truck-1896313', cat: 'Industrial', href: '/categories/industrial-equipment/', count: 2488, cols: 3, rows: 1 },
   { slug: 'international-space-station-habitable-artificial-satellite-1852990', cat: 'Space & Sci-Fi', href: '/categories/space-scifi/', count: 482, cols: 3, rows: 1 },
 
   { slug: 'aircraft-carrier-with-airplanes-1863177', cat: 'Military', href: '/categories/military-vehicles/', count: 224, cols: 3, rows: 1 },
-  { slug: 'people-near-counter-with-fresh-fruits-2384571', cat: 'Furniture & Interior', href: '/categories/furniture-interior/', count: 3702, cols: 3, rows: 1 },
-  { slug: 'young-man-full-body-anatomy-set-1841426', cat: 'Medical', href: '/categories/medical-3d-models/', count: 2796, cols: 3, rows: 1 },
+  { slug: 'people-near-counter-with-fresh-fruits-2384571', cat: 'Furniture & Interior', href: '/categories/furniture-interior/', count: 3702, cols: 3, rows: 1,
+    img: P + 'IJ/SoAENs/NM/coffeeshopinterior3dmodel001/jpg/1709351673/1920x1080/fit_q87/8310eaf481ad21b29a44bb4643b708f1481b841f/coffeeshopinterior3dmodel001.jpg' },
+  { slug: 'young-man-full-body-anatomy-set-1841426', cat: 'Medical', href: '/categories/medical-3d-models/', count: 2796, cols: 3, rows: 1,
+    img: P + 'hf/53Acbo/nS/secamvsa535medicalvitalsignsanalyzervray3dmodel002/jpg/1612426244/1920x1080/fit_q87/dc2b34cf599fc8f0da2cc372265e55c0f09acbb8/secamvsa535medicalvitalsignsanalyzervray3dmodel002.jpg' },
 
-  { slug: 'four-horses-with-stagecoach-2382383', cat: 'Animals & Creatures', href: '/categories/animals-creatures/', count: 3514, cols: 3, rows: 1 },
-  { slug: 'transporter-erector-loader-with-raised-elevated-trailer-2184605', cat: 'Weapons', href: '/categories/weapons/', count: 1982, cols: 3, rows: 1 },
+  { slug: 'four-horses-with-stagecoach-2382383', cat: 'Animals & Creatures', href: '/categories/animals-creatures/', count: 3514, cols: 3, rows: 1,
+    img: P + 'dr/5VWgh8/fu/marine_hermit_crab_fur_rigged_for_blender_002/jpg/1786108166/1920x1080/fit_q87/720e78b229b361515230495648eb54cd72f434cb/marine_hermit_crab_fur_rigged_for_blender_002.jpg' },
+  { slug: 'transporter-erector-loader-with-raised-elevated-trailer-2184605', cat: 'Weapons', href: '/categories/weapons/', count: 1982, cols: 3, rows: 1,
+    img: P + 'OV/98LtXh/Qy/browning_m2_heavy_machine_gun_with_ammo_belt_002/jpg/1782714788/1920x1080/fit_q87/96c45ccb5685f9337fd5afbd254b9edfcb7989ef/browning_m2_heavy_machine_gun_with_ammo_belt_002.jpg' },
   { slug: 'nasa-mission-control-room-space-center-1503696', cat: 'Electronics', href: '/categories/electronics-gadgets/', count: 3706, cols: 6, rows: 1 },
 ];
 
 const HERO_SLUG = 'international-airport-1475439';
+const HERO_IMG = P + 'Lz/sgfcI2/KX/mh6m_little_bird_troop_carrier_helicopter_rigged_004/jpg/1780368430/1920x1080/fit_q87/89557b427e9d9d3718f0a7cee9c2a29073bf6fdc/mh6m_little_bird_troop_carrier_helicopter_rigged_004.jpg';
 const STUDIO_SLUG = 'equipped-military-drone-airbase-with-uav-desert-2530374';
 
 // ── Топ-продажи ──────────────────────────────────────────────────────────────
 // Те же восемь моделей, что и были, но карточка теперь - сама картинка, а имя
 // и цена лежат поверх неё. Первая идёт крупной плиткой 6x2: у витрины должна
 // быть одна вещь, на которую смотришь первой.
+// Четыре модели заменены основателем. Цены и категории взяты из их карточек,
+// а не с его слов: $599 он назвал верно, остальные три пришлось смотреть.
 const TOP = [
   { slug: 'railroad-amtrak-passenger-car-2-930528', name: 'Railroad Amtrak Passenger Car 2', price: '$79', cat: 'Vehicles', cols: 6, rows: 2 },
   { slug: 'airbus-a400m-atlas-military-transport-aircraft-rigged-1550640', name: 'Airbus A400M Atlas Rigged', price: '$219', cat: 'Aircraft', cols: 3, rows: 1 },
   { slug: 'sigma-class-indonesian-frigate-1394359', name: 'Sigma Class Indonesian Frigate', price: '$199', cat: 'Military Vehicles', cols: 3, rows: 1 },
-  { slug: 'viking-ship-dragon-head-1786441', name: 'Viking Ship Dragon Head', price: '$39', cat: 'Ships', cols: 3, rows: 1 },
-  { slug: 'boiler-suit-coverall-with-safety-helmet-1138628', name: 'Boiler Suit with Safety Helmet', price: '$99', cat: 'Industrial', cols: 3, rows: 1 },
-  { slug: 'shanghai-tower-china-904226', name: 'Shanghai Tower China', price: '$99', cat: 'Architecture', cols: 6, rows: 1 },
+  { slug: 'flying-monarch-butterfly-rigged-3d-model-1566626', name: 'Flying Monarch Butterfly Rigged', price: '$149', cat: 'Animals & Creatures', cols: 3, rows: 1,
+    img: P + 'me/0uwGK2/Jm2BO2Mu/animatedflyingmonarchbutterflyrigged3dsmodel005/jpg/1573183712/1920x1080/fit_q87/235977d394dffe2fd3ffcd620f0d9a060d2718be/animatedflyingmonarchbutterflyrigged3dsmodel005.jpg' },
+  { slug: 'baseball-hat-3-968930', name: 'Baseball Hat 3', price: '$49', cat: 'Clothing & Accessories', cols: 3, rows: 1,
+    img: P + '4q/1vAjNW/J9/baseball_hat_3_001/jpg/1626786034/1920x1080/fit_q87/47e19e3348fa441aadd838d6f77ff0eb5c74d2b6/baseball_hat_3_001.jpg' },
+  { slug: 'atlantic-salmon-fish-1118994', name: 'Atlantic Salmon Fish', price: '$59', cat: 'Animals & Creatures', cols: 6, rows: 1,
+    img: P + 'Pd/ZWp3WM/mK4KbMfT/atlanticsalmonfish3dsmodel001/jpg/1485931439/1920x1080/fit_q87/a7fc5e64d855873b0f5de9bc5f0e019014c955a6/atlanticsalmonfish3dsmodel001.jpg' },
   { slug: 'golden-chinese-dragon-3d-model-1379923', name: 'Golden Chinese Dragon', price: '$99', cat: 'Animals', cols: 3, rows: 1 },
-  { slug: 'male-pelvis-skeleton-1023424', name: 'Male Pelvis Skeleton', price: '$49', cat: 'Medical', cols: 3, rows: 1 },
+  { slug: 'realistic-skin-young-man-with-full-body-anatomy-2287274', name: 'Realistic Skin Young Man with Full Body Anatomy', price: '$599', cat: 'Characters & People', cols: 3, rows: 1,
+    img: P + '7s/5UwLvM/rc/realisticskinyoungmanwithfullbodyanatomymb3dmodel000/jpg/1727755011/1920x1080/fit_q87/62255c3ddb008cb6f48f6e85d2917d93b637d9c0/realisticskinyoungmanwithfullbodyanatomymb3dmodel000.jpg' },
 ];
 
 // ── Отрасли ──────────────────────────────────────────────────────────────────
@@ -93,14 +109,18 @@ const TOP = [
 // а числа на плитках категорий считают страницы этого сайта. Рядом две системы
 // счёта на одной странице сбивают с толку.
 const INDUSTRIES = [
-  { key: 'aerospace', name: 'Aerospace', slug: 'x-madis-anti-drone-system-1896205' },
-  { key: 'military-defense', name: 'Military & Defense', slug: 'stealth-bomber-b-2-spirit-1127231' },
+  { key: 'aerospace', name: 'Aerospace', slug: 'x-madis-anti-drone-system-1896205',
+    img: P + '4K/5fDRTe/QP/modular_iss_cargo_system_with_solar_panels_006/jpg/1761144505/1920x1080/fit_q87/8f29f4e9514a492ccf975a0a1ccf8775393d0215/modular_iss_cargo_system_with_solar_panels_006.jpg' },
+  { key: 'military-defense', name: 'Military & Defense', slug: 'stealth-bomber-b-2-spirit-1127231',
+    img: P + 'Ld/iK0tCo/5c/boeing_mq25_stingray_drone_003/jpg/1785137478/1920x1080/fit_q87/56a4f8b72b541f2bb9872294da2c0aa54ab9dc4d/boeing_mq25_stingray_drone_003.jpg' },
   { key: 'medical', name: 'Medical', slug: 'complete-female-body-anatomy-1611038' },
   { key: 'game-development', name: 'Game Development', slug: 'boeing-737-interior-1191819' },
   { key: 'film-video-production', name: 'Film & Video', slug: 'train-es40dc-csx-blue-and-covered-hopper-car-949756' },
   { key: 'architecture', name: 'Architecture', slug: 'cape-town-stadium-green-point-3d-model-1031144' },
-  { key: 'virtual-reality', name: 'Virtual Reality', slug: 'boeing-c17-globemaster-iii-cargo-door-open-1892082' },
-  { key: 'advertising', name: 'Advertising', slug: 'airbus-a220-300-detailed-interior-1608806' },
+  { key: 'virtual-reality', name: 'Virtual Reality', slug: 'boeing-c17-globemaster-iii-cargo-door-open-1892082',
+    img: P + 'NP/XxwEyV/CI/controlroom3dsmodel002/jpg/1710241649/1920x1080/fit_q87/02050978750f1bfc96c71e54bc3bdb21b6db13b1/controlroom3dsmodel002.jpg' },
+  { key: 'advertising', name: 'Advertising', slug: 'airbus-a220-300-detailed-interior-1608806',
+    img: P + 'Dd/iu4yW6/Je/tostitos_tortilla_chips_bag_set_003/jpg/1787169829/1920x1080/fit_q87/d9f113962c1ce152b827a0aa74609aaba5457739/tostitos_tortilla_chips_bag_set_003.jpg' },
 ];
 
 // ── Подборки ─────────────────────────────────────────────────────────────────
@@ -108,13 +128,21 @@ const INDUSTRIES = [
 // /categories/aircraft/ и так далее - то есть ровно туда же, куда плитки
 // категорий выше. Секция дублировала предыдущую. Здесь настоящие страницы
 // подборок из /collections/, и темы взяты те, которых нет среди плиток.
+// Подпись art-media была «Art & Media», а страница называется «Art, Office &
+// Music Collections» - плитка вела не туда, куда обещала. Совпадает теперь.
 const COLLECTIONS = [
-  { key: 'holidays', name: 'Holidays', desc: 'Gifts, decorations and seasonal props', slug: 'wedding-presents-3d-models-set-2-997567' },
-  { key: 'food-drink', name: 'Food & Drink', desc: 'Packaging, produce and tableware', slug: 'beer-kegs-set-1622300' },
-  { key: 'fashion', name: 'Fashion', desc: 'Garments, footwear and accessories', slug: 'ballet-shoes-set-1066973' },
-  { key: 'sports', name: 'Sports', desc: 'Kit, equipment and arenas', slug: 'hockey-goalie-protection-kit-red-2-1046985' },
-  { key: 'art-media', name: 'Art & Media', desc: 'Instruments, studio and stage gear', slug: 'yamaha-concert-timpani-set-1362555' },
-  { key: 'toys-games', name: 'Toys & Games', desc: 'Playsets, models and board pieces', slug: 'classical-train-toy-set-locomotive-with-wagons-1342305' },
+  { key: 'holidays', name: 'Holidays', desc: 'Gifts, decorations and seasonal props', slug: 'wedding-presents-3d-models-set-2-997567',
+    img: P + 'fq/LBdHNm/qJ/gift_boxes_collection_001/jpg/1781092425/1920x1080/fit_q87/042610b2f12ba3a10fcaa84100684c93b113de90/gift_boxes_collection_001.jpg' },
+  { key: 'food-drink', name: 'Food & Drink', desc: 'Packaging, produce and tableware', slug: 'beer-kegs-set-1622300',
+    img: P + 'ea/SVpTQs/mz/efctwbxwnyudxqy7_harvest_in_storage_boxes_collection_3_001/jpg/1786001018/1920x1080/fit_q87/6aa66028255a1dd67f601c27b47a2f8fe63facab/efctwbxwnyudxqy7_harvest_in_storage_boxes_collection_3_001.jpg' },
+  { key: 'fashion', name: 'Fashion', desc: 'Garments, footwear and accessories', slug: 'ballet-shoes-set-1066973',
+    img: P + 'J2/M8wLXI/P4/matching_family_pajama_set_with_dog_clothing_white_red_002/jpg/1776825008/1920x1080/fit_q87/b30aa70d545ec765bedf85b9641d1fa0992d0d12/matching_family_pajama_set_with_dog_clothing_white_red_002.jpg' },
+  { key: 'sports', name: 'Sports', desc: 'Kit, equipment and arenas', slug: 'hockey-goalie-protection-kit-red-2-1046985',
+    img: P + 'qS/3B4AEG/ZT/sfmgbbgnvarjxtjy_skateboarding_equipment_collection_2_001/jpg/1783948336/1920x1080/fit_q87/e9b237e471d68c8fdb810c29345da839d92d4efb/sfmgbbgnvarjxtjy_skateboarding_equipment_collection_2_001.jpg' },
+  { key: 'art-media', name: 'Art, Office & Music', desc: 'Instruments, studio and stage gear', slug: 'yamaha-concert-timpani-set-1362555',
+    img: P + 'KN/lvoem5/x2/symphony_orchestra_collection_001/jpg/1775717274/1920x1080/fit_q87/a48a7ddb9f96076a297cc937264f9b6b474476f3/symphony_orchestra_collection_001.jpg' },
+  { key: 'toys-games', name: 'Toys & Games', desc: 'Playsets, models and board pieces', slug: 'classical-train-toy-set-locomotive-with-wagons-1342305',
+    img: P + 'AN/1DXOJS/yK/monopoly_giant_edition_board_004/jpg/1780262914/1920x1080/fit_q87/c07375e6011b04a1c162327b066058e0a06c2ecb/monopoly_giant_edition_board_004.jpg' },
 ];
 
 // ── Картинка модели берётся из её же карточки ────────────────────────────────
@@ -136,26 +164,21 @@ function heroImage(slug) {
   return { img, name };
 }
 
+// Картинка, выбранная основателем (поле img), важнее выведенной из карточки.
+// Имя модели для alt всё равно берём из карточки, если она есть.
 const seen = new Set();
-for (const t of TILES) {
-  const { img, name } = heroImage(t.slug);
-  if (seen.has(img)) throw new Error('повтор картинки: ' + t.slug);
-  seen.add(img);
-  t.img = img; t.name = name;
+function resolve(x) {
+  let name = x.name || x.slug;
+  try { const r = heroImage(x.slug); name = r.name; if (!x.img) x.img = r.img; }
+  catch (e) { if (!x.img) throw e; }
+  x.modelName = name;
+  if (seen.has(x.img)) throw new Error('повтор картинки: ' + x.slug);
+  seen.add(x.img);
 }
-const hero = heroImage(HERO_SLUG);
-const studioImg = heroImage(STUDIO_SLUG);
+for (const list of [TILES, TOP, INDUSTRIES, COLLECTIONS]) for (const x of list) resolve(x);
 
-// Одна и та же картинка в двух местах - главная причина, по которой каталог
-// выглядел беднее, чем он есть. Проверяем это, а не надеемся.
-for (const list of [TOP, INDUSTRIES, COLLECTIONS]) {
-  for (const x of list) {
-    const { img, name } = heroImage(x.slug);
-    if (seen.has(img)) throw new Error('повтор картинки: ' + x.slug);
-    seen.add(img);
-    x.img = img; x.modelName = name;
-  }
-}
+const hero = { img: HERO_IMG, name: 'MH-6M Little Bird Troop Carrier Helicopter Rigged' };
+const studioImg = heroImage(STUDIO_SLUG);
 for (const one of [hero, studioImg]) {
   if (seen.has(one.img)) throw new Error('повтор картинки в первом экране или полосе студии');
   seen.add(one.img);
@@ -274,6 +297,15 @@ const CSS = `
 .hero-section .hero-sub { opacity: .9; }
 .hero-section .stats-num { color: #ffffff; }
 .hero-section .stats-label { color: rgba(255,255,255,.72); }
+/* Кнопка «View TurboSquid Store» - .btn-ghost с тёмным текстом #111 и светлой
+   серой рамкой: она рассчитана на белый фон. Над фотографией это тёмное по
+   тёмному, читать нечем. Здесь ей нужен белый текст и своя рамка. */
+.hero-section .btn-ghost { color: #ffffff; border-color: rgba(255,255,255,.55);
+  background: rgba(255,255,255,.10); backdrop-filter: blur(2px); }
+.hero-section .btn-ghost:hover { color: #ffffff; border-color: #ffffff; background: rgba(255,255,255,.20); }
+.hero-section .btn-ghost:focus-visible { box-shadow: 0 0 0 3px rgba(255,255,255,.45); }
+/* Чёрная кнопка на затемнённом кадре теряет края - обводим тонкой светлой линией. */
+.hero-section .btn-primary { box-shadow: 0 0 0 1px rgba(255,255,255,.22); }
 
 .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
 .sec-more { font-size: 14px; font-weight: 600; color: var(--accent, #1659c9); text-decoration: none; white-space: nowrap; }
