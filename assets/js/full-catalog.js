@@ -19,6 +19,10 @@ var emptyEl=document.getElementById('empty');
 var filterBar=document.getElementById('filter-bar');
 
 var totalChunks=0, loadedChunks=0, imgChunks=0, totalImgChunks=0;
+// Всего моделей в каталоге - из fc-index.json. Подпись в поле поиска должна
+// называть весь каталог, а не первый загруженный кусок: он равен 10 000, и
+// в поле висело «Search 10000 models…» при 59 637 в каталоге.
+var totalModels=0;
 
 function mergeChunk(chunk) {
   var keys=['i','n','p','s','c'];
@@ -36,7 +40,7 @@ function onFirstChunk() {
   if(spinner)spinner.style.display='none';
   if(statusText)statusText.textContent='';
   if(sortSel)sortSel.disabled=false;
-  if(qEl){qEl.disabled=false;qEl.placeholder='Search '+FC.n.length+' models…';}
+  if(qEl){qEl.disabled=false;qEl.placeholder='Search '+(totalModels||FC.n.length).toLocaleString()+' models…';}
   if(filterBar)filterBar.classList.add('visible');
   applyFilters();
   var urlQ=new URLSearchParams(location.search).get('q');
@@ -129,6 +133,7 @@ function scheduleRemainingImgChunks(){
 
 function startLoading(fcIdx, imgIdx) {
   totalChunks = fcIdx.chunks;
+  totalModels = fcIdx.total || 0;
   totalImgChunks = imgIdx.chunks;
   loadChunk(0);
   loadImgChunk(0).then(scheduleRemainingImgChunks);
