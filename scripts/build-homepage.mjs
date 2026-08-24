@@ -306,6 +306,11 @@ const CSS = `
 .hero-section .btn-ghost:focus-visible { box-shadow: 0 0 0 3px rgba(255,255,255,.45); }
 /* Чёрная кнопка на затемнённом кадре теряет края - обводим тонкой светлой линией. */
 .hero-section .btn-primary { box-shadow: 0 0 0 1px rgba(255,255,255,.22); }
+/* Плашка с цифрами поднята на -20px: её задумывали «наезжающей» на светлый
+   градиент старого первого экрана, где стык был незаметен. Под фотографией
+   этот наезд выглядит браком - белый прямоугольник срезает низ кадра.
+   Ставим её вплотную под фото. */
+.hero-section + .stats-section { margin-top: 0; padding-top: 28px; }
 
 .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
 .sec-more { font-size: 14px; font-weight: 600; color: var(--accent, #1659c9); text-decoration: none; white-space: nowrap; }

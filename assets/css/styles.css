@@ -791,3 +791,126 @@ footer .nav-dropdown a.active { color: #9ca3af !important; background: transpare
 .faq-a          { font-size: 15px; color: #374151; line-height: 1.8; margin: 0; }
 .faq-a a        { color: var(--accent, #1659c9); text-decoration: none; }
 .faq-a a:hover  { text-decoration: underline; }
+
+/* ── Homepage: hero image, mosaic, studio band ───────────────────────── */
+.hero-shot { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
+.hero-shot img { width: 100%; height: 100%; object-fit: cover; object-position: center 42%; }
+/* Затемнение снизу вверх: подпись читается, а верх кадра остаётся видно. */
+.hero-shot::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(9,11,14,.34) 0%, rgba(9,11,14,.62) 55%, rgba(9,11,14,.86) 100%); }
+.hero-section { position: relative; }
+.hero-section > *:not(.hero-shot) { position: relative; z-index: 1; }
+.hero-section .hero-h1,
+.hero-section .hero-sub { color: #ffffff; }
+.hero-section .hero-sub { opacity: .9; }
+.hero-section .stats-num { color: #ffffff; }
+.hero-section .stats-label { color: rgba(255,255,255,.72); }
+/* Кнопка «View TurboSquid Store» - .btn-ghost с тёмным текстом #111 и светлой
+   серой рамкой: она рассчитана на белый фон. Над фотографией это тёмное по
+   тёмному, читать нечем. Здесь ей нужен белый текст и своя рамка. */
+.hero-section .btn-ghost { color: #ffffff; border-color: rgba(255,255,255,.55);
+  background: rgba(255,255,255,.10); backdrop-filter: blur(2px); }
+.hero-section .btn-ghost:hover { color: #ffffff; border-color: #ffffff; background: rgba(255,255,255,.20); }
+.hero-section .btn-ghost:focus-visible { box-shadow: 0 0 0 3px rgba(255,255,255,.45); }
+/* Чёрная кнопка на затемнённом кадре теряет края - обводим тонкой светлой линией. */
+.hero-section .btn-primary { box-shadow: 0 0 0 1px rgba(255,255,255,.22); }
+/* Плашка с цифрами поднята на -20px: её задумывали «наезжающей» на светлый
+   градиент старого первого экрана, где стык был незаметен. Под фотографией
+   этот наезд выглядит браком - белый прямоугольник срезает низ кадра.
+   Ставим её вплотную под фото. */
+.hero-section + .stats-section { margin-top: 0; padding-top: 28px; }
+
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
+.sec-more { font-size: 14px; font-weight: 600; color: var(--accent, #1659c9); text-decoration: none; white-space: nowrap; }
+.sec-more:hover { text-decoration: underline; }
+
+.mosaic { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 215px; gap: 10px; }
+.tile { position: relative; display: block; overflow: hidden; border-radius: 6px; background: #e9e9e9; text-decoration: none; }
+.tile img { width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .45s cubic-bezier(.2,.7,.3,1); }
+.tile:hover img { transform: scale(1.045); }
+.tile::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(9,11,14,0) 45%, rgba(9,11,14,.68) 100%); }
+.tile-cap { position: absolute; left: 14px; right: 14px; bottom: 12px; z-index: 1;
+  display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.tile-name { color: #fff; font-size: 15px; font-weight: 600; letter-spacing: -.01em;
+  text-shadow: 0 1px 3px rgba(0,0,0,.4); }
+.tile-n { color: rgba(255,255,255,.78); font-size: 12px; font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 3px rgba(0,0,0,.4); }
+.tile--6x1 { grid-column: span 6; grid-row: span 1; }
+.tile--6x2 { grid-column: span 6; grid-row: span 2; }
+.tile--3x1 { grid-column: span 3; grid-row: span 1; }
+.tile--3x2 { grid-column: span 3; grid-row: span 2; }
+
+/* Товарная плитка: категория сверху, имя и цена внизу. Затемнение с двух
+   сторон - иначе подпись тонет в светлом рендере. */
+.tile--buy::after { background:
+  linear-gradient(180deg, rgba(9,11,14,.42) 0%, rgba(9,11,14,0) 26%, rgba(9,11,14,0) 48%, rgba(9,11,14,.76) 100%); }
+.tile-tag { position: absolute; top: 11px; left: 13px; z-index: 1; font-size: 11px; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.86);
+  text-shadow: 0 1px 3px rgba(0,0,0,.5); }
+.tile-price { color: #fff; font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 3px rgba(0,0,0,.45); }
+.tile--buy .tile-name { font-size: 14px; font-weight: 600; }
+
+/* Отрасли - низкая полоса: другой вопрос, другой ритм. */
+.mosaic--flat { grid-auto-rows: 132px; }
+.tile--flat .tile-cap { justify-content: flex-start; }
+.tile--flat .tile-name { font-size: 14px; }
+.tile--flat::after { background: linear-gradient(180deg, rgba(9,11,14,.12) 0%, rgba(9,11,14,.74) 100%); }
+
+/* Подборки - подпись под картинкой, а не поверх: третья фактура на странице. */
+/* Ровно три колонки, а не auto-fit: шесть карточек должны лечь 3+3. При
+   автоподборе на широком экране выходит 4+2, и во втором ряду зияет дыра. */
+.col-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px 20px; }
+.col-tile { display: block; text-decoration: none; color: inherit; }
+.col-shot { display: block; overflow: hidden; border-radius: 6px; background: #e9e9e9; aspect-ratio: 3 / 2; }
+.col-shot img { width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .45s cubic-bezier(.2,.7,.3,1); }
+.col-tile:hover .col-shot img { transform: scale(1.045); }
+.col-name { display: block; margin-top: 11px; font-size: 15.5px; font-weight: 600; color: #111111; }
+.col-tile:hover .col-name { color: var(--accent, #1659c9); }
+.col-line { display: block; margin-top: 3px; font-size: 13.5px; color: #6b7280; line-height: 1.5; }
+
+.studio-band { display: grid; grid-template-columns: 1fr 1fr; background: #0e1116; color: #f2efe9; }
+.studio-media { min-height: 380px; }
+.studio-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.studio-copy { display: flex; flex-direction: column; justify-content: center;
+  padding: 56px clamp(24px, 5vw, 72px); max-width: 640px; }
+.studio-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: rgba(242,239,233,.55); margin-bottom: 10px; }
+.studio-h2 { font-family: 'Playfair Display', serif; font-size: clamp(24px, 3vw, 34px);
+  font-weight: 700; letter-spacing: -.03em; line-height: 1.15; margin: 0 0 16px; color: #fff; }
+.studio-text { font-size: 15.5px; line-height: 1.75; color: rgba(242,239,233,.78); margin: 0; }
+.studio-rating { display: flex; align-items: center; gap: 9px; font-size: 13.5px;
+  color: rgba(242,239,233,.6); margin: 20px 0 0; }
+.studio-stars { color: #e0a92b; font-size: 12px; letter-spacing: 1px; }
+.studio-link { margin-top: 22px; font-size: 14px; font-weight: 600; color: #8fb4ff; text-decoration: none; }
+.studio-link:hover { text-decoration: underline; }
+
+@media (max-width: 900px) {
+  /* Ряды ниже, но высокая плитка остаётся высокой - на ней держится ритм. */
+  .mosaic { grid-auto-rows: 158px; }
+  .mosaic--flat { grid-auto-rows: 110px; }
+  .col-grid { grid-template-columns: repeat(2, 1fr); }
+  .studio-band { grid-template-columns: 1fr; }
+  .studio-media { min-height: 220px; }
+  .studio-copy { padding: 36px 24px 44px; }
+}
+/* На телефоне сетка вдвое уже, но ритм сохраняем: обычная плитка - половина
+   ширины, широкая - во всю, высокая остаётся высокой. Тринадцать одинаковых
+   полос подряд читались бы как список, а не как витрина. */
+@media (max-width: 560px) {
+  .mosaic { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 116px; gap: 8px; }
+  .mosaic--flat { grid-auto-rows: 96px; }
+  .tile--3x1 { grid-column: span 3; grid-row: span 1; }
+  .tile--3x2 { grid-column: span 3; grid-row: span 2; }
+  .tile--6x1 { grid-column: span 6; grid-row: span 1; }
+  .tile--6x2 { grid-column: span 6; grid-row: span 2; }
+  .col-grid { grid-template-columns: 1fr 1fr; gap: 18px 14px; }
+  .col-name { font-size: 14px; }
+  .col-line { font-size: 12.5px; }
+  .tile-name { font-size: 13px; }
+  .tile-n { font-size: 11px; }
+  .tile-cap { left: 10px; right: 10px; bottom: 9px; }
+}
