@@ -22,6 +22,9 @@ var totalChunks=0, loadedChunks=0, imgChunks=0, totalImgChunks=0;
 // Всего моделей в каталоге - из fc-index.json. Подпись в поле поиска должна
 // называть весь каталог, а не первый загруженный кусок: он равен 10 000, и
 // в поле висело «Search 10000 models…» при 59 637 в каталоге.
+// Язык у toLocaleString указан явно: без него берётся язык браузера, и у
+// русского посетителя выходило «59 637», у немецкого вышло бы «59.637»,
+// тогда как весь остальной сайт пишет числа через запятую.
 var totalModels=0;
 
 function mergeChunk(chunk) {
@@ -40,7 +43,7 @@ function onFirstChunk() {
   if(spinner)spinner.style.display='none';
   if(statusText)statusText.textContent='';
   if(sortSel)sortSel.disabled=false;
-  if(qEl){qEl.disabled=false;qEl.placeholder='Search '+(totalModels||FC.n.length).toLocaleString()+' models…';}
+  if(qEl){qEl.disabled=false;qEl.placeholder='Search '+(totalModels||FC.n.length).toLocaleString('en-US')+' models…';}
   if(filterBar)filterBar.classList.add('visible');
   applyFilters();
   var urlQ=new URLSearchParams(location.search).get('q');
