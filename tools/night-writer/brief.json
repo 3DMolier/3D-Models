@@ -1,0 +1,188 @@
+[
+ {
+  "slug": "offshore-oil-rig-platform-2386181",
+  "name": "Offshore Oil Rig Platform",
+  "category": "Industrial Equipment",
+  "price": "$249 USD",
+  "quality": "Built to CheckMate specification",
+  "polygons": "4,071,096",
+  "vertices": "4,154,300",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "",
+  "rig": "Static",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2025",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Offshore Oil Rig Platform",
+    "price": "$249",
+    "main": true
+   },
+   {
+    "name": "Offshore Oil Rig Platform Rigged",
+    "price": "$299",
+    "main": false
+   },
+   {
+    "name": "Offshore Oil Rig Platform Rigged For Cinema 4d",
+    "price": "$299",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "semi",
+   "submersible",
+   "offshore",
+   "oil",
+   "rig",
+   "platform",
+   "drill",
+   "subsea",
+   "energy",
+   "construct",
+   "structure",
+   "industry",
+   "gas",
+   "sea",
+   "power",
+   "water",
+   "ocean",
+   "fuel",
+   "float",
+   "plant",
+   "factory",
+   "oilrig"
+  ],
+  "descriptionNow": [
+   "The Offshore Oil Rig Platform is a production-ready Industrial Equipment 3D model, priced at $249 on TurboSquid. The mesh is built with clean quad-based topology and correct real-world proportions, so it subdivides predictably and sits at the right size next to other objects in a scene. Everything is placed at the scene origin with sensible pivots, so the asset can be duplicated, arrayed or attached to a rig without hunting for transforms.",
+   "The listing flags hardware presentation, software interface visualization and simulation as the intended applications. 2025 is when this one first went up, and it has stayed in the catalogue since. It is ready for game assets, film and TV VFX, product rendering and VR experiences.",
+   "At 4,071,096 polygons and 4,154,300 vertices this is a heavy asset: dense enough for close framing, and honest about what it costs a scene. It is a static build - no rig to strip out if all you need is a rendered object."
+  ],
+  "wordsNow": 160
+ },
+ {
+  "slug": "mining-dump-truck-rigged-2209139",
+  "name": "Mining Dump Truck",
+  "category": "Industrial Equipment",
+  "price": "$149 USD",
+  "quality": "Built to CheckMate specification",
+  "polygons": "668,834",
+  "vertices": "363,353",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "",
+  "rig": "Rigged",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2024",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Mining Dump Truck Rigged",
+    "price": "$149",
+    "main": true
+   },
+   {
+    "name": "Mining Dump Truck Rigged For Cinema 4d",
+    "price": "$149",
+    "main": false
+   },
+   {
+    "name": "Mining Dump Truck Rigged For Maya",
+    "price": "$149",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "heavy",
+   "duty",
+   "dump",
+   "truck",
+   "haul",
+   "transport",
+   "mine",
+   "moving",
+   "haultruck",
+   "dumptruck",
+   "vehicle",
+   "car",
+   "load",
+   "industrial",
+   "mining",
+   "large",
+   "cargo",
+   "vray"
+  ],
+  "descriptionNow": [
+   "This Industrial Equipment model - Mining Dump Truck Rigged - is ready to drop into a scene as-is, and sells for $149 on TurboSquid. Geometry is modelled to real-world proportions with a tidy edge flow, which keeps it usable both as a background element and in closer shots. Everything is placed at the scene origin with sensible pivots, so the asset can be duplicated, arrayed or attached to a rig without hunting for transforms.",
+   "On this listing the stated applications are visualization, advertising and game environments. It has been on sale since 2024 and is still maintained as part of the active catalogue. Common uses are automotive advertising, film and TV backgrounds, game traffic and architectural visualisation.",
+   "Counted at the source, the model is 668,834 polygons and 363,353 vertices, a mid-weight load for a scene. The model is jointed, so it can be posed or animated without rebuilding the hierarchy."
+  ],
+  "wordsNow": 150
+ },
+ {
+  "slug": "lockheed-f-117-nighthawk-stealth-aircraft-2320872",
+  "name": "Lockheed F-117 Nighthawk Stealth Aircraft",
+  "category": "Aircraft",
+  "price": "$129 USD",
+  "quality": "StemCell",
+  "polygons": "198,218",
+  "vertices": "219,874",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "",
+  "rig": "Static",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2025",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Lockheed F 117 Nighthawk Stealth Aircraft",
+    "price": "$129",
+    "main": true
+   },
+   {
+    "name": "Lockheed F 117 Nighthawk Stealth Aircraft Rigged",
+    "price": "$149",
+    "main": false
+   },
+   {
+    "name": "Lockheed F 117 Nighthawk Stealth Aircraft Simplified",
+    "price": "$99",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "stealth",
+   "f-117",
+   "f117",
+   "nighthawk",
+   "lockheed",
+   "martin",
+   "fighter",
+   "air",
+   "jet",
+   "attack",
+   "multirole",
+   "military",
+   "airplane",
+   "plane",
+   "strike",
+   "aircraft",
+   "combat"
+  ],
+  "descriptionNow": [
+   "Lockheed F-117 Nighthawk Stealth Aircraft is a detailed Aircraft asset built for professional 3D pipelines, available at $129. As a StemCell asset it comes with standardised PBR materials, so the look holds up whether it lands in a game engine or an offline renderer. Transforms are frozen and the hierarchy is shallow, which keeps the asset easy to instance across a large environment.",
+   "Buyers most often take it for aerospace visualization, film production and simulation. The listing dates back to 2025, and it remains one of the models we keep current. It works for aerospace visualisation, flight and combat simulation, war-game environments and aviation sequences in film and TV.",
+   "The mesh carries 198,218 polygons and 219,874 vertices, which puts it in the light bracket for this category. It is a static build - no rig to strip out if all you need is a rendered object."
+  ],
+  "wordsNow": 146
+ }
+]
