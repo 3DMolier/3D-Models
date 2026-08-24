@@ -644,43 +644,5 @@
     "meta_description": "Selected industrial and equipment 3D models for hardware presentations and product visualization by 3D Molier.",
     "intro_text": "3D models for hardware product presentations, technical visualization and industrial equipment demonstrations.",
     "turbosquid_collection_url": "https://www.turbosquid.com/Search/industrial?referral=3d_molier-studio"
-  },
-  {
-    "collection_slug": "stemcell-certified-3d-models",
-    "collection_title": "StemCell Certified 3D Models",
-    "collection_type": "certification",
-    "filter_key": "certification",
-    "filter_value": "StemCell",
-    "model_ids": [
-      "896518",
-      "1202623",
-      "1000193",
-      "982317",
-      "1648907",
-      "927490",
-      "1242132",
-      "1260646",
-      "1500054",
-      "1605777",
-      "2046457",
-      "1168353",
-      "1536498",
-      "2122364",
-      "1020506",
-      "1554975",
-      "2119138",
-      "1255615",
-      "1511494",
-      "1614329",
-      "1118994",
-      "1398401",
-      "1236284",
-      "1242131"
-    ],
-    "total_matching_models": 12666,
-    "seo_title": "StemCell Certified 3D Models | 3D Molier",
-    "meta_description": "Browse StemCell certified 3D models by 3D Molier — real-time ready assets with multiple format support.",
-    "intro_text": "StemCell certified 3D models are real-time ready with PBR textures and multi-format compatibility.",
-    "turbosquid_collection_url": "https://www.turbosquid.com/Search/3D-Models?certification=StemCell&referral=3d_molier-studio"
   }
 ]
