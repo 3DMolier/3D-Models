@@ -423,7 +423,7 @@ cut(/<section[^>]*>\s*<div class="max-w-7xl mx-auto" style="text-align:center[^"
   'баннер «complete index of all 86,869 models»');
 
 // 2. Прежние опыты, если остались.
-for (const id of ['catalogue-facts', 'questions', 'studio', 'explore']) {
+for (const id of ['catalogue-facts', 'questions', 'studio']) {
   cut(new RegExp('<!--[^>]*-->\\s*<section[^>]*id="' + id + '"[\\s\\S]*?</section>\\s*'), 'секция #' + id);
   cut(new RegExp('<!--[^>]*-->\\s*<section class="studio-band"[\\s\\S]*?</section>\\s*'), 'полоса студии');
 }
@@ -439,8 +439,10 @@ if (!html.includes('hero-shot')) {
 
 // 4. Плитки категорий заменяем мозаикой.
 const catSec = /<!--[^>]*CATEGORIES[^>]*-->\s*<section[\s\S]*?<\/section>\s*/;
+const mosaicSec = /<!--[^>]*EXPLORE[^>]*-->\s*<section[^>]*id="explore"[\s\S]*?<\/section>\s*/;
 if (catSec.test(html)) { html = html.replace(catSec, SECTION_MOSAIC); step.push('  заменено: 8 карточек категорий -> мозаика из ' + TILES.length + ' плиток'); }
-else step.push('  не найдена секция категорий');
+else if (mosaicSec.test(html)) { html = html.replace(mosaicSec, SECTION_MOSAIC); step.push('  мозаика пересобрана: ' + TILES.length + ' плиток'); }
+else { console.error('ОСТАНОВКА: не нашёл ни секцию категорий, ни мозаику - вставить её некуда.'); process.exit(1); }
 
 // 5. Топ-продажи, отрасли и подборки - в том же языке плиток, но с разным
 //    ритмом, чтобы страница не превратилась в три одинаковые мозаики.
@@ -455,7 +457,59 @@ for (const [re, block, what] of swap) {
   step.push('  переделано: ' + what);
 }
 
-// 6. Полоса студии перед лицензированием данных.
+// 6. Разметка ItemList описывает список лучших продаж. Модели в нём заменили,
+//    а разметка осталась со старыми - она обещала поисковику Viking Ship,
+//    Boiler Suit, Male Pelvis Skeleton и Shanghai Tower, которых на странице
+//    уже нет. Пересобираем из того же списка, что рисует плитки.
+{
+  const items = TOP.map((t, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Product',
+      name: t.name,
+      image: t.img,
+      url: TS + t.slug + REF,
+      category: t.cat,
+      offers: { '@type': 'Offer', price: t.price.replace('$', ''), priceCurrency: 'USD',
+        availability: 'https://schema.org/InStock', url: TS + t.slug + REF },
+    },
+  }));
+  // Разметку правим разбором, а не регулярным выражением: внутри ItemList
+  // вложены объекты ListItem, и нежадный шаблон обрывался на первом из них -
+  // получался обрезанный список и битый JSON.
+  const tag = html.match(/(<script[^>]*application\/ld\+json[^>]*>)([\s\S]*?)(<\/script>)/);
+  if (!tag) step.push('  ВНИМАНИЕ: не нашёл блок разметки');
+  else {
+    const doc = JSON.parse(tag[2]);
+    const graph = Array.isArray(doc['@graph']) ? doc['@graph'] : [doc];
+    const k = graph.findIndex(n => n['@type'] === 'ItemList');
+    const node = {
+      '@type': 'ItemList',
+      name: 'Best Selling 3D Models by 3D Molier',
+      url: 'https://3dmolierstudio.com/',
+      numberOfItems: items.length,
+      itemListElement: items,
+    };
+    if (k < 0) graph.push(node); else graph[k] = node;
+    const next = JSON.stringify(Array.isArray(doc['@graph']) ? { ...doc, '@graph': graph } : graph[0])
+      .replace(/</g, '\u003c');
+    html = html.replace(tag[0], () => tag[1] + next + tag[3]);
+    step.push('  пересобрана разметка ItemList: ' + items.length + ' моделей');
+  }
+}
+
+// 7. Браузер узнаёт про p.turbosquid.com только когда дойдёт до первой картинки,
+//    а их на странице 37. Ранняя связь с этим узлом ускоряет показ первого
+//    экрана - фотография героя тоже оттуда.
+if (!html.includes('rel="preconnect" href="https://p.turbosquid.com"')) {
+  html = html.replace('</title>', () => '</title>'
+    + '<link rel="preconnect" href="https://p.turbosquid.com" crossorigin>'
+    + '<link rel="dns-prefetch" href="https://p.turbosquid.com">');
+  step.push('  добавлена ранняя связь с p.turbosquid.com');
+}
+
+// 8. Полоса студии перед лицензированием данных.
 const dl = html.match(/<!--[═\s]*DATA LICENSING[═\s]*-->/);
 if (!dl) { console.error('не нашёл раздел лицензирования'); process.exit(1); }
 html = html.replace(dl[0], SECTION_STUDIO + dl[0]);
