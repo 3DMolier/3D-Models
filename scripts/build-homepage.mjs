@@ -499,7 +499,55 @@ for (const [re, block, what] of swap) {
   }
 }
 
-// 7. Браузер узнаёт про p.turbosquid.com только когда дойдёт до первой картинки,
+// 7. Заголовок страницы был 65 символов - Google обрезает примерно на 60, и
+//    хвост «Medical & More» до человека не доходил. Заодно длинное тире меняем
+//    на обычное: по всему сайту принято обычное.
+{
+  const TITLE = '3D Model Catalog by 3D Molier - Vehicles, Aircraft, Medical';
+  const before = html;
+  html = html.replace(/<title>[\s\S]*?<\/title>/, () => '<title>' + TITLE + '</title>');
+  for (const attr of ['property="og:title"', 'name="twitter:title"']) {
+    html = html.replace(new RegExp('(<meta ' + attr + ' content=")[^"]*(")'), (m, a, b) => a + TITLE + b);
+  }
+  if (html !== before) step.push('  заголовок укорочен до ' + TITLE.length + ' символов');
+  // Длинное тире в подписи поиска - последнее на странице. По всему сайту
+  // принято обычное.
+  const em = html.split('—').length - 1;
+  if (em) { html = html.split('—').join('-'); step.push('  длинных тире заменено: ' + em); }
+}
+
+// 8. Разметка списка категорий. Тринадцать плиток - это перечень разделов
+//    каталога, и поисковику полезно видеть его списком, а не набором ссылок.
+//    Расширенного вида в выдаче это само по себе не даёт: карусели Google
+//    строит по товарам и статьям, а не по разделам. Польза здесь в понимании
+//    устройства сайта, и на этом честно останавливаемся.
+{
+  const tag = html.match(/(<script[^>]*application\/ld\+json[^>]*>)([\s\S]*?)(<\/script>)/);
+  if (tag) {
+    const doc = JSON.parse(tag[2]);
+    const graph = Array.isArray(doc['@graph']) ? doc['@graph'] : [doc];
+    const node = {
+      '@type': 'ItemList',
+      '@id': 'https://3dmolierstudio.com/#categories',
+      name: '3D Model Categories',
+      numberOfItems: TILES.length,
+      itemListElement: TILES.map((t, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: t.cat,
+        url: 'https://3dmolierstudio.com' + t.href,
+      })),
+    };
+    const k = graph.findIndex(n => n['@type'] === 'ItemList' && n['@id'] === node['@id']);
+    if (k < 0) graph.push(node); else graph[k] = node;
+    const next = JSON.stringify(Array.isArray(doc['@graph']) ? { ...doc, '@graph': graph } : graph[0])
+      .replace(/</g, '\u003c');
+    html = html.replace(tag[0], () => tag[1] + next + tag[3]);
+    step.push('  добавлена разметка списка категорий: ' + TILES.length);
+  }
+}
+
+// 9. Браузер узнаёт про p.turbosquid.com только когда дойдёт до первой картинки,
 //    а их на странице 37. Ранняя связь с этим узлом ускоряет показ первого
 //    экрана - фотография героя тоже оттуда.
 if (!html.includes('rel="preconnect" href="https://p.turbosquid.com"')) {
