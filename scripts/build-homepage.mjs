@@ -547,21 +547,54 @@ for (const [re, block, what] of swap) {
   }
 }
 
-// 9. Браузер узнаёт про p.turbosquid.com только когда дойдёт до первой картинки,
+// 9. Полоса студии перед лицензированием данных.
+const dl = html.match(/<!--[═\s]*DATA LICENSING[═\s]*-->/);
+if (!dl) { console.error('не нашёл раздел лицензирования'); process.exit(1); }
+html = html.replace(dl[0], SECTION_STUDIO + dl[0]);
+step.push('  добавлено: полоса студии во всю ширину');
+
+// Подстановка своих картинок идёт ПОСЛЕ вставки всех секций: полоса студии
+// добавляется последней, и на прошлом прогоне её картинка осталась чужой.
+// 9. Свои картинки вместо чужих. Скачаны и пережаты localize-home-images.mjs:
+//    8,85 МБ JPEG с p.turbosquid.com превратились в 1,33 МБ WebP у нас, минус
+//    85%. Выигрыш не только от формата: источник всегда 1920x1080, а плитки
+//    показываются шириной 295-635 точек. Заодно уходит зависимость от чужого
+//    узла в самом заметном месте сайта.
+{
+  const mapFile = path.join(ROOT, 'assets', 'img', 'home', 'map.json');
+  if (!fs.existsSync(mapFile)) step.push('  своих картинок нет - сначала localize-home-images.mjs');
+  else {
+    const map = JSON.parse(fs.readFileSync(mapFile, 'utf8'));
+    let n = 0;
+    for (const [from, to] of Object.entries(map)) {
+      if (!html.includes(from)) continue;
+      html = html.split(from).join(to);
+      n++;
+    }
+    step.push('  подставлено своих картинок: ' + n + ' из ' + Object.keys(map).length);
+    // Ранняя связь с чужим узлом нужна, только пока с него что-то грузится.
+    if (!/p\.turbosquid\.com\/ts-thumb/.test(html)) {
+      html = html.replace(/<link rel="preconnect" href="https:\/\/p\.turbosquid\.com"[^>]*>/, '')
+                 .replace(/<link rel="dns-prefetch" href="https:\/\/p\.turbosquid\.com"[^>]*>/, '');
+      step.push('  ранняя связь с p.turbosquid.com убрана - картинок оттуда больше нет');
+    }
+  }
+}
+
+// 10. Браузер узнаёт про p.turbosquid.com только когда дойдёт до первой картинки,
 //    а их на странице 37. Ранняя связь с этим узлом ускоряет показ первого
 //    экрана - фотография героя тоже оттуда.
-if (!html.includes('rel="preconnect" href="https://p.turbosquid.com"')) {
+// Ранняя связь нужна, только если с этого узла что-то грузится. После
+// подстановки своих картинок она стала лишней: браузер открывал бы соединение
+// к серверу, к которому не обращается.
+if (/p\.turbosquid\.com\/ts-thumb/.test(html)
+    && !html.includes('rel="preconnect" href="https://p.turbosquid.com"')) {
   html = html.replace('</title>', () => '</title>'
     + '<link rel="preconnect" href="https://p.turbosquid.com" crossorigin>'
     + '<link rel="dns-prefetch" href="https://p.turbosquid.com">');
   step.push('  добавлена ранняя связь с p.turbosquid.com');
 }
 
-// 8. Полоса студии перед лицензированием данных.
-const dl = html.match(/<!--[═\s]*DATA LICENSING[═\s]*-->/);
-if (!dl) { console.error('не нашёл раздел лицензирования'); process.exit(1); }
-html = html.replace(dl[0], SECTION_STUDIO + dl[0]);
-step.push('  добавлено: полоса студии во всю ширину');
 
 console.log(step.join('\n'));
 
