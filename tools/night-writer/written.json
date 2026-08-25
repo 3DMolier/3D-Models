@@ -1,24 +1,310 @@
 [
  {
-  "slug": "revolving-hunting-shotgun-mc255-wood-old-2078090",
+  "slug": "elastic-fitness-resistance-band-1618974",
   "paragraphs": [
-   "A revolving shotgun is an unusual animal: a five-round cylinder in a break-open frame, which gives it the profile of an oversized revolver married to a long gun. This build is the wood-stocked version shown worn, and the wear is the point - a hunting gun that has been carried for years develops rubbed edges on the receiver and a stock darkened where hands hold it.",
-   "The mesh is 74,304 polygons and 37,074 vertices in quads and tris with non-overlapping UVs. The detail goes where a firearm is examined: the cylinder flutes, the hammer, the trigger guard and the chequering on the grip.",
-   "At $59 and built to StemCell specification, it suits hunting and sporting visualisation, film and television armouries, games, museum and collector material, and print. Real-world scale is kept. On sale since 2023."
+   "A resistance band is a flat loop of latex, and the only thing that makes it look like one is how it lies. Left slack it collapses into a soft figure-of-eight with the edges rolling slightly; pulled taut it becomes a clean strip. This model is built as the flat loop it is, so it can be posed either way rather than being stuck as a rigid ring.",
+   "The mesh is 4,180 polygons and 4,180 vertices, built entirely from quads with non-overlapping UVs, and ships with 5 texture maps at 4096x4096. Quads matter here because the band bends: an all-quad loop deforms smoothly where triangles would crease.",
+   "At $19 and built to StemCell specification, it suits fitness and gym visualisation, sports retail and catalogue renders, health and rehabilitation material, advertising and games. On sale since 2021."
   ],
   "keywords": [
-   "revolving shotgun 3d model",
-   "mc-255 hunting gun",
-   "russian sporting firearm",
-   "break open shotgun",
-   "hunting weapon asset",
-   "wooden stock gun",
-   "cylinder shotgun",
-   "sporting firearm",
-   "game weapon model",
-   "collector firearm",
-   "weathered gun",
-   "hunting rifle asset"
+   "resistance band 3d model",
+   "fitness equipment asset",
+   "elastic exercise band",
+   "gym accessory",
+   "home workout equipment",
+   "latex loop band",
+   "strength training gear",
+   "physiotherapy equipment",
+   "sports retail render",
+   "rehabilitation asset",
+   "exercise accessory",
+   "fitness product visualisation"
+  ]
+ },
+ {
+  "slug": "fitness-dip-bar-2411446",
+  "paragraphs": [
+   "A dip station is a frame that has to hold a body's whole weight on two handles, and the engineering shows: a wide base for stability, uprights braced back at an angle, and grips set at shoulder width. Those proportions are what make it read as gym equipment rather than as a handrail, and this model carries them along with the foot pads and the adjustment holes.",
+   "The mesh is 25,182 polygons and 26,386 vertices in quads and tris with non-overlapping UVs, with the detail in the joints, the grip ends and the hardware.",
+   "At $19 and built to CheckMate specification, it suits gym and fitness centre visualisation, home training interiors, sports equipment retail renders, health advertising and games. On sale since 2025, kept to real-world scale so a figure can use it correctly."
+  ],
+  "keywords": [
+   "dip bar station",
+   "fitness equipment 3d model",
+   "gym apparatus",
+   "bodyweight training rack",
+   "parallel bars",
+   "home gym asset",
+   "strength equipment",
+   "calisthenics station",
+   "fitness centre visualisation",
+   "workout frame",
+   "sports equipment render",
+   "training rack"
+  ]
+ },
+ {
+  "slug": "folded-fabric-napkin-2248513",
+  "paragraphs": [
+   "A folded cloth napkin is one of the few table objects that is entirely about fabric behaviour. The folds have to hold their creases while the free edges relax, the corners have to sit slightly proud, and the whole thing has to look pressed rather than draped. Get that wrong and a dining scene looks staged by someone who has never laid a table.",
+   "The mesh is 15,634 polygons and 15,636 vertices in quads and tris with non-overlapping UVs, with the geometry spent on the crease edges where the light breaks.",
+   "At $19 and built to CheckMate specification, it suits restaurant and hospitality visualisation, food photography set dressing, tableware retail and catalogue renders, interior design and games. On sale since 2024."
+  ],
+  "keywords": [
+   "folded napkin 3d model",
+   "cloth table napkin",
+   "restaurant table setting",
+   "hospitality set dressing",
+   "dining prop",
+   "linen napkin",
+   "food photography asset",
+   "tableware render",
+   "fine dining visualisation",
+   "fabric fold model",
+   "place setting",
+   "catering prop"
+  ]
+ },
+ {
+  "slug": "gentle-baby-oil-yellow-2314598",
+  "paragraphs": [
+   "Baby care packaging follows its own visual rules: soft rounded shoulders on the bottle, a wide stable base, a flip cap sized for one-handed use and a pale colour that signals gentleness before a word is read. This model carries that silhouette with the cap as a separate piece, so it can be shown closed, open or beside the bottle.",
+   "The mesh is deliberately tiny at 1,692 polygons and 1,698 vertices in quads and tris with non-overlapping UVs. A moulded bottle has no surface complexity to spend polygons on; the work goes into the profile and into whatever label the texture carries.",
+   "At $19 and built to CheckMate specification, it is aimed at cosmetics and baby care packaging mockups, brand and label design presentation, e-commerce and retail renders, advertising and shelf visualisation. On sale since 2025."
+  ],
+  "keywords": [
+   "baby oil bottle 3d model",
+   "baby care packaging",
+   "cosmetic bottle mockup",
+   "personal care product",
+   "flip cap bottle",
+   "label design asset",
+   "e-commerce product render",
+   "infant care product",
+   "toiletries packaging",
+   "brand mockup",
+   "pharmacy shelf prop",
+   "skincare bottle"
+  ]
+ },
+ {
+  "slug": "golden-rope-chain-2239825",
+  "paragraphs": [
+   "A rope chain is made of short links set at alternating angles so the finished chain twists like cord, and that structure is the whole reason it catches light the way it does. It cannot be faked with a texture on a tube: the sparkle comes from hundreds of small facets facing different directions, and those facets have to be geometry.",
+   "The mesh is correspondingly heavy for its size at 69,548 polygons and 70,169 vertices in quads and tris with non-overlapping UVs. Almost all of that budget is in the links, which is exactly where it belongs on a piece of jewellery.",
+   "At $19 and built to CheckMate specification, it suits jewellery e-commerce and catalogue renders, luxury advertising, character set dressing for film, television and games, and product photography. On sale since 2024."
+  ],
+  "keywords": [
+   "gold rope chain 3d model",
+   "jewellery asset",
+   "necklace render",
+   "luxury accessory",
+   "twisted link chain",
+   "gold jewellery visualisation",
+   "e-commerce product model",
+   "fashion accessory",
+   "chain necklace",
+   "precious metal render",
+   "character jewellery",
+   "product photography asset"
+  ]
+ },
+ {
+  "slug": "insect-repellent-spray-2346075",
+  "paragraphs": [
+   "An aerosol repellent can is instantly recognisable by proportion alone: a tall narrow cylinder with a domed shoulder, a crimped rim at the base and an actuator cap that sits over the valve. Those three features are what separate an aerosol from any other bottle, and this model builds them rather than approximating a tube.",
+   "The mesh is extremely light at 1,481 polygons and 1,523 vertices in quads and tris with non-overlapping UVs. Cans appear in rows on shelves and in stacks in stores, so a low weight is worth more here than surface complexity that a label texture provides anyway.",
+   "At $19 and built to CheckMate specification, it is aimed at packaging mockups and label design, retail shelf and e-commerce renders, outdoor and camping advertising, pharmacy and supermarket scenes, and games. On sale since 2025."
+  ],
+  "keywords": [
+   "insect repellent spray",
+   "aerosol can 3d model",
+   "packaging mockup",
+   "mosquito repellent product",
+   "retail shelf prop",
+   "label design asset",
+   "outdoor product render",
+   "pest control packaging",
+   "supermarket scene asset",
+   "spray can model",
+   "camping supplies",
+   "consumer product visualisation"
+  ]
+ },
+ {
+  "slug": "marvis-toothpaste-whitening-mint-package-2414360",
+  "paragraphs": [
+   "Marvis packaging is deliberately unlike anything else in a bathroom: a metal tube with a screen-printed design and a carton styled closer to a cosmetics box than to dental care. That premium presentation is the product's whole positioning, and modelling both the tube and the carton is what lets a render show it the way the brand intends.",
+   "It is built in quads and tris with non-overlapping UVs, which is what a printed tube needs - the artwork wraps once around the body without mirroring, and the crimped end takes its own treatment.",
+   "At $19 and built to CheckMate specification, it suits cosmetics and personal care packaging visualisation, retail and e-commerce renders, brand and label design presentation, bathroom interiors and advertising. On sale since 2025."
+  ],
+  "keywords": [
+   "toothpaste tube 3d model",
+   "marvis packaging",
+   "dental care product",
+   "premium cosmetics packaging",
+   "metal tube mockup",
+   "bathroom product asset",
+   "e-commerce render",
+   "label design visualisation",
+   "personal care packaging",
+   "retail shelf product",
+   "carton and tube",
+   "oral care brand asset"
+  ]
+ },
+ {
+  "slug": "nypd-police-barricade-barrier-2245879",
+  "paragraphs": [
+   "The wooden police barricade is a piece of street furniture so specific to New York that it identifies a location on its own. Two A-frame legs, horizontal rails between them, blue paint and NYPD stencilled along the top rail - it appears at every parade, protest and crime scene in the city, usually in a long interlocked line.",
+   "The mesh is light at 8,286 polygons and 8,828 vertices in quads and tris with non-overlapping UVs. That is the correct weight for an object that is never used once: barricades come in rows, and the model has to be cheap enough to repeat down a block.",
+   "At $19 and built to CheckMate specification, it suits urban and street visualisation, film and television set dressing, law enforcement and event presentation, city games and print. On sale since 2024."
+  ],
+  "keywords": [
+   "nypd barricade",
+   "police barrier 3d model",
+   "crowd control barrier",
+   "new york street furniture",
+   "wooden barricade",
+   "urban set dressing",
+   "event barrier",
+   "city scene prop",
+   "law enforcement equipment",
+   "street closure asset",
+   "parade barrier",
+   "film location prop"
+  ]
+ },
+ {
+  "slug": "roman-battle-gladius-sword-1120889",
+  "paragraphs": [
+   "The gladius was a stabbing weapon carried by an army that fought shoulder to shoulder, and every proportion follows from that: a short broad blade, a sharp point, a heavy pommel to balance it in one hand and a grip ribbed for a secure hold in a press. This model keeps the ribbed grip, the swelling pommel and the wide blade profile.",
+   "The mesh is deliberately spare at 3,076 polygons and 3,251 vertices in quads and tris with non-overlapping UVs, and ships with 8 texture maps at 2048x2048. That split is right for a weapon: the shape is simple, and the steel, the bone grip and the wear all come from the texture.",
+   "At $19 it suits historical and museum visualisation, films and television set in antiquity, games, education material and print. On sale since 2017, kept to real-world scale so it fits a character's hand correctly."
+  ],
+  "keywords": [
+   "roman gladius sword",
+   "ancient weapon 3d model",
+   "legionary equipment",
+   "historical sword asset",
+   "antiquity weapon",
+   "museum exhibit model",
+   "roman army equipment",
+   "short sword",
+   "historical reenactment",
+   "game weapon",
+   "classical history asset",
+   "iron age weapon"
+  ]
+ },
+ {
+  "slug": "water-polo-ball-for-print-2270845",
+  "paragraphs": [
+   "A water polo ball differs from other sport balls in ways that matter to anyone who plays: it is textured all over for grip on a wet hand, brightly coloured to stay visible against pool water, and marked with the panel pattern that distinguishes it from a football at a glance. This build is prepared for printing, which is a different requirement from rendering.",
+   "A print-ready model has to be watertight and solid rather than merely look right from a camera angle, and preparing it that way is work that a render-only asset never does. That is what this file provides.",
+   "At $19 and built to CheckMate specification, it suits 3D printing, trophy and award manufacture, sports merchandise, club and team promotional items, and physical prototyping. On sale since 2024."
+  ],
+  "keywords": [
+   "water polo ball",
+   "print ready 3d model",
+   "sports ball for printing",
+   "3d printable asset",
+   "pool sport equipment",
+   "sports merchandise model",
+   "trophy manufacture",
+   "watertight mesh",
+   "aquatic sports asset",
+   "team sport ball",
+   "physical prototyping",
+   "printable sports item"
+  ]
+ },
+ {
+  "slug": "essager-magnetic-charging-adapter-usb-c-with-3-tips-blue-2478359",
+  "paragraphs": [
+   "A magnetic charging adapter is two objects that belong together: a small tip that stays in the device port and a cable head that snaps onto it. This set includes the head and three tips, which is exactly how the product is sold, because the whole point is one cable serving several devices with different connectors.",
+   "The mesh is 14,220 polygons and 14,782 vertices in quads and tris. The UVs overlap, which is sensible on a set containing three near-identical tips, and the StemCell build means it works in a real-time engine or a configurator.",
+   "At $17 it suits consumer electronics and accessory advertising, e-commerce and retail renders, packaging mockups, desk and interior set dressing, and games. On sale since 2026, kept to real-world scale so the tips sit correctly in a device port."
+  ],
+  "keywords": [
+   "magnetic charging adapter",
+   "usb-c connector 3d model",
+   "phone accessory asset",
+   "charging cable head",
+   "consumer electronics accessory",
+   "e-commerce product render",
+   "cable tips set",
+   "desk gadget prop",
+   "device charger",
+   "tech accessory visualisation",
+   "magnetic connector",
+   "packaging mockup"
+  ]
+ },
+ {
+  "slug": "multi-wah-pedal-black-2393018",
+  "paragraphs": [
+   "A wah pedal is a foot-operated treadle on a cast metal chassis, and its whole shape comes from that: a hinged top plate at an angle, a rubber tread on top, a heavy base to stop it sliding under pressure and jacks on both sides. Modelled flat it looks like a doorstop; modelled with the treadle angle it reads as an instrument.",
+   "It is built in quads and tris with non-overlapping UVs, so the rubber tread, the cast finish and any control lettering land cleanly on their own surfaces.",
+   "At $15 and built to CheckMate specification, it suits music gear and instrument retail renders, recording studio and stage interiors, music advertising, band and performance visualisation, and games. On sale since 2025."
+  ],
+  "keywords": [
+   "wah pedal 3d model",
+   "guitar effects pedal",
+   "music gear asset",
+   "studio equipment prop",
+   "pedalboard component",
+   "instrument accessory",
+   "stage equipment",
+   "recording studio visualisation",
+   "effects unit",
+   "guitar accessory render",
+   "music retail asset",
+   "foot pedal"
+  ]
+ },
+ {
+  "slug": "symbicort-asthma-inhaler-2183344",
+  "paragraphs": [
+   "A turbohaler is not the pressurised canister most people picture when they hear inhaler. It is a cylindrical device with a coloured base that twists to load a dose, a mouthpiece under a screw cap and a dose counter window. That distinction matters in medical material, because the two device types are used differently and shown to patients differently.",
+   "The mesh is light at 5,080 polygons and 5,178 vertices in quads and tris with non-overlapping UVs, with the cap modelled separately so it can be shown on, off or beside the device.",
+   "At $15 it suits pharmaceutical and medical device visualisation, patient education and instruction material, healthcare advertising, pharmacy and clinical scenes, and packaging renders. On sale since 2024, kept to real-world scale so it sits correctly in a hand."
+  ],
+  "keywords": [
+   "asthma inhaler 3d model",
+   "turbohaler device",
+   "respiratory medication",
+   "pharmaceutical product visualisation",
+   "medical device asset",
+   "patient education material",
+   "inhaler mockup",
+   "pharmacy product render",
+   "copd treatment device",
+   "healthcare illustration",
+   "dry powder inhaler",
+   "clinical prop"
+  ]
+ },
+ {
+  "slug": "dhl-express-package-drop-box-2079613",
+  "paragraphs": [
+   "A courier drop box is a yellow and red steel cabinet on a pedestal, with a hinged door at the top and instructional panels on the front. It exists on pavements outside office buildings all over the world, which makes it one of those objects that instantly grounds an urban render in a real place rather than a generic city.",
+   "The mesh is light at 8,731 polygons and 8,921 vertices in quads and tris with non-overlapping UVs. The geometry sits in the door hinge, the pedestal and the panel recesses, and the branding comes from the texture.",
+   "At $12 it suits urban and street visualisation, logistics and courier industry presentation, architectural exteriors that need pavement detail, film and television set dressing, and games. On sale since 2023."
+  ],
+  "keywords": [
+   "courier drop box",
+   "package deposit box 3d model",
+   "street furniture asset",
+   "logistics visualisation",
+   "parcel drop point",
+   "urban pavement prop",
+   "delivery industry asset",
+   "city street element",
+   "postal box",
+   "shipping infrastructure",
+   "exterior set dressing",
+   "commercial street prop"
   ]
  }
 ]
