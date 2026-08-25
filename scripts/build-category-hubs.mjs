@@ -144,6 +144,38 @@ function renderPage(cat, catDisp, page, total, models, heroHtml, totalCount) {
   const preload = models.length
     ? `<link rel="preload" as="image" href="${models[0].img}" fetchpriority="high">`
     : '';
+  // Хабы категорий уходили в соцсети и мессенджеры голыми: ни заголовка, ни
+  // картинки в развороте ссылки. Тысяча с лишним страниц - и ни одной с
+  // Open Graph. Картинку берём первую из сетки: она про эту категорию, а не
+  // общая заставка сайта.
+  const ogImg = models.length && /^https?:/.test(models[0].img)
+    ? models[0].img
+    : (models.length ? base + models[0].img : base + '/assets/og/3d-molier-og.jpg');
+  const ogDesc = `Browse ${catDisp} 3D models by 3D Molier. Real-world scale, clean topology, PBR materials, all popular formats.`;
+  const social = [
+    `<meta property="og:type" content="website">`,
+    `<meta property="og:title" content="${esc(title)}">`,
+    `<meta property="og:description" content="${esc(ogDesc)}">`,
+    `<meta property="og:url" content="${canonical}">`,
+    `<meta property="og:site_name" content="3D Molier Models">`,
+    `<meta property="og:image" content="${esc(ogImg)}">`,
+    `<meta name="twitter:card" content="summary_large_image">`,
+    `<meta name="twitter:site" content="@3dmolier">`,
+    `<meta name="twitter:title" content="${esc(title)}">`,
+    `<meta name="twitter:description" content="${esc(ogDesc)}">`,
+    `<meta name="twitter:image" content="${esc(ogImg)}">`,
+  ].join('\n');
+  // Дорожка «Home > Categories > ...» на странице была, а разметки под неё не
+  // было - в выдаче путь не показывался.
+  const bcItems = [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: base + '/' },
+    { '@type': 'ListItem', position: 2, name: 'Categories', item: base + '/catalog/' },
+    { '@type': 'ListItem', position: 3, name: catDisp + ' 3D Models', item: base + '/categories/' + cat + '/' },
+  ];
+  if (page > 1) bcItems.push({ '@type': 'ListItem', position: 4, name: 'Page ' + page, item: canonical });
+  const bcSchema = '<script type="application/ld+json">'
+    + JSON.stringify({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: bcItems })
+    + '</script>';
   const h2 = page === 1 ? `Best ${esc(catDisp)} 3D Models` : `${esc(catDisp)} 3D Models - Page ${page} of ${total}`;
   const rangeFrom = (page - 1) * PERPAGE + 1, rangeTo = (page - 1) * PERPAGE + models.length;
   return `<!DOCTYPE html>
@@ -154,6 +186,7 @@ function renderPage(cat, catDisp, page, total, models, heroHtml, totalCount) {
 <title>${esc(title)}</title>
 <meta name="description" content="Browse ${esc(catDisp)} 3D models by 3D Molier. Real-world scale, clean topology, PBR materials, all popular formats. Page ${page} of ${total}.">
 <link rel="canonical" href="${canonical}">
+${social}
 ${preload}
 ${relLinks}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -162,6 +195,7 @@ ${relLinks}
 <link rel="stylesheet" href="/assets/css/fonts.css?v=33">
 <style>.cat-pagination{margin:40px 0 8px}.cat-pagination>div{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}.cat-pg-link,.cat-pg-num{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:40px;padding:0 12px;border:1px solid rgba(0,0,0,.12);border-radius:8px;font-size:14px;font-weight:600;color:inherit;text-decoration:none}.cat-pg-num:hover,.cat-pg-link:hover{border-color:rgba(0,0,0,.35)}.cat-pg-current{background:#111;color:#fff;border-color:#111}.cat-pg-disabled{opacity:.4}.cat-pg-ellipsis{padding:0 4px;opacity:.5}.cat-pg-total{font-size:13px;opacity:.6}@media(prefers-color-scheme:dark){.cat-pg-link,.cat-pg-num{border-color:rgba(255,255,255,.18)}.cat-pg-current{background:#fff;color:#111;border-color:#fff}}</style>
 ${itemListSchema(cat, catDisp, page, models)}
+${bcSchema}
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDY5KTLBP1"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GDY5KTLBP1');</script>
 </head>

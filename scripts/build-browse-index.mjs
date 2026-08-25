@@ -61,6 +61,40 @@ const FILTER_BOX = `<div class="browse-filter-box"><input id="browse-filter" typ
 const pages = Math.ceil(slugs.length / PER);
 fs.mkdirSync(OUT, { recursive: true });
 
+// Страницы browse уходили в соцсети и мессенджеры без заголовка и картинки:
+// ни одного тега Open Graph на 175 страницах. Картинка общая, заставка сайта -
+// это плоский список ссылок, своего снимка у него нет.
+const OG_IMAGE = 'https://3dmolierstudio.com/assets/og/3d-molier-og.jpg';
+function social(title, desc, canonical) {
+  return [
+    `<meta property="og:type" content="website">`,
+    `<meta property="og:title" content="${esc(title)}">`,
+    `<meta property="og:description" content="${esc(desc)}">`,
+    `<meta property="og:url" content="${canonical}">`,
+    `<meta property="og:site_name" content="3D Molier Models">`,
+    `<meta property="og:image" content="${OG_IMAGE}">`,
+    `<meta name="twitter:card" content="summary_large_image">`,
+    `<meta name="twitter:site" content="@3dmolier">`,
+    `<meta name="twitter:title" content="${esc(title)}">`,
+    `<meta name="twitter:description" content="${esc(desc)}">`,
+    `<meta name="twitter:image" content="${OG_IMAGE}">`,
+  ].join('\n');
+}
+
+// Дорожка «Home > All Models» на страницах была нарисована, но разметки под неё
+// не было - ни одного блока JSON-LD на 175 страницах. В выдаче путь не
+// показывался, и страницы выглядели оторванными от сайта.
+function crumbs(page) {
+  const items = [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: BASE + '/' },
+    { '@type': 'ListItem', position: 2, name: 'All Models', item: BASE + '/browse/' },
+  ];
+  if (page) items.push({ '@type': 'ListItem', position: 3, name: 'Page ' + page, item: BASE + '/browse/' + page + '/' });
+  return '<script type="application/ld+json">'
+    + JSON.stringify({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items })
+    + '</script>';
+}
+
 function shell(title, desc, canonical, body, extraHead = '') {
   return `<!DOCTYPE html>
 <html lang="en">
@@ -70,6 +104,7 @@ function shell(title, desc, canonical, body, extraHead = '') {
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${canonical}">
+${social(title, desc, canonical)}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/css/styles.min.css?v=33">
 <style>.browse-filter-box{display:flex;align-items:center;gap:10px;margin:16px 0}#browse-filter{flex:1;max-width:420px;padding:10px 14px;border:1px solid rgba(0,0,0,.15);border-radius:8px;font-size:14px}.browse-filter-count{font-size:13px;opacity:.65;white-space:nowrap}.browse-search-hint{font-size:13px;opacity:.75;margin:0 0 20px}@media(prefers-color-scheme:dark){#browse-filter{border-color:rgba(255,255,255,.2);background:transparent;color:inherit}}</style>
@@ -128,7 +163,7 @@ ${FILTER_JS}`;
   fs.writeFileSync(path.join(dir, 'index.html'),
     shell(`All 3D Models — Page ${n} of ${pages} | 3D Molier`,
       `Complete index of 3D models by 3D Molier, page ${n} of ${pages}. Direct links to ${part.length} model pages.`,
-      `${BASE}/browse/${n}/`, body, rel), 'utf8');
+      `${BASE}/browse/${n}/`, body, rel + crumbs(n)), 'utf8');
 }
 
 // ── оглавление ──
@@ -152,7 +187,7 @@ ${FILTER_JS}`;
 fs.writeFileSync(path.join(OUT, 'index.html'),
   shell(`Complete 3D Model Index — ${slugs.length} Models | 3D Molier`,
     `Full index of all ${slugs.length} 3D models by 3D Molier. Direct links to every model page.`,
-    `${BASE}/browse/`, idxBody), 'utf8');
+    `${BASE}/browse/`, idxBody, crumbs(0)), 'utf8');
 
 // ── сайтмап для этих страниц ──
 const entries = [`  <url>\n    <loc>${BASE}/browse/</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>`];
