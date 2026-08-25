@@ -1,24 +1,310 @@
 [
  {
-  "slug": "turbofan-engine-klimov-rd-33-1020038",
+  "slug": "mine-tunnel-with-old-coal-cart-train-2446477",
   "paragraphs": [
-   "The RD-33 powers one of the best known Soviet fighters, and a bare engine of this class is among the most demanding aerospace subjects there is: fan face, compressor stages, accessory gearbox, external plumbing and a variable nozzle at the back, all visible because nothing is hidden inside a nacelle.",
-   "The mesh is heavy at 1,887,163 polygons and 964,036 vertices in quads and tris with non-overlapping UVs, and ships with 6 texture maps at 4096x4096. The polygon count sitting well above the vertex count is what happens on machinery built from many small separate parts.",
-   "At $199 it suits aerospace marketing and engineering presentation, aviation maintenance and training material, museum and trade show displays, documentary work and games. On sale since 2016."
+   "A mine adit is timber and darkness. Square-set frames hold the roof at intervals, the rails run down the centre of an uneven floor, and the walls are rough rock rather than finished surface. Adding a train of coal carts on the rails is what turns a tunnel into a working mine, because the carts give the space a purpose and a scale.",
+   "The mesh runs 530,580 polygons and 517,829 vertices in quads and tris with non-overlapping UVs, with the density in the timber framing and the rock face where a lamp-lit camera finds its detail.",
+   "At $169 and built to CheckMate specification, it suits mining industry and heritage visualisation, museum and education material, documentary work, film and television, and games. On sale since 2025."
   ],
   "keywords": [
-   "klimov rd-33 engine",
-   "fighter turbofan 3d model",
-   "jet engine asset",
-   "aerospace propulsion visualisation",
-   "afterburning turbofan",
-   "aviation training model",
-   "engine technical presentation",
-   "military aircraft engine",
-   "trade show exhibit",
-   "turbine machinery",
-   "aerospace marketing asset",
-   "soviet fighter engine"
+   "mine tunnel 3d model",
+   "coal cart train",
+   "underground mining environment",
+   "timber shoring frames",
+   "industrial heritage asset",
+   "mining museum exhibit",
+   "adit and rails",
+   "historical mining scene",
+   "documentary environment",
+   "game level environment",
+   "ore cart",
+   "subterranean set"
+  ]
+ },
+ {
+  "slug": "offshore-ocean-fish-farming-facility-2161294",
+  "paragraphs": [
+   "An offshore farm is a group of pens rather than a single cage: floating collars moored in a grid, walkways between them, a feed barge alongside and net systems hanging beneath. That arrangement is what makes the operation legible, since one pen shows equipment while a facility shows an industry.",
+   "The mesh is efficient at 93,865 polygons and 124,334 vertices in quads and tris. The UVs overlap, which is sensible economy on a site built from repeated identical pens, and it keeps a whole facility affordable in a scene.",
+   "At $169 it suits aquaculture and seafood industry visualisation, food supply and sustainability presentation, marine and coastal renders, documentary work and games. On sale since 2024."
+  ],
+  "keywords": [
+   "offshore fish farm facility",
+   "aquaculture site 3d model",
+   "marine pen array",
+   "seafood industry visualisation",
+   "floating collar farm",
+   "feed barge and walkways",
+   "sustainable food production",
+   "coastal marine scene",
+   "fish farming infrastructure",
+   "ocean agriculture asset",
+   "fisheries presentation",
+   "mariculture model"
+  ]
+ },
+ {
+  "slug": "kamaz-63968-typhoon-mrap-vehicle-1778810",
+  "paragraphs": [
+   "An MRAP is designed around one event. The hull is V-shaped underneath to deflect a blast outward, the crew sits high above it in seats mounted to the roof rather than the floor, and the wheels are set out on stalks so a mine takes an axle rather than the cabin. Every proportion of the Typhoon follows from that.",
+   "The mesh runs 804,596 polygons and 870,486 vertices in quads and tris with non-overlapping UVs, with the density in the armoured window frames, the hatches and the running gear.",
+   "A rigged build sits on this page at $199 for when the wheels turn and the doors open. The static model at $159 covers defence and conflict visualisation, news and documentary graphics, training material, film and television, and games. Built to StemCell specification, on sale since 2021."
+  ],
+  "keywords": [
+   "kamaz typhoon mrap",
+   "mine resistant vehicle 3d model",
+   "armoured troop transport",
+   "v-hull military vehicle",
+   "defence visualisation",
+   "russian army vehicle",
+   "protected patrol vehicle",
+   "conflict news graphic",
+   "armoured wheeled vehicle",
+   "military transport asset",
+   "blast protected truck",
+   "modern combat vehicle"
+  ]
+ },
+ {
+  "slug": "old-man-sitting-on-bench-2277645",
+  "paragraphs": [
+   "A seated elderly figure is largely about weight. The shoulders round forward, the hands rest on the knees or on a stick, and the spine settles rather than holding straight. Those small departures from an upright pose are what make a figure read as an older person rather than as a young model in older clothes.",
+   "The mesh is efficient at 52,656 polygons and 55,613 vertices in quads and tris with non-overlapping UVs, which suits a character usually placed in a park, street or interior scene as part of a wider composition.",
+   "At $159 and built to StemCell specification, it suits architectural and urban visualisation that needs believable people, healthcare and social care material, advertising, editorial illustration, and games. On sale since 2025."
+  ],
+  "keywords": [
+   "seated elderly man 3d model",
+   "old character figure",
+   "park bench person",
+   "architectural visualisation people",
+   "urban scene character",
+   "social care material figure",
+   "casual clothed character",
+   "human figure asset",
+   "editorial illustration person",
+   "aging population imagery",
+   "street scene figure",
+   "posed character model"
+  ]
+ },
+ {
+  "slug": "4-seater-private-plane-1296987",
+  "paragraphs": [
+   "A four seat light aircraft is the workhorse of general aviation: high or low wing, fixed gear, a single engine and a cabin with two rows. It is the aircraft flying clubs own, private owners fly at weekends and students learn on, which makes it the most useful shape in the sky for anyone building an airfield scene.",
+   "The mesh runs 240,634 polygons and 251,744 vertices in quads and tris with non-overlapping UVs, and ships with 28 texture maps - 5 at 8192x8192 and 23 at 4096x4096. Five maps at the largest size is generous for an aircraft this small, and it shows in the panel lines and the cabin glazing frames.",
+   "A rigged build sits on this page at $199. The static model at $149 covers general aviation visualisation, flight school and club material, airfield scenes, advertising and games. On sale since 2018."
+  ],
+  "keywords": [
+   "four seat light aircraft",
+   "private plane 3d model",
+   "general aviation asset",
+   "single engine aeroplane",
+   "flight training aircraft",
+   "airfield scene model",
+   "recreational aviation",
+   "fixed gear aircraft",
+   "aviation club material",
+   "small airplane render",
+   "pilot training visualisation",
+   "light aviation"
+  ]
+ },
+ {
+  "slug": "army-utility-truck-zil-131-kung-with-interior-2467779",
+  "paragraphs": [
+   "A KUNG body is a hard shelter box mounted on a truck chassis, used as a workshop, command post, radio station or field laboratory. That is why the vehicle looks like a lorry carrying a small building: flat sides, a door at the back, roof hatches and window shutters. This build includes the interior, which is where the shelter earns its purpose.",
+   "The mesh runs 468,911 polygons and 487,197 vertices in quads and tris with mixed UV layout, covering both the six wheeled chassis and the body inside and out.",
+   "Three rigged builds share this page at $169, including versions prepared for Cinema 4D and for Maya. Aimed at military and historical visualisation, documentary work, film and television, training material and games. Built to StemCell specification, on sale since 2026."
+  ],
+  "keywords": [
+   "zil-131 army truck",
+   "kung shelter body vehicle",
+   "military utility truck 3d model",
+   "field command vehicle",
+   "soviet army truck",
+   "six wheel drive lorry",
+   "military workshop vehicle",
+   "defence visualisation",
+   "truck with interior",
+   "historical military asset",
+   "field shelter body",
+   "army logistics vehicle"
+  ]
+ },
+ {
+  "slug": "attack-helicopter-mi-28n-havoc-with-radar-station-1187375",
+  "paragraphs": [
+   "The mast mounted radar is what distinguishes this variant, and it changes the whole silhouette: a spherical radome sitting above the rotor head, where it can see over terrain while the helicopter stays behind cover. Below it the airframe is a classic gunship - tandem cockpits, stub wings for weapons, and armoured glazing.",
+   "The mesh runs 405,874 polygons and 424,801 vertices in quads and tris with non-overlapping UVs, and ships with 9 texture maps at 4096x4096 carrying the matt camouflage and the stencilled markings.",
+   "A rigged build sits on this page at $199 for when the rotors turn and the turret traverses. The static model at $149 covers defence visualisation, news and documentary graphics, film and television, training material and games. On sale since 2017."
+  ],
+  "keywords": [
+   "attack helicopter 3d model",
+   "mast mounted radar gunship",
+   "military rotorcraft",
+   "tandem cockpit helicopter",
+   "defence visualisation",
+   "combat helicopter asset",
+   "armoured gunship",
+   "news graphics military aircraft",
+   "russian attack helicopter",
+   "weapons stub wings",
+   "battlefield aviation",
+   "military helicopter model"
+  ]
+ },
+ {
+  "slug": "boeing-787-3-dreamliner-united-airlines-1028932",
+  "paragraphs": [
+   "The Dreamliner is recognisable before you can read the titles: raked wingtips that flex visibly in flight, a nose without the eyebrow windows of earlier Boeings, and toothed chevrons on the engine nacelles that quieten the exhaust. In United colours it carries the blue tail and the fuselage titles along a composite skin with almost no visible fasteners.",
+   "The mesh runs 404,535 polygons and 414,459 vertices in quads and tris with non-overlapping UVs, and ships with 32 texture maps at 4096x4096, which is what a full airline livery needs across a widebody.",
+   "A rigged build sits on this page at the same $149. Aimed at airline marketing, airport and terminal visualisation, film and television, news graphics and print. On sale since 2016."
+  ],
+  "keywords": [
+   "boeing 787 dreamliner",
+   "united airlines livery",
+   "widebody airliner 3d model",
+   "composite aircraft",
+   "raked wingtips",
+   "commercial aviation asset",
+   "passenger jet render",
+   "airport visualisation",
+   "airline marketing model",
+   "chevron nacelles",
+   "long haul aircraft",
+   "civil aviation"
+  ]
+ },
+ {
+  "slug": "boeing-787-9-dreamliner-united-1035095",
+  "paragraphs": [
+   "The 787-9 is the stretched variant, and the extra length is immediately visible in the run of windows and in how the wing sits relative to the fuselage. Everything else that identifies a Dreamliner is there - the raked wingtips, the chevroned nacelles, the smooth composite skin - and United's scheme runs the length of it.",
+   "The mesh runs 431,697 polygons and 442,157 vertices in quads and tris with non-overlapping UVs, and ships with 32 texture maps at 4096x4096 carrying the doors, stencils and service markings.",
+   "A rigged build sits on this page at the same $149 for when the gear retracts or the surfaces move. Aimed at airline marketing, airport visualisation, aviation journalism, film and television, and print. On sale since 2016."
+  ],
+  "keywords": [
+   "boeing 787-9",
+   "stretched dreamliner 3d model",
+   "united airlines aircraft",
+   "long haul widebody",
+   "composite airliner",
+   "commercial jet asset",
+   "airline fleet visualisation",
+   "airport scene aircraft",
+   "aviation marketing render",
+   "passenger aircraft model",
+   "twin aisle jet",
+   "civil aviation asset"
+  ]
+ },
+ {
+  "slug": "civil-helicopter-airbus-h145-1212096",
+  "paragraphs": [
+   "The H145 is the air ambulance of choice across much of Europe, and the reasons are structural: a shrouded tail rotor that is safer around people on the ground, clamshell rear doors that let a stretcher load straight in, and a cabin flat enough to work in. The model carries the shrouded tail, the clamshell doors and the skid arrangement.",
+   "It is heavy for a light twin at 1,248,007 polygons and 1,279,235 vertices in quads and tris with non-overlapping UVs, and ships with 19 texture maps at 4096x4096. That density goes into the rotor head and the door frames where this helicopter is usually filmed from close range.",
+   "A rigged build sits on this page at $199. The static model at $149 covers emergency services and medical aviation visualisation, police and rescue presentation, corporate aviation marketing, film and television, and games. On sale since 2018."
+  ],
+  "keywords": [
+   "airbus h145 helicopter",
+   "air ambulance 3d model",
+   "shrouded tail rotor",
+   "emergency medical aviation",
+   "police helicopter asset",
+   "light twin rotorcraft",
+   "rescue aviation visualisation",
+   "clamshell door helicopter",
+   "civil helicopter model",
+   "hems aircraft",
+   "utility rotorcraft",
+   "corporate aviation asset"
+  ]
+ },
+ {
+  "slug": "crawler-crane-liebherr-lr1250-1296437",
+  "paragraphs": [
+   "A lattice boom crawler crane is built to be assembled on site: the tracks arrive separately, the boom comes in sections, and the counterweight is stacked on once the machine is standing. That modularity is visible in the finished crane, in the pin joints along the boom and the stacked slabs at the rear.",
+   "The mesh runs 506,056 polygons and 534,848 vertices in quads and tris with non-overlapping UVs, and ships with 23 texture maps at a mix of sizes up to 8192x8192, carrying the paint, the safety markings and the wear on the tracks.",
+   "Three rigged builds share this page at $199, including versions prepared for Cinema 4D and for Maya. Aimed at construction and infrastructure visualisation, equipment marketing, lift planning presentation, site scenes and games. On sale since 2018."
+  ],
+  "keywords": [
+   "crawler crane 3d model",
+   "lattice boom crane",
+   "liebherr lr1250",
+   "heavy lift equipment",
+   "construction site machinery",
+   "tracked crane asset",
+   "lift planning visualisation",
+   "counterweight stack",
+   "infrastructure equipment",
+   "crane marketing model",
+   "site plant asset",
+   "heavy construction machine"
+  ]
+ },
+ {
+  "slug": "eastern-shadow-assassin-outfit-with-hooded-cape-black-2487479",
+  "paragraphs": [
+   "In black, a hooded outfit becomes a silhouette exercise. There is no colour contrast to separate the hood from the shoulder or the cape from the tunic, so all of the readability has to come from the geometry - the depth of the hood, the break of the cape over the shoulders, the belt line gathering the waist. That is a harder brief than a bright costume.",
+   "The mesh is 56,124 polygons and 55,816 vertices in quads and tris with non-overlapping UVs, with the density in the drape and the layered edges where a dark garment needs an edge to catch light.",
+   "At $149 and built to StemCell specification, it suits games, fantasy and historical film and television, cinematic previsualisation, character design and illustration. On sale since 2026, kept to real-world scale so it fits a standard figure."
+  ],
+  "keywords": [
+   "hooded assassin outfit black",
+   "stealth character costume 3d model",
+   "fantasy cloak and hood",
+   "game character clothing",
+   "cinematic character design",
+   "dark robed figure",
+   "eastern fantasy costume",
+   "rpg character outfit",
+   "previsualisation costume",
+   "layered cape garment",
+   "shadow character asset",
+   "medieval fantasy clothing"
+  ]
+ },
+ {
+  "slug": "helicopter-sikorsky-s76-1065475",
+  "paragraphs": [
+   "The S-76 was designed for offshore oil work and became the corporate helicopter of choice, which explains its shape: a sleek fuselage, retractable gear for cruise speed, and a cabin laid out for seated passengers rather than for cargo. It is the helicopter that lands on rooftops in films, and the model keeps the door lines and the gear bays that make it identifiable.",
+   "The mesh runs 253,126 polygons and 265,011 vertices in quads and tris with non-overlapping UVs, and ships with 21 texture maps at 4096x4096, which is what a gloss corporate scheme needs to stay clean over a curved fuselage.",
+   "A rigged build sits on this page at $179. The static model at $149 covers corporate and offshore aviation marketing, executive transport visualisation, film and television, emergency services presentation, and games. On sale since 2016."
+  ],
+  "keywords": [
+   "sikorsky s-76",
+   "corporate helicopter 3d model",
+   "executive rotorcraft",
+   "offshore transport helicopter",
+   "retractable gear helicopter",
+   "vip aviation asset",
+   "civil helicopter model",
+   "rooftop landing aircraft",
+   "business aviation visualisation",
+   "medium twin helicopter",
+   "charter rotorcraft",
+   "aviation marketing model"
+  ]
+ },
+ {
+  "slug": "hp-omen-15-gaming-laptop-with-hardware-modules-disassembly-animated-2472577",
+  "paragraphs": [
+   "A laptop teardown is a sequence rather than a still: the base panel lifts, the battery comes out, the cooling assembly unclips, the drives and memory modules follow. This build is animated through that disassembly, with the modules as separate bodies, which is what a repair guide or a product explainer actually needs.",
+   "The mesh is efficient at 51,370 polygons and 53,642 vertices in quads and tris with non-overlapping UVs, with the detail in the heat pipes, the connectors and the panel screws where a repair camera lands.",
+   "At $149 and built to CheckMate specification, it suits repair and service documentation, technology journalism and teardown content, product and engineering marketing, teaching material and games. On sale since 2026."
+  ],
+  "keywords": [
+   "gaming laptop teardown",
+   "animated disassembly 3d model",
+   "hp omen laptop",
+   "hardware modules asset",
+   "repair documentation visualisation",
+   "technology journalism content",
+   "notebook internals",
+   "product explainer animation",
+   "computer service guide",
+   "exploded laptop view",
+   "consumer electronics asset",
+   "engineering presentation model"
   ]
  }
 ]
