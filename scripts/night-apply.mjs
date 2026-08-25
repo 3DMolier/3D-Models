@@ -23,6 +23,9 @@ import path from 'node:path';
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname).replace(/^\/([A-Za-z]:)/, '$1'), '..');
 const WORK = path.join(ROOT, 'tools', 'night-writer');
 const DRY = process.argv.includes('--dry');
+// --force переписывает уже помеченные карточки. Нужен, когда меняется не текст,
+// а способ его расстановки: правку мета-описания иначе не донести до готовых.
+const FORCE = process.argv.includes('--force');
 const MARK = '<!-- written:v1 -->';
 
 const esc = s => String(s).replace(/&(?!(amp|lt|gt|quot|#\d+);)/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -68,7 +71,7 @@ for (const it of items) {
   const file = path.join(ROOT, 'models', slug, 'index.html');
   if (!fs.existsSync(file)) { problems.push(slug + ': нет файла'); stat.skip++; continue; }
   let html = fs.readFileSync(file, 'utf8');
-  if (html.includes(MARK)) { problems.push(slug + ': уже написано, пропускаю'); stat.skip++; continue; }
+  if (!FORCE && html.includes(MARK)) { problems.push(slug + ': уже написано, пропускаю'); stat.skip++; continue; }
   if (!Array.isArray(paragraphs) || paragraphs.length < 2) { problems.push(slug + ': меньше двух абзацев'); stat.skip++; continue; }
   const numErr = checkNumbers(slug, paragraphs);
   if (numErr.length) { problems.push(slug + ': ' + numErr.join('; ')); stat.badNum++; continue; }
@@ -93,7 +96,25 @@ for (const it of items) {
   // ── 3. Описание в разметке и мета-тегах ───────────────────────────────────
   // Берём первый абзац: он самодостаточен и укладывается в длину.
   const lead = paragraphs[0];
-  const oneSentence = lead.split(/(?<=\.)\s/)[0];
+  // Мета-описание собираем предложениями, пока не наберётся длина, на которую
+  // рассчитана выдача. Первое предложение годится не всегда: «The kiwi is a
+  // strange bird to model well.» - это 41 знак, Google такую строку дополняет
+  // текстом со страницы по своему усмотрению, и управление сниппетом теряется.
+  const META_MIN = 120, META_MAX = 158;
+  const metaDesc = (() => {
+    const parts = lead.split(/(?<=\.)\s+/);
+    let out = "";
+    for (const s of parts) {
+      if (out && (out + " " + s).length > META_MAX) break;
+      out = out ? out + " " + s : s;
+      if (out.length >= META_MIN) break;
+    }
+    // Набралось мало, а следующее предложение длинное и целиком не влезает:
+    // добираем словами из первого абзаца, чтобы строка не осталась куцей.
+    if (out.length < META_MIN) out = lead.slice(0, META_MAX).replace(/\s+\S*$/, "") + "...";
+    if (out.length > META_MAX) out = out.slice(0, META_MAX).replace(/\s+\S*$/, "") + "...";
+    return out;
+  })();
 
   html = html.replace(/"description":"((?:[^"\\]|\\.)*)"/g, (all, old) => {
     // Меняем только шаблонные описания, не трогая имена и прочие поля.
@@ -105,13 +126,17 @@ for (const it of items) {
     return '"description":"' + jsonEsc(lead) + '"';
   });
   html = html.replace(/(<meta name="description" content=")[^"]*(")/,
-    (all, a, b) => { stat.meta++; return a + esc(oneSentence).replace(/"/g, '&quot;') + b; });
+    (all, a, b) => { stat.meta++; return a + esc(metaDesc).replace(/"/g, '&quot;') + b; });
   html = html.replace(/(<meta property="og:description" content=")[^"]*(")/,
-    (all, a, b) => a + esc(oneSentence).replace(/"/g, '&quot;') + b);
+    (all, a, b) => a + esc(metaDesc).replace(/"/g, '&quot;') + b);
 
   // ── 4. Метка ──────────────────────────────────────────────────────────────
-  html = html.replace('</body>', MARK + '</body>');
-  if (!html.includes(MARK)) html += MARK;
+  // Метку ставим один раз: при повторном прогоне с --force вторая была бы
+  // мусором в разметке.
+  if (!html.includes(MARK)) {
+    html = html.replace('</body>', MARK + '</body>');
+    if (!html.includes(MARK)) html += MARK;
+  }
 
   if (!DRY) fs.writeFileSync(file, html);
   doneAdd.push(slug);

@@ -1,1 +1,310 @@
-[{"slug":"mining-dump-truck-rigged-2209139","paragraphs":["A haul truck of the kind that works an open pit around the clock - the machines that carry three hundred tonnes of ore up a ramp and are tall enough that the driver climbs a staircase to reach the cab. The body, the ladder, the tyres and the tipping ram are all modelled as separate parts, so the bed can be raised and the wheels turned rather than faked in post.","The mesh runs to 668,834 polygons and 363,353 vertices across quads and tris, with non-overlapping UVs, which means the truck takes a new livery or a coat of pit dust without being unwrapped again. That is a moderate load for a machine this size - heavy enough to hold a close shot of the tyre tread and the frame lattice, light enough to put several of them in one pit without the scene falling over.","This build is rigged, so the bed tips and the wheels steer straight out of the box. Two more versions of the same truck sit on this page under All Versions of This Model, prepared for Cinema 4D and for Maya at the same $149, so a studio can pick the one that opens cleanly in the software it already runs instead of converting a rig by hand.","It is sold under TurboSquid's Royalty Free licence, which covers commercial delivery without a fee per project - useful when the same truck appears in a mine flythrough, a safety animation and a trade-show loop in the same year."],"keywords":["mining dump truck","haul truck","open pit mining","quarry truck","rigged mining vehicle","heavy haulage","mining equipment","off highway truck","earthmoving machinery","ore hauler","construction vehicle","industrial truck","surface mining","tipper truck","excavation site","heavy machinery","mine site vehicle","articulated hauler"]}]
+[
+ {
+  "slug": "human-sperm-cell-2070410",
+  "paragraphs": [
+   "A spermatozoon is three parts doing three jobs: a head carrying the genetic payload, a midpiece packed with mitochondria to power the journey, and a tail that does the swimming. The model separates them clearly, with the acrosome cap distinct from the nucleus, because in teaching material the whole point is being able to name what you are looking at.",
+   "It runs 117,820 polygons and 59,912 vertices in quads and tris with non-overlapping UVs. The tail carries most of that budget, which is where it belongs - a flagellum that bends smoothly is what makes the cell read as alive rather than as a diagram.",
+   "Three rigged builds sit on this page at $29: a general one and versions prepared for Maya and for Cinema 4D, for when the tail has to move. The static model at $24 covers textbook and courseware illustration, fertility clinic material, science communication and medical animation stills."
+  ],
+  "keywords": [
+   "human sperm cell",
+   "spermatozoon 3d model",
+   "male reproductive cell",
+   "fertility illustration",
+   "medical animation asset",
+   "cell biology",
+   "flagellum",
+   "reproductive system",
+   "science education",
+   "microbiology model",
+   "acrosome",
+   "gamete"
+  ]
+ },
+ {
+  "slug": "complete-full-body-kid-girl-anatomy-fur-1948001",
+  "paragraphs": [
+   "A complete paediatric anatomy build, which is a genuinely different thing from a scaled-down adult. Children are not small grown-ups: head-to-body proportion, bone development and organ placement all differ, and material meant for paediatric teaching or parent-facing explanation falls apart the moment the figure looks like a shrunken adult. This model is built as a child throughout, with hair grooming included.",
+   "It is a large asset at 1,246,745 polygons and 1,253,328 vertices in quads and tris with non-overlapping UVs. That density is what a full-body anatomical build needs - skeleton, muscular, organ and vascular structures all have to hold up when a camera goes in on one region.",
+   "At $649 it is priced as the reference asset it is, and it earns that in medical and paediatric education, hospital and clinic communication, courseware, research presentation and broadcast medical illustration. On sale since 2022."
+  ],
+  "keywords": [
+   "child anatomy 3d model",
+   "paediatric anatomy",
+   "full body anatomy",
+   "human anatomical model",
+   "medical education asset",
+   "girl anatomy",
+   "skeletal and muscular system",
+   "organ systems",
+   "clinical illustration",
+   "anatomy reference",
+   "medical visualisation",
+   "child body model"
+  ]
+ },
+ {
+  "slug": "lockheed-c-130-hercules-us-military-transport-aircraft-1121545",
+  "paragraphs": [
+   "The Hercules has been landing on gravel strips since before most of its crews were born, and the shape explains why: a high wing that keeps the propellers clear of debris, a fuselage that sits low enough to load from a truck bed, and a rear ramp that turns the aircraft into a doorway. The model keeps the ramp, the paratroop doors, the landing gear blisters and the antenna farm that make a C-130 a C-130.",
+   "It runs 314,505 polygons and 336,612 vertices in quads and tris with non-overlapping UVs, and ships with 22 texture maps - 3 at 8192x8192, 12 at 4096x4096 and 7 at 2048x2048. That is a serious texture budget, and it is where the exhaust staining, the walkway markings and the squadron insignia come from.",
+   "A rigged build sits on this page at the same $229 for when the propellers turn or the ramp opens. The static model suits film and television, defence visualisation, documentary work, games and print. On sale since 2017."
+  ],
+  "keywords": [
+   "c-130 hercules",
+   "military transport aircraft",
+   "lockheed cargo plane",
+   "turboprop airlifter",
+   "usaf transport",
+   "tactical airlift",
+   "rear ramp aircraft",
+   "defence aviation",
+   "cargo aircraft 3d model",
+   "paratroop aircraft",
+   "military airplane",
+   "air force asset"
+  ]
+ },
+ {
+  "slug": "boeing-737-cockpit-1188630",
+  "paragraphs": [
+   "A cockpit is the hardest part of an airliner to fake. Every surface is covered in labelled switches, every panel has its own angle, and anyone who has flown a simulator will spot a wrong overhead panel instantly. This build models the glareshield, the main instrument panel, the throttle quadrant, the pedestal and the overhead as separate assemblies, with the seats, the yokes and the side windows in place.",
+   "It is dense by necessity: 1,305,115 polygons and 1,349,466 vertices in quads and tris with non-overlapping UVs, plus 21 texture maps at 4096x4096. That resolution is what makes the switch legends and the placards readable, and readable placards are exactly what a cockpit shot is judged on.",
+   "At $199 it is built for aviation visualisation, simulator and training material, film and television, documentary work and games. On sale since 2017 and kept to real-world scale, so a pilot figure sits correctly in the seat."
+  ],
+  "keywords": [
+   "boeing 737 cockpit",
+   "airliner flight deck",
+   "aircraft cockpit 3d model",
+   "aviation interior",
+   "flight simulator asset",
+   "pilot controls",
+   "instrument panel",
+   "commercial aviation",
+   "throttle quadrant",
+   "cockpit visualisation",
+   "airplane interior",
+   "training material asset"
+  ]
+ },
+ {
+  "slug": "fujian-cv-18-chinese-aircraft-carrier-2368739",
+  "paragraphs": [
+   "Fujian is the first Chinese carrier built with catapults rather than a ski jump, and that single change rewrites the flight deck: a flat run, three launch tracks, a rearranged island and a deck layout that looks far more American than anything China had launched before. The model carries the deck markings, the catapult tracks, the elevators, the island detail and the sponsons.",
+   "It runs 644,485 polygons and 766,503 vertices in quads and tris. The UVs overlap, which is the right economy on a ship built largely from repeated deck plating and identical fittings, and the StemCell build means it drops into a real-time engine.",
+   "This page also carries four other builds, including the carrier paired with a Chengdu J-20 at $229, with a MiG-29 at $269 and with a Harbin Z-9 at $249. The carrier alone at $199 suits naval and defence visualisation, news graphics, documentary work and games."
+  ],
+  "keywords": [
+   "fujian aircraft carrier",
+   "chinese navy",
+   "cv-18",
+   "supercarrier 3d model",
+   "type 003 carrier",
+   "naval warship",
+   "catapult carrier",
+   "flight deck",
+   "military ship",
+   "defence visualisation",
+   "pla navy",
+   "aircraft carrier model"
+  ]
+ },
+ {
+  "slug": "ice-hockey-arena-2094585",
+  "paragraphs": [
+   "An arena is not just a rink with seats around it. The bowl geometry, the tiered seating rake, the boards and glass, the scoreboard hung over centre ice, the player benches and the penalty boxes all have to be right, because hockey fans know exactly what the view from their section looks like. This model builds the full venue rather than a stage set that only works from one camera.",
+   "It is a heavy asset at 4,244,992 polygons and 4,926,086 vertices in quads and tris with non-overlapping UVs, which is what an interior of this size demands if the far seating is to hold up rather than dissolve. Built to StemCell specification, so it works in a real-time engine as well as an offline render.",
+   "At $199 it is aimed at sports broadcast graphics, architectural and venue visualisation, event presentation, games and film work. On sale since 2023."
+  ],
+  "keywords": [
+   "ice hockey arena",
+   "sports stadium 3d model",
+   "hockey rink",
+   "indoor arena",
+   "venue visualisation",
+   "sports broadcast asset",
+   "seating bowl",
+   "scoreboard",
+   "event venue",
+   "stadium interior",
+   "hockey stadium",
+   "arena architecture"
+  ]
+ },
+ {
+  "slug": "sikorsky-uh-60-black-hawk-us-military-utility-helicopter-1085902",
+  "paragraphs": [
+   "The Black Hawk is a workhorse rather than a showpiece, and it looks it: a squat fuselage, wide sliding doors, a tail rotor canted over to add lift, and stub wings that carry whatever the mission needs. The model keeps the door tracks, the refuelling probe fitting, the exhaust suppressors and the antenna array that separate it from a generic utility helicopter.",
+   "It runs 332,047 polygons and 352,778 vertices in quads and tris with non-overlapping UVs, and ships with 27 texture maps - 19 at 4096x4096 and 8 at 2048x2048. That budget carries the matt olive finish, the panel wear around the doors and the stencilled unit markings.",
+   "A rigged build sits on this page at $289 for when the rotors turn and the gear moves. The static model at $179 covers film and television, defence and emergency services visualisation, documentary work, games and print. On sale since 2017."
+  ],
+  "keywords": [
+   "uh-60 black hawk",
+   "sikorsky helicopter",
+   "military utility helicopter",
+   "army aviation",
+   "troop transport helicopter",
+   "rotorcraft 3d model",
+   "medevac helicopter",
+   "defence asset",
+   "combat helicopter",
+   "us army helicopter",
+   "twin engine helicopter",
+   "military rotorcraft"
+  ]
+ },
+ {
+  "slug": "bell-206b5-jetranger-helicopter-2498918",
+  "paragraphs": [
+   "The JetRanger is the helicopter most people have actually seen: news crews, sightseeing flights, police patrols and flight schools have flown it for decades. Its shape is unmistakable - the teardrop cabin, the low skids, the slim tail boom and the single main rotor sitting well forward. The model keeps the door frames, the skid cross-tubes, the exhaust stack and the mast fairing.",
+   "It runs 532,336 polygons and 585,583 vertices in quads and tris with mixed UV layout. That is a generous mesh for an aircraft this small, and it goes into the places a light helicopter is looked at closely: the rotor head, the cabin glazing frames and the skid attachments.",
+   "Three rigged builds share this page at the same $149, including versions prepared for Maya and for Cinema 4D, so the rotors and skids arrive working in the application you already use. Built to CheckMate specification, on sale since 2026."
+  ],
+  "keywords": [
+   "bell 206 jetranger",
+   "light utility helicopter",
+   "civil helicopter 3d model",
+   "news helicopter",
+   "sightseeing aircraft",
+   "single engine rotorcraft",
+   "police helicopter",
+   "flight training aircraft",
+   "turbine helicopter",
+   "aviation asset",
+   "skid helicopter",
+   "commercial rotorcraft"
+  ]
+ },
+ {
+  "slug": "us-amphibious-combat-vehicle-acv-2274480",
+  "paragraphs": [
+   "An amphibious combat vehicle has to be two things badly compromised into one: a boat that can climb a beach and an armoured carrier that can drive inland. The result is a hull with a bow plane, water jets at the stern, eight large wheels and a freeboard tall enough to keep the sea out. The model carries the bow plane, the propulsion housings, the wheel arches and the remote weapon station.",
+   "It runs 434,120 polygons and 459,684 vertices in quads and tris with non-overlapping UVs, built to StemCell specification for real-time use as well as offline rendering.",
+   "Three rigged builds sit on this page at $169, including versions prepared for Maya and for Cinema 4D, for when the wheels turn or the ramp drops. The static model at $149 covers defence visualisation, naval and marine corps presentation, documentary work, training material and games."
+  ],
+  "keywords": [
+   "amphibious combat vehicle",
+   "acv 3d model",
+   "marine corps vehicle",
+   "armoured personnel carrier",
+   "amphibious assault",
+   "eight wheeled vehicle",
+   "military landing craft",
+   "defence visualisation",
+   "beach landing vehicle",
+   "armoured transport",
+   "naval infantry",
+   "combat vehicle model"
+  ]
+ },
+ {
+  "slug": "boat-control-panels-3d-models-collection-1340253",
+  "paragraphs": [
+   "Helm panels are what make a boat interior believable. Throttle levers, ignition keys, trim switches, engine gauges, breaker rows and the bezels they all sit in are the details a viewer reads without noticing, and modelling them one at a time is slow work that never quite fits the schedule. This collection is that work already done, as a set of separate panels rather than a single fixed dashboard.",
+   "Because they arrive as individual pieces, they can be arranged to suit the boat rather than the other way round: a small console needs two of them, a flybridge needs six, and a sport cruiser wants a different mix again.",
+   "At $129 for the set this is a working library rather than a single prop, aimed at marine and yacht visualisation, boat manufacturer presentation, simulator interiors, film and television and games. On sale since 2019."
+  ],
+  "keywords": [
+   "boat control panels",
+   "marine helm station",
+   "yacht dashboard 3d models",
+   "boat instrument panel",
+   "throttle controls",
+   "marine electronics",
+   "cockpit console collection",
+   "boat interior asset",
+   "helm gauges",
+   "vessel controls",
+   "marine visualisation",
+   "nautical instruments"
+  ]
+ },
+ {
+  "slug": "robot-arms-rigged-collection-1430456",
+  "paragraphs": [
+   "One industrial robot arm is a prop. A row of them working a line is a factory, and that is the shot most people actually need. This collection provides several arms as a single purchase, and every one of them arrives rigged, so the joints bend where real joints bend instead of being posed by hand and hoped for.",
+   "Rigging is what separates a usable robot from a decorative one. An arm that can be keyframed lets you build a working cell - one machine loading, another welding, a third moving parts along - without rebuilding the same kinematics over and over.",
+   "At $109 for the set it is aimed at industrial and manufacturing visualisation, automation and robotics presentation, factory walkthroughs, technical marketing and games. Built to CheckMate specification, on sale since 2019."
+  ],
+  "keywords": [
+   "industrial robot arms",
+   "robotic arm collection",
+   "rigged robot 3d models",
+   "factory automation",
+   "manufacturing visualisation",
+   "robotic cell",
+   "assembly line asset",
+   "articulated robot",
+   "industrial automation",
+   "welding robot",
+   "production line",
+   "robotics presentation"
+  ]
+ },
+ {
+  "slug": "christ-the-redeemer-statue-1486265",
+  "paragraphs": [
+   "The statue works because of its posture: arms straight out, head slightly bowed, standing on a plinth on top of a mountain so it is almost always seen from below and against sky. The model keeps that stance and the blocky soapstone tiling of the surface, which is the detail that makes the figure read as built rather than cast.",
+   "The mesh is deliberately light at 10,550 polygons and 10,985 vertices in quads and tris, but it ships with 6 texture maps at 8192x8192. That trade is the right one here: almost all of the statue's character lives in the mosaic surface and the weathering, not in the silhouette, so the detail belongs in the texture.",
+   "At $99 it suits travel and tourism material, city and landmark visualisation, film and television establishing shots, games and print. On sale since 2020."
+  ],
+  "keywords": [
+   "christ the redeemer",
+   "rio de janeiro landmark",
+   "famous statue 3d model",
+   "brazil monument",
+   "corcovado",
+   "religious monument",
+   "tourist landmark",
+   "art deco statue",
+   "city landmark asset",
+   "travel visualisation",
+   "world monument",
+   "soapstone statue"
+  ]
+ },
+ {
+  "slug": "iphone-11-fully-disassembled-1647020",
+  "paragraphs": [
+   "A disassembled phone is a repair manual, a teardown video and a product cutaway all in one, and it only works if the parts are genuinely separate. Here the display assembly, the battery, the logic board, the camera module, the taptic engine, the shields and the screws exist as individual objects, so they can be laid out flat, exploded along an axis or animated back into the chassis.",
+   "It runs 247,871 polygons and 265,860 vertices in quads and tris with non-overlapping UVs, and ships with 56 texture maps at 4096x4096. That count is what a teardown needs: every board, shield and ribbon has its own printed detail, and those printed details are the whole point of the shot.",
+   "At $99 and built to StemCell specification, it is aimed at repair and service documentation, product teardown visualisation, technology journalism, teaching material and advertising. On sale since 2021."
+  ],
+  "keywords": [
+   "iphone 11 disassembled",
+   "phone teardown 3d model",
+   "smartphone exploded view",
+   "device repair illustration",
+   "logic board",
+   "battery and display assembly",
+   "product cutaway",
+   "consumer electronics teardown",
+   "service documentation",
+   "mobile phone parts",
+   "technology visualisation",
+   "exploded assembly"
+  ]
+ },
+ {
+  "slug": "northrop-grumman-x-47b-uav-folded-wings-1000963",
+  "paragraphs": [
+   "The X-47B is a flying wing with no cockpit and no tail, designed to launch from and land on a carrier deck without a pilot aboard. This build shows it with the wings folded, which is how the aircraft spends most of its life - parked on a crowded deck, taking up as little width as possible. That configuration is far more useful for a carrier scene than the clean flight pose.",
+   "It runs 411,293 polygons and 414,678 vertices, built entirely from quads with non-overlapping UVs, and ships with 12 texture maps - 3 at 8192x8192 and 9 at 4096x4096. All-quad geometry subdivides cleanly, which matters on a shape defined by long smooth curves.",
+   "Five other builds sit on this page, including a rigged version at $129 and several alternative configurations at $99. On sale since 2016."
+  ],
+  "keywords": [
+   "x-47b uav",
+   "northrop grumman drone",
+   "stealth combat drone",
+   "carrier based uav",
+   "flying wing aircraft",
+   "unmanned combat aircraft",
+   "folded wings",
+   "naval aviation asset",
+   "autonomous aircraft",
+   "ucav 3d model",
+   "military drone",
+   "tailless aircraft"
+  ]
+ }
+]
