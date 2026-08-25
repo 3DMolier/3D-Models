@@ -1,310 +1,310 @@
 [
  {
-  "slug": "helicopter-agustawestland-aw169-1211569",
+  "slug": "houndskull-bascinet-helmet-1118407",
   "paragraphs": [
-   "The AW169 is the helicopter you see on hospital pads and offshore platforms: twin engine, retractable gear, a cabin door wide enough for a stretcher, and a fenestron-free tail rotor on a slim boom. The model keeps the sponsons that house the main gear, the sliding door track and the chin window, which are the details that stop it reading as a generic light twin.",
-   "The mesh is 153,605 polygons and 176,778 vertices in quads and tris with non-overlapping UVs, and ships with 7 texture maps - 6 at 4096x4096 and one at 2048x2048. That is enough for an air ambulance or corporate livery to sit cleanly along the fuselage without stretching across the door frames.",
-   "A rigged build is on this page at $199 for when the rotors turn and the gear retracts. The static model at $149 covers medical services and offshore visualisation, corporate aviation marketing, film and television, and games. On sale since 2018."
+   "The houndskull gets its name honestly: the visor comes to a snout, and from the side the helmet looks like a dog's skull. That shape was not decoration but deflection, and it produced one of the most recognisable silhouettes in European armour. This model keeps the hinged visor, the breath holes clustered on the right side and the mail attachment holes around the lower edge.",
+   "The mesh is 42,956 polygons and 43,266 vertices in quads and tris with non-overlapping UVs, and ships with 11 texture maps at 4096x4096. That texture budget is where the hammer marks, the rivet heads and the polished-then-scratched steel come from, and it is what separates armour from a grey shell.",
+   "At $29 it suits historical and museum visualisation, medieval film and television, games, education material and print. On sale since 2017, kept to real-world scale so it fits a human head correctly."
   ],
   "keywords": [
-   "agustawestland aw169",
-   "twin engine helicopter",
-   "air ambulance 3d model",
-   "light utility rotorcraft",
-   "hems helicopter",
-   "offshore transport",
-   "corporate helicopter",
-   "leonardo helicopter",
-   "medical helicopter",
-   "civil aviation asset",
-   "retractable gear rotorcraft",
-   "emergency services aircraft"
-  ]
- },
- {
-  "slug": "tesla-model-s-100d-2017-3d-model-1144931",
-  "paragraphs": [
-   "The 2017 Model S is the one with the smooth nose. Tesla dropped the black nose cone that mimicked a grille and replaced it with a body-coloured panel, which changed the whole face of the car and dated every render made before it. This build is that facelift version, with the flush door handles, the panoramic glass roof and the wide rear haunch.",
-   "The mesh runs 164,495 polygons and 188,846 vertices in quads and tris with non-overlapping UVs, and ships with 7 texture maps - 6 at 4096x4096 and one at 2048x2048. Efficient for a full car, which is what lets several of them fill a street scene.",
-   "This page carries the earlier 2015 front as well at $149, and rigged builds of both at $169. Take a rigged one when the wheels turn or the doors open; take the static model for stills, showroom renders and background traffic. On sale since 2017."
-  ],
-  "keywords": [
-   "tesla model s",
-   "electric sedan 3d model",
-   "luxury ev",
-   "model s 100d",
-   "electric car asset",
-   "automotive visualisation",
-   "tesla facelift",
-   "premium electric vehicle",
-   "car configurator model",
-   "ev showroom render",
-   "electric saloon",
-   "modern sedan"
-  ]
- },
- {
-  "slug": "wind-turbine-nacelle-cutaway-gray-2516736",
-  "paragraphs": [
-   "The nacelle is where a wind turbine stops being a sculpture and starts being a machine, and almost nobody ever sees inside one. A cutaway solves that: the main shaft, the gearbox, the generator, the yaw drive and the cooling equipment laid out in the order they actually sit, with the housing opened rather than removed so the scale of the enclosure is still readable.",
-   "It runs 462,736 polygons and 493,150 vertices in quads and tris. The UVs overlap, which is the right economy on machinery built from repeated castings and fasteners, and it keeps the asset manageable for something this dense.",
-   "At $149 and built to CheckMate specification, it is aimed at renewable energy presentation, engineering and technical marketing, education and training material, investor and trade show visualisation, and documentary work. On sale since 2026."
-  ],
-  "keywords": [
-   "wind turbine nacelle",
-   "turbine cutaway 3d model",
-   "renewable energy visualisation",
-   "gearbox and generator",
-   "wind power engineering",
-   "technical cutaway",
-   "green energy asset",
-   "yaw drive",
-   "turbine internals",
-   "engineering illustration",
-   "wind farm equipment",
-   "power generation machinery"
-  ]
- },
- {
-  "slug": "cross-section-of-steam-turbine-1400502",
-  "paragraphs": [
-   "A steam turbine is rows of blades getting progressively longer as the steam expands, and that progression is invisible from outside the casing. The cross section is the whole argument of the model: split the casing, show the rotor with its blade stages, the diaphragms, the bearings and the steam path, and a machine that looks like a metal drum becomes something you can explain.",
-   "It runs 217,618 polygons and 238,154 vertices in quads and tris with non-overlapping UVs, and ships with 7 texture maps at 8192x8192. That texture resolution is unusual and deliberate: on a cutaway the cut faces, the machined surfaces and the labelling carry the explanation, so they have to hold at magnification.",
-   "At $139 it suits power engineering presentation, technical education and training, industrial marketing, trade show and investor material, and documentary work. On sale since 2019."
-  ],
-  "keywords": [
-   "steam turbine cross section",
-   "turbine cutaway 3d model",
-   "power plant machinery",
-   "rotor and blade stages",
-   "thermal power engineering",
-   "industrial equipment",
-   "technical illustration",
-   "energy generation",
-   "turbine internals",
-   "engineering education",
-   "mechanical cutaway",
-   "power station asset"
-  ]
- },
- {
-  "slug": "airbus-a350-900-emirates-air-line-1144417",
-  "paragraphs": [
-   "The A350 is recognisable from the front before you can read the titles: the curved black mask around the flight deck windows and the upswept wingtips are unlike anything else in the sky. In Emirates colours it carries the red tail and the gold Arabic script along the fuselage, both of which have to follow the body curvature correctly to look painted rather than pasted.",
-   "The mesh is 320,971 polygons and 332,297 vertices in quads and tris with non-overlapping UVs, and ships with 20 texture maps at 4096x4096. That budget covers the door outlines, the service stencils and the composite panel joints that a widebody shows along its flank.",
-   "A rigged build sits on this page at $149 for when the gear and control surfaces move. The static model at $129 covers airline marketing, airport and terminal visualisation, film and television, news graphics and print. On sale since 2017."
-  ],
-  "keywords": [
-   "airbus a350-900",
-   "emirates livery",
-   "widebody airliner 3d model",
-   "long haul aircraft",
-   "commercial jet",
-   "passenger airplane",
-   "airline visualisation",
-   "composite airliner",
-   "airport asset",
-   "twin aisle aircraft",
-   "aviation marketing",
-   "civil aviation model"
-  ]
- },
- {
-  "slug": "iphone-11-with-full-internal-structure-1647078",
-  "paragraphs": [
-   "This is the assembled phone with everything inside it modelled: the logic board, the battery, the camera module, the taptic engine and the shields sitting in their real positions behind a closed chassis. That combination is what a cutaway needs - the device has to look like a finished product until the moment the housing goes transparent and the interior is revealed.",
-   "It runs 262,865 polygons and 280,925 vertices in quads and tris with non-overlapping UVs, and ships with 56 texture maps at 4096x4096. That count exists because every internal board and shield carries its own printed detail, and printed detail is exactly what makes an internal shot convincing rather than decorative.",
-   "At $99 it is aimed at product and technology advertising, engineering and design presentation, technology journalism, teaching material and repair documentation. On sale since 2021."
-  ],
-  "keywords": [
-   "iphone 11 internal structure",
-   "smartphone cutaway 3d model",
-   "phone internals",
-   "device cross section",
-   "logic board and battery",
-   "product visualisation",
-   "technology advertising",
-   "consumer electronics asset",
-   "mobile phone anatomy",
-   "engineering presentation",
-   "ghosted product render",
-   "phone components"
-  ]
- },
- {
-  "slug": "kiwi-bird-2104638",
-  "paragraphs": [
-   "A kiwi carries almost all of its character in two places: the long probing bill with nostrils right at the tip, and the low crouched stance that comes from having no useful wings and legs set far back. This build keeps the shaggy hair-like plumage that covers the body and the heavy three-toed feet that do the digging.",
-   "The mesh is 149,887 polygons and 294,577 vertices in quads and tris with non-overlapping UVs. The vertex count running well above the polygon count is what a soft rounded animal needs - it keeps the back and crown smooth where a coarser cage would show facets in silhouette.",
-   "Three rigged builds share this page: a general one at $139 and versions prepared for Cinema 4D and for Maya at $99 each. Take a rigged one for animation; the static model at $99 covers wildlife documentary, conservation material, education, tourism and games. Built to StemCell specification, on sale since 2023."
-  ],
-  "keywords": [
-   "kiwi bird 3d model",
-   "flightless bird",
-   "new zealand wildlife",
-   "apteryx",
-   "nocturnal bird",
-   "conservation asset",
-   "nature documentary",
-   "native species",
-   "wildlife visualisation",
-   "ratite bird",
-   "endemic animal",
-   "bird model"
-  ]
- },
- {
-  "slug": "octopus-1090443",
-  "paragraphs": [
-   "An octopus is the hardest kind of animal to model because it has no fixed shape. The mantle changes volume, the arms taper over their whole length and curl in every direction, and the suckers have to run in a double row that thins toward the tip. This build handles all three, which is what lets it read as a soft-bodied animal rather than a rubber toy.",
-   "The mesh is 60,158 polygons and 60,136 vertices in quads and tris with non-overlapping UVs, and ships with 6 texture maps at 4096x4096. The texture work is doing heavy lifting here: skin mottling, the sheen of a wet surface and the darker sucker rims are what sell the creature at close range.",
-   "At $99 and built to StemCell specification, it suits marine documentary and education, aquarium and museum material, seafood and restaurant advertising, film and television, and games. On sale since 2017."
-  ],
-  "keywords": [
-   "octopus 3d model",
-   "cephalopod",
-   "marine animal asset",
-   "sea creature",
-   "underwater wildlife",
-   "tentacles and suckers",
-   "aquarium visualisation",
-   "ocean documentary",
-   "soft bodied animal",
-   "seafood advertising",
-   "invertebrate model",
-   "deep sea creature"
-  ]
- },
- {
-  "slug": "tactical-swat-team-member-uniform-2246763",
-  "paragraphs": [
-   "A tactical uniform is a system rather than a garment: base layers, a plate carrier over them, pouches on the carrier, a belt rig, knee protection and the straps that hold it all together. The layering is what makes it read correctly, because the bulk sits in specific places and a smooth suit with pockets painted on fools nobody.",
-   "The mesh is economical at 32,574 polygons and 33,487 vertices in quads and tris with non-overlapping UVs. That weight is deliberate: uniforms are usually needed several at a time, and a team of six should not cost more than the scene they are standing in.",
-   "At $79 and built to CheckMate specification, it is aimed at law enforcement and defence visualisation, film and television costume reference, games, training material and equipment presentation. Real-world scale is kept, so it fits a standard human figure without rescaling."
-  ],
-  "keywords": [
-   "swat uniform 3d model",
-   "tactical gear",
-   "police plate carrier",
-   "law enforcement equipment",
-   "special forces clothing",
-   "body armour vest",
-   "tactical clothing asset",
-   "military uniform",
-   "combat gear",
-   "protective equipment",
-   "swat team member",
-   "operator loadout"
-  ]
- },
- {
-  "slug": "full-body-airport-security-scanners-collection-1707414",
-  "paragraphs": [
-   "Security screening is the part of an airport everyone recognises and almost nobody models properly. A checkpoint needs more than one machine type - the walk-through arch, the millimetre wave booth with its curved panels, the operator screen - and they have to sit in a sensible order for the flow to make sense. This is a collection rather than a single scanner, which is what a believable checkpoint actually requires.",
-   "Having several units in one purchase means a terminal can be dressed with a full lane rather than the same machine repeated, and a queue can be staged around equipment that behaves like real hardware.",
-   "A second collection sits on this page at $99 for a wider selection. This set at $69 is built to CheckMate specification and aimed at airport and terminal visualisation, security industry presentation, film and television, training material and games. On sale since 2021."
-  ],
-  "keywords": [
-   "airport security scanner",
-   "body scanner 3d models",
-   "security checkpoint asset",
-   "millimetre wave scanner",
-   "walk through detector",
-   "terminal visualisation",
-   "airport equipment collection",
-   "screening machine",
-   "aviation security",
-   "border control asset",
-   "passenger screening",
-   "security hardware"
-  ]
- },
- {
-  "slug": "bust-roman-emperor-caesar-augustus-2086220",
-  "paragraphs": [
-   "The Augustus portrait type is one of the most reproduced faces in history, and it is a piece of political design as much as a likeness: the calm expression, the distinctive comma-shaped fringe over the forehead, and a face that never ages across decades of statues. This bust keeps that hairline and the set of the jaw, which are what make the emperor recognisable rather than merely Roman.",
-   "The mesh is 19,038 polygons and 10,134 vertices in quads and tris. The UVs overlap, which is the sensible economy on a symmetrical marble subject where a mirrored layout costs nothing visible, and the StemCell build means it works in a real-time engine.",
-   "At $59 it suits museum and exhibition work, classical education material, interior and set dressing, historical documentary, games and print. On sale since 2023."
-  ],
-  "keywords": [
-   "caesar augustus bust",
-   "roman emperor sculpture",
-   "classical statue 3d model",
-   "ancient rome asset",
-   "marble bust",
+   "houndskull bascinet",
+   "medieval helmet 3d model",
+   "knight armour",
+   "historical armour asset",
+   "visored helm",
+   "fourteenth century armour",
    "museum exhibit model",
-   "historical portrait",
-   "antiquity sculpture",
-   "roman art",
-   "classical education",
-   "decorative bust",
-   "imperial portrait"
+   "medieval weapon",
+   "steel helmet",
+   "historical reenactment",
+   "plate armour",
+   "hounskull"
   ]
  },
  {
-  "slug": "missile-from-nasams-air-defense-system-1956099",
+  "slug": "mockup-four-transparent-airless-pump-bottles-set-2526946",
   "paragraphs": [
-   "The missile used by NASAMS is an air-to-air weapon adapted to launch from the ground, which is the whole reason the system exists and the reason the missile looks the way it does: slender body, cruciform forward fins, larger tail fins and a seeker dome at the nose. This model keeps the fin geometry and the umbilical and lug detail along the body.",
-   "It is deliberately light at 12,106 polygons and 6,601 vertices in quads and tris with non-overlapping UVs, and built to StemCell specification. That weight matters, because a missile is almost never needed alone - a launcher holds several, and a scene may need a salvo in flight.",
-   "At $59 it is aimed at defence visualisation, news and documentary graphics, military training material, games and print. Real-world scale is kept, so it seats correctly in a launcher canister. On sale since 2023."
+   "Airless pump bottles are the standard for serums and creams because they keep air off the product, and their construction shows it: a transparent outer wall, an inner piston that rises as the bottle empties, a collar and a pump head with a lock ring. This set gives four of them, which is what a product line looks like on a shelf and what a mockup actually needs.",
+   "The mesh is 34,888 polygons and 34,840 vertices in quads and tris with mixed UV layout. The transparency work is where the modelling matters: an airless bottle has a wall, a piston and a fill level, and all three have to be present for a refraction shader to produce anything convincing.",
+   "At $29 and built to StemCell specification, it is aimed at cosmetics and skincare packaging visualisation, brand mockups, e-commerce and retail renders, advertising and label design presentation. On sale since 2026."
   ],
   "keywords": [
-   "nasams missile",
-   "surface to air missile",
-   "air defence 3d model",
-   "amraam missile",
-   "military weapon asset",
-   "ground based air defence",
-   "guided missile",
-   "defence visualisation",
-   "missile system",
-   "air defense battery",
-   "military ordnance",
-   "interceptor missile"
+   "airless pump bottle mockup",
+   "cosmetic packaging 3d model",
+   "skincare bottle set",
+   "serum dispenser",
+   "transparent container",
+   "beauty product visualisation",
+   "packaging mockup",
+   "pump dispenser",
+   "label design asset",
+   "e-commerce product render",
+   "cosmetics branding",
+   "four bottle set"
   ]
  },
  {
-  "slug": "floating-waterproof-dry-bag-worn-on-back-blue-2513610",
+  "slug": "pediment-greco-roman-1052254",
   "paragraphs": [
-   "A dry bag is defined by how it closes: the top is rolled down several turns and clipped, which leaves a stiff folded lip and gives the bag its distinctive tapered shape. Modelled worn on a back, it also has to show where the straps compress it and where it sits against the body, because a dry bag hanging perfectly cylindrical looks like a barrel.",
-   "The mesh is 28,236 polygons and 28,085 vertices in quads and tris with mixed UV layout. That is a sensible budget for a coated fabric object whose interest lies in the roll-top fold, the seam welds and the strap hardware.",
-   "At $49 and built to CheckMate specification, it suits outdoor and adventure sports visualisation, kayaking and rafting material, travel and equipment advertising, character set dressing and games. On sale since 2026."
+   "A pediment is the triangle over a classical portico, and its whole purpose is to be looked at from below. That means the cornice mouldings, the dentils, the sculpted tympanum and the acroteria at the corners all have to be real geometry, because a texture that reads well head-on falls apart the moment the camera drops to street level and starts looking up.",
+   "The mesh is 157,636 polygons and 159,074 vertices in quads and tris with non-overlapping UVs, and ships with 7 texture maps - 6 at 4096x4096 and one at 2048x2048. That combination gives crisp moulding profiles with weathered stone on top of them.",
+   "At $29 it suits architectural visualisation, classical and heritage building work, museum and civic renders, film and television, and games. On sale since 2016."
   ],
   "keywords": [
-   "waterproof dry bag",
-   "roll top backpack 3d model",
-   "kayaking equipment",
-   "outdoor gear asset",
-   "rafting bag",
-   "adventure sports prop",
-   "waterproof storage",
-   "hiking equipment",
-   "marine dry sack",
-   "travel gear",
-   "watersports accessory",
-   "worn backpack"
+   "greco roman pediment",
+   "classical architecture 3d model",
+   "portico triangle",
+   "architectural moulding",
+   "tympanum sculpture",
+   "neoclassical facade",
+   "heritage building asset",
+   "cornice and dentils",
+   "civic architecture",
+   "temple front",
+   "architectural detail",
+   "stone ornament"
   ]
  },
  {
-  "slug": "greyhound-racing-starting-boxes-8-doors-1941677",
+  "slug": "tactical-leg-pistol-holster-910342",
   "paragraphs": [
-   "Starting boxes are a piece of track furniture with a very specific job: hold eight dogs still, then open every door at exactly the same instant. That requirement shapes the object - a long steel frame, numbered coloured doors, a shared release mechanism along the top and a rear loading gate for each stall. The numbering and the colour order are part of the sport, and they are modelled here rather than left to a texture.",
-   "The mesh is 173,412 polygons and 89,302 vertices in quads and tris with non-overlapping UVs, with the detail concentrated in the frame, the mesh doors and the release gear.",
-   "At $49 it suits sports broadcast graphics, racing venue visualisation, betting and gaming applications, film and television, and animal sport documentary. On sale since 2022."
+   "A drop-leg holster hangs from a belt loop on two straps and rides on the thigh, which is why it looks nothing like a hip holster. The platform sits flat against the leg, the holster body is angled forward for the draw, and the retention hood and the straps with their quick-release buckles are what a viewer actually notices in close-up.",
+   "The model is static, which is right for what it is: a holster does not need a rig, it needs to sit convincingly on a leg. It attaches to a figure without simulation and holds its shape.",
+   "At $29 it suits military and law enforcement visualisation, character set dressing for film, television and games, tactical equipment presentation and training material. On sale since 2015 and kept to real-world scale, so it fits a standard human figure and takes a pistol at the correct depth."
   ],
   "keywords": [
-   "greyhound starting boxes",
-   "dog racing traps",
-   "racing track equipment",
-   "sports venue asset",
-   "starting gate 3d model",
-   "greyhound track",
-   "animal racing",
-   "sports broadcast graphics",
-   "betting visualisation",
-   "race start mechanism",
-   "track furniture",
-   "racing stalls"
+   "drop leg holster",
+   "tactical pistol holster",
+   "military equipment 3d model",
+   "law enforcement gear",
+   "thigh holster",
+   "character set dressing",
+   "combat accessory",
+   "sidearm carrier",
+   "tactical loadout",
+   "police equipment",
+   "holster asset",
+   "operator gear"
+  ]
+ },
+ {
+  "slug": "metal-beer-keg-with-logo-2302711",
+  "paragraphs": [
+   "A keg is a deceptively specific object. The chime rings at top and bottom, the recessed well around the spear fitting, the stamped capacity markings and the rolled body seams are all standard, and getting the proportion between them wrong makes a keg look like a barrel with a valve. This model keeps the chimes and the well, with a logo applied to the body.",
+   "The mesh is light at 6,041 polygons and 6,111 vertices with non-overlapping UVs. That weight is deliberate: kegs appear in stacks, in cellars and behind bars, rarely one at a time, so the model has to be cheap to repeat.",
+   "At $24 and built to CheckMate specification, it suits brewery and beverage visualisation, bar and restaurant interiors, packaging and branding mockups, advertising and games. On sale since 2025."
+  ],
+  "keywords": [
+   "beer keg 3d model",
+   "metal barrel",
+   "brewery equipment",
+   "bar interior prop",
+   "beverage container",
+   "draught beer",
+   "pub set dressing",
+   "keg with logo",
+   "brewing visualisation",
+   "cellar equipment",
+   "branding mockup",
+   "stainless steel keg"
+  ]
+ },
+ {
+  "slug": "usa-flag-on-wall-pole-2214274",
+  "paragraphs": [
+   "A wall-mounted flag hangs differently from one on a mast. The pole comes out at an angle, the fabric falls into a soft diagonal drape rather than streaming, and the folds gather along the hoist edge. Getting that hang right is the whole job, because a flat flag on an angled pole immediately reads as a decal.",
+   "The mesh is 10,628 polygons and 10,631 vertices in quads and tris with non-overlapping UVs, with the geometry spent on the drape and the finial rather than on the pole. Light enough to repeat along a facade or a street.",
+   "At $18 and built to CheckMate specification, it suits architectural exteriors, civic and government building renders, film and television set dressing, urban visualisation and games. On sale since 2024."
+  ],
+  "keywords": [
+   "usa flag on pole",
+   "american flag 3d model",
+   "wall mounted flag",
+   "building exterior prop",
+   "civic architecture asset",
+   "stars and stripes",
+   "flag drape",
+   "urban set dressing",
+   "government building",
+   "patriotic prop",
+   "angled flagpole",
+   "facade detail"
+  ]
+ },
+ {
+  "slug": "crab-cutter-tongs-2347270",
+  "paragraphs": [
+   "Crab tongs are a small tool with an unusual joint: the jaws are shaped to grip and crack a shell rather than to pick something up, and the pivot sits close to the head so the leverage lands where the shell breaks. The serrated inner faces and the sculpted finger grips are what make the tool identifiable, and both are built here as geometry.",
+   "It is modelled in quads and tris with non-overlapping UVs, so a brushed steel finish or a plated look goes on cleanly without fighting a mirrored layout.",
+   "At $12 this is one of the least expensive things in the catalogue, and it is priced as a prop should be: seafood restaurant and menu visualisation, food photography set dressing, kitchenware retail renders, advertising and games. Built to CheckMate specification, on sale since 2025."
+  ],
+  "keywords": [
+   "crab cracker tongs",
+   "seafood tool 3d model",
+   "shellfish cutter",
+   "kitchen utensil",
+   "restaurant tableware",
+   "seafood dining prop",
+   "lobster cracker",
+   "food photography asset",
+   "kitchenware render",
+   "dining accessory",
+   "shell cracker",
+   "culinary tool"
+  ]
+ },
+ {
+  "slug": "minecraft-pickaxe-iron-3d-model-1020467",
+  "paragraphs": [
+   "The iron pickaxe is the workhorse of the set - not the first tool a player makes and not the last, but the one they use for the longest stretch. Modelled as real boxes rather than a sprite, it casts proper shadows and holds its stepped silhouette from any angle, which a flat billboard cannot do.",
+   "It is 4,240 polygons and 4,242 vertices, quads only, with non-overlapping UVs and two 256x256 maps. Keeping the maps small is the point rather than a shortcut: the blocky look depends on pixels staying visibly square, and a large texture would smooth away the very thing that makes it recognisable.",
+   "At $9 it is aimed at fan animation, thumbnails, streaming overlays, game menu props, merchandise mockups and printing. On sale since 2016."
+  ],
+  "keywords": [
+   "minecraft iron pickaxe",
+   "voxel tool 3d model",
+   "blocky game item",
+   "pixel art asset",
+   "sandbox game prop",
+   "mining tool",
+   "low poly item",
+   "game ready model",
+   "minecraft fan asset",
+   "cube world tool",
+   "voxel art",
+   "gaming merchandise"
+  ]
+ },
+ {
+  "slug": "nuclear-powered-icebreaker-yamal-1171989",
+  "paragraphs": [
+   "Yamal is the icebreaker with the shark's teeth painted on the bow, and that paint job is only the most obvious thing about her. The hull is shaped to ride up onto ice and break it with weight rather than cut through it, which gives the bow its distinctive rake and the hull its enormous beam. The model carries the helicopter deck, the mast array, the bollards and the reinforced bow plating.",
+   "It runs 630,166 polygons and 654,508 vertices in quads and tris with non-overlapping UVs, and ships with 26 texture maps - 8 at 8192x8192, 11 at 4096x4096, 4 at 2048x2048 and 3 at 1024x1024. Eight maps at the largest size is what the hull needs: ice scarring, rust and repainted plates run the length of the ship.",
+   "A second build sits on this page at the same $299. Aimed at maritime and Arctic visualisation, documentary and news work, museum material, games and print. On sale since 2017."
+  ],
+  "keywords": [
+   "nuclear icebreaker yamal",
+   "arctic ship 3d model",
+   "russian icebreaker",
+   "polar vessel",
+   "nuclear powered ship",
+   "maritime visualisation",
+   "ice class hull",
+   "arctic expedition asset",
+   "shark teeth bow",
+   "northern sea route",
+   "heavy icebreaker",
+   "naval architecture model"
+  ]
+ },
+ {
+  "slug": "private-jet-cessna-citation-x-with-luxury-interior-2362388",
+  "paragraphs": [
+   "The Citation X was for years the fastest civil aircraft in the sky short of Concorde, and it looks it: a sharply swept wing, engines set well back on the rear fuselage and a long pointed nose. This build includes the cabin, which is where a business jet is actually sold - the club seating, the tables, the sidewall panels and the galley are all modelled rather than implied behind tinted windows.",
+   "The mesh is 179,333 polygons and 191,276 vertices in quads and tris with non-overlapping UVs. Economical for an aircraft with a full interior, which is what lets the same asset serve an exterior ramp shot and a cabin render.",
+   "Three rigged builds share this page at the same $299, including versions prepared for Maya and for Cinema 4D. Aimed at business aviation marketing, charter and brokerage presentation, luxury travel advertising, film and television and games."
+  ],
+  "keywords": [
+   "cessna citation x",
+   "private jet 3d model",
+   "business aviation asset",
+   "luxury aircraft interior",
+   "corporate jet",
+   "charter aviation marketing",
+   "executive aircraft",
+   "cabin interior model",
+   "swept wing jet",
+   "vip travel visualisation",
+   "bizjet",
+   "aviation advertising"
+  ]
+ },
+ {
+  "slug": "oil-production-equipment-collection-1183993",
+  "paragraphs": [
+   "An oil field is not one machine, it is a yard full of them: pump jacks, separators, storage tanks, wellheads, flare stacks and the pipework tying them together. Any single item renders as an isolated curiosity; the collection is what lets you build a facility that looks like it produces something.",
+   "Buying the equipment as a set rather than piece by piece also keeps the scale and the surface treatment consistent across the yard, which is the detail that usually gives away a scene assembled from separate sources.",
+   "Four more collections sit on this page, priced from $259 to $419, for projects that need a wider inventory. This set at $249 is aimed at oil and gas visualisation, energy sector marketing, engineering and safety training material, infrastructure presentation and games. On sale since 2017."
+  ],
+  "keywords": [
+   "oil production equipment",
+   "oilfield 3d models collection",
+   "pump jack and separator",
+   "petroleum infrastructure",
+   "energy sector visualisation",
+   "wellhead equipment",
+   "storage tanks",
+   "oil and gas asset",
+   "refinery machinery",
+   "industrial collection",
+   "upstream equipment",
+   "field facility"
+  ]
+ },
+ {
+  "slug": "ninja-rigged-for-maya-1499438",
+  "paragraphs": [
+   "A ninja character lives or dies on the rig. The pose vocabulary is crouches, rolls, wall runs and blade draws, all of which put extreme demands on the shoulders, hips and spine - exactly the places a weak rig breaks down. This build arrives rigged and prepared for Maya, so the deformation has already been solved in the application it will be animated in.",
+   "That preparation is the whole value here. A character delivered as a static mesh means rigging time before any animation can start, and rigging a figure in loose layered clothing is not a quick job.",
+   "A build prepared for Cinema 4D sits on this page at the same $199. Both are built to CheckMate specification and aimed at games, film and television, cinematic previsualisation, martial arts and action content, and interactive media. On sale since 2020."
+  ],
+  "keywords": [
+   "ninja character 3d model",
+   "rigged character for maya",
+   "martial arts figure",
+   "game character asset",
+   "action character rig",
+   "stealth warrior",
+   "animated character",
+   "cinematic previs asset",
+   "japanese warrior",
+   "combat character",
+   "character animation ready",
+   "rigged humanoid"
+  ]
+ },
+ {
+  "slug": "female-ballistic-gel-torso-transparent-2446480",
+  "paragraphs": [
+   "Ballistic gel torsos are used to show what happens inside a body without opening one, and the transparency is the entire point: the ribcage, scapula, spine and trachea sit visible inside a clear form, so a path through the torso can be traced rather than described. This build models that arrangement with a female skeletal structure.",
+   "The mesh is deliberately spare at 3,384 polygons and 3,417 vertices in quads and tris with non-overlapping UVs. A gel block has no surface detail to carry, and the interior structures read through refraction rather than through geometry density, so weight would be wasted here.",
+   "At $189 and built to CheckMate specification, it suits forensic and ballistic visualisation, medical and trauma training material, law enforcement and defence presentation, research communication and documentary work. On sale since 2025."
+  ],
+  "keywords": [
+   "ballistic gel torso",
+   "transparent anatomy model",
+   "forensic visualisation",
+   "female skeletal structure",
+   "trauma training asset",
+   "ballistics testing",
+   "medical education model",
+   "ribcage and spine",
+   "wound ballistics",
+   "law enforcement training",
+   "anatomical dummy",
+   "research illustration"
+  ]
+ },
+ {
+  "slug": "construction-worker-with-earth-auger-drill-3d-model-1311261",
+  "paragraphs": [
+   "A worker holding a two-handed earth auger is a specific posture: feet apart, knees slightly bent, both hands on the handles and the weight of the machine taken through the arms. That stance is what makes the figure read as working rather than as a mannequin holding a prop, and it is why the character and the tool were built together.",
+   "The mesh runs 109,352 polygons and 110,458 vertices in quads and tris with non-overlapping UVs, ships with 22 texture maps - 15 at 4096x4096, 6 at 2048x2048 and one at 512x512, and arrives rigged. The rig matters here: the same figure can be posed drilling, resting or carrying without being rebuilt.",
+   "At $159 it suits construction and infrastructure visualisation, landscaping and utilities presentation, safety and training material, architectural renders that need people at work, and games. On sale since 2018."
+  ],
+  "keywords": [
+   "construction worker 3d model",
+   "earth auger drill",
+   "rigged worker character",
+   "post hole digger",
+   "site labourer figure",
+   "construction visualisation",
+   "landscaping equipment",
+   "workwear character",
+   "safety training asset",
+   "utilities worker",
+   "human figure with tool",
+   "industrial character"
   ]
  }
 ]
