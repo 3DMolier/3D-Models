@@ -445,6 +445,17 @@ const MANUAL_GROUPS = [
   { main: '2015826', rest: ['899043'] },    // Caesars Superdome = Mercedes-Benz Superdome (переименование)
   { main: '1439041', rest: ['1435958', '1439217'] }, // Disneyland Cinderella Castle / Cinderella Castle / Magic Castle
   { main: '2026371', rest: ['2025434', '2344240', '2346155'] }, // HMS Queen Elizabeth + варианты с вооружением
+  // Присланы основателем 24.08.2026. Названия разведены полностью, общих слов
+  // почти нет - ни один проход по имени такое не соберёт. Часть ловится по
+  // геометрии (проход geo), но у «Simplified» меш облегчён, а у тросов в
+  // карточках вовсе нет Polygons - эти указываем руками.
+  { main: '1283452', rest: ['1283453', '2553243', '2554921'] }, // трос буксировочный: с крюками и без
+  { main: '2471077', rest: ['2471619', '2471626', '2471978'] }, // Cadillac Gage V-100: green / tan / woodland / simplified
+  { main: '2472126', rest: ['2472131'] },                       // WWII артиллерия: green / desert
+  { main: '2499896', rest: ['2499928', '2499929'] },            // Thales Hawkei: базовый / camo / simplified
+  { main: '2491809', rest: ['2491817'] },                       // ракетная установка: desert / forest camo
+  { main: '2474120', rest: ['2474133'] },                       // Kawasaki Corleo: white copper / light blue
+  { main: '2509317', rest: ['2509339'] },                       // offroad coupe: black / red
 ];
 function buildManualGroups() {
   const byId = new Map(rows.map(r => [r.id, r]));
@@ -594,6 +605,36 @@ function buildIdentityGroups() {
     // Несколько поколений в одном ряду: «Porsche 911 1970» и «Porsche 911 2020» —
     // разные машины. Сливаем только внутри своего года, безгодовые не трогаем.
     for (const y of yearSets) emit(items.filter(x => x.years === y));
+  }
+  return out;
+}
+
+// ── проход «одна геометрия» ─────────────────────────────────────────────────
+//
+// Последний по очереди: он смотрит не на название, а на число полигонов и
+// вершин, и подбирает то, что не разобрали проходы по имени. Группы приходят
+// готовыми из data/geo-groups.json - как они отобраны и почему крупные семьи
+// (19 крейсеров Ticonderoga, 16 фирменных прицепов) туда не попадают, написано
+// в scripts/scan-geometry-groups.mjs.
+function buildGeoGroups() {
+  const F = path.join(ROOT, 'data', 'geo-groups.json');
+  if (!fs.existsSync(F)) return [];
+  const out = [];
+  // Главная - самая «голая» версия, тот же порядок, что и в проходе по технике:
+  // без софта, без упрощения, без Low Poly, без оснастки. Продажи решают внутри
+  // равных.
+  const rank = x => (SOFT.test(x.name) ? 16 : 0)
+    + (hasSimpl(x.name) || /simplified/i.test(x.name) ? 8 : 0)
+    + (/low\s*poly/i.test(x.name) ? 4 : 0)
+    + (hasRig(x.name) ? 2 : 0);
+  for (const slugs of JSON.parse(fs.readFileSync(F, 'utf8'))) {
+    const items = slugs.map(s => bySlug.get(s)).filter(Boolean);
+    if (items.length < 2) continue;
+    const order = items.slice().sort((a, b) => (rank(a) - rank(b)) || (b.sales - a.sales));
+    const main = order.find(x => isRealCard(x.slug)) || order[0];
+    const rest = order.filter(x => x.slug !== main.slug);
+    if (!rest.length) continue;
+    out.push({ base: commonTitle(main, rest), main, rest, kind: 'geo' });
   }
   return out;
 }
@@ -902,6 +943,9 @@ if (!ONLY || ONLY === 'color') groups.push(...buildGroups('color'));
 // корнем и перехватывал участников (см. комментарий у buildRootGroups).
 if (!ONLY || ONLY === 'root0') groups.push(...buildRootGroups(true));
 if (!ONLY || ONLY === 'collection') groups.push(...buildGroups('collection'));
+// Геометрия - в самом конце: признак сильный, но грубее имени, и приоритет
+// должен остаться за проходами, которые видят смысл названия.
+if (!ONLY || ONLY === 'geo') groups.push(...buildGeoGroups());
 
 // Один слаг не должен попасть в две группы: иначе он удаляется как вариант в первой,
 // а во второй оказывается главным — и группа рушится на чтении несуществующего файла.
@@ -928,7 +972,8 @@ console.log('групп: ' + groups.length
   + ', техника ' + groups.filter(g => g.kind === 'identity').length
   + ', по Root ID ' + groups.filter(g => g.kind === 'root').length
   + ', нулевой корень ' + groups.filter(g => g.kind === 'root0').length
-  + ', корень+категория ' + groups.filter(g => g.kind === 'rootcat').length + ')');
+  + ', корень+категория ' + groups.filter(g => g.kind === 'rootcat').length
+  + ', по геометрии ' + groups.filter(g => g.kind === 'geo').length + ')');
 console.log('страниц свернётся: ' + groups.reduce((s, g) => s + g.rest.length, 0));
 
 // Список групп прохода для глазной проверки:  --dry --list identity 20
@@ -1069,8 +1114,12 @@ flush();
 // Поэтому состав берём не из группы, а из КАРТЫ: она знает всех свёрнутых и их
 // главную, в том числе сведённых разными проходами. Трогаем только карточки БЕЗ
 // блока: где список собран текущим прогоном, он полнее, и перебивать его нечем.
+// Пасс общий по всей карте, а не по текущим группам, и трогает около 11 тысяч
+// карточек. При точечном прогоне (--only) это посторонняя правка: она попадёт в
+// тот же коммит, что и разбираемый проход, и разобрать потом, что откуда, будет
+// нечем. Общий прогон её по-прежнему выполняет.
 let showcased = 0, showSkipped = 0; const showReasons = {};
-{
+if (!ONLY) {
   const byMain = new Map();
   for (const [v, mainSlug] of Object.entries(map)) {
     if (v === mainSlug) continue;
