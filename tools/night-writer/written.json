@@ -1,310 +1,310 @@
 [
  {
-  "slug": "human-sperm-cell-2070410",
+  "slug": "helicopter-agustawestland-aw169-1211569",
   "paragraphs": [
-   "A spermatozoon is three parts doing three jobs: a head carrying the genetic payload, a midpiece packed with mitochondria to power the journey, and a tail that does the swimming. The model separates them clearly, with the acrosome cap distinct from the nucleus, because in teaching material the whole point is being able to name what you are looking at.",
-   "It runs 117,820 polygons and 59,912 vertices in quads and tris with non-overlapping UVs. The tail carries most of that budget, which is where it belongs - a flagellum that bends smoothly is what makes the cell read as alive rather than as a diagram.",
-   "Three rigged builds sit on this page at $29: a general one and versions prepared for Maya and for Cinema 4D, for when the tail has to move. The static model at $24 covers textbook and courseware illustration, fertility clinic material, science communication and medical animation stills."
+   "The AW169 is the helicopter you see on hospital pads and offshore platforms: twin engine, retractable gear, a cabin door wide enough for a stretcher, and a fenestron-free tail rotor on a slim boom. The model keeps the sponsons that house the main gear, the sliding door track and the chin window, which are the details that stop it reading as a generic light twin.",
+   "The mesh is 153,605 polygons and 176,778 vertices in quads and tris with non-overlapping UVs, and ships with 7 texture maps - 6 at 4096x4096 and one at 2048x2048. That is enough for an air ambulance or corporate livery to sit cleanly along the fuselage without stretching across the door frames.",
+   "A rigged build is on this page at $199 for when the rotors turn and the gear retracts. The static model at $149 covers medical services and offshore visualisation, corporate aviation marketing, film and television, and games. On sale since 2018."
   ],
   "keywords": [
-   "human sperm cell",
-   "spermatozoon 3d model",
-   "male reproductive cell",
-   "fertility illustration",
-   "medical animation asset",
-   "cell biology",
-   "flagellum",
-   "reproductive system",
-   "science education",
-   "microbiology model",
-   "acrosome",
-   "gamete"
-  ]
- },
- {
-  "slug": "complete-full-body-kid-girl-anatomy-fur-1948001",
-  "paragraphs": [
-   "A complete paediatric anatomy build, which is a genuinely different thing from a scaled-down adult. Children are not small grown-ups: head-to-body proportion, bone development and organ placement all differ, and material meant for paediatric teaching or parent-facing explanation falls apart the moment the figure looks like a shrunken adult. This model is built as a child throughout, with hair grooming included.",
-   "It is a large asset at 1,246,745 polygons and 1,253,328 vertices in quads and tris with non-overlapping UVs. That density is what a full-body anatomical build needs - skeleton, muscular, organ and vascular structures all have to hold up when a camera goes in on one region.",
-   "At $649 it is priced as the reference asset it is, and it earns that in medical and paediatric education, hospital and clinic communication, courseware, research presentation and broadcast medical illustration. On sale since 2022."
-  ],
-  "keywords": [
-   "child anatomy 3d model",
-   "paediatric anatomy",
-   "full body anatomy",
-   "human anatomical model",
-   "medical education asset",
-   "girl anatomy",
-   "skeletal and muscular system",
-   "organ systems",
-   "clinical illustration",
-   "anatomy reference",
-   "medical visualisation",
-   "child body model"
-  ]
- },
- {
-  "slug": "lockheed-c-130-hercules-us-military-transport-aircraft-1121545",
-  "paragraphs": [
-   "The Hercules has been landing on gravel strips since before most of its crews were born, and the shape explains why: a high wing that keeps the propellers clear of debris, a fuselage that sits low enough to load from a truck bed, and a rear ramp that turns the aircraft into a doorway. The model keeps the ramp, the paratroop doors, the landing gear blisters and the antenna farm that make a C-130 a C-130.",
-   "It runs 314,505 polygons and 336,612 vertices in quads and tris with non-overlapping UVs, and ships with 22 texture maps - 3 at 8192x8192, 12 at 4096x4096 and 7 at 2048x2048. That is a serious texture budget, and it is where the exhaust staining, the walkway markings and the squadron insignia come from.",
-   "A rigged build sits on this page at the same $229 for when the propellers turn or the ramp opens. The static model suits film and television, defence visualisation, documentary work, games and print. On sale since 2017."
-  ],
-  "keywords": [
-   "c-130 hercules",
-   "military transport aircraft",
-   "lockheed cargo plane",
-   "turboprop airlifter",
-   "usaf transport",
-   "tactical airlift",
-   "rear ramp aircraft",
-   "defence aviation",
-   "cargo aircraft 3d model",
-   "paratroop aircraft",
-   "military airplane",
-   "air force asset"
-  ]
- },
- {
-  "slug": "boeing-737-cockpit-1188630",
-  "paragraphs": [
-   "A cockpit is the hardest part of an airliner to fake. Every surface is covered in labelled switches, every panel has its own angle, and anyone who has flown a simulator will spot a wrong overhead panel instantly. This build models the glareshield, the main instrument panel, the throttle quadrant, the pedestal and the overhead as separate assemblies, with the seats, the yokes and the side windows in place.",
-   "It is dense by necessity: 1,305,115 polygons and 1,349,466 vertices in quads and tris with non-overlapping UVs, plus 21 texture maps at 4096x4096. That resolution is what makes the switch legends and the placards readable, and readable placards are exactly what a cockpit shot is judged on.",
-   "At $199 it is built for aviation visualisation, simulator and training material, film and television, documentary work and games. On sale since 2017 and kept to real-world scale, so a pilot figure sits correctly in the seat."
-  ],
-  "keywords": [
-   "boeing 737 cockpit",
-   "airliner flight deck",
-   "aircraft cockpit 3d model",
-   "aviation interior",
-   "flight simulator asset",
-   "pilot controls",
-   "instrument panel",
-   "commercial aviation",
-   "throttle quadrant",
-   "cockpit visualisation",
-   "airplane interior",
-   "training material asset"
-  ]
- },
- {
-  "slug": "fujian-cv-18-chinese-aircraft-carrier-2368739",
-  "paragraphs": [
-   "Fujian is the first Chinese carrier built with catapults rather than a ski jump, and that single change rewrites the flight deck: a flat run, three launch tracks, a rearranged island and a deck layout that looks far more American than anything China had launched before. The model carries the deck markings, the catapult tracks, the elevators, the island detail and the sponsons.",
-   "It runs 644,485 polygons and 766,503 vertices in quads and tris. The UVs overlap, which is the right economy on a ship built largely from repeated deck plating and identical fittings, and the StemCell build means it drops into a real-time engine.",
-   "This page also carries four other builds, including the carrier paired with a Chengdu J-20 at $229, with a MiG-29 at $269 and with a Harbin Z-9 at $249. The carrier alone at $199 suits naval and defence visualisation, news graphics, documentary work and games."
-  ],
-  "keywords": [
-   "fujian aircraft carrier",
-   "chinese navy",
-   "cv-18",
-   "supercarrier 3d model",
-   "type 003 carrier",
-   "naval warship",
-   "catapult carrier",
-   "flight deck",
-   "military ship",
-   "defence visualisation",
-   "pla navy",
-   "aircraft carrier model"
-  ]
- },
- {
-  "slug": "ice-hockey-arena-2094585",
-  "paragraphs": [
-   "An arena is not just a rink with seats around it. The bowl geometry, the tiered seating rake, the boards and glass, the scoreboard hung over centre ice, the player benches and the penalty boxes all have to be right, because hockey fans know exactly what the view from their section looks like. This model builds the full venue rather than a stage set that only works from one camera.",
-   "It is a heavy asset at 4,244,992 polygons and 4,926,086 vertices in quads and tris with non-overlapping UVs, which is what an interior of this size demands if the far seating is to hold up rather than dissolve. Built to StemCell specification, so it works in a real-time engine as well as an offline render.",
-   "At $199 it is aimed at sports broadcast graphics, architectural and venue visualisation, event presentation, games and film work. On sale since 2023."
-  ],
-  "keywords": [
-   "ice hockey arena",
-   "sports stadium 3d model",
-   "hockey rink",
-   "indoor arena",
-   "venue visualisation",
-   "sports broadcast asset",
-   "seating bowl",
-   "scoreboard",
-   "event venue",
-   "stadium interior",
-   "hockey stadium",
-   "arena architecture"
-  ]
- },
- {
-  "slug": "sikorsky-uh-60-black-hawk-us-military-utility-helicopter-1085902",
-  "paragraphs": [
-   "The Black Hawk is a workhorse rather than a showpiece, and it looks it: a squat fuselage, wide sliding doors, a tail rotor canted over to add lift, and stub wings that carry whatever the mission needs. The model keeps the door tracks, the refuelling probe fitting, the exhaust suppressors and the antenna array that separate it from a generic utility helicopter.",
-   "It runs 332,047 polygons and 352,778 vertices in quads and tris with non-overlapping UVs, and ships with 27 texture maps - 19 at 4096x4096 and 8 at 2048x2048. That budget carries the matt olive finish, the panel wear around the doors and the stencilled unit markings.",
-   "A rigged build sits on this page at $289 for when the rotors turn and the gear moves. The static model at $179 covers film and television, defence and emergency services visualisation, documentary work, games and print. On sale since 2017."
-  ],
-  "keywords": [
-   "uh-60 black hawk",
-   "sikorsky helicopter",
-   "military utility helicopter",
-   "army aviation",
-   "troop transport helicopter",
-   "rotorcraft 3d model",
-   "medevac helicopter",
-   "defence asset",
-   "combat helicopter",
-   "us army helicopter",
+   "agustawestland aw169",
    "twin engine helicopter",
-   "military rotorcraft"
+   "air ambulance 3d model",
+   "light utility rotorcraft",
+   "hems helicopter",
+   "offshore transport",
+   "corporate helicopter",
+   "leonardo helicopter",
+   "medical helicopter",
+   "civil aviation asset",
+   "retractable gear rotorcraft",
+   "emergency services aircraft"
   ]
  },
  {
-  "slug": "bell-206b5-jetranger-helicopter-2498918",
+  "slug": "tesla-model-s-100d-2017-3d-model-1144931",
   "paragraphs": [
-   "The JetRanger is the helicopter most people have actually seen: news crews, sightseeing flights, police patrols and flight schools have flown it for decades. Its shape is unmistakable - the teardrop cabin, the low skids, the slim tail boom and the single main rotor sitting well forward. The model keeps the door frames, the skid cross-tubes, the exhaust stack and the mast fairing.",
-   "It runs 532,336 polygons and 585,583 vertices in quads and tris with mixed UV layout. That is a generous mesh for an aircraft this small, and it goes into the places a light helicopter is looked at closely: the rotor head, the cabin glazing frames and the skid attachments.",
-   "Three rigged builds share this page at the same $149, including versions prepared for Maya and for Cinema 4D, so the rotors and skids arrive working in the application you already use. Built to CheckMate specification, on sale since 2026."
+   "The 2017 Model S is the one with the smooth nose. Tesla dropped the black nose cone that mimicked a grille and replaced it with a body-coloured panel, which changed the whole face of the car and dated every render made before it. This build is that facelift version, with the flush door handles, the panoramic glass roof and the wide rear haunch.",
+   "The mesh runs 164,495 polygons and 188,846 vertices in quads and tris with non-overlapping UVs, and ships with 7 texture maps - 6 at 4096x4096 and one at 2048x2048. Efficient for a full car, which is what lets several of them fill a street scene.",
+   "This page carries the earlier 2015 front as well at $149, and rigged builds of both at $169. Take a rigged one when the wheels turn or the doors open; take the static model for stills, showroom renders and background traffic. On sale since 2017."
   ],
   "keywords": [
-   "bell 206 jetranger",
-   "light utility helicopter",
-   "civil helicopter 3d model",
-   "news helicopter",
-   "sightseeing aircraft",
-   "single engine rotorcraft",
-   "police helicopter",
-   "flight training aircraft",
-   "turbine helicopter",
-   "aviation asset",
-   "skid helicopter",
-   "commercial rotorcraft"
+   "tesla model s",
+   "electric sedan 3d model",
+   "luxury ev",
+   "model s 100d",
+   "electric car asset",
+   "automotive visualisation",
+   "tesla facelift",
+   "premium electric vehicle",
+   "car configurator model",
+   "ev showroom render",
+   "electric saloon",
+   "modern sedan"
   ]
  },
  {
-  "slug": "us-amphibious-combat-vehicle-acv-2274480",
+  "slug": "wind-turbine-nacelle-cutaway-gray-2516736",
   "paragraphs": [
-   "An amphibious combat vehicle has to be two things badly compromised into one: a boat that can climb a beach and an armoured carrier that can drive inland. The result is a hull with a bow plane, water jets at the stern, eight large wheels and a freeboard tall enough to keep the sea out. The model carries the bow plane, the propulsion housings, the wheel arches and the remote weapon station.",
-   "It runs 434,120 polygons and 459,684 vertices in quads and tris with non-overlapping UVs, built to StemCell specification for real-time use as well as offline rendering.",
-   "Three rigged builds sit on this page at $169, including versions prepared for Maya and for Cinema 4D, for when the wheels turn or the ramp drops. The static model at $149 covers defence visualisation, naval and marine corps presentation, documentary work, training material and games."
+   "The nacelle is where a wind turbine stops being a sculpture and starts being a machine, and almost nobody ever sees inside one. A cutaway solves that: the main shaft, the gearbox, the generator, the yaw drive and the cooling equipment laid out in the order they actually sit, with the housing opened rather than removed so the scale of the enclosure is still readable.",
+   "It runs 462,736 polygons and 493,150 vertices in quads and tris. The UVs overlap, which is the right economy on machinery built from repeated castings and fasteners, and it keeps the asset manageable for something this dense.",
+   "At $149 and built to CheckMate specification, it is aimed at renewable energy presentation, engineering and technical marketing, education and training material, investor and trade show visualisation, and documentary work. On sale since 2026."
   ],
   "keywords": [
-   "amphibious combat vehicle",
-   "acv 3d model",
-   "marine corps vehicle",
-   "armoured personnel carrier",
-   "amphibious assault",
-   "eight wheeled vehicle",
-   "military landing craft",
+   "wind turbine nacelle",
+   "turbine cutaway 3d model",
+   "renewable energy visualisation",
+   "gearbox and generator",
+   "wind power engineering",
+   "technical cutaway",
+   "green energy asset",
+   "yaw drive",
+   "turbine internals",
+   "engineering illustration",
+   "wind farm equipment",
+   "power generation machinery"
+  ]
+ },
+ {
+  "slug": "cross-section-of-steam-turbine-1400502",
+  "paragraphs": [
+   "A steam turbine is rows of blades getting progressively longer as the steam expands, and that progression is invisible from outside the casing. The cross section is the whole argument of the model: split the casing, show the rotor with its blade stages, the diaphragms, the bearings and the steam path, and a machine that looks like a metal drum becomes something you can explain.",
+   "It runs 217,618 polygons and 238,154 vertices in quads and tris with non-overlapping UVs, and ships with 7 texture maps at 8192x8192. That texture resolution is unusual and deliberate: on a cutaway the cut faces, the machined surfaces and the labelling carry the explanation, so they have to hold at magnification.",
+   "At $139 it suits power engineering presentation, technical education and training, industrial marketing, trade show and investor material, and documentary work. On sale since 2019."
+  ],
+  "keywords": [
+   "steam turbine cross section",
+   "turbine cutaway 3d model",
+   "power plant machinery",
+   "rotor and blade stages",
+   "thermal power engineering",
+   "industrial equipment",
+   "technical illustration",
+   "energy generation",
+   "turbine internals",
+   "engineering education",
+   "mechanical cutaway",
+   "power station asset"
+  ]
+ },
+ {
+  "slug": "airbus-a350-900-emirates-air-line-1144417",
+  "paragraphs": [
+   "The A350 is recognisable from the front before you can read the titles: the curved black mask around the flight deck windows and the upswept wingtips are unlike anything else in the sky. In Emirates colours it carries the red tail and the gold Arabic script along the fuselage, both of which have to follow the body curvature correctly to look painted rather than pasted.",
+   "The mesh is 320,971 polygons and 332,297 vertices in quads and tris with non-overlapping UVs, and ships with 20 texture maps at 4096x4096. That budget covers the door outlines, the service stencils and the composite panel joints that a widebody shows along its flank.",
+   "A rigged build sits on this page at $149 for when the gear and control surfaces move. The static model at $129 covers airline marketing, airport and terminal visualisation, film and television, news graphics and print. On sale since 2017."
+  ],
+  "keywords": [
+   "airbus a350-900",
+   "emirates livery",
+   "widebody airliner 3d model",
+   "long haul aircraft",
+   "commercial jet",
+   "passenger airplane",
+   "airline visualisation",
+   "composite airliner",
+   "airport asset",
+   "twin aisle aircraft",
+   "aviation marketing",
+   "civil aviation model"
+  ]
+ },
+ {
+  "slug": "iphone-11-with-full-internal-structure-1647078",
+  "paragraphs": [
+   "This is the assembled phone with everything inside it modelled: the logic board, the battery, the camera module, the taptic engine and the shields sitting in their real positions behind a closed chassis. That combination is what a cutaway needs - the device has to look like a finished product until the moment the housing goes transparent and the interior is revealed.",
+   "It runs 262,865 polygons and 280,925 vertices in quads and tris with non-overlapping UVs, and ships with 56 texture maps at 4096x4096. That count exists because every internal board and shield carries its own printed detail, and printed detail is exactly what makes an internal shot convincing rather than decorative.",
+   "At $99 it is aimed at product and technology advertising, engineering and design presentation, technology journalism, teaching material and repair documentation. On sale since 2021."
+  ],
+  "keywords": [
+   "iphone 11 internal structure",
+   "smartphone cutaway 3d model",
+   "phone internals",
+   "device cross section",
+   "logic board and battery",
+   "product visualisation",
+   "technology advertising",
+   "consumer electronics asset",
+   "mobile phone anatomy",
+   "engineering presentation",
+   "ghosted product render",
+   "phone components"
+  ]
+ },
+ {
+  "slug": "kiwi-bird-2104638",
+  "paragraphs": [
+   "A kiwi carries almost all of its character in two places: the long probing bill with nostrils right at the tip, and the low crouched stance that comes from having no useful wings and legs set far back. This build keeps the shaggy hair-like plumage that covers the body and the heavy three-toed feet that do the digging.",
+   "The mesh is 149,887 polygons and 294,577 vertices in quads and tris with non-overlapping UVs. The vertex count running well above the polygon count is what a soft rounded animal needs - it keeps the back and crown smooth where a coarser cage would show facets in silhouette.",
+   "Three rigged builds share this page: a general one at $139 and versions prepared for Cinema 4D and for Maya at $99 each. Take a rigged one for animation; the static model at $99 covers wildlife documentary, conservation material, education, tourism and games. Built to StemCell specification, on sale since 2023."
+  ],
+  "keywords": [
+   "kiwi bird 3d model",
+   "flightless bird",
+   "new zealand wildlife",
+   "apteryx",
+   "nocturnal bird",
+   "conservation asset",
+   "nature documentary",
+   "native species",
+   "wildlife visualisation",
+   "ratite bird",
+   "endemic animal",
+   "bird model"
+  ]
+ },
+ {
+  "slug": "octopus-1090443",
+  "paragraphs": [
+   "An octopus is the hardest kind of animal to model because it has no fixed shape. The mantle changes volume, the arms taper over their whole length and curl in every direction, and the suckers have to run in a double row that thins toward the tip. This build handles all three, which is what lets it read as a soft-bodied animal rather than a rubber toy.",
+   "The mesh is 60,158 polygons and 60,136 vertices in quads and tris with non-overlapping UVs, and ships with 6 texture maps at 4096x4096. The texture work is doing heavy lifting here: skin mottling, the sheen of a wet surface and the darker sucker rims are what sell the creature at close range.",
+   "At $99 and built to StemCell specification, it suits marine documentary and education, aquarium and museum material, seafood and restaurant advertising, film and television, and games. On sale since 2017."
+  ],
+  "keywords": [
+   "octopus 3d model",
+   "cephalopod",
+   "marine animal asset",
+   "sea creature",
+   "underwater wildlife",
+   "tentacles and suckers",
+   "aquarium visualisation",
+   "ocean documentary",
+   "soft bodied animal",
+   "seafood advertising",
+   "invertebrate model",
+   "deep sea creature"
+  ]
+ },
+ {
+  "slug": "tactical-swat-team-member-uniform-2246763",
+  "paragraphs": [
+   "A tactical uniform is a system rather than a garment: base layers, a plate carrier over them, pouches on the carrier, a belt rig, knee protection and the straps that hold it all together. The layering is what makes it read correctly, because the bulk sits in specific places and a smooth suit with pockets painted on fools nobody.",
+   "The mesh is economical at 32,574 polygons and 33,487 vertices in quads and tris with non-overlapping UVs. That weight is deliberate: uniforms are usually needed several at a time, and a team of six should not cost more than the scene they are standing in.",
+   "At $79 and built to CheckMate specification, it is aimed at law enforcement and defence visualisation, film and television costume reference, games, training material and equipment presentation. Real-world scale is kept, so it fits a standard human figure without rescaling."
+  ],
+  "keywords": [
+   "swat uniform 3d model",
+   "tactical gear",
+   "police plate carrier",
+   "law enforcement equipment",
+   "special forces clothing",
+   "body armour vest",
+   "tactical clothing asset",
+   "military uniform",
+   "combat gear",
+   "protective equipment",
+   "swat team member",
+   "operator loadout"
+  ]
+ },
+ {
+  "slug": "full-body-airport-security-scanners-collection-1707414",
+  "paragraphs": [
+   "Security screening is the part of an airport everyone recognises and almost nobody models properly. A checkpoint needs more than one machine type - the walk-through arch, the millimetre wave booth with its curved panels, the operator screen - and they have to sit in a sensible order for the flow to make sense. This is a collection rather than a single scanner, which is what a believable checkpoint actually requires.",
+   "Having several units in one purchase means a terminal can be dressed with a full lane rather than the same machine repeated, and a queue can be staged around equipment that behaves like real hardware.",
+   "A second collection sits on this page at $99 for a wider selection. This set at $69 is built to CheckMate specification and aimed at airport and terminal visualisation, security industry presentation, film and television, training material and games. On sale since 2021."
+  ],
+  "keywords": [
+   "airport security scanner",
+   "body scanner 3d models",
+   "security checkpoint asset",
+   "millimetre wave scanner",
+   "walk through detector",
+   "terminal visualisation",
+   "airport equipment collection",
+   "screening machine",
+   "aviation security",
+   "border control asset",
+   "passenger screening",
+   "security hardware"
+  ]
+ },
+ {
+  "slug": "bust-roman-emperor-caesar-augustus-2086220",
+  "paragraphs": [
+   "The Augustus portrait type is one of the most reproduced faces in history, and it is a piece of political design as much as a likeness: the calm expression, the distinctive comma-shaped fringe over the forehead, and a face that never ages across decades of statues. This bust keeps that hairline and the set of the jaw, which are what make the emperor recognisable rather than merely Roman.",
+   "The mesh is 19,038 polygons and 10,134 vertices in quads and tris. The UVs overlap, which is the sensible economy on a symmetrical marble subject where a mirrored layout costs nothing visible, and the StemCell build means it works in a real-time engine.",
+   "At $59 it suits museum and exhibition work, classical education material, interior and set dressing, historical documentary, games and print. On sale since 2023."
+  ],
+  "keywords": [
+   "caesar augustus bust",
+   "roman emperor sculpture",
+   "classical statue 3d model",
+   "ancient rome asset",
+   "marble bust",
+   "museum exhibit model",
+   "historical portrait",
+   "antiquity sculpture",
+   "roman art",
+   "classical education",
+   "decorative bust",
+   "imperial portrait"
+  ]
+ },
+ {
+  "slug": "missile-from-nasams-air-defense-system-1956099",
+  "paragraphs": [
+   "The missile used by NASAMS is an air-to-air weapon adapted to launch from the ground, which is the whole reason the system exists and the reason the missile looks the way it does: slender body, cruciform forward fins, larger tail fins and a seeker dome at the nose. This model keeps the fin geometry and the umbilical and lug detail along the body.",
+   "It is deliberately light at 12,106 polygons and 6,601 vertices in quads and tris with non-overlapping UVs, and built to StemCell specification. That weight matters, because a missile is almost never needed alone - a launcher holds several, and a scene may need a salvo in flight.",
+   "At $59 it is aimed at defence visualisation, news and documentary graphics, military training material, games and print. Real-world scale is kept, so it seats correctly in a launcher canister. On sale since 2023."
+  ],
+  "keywords": [
+   "nasams missile",
+   "surface to air missile",
+   "air defence 3d model",
+   "amraam missile",
+   "military weapon asset",
+   "ground based air defence",
+   "guided missile",
    "defence visualisation",
-   "beach landing vehicle",
-   "armoured transport",
-   "naval infantry",
-   "combat vehicle model"
+   "missile system",
+   "air defense battery",
+   "military ordnance",
+   "interceptor missile"
   ]
  },
  {
-  "slug": "boat-control-panels-3d-models-collection-1340253",
+  "slug": "floating-waterproof-dry-bag-worn-on-back-blue-2513610",
   "paragraphs": [
-   "Helm panels are what make a boat interior believable. Throttle levers, ignition keys, trim switches, engine gauges, breaker rows and the bezels they all sit in are the details a viewer reads without noticing, and modelling them one at a time is slow work that never quite fits the schedule. This collection is that work already done, as a set of separate panels rather than a single fixed dashboard.",
-   "Because they arrive as individual pieces, they can be arranged to suit the boat rather than the other way round: a small console needs two of them, a flybridge needs six, and a sport cruiser wants a different mix again.",
-   "At $129 for the set this is a working library rather than a single prop, aimed at marine and yacht visualisation, boat manufacturer presentation, simulator interiors, film and television and games. On sale since 2019."
+   "A dry bag is defined by how it closes: the top is rolled down several turns and clipped, which leaves a stiff folded lip and gives the bag its distinctive tapered shape. Modelled worn on a back, it also has to show where the straps compress it and where it sits against the body, because a dry bag hanging perfectly cylindrical looks like a barrel.",
+   "The mesh is 28,236 polygons and 28,085 vertices in quads and tris with mixed UV layout. That is a sensible budget for a coated fabric object whose interest lies in the roll-top fold, the seam welds and the strap hardware.",
+   "At $49 and built to CheckMate specification, it suits outdoor and adventure sports visualisation, kayaking and rafting material, travel and equipment advertising, character set dressing and games. On sale since 2026."
   ],
   "keywords": [
-   "boat control panels",
-   "marine helm station",
-   "yacht dashboard 3d models",
-   "boat instrument panel",
-   "throttle controls",
-   "marine electronics",
-   "cockpit console collection",
-   "boat interior asset",
-   "helm gauges",
-   "vessel controls",
-   "marine visualisation",
-   "nautical instruments"
+   "waterproof dry bag",
+   "roll top backpack 3d model",
+   "kayaking equipment",
+   "outdoor gear asset",
+   "rafting bag",
+   "adventure sports prop",
+   "waterproof storage",
+   "hiking equipment",
+   "marine dry sack",
+   "travel gear",
+   "watersports accessory",
+   "worn backpack"
   ]
  },
  {
-  "slug": "robot-arms-rigged-collection-1430456",
+  "slug": "greyhound-racing-starting-boxes-8-doors-1941677",
   "paragraphs": [
-   "One industrial robot arm is a prop. A row of them working a line is a factory, and that is the shot most people actually need. This collection provides several arms as a single purchase, and every one of them arrives rigged, so the joints bend where real joints bend instead of being posed by hand and hoped for.",
-   "Rigging is what separates a usable robot from a decorative one. An arm that can be keyframed lets you build a working cell - one machine loading, another welding, a third moving parts along - without rebuilding the same kinematics over and over.",
-   "At $109 for the set it is aimed at industrial and manufacturing visualisation, automation and robotics presentation, factory walkthroughs, technical marketing and games. Built to CheckMate specification, on sale since 2019."
+   "Starting boxes are a piece of track furniture with a very specific job: hold eight dogs still, then open every door at exactly the same instant. That requirement shapes the object - a long steel frame, numbered coloured doors, a shared release mechanism along the top and a rear loading gate for each stall. The numbering and the colour order are part of the sport, and they are modelled here rather than left to a texture.",
+   "The mesh is 173,412 polygons and 89,302 vertices in quads and tris with non-overlapping UVs, with the detail concentrated in the frame, the mesh doors and the release gear.",
+   "At $49 it suits sports broadcast graphics, racing venue visualisation, betting and gaming applications, film and television, and animal sport documentary. On sale since 2022."
   ],
   "keywords": [
-   "industrial robot arms",
-   "robotic arm collection",
-   "rigged robot 3d models",
-   "factory automation",
-   "manufacturing visualisation",
-   "robotic cell",
-   "assembly line asset",
-   "articulated robot",
-   "industrial automation",
-   "welding robot",
-   "production line",
-   "robotics presentation"
-  ]
- },
- {
-  "slug": "christ-the-redeemer-statue-1486265",
-  "paragraphs": [
-   "The statue works because of its posture: arms straight out, head slightly bowed, standing on a plinth on top of a mountain so it is almost always seen from below and against sky. The model keeps that stance and the blocky soapstone tiling of the surface, which is the detail that makes the figure read as built rather than cast.",
-   "The mesh is deliberately light at 10,550 polygons and 10,985 vertices in quads and tris, but it ships with 6 texture maps at 8192x8192. That trade is the right one here: almost all of the statue's character lives in the mosaic surface and the weathering, not in the silhouette, so the detail belongs in the texture.",
-   "At $99 it suits travel and tourism material, city and landmark visualisation, film and television establishing shots, games and print. On sale since 2020."
-  ],
-  "keywords": [
-   "christ the redeemer",
-   "rio de janeiro landmark",
-   "famous statue 3d model",
-   "brazil monument",
-   "corcovado",
-   "religious monument",
-   "tourist landmark",
-   "art deco statue",
-   "city landmark asset",
-   "travel visualisation",
-   "world monument",
-   "soapstone statue"
-  ]
- },
- {
-  "slug": "iphone-11-fully-disassembled-1647020",
-  "paragraphs": [
-   "A disassembled phone is a repair manual, a teardown video and a product cutaway all in one, and it only works if the parts are genuinely separate. Here the display assembly, the battery, the logic board, the camera module, the taptic engine, the shields and the screws exist as individual objects, so they can be laid out flat, exploded along an axis or animated back into the chassis.",
-   "It runs 247,871 polygons and 265,860 vertices in quads and tris with non-overlapping UVs, and ships with 56 texture maps at 4096x4096. That count is what a teardown needs: every board, shield and ribbon has its own printed detail, and those printed details are the whole point of the shot.",
-   "At $99 and built to StemCell specification, it is aimed at repair and service documentation, product teardown visualisation, technology journalism, teaching material and advertising. On sale since 2021."
-  ],
-  "keywords": [
-   "iphone 11 disassembled",
-   "phone teardown 3d model",
-   "smartphone exploded view",
-   "device repair illustration",
-   "logic board",
-   "battery and display assembly",
-   "product cutaway",
-   "consumer electronics teardown",
-   "service documentation",
-   "mobile phone parts",
-   "technology visualisation",
-   "exploded assembly"
-  ]
- },
- {
-  "slug": "northrop-grumman-x-47b-uav-folded-wings-1000963",
-  "paragraphs": [
-   "The X-47B is a flying wing with no cockpit and no tail, designed to launch from and land on a carrier deck without a pilot aboard. This build shows it with the wings folded, which is how the aircraft spends most of its life - parked on a crowded deck, taking up as little width as possible. That configuration is far more useful for a carrier scene than the clean flight pose.",
-   "It runs 411,293 polygons and 414,678 vertices, built entirely from quads with non-overlapping UVs, and ships with 12 texture maps - 3 at 8192x8192 and 9 at 4096x4096. All-quad geometry subdivides cleanly, which matters on a shape defined by long smooth curves.",
-   "Five other builds sit on this page, including a rigged version at $129 and several alternative configurations at $99. On sale since 2016."
-  ],
-  "keywords": [
-   "x-47b uav",
-   "northrop grumman drone",
-   "stealth combat drone",
-   "carrier based uav",
-   "flying wing aircraft",
-   "unmanned combat aircraft",
-   "folded wings",
-   "naval aviation asset",
-   "autonomous aircraft",
-   "ucav 3d model",
-   "military drone",
-   "tailless aircraft"
+   "greyhound starting boxes",
+   "dog racing traps",
+   "racing track equipment",
+   "sports venue asset",
+   "starting gate 3d model",
+   "greyhound track",
+   "animal racing",
+   "sports broadcast graphics",
+   "betting visualisation",
+   "race start mechanism",
+   "track furniture",
+   "racing stalls"
   ]
  }
 ]
