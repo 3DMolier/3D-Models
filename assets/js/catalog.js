@@ -105,7 +105,9 @@ function renderGrid() {
   const countEl   = document.getElementById('count-display');
   const visible   = filtered.slice(0, page * PER);
 
-  countEl.textContent = filtered.length.toLocaleString();
+  // Язык указан явно: без него число берёт формат браузера и у русского
+  // посетителя выходит «54 079» вместо «54,079», как на всём остальном сайте.
+  countEl.textContent = filtered.length.toLocaleString('en-US');
 
   if (filtered.length === 0) {
     grid.innerHTML = '';

@@ -298,8 +298,10 @@ function updateProgress() {
   var shown = Math.min((page + 1) * PAGE_SIZE, filtered.length);
   var shownEl = document.getElementById('fc-shown');
   var totalEl = document.getElementById('fc-total');
-  if (shownEl) shownEl.textContent = shown.toLocaleString();
-  if (totalEl) totalEl.textContent = filtered.length.toLocaleString();
+  // Язык обязателен - см. комментарий у totalModels выше. Без него у русского
+  // посетителя выходит «54 079» с неразрывными пробелами вместо запятых.
+  if (shownEl) shownEl.textContent = shown.toLocaleString('en-US');
+  if (totalEl) totalEl.textContent = filtered.length.toLocaleString('en-US');
 }
 
 // Recently Viewed display
