@@ -1,0 +1,31 @@
+{
+ "total": 53703,
+ "counts": {
+  "medical-3d-models": 2504,
+  "aircraft": 1413,
+  "ships": 659,
+  "weapons": 1708,
+  "tools": 2372,
+  "military-vehicles": 204,
+  "animals-creatures": 3151,
+  "nature-plants": 1468,
+  "food-beverages": 2632,
+  "furniture-interior": 3192,
+  "clothing-accessories": 3462,
+  "electronics-gadgets": 3120,
+  "industrial-equipment": 2153,
+  "architecture-landmarks": 4117,
+  "characters-people": 2580,
+  "vehicles": 3847,
+  "containers-storage": 1262,
+  "sports-recreation": 1706,
+  "kitchen-tableware": 2387,
+  "space-scifi": 449,
+  "lighting": 356,
+  "toys-games": 896,
+  "signage-decor": 1323,
+  "musical-instruments": 423,
+  "collections-sets": 4629,
+  "other": 1690
+ }
+}

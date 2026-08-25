@@ -221,11 +221,23 @@ function main() {
   const { all, img } = loadCatalog();
   const cats = one ? [one] : ALL_SLUGS;
   let totalPages = 0;
+  const counts = {};
   for (const cat of cats) {
     const r = buildCategory(cat, all, img);
     totalPages += r.pages;
+    counts[r.cat] = r.models;
     console.error(`  ${r.cat.padEnd(24)} ${String(r.models).padStart(6)} моделей → ${r.pages} стр.`);
   }
   console.error(`\nИтого категорий: ${cats.length}, страниц: ${totalPages}.`);
+  // Числа по категориям печатают не только хабы: их берут /about/,
+  // /custom-order/ и таблица датасета на /data-licensing/. Раньше они стояли
+  // вписанными руками и после объединения вариантов разошлись с каталогом на
+  // четыре с половиной тысячи. Кладём в файл, чтобы источник был один.
+  if (!one) {
+    const f = path.join(ROOT, 'data', 'category-counts.json');
+    const total = Object.values(counts).reduce((x, y) => x + y, 0);
+    fs.writeFileSync(f, JSON.stringify({ total, counts }, null, 1));
+    console.error('счётчики категорий: data/category-counts.json');
+  }
 }
 main();
