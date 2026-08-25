@@ -1,310 +1,310 @@
 [
  {
-  "slug": "frigate-type-31-polish-navy-2314083",
+  "slug": "checker-cab-972819",
   "paragraphs": [
-   "The Type 31 was designed to be affordable, and that shows in the hull: a straightforward flared bow, a large superstructure block and a flight deck aft, without the faceted stealth shaping that drives cost up on larger frigates. In Polish service the ship carries its own pennant and markings, and the model keeps the mast array, the gun mount and the boat davits.",
-   "The mesh is efficient at 192,933 polygons and 205,945 vertices in quads and tris with non-overlapping UVs, which suits a vessel that usually appears at sea rather than at close quarters.",
-   "At $199 and built to CheckMate specification, it suits naval and defence visualisation, news and documentary graphics, shipbuilding and procurement presentation, and games. On sale since 2025, kept to real-world scale for correct placement in a formation."
+   "The Checker is the taxi in every film set in New York before the eighties, and it is recognisable for reasons that have nothing to do with styling: it was built tall and boxy so passengers could get in wearing a hat, with a flat roof, upright glass and enormous rear doors. That deliberate lack of fashion is what makes it read as a taxi rather than as a period sedan.",
+   "The mesh is 196,808 polygons and 205,150 vertices in quads and tris with non-overlapping UVs, and ships with 28 texture maps at a mix of sizes up to 4096x4096. That count is what the chequered livery, the roof light and the door lettering need to sit correctly on a large flat-sided body.",
+   "A rigged build sits on this page at $149 for when the wheels turn and the doors open. The static model at $129 covers period film and television, urban visualisation, advertising, games and print. On sale since 2016."
   ],
   "keywords": [
-   "type 31 frigate",
-   "polish navy warship",
-   "naval vessel 3d model",
-   "general purpose frigate",
-   "military ship asset",
+   "checker cab 3d model",
+   "new york taxi",
+   "vintage yellow cab",
+   "period vehicle asset",
+   "classic american taxi",
+   "urban film set dressing",
+   "retro city car",
+   "taxi visualisation",
+   "twentieth century vehicle",
+   "street scene asset",
+   "checkered cab",
+   "period transport model"
+  ]
+ },
+ {
+  "slug": "new-flyer-xcelsior-xd40-bus-1027391",
+  "paragraphs": [
+   "The Xcelsior is the bus most North American cities run, and its shape is set by regulation and by boarding speed: a low floor throughout, a wide front door, a ramp at the kerb and a flat front with a full-width destination sign. The model carries the wheelchair ramp, the roof hatches, the bike rack mounts and the articulated door panels.",
+   "The mesh is 211,251 polygons and 221,710 vertices in quads and tris with non-overlapping UVs, and ships with 15 texture maps - 3 at 4096x4096 and 12 at 2048x2048, which is what a transit livery with route branding requires.",
+   "A rigged build sits on this page at $149 for when the wheels turn and the doors open. The static model at $129 covers urban and transit visualisation, city planning presentation, municipal marketing, street scenes and games. On sale since 2016."
+  ],
+  "keywords": [
+   "new flyer xcelsior",
+   "transit bus 3d model",
+   "city bus asset",
+   "low floor bus",
+   "public transport vehicle",
+   "urban visualisation",
+   "municipal transit",
+   "north american bus",
+   "street scene vehicle",
+   "mass transit asset",
+   "accessible bus",
+   "city planning model"
+  ]
+ },
+ {
+  "slug": "cheetah-rigged-for-maya-1479186",
+  "paragraphs": [
+   "A cheetah is the hardest big cat to animate. The spine flexes further than any other feline, the legs are longer relative to the body, and the whole gallop depends on that spinal extension - a rig built for a lion will not produce a cheetah's run. This build arrives rigged and prepared for Maya, with that spine already solved.",
+   "That preparation is where the value sits. Rigging a quadruped is slow work, and rigging one whose defining movement is an extreme spinal cycle is slower still. Delivered ready for the application it will be animated in, the animal is usable on day one.",
+   "A build prepared for Cinema 4D sits on this page at $149. This one at $119 is built to CheckMate specification and aimed at wildlife documentary, natural history and education material, advertising, film and television, and games. On sale since 2020."
+  ],
+  "keywords": [
+   "cheetah 3d model",
+   "rigged big cat",
+   "wildlife animation asset",
+   "african predator",
+   "quadruped rig for maya",
+   "nature documentary animal",
+   "fast running animal",
+   "feline character",
+   "animal animation ready",
+   "savanna wildlife",
+   "big cat model",
+   "safari animal asset"
+  ]
+ },
+ {
+  "slug": "ferry-fast-ropax-4512-kriola-1397833",
+  "paragraphs": [
+   "A RoPax ferry carries vehicles and passengers at once, and the hull shows both jobs: a vehicle deck with a stern ramp low in the hull, passenger accommodation stacked above it, and a fine bow because this class is built for speed rather than volume. The model keeps the ramp, the lifeboat davits, the mast array and the funnel casings.",
+   "It runs 261,946 polygons and 281,485 vertices in quads and tris with non-overlapping UVs, and ships with 30 texture maps at a mix of sizes up to 4096x4096. Thirty maps is what an operator livery on a long white hull needs to avoid visible repetition.",
+   "Three other builds sit on this page, including a catamaran at $119 and rigged versions at $149 and $99. Aimed at maritime and transport visualisation, ferry operator marketing, port and harbour scenes, and games. On sale since 2019."
+  ],
+  "keywords": [
+   "ropax ferry 3d model",
+   "fast passenger ferry",
+   "vehicle and passenger vessel",
+   "damen ferry",
+   "maritime transport asset",
+   "harbour scene ship",
+   "car ferry",
+   "coastal vessel",
+   "ferry operator marketing",
+   "stern ramp ship",
+   "sea transport model",
+   "passenger ship"
+  ]
+ },
+ {
+  "slug": "light-field-howitzer-m119-1242851",
+  "paragraphs": [
+   "The M119 is a light gun designed to be slung under a helicopter and set down where heavier artillery cannot go. Everything about it is built around weight: a tubular carriage, split trails, a small shield and a firing platform that drops under the axle. The model carries the trails, the platform, the sights and the recoil assembly that define the piece.",
+   "The mesh runs 215,063 polygons and 223,922 vertices in quads and tris with non-overlapping UVs, and ships with 20 texture maps - 15 at 4096x4096 and 5 at 2048x2048, carrying the chipped olive paint and the stencilled markings.",
+   "A rigged build sits on this page at $149 for when the trails spread or the barrel elevates. The static model at $119 covers defence visualisation, documentary and news graphics, training material, film and television, and games. On sale since 2018."
+  ],
+  "keywords": [
+   "m119 howitzer",
+   "light field artillery 3d model",
+   "towed gun",
+   "military artillery asset",
+   "airborne artillery",
+   "split trail howitzer",
    "defence visualisation",
-   "surface combatant",
-   "arrowhead frigate",
-   "naval procurement presentation",
-   "warship model",
-   "maritime defence",
-   "european navy ship"
+   "army field gun",
+   "artillery piece",
+   "military training material",
+   "105mm gun model",
+   "combat support weapon"
   ]
  },
  {
-  "slug": "modern-naval-destroyer-ship-2362538",
+  "slug": "an-tps-80-ground-air-radar-system-deployed-2518727",
   "paragraphs": [
-   "A modern destroyer is built around its radar. The four fixed panels on the superstructure fix the shape of the deckhouse, the vertical launch cells set the deck layout fore and aft, and the whole hull is angled to reduce radar return. This model carries that arrangement along with the gun mount, the mast array and the helicopter deck.",
-   "The mesh is 357,903 polygons and 388,741 vertices in quads and tris with non-overlapping UVs, built to StemCell specification so it works in a real-time engine as well as an offline render.",
-   "This page is unusually deep: a Type 055 variant at $199, versions paired with a Harbin helicopter at $249, and builds with a transport helicopter on the pad at $289. Aimed at naval and defence visualisation, news graphics, documentary work and games."
+   "A ground radar in the deployed state looks nothing like it does on the road. The array is raised and tilted back, the outriggers are down, the generator and control shelter are set out beside it and cabling runs between them. That deployed arrangement is what a defence render usually needs, and it is what this build shows.",
+   "The mesh runs 232,413 polygons and 251,113 vertices in quads and tris with mixed UV layout, with the detail concentrated in the array face, the trailer frame and the support equipment.",
+   "A rigged build sits on this page at $129 for when the array has to raise or rotate. The static model at $99 covers defence and air defence visualisation, news and documentary graphics, procurement and training presentation, and games. Built to StemCell specification, on sale since 2026."
   ],
   "keywords": [
-   "naval destroyer 3d model",
-   "guided missile destroyer",
-   "modern warship",
-   "type 055 destroyer",
-   "naval defence asset",
-   "vertical launch ship",
-   "military vessel",
-   "surface combatant model",
-   "navy visualisation",
-   "warship with helicopter",
-   "maritime defence",
-   "fleet destroyer"
+   "an-tps-80 radar",
+   "ground air surveillance radar",
+   "military radar 3d model",
+   "deployed radar system",
+   "air defence asset",
+   "expeditionary radar",
+   "defence visualisation",
+   "radar array trailer",
+   "marine corps radar",
+   "sensor system model",
+   "battlefield surveillance",
+   "military electronics"
   ]
  },
  {
-  "slug": "movie-director-with-video-production-equipment-collection-2381888",
+  "slug": "ford-crown-victoria-police-car-simple-interior-970492",
   "paragraphs": [
-   "A film set reads as a film set because of the equipment scattered around it: a camera on a tripod, a monitor cart, light stands, a slate, cases and cable runs, with someone in a director's chair in the middle of it. A single camera model cannot produce that impression. This collection provides the figure and the kit together, which is what a production scene actually needs.",
-   "Buying the equipment as a set keeps the scale and the finish consistent across the whole scene, which is the detail that gives away a set dressed from separate sources.",
-   "At $199 and built to CheckMate specification, it suits film and television production visualisation, studio and rental company marketing, media education material, behind-the-scenes illustration and games. On sale since 2025."
+   "For twenty years the Crown Victoria was the American police car, and its silhouette is burned into every viewer's memory: a big rear-drive sedan with a long bonnet, a squared roof and a light bar across it. Any contemporary saloon dressed in police livery reads as wrong to an audience that grew up on this shape.",
+   "The mesh is 153,347 polygons and 166,853 vertices in quads and tris with non-overlapping UVs, and ships with 8 texture maps at a mix of sizes up to 4096x4096, which carries the department markings and the reflective striping.",
+   "This page is unusually deep: rigged builds at $149, including versions prepared for Cinema 4D and for Maya, a generic police car at $149 and full-interior builds at $129. This simple-interior model at $99 suits urban and law enforcement visualisation, film and television, and games. On sale since 2016."
   ],
   "keywords": [
-   "film production equipment collection",
-   "movie director figure",
-   "camera and tripod 3d models",
-   "film set dressing",
-   "video production asset",
-   "studio equipment set",
-   "behind the scenes scene",
-   "media production visualisation",
-   "director chair and slate",
-   "broadcast equipment",
-   "filmmaking props",
-   "production crew asset"
+   "ford crown victoria police",
+   "police interceptor sedan",
+   "american patrol car 3d model",
+   "law enforcement vehicle",
+   "police cruiser",
+   "urban film set vehicle",
+   "emergency services car",
+   "period police vehicle",
+   "city street asset",
+   "cop car model",
+   "rear drive sedan",
+   "police visualisation"
   ]
  },
  {
-  "slug": "football-stadium-stamford-bridge-2396184",
+  "slug": "futuristic-soldier-suit-2381188",
   "paragraphs": [
-   "Stamford Bridge is a stadium built into a tight west London site, and that constraint gives it its character: four stands of different heights and depths, pressed hard against the streets around them, with none of the symmetry of a purpose-built bowl. Any model that regularises those stands stops being Stamford Bridge and becomes a generic ground.",
-   "This is by a wide margin one of the heaviest assets in the catalogue at 36,423,673 polygons and 35,263,035 vertices in quads and tris with non-overlapping UVs. Every seat is geometry rather than a texture, which is why the stands read correctly from the pitch, from the stands and from the air.",
-   "At $189 and built to CheckMate specification, it suits sports broadcast graphics, club and sponsorship presentation, architectural and venue visualisation, football games and print. On sale since 2025."
+   "A near-future combat suit has to look engineered rather than styled: armour plates sized to the body segments that actually need protection, joints left flexible, cabling routed where it would not snag, and a helmet with a real sensor package rather than a smooth visor. This build follows that logic, which is what separates plausible military science fiction from costume design.",
+   "The mesh is 125,228 polygons and 128,832 vertices in quads and tris with non-overlapping UVs. That budget goes into the plate edges and the joint hardware, which is where a suit is examined in close-up.",
+   "At $99 and built to CheckMate specification, it suits games, science fiction film and television, previsualisation and concept work, illustration and trailers. On sale since 2025, kept to real-world scale so it fits a standard human figure."
   ],
   "keywords": [
-   "stamford bridge stadium",
-   "football ground 3d model",
-   "chelsea stadium",
-   "sports venue visualisation",
-   "soccer stadium asset",
-   "broadcast graphics venue",
-   "seating bowl geometry",
-   "premier league ground",
-   "stadium architecture",
-   "sports arena model",
-   "matchday visualisation",
-   "football club asset"
+   "futuristic soldier suit",
+   "sci-fi combat armour 3d model",
+   "powered armour",
+   "military exosuit",
+   "game character outfit",
+   "near future soldier",
+   "tactical armour asset",
+   "science fiction costume",
+   "previsualisation character gear",
+   "armoured infantry suit",
+   "cinematic sci-fi asset",
+   "combat exoskeleton"
   ]
  },
  {
-  "slug": "game-dwarf-character-rigged-2390117",
+  "slug": "military-ship-bridge-1574344",
   "paragraphs": [
-   "A dwarf is a rigging problem before it is an art problem. Short limbs, a broad torso and heavy armour mean the shoulders and hips deform in ways a human proportion never has to handle, and a rig that works on a standard figure will pinch and collapse here. This character arrives rigged with that already solved, along with the braided beard that most dwarf models get wrong.",
-   "The mesh is 85,995 polygons and 89,405 vertices in quads and tris with non-overlapping UVs - a game-appropriate budget that leaves room for the armour plates and the beard without pushing the figure out of real-time range.",
-   "Two more rigged builds share this page at the same $189, prepared for Cinema 4D and for Maya. Aimed at games, fantasy film and television, previsualisation, tabletop and illustration work. On sale since 2025."
+   "A warship bridge is a working room rather than a set: consoles arranged for sightlines out of the windows, the captain's chair positioned where it can see both, repeaters and telegraphs within reach, and windows raked forward to cut reflection. Those relationships are what make a bridge convincing, and they cannot be improvised from photographs of controls.",
+   "The mesh runs 304,161 polygons and 337,689 vertices in quads and tris with non-overlapping UVs, with the detail in the console faces, the window frames and the overhead fittings that fill a camera's frame in a confined interior.",
+   "At $99 it suits naval visualisation, film and television interiors, documentary and museum material, training and simulator projects, and games. On sale since 2020."
   ],
   "keywords": [
-   "dwarf character 3d model",
-   "rigged fantasy character",
-   "game character asset",
-   "armoured warrior",
-   "fantasy rpg figure",
-   "bearded character",
-   "animation ready humanoid",
-   "game ready character",
-   "fantasy game asset",
-   "character rig",
-   "medieval fantasy figure",
-   "previsualisation character"
+   "warship bridge 3d model",
+   "naval ship interior",
+   "military vessel command centre",
+   "ship control room",
+   "bridge consoles",
+   "naval film set",
+   "maritime interior asset",
+   "captain's bridge",
+   "navy simulator environment",
+   "ship wheelhouse",
+   "military interior scene",
+   "vessel command deck"
   ]
  },
  {
-  "slug": "mobile-mixing-plant-with-concrete-mixer-1407868",
+  "slug": "rice-combine-harvester-kubota-ar96-1508645",
   "paragraphs": [
-   "A mobile batching plant is a factory that folds onto a trailer. Aggregate bins, a conveyor, a cement silo, a weighing hopper and the mixer itself all have to be there, arranged so material flows downhill from bin to truck. That flow is what makes the machine legible to anyone who has worked around one, and a plant modelled without it reads as a random stack of hoppers.",
-   "The mesh is 687,836 polygons and 750,650 vertices in quads and tris with non-overlapping UVs, and ships with 18 texture maps - 12 at 4096x4096, 4 at 2048x2048 and 2 at 1024x1024. The textures carry the cement dust and the rust that this equipment wears within weeks.",
-   "At $189 it suits construction and infrastructure visualisation, equipment marketing and catalogues, engineering and training material, site scenes and games. On sale since 2019."
+   "A rice combine is built for flooded fields, and that changes the machine completely: it runs on rubber tracks rather than wheels so it does not sink, it is narrow enough for paddy bunds, and the header is set low for a crop that grows in standing water. Anyone who has seen one working will spot a wheeled combine dressed up as a rice harvester immediately.",
+   "The mesh is 198,198 polygons and 202,998 vertices in quads and tris with non-overlapping UVs, and ships with 11 texture maps at 4096x4096, carrying the mud, the paint and the manufacturer markings.",
+   "A rigged build sits on this page at the same $99 for when the tracks move or the header runs. Aimed at agricultural machinery marketing, farming visualisation, agritech presentation, rural scenes and games. Built to StemCell specification, on sale since 2020."
   ],
   "keywords": [
-   "mobile batching plant",
-   "concrete mixing plant 3d model",
-   "construction equipment asset",
-   "cement silo and conveyor",
-   "aggregate bins",
-   "site machinery",
-   "concrete production equipment",
-   "infrastructure visualisation",
-   "industrial plant model",
-   "construction marketing asset",
-   "portable mixing plant",
-   "heavy equipment"
+   "rice combine harvester",
+   "kubota agricultural machine",
+   "tracked harvester 3d model",
+   "paddy field equipment",
+   "farm machinery asset",
+   "agritech visualisation",
+   "grain harvesting equipment",
+   "agricultural marketing model",
+   "rural scene vehicle",
+   "crop harvester",
+   "asian farming equipment",
+   "tracked farm vehicle"
   ]
  },
  {
-  "slug": "coronado-bay-bridge-1213116",
+  "slug": "russian-jet-fighter-pilot-uniform-1101073",
   "paragraphs": [
-   "The Coronado bridge is remembered for its curve. It sweeps through a long arc rather than running straight across the bay, partly to gain the height needed for ships to pass underneath, and that curve is what makes it photograph the way it does. A straight-span model of it would be recognisably wrong from the first frame.",
-   "The mesh runs 698,380 polygons and 727,194 vertices in quads and tris with non-overlapping UVs, and ships with 37 texture maps at 4096x4096. Thirty-seven maps is an unusual count and it is what a structure this long needs: concrete weathering and deck markings that never visibly repeat.",
-   "At $179 it suits city and infrastructure visualisation, civil engineering presentation, travel and tourism material, film and television establishing shots, and games. On sale since 2018."
+   "A fighter pilot's kit is a system: a flight suit, an anti-g garment over the legs, a torso harness, a survival vest, gloves and a helmet with an oxygen mask. Each layer changes the silhouette, and the bulk sits in specific places - around the thighs, across the chest - which is why a smooth jumpsuit with a helmet never reads correctly.",
+   "The mesh is 61,863 polygons and 64,611 vertices in quads and tris with non-overlapping UVs, and ships with 21 texture maps at 4096x4096. That budget carries the webbing, the buckles, the patches and the fabric weave that make flight gear look used.",
+   "A second build sits on this page at the same $99. Both suit military aviation visualisation, film and television costume reference, documentary work, games and training material. On sale since 2017, kept to real-world scale so it fits a standard figure."
   ],
   "keywords": [
-   "coronado bay bridge",
-   "san diego landmark",
-   "curved bridge 3d model",
-   "civil infrastructure asset",
-   "highway bridge",
-   "city landmark visualisation",
-   "engineering structure",
-   "bay crossing",
-   "concrete box girder bridge",
-   "urban infrastructure",
-   "travel visualisation",
-   "transport landmark"
+   "fighter pilot uniform 3d model",
+   "flight suit and helmet",
+   "military aviation clothing",
+   "anti-g garment",
+   "pilot survival vest",
+   "aircrew equipment",
+   "aviation character costume",
+   "russian air force uniform",
+   "flight gear asset",
+   "cockpit character clothing",
+   "military costume reference",
+   "pilot helmet and mask"
   ]
  },
  {
-  "slug": "csx-ge-es44ac-locomotive-train-with-freight-cars-2218387",
+  "slug": "sports-car-back-suspension-assembly-2215075",
   "paragraphs": [
-   "A freight train is not a locomotive, it is a consist. This build supplies both: the road unit in CSX colours plus the cars behind it, which is what lets a scene show a train rather than an engine parked on a rail. The ES44AC carries the flared radiator section at the rear that identifies the model, and the model keeps the walkways, handrails and truck castings.",
-   "It is a heavy asset at 3,111,707 polygons and 3,194,707 vertices in quads and tris with non-overlapping UVs, which is what a multi-vehicle consist costs when every unit is built to the same standard rather than the cars being simplified.",
-   "At $179 and built to CheckMate specification, it suits rail and logistics visualisation, industrial and infrastructure renders, simulator projects, film and television, and games. On sale since 2024."
+   "A rear suspension assembly is one of the most photographed things in automotive marketing and one of the least understood: control arms, uprights, coilovers, anti-roll bar, driveshafts and brake discs all arranged in a geometry that determines how the car behaves. Showing it correctly is what makes an engineering claim in an advertisement credible.",
+   "The mesh is efficient at 39,098 polygons and 41,669 vertices in quads and tris with non-overlapping UVs, with the density in the joints, the spring coils and the disc detail rather than in bulk.",
+   "At $99 and built to CheckMate specification, it suits automotive engineering presentation, technical marketing and cutaways, motorsport and performance advertising, education material and games. On sale since 2024."
   ],
   "keywords": [
-   "csx locomotive 3d model",
-   "ge es44ac",
-   "freight train with cars",
-   "american railroad asset",
-   "diesel electric locomotive",
-   "rail logistics visualisation",
-   "freight consist",
-   "railway simulator asset",
-   "cargo train",
-   "rolling stock model",
-   "class one railroad",
-   "industrial rail transport"
+   "car rear suspension 3d model",
+   "multi link suspension assembly",
+   "automotive engineering asset",
+   "coilover and control arms",
+   "chassis component",
+   "technical cutaway",
+   "performance car engineering",
+   "brake disc and upright",
+   "automotive marketing visualisation",
+   "vehicle undercarriage",
+   "motorsport component",
+   "suspension geometry"
   ]
  },
  {
-  "slug": "sikorsky-s-92-civil-helicopter-1495683",
+  "slug": "truck-frame-chassis-1232650",
   "paragraphs": [
-   "The S-92 is the machine that flies crews to offshore platforms, and that mission shapes it: a large cabin with airline-style seating, a retractable gear, flotation gear in the sponsons and a rear ramp for cargo. It is a heavy helicopter that spends its life over water, and the model keeps the sponsons, the ramp and the antenna array that go with the role.",
-   "The mesh is 309,578 polygons and 338,116 vertices in quads and tris with non-overlapping UVs, and ships with 17 texture maps at 4096x4096, which is what an operator livery needs over a fuselage this size.",
-   "A rigged build sits on this page at $229 for when the rotors turn and the gear retracts. The static model at $179 covers offshore energy visualisation, search and rescue presentation, corporate and government aviation marketing, film and television, and games. Built to StemCell specification, on sale since 2020."
+   "A truck chassis is the honest part of a lorry: two steel rails, crossmembers between them, axles, springs, fuel tanks and the air lines and cabling routed along the frame. Bodybuilders and fleet buyers look at exactly this, because it determines what can be mounted on it and where.",
+   "The mesh is 170,052 polygons and 175,444 vertices in quads and tris with non-overlapping UVs, and ships with 7 texture maps at a mix of sizes up to 4096x4096. The textures carry the frame paint, the galvanising and the road dirt that a chassis picks up first.",
+   "At $99 it suits commercial vehicle and bodybuilder presentation, fleet and manufacturer marketing, engineering and technical material, workshop scenes and games. On sale since 2018."
   ],
   "keywords": [
-   "sikorsky s-92",
-   "offshore transport helicopter",
-   "civil rotorcraft 3d model",
-   "medium lift helicopter",
-   "search and rescue aircraft",
-   "oil and gas aviation",
-   "twin engine helicopter",
-   "utility helicopter asset",
-   "vip transport rotorcraft",
-   "helicopter visualisation",
-   "offshore crew transfer",
-   "commercial helicopter"
+   "truck chassis 3d model",
+   "lorry frame rails",
+   "commercial vehicle platform",
+   "bodybuilder presentation asset",
+   "truck engineering visualisation",
+   "axle and suspension frame",
+   "fleet marketing model",
+   "vehicle underframe",
+   "chassis cab",
+   "technical automotive asset",
+   "heavy vehicle structure",
+   "workshop scene component"
   ]
  },
  {
-  "slug": "concrete-pump-and-mixer-truck-2287600",
+  "slug": "working-industrial-metal-shredder-2268624",
   "paragraphs": [
-   "This is two machines on one chassis: a drum mixer keeping the concrete turning and a placing boom to put it where it is needed. Combining them saves a second truck on a tight site, and it gives the vehicle a distinctive silhouette - a folded boom lying over a rotating drum. The model carries the boom sections, the outriggers, the drum ribs and the discharge chute.",
-   "The mesh runs 708,485 polygons and 764,247 vertices in quads and tris with non-overlapping UVs, with the density in the boom joints and the drum drive, which are the parts a camera on a construction site actually lands on.",
-   "At $169 and built to CheckMate specification, it suits construction and infrastructure visualisation, equipment marketing and catalogues, site scenes, safety and training material, and games. On sale since 2025."
+   "An industrial shredder is a violent machine wrapped in a very plain box. The interest is in the working end: the rotor with its hammers or cutters, the feed hopper wide enough to swallow a car door, the discharge conveyor and the heavy drive motor bolted to one side. This build shows it working, which is why the feed and discharge sides both matter.",
+   "The mesh runs 279,847 polygons and 297,412 vertices in quads and tris with non-overlapping UVs, with the density in the rotor, the hopper mouth and the frame bracing.",
+   "At $99 and built to StemCell specification, it suits recycling and waste industry visualisation, equipment marketing and catalogues, sustainability and circular economy presentation, industrial interiors and games. On sale since 2024."
   ],
   "keywords": [
-   "concrete pump truck",
-   "mixer truck 3d model",
-   "placing boom vehicle",
-   "construction equipment asset",
-   "cement mixer lorry",
-   "site machinery",
-   "concrete delivery vehicle",
-   "heavy construction truck",
-   "infrastructure visualisation",
-   "outrigger boom pump",
-   "building site equipment",
-   "ready mix truck"
-  ]
- },
- {
-  "slug": "boeing-737-800-ryanair-1159028",
-  "paragraphs": [
-   "The 737-800 is the aircraft that built the European low cost model, and Ryanair operates more of them than anyone. The scheme is deliberately simple - white fuselage, blue belly, yellow harp on the tail - which leaves nowhere for a stretched stencil or a misplaced door outline to hide. The model carries the winglets, the flap track fairings and the engine nacelle flats.",
-   "The mesh is 738,707 polygons and 764,152 vertices in quads and tris with non-overlapping UVs, and ships with 7 texture maps at 4096x4096.",
-   "A rigged build sits on this page at $199 for when the gear retracts or the control surfaces move. The static model at $149 covers airline marketing, airport visualisation, aviation journalism, film and television, and games. On sale since 2017."
-  ],
-  "keywords": [
-   "boeing 737-800",
-   "ryanair aircraft 3d model",
-   "narrow body airliner",
-   "low cost carrier jet",
-   "passenger aircraft asset",
-   "commercial aviation",
-   "airport visualisation",
-   "winglet 737",
-   "airline fleet model",
-   "european aviation",
-   "short haul jet",
-   "aviation marketing"
-  ]
- },
- {
-  "slug": "decomposed-corpse-wrapped-in-dirty-bandages-in-zombie-pose-2464614",
-  "paragraphs": [
-   "A wrapped figure is a costume problem more than an anatomy one. The bandages have to overlap unevenly, hang loose where they have come undone and pull tight across the ribs and limbs, and the body underneath has to show through in the gaps. Modelled as a smooth figure with a bandage texture, it reads as a painted statue.",
-   "The mesh is deliberately light at 4,328 polygons and 4,319 vertices in quads and tris. The UVs overlap, a sound economy on a subject made of repeated wrapping, and the low weight suits a figure that usually appears in groups.",
-   "At $149 and built to CheckMate specification, it suits horror games and film, Halloween and seasonal advertising, haunted attraction and event design, archaeology and museum material, and illustration. On sale since 2026."
-  ],
-  "keywords": [
-   "mummy character 3d model",
-   "wrapped corpse figure",
-   "horror game asset",
-   "halloween character",
-   "undead creature",
-   "bandaged body",
-   "haunted attraction prop",
-   "egyptian mummy",
-   "seasonal advertising asset",
-   "horror film character",
-   "creature model",
-   "spooky scene figure"
-  ]
- },
- {
-  "slug": "frecciarossa-1000-high-speed-train-2091924",
-  "paragraphs": [
-   "The Frecciarossa 1000 is one of the fastest trains in regular service in Europe, and it looks the part: a long tapered nose, a pantograph recess in the roof and a body profile drawn entirely by aerodynamics. The red and silver livery runs the length of the set, and any break in that line is immediately visible, which puts real demands on the surfacing.",
-   "The mesh runs 1,745,086 polygons and 961,981 vertices in quads and tris with non-overlapping UVs. The vertex count sitting below the polygon count is normal on long smooth panels sharing edges, and it keeps a set this size manageable.",
-   "This page also carries a blue variant at $149, an ETR1000 locomotive build at $129 and a modern blue locomotive at $99. Aimed at rail marketing and infrastructure visualisation, travel advertising, news graphics, simulators and games. On sale since 2023."
-  ],
-  "keywords": [
-   "frecciarossa 1000",
-   "italian high speed train",
-   "etr 1000 trainset",
-   "high speed rail 3d model",
-   "passenger train asset",
-   "electric trainset",
-   "railway visualisation",
-   "european rail transport",
-   "intercity train",
-   "rail marketing asset",
-   "streamlined locomotive",
-   "train simulator model"
-  ]
- },
- {
-  "slug": "iss-zvezda-service-module-1642203",
-  "paragraphs": [
-   "Zvezda is the module that made the station habitable: life support, crew quarters, the galley and the engines that keep the whole assembly in orbit. Externally it is a cylinder covered in hardware - solar arrays, antennas, handrails, docking targets and thermal blankets - and that clutter is what makes it read as a spacecraft rather than as a tube.",
-   "The mesh is 339,190 polygons and 384,151 vertices in quads and tris with non-overlapping UVs, and ships with 10 texture maps at 4096x4096. The texture work carries the blanket quilting and the sun-faded panels that a module in orbit for decades actually shows.",
-   "At $149 and built to StemCell specification, it suits space industry visualisation, documentary and news graphics, museum and education material, film and television, and games. On sale since 2021."
-  ],
-  "keywords": [
-   "iss zvezda module",
-   "space station 3d model",
-   "service module",
-   "orbital spacecraft asset",
-   "russian space segment",
-   "space documentary graphics",
-   "iss visualisation",
-   "crew quarters module",
-   "aerospace education asset",
-   "orbital habitat",
-   "space museum model",
-   "station component"
+   "industrial metal shredder",
+   "recycling machinery 3d model",
+   "scrap processing equipment",
+   "waste industry asset",
+   "shredder rotor and hopper",
+   "circular economy visualisation",
+   "heavy industrial machine",
+   "material recovery equipment",
+   "sustainability presentation",
+   "scrap yard machinery",
+   "crushing equipment",
+   "industrial plant asset"
   ]
  }
 ]
