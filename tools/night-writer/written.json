@@ -1,310 +1,310 @@
 [
  {
-  "slug": "volumetric-thick-smoke-oil-fire-vdb-set-for-blender-2534330",
+  "slug": "arri-signature-prime-lens-1896265",
   "paragraphs": [
-   "Oil smoke behaves unlike any other kind: it is dense enough to be almost opaque, it rolls rather than disperses, and it carries a hard boundary between the black column and clear air. Reproducing that requires a simulation with the right density and dissipation, not a smoke texture on a card.",
-   "This set is supplied as cached VDB volumes prepared for Blender, so both the simulation time and the parameter tuning are already done. The fire and the smoke fields come ready to render, retime and light.",
-   "At $39 and built to CheckMate specification, it suits film and television visual effects, industrial and disaster documentary content, news and current affairs graphics, motion graphics and games. On sale since 2026."
+   "A cinema prime is a heavy cylinder covered in scales. The focus and iris rings carry marked gear teeth for follow focus units, the front is a large diameter thread for filters, and the mount at the back is a locking bayonet rather than a screw. Those rings and the marks on them are what identify it as cinema rather than stills glass.",
+   "The mesh is efficient at 58,110 polygons and 32,080 vertices in quads and tris with non-overlapping UVs, with the geometry in the gear rings, the barrel steps and the mount.",
+   "At $29 it suits camera and cinema equipment visualisation, rental house and manufacturer catalogues, film production set dressing, technical marketing and games. On sale since 2022."
   ],
   "keywords": [
-   "oil fire smoke vdb",
-   "volumetric simulation asset",
-   "blender vfx element",
-   "thick black smoke",
-   "cached fire simulation",
-   "disaster visualisation effect",
-   "documentary vfx asset",
-   "news graphics element",
-   "industrial fire effect",
-   "motion graphics smoke",
-   "volume render element",
-   "simulation cache"
+   "cinema prime lens 3d model",
+   "camera optics asset",
+   "film production equipment",
+   "follow focus gear rings",
+   "rental catalogue model",
+   "cinematography gear",
+   "professional lens render",
+   "studio set dressing",
+   "camera accessory visualisation",
+   "pl mount lens",
+   "broadcast optics",
+   "production hardware"
   ]
  },
  {
-  "slug": "water-skis-944035",
+  "slug": "automotive-h4-halogen-light-bulb-1628715",
   "paragraphs": [
-   "A pair of water skis is longer, wider and far more curved than snow skis, with deep bindings moulded into the deck and a fin under the tail of each. That fin is the identifying feature and the functional one: without it the ski slides sideways and the whole sport stops working.",
-   "The mesh is 37,358 polygons and 38,818 vertices, built entirely from quads with non-overlapping UVs, and ships with 5 texture maps at 2048x2048 carrying the graphics, the rubber bindings and the gloss finish.",
-   "At $39 it suits watersports and lakeside visualisation, sporting goods retail renders, summer and holiday advertising, boat and marina scenes, and games. On sale since 2015."
+   "A twin filament headlamp bulb is a small object with a lot of precision in it: two filaments at different positions, a shield under one of them to cut the beam, a glass envelope with a blackened tip and a metal base with locating tabs that only fit one way. Those tabs are why the beam pattern is repeatable.",
+   "The mesh is light at 9,280 polygons and 9,299 vertices in quads and tris with non-overlapping UVs, and ships with 6 texture maps at 4096x4096 carrying the glass, the metal base and the printed markings.",
+   "At $29 and built to StemCell specification, it suits automotive parts marketing and catalogues, workshop and service visualisation, technical illustration, retail renders and games. On sale since 2021."
   ],
   "keywords": [
-   "water skis 3d model",
-   "watersports equipment asset",
-   "lake recreation prop",
-   "sporting goods render",
-   "summer holiday advertising",
-   "boat and marina scene",
-   "ski bindings and fin",
-   "aquatic sport equipment",
-   "retail sports visualisation",
-   "leisure activity asset",
-   "waterski pair",
-   "outdoor sports model"
+   "h4 halogen bulb 3d model",
+   "automotive headlamp bulb",
+   "car parts catalogue asset",
+   "vehicle lighting component",
+   "workshop service prop",
+   "technical illustration part",
+   "twin filament lamp",
+   "aftermarket parts render",
+   "garage scene component",
+   "automotive electrical part",
+   "bulb with metal base",
+   "spare parts visualisation"
   ]
  },
  {
-  "slug": "wide-brim-sun-hat-with-white-bow-2403003",
+  "slug": "basketball-jersey-red-970180",
   "paragraphs": [
-   "A wide brim straw hat has almost no structure, which is exactly what makes it hard: the brim ripples rather than sitting flat, the crown creases where it is handled, and the ribbon sits in a soft band with the bow falling to one side. A rigid disc on a cylinder reads as a costume prop.",
-   "The mesh is minimal at 3,334 polygons and 3,296 vertices in quads and tris with non-overlapping UVs, which suits a subject whose realism comes from the straw texture and the brim curve rather than from density.",
-   "At $39 and built to CheckMate specification, it suits fashion and accessory retail renders, resort and travel advertising, summer lifestyle imagery, character set dressing and games. Real-world scale is kept, so it fits a standard head. On sale since 2025."
+   "A basketball vest has almost no construction: wide armholes, a deep neckline, side seams and nothing else. That means all of the shape comes from how it hangs on a body, and the design work is entirely in the print - the numbers, the team name and the trim along the openings.",
+   "The mesh is minimal at 3,808 polygons and 3,801 vertices in quads and tris with non-overlapping UVs, and ships with 3 texture maps at 4096x4096 carrying the mesh fabric structure and the print.",
+   "White and black versions sit on this page at the same $29. All suit sports visualisation and broadcast graphics, team kit and apparel retail renders, character set dressing and games. On sale since 2016."
   ],
   "keywords": [
-   "wide brim sun hat 3d model",
-   "straw hat with ribbon",
-   "fashion accessory asset",
-   "summer lifestyle prop",
-   "resort advertising imagery",
-   "beachwear accessory",
-   "retail millinery render",
-   "character set dressing",
-   "holiday fashion model",
-   "sun protection headwear",
-   "e-commerce accessory",
-   "seasonal apparel asset"
+   "basketball jersey 3d model",
+   "team kit apparel asset",
+   "sports vest garment",
+   "athletic clothing render",
+   "broadcast graphics kit",
+   "character sports costume",
+   "mesh fabric jersey",
+   "team merchandise visualisation",
+   "sportswear retail asset",
+   "player uniform model",
+   "game character clothing",
+   "sports advertising garment"
   ]
  },
  {
-  "slug": "bosch-dicentis-wireless-discussion-device-with-touchscreen-1799976",
+  "slug": "campfire-with-burning-logs-2270116",
   "paragraphs": [
-   "A conference discussion unit is a wedge on a table with a gooseneck microphone, a touchscreen and voting buttons. The wedge shape angles the screen toward a seated delegate, and the microphone stalk is long enough to reach without leaning - both dictated by hours of sitting rather than by styling.",
-   "The mesh is light at 10,880 polygons and 11,346 vertices in quads and tris with non-overlapping UVs, with the screen as a separate surface so an interface can be applied without masking.",
-   "At $34 it suits conference and boardroom visualisation, audiovisual equipment marketing, government and institutional interiors, corporate presentation and games. On sale since 2022."
+   "A campfire is a small architecture: logs leaned or stacked so air moves through the middle, a ring of stones, ash and embers below and flame between the wood rather than on top of it. That internal structure is what makes a fire believable - flames coming off a solid pile look wrong immediately.",
+   "The mesh is light at 9,001 polygons and 9,035 vertices in quads and tris with non-overlapping UVs, with the logs as separate bodies and the geometry spent on the charring and the stack arrangement.",
+   "At $29 and built to CheckMate specification, it suits camping and outdoor visualisation, travel and adventure advertising, evening and night scenes, film and television set dressing, and games. On sale since 2024."
   ],
   "keywords": [
-   "conference discussion unit 3d model",
-   "delegate microphone system",
-   "boardroom av equipment",
-   "wireless conference device",
-   "institutional interior asset",
-   "audiovisual marketing render",
-   "gooseneck microphone unit",
-   "meeting room technology",
-   "government chamber equipment",
-   "corporate interior prop",
-   "voting terminal",
-   "conference table device"
+   "campfire 3d model",
+   "burning logs asset",
+   "outdoor scene prop",
+   "camping visualisation",
+   "fire pit with stones",
+   "night scene lighting element",
+   "adventure advertising asset",
+   "wilderness set dressing",
+   "charred wood stack",
+   "game environment prop",
+   "bonfire model",
+   "leisure outdoor asset"
   ]
  },
  {
-  "slug": "hawthorn-berry-branch-2191739",
+  "slug": "cartoon-bank-building-1948150",
   "paragraphs": [
-   "Hawthorn carries three things at once on the same branch: deeply lobed leaves, dense clusters of red berries and long thorns along the wood. It is the thorns that most models omit, and they are the reason the plant has its name and its use as a field boundary for centuries.",
-   "The mesh is light at 20,666 polygons and 10,351 vertices in quads and tris. The UVs overlap, which is sensible on a subject built from repeated leaves and berries, and it keeps a branch cheap enough to repeat across a hedge.",
-   "A version with fur grooming sits on this page at the same $34. Both suit landscape and garden visualisation, herbal and natural product packaging, botanical illustration, seasonal advertising and games. On sale since 2024."
+   "A stylised building is a design exercise in reduction: keep the columns, the pediment and the coins-on-the-sign that say bank, and throw away everything else. Proportions get exaggerated deliberately, because the shape has to read at a glance in a game or an explainer where nobody stops to look.",
+   "The mesh is light at 29,378 polygons and 16,310 vertices in quads and tris with non-overlapping UVs, which is exactly the budget a stylised asset should carry - simple forms and flat colour.",
+   "Red and green versions sit on this page at the same $29. All suit games and interactive media, explainer and motion graphics, financial and educational content, children's material and print. On sale since 2022."
   ],
   "keywords": [
-   "hawthorn branch 3d model",
-   "berry branch vegetation",
-   "botanical illustration asset",
-   "hedgerow plant",
+   "cartoon bank building 3d model",
+   "stylised architecture asset",
+   "game environment building",
+   "explainer animation prop",
+   "low poly town building",
+   "financial illustration asset",
+   "children's content architecture",
+   "motion graphics building",
+   "toy town model",
+   "simplified facade",
+   "interactive media asset",
+   "mobile game building"
+  ]
+ },
+ {
+  "slug": "cedar-lebanon-bark-tree-1786787",
+  "paragraphs": [
+   "A cedar of Lebanon grows outward rather than upward once it matures: the trunk divides low, and the branches spread into flat horizontal plates of foliage stacked one above another. That tiered silhouette is entirely unlike a young conifer and is what makes the species recognisable across a landscape.",
+   "The mesh runs 260,393 polygons and 247,163 vertices in quads and tris with non-overlapping UVs, with the density in the deeply fissured bark and the foliage plates.",
+   "At $29 it suits landscape and architectural visualisation, garden and estate renders, heritage and cultural material, film and television, and games. On sale since 2022."
+  ],
+  "keywords": [
+   "cedar of lebanon 3d model",
+   "mature conifer tree",
    "landscape visualisation vegetation",
-   "herbal product packaging",
-   "red berries and thorns",
-   "garden scene plant",
-   "autumn seasonal asset",
-   "natural product imagery",
-   "shrub foliage model",
-   "wild plant render"
+   "architectural landscaping asset",
+   "tiered foliage tree",
+   "garden estate render",
+   "heritage tree",
+   "fissured bark model",
+   "environment scene tree",
+   "cultural symbol plant",
+   "botanical asset",
+   "exterior vegetation"
   ]
  },
  {
-  "slug": "samsung-galaxy-note-3-3d-models-set-961528",
+  "slug": "clear-clubmaster-optical-glasses-2405888",
   "paragraphs": [
-   "This generation of phone is remembered for two things: a very large screen at a time when that was still unusual, and a textured plastic back with faux stitching around the edge that imitated a leather notebook. That stitching detail is the identification, and it is entirely a texture problem rather than a geometric one.",
-   "The mesh is light at 19,788 polygons and 22,246 vertices in quads and tris with non-overlapping UVs, and ships with 25 texture maps at a spread of sizes from 4096x4096 down to 512x512, which is what a set with multiple finishes needs.",
-   "At $34 it suits consumer electronics visualisation, technology archive and journalism material, period interior and desk scenes, product renders and games. On sale since 2016."
+   "Browline glasses put a thick top rim over a thin wire lower frame, which is why they read as half spectacle and half eyebrow. Clear acetate makes that construction visible rather than hiding it, and it also means the model has to handle a transparent frame over transparent lenses without either disappearing.",
+   "The mesh is light at 10,694 polygons and 10,716 vertices in quads and tris with non-overlapping UVs, with the geometry in the brow, the hinges and the nose bridge.",
+   "At $29 and built to CheckMate specification, it suits eyewear retail and e-commerce renders, fashion and lifestyle visualisation, character set dressing for film, television and games, and advertising. Real-world scale is kept, so they fit a standard head. On sale since 2025."
   ],
   "keywords": [
-   "galaxy note phone 3d model",
-   "large screen smartphone",
-   "consumer electronics asset",
-   "technology archive material",
-   "period desk scene prop",
-   "phablet device",
-   "product render model",
-   "tech journalism graphic",
-   "stylus phone",
-   "mobile device visualisation",
-   "e-commerce handset",
-   "retro smartphone"
+   "clubmaster glasses 3d model",
+   "browline eyewear asset",
+   "optical frames render",
+   "clear acetate spectacles",
+   "eyewear e-commerce model",
+   "fashion accessory visualisation",
+   "character set dressing glasses",
+   "retail optical asset",
+   "designer frames",
+   "prescription glasses model",
+   "lifestyle advertising prop",
+   "vision accessory"
   ]
  },
  {
-  "slug": "thermal-dispenser-addis-5l-2004283",
+  "slug": "controllers-nintendo-switch-2-2397040",
   "paragraphs": [
-   "An airpot dispenser keeps liquid hot without power, using a vacuum flask inside a plastic shell with a pump lid on top. Pressing the lid pushes liquid up a tube and out of the spout, which is why the top is a broad plunger rather than a screw cap, and why these appear at every buffet and office kitchen.",
-   "The mesh is light at 8,381 polygons and 4,510 vertices in quads and tris with non-overlapping UVs, with the geometry in the pump lid, the spout and the handle.",
-   "At $34 it suits hospitality and catering visualisation, office and break room interiors, buffet and event scenes, kitchenware retail renders and games. On sale since 2023."
+   "Detachable controllers are an unusual design problem: each half has to work alone in a hand, attach to a console, and pair with its mirror image to form a conventional pad. That triple duty is why the shapes are asymmetric, why the rails run down the inner edge, and why the buttons sit where they do.",
+   "The models are built in quads and tris with non-overlapping UVs, with the two halves as separate bodies so they can be shown attached, detached or held in either configuration.",
+   "At $29 and built to StemCell specification, it suits gaming hardware advertising, consumer electronics visualisation, product and e-commerce renders, desk and living room scenes, and games. On sale since 2025."
   ],
   "keywords": [
-   "thermal dispenser 3d model",
-   "airpot vacuum flask",
-   "catering beverage equipment",
-   "office break room prop",
-   "buffet service asset",
-   "hot drink dispenser",
-   "hospitality visualisation",
-   "kitchenware retail render",
-   "pump lid flask",
-   "event catering equipment",
-   "commercial kitchen prop",
-   "insulated jug"
+   "game controller 3d model",
+   "detachable console controllers",
+   "gaming hardware asset",
+   "consumer electronics render",
+   "handheld console accessory",
+   "product visualisation gaming",
+   "e-commerce controller model",
+   "living room scene prop",
+   "video game peripheral",
+   "controller pair",
+   "gaming advertising asset",
+   "console accessory"
   ]
  },
  {
-  "slug": "ups-delivery-truck-cargo-body-black-2488271",
+  "slug": "crushed-soda-cans-set-1049917",
   "paragraphs": [
-   "A parcel van body is a box with very specific fittings: a roll-up rear shutter, a bulkhead door behind the cab, shelving down both sides and a low step so a driver can get in and out repeatedly all day. This asset is the body alone, which is what a bodybuilder or a fleet specification needs to show.",
-   "The mesh is efficient at 60,443 polygons and 60,881 vertices in quads and tris with mixed UV layout, with the geometry in the shutter, the corner posts and the roof ribs.",
-   "At $34 and built to StemCell specification, it suits logistics and last mile delivery visualisation, fleet and bodybuilder presentation, courier marketing, urban scenes and games. On sale since 2026."
+   "A crushed can is far more useful than an intact one for the same reason a crumpled bag is: bins, gutters, recycling scenes and desk clutter all need packaging that has been used. Each can folds differently depending on how it was crushed, which is why a set beats a single item repeated.",
+   "The mesh runs 18,886 polygons and 18,048 vertices in quads and tris with non-overlapping UVs, with the geometry entirely spent on the deformation, and ships with 6 texture maps at 4096x4096 carrying the printing distorted across the folds.",
+   "At $29 it suits recycling and waste visualisation, urban and street set dressing, interior clutter, sustainability material, film and television, and games. On sale since 2016."
   ],
   "keywords": [
-   "delivery truck body 3d model",
-   "parcel van cargo box",
-   "courier vehicle body",
-   "last mile logistics asset",
-   "fleet bodybuilder presentation",
-   "roll up shutter body",
-   "urban delivery visualisation",
-   "commercial vehicle component",
-   "shelved cargo interior",
-   "distribution vehicle",
-   "logistics marketing model",
-   "van box unit"
+   "crushed cans 3d model",
+   "recycling waste asset",
+   "street litter prop",
+   "aluminium can set",
+   "sustainability visualisation",
+   "urban set dressing",
+   "interior clutter object",
+   "waste stream material",
+   "deformed packaging",
+   "environmental illustration asset",
+   "bin contents prop",
+   "film set dressing"
   ]
  },
  {
-  "slug": "violin-shaped-case-gewa-pure-black-closed-2143560",
+  "slug": "cyc-flood-light-4-bank-3d-model-992363",
   "paragraphs": [
-   "A shaped case follows the outline of the instrument rather than being an oblong, which saves weight and bulk but means the case itself is instantly recognisable as a violin case even closed. The moulded shell, the carry handle, the latches and the shoulder strap fittings are the visible detail.",
-   "The mesh is efficient at 27,792 polygons and 14,215 vertices in quads and tris with non-overlapping UVs, with the geometry in the shell profile, the latches and the strap hardware.",
-   "At $34 and built to CheckMate specification, it suits music and instrument retail renders, concert and performance visualisation, education and rehearsal scenes, character set dressing and games. On sale since 2024."
+   "A cyclorama flood is a wide asymmetric fixture used to light a curved white wall evenly from top to bottom, and the four bank version stacks four cells in one housing so each can carry a different colour. That arrangement is why the fitting is so long and why the reflector shape looks lopsided.",
+   "The model is built with clean non-overlapping surfaces so the reflector, the housing and the colour frames can each take their own material treatment.",
+   "At $29 it suits theatre and studio lighting visualisation, television and photographic studio interiors, lighting equipment marketing and catalogues, production set dressing and games. On sale since 2016."
   ],
   "keywords": [
-   "violin case 3d model",
-   "shaped instrument case",
-   "music retail render",
-   "concert set dressing",
-   "string instrument accessory",
-   "musician character prop",
-   "rehearsal room asset",
-   "moulded shell case",
-   "orchestra equipment",
-   "instrument transport case",
-   "music education prop",
-   "performance visualisation"
+   "cyclorama flood light 3d model",
+   "studio lighting fixture",
+   "theatre lighting equipment",
+   "four cell luminaire",
+   "television studio asset",
+   "asymmetric reflector fitting",
+   "production lighting rig",
+   "photographic studio prop",
+   "lighting catalogue model",
+   "stage equipment",
+   "broadcast studio fixture",
+   "professional luminaire"
   ]
  },
  {
-  "slug": "trolley-shopping-cart-with-coin-lock-system-2112260",
+  "slug": "double-fishermans-bend-knot-rope-1648650",
   "paragraphs": [
-   "The coin lock is the reason European trolleys end up back in the bay rather than in car parks: a chain from one trolley plugs into the next, and only a returned trolley releases the deposit. That small mechanism on the handle is what distinguishes the type at a glance from an American cart.",
-   "The mesh is efficient at 55,966 polygons and 34,445 vertices in quads and tris with non-overlapping UVs, with the geometry in the wire basket, the coin lock housing and the castors.",
-   "At $32 it suits supermarket and retail interior visualisation, car park and store exterior scenes, retail marketing, film and television set dressing, and games. On sale since 2023."
+   "The double fisherman's is the knot used to join two ropes when the join must never come undone: two strangling knots that jam against each other under load. Modelling it correctly means the two halves have to mirror and interlock exactly, because anyone who ties knots will see immediately if the lay is wrong.",
+   "The model is built with subdivision geometry at 1,392 polygons and 1,452 vertices with non-overlapping UVs. Subdivision is the right choice for rope: the strands stay round and smooth however close the camera gets.",
+   "At $29 it suits climbing and outdoor sports visualisation, safety and rescue training material, sailing and rigging illustration, technical and educational content, and games. On sale since 2021."
   ],
   "keywords": [
-   "shopping trolley with coin lock",
-   "supermarket cart 3d model",
-   "retail interior asset",
-   "wire basket trolley",
-   "store car park prop",
-   "european shopping cart",
-   "retail marketing render",
-   "trolley bay asset",
-   "grocery store equipment",
-   "coin deposit mechanism",
-   "shop floor prop",
-   "commercial trolley model"
+   "double fishermans knot 3d model",
+   "climbing rope knot",
+   "safety training illustration",
+   "rope rigging asset",
+   "outdoor sports visualisation",
+   "knot tying education",
+   "rescue training material",
+   "sailing rope work",
+   "technical illustration knot",
+   "cord and line asset",
+   "mountaineering equipment",
+   "rope join model"
   ]
  },
  {
-  "slug": "automata-eva-six-axis-robot-2346113",
+  "slug": "duty-belt-1471739",
   "paragraphs": [
-   "This is a desktop scale industrial arm, and the difference from a factory robot is not just size: the joints are exposed, the housings are moulded plastic rather than cast metal, and the whole machine is light enough to be moved by hand. It exists to bring six axis automation to benches rather than to production lines.",
-   "The mesh is efficient at 60,904 polygons and 61,803 vertices in quads and tris with non-overlapping UVs, with the density in the joint housings and the cable routing.",
-   "At $31 and built to StemCell specification, it suits robotics and automation marketing, laboratory and small manufacturing visualisation, education and maker material, technology presentation and games. On sale since 2025."
+   "A police duty belt is a load bearing platform: a wide leather or nylon belt with keepers holding it to the trouser belt, and a set of pouches, holster and equipment loops spaced around it in an order that matters because everything has to be reachable without looking.",
+   "The mesh is minimal at 3,340 polygons and 3,386 vertices, built entirely from quads with non-overlapping UVs, and ships with 5 texture maps at 4096x4096 carrying the leather grain, the stitching and the hardware.",
+   "At $29 it suits law enforcement and security visualisation, character set dressing for film, television and games, equipment presentation and training material. Real-world scale is kept, so it fits a standard figure. On sale since 2020."
   ],
   "keywords": [
-   "desktop robot arm 3d model",
-   "six axis collaborative robot",
-   "small scale automation",
-   "laboratory robotics asset",
-   "maker technology visualisation",
-   "robotics marketing render",
-   "bench top manipulator",
-   "education robotics model",
-   "light industrial robot",
-   "automation presentation asset",
-   "articulated arm",
-   "cobot model"
+   "police duty belt 3d model",
+   "law enforcement equipment",
+   "load bearing belt",
+   "character set dressing",
+   "security uniform component",
+   "leather duty rig",
+   "officer equipment asset",
+   "film costume component",
+   "game character gear",
+   "utility belt model",
+   "police accessory",
+   "uniform hardware"
   ]
  },
  {
-  "slug": "judge-traditional-clothes-2339100",
+  "slug": "energy-storage-tesla-megapack-2222205",
   "paragraphs": [
-   "Judicial dress is deliberately archaic: a long black robe with wide sleeves, often with bands at the collar, cut in a form that has barely changed in centuries precisely so that the office rather than the person is visible. That anonymity is the design brief, and it is why the garment has almost no shaping.",
-   "The mesh is minimal at 3,457 polygons and 3,499 vertices in quads and tris with non-overlapping UVs, which suits a garment that hangs straight and whose interest is in the drape rather than in tailoring.",
-   "At $31 and built to StemCell specification, it suits legal and institutional visualisation, courtroom scenes for film and television, education and civics material, editorial illustration and games. On sale since 2025."
+   "A grid battery unit is a shipping container sized enclosure with cooling equipment along one side, ventilation grilles and connection points at one end. It is designed to be craned into place and wired up rather than built on site, which is why it looks like industrial packaging rather than like a building.",
+   "The mesh runs 112,480 polygons and 117,808 vertices in quads and tris with non-overlapping UVs, with the geometry in the cooling units, the door panels and the base frame.",
+   "At $29 and built to StemCell specification, it suits renewable energy and grid visualisation, utility and infrastructure presentation, investor and trade material, planning documents and games. On sale since 2024."
   ],
   "keywords": [
-   "judicial robe 3d model",
-   "judge traditional dress",
-   "courtroom character clothing",
-   "legal profession asset",
-   "institutional costume",
-   "civics education material",
-   "film courtroom set dressing",
-   "formal black gown",
-   "authority attire model",
-   "editorial illustration costume",
-   "ceremonial legal dress",
-   "character garment"
+   "grid battery storage 3d model",
+   "megapack energy unit",
+   "utility scale battery",
+   "renewable infrastructure asset",
+   "energy transition visualisation",
+   "containerised power storage",
+   "clean energy presentation",
+   "grid stability equipment",
+   "industrial energy site",
+   "battery installation model",
+   "power utility asset",
+   "investor material graphic"
   ]
  },
  {
-  "slug": "48-quart-cooler-red-904254",
+  "slug": "evian-natural-mineral-water-1l-plastic-bottle-1689396",
   "paragraphs": [
-   "A hard cooler is a moulded double wall box with a hinged lid, a drain plug at one end and a swing handle over the top. The proportions are set by what fits inside - bottles standing upright, or ice around them - and the moulded ribs exist to stiffen a large plastic shell that gets sat on constantly.",
-   "The mesh runs 27,573 polygons and 27,959 vertices in quads and tris with non-overlapping UVs, and ships with 7 texture maps at a mix of sizes up to 4096x4096 carrying the moulded finish, the branding and the scuffs.",
-   "At $29 it suits outdoor and camping visualisation, beach and picnic scenes, beverage and lifestyle advertising, retail renders and games. On sale since 2015."
+   "A large water bottle is engineered as much as designed: the ribs around the body are there to stop the thin walls collapsing, the base has a moulded pattern to take the pressure, and the neck carries a tamper ring under the cap. Those details are what separate a real bottle from a smooth cylinder.",
+   "The mesh is efficient at 17,345 polygons and 18,640 vertices in quads and tris with non-overlapping UVs, with the geometry in the ribbing, the base pattern and the cap.",
+   "At $29 it suits beverage packaging visualisation, brand and label mockups, supermarket and e-commerce renders, food photography set dressing, and games. On sale since 2021."
   ],
   "keywords": [
-   "cooler box 3d model",
-   "hard ice chest",
-   "camping equipment asset",
-   "picnic scene prop",
-   "beverage advertising visual",
-   "outdoor lifestyle render",
-   "beach set dressing",
-   "moulded plastic cooler",
-   "retail outdoor product",
-   "tailgate equipment",
-   "insulated container",
-   "leisure equipment model"
-  ]
- },
- {
-  "slug": "absolut-citron-lemon-flavoured-vodka-1692521",
-  "paragraphs": [
-   "This bottle is a deliberate reference to an old apothecary flask: a short neck, rounded shoulders, no paper label and text printed directly onto the glass. That absence of a label is the brand's signature and a modelling problem, because everything has to come from the glass surface and the printing rather than from a wrapped decal.",
-   "The mesh is minimal at 3,784 polygons and 3,711 vertices in quads and tris with non-overlapping UVs, which is exactly right for glassware where the refractive material and the printing carry all of the realism.",
-   "At $29 it suits beverage advertising, bar and restaurant interiors, packaging and label mockups, retail and e-commerce renders, and games. On sale since 2021."
-  ],
-  "keywords": [
-   "vodka bottle 3d model",
-   "spirits packaging asset",
-   "beverage advertising prop",
-   "bar interior visualisation",
-   "printed glass bottle",
-   "label design mockup",
-   "retail drinks render",
-   "cocktail scene prop",
-   "alcohol product model",
-   "e-commerce beverage asset",
-   "flavoured spirit bottle",
-   "still life glassware"
+   "water bottle 3d model",
+   "pet plastic bottle",
+   "beverage packaging mockup",
+   "supermarket shelf asset",
+   "brand label visualisation",
+   "e-commerce drinks product",
+   "ribbed bottle body",
+   "mineral water packaging",
+   "food photography prop",
+   "retail beverage render",
+   "drinks brand mockup",
+   "packaging design asset"
   ]
  }
 ]
