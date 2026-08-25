@@ -86,6 +86,10 @@ for (const [dir, file, freq, prio] of [
     if (!fs.existsSync(pageDir)) continue;
     for (const n of fs.readdirSync(pageDir).map(Number).filter(n => n > 0).sort((a, b) => a - b)) {
       if (!fs.existsSync(path.join(pageDir, String(n), 'index.html'))) continue;
+      // Опустевшие страницы пагинации превращены в перенаправления
+      // (redirect-empty-pagination.mjs). Файл на диске есть, но вести на него
+      // поисковик нельзя: в сайтмапе должны стоять только конечные адреса.
+      if (/http-equiv="refresh"/i.test(fs.readFileSync(path.join(pageDir, String(n), 'index.html'), 'utf8'))) continue;
       entries.push(urlEntry(`${BASE}/${dir}/${x}/page/${n}/`, freq, '0.5'));
     }
   }
@@ -123,6 +127,10 @@ for (const f of OBSOLETE) {
     const nums = fs.readdirSync(pageDir).map(Number).filter(n => n > 0).sort((a, b) => a - b);
     for (const n of nums) {
       if (!fs.existsSync(path.join(pageDir, String(n), 'index.html'))) continue;
+      // Опустевшие страницы пагинации превращены в перенаправления
+      // (redirect-empty-pagination.mjs). Файл на диске есть, но вести на него
+      // поисковик нельзя: в сайтмапе должны стоять только конечные адреса.
+      if (/http-equiv="refresh"/i.test(fs.readFileSync(path.join(pageDir, String(n), 'index.html'), 'utf8'))) continue;
       urls.push(`  <url>\n    <loc>${BASE}/categories/${cat}/page/${n}/</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.5</priority>\n  </url>`);
     }
   }
