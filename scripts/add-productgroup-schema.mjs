@@ -1,4 +1,4 @@
-// add-productgroup-schema.mjs — ProductGroup для объединённых карточек.
+// add-productgroup-schema.mjs - ProductGroup для объединённых карточек.
 //
 // Проблема. Разметку Product пишет card-content.mjs один раз, с ОДНОЙ ценой.
 // Объединение версий делает отдельный проход, который трогает только видимый HTML
@@ -7,14 +7,14 @@
 // а по факту версии от $279 до $1499.
 //
 // Решение. На карточках со списком версий заменяем Product на ProductGroup:
-//   • hasVariant — по одному Product на версию, с её ценой и ссылкой на TurboSquid;
-//   • offers — AggregateOffer с реальным диапазоном цен;
-//   • variesBy — только color, и только если версии действительно различаются
+//   • hasVariant - по одному Product на версию, с её ценой и ссылкой на TurboSquid;
+//   • offers - AggregateOffer с реальным диапазоном цен;
+//   • variesBy - только color, и только если версии действительно различаются
 //     цветом. Google из вариативных свойств понимает color/size/material/pattern;
 //     «оснастка» и «версия под софт» ему неизвестны, поэтому их не заявляем, а
 //     оставляем в названии варианта.
 //
-// hasMerchantReturnPolicy и shippingDetails НЕ добавляем: продавец в offers —
+// hasMerchantReturnPolicy и shippingDetails НЕ добавляем: продавец в offers -
 // TurboSquid, и заявлять его политику от своего имени значит вводить Google
 // в заблуждение о том, кто исполняет заказ.
 //
@@ -34,7 +34,7 @@ const DRY = process.argv.includes('--dry');
 
 const COLORS = /\b(sand|khaki|green|black|white|red|blue|yellow|orange|grey|gray|silver|gold|brown|camo|beige|pink|purple|maroon|bronze|copper)\b/i;
 const unesc = s => String(s).replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
-  .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&#8212;/g, '—');
+  .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/-/g, '-');
 
 function variants(html) {
   const m = html.match(/<ul class="mp-var-list">([\s\S]*?)<\/ul>/);
@@ -62,14 +62,14 @@ for (const slug of fs.readdirSync(MODELS)) {
   const vs = variants(html);
   if (vs.length < 2) continue;
 
-  // исходный Product — из него берём имя, картинку, описание, категорию
+  // исходный Product - из него берём имя, картинку, описание, категорию
   const blocks = html.match(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g) || [];
   let prodRaw = null, prod = null;
   for (const b of blocks) {
     try {
       const j = JSON.parse(b.replace(/<script[^>]*>/, '').replace(/<\/script>/, '').trim());
       if (j['@type'] === 'Product') { prodRaw = b; prod = j; break; }
-    } catch (e) { /* битый блок — не наш случай, репорт ниже */ }
+    } catch (e) { /* битый блок - не наш случай, репорт ниже */ }
   }
   if (!prod) { noProduct++; continue; }
 

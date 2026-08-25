@@ -1,5 +1,5 @@
 /*
- * apply-card-upgrade.mjs — перенос утверждённой раскладки карточки на весь каталог.
+ * apply-card-upgrade.mjs - перенос утверждённой раскладки карточки на весь каталог.
  *
  * Прототип согласован на трёх превью (см. build-variant-cards.mjs и
  * /preview/cards/). Здесь то же самое применяется к живым карточкам в models/.
@@ -406,8 +406,8 @@ function upgrade(slug) {
   // 9. стили, скрипт, метка, тире
   html = html.replace('</head>', STYLE + MARK + '</head>');
   html = html.replace('</body>', SCRIPT + '</body>');
-  const dashes = (html.match(/—|–|&#8212;|&mdash;|&#8211;|&ndash;/g) || []).length;
-  html = html.replace(/\s*(?:—|–|&#8212;|&mdash;|&#8211;|&ndash;)\s*/g, ' - ');
+  const dashes = (html.match(/-|-|-|-|-|-/g) || []).length;
+  html = html.replace(/\s*(?:-|-|-|-|-|-)\s*/g, ' - ');
 
   if (!DRY) fs.writeFileSync(file, html);
   return { touched, dashes, hasInv: !!poly, kw: kwList.length };

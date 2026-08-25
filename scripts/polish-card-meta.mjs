@@ -1,19 +1,19 @@
-// polish-card-meta.mjs — доводка мета-данных карточек модели.
+// polish-card-meta.mjs - доводка мета-данных карточек модели.
 //
 // Три правки, все идемпотентные, можно гонять повторно:
 //
-//   1. Длинное тире в <title>. Генератор ставил «Tesla Model 3 3D Model &#8212; $149»,
-//      а правило проекта — только дефис. Меняем на «-» в title, og:title и
+//   1. Длинное тире в <title>. Генератор ставил «Tesla Model 3 3D Model - $149»,
+//      а правило проекта - только дефис. Меняем на «-» в title, og:title и
 //      twitter:title. В видимом тексте страницы тире не трогаем.
 //
 //   2. Короткое описание. Шаблон давал 102-116 знаков при полезных 150-160:
 //      «Buy X 3D model by 3D Molier on TurboSquid. CheckMate Lite certified.
 //      Vehicles asset, $149.» Дописываем назначение из строки «Typical use»
-//      таблицы характеристик — она у каждой карточки своя, поэтому описания
+//      таблицы характеристик - она у каждой карточки своя, поэтому описания
 //      остаются разными, а не шаблонными. Длиннее 160 не делаем: режем по слову.
 //
 //   3. У ProductGroup нет variesBy. Есть productGroupID и hasVariant, но не сказано,
-//      ЧЕМ отличаются версии. Ось выводим из подписей вариантов: только цвета —
+//      ЧЕМ отличаются версии. Ось выводим из подписей вариантов: только цвета -
 //      schema.org/color, иначе текстом «version».
 //
 // Заглушки не трогаем: у них нет ни таблицы, ни разметки товара.
@@ -33,7 +33,7 @@ const SAMPLE = si !== -1 ? process.argv[si + 1] : null;
 
 const DESC_MIN = 150, DESC_MAX = 160;
 
-// Значение из match — срез, удерживающий всю страницу. На 58 тысячах карточек
+// Значение из match - срез, удерживающий всю страницу. На 58 тысячах карточек
 // такие срезы уже дважды роняли прогоны по памяти. Копируем в свою строку.
 const copy = s => Buffer.from(String(s), 'utf8').toString('utf8');
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
@@ -47,9 +47,9 @@ const COLOR_WORD = /^(sand|khaki|green|black|white|red|blue|yellow|orange|grey|g
 function fixDash(h) {
   let out = h;
   out = out.replace(/<title>([\s\S]*?)<\/title>/, (m, t) =>
-    '<title>' + t.replace(/\s*(?:&#8212;|&mdash;|—)\s*/g, ' - ') + '</title>');
+    '<title>' + t.replace(/\s*(?:-|-|-)\s*/g, ' - ') + '</title>');
   out = out.replace(/(<meta (?:property="og:title"|name="twitter:title") content=")([^"]*)(")/g,
-    (m, a, t, c) => a + t.replace(/\s*(?:&#8212;|&mdash;|—)\s*/g, ' - ') + c);
+    (m, a, t, c) => a + t.replace(/\s*(?:-|-|-)\s*/g, ' - ') + c);
   return out;
 }
 
@@ -68,7 +68,7 @@ function extendDesc(desc, use) {
   const tail = ' Built for ' + use.replace(/\s*,\s*$/, '') + '.';
   let out = desc.replace(/\s+$/, '') + tail;
   if (out.length <= DESC_MAX) return out;
-  // Не влезло целиком — режем хвост по запятой, потом по слову.
+  // Не влезло целиком - режем хвост по запятой, потом по слову.
   const room = DESC_MAX - desc.length - ' Built for .'.length;
   if (room < 12) return null;                            // дописывать нечего
   const parts = use.split(',').map(s => s.trim()).filter(Boolean);
@@ -91,7 +91,7 @@ function fixDesc(h) {
   if (!next) return { html: h, changed: false };
   const enc = esc(next);
   let out = h.replace(/(<meta name="description" content=")[^"]*(")/, (x, a, b) => a + enc + b);
-  // og и twitter повторяют описание — держим их в согласии, иначе в соцсетях
+  // og и twitter повторяют описание - держим их в согласии, иначе в соцсетях
   // и в предпросмотре останется старый короткий текст.
   const curEnc = m[1];
   out = out.replace(/(<meta property="og:description" content=")([^"]*)(")/,

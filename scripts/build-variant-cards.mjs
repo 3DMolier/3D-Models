@@ -1,5 +1,5 @@
 /*
- * build-variant-cards.mjs — карточка модели с разделением презентации и версий.
+ * build-variant-cards.mjs - карточка модели с разделением презентации и версий.
  *
  * Чем отличается от прошлой попытки (build-variant-demo.mjs, забракована 20.08).
  * Та строила отдельную страницу с нуля и растеряла всё, ради чего карточка нужна:
@@ -663,8 +663,8 @@ function build(group) {
   // Длинного тире в текстах быть не должно - правило проекта. В генераторе
   // card-content.mjs оно уже убрано, но выпущенные карточки его ещё несут
   // (59 672 страницы на 20.08.2026), поэтому чистим и здесь.
-  const dashes = (html.match(/—|–|&#8212;|&mdash;|&#8211;|&ndash;/g) || []).length;
-  html = html.replace(/\s*(?:—|–|&#8212;|&mdash;|&#8211;|&ndash;)\s*/g, ' - ');
+  const dashes = (html.match(/-|-|-|-|-|-/g) || []).length;
+  html = html.replace(/\s*(?:-|-|-|-|-|-)\s*/g, ' - ');
   return { slug, html, total, versions: versions.length, dashes, relAdded, kw: clean.length };
 }
 

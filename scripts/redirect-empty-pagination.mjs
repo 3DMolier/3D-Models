@@ -75,6 +75,34 @@ for (const [slug, models] of Object.entries(cc.counts)) {
   }
 }
 
+// То же самое случилось с browse: индекс пересобрался на 109 страниц, а на
+// диске остались 174 от прошлой сборки. Лишние показывают старый список и
+// заголовок «Page 132 of 174 ... of 86907» - каталога такого размера давно нет.
+{
+  const dir = path.join(ROOT, 'browse');
+  const nums = fs.existsSync(dir) ? fs.readdirSync(dir).filter(x => /^\d+$/.test(x)).map(Number) : [];
+  // Сколько страниц нужно, спрашиваем у сайтмапа browse: его пишет
+  // build-browse-index.mjs в том же прогоне, что и сами страницы.
+  const sm = path.join(ROOT, 'sitemaps', 'sitemap-browse.xml');
+  const live = new Set();
+  if (fs.existsSync(sm)) {
+    for (const m of fs.readFileSync(sm, 'utf8').matchAll(/\/browse\/(\d+)\//g)) live.add(+m[1]);
+  }
+  let bdone = 0, balready = 0;
+  if (live.size) {
+    for (const n of nums.sort((a, b) => a - b)) {
+      if (live.has(n)) continue;
+      const file = path.join(dir, String(n), 'index.html');
+      if (!fs.existsSync(file)) continue;
+      const h = fs.readFileSync(file, 'utf8');
+      if (/http-equiv="refresh"/i.test(h)) { balready++; continue; }
+      if (!DRY) fs.writeFileSync(file, stub('/browse/', 'Complete 3D Model Index'));
+      bdone++;
+    }
+    console.log('\nbrowse: перенаправлено лишних страниц: ' + bdone + ', уже были заглушками: ' + balready);
+  } else console.log('\nbrowse: сайтмапа нет, страницы не трогаю');
+}
+
 console.log('перенаправлено пустых страниц: ' + done);
 console.log('  уже были заглушками:        ' + already);
 if (skippedNonEmpty) console.log('  НЕ ТРОНУТЫ, карточки есть:  ' + skippedNonEmpty);

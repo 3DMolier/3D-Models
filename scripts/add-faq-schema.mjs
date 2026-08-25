@@ -1,4 +1,4 @@
-// add-faq-schema.mjs — разметка FAQPage для блока вопросов на карточке.
+// add-faq-schema.mjs - разметка FAQPage для блока вопросов на карточке.
 //
 // Блок «Questions About This Model» стоит на каждой карточке: четыре вопроса в
 // <h3 class="mp-faq-q"> и ответы в <p class="mp-faq-a">. Разметки при этом нет
@@ -39,7 +39,7 @@ function isStub(dir) {
 // Так и вышло на 37 112 карточках, чинили скриптом fix-entities-in-jsonld.mjs.
 const strip = s => s
   .replace(/<[^>]+>/g, '')
-  .replace(/&#8212;/g, ' - ')
+  .replace(/-/g, ' - ')
   .replace(/&(quot|#39|#x27|apos|lt|gt|nbsp|amp);/g, (m, e) =>
     ({ quot: '"', '#39': "'", '#x27': "'", apos: "'", lt: '<', gt: '>', nbsp: ' ', amp: '&' })[e])
   .replace(/\s+/g, ' ')
@@ -80,7 +80,7 @@ for (const slug of fs.readdirSync(MODELS)) {
   const tag = '<script type="application/ld+json">\n'
     + JSON.stringify(schema).replace(/</g, '\\u003c') + '\n</script>';
 
-  // Вставляем перед закрытием body — рядом с остальными блоками разметки.
+  // Вставляем перед закрытием body - рядом с остальными блоками разметки.
   let out;
   if (html.includes('</body>')) out = html.replace('</body>', tag + '</body>');
   else out = html + tag;

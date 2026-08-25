@@ -1,7 +1,7 @@
-// repair-merged-pages.mjs — исправление объединённых карточек по замечаниям.
+// repair-merged-pages.mjs - исправление объединённых карточек по замечаниям.
 //
 // 1. Восстановить заголовок Specifications. При вставке списка вариантов я применил
-//    замену функцией с '$1' внутри — в функции это НЕ подстановка группы, а literal.
+//    замену функцией с '$1' внутри - в функции это НЕ подстановка группы, а literal.
 //    В итоге заголовок затёрся строкой «$1».
 // 2. Убрать дубли в блоке «похожие»: после перевода ссылок на главную карточку там
 //    оказалось по несколько карточек, ведущих на один адрес.
@@ -19,7 +19,7 @@ const DRY = process.argv.includes('--dry');
 
 // ── 1. заголовок Specifications ──
 // Литерал «$1» стоит там, где был открывающий тег заголовка вместе со словом
-// Specifications, а закрывающий </h2> уцелел. Встречается в двух окружениях —
+// Specifications, а закрывающий </h2> уцелел. Встречается в двух окружениях -
 // сразу после </section> и внутри <div class="mp-spec-block">, поэтому чиним
 // по самому литералу с закрывающим тегом, а не по соседям.
 const fixHeading = h => h
@@ -27,27 +27,27 @@ const fixHeading = h => h
   .replace(/<h2 class="mp-block-h2">Specifications<\/h2>\s*<h2 class="mp-block-h2">Specifications<\/h2>/g,
     '<h2 class="mp-block-h2">Specifications</h2>')
   // Второй след того же литерала: там, где стоял открывающий тег таблицы
-  // характеристик, осталось «$1>» — таблица разваливалась в сплошной текст
+  // характеристик, осталось «$1>» - таблица разваливалась в сплошной текст
   // («$1>ModelSharks CollectionCategory…»). Таких страниц 196.
   .replace(/\$1>\s*<tbody/g, '<table class="mp-spec-table"><tbody');
 
 // Заголовок вкладки, размноженный подстановкой цены. В строке замены «$159»
 // читается как ссылка на группу 1, и заголовок вставлял сам себя по кругу:
-// «… 3D Model &#8212;  3D Model &#8212; … $159 | 3D Molier</title>59 | 3D Molier</title>».
+// «… 3D Model -  3D Model - … $159 | 3D Molier</title>59 | 3D Molier</title>».
 // Собираем заново из H1 и цены, хвостовой мусор после первого </title> срезаем.
 // Второй вид того же накопления: имя товара само кончается на «3D Model», хвост
-// заголовка приклеивался к нему, и слова копились — «… Yellow 3D Model 3D Model
+// заголовка приклеивался к нему, и слова копились - «… Yellow 3D Model 3D Model
 // 3D Model …» (746 страниц). Ловим оба вида: и повтор слов, и мусор после </title>.
 function fixTitle(h) {
   const m = h.match(/<title>([\s\S]*?)<\/title>((?:[^<]*<\/title>)*)/);
   if (!m) return h;
-  const doubled = /(?:3D Model\s*){2,}/i.test(m[1]) || /3D Model &#8212;[\s\S]*3D Model/.test(m[1]);
+  const doubled = /(?:3D Model\s*){2,}/i.test(m[1]) || /3D Model -[\s\S]*3D Model/.test(m[1]);
   if (!doubled && !m[2]) return h;
   const h1 = (h.match(/<h1 class="mp-h1">([^<]*)<\/h1>/) || [])[1];
   if (!h1) return h;
   const name = h1.replace(/\s*\b3d\s+models?\s*$/i, '');
   const price = (m[1].match(/\$([\d.,]+)/) || [])[1];
-  // Разделитель — дефис, не длинное тире: правило проекта.
+  // Разделитель - дефис, не длинное тире: правило проекта.
   const clean = '<title>' + name + ' 3D Model'
     + (price ? ' - $' + price : '') + ' | 3D Molier</title>';
   return h.replace(m[0], () => clean);
@@ -89,7 +89,7 @@ function dedupeRelated(h, selfSlug) {
 // ── 3. заголовок серии ──
 // У карточек-серий заголовок остался от главной записи: «Rigged African Animals
 // Collection 7 for Maya» на карточке из 42 выпусков. Как название серии это
-// бессмыслица. Приводим к нормализованному виду — «African Animals Collection».
+// бессмыслица. Приводим к нормализованному виду - «African Animals Collection».
 const SOFT_T = /\s+for\s+(maya|cinema\s*4d|c4d|blender|3ds\s*max|max|unity|unreal|houdini|modo|lightwave|sketchup)\s*$/i;
 function fixSeriesTitle(h) {
   if (!h.includes('All Sets in This Series')) return h;

@@ -11,7 +11,7 @@
 //     год листинга, цена) - это уникальные строки, а не переставленные слова.
 
 export const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-export const plain = s => String(s).replace(/&amp;/g, '&').replace(/&#8212;/g, ' - ').replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/<[^>]+>/g, '');
+export const plain = s => String(s).replace(/&amp;/g, '&').replace(/-/g, ' - ').replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/<[^>]+>/g, '');
 
 const pick = (arr, seed) => arr[Math.abs(seed) % arr.length];
 

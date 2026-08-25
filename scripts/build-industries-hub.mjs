@@ -1,5 +1,5 @@
 /*
- * build-industries-hub.mjs — корневая страница раздела /industries/.
+ * build-industries-hub.mjs - корневая страница раздела /industries/.
  *
  * Зачем. Двенадцать отраслевых страниц существовали с самого начала, а входа в
  * раздел не было: /industries/ отдавал 404. При этом карта сайта звала обход
@@ -84,7 +84,7 @@ const breadcrumb = {
   ],
 };
 
-const title = '3D Models by Industry &#8212; Aerospace, Medical, Games &amp; More | 3D Molier';
+const title = '3D Models by Industry - Aerospace, Medical, Games &amp; More | 3D Molier';
 const desc = 'Find 3D models by the work you do: aerospace, medical, game development, film production, architecture, VR and more. '
   + live.length + ' industry guides pointing to the right part of the catalog.';
 
@@ -127,7 +127,7 @@ ${header}
   <div class="max-w-7xl mx-auto">
     <div class="section-label">Browse by Field of Work</div>
     <h1 class="cat-page-h1">3D Models by Industry</h1>
-    <p class="ind-hub-note">The catalog is sorted by what a model <em>is</em> &#8212; a vehicle, a building, an organ. These pages sort it by what you <em>do</em> with it. Each one gathers the categories, formats and certification levels that matter for a particular kind of work, so you start from your own job rather than from our filing system.</p>
+    <p class="ind-hub-note">The catalog is sorted by what a model <em>is</em> - a vehicle, a building, an organ. These pages sort it by what you <em>do</em> with it. Each one gathers the categories, formats and certification levels that matter for a particular kind of work, so you start from your own job rather than from our filing system.</p>
     <div class="ind-hub-grid">${cards}</div>
     <p class="ind-hub-note">Not sure which fits? The <a href="/full-catalog/">full catalog</a> holds every model in one searchable list, and <a href="/categories/">categories</a> sort them by subject. For a model that does not exist yet, we build it: see <a href="/custom-order/">custom orders</a>.</p>
   </div>

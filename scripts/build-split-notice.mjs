@@ -1,4 +1,4 @@
-// build-split-notice.mjs — страница-развилка на месте разделённой категории.
+// build-split-notice.mjs - страница-развилка на месте разделённой категории.
 //
 // Категория «Weapons & Tools» разделена на «Weapons» и «Tools»: оружие и
 // промышленный инструмент - разные предметы и разные покупатели, держать их
@@ -38,7 +38,7 @@ const html = `<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weapons &amp; Tools 3D Models &#8212; Now Two Categories | 3D Molier</title>
+<title>Weapons &amp; Tools 3D Models - Now Two Categories | 3D Molier</title>
 <meta name="description" content="The Weapons &amp; Tools category has been split into two: Weapons 3D models and Tools 3D models. Pick the one you need.">
 <link rel="canonical" href="${BASE}/categories/${OLD}/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">

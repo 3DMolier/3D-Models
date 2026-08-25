@@ -56,7 +56,7 @@ console.log('моделей: ' + slugs.length);
 // JS просто скрывает те, что не совпали. Работает мгновенно, не требует сети.
 const FILTER_JS = `<script>(function(){var i=document.getElementById('browse-filter');if(!i)return;var items=[].slice.call(document.querySelectorAll('.browse-list li'));var cnt=document.getElementById('browse-filter-count');i.addEventListener('input',function(){var q=i.value.trim().toLowerCase();var shown=0;items.forEach(function(li){var m=!q||li.textContent.toLowerCase().indexOf(q)>-1;li.style.display=m?'':'none';if(m)shown++;});if(cnt)cnt.textContent=q?(shown+' of '+items.length+' match'):'';});})();</script>`;
 const FILTER_BOX = `<div class="browse-filter-box"><input id="browse-filter" type="search" placeholder="Filter models on this page…" aria-label="Filter models on this page"><span id="browse-filter-count" class="browse-filter-count"></span></div>
-    <p class="browse-search-hint">Looking for something specific across the whole catalog? Use <a href="/search/">Search</a> or the <a href="/full-catalog/">Full Catalog</a> instead — this index is a flat link list meant for browsing page by page.</p>`;
+    <p class="browse-search-hint">Looking for something specific across the whole catalog? Use <a href="/search/">Search</a> or the <a href="/full-catalog/">Full Catalog</a> instead - this index is a flat link list meant for browsing page by page.</p>`;
 
 const pages = Math.ceil(slugs.length / PER);
 fs.mkdirSync(OUT, { recursive: true });
@@ -144,8 +144,8 @@ for (let i = 0; i < pages; i++) {
   const body = `<section class="page-section">
   <div class="max-w-7xl mx-auto">
     <nav aria-label="Breadcrumb"><a href="/">Home</a> &#8250; <a href="/browse/">All Models</a> &#8250; Page ${n}</nav>
-    <h1>All 3D Models &#8212; Page ${n} of ${pages}</h1>
-    <p>Models ${i * PER + 1}&#8211;${i * PER + part.length} of ${slugs.length} in the 3D Molier catalog.</p>
+    <h1>All 3D Models - Page ${n} of ${pages}</h1>
+    <p>Models ${i * PER + 1}-${i * PER + part.length} of ${slugs.length} in the 3D Molier catalog.</p>
     ${FILTER_BOX}
     <ul class="browse-list">
 ${links}
@@ -161,7 +161,7 @@ ${FILTER_JS}`;
   const dir = path.join(OUT, String(n));
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'index.html'),
-    shell(`All 3D Models — Page ${n} of ${pages} | 3D Molier`,
+    shell(`All 3D Models - Page ${n} of ${pages} | 3D Molier`,
       `Complete index of 3D models by 3D Molier, page ${n} of ${pages}. Direct links to ${part.length} model pages.`,
       `${BASE}/browse/${n}/`, body, rel + crumbs(n)), 'utf8');
 }
@@ -169,7 +169,7 @@ ${FILTER_JS}`;
 // ── оглавление ──
 const toc = Array.from({ length: pages }, (_, i) => {
   const from = i * PER + 1, to = Math.min((i + 1) * PER, slugs.length);
-  return `<li><a href="/browse/${i + 1}/">Page ${i + 1} &#183; models ${from}&#8211;${to}</a></li>`;
+  return `<li><a href="/browse/${i + 1}/">Page ${i + 1} &#183; models ${from}-${to}</a></li>`;
 }).join('\n');
 const idxBody = `<section class="page-section">
   <div class="max-w-7xl mx-auto">
@@ -185,7 +185,7 @@ ${toc}
 </section>
 ${FILTER_JS}`;
 fs.writeFileSync(path.join(OUT, 'index.html'),
-  shell(`Complete 3D Model Index — ${slugs.length} Models | 3D Molier`,
+  shell(`Complete 3D Model Index - ${slugs.length} Models | 3D Molier`,
     `Full index of all ${slugs.length} 3D models by 3D Molier. Direct links to every model page.`,
     `${BASE}/browse/`, idxBody, crumbs(0)), 'utf8');
 
