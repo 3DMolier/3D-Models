@@ -116,7 +116,7 @@
 /* EMPTY STATE */
 #empty-state { display: none; text-align: center; padding: 80px 20px; }
 #empty-state .empty-icon { font-size: 64px; margin-bottom: 20px; opacity: 0.4; }
-#empty-state h3 { font-family: 'Open Sans', sans-serif; font-size: 22px; color: #111111; margin-bottom: 10px; }
+#empty-state h3, #empty-state .empty-title { font-family: 'Open Sans', sans-serif; font-size: 22px; font-weight: 600; color: #111111; margin-bottom: 10px; }
 #empty-state p { color: var(--muted); }
 
 /* FOOTER */

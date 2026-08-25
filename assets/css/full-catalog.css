@@ -83,7 +83,7 @@
 /* EMPTY */
 #empty{display:none;text-align:center;padding:64px 20px;color:var(--muted)}
 #empty .ei{font-size:56px;opacity:.25;margin-bottom:16px}
-#empty h3{font-size:20px;color:#111;margin-bottom:8px}
+#empty h3,#empty .empty-title{font-size:20px;font-weight:600;color:#111;margin-bottom:8px}
 
 /* FOOTER */
 footer{background:#111;color:#fff;padding:48px 0 24px;margin-top:40px}
