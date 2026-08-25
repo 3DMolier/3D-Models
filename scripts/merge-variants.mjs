@@ -449,13 +449,20 @@ const MANUAL_GROUPS = [
   // почти нет - ни один проход по имени такое не соберёт. Часть ловится по
   // геометрии (проход geo), но у «Simplified» меш облегчён, а у тросов в
   // карточках вовсе нет Polygons - эти указываем руками.
-  { main: '1283452', rest: ['1283453', '2553243', '2554921'] }, // трос буксировочный: с крюками и без
+  // Тросы - ДВЕ пары, а не одна группа. С крюками и без - разные меши
+  // (4448 и 6880 полигонов), то есть разные предметы, а не варианты одного.
+  { main: '1283452', rest: ['2553243'] },                       // трос буксировочный без крюков
+  { main: '1283453', rest: ['2554921'] },                       // трос буксировочный с крюками
   { main: '2471077', rest: ['2471619', '2471626', '2471978'] }, // Cadillac Gage V-100: green / tan / woodland / simplified
   { main: '2472126', rest: ['2472131'] },                       // WWII артиллерия: green / desert
   { main: '2499896', rest: ['2499928', '2499929'] },            // Thales Hawkei: базовый / camo / simplified
   { main: '2491809', rest: ['2491817'] },                       // ракетная установка: desert / forest camo
   { main: '2474120', rest: ['2474133'] },                       // Kawasaki Corleo: white copper / light blue
-  { main: '2509317', rest: ['2509339'] },                       // offroad coupe: black / red
+  // Купе основателя разошлись по двум семьям: у них разные меши (124409 и
+  // 174823 полигона) - это полная и Simplified версии одного Volkswagen Baja
+  // Concept. Правило про Simplified в скрипте уже есть, но по названиям эти
+  // две семьи не сходятся. Сводим Simplified-семью в основную.
+  { main: '2509323', rest: ['2509316'] },                       // Baja Concept: полная версия и Simplified
 ];
 function buildManualGroups() {
   const byId = new Map(rows.map(r => [r.id, r]));
@@ -781,9 +788,16 @@ function buildBlocks(g) {
     return seen[base] > 1 ? base + ' (' + seen[base] + ')' : base;
   };
 
+  // Заголовок витрины. У проходов manual и geo родство найдено не по цвету, и
+  // «Available Colors» над списком «Jar Stand / Spice Rack Organizer» человека
+  // сбивает. Смотрим на сами подписи: если КАЖДАЯ - это цвет, заголовок про
+  // цвета честен, иначе говорим нейтрально про версии модели.
+  const allColors = all.every(x => COLOR_ANY_ONE.test(label(x)));
   const head = g.kind === 'soft' ? 'Available Formats'
     : g.kind === 'collection' ? 'All Sets in This Series'
-      : (g.kind === 'identity' || g.kind === 'root' || g.kind === 'rootcat') ? 'All Versions of This Model' : 'Available Colors';
+      : (g.kind === 'identity' || g.kind === 'root' || g.kind === 'rootcat') ? 'All Versions of This Model'
+        : (g.kind === 'manual' || g.kind === 'geo') ? (allColors ? 'Available Colors' : 'All Versions of This Model')
+          : 'Available Colors';
   const list = '<section class="mp-variants"><h2 class="mp-block-h2">' + head + '</h2>'
     + '<ul class="mp-var-list">'
     + all.map((x, i) => '<li class="mp-var' + (i ? '' : ' is-main') + '">'
@@ -1114,12 +1128,12 @@ flush();
 // Поэтому состав берём не из группы, а из КАРТЫ: она знает всех свёрнутых и их
 // главную, в том числе сведённых разными проходами. Трогаем только карточки БЕЗ
 // блока: где список собран текущим прогоном, он полнее, и перебивать его нечем.
-// Пасс общий по всей карте, а не по текущим группам, и трогает около 11 тысяч
+// Пасс общий по всей карте, а не по текущим группам, и трогает около 10 тысяч
 // карточек. При точечном прогоне (--only) это посторонняя правка: она попадёт в
 // тот же коммит, что и разбираемый проход, и разобрать потом, что откуда, будет
-// нечем. Общий прогон её по-прежнему выполняет.
+// нечем. Общий прогон её выполняет всегда, точечный - только по флагу --showcase.
 let showcased = 0, showSkipped = 0; const showReasons = {};
-if (!ONLY) {
+if (!ONLY || process.argv.includes('--showcase')) {
   const byMain = new Map();
   for (const [v, mainSlug] of Object.entries(map)) {
     if (v === mainSlug) continue;
@@ -1132,7 +1146,15 @@ if (!ONLY) {
     if (!mainRow) continue;
     let html;
     try { html = fs.readFileSync(path.join(MODELS, mainSlug, 'index.html'), 'utf8'); } catch (e) { continue; }
-    if (html.includes('<section class="mp-variants">')) continue;
+    // Раньше пропускали любую карточку с блоком. Но блок собирается из ГРУППЫ
+    // прохода, а семья в карте бывает больше: у Volkswagen Baja Concept проход
+    // manual перебрал список из двух строк поверх пяти, и три ссылки на листинги
+    // TurboSquid со страницы пропали. Таких усечённых главных 971. Поэтому
+    // сверяем длину: блок короче семьи - пересобираем.
+    {
+      const sec = html.match(/<section class="mp-variants">([\s\S]*?)<\/section>/);
+      if (sec && (sec[1].match(/<li class="mp-var/g) || []).length >= variants.length + 1) continue;
+    }
     if (/http-equiv="refresh"/.test(html.slice(0, 400))) continue;
     const rest = variants.map(s => bySlug.get(s)).filter(x => x && x.slug !== mainSlug);
     if (!rest.length) continue;
