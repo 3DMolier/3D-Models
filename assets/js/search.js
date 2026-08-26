@@ -75,7 +75,7 @@ function showDataError(){
     +'</div></div>';
 }
 
-// ── Load catalog.json (top 1000) ───────────────────────────────────────────
+// ── Load catalog.json (featured slice) ───────────────────────────────────────────
 setStatus('Loading search index…');
 fetch(CATALOG_URL)
   .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
@@ -100,7 +100,7 @@ fetch(CATALOG_URL)
 function loadFcData(){
   if(fcReady||fcLoading)return;
   fcLoading=true;
-  setStatus('Loading full catalog (86,865 models)…');
+  setStatus('Loading full catalog…');
 
   var p1=fetch(FC_INDEX_URL)
     .then(function(r){return r.json();})
@@ -173,7 +173,7 @@ function bindPopularSearches(){
   });
 }
 
-// ── Card: top-1000 model (has local page) ─────────────────────────────────
+// ── Card: model with a local page ─────────────────────────────────
 function modelCard(m){
   var slug=m.s||'';
   var localUrl='/models/'+slug+'/';
@@ -267,7 +267,7 @@ function appendModelCards(){
 // ── Hint / empty ───────────────────────────────────────────────────────────
 function showHint(){
   if(hintState)hintState.style.display='';
-  if(emptyState)emptyState.style.display='none';
+  if(emptyState){emptyState.hidden=true;emptyState.style.display='none'};
   if(countEl)countEl.textContent='';
   if(showMoreBtn)showMoreBtn.hidden=true;
   if(resultsEl)resultsEl.innerHTML='';
@@ -279,14 +279,14 @@ function render(pages,topModels,fcModels,q){
   if(hintState)hintState.style.display='none';
   var total=topModels.length+fcModels.length;
   if(pages.length===0&&total===0&&!fcLoading){
-    if(emptyState)emptyState.style.display='';
+    if(emptyState){emptyState.hidden=false;emptyState.style.display='block'};
     if(tsLink)tsLink.href='https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio';
     if(countEl)countEl.textContent='';
     if(showMoreBtn)showMoreBtn.hidden=true;
     if(resultsEl)resultsEl.innerHTML='';
     return;
   }
-  if(emptyState)emptyState.style.display='none';
+  if(emptyState){emptyState.hidden=true;emptyState.style.display='none'};
   var html='';
   if(pages.length>0){
     html+='<div class="result-section">';
@@ -312,7 +312,7 @@ function render(pages,topModels,fcModels,q){
     }
     html+='</div>';
     if(fcLoading){
-      html+='<div style="font-size:13px;color:#6b7280;padding:8px 0;">Searching full 86,865 model catalog…</div>';
+      html+='<div style="font-size:13px;color:#6b7280;padding:8px 0;">Searching the full catalog…</div>';
     }
     html+='<div class="s-mc-grid" id="model-results"></div>';
     html+='</div>';
