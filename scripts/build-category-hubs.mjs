@@ -36,7 +36,16 @@ const keywordClassify = name => {
   for (const [s, d, k] of CATS) if (k.find(x => t.has(x))) return s;
   return anchorClassify(name) || 'other';
 };
-const classify = (name, id) => classifyByReport(id, name) || keywordClassify(name);
+// Ручные переносы имеют приоритет над всем остальным. В data/category-overrides.json
+// лежат решения по моделям, которые отчёт TurboSquid относит не туда: авиационный
+// двигатель и салон Boeing в «Vehicles», телебашня там же, девять гидроцилиндров.
+// Пишет файл scripts/reclassify-models.mjs; без этой проверки пересборка страниц
+// вернула бы всё как было.
+const OVERRIDES = (() => {
+  const f = path.join(DATA, 'category-overrides.json');
+  try { return JSON.parse(fs.readFileSync(f, 'utf8')); } catch (e) { return {}; }
+})();
+const classify = (name, id) => OVERRIDES[String(id)] || classifyByReport(id, name) || keywordClassify(name);
 
 // ---- hero-конфиг для 9 новых категорий (иконка + описание) ----
 const HERO = {

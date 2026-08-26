@@ -60,8 +60,26 @@ const models = allModelDirs.filter(s => !isRedirectStub(path.join(ROOT, 'models'
 const mEntries = models.map(s => urlEntry(`${BASE}/models/${s}/`, 'monthly', '0.7'));
 console.log(`Модели на диске: ${allModelDirs.length}, из них живых: ${models.length}`
   + `, заглушек не включено: ${allModelDirs.length - models.length}`);
-writeUrlset('sitemap-models-1.xml', mEntries.slice(0, LIMIT));
-writeUrlset('sitemap-models-2.xml', mEntries.slice(LIMIT));
+// Раскладываем по 10 000 адресов в файл, а не по 50 000. Предел формата -
+// 50 000, и в него всё влезало двумя файлами, но Search Console показывает
+// охват ПОФАЙЛОВО: при двух файлах видно «столько-то из 27 000 не в индексе»
+// и непонятно, какой это кусок каталога. При шести файлах сразу видно, в
+// каком сегменте проседает индексация.
+const MODELS_PER_FILE = 10000;
+const modelFiles = [];
+for (let i = 0, n = 1; i < mEntries.length; i += MODELS_PER_FILE, n++) {
+  const name = 'sitemap-models-' + n + '.xml';
+  writeUrlset(name, mEntries.slice(i, i + MODELS_PER_FILE));
+  modelFiles.push(name);
+}
+// Файлы прошлой раскладки удаляем: иначе рядом останутся старые sitemap-models-2
+// с адресами, которых в новой нарезке уже нет.
+for (const f of fs.readdirSync(SM)) {
+  if (/^sitemap-models-\d+\.xml$/.test(f) && !modelFiles.includes(f)) {
+    fs.unlinkSync(path.join(SM, f));
+    console.log('  удалён лишний ' + f);
+  }
+}
 
 // ---- 2. категории (страница 1 каждой) ----
 // Отбор как у коллекций и отраслей: без заглушек и без закрытых от индексации.
@@ -217,7 +235,7 @@ for (const f of fs.readdirSync(SM).filter(f => f.endsWith('.xml'))) {
 
 // ---- 5. индекс ----
 const ORDER = ['sitemap-main.xml', 'sitemap-categories.xml', 'sitemap-subcategories.xml', 'sitemap-category-hubs.xml', 'sitemap-browse.xml',
-  'sitemap-collections.xml', 'sitemap-industries.xml', 'sitemap-models-1.xml', 'sitemap-models-2.xml',
+  'sitemap-collections.xml', 'sitemap-industries.xml', ...modelFiles,
   'image-sitemap-1.xml', 'image-sitemap-2.xml'];
 const present = ORDER.filter(f => fs.existsSync(path.join(SM, f)));
 const isImg = f => f.startsWith('image-sitemap');

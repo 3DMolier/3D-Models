@@ -555,9 +555,20 @@ function runSearch(q){
 
   var fcResults=[];
   if(fcReady&&(activeFilter==='all'||activeFilter==='model')){
+    // Запрос из одних цифр - это номер модели с TurboSquid. Люди приходят с
+    // ним из переписки и из адресов, и раньше поиск по нему не находил ничего.
+    var byId=/^\d{5,}$/.test(ql)?ql:null;
     for(var j=0;j<FC_MODELS.length;j++){
       var fc=FC_MODELS[j];
+      if(byId){ if(String(fc.id)===byId){fc._sc=1000;fcResults.push(fc);} continue; }
       var sf=scoreName(fc.ln,parsed,ql);
+      // Название категории тоже ищем, но слабее названия модели: по запросу
+      // «lighting» человек ждёт светильники, а не только те, у кого это слово
+      // в имени. Вес маленький, чтобы точные совпадения оставались выше.
+      if(!sf&&fc.g>=0&&FC_CATS[fc.g]){
+        var cs=scoreName(FC_CATS[fc.g].replace(/-/g,' '),parsed,ql);
+        if(cs>0)sf=1;
+      }
       if(sf>0){fc._sc=sf;fcResults.push(fc);}
     }
     // Сортируем по оценке, при равной - по цене: дешёвое выше не потому, что
