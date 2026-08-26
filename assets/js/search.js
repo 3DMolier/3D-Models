@@ -71,7 +71,7 @@ function showDataError(){
     +'<p>Model search data could not be loaded. You can browse the Full Catalog or search TurboSquid directly.</p>'
     +'<div class="search-warning-actions">'
     +'<a class="btn-primary" href="/full-catalog/">Open Full Catalog</a>'
-    +'<a class="btn-ghost" href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener">Search on TurboSquid ↗</a>'
+    +'<a class="btn-ghost" href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-international" target="_blank" rel="noopener">Search on TurboSquid ↗</a>'
     +'</div></div>';
 }
 
@@ -179,8 +179,8 @@ function modelCard(m){
   var localUrl='/models/'+slug+'/';
   var id=getTsId(slug);
   var tsUrl=id
-    ?'https://www.turbosquid.com/FullPreview/'+id+'?referral=3d_molier-studio'
-    :'https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio';
+    ?'https://www.turbosquid.com/FullPreview/'+id+'?referral=3d_molier-international'
+    :'https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-international';
   var src=m.img||'';
   var nameEsc=String(m.n||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
   var nameHtml=String(m.n||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
@@ -205,7 +205,7 @@ function modelCard(m){
 
 // ── Card: full-catalog model (TurboSquid link only) ───────────────────────
 function modelCardFull(fc){
-  var tsUrl='https://www.turbosquid.com/FullPreview/'+fc.id+'?referral=3d_molier-studio';
+  var tsUrl='https://www.turbosquid.com/FullPreview/'+fc.id+'?referral=3d_molier-international';
   var src=fcImgMap[fc.id]||'';
   var nameEsc=String(fc.n||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
   var nameHtml=String(fc.n||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
@@ -280,7 +280,7 @@ function render(pages,topModels,fcModels,q){
   var total=topModels.length+fcModels.length;
   if(pages.length===0&&total===0&&!fcLoading){
     if(emptyState){emptyState.hidden=false;emptyState.style.display='block'};
-    if(tsLink)tsLink.href='https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio';
+    if(tsLink)tsLink.href='https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-international';
     if(countEl)countEl.textContent='';
     if(showMoreBtn)showMoreBtn.hidden=true;
     if(resultsEl)resultsEl.innerHTML='';
@@ -308,7 +308,7 @@ function render(pages,topModels,fcModels,q){
     html+='<div class="section-header">';
     html+='<span class="section-title">Models'+headerCount+'</span>';
     if(!fcLoading&&fcReady){
-      html+='<a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-studio" target="_blank" rel="noopener" style="color:#1659c9;text-decoration:none;font-size:11px;font-weight:600">more on TurboSquid →</a>';
+      html+='<a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-international" target="_blank" rel="noopener" style="color:#1659c9;text-decoration:none;font-size:11px;font-weight:600">more on TurboSquid →</a>';
     }
     html+='</div>';
     if(fcLoading){
