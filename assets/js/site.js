@@ -73,17 +73,90 @@ document.addEventListener('click',function(e){
 
 // GA4 event tracking
 function gaEvent(name,params){if(typeof gtag==='function')gtag('event',name,params||{});}
+// Что это за страница - нужно почти каждому событию.
+function pageType(){
+  var p=location.pathname;
+  if(p.indexOf('/models/')===0)return 'model';
+  if(/^\/categories\/[^/]+\/[^/]+\//.test(p)&&p.indexOf('/page/')<0)return 'subcategory';
+  if(p.indexOf('/categories/')===0)return 'category';
+  if(p.indexOf('/collections/')===0)return 'collection';
+  if(p.indexOf('/industries/')===0)return 'industry';
+  if(p.indexOf('/catalog/')===0)return 'catalog';
+  if(p.indexOf('/search/')===0)return 'search';
+  if(p==='/')return 'home';
+  return 'other';
+}
+window.mpPageType=pageType;
+
+// Сведения о модели берём из разметки товара: она есть на каждой карточке,
+// и это надёжнее, чем вылавливать цену из вёрстки.
+var PRODUCT=(function(){
+  var out={};
+  var blocks=document.querySelectorAll('script[type="application/ld+json"]');
+  for(var i=0;i<blocks.length;i++){
+    try{
+      var o=JSON.parse(blocks[i].textContent);
+      if(o&&o['@type']==='Product'){
+        out.model_name=o.name||'';
+        out.model_id=o.sku||o.productID||'';
+        if(o.offers&&o.offers.price!==undefined)out.price=o.offers.price;
+        if(o.category)out.category=o.category;
+        break;
+      }
+    }catch(err){/* разметка не разобралась - обойдёмся без неё */}
+  }
+  if(!out.category){
+    var bc=document.querySelector('.mp-bc-inner a[href^="/categories/"]');
+    if(bc)out.category=bc.textContent.trim();
+  }
+  return out;
+})();
+
+// Просмотр карточки. page_view такого не покажет: он не знает ни цены, ни
+// категории, а вопрос у нас ровно про них.
+if(pageType()==='model'&&PRODUCT.model_name){
+  gaEvent('view_model',{model_id:PRODUCT.model_id,model_name:PRODUCT.model_name,
+    category:PRODUCT.category||'',price:PRODUCT.price||0,page_type:'model'});
+}
+if(pageType()==='collection'){
+  var _ch1=document.querySelector('h1');
+  gaEvent('view_collection',{collection:location.pathname,name:_ch1?_ch1.textContent.trim():''});
+}
+
+// Порядковый номер карточки в списке: без него не ответить, работает ли
+// первый экран или люди листают до конца.
+function cardPosition(el){
+  var card=el.closest&&el.closest('.model-card, .tile, .s-mc, .mp-rc-link');
+  if(!card||!card.parentNode)return 0;
+  var sibs=card.parentNode.children,n=0;
+  for(var i=0;i<sibs.length;i++){ if(sibs[i]===card)return n+1; if(sibs[i].nodeType===1)n++; }
+  return 0;
+}
+
 document.addEventListener('click',function(e){
-  // TurboSquid click
-  var tsLink=e.target.closest&&e.target.closest('a[href*="turbosquid.com"]');
+  var t=e.target;
+  if(!t||!t.closest)return;
+  // Переход на TurboSquid - ключевая микроконверсия, поэтому со всеми полями.
+  var tsLink=t.closest('a[href*="turbosquid.com"]');
   if(tsLink){
     var slug=location.pathname.replace(/^\/models\//,'').replace(/\/$/,'');
-    gaEvent('turbosquid_click',{model_slug:slug,page:location.pathname});
+    var idFromHref=(tsLink.getAttribute('href')||'').match(/[-\/](\d{5,})(\?|$)/);
+    gaEvent('click_turbosquid',{
+      model_id:PRODUCT.model_id||(idFromHref?idFromHref[1]:''),
+      model_name:PRODUCT.model_name||tsLink.textContent.trim().slice(0,80),
+      category:PRODUCT.category||'',
+      price:PRODUCT.price||0,
+      page_type:pageType(),
+      card_position:cardPosition(tsLink),
+      model_slug:slug
+    });
   }
-  // Custom order click
-  if(e.target.closest&&e.target.closest('a[href*="custom-order"]'))gaEvent('custom_order_click',{page:location.pathname});
-  // Load more click
-  if(e.target.closest&&e.target.closest('#lm-btn'))gaEvent('load_more_click',{page:location.pathname});
+  if(t.closest('a[href*="custom-order"]'))gaEvent('custom_order_click',{page:location.pathname,page_type:pageType()});
+  // Обращение по лицензированию данных - вторая по важности конверсия.
+  var dl=t.closest('a[href^="mailto:"]');
+  if(dl&&location.pathname.indexOf('/data-licensing/')===0)
+    gaEvent('data_license_lead',{page:location.pathname,target:(dl.getAttribute('href')||'').slice(0,60)});
+  if(t.closest('#lm-btn'))gaEvent('load_more_click',{page:location.pathname,page_type:pageType()});
 });
 // Image fallback tracking
 var _origImgErr=window.imgErr;

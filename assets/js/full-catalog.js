@@ -262,6 +262,7 @@ document.querySelectorAll('.ftag[data-price]').forEach(function(btn){
     if(selPrice===pr){selPrice=null;this.classList.remove('active');}
     else{document.querySelectorAll('.ftag[data-price]').forEach(function(b){b.classList.remove('active');});selPrice=pr;this.classList.add('active');}
     if(clearAll)clearAll.classList.toggle('show',selPrice!==null||selCert!==null||selCat!==null||!!searchQ);
+    if(typeof gtag==='function')gtag('event','filter_price',{price_band:selPrice||'none',page_type:'catalog'});
     ensureRemainingImgChunks();applyFilters();
   });
 });
@@ -282,6 +283,7 @@ document.querySelectorAll('.ftag[data-cat]').forEach(function(btn){
     if(selCat===cat){selCat=null;this.classList.remove('active');}
     else{document.querySelectorAll('.ftag[data-cat]').forEach(function(b){b.classList.remove('active');});selCat=cat;this.classList.add('active');}
     if(clearAll)clearAll.classList.toggle('show',selPrice!==null||selCert!==null||selCat!==null||!!searchQ);
+    if(typeof gtag==='function')gtag('event','filter_category',{category:selCat||'none',page_type:'catalog'});
     ensureRemainingImgChunks();applyFilters();
   });
 });

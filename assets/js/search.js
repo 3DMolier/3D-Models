@@ -570,6 +570,15 @@ function runSearch(q){
   renderedTop=0;renderedFc=0;
   render(pages,topModels,fcResults,q);
 
+  // Что ищут и что НЕ находят. Пустая выдача - самое ценное событие из всех:
+  // это прямой список того, чего людям на сайте не хватает. Отправляем только
+  // когда каталог уже загружен, иначе каждый первый запрос выглядел бы пустым.
+  if(typeof gtag==='function'&&fcReady){
+    var found=pages.length+topModels.length+fcResults.length;
+    gtag('event','search',{search_term:q,results:found,page_type:'search'});
+    if(!found)gtag('event','search_no_results',{search_term:q,page_type:'search'});
+  }
+
   // Trigger full catalog load on first search
   if(!fcReady&&!fcLoading&&(activeFilter==='all'||activeFilter==='model')){
     loadFcData();
