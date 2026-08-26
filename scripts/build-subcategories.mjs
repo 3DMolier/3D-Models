@@ -27,6 +27,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { SUBCATS, MIN_MODELS } from './subcategories.mjs';
+import { nameOf } from './lib/taxonomy.mjs';
 
 const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
 const DATA = path.join(ROOT, 'data');
@@ -81,15 +82,10 @@ for (let k = 0; k < idx.chunks; k++) {
   }
 }
 
-// Человеческое имя категории берём с её страницы, а не выдумываем.
-function catTitle(slug) {
-  try {
-    const h = fs.readFileSync(path.join(CATEGORIES, slug, 'index.html'), 'utf8');
-    const h1 = (h.match(/<h1[^>]*>([\s\S]*?)<\/h1>/) || [])[1];
-    if (h1) return h1.replace(/<[^>]+>/g, '').replace(/\s*3D\s+Models?\s*$/i, '').trim();
-  } catch (e) { /* нет страницы */ }
-  return slug.replace(/-/g, ' ');
-}
+// Имя категории берём из единого источника, а не с её страницы. Читать H1
+// значит заводить ещё одно мнение: у категории ships заголовок когда-то
+// говорил «Ship & Boat», а чип в сетке - «Ships».
+function catTitle(slug) { return nameOf(slug); }
 
 // Совпадение по целому слову: «bus» не должен ловить «business».
 function makeMatcher(terms, not) {

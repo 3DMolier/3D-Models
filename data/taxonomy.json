@@ -1,0 +1,31 @@
+{
+ "_": "Единственный источник правды о категориях. Всё остальное - меню, чипы, хлебные крошки, H1 страниц категорий, фильтр каталога, разметка товара, карты сайта - генерируется отсюда. Правится только этот файл, руками в страницах ничего не меняем. id - постоянный номер, он же значение колонки g в data/fc-chunk-*.json; менять id нельзя, порядок в массиве им не управляет. name - одно имя категории на все поверхности. menu_short - только там, где полное имя не помещается в три колонки выпадающего меню. h1 не хранится: заголовок страницы всегда name + ' 3D Models'.",
+ "categories": [
+  { "id": 0, "slug": "medical-3d-models", "name": "Medical" },
+  { "id": 1, "slug": "aircraft", "name": "Aircraft" },
+  { "id": 2, "slug": "ships", "name": "Ships & Boats", "menu_short": "Ships" },
+  { "id": 3, "slug": "weapons", "name": "Weapons" },
+  { "id": 4, "slug": "tools", "name": "Tools" },
+  { "id": 5, "slug": "military-vehicles", "name": "Military Vehicles", "menu_short": "Military" },
+  { "id": 6, "slug": "animals-creatures", "name": "Animals & Creatures", "menu_short": "Animals" },
+  { "id": 7, "slug": "nature-plants", "name": "Nature & Plants", "menu_short": "Nature" },
+  { "id": 8, "slug": "food-beverages", "name": "Food & Beverages", "menu_short": "Food" },
+  { "id": 9, "slug": "furniture-interior", "name": "Furniture & Interior", "menu_short": "Furniture" },
+  { "id": 10, "slug": "clothing-accessories", "name": "Clothing & Accessories", "menu_short": "Clothing" },
+  { "id": 11, "slug": "electronics-gadgets", "name": "Electronics & Gadgets", "menu_short": "Electronics" },
+  { "id": 12, "slug": "industrial-equipment", "name": "Industrial Equipment", "menu_short": "Industrial" },
+  { "id": 13, "slug": "architecture-landmarks", "name": "Architecture & Landmarks", "menu_short": "Architecture" },
+  { "id": 14, "slug": "characters-people", "name": "Characters & People", "menu_short": "Characters" },
+  { "id": 15, "slug": "vehicles", "name": "Vehicles" },
+  { "id": 16, "slug": "containers-storage", "name": "Containers & Storage", "menu_short": "Containers" },
+  { "id": 17, "slug": "sports-recreation", "name": "Sports & Recreation", "menu_short": "Sports" },
+  { "id": 18, "slug": "kitchen-tableware", "name": "Kitchen & Tableware", "menu_short": "Kitchen" },
+  { "id": 19, "slug": "space-scifi", "name": "Space & Sci-Fi", "menu_short": "Space" },
+  { "id": 20, "slug": "lighting", "name": "Lighting" },
+  { "id": 21, "slug": "toys-games", "name": "Toys & Games", "menu_short": "Toys" },
+  { "id": 22, "slug": "signage-decor", "name": "Signage & Decor", "menu_short": "Signage" },
+  { "id": 23, "slug": "musical-instruments", "name": "Musical Instruments", "menu_short": "Music" },
+  { "id": 24, "slug": "collections-sets", "name": "Model Bundles & Sets", "menu_short": "Bundles" },
+  { "id": 25, "slug": "other", "name": "Other" }
+ ]
+}
