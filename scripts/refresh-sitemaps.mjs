@@ -86,6 +86,33 @@ console.log(`Категории на диске: ${allCats.length}, в карт�
   writeUrlset('sitemap-categories.xml', entries);
 }
 
+// ---- 2б. подкатегории ----
+// Отдельным файлом, а не вперемешку с категориями: тем 55, страниц с
+// пагинацией больше сотни, и держать их отдельно проще и нам, и при разборе
+// отчётов Search Console. Список берём из data/subcategories.json, который
+// пишет build-subcategories.mjs, но каждую страницу проверяем на диске: файла
+// может не быть, если после правки списка сборку не прогоняли.
+{
+  const subFile = path.join(ROOT, 'data', 'subcategories.json');
+  if (fs.existsSync(subFile)) {
+    const subs = JSON.parse(fs.readFileSync(subFile, 'utf8'));
+    const entries = [];
+    let missing = 0;
+    for (const s of subs) {
+      for (let p = 1; p <= s.pages; p++) {
+        const rel = p === 1 ? `categories/${s.cat}/${s.sub}` : `categories/${s.cat}/${s.sub}/page/${p}`;
+        if (!fs.existsSync(path.join(ROOT, rel, 'index.html'))) { missing++; continue; }
+        entries.push(urlEntry(`${BASE}/${rel}/`, 'weekly', p === 1 ? '0.85' : '0.6'));
+      }
+    }
+    console.log(`Подкатегории: ${subs.length} тем, страниц в карту: ${entries.length}`
+      + (missing ? `, не найдено на диске: ${missing}` : ''));
+    writeUrlset('sitemap-subcategories.xml', entries);
+  } else {
+    console.log('Подкатегории: data/subcategories.json нет, пропускаю');
+  }
+}
+
 // ---- 2а. коллекции и отрасли — тоже из фактических папок ----
 // Раньше этим двум файлам правилась только дата, а список URL оставался прежним.
 // 06.08.2026 после удаления 23 коллекций-дублей в сайтмапе остались все 20 адресов,
@@ -189,7 +216,7 @@ for (const f of fs.readdirSync(SM).filter(f => f.endsWith('.xml'))) {
 }
 
 // ---- 5. индекс ----
-const ORDER = ['sitemap-main.xml', 'sitemap-categories.xml', 'sitemap-category-hubs.xml', 'sitemap-browse.xml',
+const ORDER = ['sitemap-main.xml', 'sitemap-categories.xml', 'sitemap-subcategories.xml', 'sitemap-category-hubs.xml', 'sitemap-browse.xml',
   'sitemap-collections.xml', 'sitemap-industries.xml', 'sitemap-models-1.xml', 'sitemap-models-2.xml',
   'image-sitemap-1.xml', 'image-sitemap-2.xml'];
 const present = ORDER.filter(f => fs.existsSync(path.join(SM, f)));
