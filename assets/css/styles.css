@@ -768,6 +768,11 @@ footer .nav-dropdown a.active { color: #9ca3af !important; background: transpare
 .legal-body code{background:#f3f4f6;padding:2px 6px;border-radius:4px;font-size:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#111}
 .legal-body strong{color:#111;font-weight:600}
 @media (max-width:640px){.legal-wrap{padding:40px 20px 64px}.legal-body h2{font-size:17px;margin-top:32px}}
+/* Privacy и Terms в подвале: раньше их было видно лишь на части страниц. */
+.footer-brand-link{color:inherit;text-decoration:none}
+.footer-brand-link:hover{text-decoration:underline}
+.footer-legal{display:flex;gap:18px;flex-wrap:wrap}
+.footer-legal .footer-link{font-size:13px}
 .cat-footer-legal{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px}
 .cat-footer-legal .nav-link{font-size:13px}
 

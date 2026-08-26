@@ -21,6 +21,9 @@ function walk(dir) {
     if (item.isDirectory()) {
       // Skip node_modules and .git
       if (item.name === 'node_modules' || item.name === '.git') continue;
+      // partials/ - образцы шапки и подвала. Это куски разметки, а не страницы:
+      // title и description у них быть не должно, ссылок на них нет, в robots.txt закрыты.
+      if (item.name === 'partials') continue;
       result.push(...walk(full));
     } else {
       result.push(full);

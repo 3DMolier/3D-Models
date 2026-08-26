@@ -89,10 +89,20 @@ const parseDetails = d => {
   return { textureSizes: [...new Set(tex)], dimensions: dim || null };
 };
 
+import { formatsFromFiles } from './lib/formats.mjs';
+
+// Форматы приходят не отдельным полем, а списком загруженных файлов: у каждого
+// в конце имени стоит формат. Неопознанные окончания копим и показываем в
+// конце - молча выбросить их значило бы тихо потерять часть форматов.
+const unknownTails = new Map();
+let withFormats = 0;
 let specAdded = 0;
 for (const id of ids) {
   const r = result[id];
   const det = parseDetails(r.details);
+  const fmt = formatsFromFiles(r.files);
+  if (fmt.formats.length) withFormats++;
+  for (const u of fmt.unknown) unknownTails.set(u, (unknownTails.get(u) || 0) + 1);
   const rec = {
     title: r.title || null,
     polygons: num(r.polygons),
@@ -105,6 +115,8 @@ for (const id of ids) {
     textureSizes: det.textureSizes,
     dimensions: det.dimensions,
     images: (r.images || []).length,
+    formats: fmt.formats,
+    formatCount: fmt.count || null,
   };
   // пустые поля не храним — файл и так будет крупным
   for (const k of Object.keys(rec)) {
@@ -123,6 +135,12 @@ if (!DRY) {
 
 console.log('\nпревью: было ' + before + ', добавлено ' + added
   + ', уже были ' + already + ', без картинок ' + noImg + ', стало ' + Object.keys(prev).length);
+console.log('форматы: у ' + withFormats + ' моделей из ' + ids.length);
+if (unknownTails.size) {
+  const top = [...unknownTails.entries()].sort((a, b) => b[1] - a[1]).slice(0, 25);
+  console.log('неопознанные окончания имён (' + unknownTails.size + ' видов) - дописать в scripts/lib/formats.mjs:');
+  for (const [u, n] of top) console.log('  ' + String(n).padStart(6) + '  ' + u);
+}
 console.log('техданные: было ' + specsBefore + ', добавлено ' + specAdded + ', стало ' + Object.keys(specs).length);
 
 // краткая сводка по полноте

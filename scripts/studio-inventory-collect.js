@@ -207,22 +207,34 @@
       var chat = row.chat || {}, d = chat.data || {};
       var tsid = d.turbosquid_product_id;
       if (!tsid) { state.noTsid++; return; }
-      var rec = { id: String(tsid), title: d.title || chat.title || '', images: [] };
+      var rec = { id: String(tsid), title: d.title || chat.title || '', images: [], files: [] };
       SPEC_FIELDS.forEach(function (f) { if (d[f] !== undefined && d[f] !== '') rec[f] = d[f]; });
       (chat.attachments || []).forEach(function (a) {
-        if (a.filetype !== 'render') return;
+        var isRender = a.filetype === 'render';
         var m = String(a.url || '').match(/\/file\/get\/([^/]+)\//);
         if (!m) return;
         fids.push(m[1]);
-        owner[m[1]] = rec;
+        if (isRender) { owner[m[1]] = { rec: rec, render: true }; return; }
+        // Не рендер - значит сам файл модели, а формат зашит в его имя
+        // (..._max_vray.zip, ..._fbx.zip, ..._c4d.zip). Ячейку заводим сразу:
+        // если у вложения уже есть имя, запомнится оно, а если нет - имя
+        // подставится ниже из ответа /file/getlist/. Так формат не теряется,
+        // даже когда публичного адреса у файла нет.
+        var slot = { name: String(a.filename || a.name || a.title || ''), filetype: String(a.filetype || '') };
+        rec.files.push(slot);
+        owner[m[1]] = { rec: rec, render: false, slot: slot };
       });
       recs.push(rec);
     });
     return fileList(fids).then(function (files) {
       files.forEach(function (f) {
         if (!f || !f.location) return;
-        var rec = owner[f.id];
-        if (rec) rec.images.push(f.location);
+        var o = owner[f.id];
+        if (!o) return;
+        if (o.render) { o.rec.images.push(f.location); return; }
+        // Храним имя файла целиком, а не свою догадку о формате: правило
+        // разбора имени можно будет поменять, не собирая инвентарь заново.
+        if (!o.slot.name) o.slot.name = String(f.location).split('?')[0].split('/').pop();
       });
       return putMany(recs).then(function () { return recs.length; });
     });
