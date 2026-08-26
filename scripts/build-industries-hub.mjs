@@ -104,7 +104,7 @@ const html = `<!DOCTYPE html>
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/css/critical-fonts.css?v=33">
-<link rel="stylesheet" href="/assets/css/styles.min.css?v=33">
+<link rel="stylesheet" href="/assets/css/styles.min.css?v=38">
 <link rel="stylesheet" href="/assets/css/fonts.css?v=33">
 <style>
 .ind-hub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin:28px 0}

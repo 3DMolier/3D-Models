@@ -167,6 +167,44 @@ for (const r of rows) r.gname = String(r.name || '').replace(TRAIL3D, '').trim()
 
 const bySlug = new Map(rows.map(r => [r.slug, r]));
 
+// models_master.csv - выгрузка на 86 865 моделей, снятая до того, как на сайте
+// появились свежие карточки. Модели новее выгрузки в ней отсутствуют, и витрина
+// их молча теряла: выпал ГЛАВНЫЙ - блок не строился совсем; выпал ВАРИАНТ - список
+// выходил короче семьи и пересобирался вхолостую каждый прогон (у Kawasaki Corleo
+// 2 версии из 12). Итого со страниц пропали 36 ссылок на TurboSquid. Поэтому
+// недостающую строку собираем из самой карточки: имя из H1, цена из Offer,
+// ссылка - собственная товарная со страницы.
+const synth = new Map();
+function rowFor(slug) {
+  const hit = bySlug.get(slug);
+  if (hit) return hit;
+  if (synth.has(slug)) return synth.get(slug);
+  let h;
+  try { h = fs.readFileSync(path.join(MODELS, slug, 'index.html'), 'utf8'); }
+  catch (e) { synth.set(slug, null); return null; }
+  if (/http-equiv="refresh"/.test(h.slice(0, 400))) { synth.set(slug, null); return null; }
+  const cp = s => Buffer.from(String(s), 'utf8').toString('utf8');
+  const name = cp((h.match(/<h1 class="mp-h1">([\s\S]*?)<\/h1>/) || [])[1] || '')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;/g, '&')
+    .trim();
+  if (!name) { synth.set(slug, null); return null; }
+  // Берём ТОЛЬКО каноническую форму /3d-models/: ссылка /FullPreview/<id> живёт
+  // редиректом и добавляет лишний переход перед корзиной.
+  const raw = cp((h.match(/https?:\/\/(?:www\.)?turbosquid\.com\/3d-models\/[^"']+/) || [])[0] || '');
+  const url = !raw ? ''
+    : /referral=/.test(raw) ? raw.replace(/referral=3d_molier-[A-Za-z]+/g, REFERRAL)
+      : raw + (raw.includes('?') ? '&' : '?') + REFERRAL;
+  const price = +((h.match(/"@type"\s*:\s*"Offer"[\s\S]{0,300}?"price"\s*:\s*"?([0-9.]+)/) || [])[1] || 0);
+  const row = {
+    id: (slug.match(/-(\d+)$/) || [])[1] || '',
+    name, gname: name.replace(TRAIL3D, '').trim(), slug, url,
+    price, sales: 0, img: '', cat: '', fromCard: true,
+  };
+  synth.set(slug, row);
+  return row;
+}
+
 // ── проход «одна машина - одна карточка» ────────────────────────────────────
 // Одна и та же техника выложена карточками с разными окончаниями: Simplified,
 // Rigid, Rigid for Cinema, Rigid for Maya, Low Poly, другой цвет. Правила по софту
@@ -861,7 +899,13 @@ function mergeInto(g) {
   // (у Ragdoll Cat старых 18 против нынешних 12 из-за потолка). Старую берём,
   // только если новую собрать не из чего.
   if (shots < 2 && oldShots >= 2) { gallery = oldGal; shots = oldShots; }
-  if (shots < 2) return { ok: false, why: 'меньше двух превью' };
+  // Раньше нехватка превью отменяла ВЕСЬ блок - вместе со списком версий и
+  // ссылками на TurboSquid. А превью пропадает по причине, к списку отношения не
+  // имеющей: страница варианта уже свёрнута в заглушку и её og:image не попал в
+  // preview-index.json. Так шесть главных карточек остались вообще без витрины.
+  // Галерея без снимков не нужна, список версий - нужен всегда, поэтому теперь
+  // при нехватке снимков отказываемся только от галереи.
+  if (shots < 2) { gallery = oldShots ? oldGal : ''; }
 
   // цена в характеристиках - диапазоном, если варианты стоят по-разному
   if (priceText && priceText.includes('-')) {
@@ -1142,7 +1186,7 @@ if (!ONLY || process.argv.includes('--showcase')) {
   }
   for (const [mainSlug, variants] of byMain) {
     if (mergedMains.has(mainSlug)) continue;
-    const mainRow = bySlug.get(mainSlug);
+    const mainRow = rowFor(mainSlug);
     if (!mainRow) continue;
     let html;
     try { html = fs.readFileSync(path.join(MODELS, mainSlug, 'index.html'), 'utf8'); } catch (e) { continue; }
@@ -1156,7 +1200,7 @@ if (!ONLY || process.argv.includes('--showcase')) {
       if (sec && (sec[1].match(/<li class="mp-var/g) || []).length >= variants.length + 1) continue;
     }
     if (/http-equiv="refresh"/.test(html.slice(0, 400))) continue;
-    const rest = variants.map(s => bySlug.get(s)).filter(x => x && x.slug !== mainSlug);
+    const rest = variants.map(s => rowFor(s)).filter(x => x && x.slug !== mainSlug);
     if (!rest.length) continue;
     // Заголовок НЕ переписываем: он собран прошлым прогоном и уже верен. Берём его
     // же из H1 - тогда замена в mergeInto ничего не меняет. Обратное преобразование

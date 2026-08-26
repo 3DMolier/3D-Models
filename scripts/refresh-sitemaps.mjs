@@ -38,6 +38,17 @@ const isRedirectStub = p => {
   catch { return false; }
 };
 
+// Страница, закрытая от индексации. Звать на неё обход сайтмапом - противоречие:
+// карта говорит «индексируй», мета-тег говорит «не индексируй». Поисковик такие
+// расхождения запоминает, а мы теряем доверие ко всей карте.
+const isNoindex = p => {
+  try {
+    const h = fs.readFileSync(p, 'utf8');
+    const m = h.match(/<meta[^>]+name=["']robots["'][^>]+content=["']([^"']*)["']/i);
+    return !!m && /noindex/i.test(m[1]);
+  } catch { return false; }
+};
+
 // ---- 1. модели ----
 // Заглушки в сайтмап НЕ идут. Фильтр стоял только на коллекциях и отраслях, а
 // моделей после объединений свёрнуто 28 391 из 86 914 — и мы сами звали обход на
@@ -53,9 +64,27 @@ writeUrlset('sitemap-models-1.xml', mEntries.slice(0, LIMIT));
 writeUrlset('sitemap-models-2.xml', mEntries.slice(LIMIT));
 
 // ---- 2. категории (страница 1 каждой) ----
-const cats = dirsWithIndex('categories');
-console.log(`Категории на диске: ${cats.length}`);
-writeUrlset('sitemap-categories.xml', cats.map(c => urlEntry(`${BASE}/categories/${c}/`, 'weekly', '0.9')));
+// Отбор как у коллекций и отраслей: без заглушек и без закрытых от индексации.
+// 26.08.2026 в карту попадала categories/weapons-tools/ - страница-указатель на
+// две новых категории, помеченная noindex. Плюс сам корень раздела /categories/
+// в карте не значился, хотя страница появилась: та же дыра, что была у
+// /industries/ и которую нашёл Ahrefs.
+const allCats = dirsWithIndex('categories');
+const cats = allCats.filter(c => {
+  const p = path.join(ROOT, 'categories', c, 'index.html');
+  return !isRedirectStub(p) && !isNoindex(p);
+});
+console.log(`Категории на диске: ${allCats.length}, в карту идут: ${cats.length}`);
+{
+  const entries = [];
+  if (fs.existsSync(path.join(ROOT, 'categories', 'index.html'))) {
+    entries.push(urlEntry(`${BASE}/categories/`, 'weekly', '0.9'));
+  } else {
+    console.log('  categories/: корневой страницы нет, в сайтмап не добавляю');
+  }
+  entries.push(...cats.map(c => urlEntry(`${BASE}/categories/${c}/`, 'weekly', '0.9')));
+  writeUrlset('sitemap-categories.xml', entries);
+}
 
 // ---- 2а. коллекции и отрасли — тоже из фактических папок ----
 // Раньше этим двум файлам правилась только дата, а список URL оставался прежним.
@@ -69,7 +98,10 @@ for (const [dir, file, freq, prio] of [
   ['collections', 'sitemap-collections.xml', 'weekly', '0.7'],
   ['industries', 'sitemap-industries.xml', 'monthly', '0.6'],
 ]) {
-  const items = dirsWithIndex(dir).filter(x => !isRedirectStub(path.join(ROOT, dir, x, 'index.html')));
+  const items = dirsWithIndex(dir).filter(x => {
+    const p = path.join(ROOT, dir, x, 'index.html');
+    return !isRedirectStub(p) && !isNoindex(p);
+  });
   // Корень раздела добавляем только если страница действительно есть. У
   // /collections/ она есть, у /industries/ - нет, и до августа 2026 карта звала
   // обход на 404: Ahrefs его там и нашёл.
