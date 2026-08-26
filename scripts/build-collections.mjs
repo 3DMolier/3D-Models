@@ -8,8 +8,10 @@
 // Раздел показывал не их.
 //
 // Что теперь. /collections/ — это витрина реальных товаров-коллекций (около 5800
-// штук), разложенных по темам. Тема берётся из настоящей категории TurboSquid
-// (cat1 из отчёта продаж), а не угадывается по названию.
+// штук), разложенных по темам. Тема берётся из отчёта продаж, а не угадывается
+// по названию: сначала уточнение cat2, потом cat1. Порядок важен - у TurboSquid
+// нет морской категории, всё плавающее лежит в «Vehicles», и без cat2
+// «Military Submarines Collection» попадала в подборку про машины.
 //
 // Разнообразие. На витрине карточки выбираются по кругу из разных тем, а не
 // подряд из одной — иначе первый экран забивался почти одинаковыми превью
@@ -19,6 +21,16 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { topicByReport } from './category-map.mjs';
+
+// Темы, которых в словаре cat1 нет вовсе: у TurboSquid всё плавающее,
+// летающее и космическое лежит в «Vehicles». Уточнение приходит из cat2.
+const TOPIC_THEME = {
+  aircraft: 'aircraft',
+  ships: 'ships',
+  'space-scifi': 'space-scifi',
+  'military-vehicles': 'military',
+};
 
 const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
 const DATA = path.join(ROOT, 'data');
@@ -43,6 +55,14 @@ const COLL_RE = /\b(collection|collections|set|sets|kit|kits)\b/i;
 const THEMES = [
   ['vehicles', 'Vehicle Collections', '🚗', ['Vehicles'],
     'Multi-model vehicle sets — car line-ups, truck fleets, parts and wheel packs delivered as one product.'],
+  ['aircraft', 'Aircraft Collections', '✈️', [],
+    'Airliner fleets, fighter line-ups, helicopter and drone sets supplied as one product.'],
+  ['ships', 'Ship & Boat Collections', '🚢', [],
+    'Naval fleets, submarine sets, yachts and working vessels delivered together.'],
+  ['military', 'Military Collections', '🪖', [],
+    'Armour, artillery and military vehicle sets for defense simulation and film.'],
+  ['space-scifi', 'Space & Sci-Fi Collections', '🚀', [],
+    'Satellite, spacecraft and sci-fi prop sets supplied as complete kits.'],
   ['home-interior', 'Home & Interior Collections', '🛋️', ['Interior Design', 'Furnishings'],
     'Tableware, appliances, furniture and household sets for dressing a full interior scene at once.'],
   ['nature', 'Nature Collections', '🌿', ['Nature'],
@@ -105,7 +125,12 @@ for (const m of all) {
   const slug = slugify(m.name) + '-' + m.id;
   if (!fs.existsSync(path.join(MODELS, slug, 'index.html'))) continue;
   const r = byPid.get(String(m.id));
-  const theme = themeOf.get(r && r.cat1) || null;
+  // Тема сначала по уточнению cat2, потом по cat1. Без первого шага всё, что
+  // плавает, летает и летит в космос, сваливалось в «Vehicle Collections»:
+  // морской темы в словаре TurboSquid нет, и «Military Submarines Collection»
+  // оказывалась среди машин. Таких наборов 473.
+  const topic = topicByReport(m.id, m.name);
+  const theme = TOPIC_THEME[topic] || themeOf.get(r && r.cat1) || null;
   items.push({ ...m, slug, cover, theme });
 }
 console.log('товаров-коллекций с живой карточкой и превью: ' + items.length);
@@ -116,8 +141,12 @@ for (const list of byTheme.values()) list.sort((a, b) => (b.sales - a.sales) || 
 
 // ---- разметка ----
 const refSrc = fs.readFileSync(path.join(CATEGORIES, 'vehicles', 'index.html'), 'utf8');
-const HEADER = (refSrc.match(/<header id="site-header">[\s\S]*?<\/header>/) || [''])[0];
-const FOOTER = (refSrc.match(/<footer class="cat-footer">[\s\S]*?<\/footer>/) || [''])[0];
+// Шапку и подвал берём из образцов, а не выкусываем из соседней страницы.
+// Подвал искали по классу cat-footer, а канонический давно site-footer - при
+// пересборке подвал просто исчезал, и страницы уходили в прод без него.
+const HEADER = fs.readFileSync(path.join(ROOT, 'partials', 'header.html'), 'utf8');
+const FOOTER = fs.readFileSync(path.join(ROOT, 'partials', 'footer.html'), 'utf8')
+  .replace('<!--MP_FOOTER_BACK-->', '');
 
 const STYLE = `<style>
 .coll-theme-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px;margin:28px 0}
@@ -170,7 +199,7 @@ function card(m, themeName) {
         <div class="img-wrap mc-img"><img src="${m.cover}" alt="${esc(m.name)} 3D model collection preview" width="800" height="450" decoding="async" loading="lazy" data-placeholder="${PLACEHOLDER}" onerror="handleImageError(this)"><div class="img-placeholder"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">${esc(themeName)}</span></div></div>
         <div class="mc-body">
           <div class="mc-meta"><h3 class="mc-title">${esc(m.name)}</h3></div>
-          <div class="mc-foot"><span class="chip mc-chip">${esc(themeName)}</span><span class="mc-price">$${m.price}</span></div>
+          <div class="mc-foot"><span class="chip mc-chip chip-theme">${esc(themeName)}</span><span class="mc-price">$${m.price}</span></div>
         </div>
       </a>`;
 }

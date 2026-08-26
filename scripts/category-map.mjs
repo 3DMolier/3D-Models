@@ -70,6 +70,28 @@ const CAT2_OVERRIDE = {
 // категорией, поэтому определяем по названию раньше отчётной категории.
 const COLLECTION_WORD = /\b(collection|collections|pack|bundle|kit|kits)\b/i;
 
+/*
+ * Тема товара БЕЗ учёта того, что он поставляется набором.
+ *
+ * classifyByReport на слове «collection» обрывает разбор и отвечает
+ * «collections-sets» - для КАТЕГОРИИ это правильно: набор есть набор. Но у
+ * набора остаётся ещё и тема, и её теряли. «American Military Submarines
+ * Collection» попадала в подборку «Vehicle Collections», потому что витрина
+ * подборок читала только cat1, а там у всего плавающего стоит «Vehicles»:
+ * морской категории в словаре TurboSquid нет вовсе. Уточнение живёт в cat2 -
+ * «Vehicles|vessel». Таких наборов 473: 255 самолётов, 111 кораблей,
+ * 62 космических и 45 военных.
+ */
+export function topicByReport(pid, name = '') {
+  const r = byPid.get(String(pid));
+  if (!r || !r.cat1) return null;
+  const key = r.cat1 + '|' + (r.cat2 || '');
+  let slug = CAT2_OVERRIDE[key] || CAT1_DEFAULT[r.cat1] || null;
+  // Авианосец TurboSquid помечает по самолётам на борту - ловим по названию.
+  if (slug === 'aircraft' && /\bcarrier\b/i.test(name)) slug = 'military-vehicles';
+  return slug;
+}
+
 export function classifyByReport(pid, name = '') {
   if (COLLECTION_WORD.test(name)) return 'collections-sets';
   const r = byPid.get(String(pid));
