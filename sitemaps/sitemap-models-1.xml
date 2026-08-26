@@ -94309,12 +94309,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/models/electric-scooter-1-1428089/</loc>
-    <lastmod>2026-08-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/models/electric-scooter-1871689/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -94370,6 +94364,12 @@
   </url>
   <url>
     <loc>https://3dmolierstudio.com/models/electric-scooter-vespa-98-red-parked-2223961/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3dmolierstudio.com/models/electric-scooter1-1428089/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -118849,13 +118849,13 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/models/generic-pickup-2-1-1096820/</loc>
+    <loc>https://3dmolierstudio.com/models/generic-pickup-2-simple-interior1-1096824/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/models/generic-pickup-2-simple-interior1-1096824/</loc>
+    <loc>https://3dmolierstudio.com/models/generic-pickup-21-1096820/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -147031,7 +147031,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/models/ipad-pro-2020-12-9-inch-silver-1562907/</loc>
+    <loc>https://3dmolierstudio.com/models/ipad-pro-2020-129-inch-silver-1562907/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

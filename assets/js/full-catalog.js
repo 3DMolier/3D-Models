@@ -1,8 +1,11 @@
 (function(){
 'use strict';
 
-var FC={i:[],n:[],p:[],s:[],c:[]}, IMGS={}, fcReady=false;
-var searchQ='', selPrice=null, selCert=null, sortMode='sales';
+// g - номер категории модели, CATS - список слагов категорий из fc-index.json.
+// Категория едет вместе с чанком, отдельного запроса не появляется. Осторожно:
+// c - это cert, а не category; на этом легко решить, что категория уже есть.
+var FC={i:[],n:[],p:[],s:[],c:[],g:[]}, IMGS={}, fcReady=false, CATS=[];
+var searchQ='', selPrice=null, selCert=null, selCat=null, sortMode='sales';
 var filtered=[], page=0, PAGE_SIZE=60;
 var IDLE_PRELOAD_LIMIT=2, idlePreloaded=0;
 var loadedImgChunkSet={};
@@ -28,7 +31,7 @@ var totalChunks=0, loadedChunks=0, imgChunks=0, totalImgChunks=0;
 var totalModels=0;
 
 function mergeChunk(chunk) {
-  var keys=['i','n','p','s','c'];
+  var keys=['i','n','p','s','c','g'];
   for(var k=0;k<keys.length;k++){
     var key=keys[k];
     FC[key]=FC[key].concat(chunk[key]||[]);
@@ -135,6 +138,7 @@ function scheduleRemainingImgChunks(){
 }
 
 function startLoading(fcIdx, imgIdx) {
+  CATS = fcIdx.cats || [];
   totalChunks = fcIdx.chunks;
   totalModels = fcIdx.total || 0;
   totalImgChunks = imgIdx.chunks;
@@ -152,9 +156,13 @@ Promise.all([
 
 function applyFilters(){
   if(!fcReady)return;
+  // Номер выбранной категории считаем один раз, а не для каждой из 54 тысяч
+  // строк: indexOf внутри цикла превратил бы фильтр в квадрат.
+  var catIdx = selCat===null ? -1 : CATS.indexOf(selCat);
   filtered=[];
   for(var i=0;i<FC.n.length;i++){
     if(searchQ&&FC.n[i].toLowerCase().indexOf(searchQ)===-1)continue;
+    if(catIdx>=0&&FC.g[i]!==catIdx)continue;
     if(selPrice){
       var pr=FC.p[i];
       if(selPrice==='u5'&&pr>=5)continue;
@@ -240,7 +248,7 @@ if(qEl){
 }
 if(sortSel)sortSel.addEventListener('change',function(){sortMode=this.value;ensureRemainingImgChunks();applyFilters();});
 if(clearAll)clearAll.addEventListener('click',function(){
-  searchQ='';selPrice=null;selCert=null;
+  searchQ='';selPrice=null;selCert=null;selCat=null;
   if(qEl)qEl.value='';
   document.querySelectorAll('.ftag').forEach(function(b){b.classList.remove('active');});
   clearAll.classList.remove('show');
@@ -253,7 +261,7 @@ document.querySelectorAll('.ftag[data-price]').forEach(function(btn){
     var pr=this.dataset.price;
     if(selPrice===pr){selPrice=null;this.classList.remove('active');}
     else{document.querySelectorAll('.ftag[data-price]').forEach(function(b){b.classList.remove('active');});selPrice=pr;this.classList.add('active');}
-    if(clearAll)clearAll.classList.toggle('show',selPrice!==null||selCert!==null||!!searchQ);
+    if(clearAll)clearAll.classList.toggle('show',selPrice!==null||selCert!==null||selCat!==null||!!searchQ);
     ensureRemainingImgChunks();applyFilters();
   });
 });
@@ -262,10 +270,35 @@ document.querySelectorAll('.ftag[data-cert]').forEach(function(btn){
     var cert=parseInt(this.dataset.cert);
     if(selCert===cert){selCert=null;this.classList.remove('active');}
     else{document.querySelectorAll('.ftag[data-cert]').forEach(function(b){b.classList.remove('active');});selCert=cert;this.classList.add('active');}
-    if(clearAll)clearAll.classList.toggle('show',selPrice!==null||selCert!==null||!!searchQ);
+    if(clearAll)clearAll.classList.toggle('show',selPrice!==null||selCert!==null||selCat!==null||!!searchQ);
     ensureRemainingImgChunks();applyFilters();
   });
 });
+// Фильтр по категориям. Кнопки лежат в разметке статически, слаг в data-cat -
+// так их видит и робот, и человек с выключенным JS.
+document.querySelectorAll('.ftag[data-cat]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var cat=this.dataset.cat;
+    if(selCat===cat){selCat=null;this.classList.remove('active');}
+    else{document.querySelectorAll('.ftag[data-cat]').forEach(function(b){b.classList.remove('active');});selCat=cat;this.classList.add('active');}
+    if(clearAll)clearAll.classList.toggle('show',selPrice!==null||selCert!==null||selCat!==null||!!searchQ);
+    ensureRemainingImgChunks();applyFilters();
+  });
+});
+
+// На каталог можно прийти с уже выбранной категорией: /catalog/?cat=aircraft.
+// Сами при щелчке адрес не меняем - иначе у страницы появятся десятки адресов
+// с одним и тем же содержимым, и Google начнёт считать их разными страницами.
+(function(){
+  var m=/[?&]cat=([a-z0-9-]+)/.exec(location.search);
+  if(!m)return;
+  var btn=document.querySelector('.ftag[data-cat="'+m[1]+'"]');
+  if(!btn)return;
+  selCat=m[1];
+  btn.classList.add('active');
+  if(clearAll)clearAll.classList.add('show');
+})();
+
 document.querySelectorAll('.ps-tag').forEach(function(btn){
   btn.addEventListener('click',function(){
     var q=this.dataset.q;

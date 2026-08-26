@@ -1,1 +1,42 @@
-{"total":54079,"chunks":6,"chunk_size":10000,"format":"columnar","keys":["i","n","p","s","c"]}
+{
+ "total": 54079,
+ "chunks": 6,
+ "chunk_size": 10000,
+ "format": "columnar",
+ "keys": [
+  "i",
+  "n",
+  "p",
+  "s",
+  "c",
+  "g"
+ ],
+ "cats": [
+  "medical-3d-models",
+  "aircraft",
+  "ships",
+  "weapons",
+  "tools",
+  "military-vehicles",
+  "animals-creatures",
+  "nature-plants",
+  "food-beverages",
+  "furniture-interior",
+  "clothing-accessories",
+  "electronics-gadgets",
+  "industrial-equipment",
+  "architecture-landmarks",
+  "characters-people",
+  "vehicles",
+  "containers-storage",
+  "sports-recreation",
+  "kitchen-tableware",
+  "space-scifi",
+  "lighting",
+  "toys-games",
+  "signage-decor",
+  "musical-instruments",
+  "collections-sets",
+  "other"
+ ]
+}
