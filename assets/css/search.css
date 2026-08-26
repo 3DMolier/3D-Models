@@ -120,3 +120,11 @@ footer { background: #111111; border-top: none; padding: 32px 0; }
 .footer-inner p { color: #9ca3af; font-size: 13px; }
 .footer-inner a { color: #9ca3af; font-size: 13px; text-decoration: none; transition: color 0.2s; }
 .footer-inner a:hover { color: #ffffff; }
+
+/* Подсказки при вводе. Лежат внутри .search-box, у которого position:relative. */
+.ac-list { position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 40; background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px; box-shadow: 0 12px 32px rgba(0,0,0,0.12); overflow: hidden; text-align: left; }
+.ac-list[hidden] { display: none; }
+.ac-item { display: flex; align-items: baseline; gap: 10px; width: 100%; padding: 11px 18px; background: none; border: none; cursor: pointer; font-family: inherit; font-size: 15px; color: #111111; text-align: left; }
+.ac-item:hover, .ac-item.active { background: rgba(0,0,0,0.05); }
+.ac-item .ac-n { color: var(--muted); font-size: 13px; margin-left: auto; }
+.ac-item .ac-hi { font-weight: 600; }

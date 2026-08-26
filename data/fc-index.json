@@ -9,7 +9,8 @@
   "p",
   "s",
   "c",
-  "g"
+  "g",
+  "ic"
  ],
  "cats": [
   "medical-3d-models",
@@ -38,5 +39,6 @@
   "musical-instruments",
   "collections-sets",
   "other"
- ]
+ ],
+ "imgChunks": 18
 }
