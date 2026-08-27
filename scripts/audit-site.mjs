@@ -78,6 +78,22 @@ for (const file of htmlFiles) {
     errors.push(`${r}: missing meta description`);
   }
 
+  // 1d-2. Служебная отметка в публичном заголовке.
+  // «to remove - Race Rowboats Collection» и «to remove - Football Penalty
+  // Flags Red» лежали в выдаче с живыми карточками, ссылками с витрины подборок
+  // и записями в картах сайта. Отметка была видна и людям, и поисковикам.
+  // Проверяем ТОЛЬКО начало названия: поиск по словам «test», «draft», «temp»
+  // где угодно даёт 96 совпадений, и 95 из них - настоящие товары
+  // («Crash Test Dummy», «Laboratory Test Tubes», «Draft Beer Tower»).
+  {
+    const t = (html.match(/<title>([\s\S]*?)<\/title>/) || [])[1] || '';
+    // После отметки обязано идти тире или двоеточие: без этого правило ловит
+    // «Draft Donkey With Harness» - тяглового осла, а не черновик.
+    if (/^\s*(to\s+remove|to\s+delete|draft|temp|old\s+version|do\s+not\s+use)\s*[-–—:]/i.test(t)) {
+      errors.push(`${r}: служебная отметка в заголовке - «${t.trim().slice(0, 60)}»`);
+    }
+  }
+
   // 1e. Missing canonical (industry/category/collection/model pages only)
   if (/\/(industries|categories|collections|models)\//.test(r)) {
     if (!/rel="canonical"/.test(html)) {

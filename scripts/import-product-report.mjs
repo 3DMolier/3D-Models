@@ -6,60 +6,89 @@
  * JSON; из него живут category-map.mjs, merge-variants.mjs, build-collections.mjs
  * и сверка цен на карточках.
  *
- * ПОЧЕМУ ЭТО ВАЖНО. Отчёт в репозитории был собран 10.08 из ИЮЛЬСКОГО файла, а
- * цены с тех пор менялись. Tesla Model 3 стоит $129, а на карточке значилось
- * $149 - в заголовке, у кнопки, в тексте, в вопросах и в характеристиках.
- * Цена берётся ТОЛЬКО из этого файла, не с сайта студии и не из старых данных.
+ * ПОЧЕМУ ЭТО ВАЖНО. Отчёт в репозитории был собран из июльской выгрузки, а цены
+ * с тех пор менялись. Tesla Model 3 стоит $129 - проверено на самой странице
+ * TurboSquid, - а на карточке значилось $149: в заголовке, у кнопки, в тексте,
+ * в вопросах и в характеристиках. Цена берётся ТОЛЬКО из этого файла.
  *
- * Колонки, которые нам нужны (MAIN-лист):
- *    2  Product_ID          41  Last Price, $
- *    3  Product_Name        98  Certification
- *   38  Date of publication 21-23  Category 1/2/3
- *   39  Year of publ         4  Link
+ * ПОЧЕМУ ЧЕРЕЗ CSV. Отчёт весит 55 МБ: 90 тысяч строк на 104 колонки. Разбор
+ * .xlsm библиотекой не заканчивается за разумное время - две попытки висели по
+ * 45 минут без единой строки вывода, в том числе с отключёнными стилями и
+ * формулами и с чтением одного листа. LibreOffice выгружает нужный лист в CSV
+ * примерно за минуту, а CSV разбирается за секунды. Скрипт делает это сам.
  *
- * Запуск:  node scripts/import-product-report.mjs "C:/.../!2026-08-02 Product Report.xlsm" --dry
- *          node scripts/import-product-report.mjs "C:/.../!2026-08-02 Product Report.xlsm"
+ * Запуск:  node scripts/import-product-report.mjs "C:/.../!2026-08-02 Product Report.xlsm"
+ *          node scripts/import-product-report.mjs <уже готовый .csv>
+ *          добавить --dry, чтобы только посмотреть разницу
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import XLSX from 'xlsx';
+import { execFileSync } from 'node:child_process';
+import os from 'node:os';
 
 const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
 const OUT = path.join(ROOT, 'data', 'product-report.json');
+const SOFFICE = 'C:/Program Files/LibreOffice/program/soffice.exe';
 const SRC = process.argv[2];
 const DRY = process.argv.includes('--dry');
 
 if (!SRC || !fs.existsSync(SRC)) {
-  console.log('нужен путь к Product Report (.xlsm)');
+  console.log('нужен путь к Product Report (.xlsm или .csv)');
   console.log('пример: node scripts/import-product-report.mjs "C:/Users/MSI-PC/Downloads/!2026-08-02 Product Report.xlsm"');
   process.exit(1);
 }
 
-console.log('читаю ' + path.basename(SRC) + ' ...');
-// Отчёт весит 55 МБ: 90 тысяч строк на 104 колонки. Полный разбор со стилями и
-// формулами не заканчивается за разумное время - первый прогон висел 45 минут
-// без единой строки вывода. Отключаем всё, что нам не нужно, и берём значения
-// напрямую из ячеек, минуя построение матрицы строк.
-const wb = XLSX.readFile(SRC, {
-  cellDates: true,
-  cellStyles: false, cellFormula: false, cellNF: false, cellText: false,
-  bookVBA: false, bookDeps: false, bookProps: false, bookSheets: false,
-});
-// Лист называется «MAIN <дата>», дата меняется от выгрузки к выгрузке.
-const sheetName = wb.SheetNames.find(n => /^MAIN/i.test(n));
-if (!sheetName) { console.error('не нашёл лист MAIN. Листы: ' + wb.SheetNames.join(', ')); process.exit(1); }
-console.log('лист: ' + sheetName);
+// ── при необходимости превращаем .xlsm в CSV ──
+let csvPath = SRC;
+if (/\.xlsm?$/i.test(SRC)) {
+  if (!fs.existsSync(SOFFICE)) {
+    console.error('нет LibreOffice по пути ' + SOFFICE);
+    console.error('либо поставь его, либо выгрузи лист MAIN в CSV вручную и передай CSV.');
+    process.exit(1);
+  }
+  const tmp = path.join(os.tmpdir(), 'report-csv-' + Date.now());
+  fs.mkdirSync(tmp, { recursive: true });
+  console.log('выгружаю лист MAIN в CSV через LibreOffice, это около минуты...');
+  // Последнее число в строке фильтра - номер листа. MAIN идёт вторым, первый
+  // лист - stat, и без этого номера выгружается именно он.
+  execFileSync(SOFFICE, ['--headless',
+    '--convert-to', 'csv:Text - txt - csv (StarCalc):44,34,76,1,,0,false,true,true,false,false,2',
+    '--outdir', tmp, SRC], { stdio: 'pipe', timeout: 15 * 60 * 1000 });
+  const made = fs.readdirSync(tmp).filter(f => f.toLowerCase().endsWith('.csv'));
+  if (!made.length) { console.error('LibreOffice не создал CSV'); process.exit(1); }
+  csvPath = path.join(tmp, made[0]);
+  console.log('получен ' + made[0] + '  ' + Math.round(fs.statSync(csvPath).size / 1024 / 1024) + ' МБ');
+}
 
-// Работаем по ячейкам: sheet_to_json на 9,4 млн ячеек съедает всю память.
-const sh = wb.Sheets[sheetName];
-const range = XLSX.utils.decode_range(sh['!ref']);
-const cell = (r, c) => {
-  const v = sh[XLSX.utils.encode_cell({ r, c })];
-  return v === undefined ? '' : (v.v === undefined ? '' : v.v);
-};
-const hdr = [];
-for (let c = range.s.c; c <= range.e.c; c++) hdr[c] = String(cell(range.s.r, c)).trim();
-console.log('строк в листе: ' + (range.e.r - range.s.r) + ', колонок: ' + (range.e.c + 1));
+// ── разбор CSV ──
+// Свой разбор, а не split(','): в названиях моделей встречаются и запятые, и
+// кавычки, и переносы строк внутри поля.
+function parseCsv(text) {
+  const rows = [];
+  let row = [], field = '', inQ = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (inQ) {
+      if (ch === '"') {
+        if (text[i + 1] === '"') { field += '"'; i++; }
+        else inQ = false;
+      } else field += ch;
+      continue;
+    }
+    if (ch === '"') { inQ = true; continue; }
+    if (ch === ',') { row.push(field); field = ''; continue; }
+    if (ch === '\n') { row.push(field); rows.push(row); row = []; field = ''; continue; }
+    if (ch === '\r') continue;
+    field += ch;
+  }
+  if (field.length || row.length) { row.push(field); rows.push(row); }
+  return rows;
+}
+
+console.log('читаю CSV...');
+const rows = parseCsv(fs.readFileSync(csvPath, 'utf8'));
+console.log('строк: ' + rows.length);
+const hdr = rows[0].map(h => String(h).trim());
 const col = name => {
   const i = hdr.findIndex(h => h.toLowerCase() === name.toLowerCase());
   if (i < 0) throw new Error('нет колонки «' + name + '» - проверь шапку отчёта');
@@ -83,25 +112,25 @@ const yes = v => {
   return s === '1' || s === 'true' || s === 'yes' || s === 'да';
 };
 const ymd = v => {
-  if (v instanceof Date && !isNaN(v)) {
-    // Смещения часового пояса не учитываем: в отчёте это календарная дата.
-    return v.getFullYear() + '-' + String(v.getMonth() + 1).padStart(2, '0')
-      + '-' + String(v.getDate()).padStart(2, '0');
-  }
   const s = String(v).trim();
-  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
-  return m ? m[0] : (s || null);
+  let m = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (m) return m[0];
+  // LibreOffice отдаёт даты как ДД.ММ.ГГГГ или ММ/ДД/ГГГГ - приводим к ISO.
+  m = s.match(/^(\d{2})[./](\d{2})[./](\d{4})$/);
+  if (m) return m[3] + '-' + m[2] + '-' + m[1];
+  return s || null;
 };
 const num = v => {
-  const n = Number(String(v).replace(/[^\d.,-]/g, '').replace(',', '.'));
-  return Number.isFinite(n) ? n : null;
+  const s = String(v).replace(/[^\d.,-]/g, '').replace(/\s/g, '').replace(',', '.');
+  const n = Number(s);
+  return Number.isFinite(n) && s !== '' ? n : null;
 };
 
 const out = [];
 let noPid = 0, noPrice = 0;
-for (let i = range.s.r + 1; i <= range.e.r; i++) {
-  const r = {};
-  for (const c of Object.values(C)) r[c] = cell(i, c);
+for (let i = 1; i < rows.length; i++) {
+  const r = rows[i];
+  if (!r || !r.length) continue;
   const pid = String(r[C.pid] || '').trim();
   if (!/^\d+$/.test(pid)) { noPid++; continue; }
   const price = num(r[C.price]);
@@ -134,13 +163,13 @@ console.log('строк с номером товара: ' + out.length + (noPid 
 if (fs.existsSync(OUT)) {
   const old = JSON.parse(fs.readFileSync(OUT, 'utf8'));
   const byPid = new Map(old.map(r => [String(r.pid), r]));
-  let priceUp = 0, priceDown = 0, added = 0, gone = 0, certChanged = 0;
+  let up = 0, down = 0, added = 0, gone = 0, certChanged = 0;
   const examples = [];
   for (const r of out) {
     const o = byPid.get(r.pid);
     if (!o) { added++; continue; }
-    if (o.price !== r.price && r.price !== null) {
-      if (r.price > o.price) priceUp++; else priceDown++;
+    if (r.price !== null && o.price !== r.price) {
+      if (r.price > o.price) up++; else down++;
       if (examples.length < 8) examples.push(r.name + ': $' + o.price + ' -> $' + r.price);
     }
     if ((o.cert || '') !== (r.cert || '')) certChanged++;
@@ -148,7 +177,7 @@ if (fs.existsSync(OUT)) {
   const now = new Set(out.map(r => r.pid));
   for (const p of byPid.keys()) if (!now.has(p)) gone++;
   console.log('\nпротив прежнего отчёта:');
-  console.log('  цена выросла у ' + priceUp + ', снизилась у ' + priceDown);
+  console.log('  цена выросла у ' + up + ', снизилась у ' + down);
   console.log('  сертификат изменился у ' + certChanged);
   console.log('  новых товаров ' + added + ', пропало ' + gone);
   examples.forEach(e => console.log('    ' + e));

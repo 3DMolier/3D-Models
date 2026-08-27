@@ -50,6 +50,18 @@ const RULES = [
   ['vehicles', 'architecture-landmarks', ['broadcasting tower', 'skytree', 'observation tower', 'lighthouse']],
   ['vehicles', 'ships', ['life saving buoy', 'lifebuoy', 'life buoy', 'ship propeller']],
   ['vehicles', 'weapons', ['battle position', 'missile launcher', 'anti ballistic']],
+
+  // «Kitchen & Tableware» засорена так же, как была засорена «Vehicles», и по
+  // той же причине: у TurboSquid всё это лежит в широкой корзине
+  // «Interior Design | housewares», а она у нас ведёт в кухню. Примеры дал
+  // основатель, каждый проверен - все действительно лежали в кухне.
+  ['kitchen-tableware', 'signage-decor', ['picture frame', 'picture frames', 'painting frame',
+    'blueprint', 'blueprints', 'globe', 'globes', 'sarcophagus', 'funeral casket', 'casket', 'coffin']],
+  ['kitchen-tableware', 'nature-plants', ['marijuana plant', 'lemon tree', 'potted tree', 'bonsai']],
+  ['kitchen-tableware', 'containers-storage', ['locker', 'lockers']],
+  ['kitchen-tableware', 'industrial-equipment', ['gear mechanism', 'clockwork gear']],
+  ['kitchen-tableware', 'furniture-interior', ['toilet tissue', 'toilet paper', 'bathroom towel',
+    'hand towel', 'red carpet', 'area rug', 'carpet runner']],
 ];
 
 const escRe = t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
