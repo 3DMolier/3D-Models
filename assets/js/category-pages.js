@@ -37,7 +37,7 @@ function renderExtraModels(grid, btn, models) {
       + '<span style="font-size:13px;font-weight:600;color:#111111;margin-left:auto;">' + m.price + '</span>'
       + '</div>'
       + '<a href="' + m.url + '" target="_blank" rel="noopener" class="btn-ts" style="width:100%;justify-content:center;">'
-      + LINK_ICON + ' View on TurboSquid</a></div>';
+      + LINK_ICON + ' Buy on TurboSquid</a></div>';
     grid.appendChild(card);
   }
   if (btn) btn.remove();

@@ -243,7 +243,7 @@ function buildPage(p) {
     + (f.cert !== 'no certification' ? '<span class="cert-badge">&#10003;&nbsp;' + esc(f.cert) + ' Certified</span>' : '')
     + '</div><h1 class="mp-h1">' + esc(proseName(name)) + '</h1>'
     + '<div class="mp-price-row"><span class="mp-price">$' + price + '</span><span class="mp-price-label">USD on TurboSquid</span></div>'
-    + '<div class="mp-ctas"><a href="' + ts + '" target="_blank" rel="noopener" class="btn-primary mp-btn-center">View on TurboSquid</a>'
+    + '<div class="mp-ctas"><a href="' + ts + '" target="_blank" rel="noopener" class="btn-primary mp-btn-center">Buy on TurboSquid</a>'
     + '<a href="/categories/' + cat + '/" class="btn-ghost mp-btn-browse">Browse ' + esc(catDisp) + ' Models</a></div>'
     + '<div class="mp-industries"><div class="mp-field-label">Used In</div><div class="mp-chip-row">' + industriesHtml + '</div></div>'
     + '</div></div></div></section>'
