@@ -35,7 +35,7 @@ const slugify = s => String(s).toLowerCase().trim()
 const modelCat = loadModelCategories();
 
 // ── 1. карточки моделей ──
-let cards = 0, crumbFix = 0, specFix = 0, ldFix = 0;
+let cards = 0, crumbFix = 0, specFix = 0, ldFix = 0, chipFix = 0, ctaFix = 0, textFix = 0;
 const idx = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'fc-index.json'), 'utf8'));
 const slugOfId = new Map();
 for (let k = 0; k < idx.chunks; k++) {
@@ -70,10 +70,32 @@ for (const [id, cat] of Object.entries(modelCat)) {
   // поле category в разметке товара
   h = h.replace(/("category"\s*:\s*")[^"]*(")/, (x, a, b) => { ldFix++; return a + nameOf(cat).replace(/"/g, '') + b; });
 
+  // Чип категории над названием. Он тоже ссылка на /categories/, и тоже отставал:
+  // у прожектора крошка говорила «Lighting», а чип - «Other».
+  h = h.replace(/<a href="\/categories\/[a-z0-9-]+\/" class="(chip[^"]*)">[^<]*<\/a>/,
+    (x, cls) => { chipFix++; return '<a href="/categories/' + cat + '/" class="' + cls + '">' + nm + '</a>'; });
+
+  // Кнопка «Browse … Models». Вела в СТАРУЮ категорию: на карточке пробкового
+  // шлема сверху стояло «Clothing & Accessories», а кнопка предлагала
+  // «Browse Weapons Models».
+  // Пробелы и переносы внутри кнопки сохраняем: если их схлопнуть, «изменятся»
+  // все 54 тысячи карточек, и настоящие правки утонут в этой пустой разнице.
+  h = h.replace(/(<a href=")\/categories\/[a-z0-9-]+\/("[^>]*>\s*Browse )[^<]*?( Models\s*<\/a>)/,
+    (x, a, b, c) => { ctaFix++; return a + '/categories/' + cat + '/' + b + nm + c; });
+
+  // Название категории в тексте описания и в вопросах. Здесь оно не ссылка, а
+  // просто слово, и рассинхрон читается особенно грубо: «is one of the Vehicles
+  // models» на странице светильника.
+  h = h.replace(/(is one of the )([A-Za-z][A-Za-z&; ]{1,40}?)( models in the 3D Molier catalogue)/,
+    (x, a, cur, b) => { if (cur.trim() !== nm) textFix++; return a + nm + b; });
+  h = h.replace(/(Browsing the )([A-Za-z][A-Za-z&; ]{1,40}?)( category shows)/,
+    (x, a, cur, b) => { if (cur.trim() !== nm) textFix++; return a + nm + b; });
+
   if (h !== before) { cards++; if (!DRY) fs.writeFileSync(file, h); }
 }
 console.log('карточек приведено к источнику: ' + cards
-  + ' (крошек ' + crumbFix + ', строк Category ' + specFix + ', полей в разметке ' + ldFix + ')');
+  + ' (крошек ' + crumbFix + ', строк Category ' + specFix + ', полей в разметке ' + ldFix
+  + ', чипов ' + chipFix + ', кнопок Browse ' + ctaFix + ', упоминаний в тексте ' + textFix + ')');
 
 // ── 2. чипы в сетках и заголовки страниц категорий ──
 // Чип показывает категорию ТОЙ модели, на которую ведёт ссылка, поэтому
