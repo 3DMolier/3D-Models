@@ -149,7 +149,10 @@ for (let i = 1; i < rows.length; i++) {
     cat2: String(r[C.cat2] || '').trim(),
     cat3: String(r[C.cat3] || '').trim(),
     date: ymd(r[C.date]),
-    year: String(r[C.year] || '').trim(),
+    // LibreOffice выгружает год с разделителем разрядов: «2 017». Чистим, а
+    // если не осталось четырёх цифр - берём год из даты, она всегда корректна.
+    year: (String(r[C.year] || '').replace(/[^\d]/g, '').match(/^\d{4}$/) || [])[0]
+      || String(ymd(r[C.date]) || '').slice(0, 4) || '',
     price,
     cert: String(r[C.cert] || '').trim(),
     link: String(r[C.link] || '').trim(),
