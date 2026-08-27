@@ -98,3 +98,18 @@ footer{background:#111;color:#fff;padding:48px 0 24px;margin-top:40px}
 .fbot p{color:#555;font-size:12px}
 .fbot a{color:#555;font-size:12px;text-decoration:none;transition:color .2s}
 .fbot a:hover{color:#fff}
+
+/* ── Видимый фокус с клавиатуры ─────────────────────────────────────────────
+   Общее правило: всё, что вообще получает фокус, обводится заметным контуром.
+   Частные правила ниже перекрывают его там, где нужен свой вид. Без этого
+   навигация с клавиатуры была слепой: тень rgba(0,0,0,.1) на белом не видна. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #1659c9; outline-offset: 2px;
+  border-radius: 4px;
+}

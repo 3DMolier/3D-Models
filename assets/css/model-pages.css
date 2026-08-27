@@ -39,15 +39,15 @@ html { scroll-behavior: smooth; }
 /* ── Buttons ─────────────────────────────────────────────────────────── */
 .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #111111; color: #ffffff; font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 15px; padding: 13px 28px; border-radius: 8px; transition: background 0.2s, transform 0.15s; border: none; cursor: pointer; text-decoration: none; }
 .btn-primary:hover { background: #333333; transform: translateY(-1px); }
-.btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,0,0,0.15); }
+.btn-primary:focus-visible { outline: 2px solid #1659c9; outline-offset: 2px; box-shadow: 0 0 0 3px rgba(0,0,0,0.15); }
 
 .btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: #111111; font-family: 'Open Sans', sans-serif; font-weight: 500; font-size: 14px; padding: 10px 24px; border-radius: 8px; border: 1px solid #e5e5e5; cursor: pointer; text-decoration: none; transition: border-color 0.2s, background 0.2s, transform 0.15s; }
 .btn-ghost:hover { border-color: #111111; background: transparent; transform: translateY(-1px); }
-.btn-ghost:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,0,0,0.1); }
+.btn-ghost:focus-visible { outline: 2px solid #1659c9; outline-offset: 2px; box-shadow: 0 0 0 3px rgba(0,0,0,0.1); }
 
 .btn-ts-lg { display: inline-flex; align-items: center; gap: 10px; background: #f5f5f5; color: #111111; font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 14px; padding: 11px 22px; border-radius: 8px; border: 1px solid #e5e5e5; cursor: pointer; text-decoration: none; transition: background 0.2s, border-color 0.2s, transform 0.15s; }
 .btn-ts-lg:hover { background: #ebebeb; border-color: #d1d5db; transform: translateY(-1px); }
-.btn-ts-lg:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,0,0,0.1); }
+.btn-ts-lg:focus-visible { outline: 2px solid #1659c9; outline-offset: 2px; box-shadow: 0 0 0 3px rgba(0,0,0,0.1); }
 
 /* ── Nav (light background) ──────────────────────────────────────────── */
 /* Header nav intentionally NOT overridden here - it inherits .nav-link from
@@ -196,7 +196,7 @@ a.chip { text-decoration: none; }
 /* ── Custom Order CTA ────────────────────────────────────────────────── */
 .btn-custom { opacity: 1; transition: opacity 0.2s; }
 .btn-custom:hover { opacity: .8; }
-.btn-custom:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,0,0,0.15); }
+.btn-custom:focus-visible { outline: 2px solid #1659c9; outline-offset: 2px; box-shadow: 0 0 0 3px rgba(0,0,0,0.15); }
 .mp-cta-section { padding: 0 24px 64px; }
 .mp-cta-inner { max-width: 80rem; margin: 0 auto; }
 .mp-cta-card { background: #f5f5f5; border: 1px solid #e5e5e5; border-radius: 16px; padding: 36px 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
