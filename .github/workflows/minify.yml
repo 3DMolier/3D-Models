@@ -42,22 +42,21 @@ jobs:
           done
           [ $ERRORS -eq 0 ] || exit 1
 
+      # Файл catalog.css из репозитория давно удалён, а строка про него осталась.
+      # cleancss на несуществующем файле обрывал весь шаг, и .min.css не
+      # пересобирались с 26 августа: правки в .css уезжали в прод, а страницы
+      # продолжали грузить старую минифицированную версию. Проверяем наличие,
+      # как это уже сделано в шаге для JS.
       - name: Minify CSS
         run: |
-          cleancss -o assets/css/styles.min.css assets/css/styles.css
-          echo "styles.min.css: $(wc -c < assets/css/styles.min.css) bytes"
-          cleancss -o assets/css/model-pages.min.css assets/css/model-pages.css
-          echo "model-pages.min.css: $(wc -c < assets/css/model-pages.min.css) bytes"
-          cleancss -o assets/css/catalog.min.css assets/css/catalog.css
-          echo "catalog.min.css: $(wc -c < assets/css/catalog.min.css) bytes"
-          cleancss -o assets/css/search.min.css assets/css/search.css
-          echo "search.min.css: $(wc -c < assets/css/search.min.css) bytes"
-          cleancss -o assets/css/full-catalog.min.css assets/css/full-catalog.css
-          echo "full-catalog.min.css: $(wc -c < assets/css/full-catalog.min.css) bytes"
-          cleancss -o assets/css/static-pages.min.css assets/css/static-pages.css
-          echo "static-pages.min.css: $(wc -c < assets/css/static-pages.min.css) bytes"
-          cleancss -o assets/css/404.min.css assets/css/404.css
-          echo "404.min.css: $(wc -c < assets/css/404.min.css) bytes"
+          for f in styles model-pages catalog search full-catalog static-pages 404; do
+            if [ -f "assets/css/$f.css" ]; then
+              cleancss -o "assets/css/$f.min.css" "assets/css/$f.css"
+              echo "$f.min.css: $(wc -c < assets/css/$f.min.css) bytes"
+            else
+              echo "пропущен: assets/css/$f.css не существует"
+            fi
+          done
 
       - name: Minify JS
         run: |
