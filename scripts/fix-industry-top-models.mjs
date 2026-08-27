@@ -55,6 +55,7 @@ const ALLOWED = {
   'software-development': ['electronics-gadgets'],
   'event-management': ['furniture-interior', 'signage-decor', 'lighting'],
   'hardware': ['industrial-equipment', 'tools', 'electronics-gadgets'],
+  'simulation': ['aircraft', 'vehicles', 'military-vehicles', 'medical-3d-models'],
   // 3d-printing отбирается не категорией, а названием - см. PRINT_RE
 };
 

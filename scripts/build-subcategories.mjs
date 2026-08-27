@@ -97,6 +97,10 @@ function makeMatcher(terms, not) {
 }
 
 // ── разметка ──
+// Чип на карточке показывает КАТЕГОРИЮ модели, а не подкатегорию. Подкатегория
+// - это название самой страницы, и повторять его на каждой из ста карточек
+// незачем; категория добавляет то, чего на странице ещё нет. Плюс так чип
+// приходит из единого источника, как и везде.
 function card(m, chip, i) {
   const loadAttrs = i < 4 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
   const url = '/models/' + slugify(m.name) + '-' + m.id + '/';
@@ -236,7 +240,7 @@ ${header}
     ${page === 1 ? `<p class="cat-desc">${esc(desc)}</p>` : ''}
     ${sibHtml}
     <div id="model-grid" class="model-grid">
-${models.map((m, i) => card(m, subDisp, i)).join('\n')}
+${models.map((m, i) => card(m, catDisp, i)).join('\n')}
     </div>
     ${pagination(cat, sub, page, totalPages)}
   </div>
