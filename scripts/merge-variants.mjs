@@ -836,21 +836,41 @@ function buildBlocks(g) {
       : (g.kind === 'identity' || g.kind === 'root' || g.kind === 'rootcat') ? 'All Versions of This Model'
         : (g.kind === 'manual' || g.kind === 'geo') ? (allColors ? 'Available Colors' : 'All Versions of This Model')
           : 'Available Colors';
-  const list = '<section class="mp-variants"><h2 class="mp-block-h2">' + head + '</h2>'
-    + '<ul class="mp-var-list">'
-    + all.map((x, i) => '<li class="mp-var' + (i ? '' : ' is-main') + '">'
-      // Превью в строке: по одной подписи «Collection 7 · Rigged» не понять, что
-      // входит в набор. Картинка слева отвечает на это сразу.
-      + (previewOf(x.slug)
-        ? '<img class="mp-var-thumb" src="' + esc(previewOf(x.slug)) + '" alt=""'
-        + ' width="72" height="41" loading="lazy" decoding="async">'
-        : '<span class="mp-var-thumb mp-var-thumb-empty"></span>')
-      + '<span class="mp-var-name">' + esc(uniqLabel(x))
-      + (i ? '' : ' <span class="mp-var-badge">main</span>') + '</span>'
-      + '<span class="mp-var-price">$' + x.price + '</span>'
-      + '<a class="mp-var-link" href="' + esc(x.url) + '" target="_blank" rel="noopener">View on TurboSquid</a>'
-      + '</li>').join('')
-    + '</ul></section>';
+  // Версии идут ВНИЗ страницы сеткой карточек, а не узким списком в правой
+  // колонке над характеристиками.
+  //
+  // Раньше здесь строился <section class="mp-variants"> - список в боковой
+  // колонке. Из-за него правая колонка вытягивалась намного ниже левой, под ней
+  // зияла пустота, а девять версий приходилось разглядывать в узкой полосе.
+  // Скрипт apply-card-upgrade переносил их вниз и боковой блок удалял, но
+  // следующий прогон склейки вставлял его обратно - и на карточке оказывались
+  // ОБА блока сразу: сбоку девять версий, внизу две устаревшие.
+  //
+  // Чтобы это не повторялось, склейка сразу собирает нижнюю секцию. Разметка -
+  // та же, что у блока «Related 3D Models», поэтому читается как часть страницы.
+  const list = '<section class="mp-related-section mp-versions-section"><div class="max-w-7xl mx-auto">'
+    + '<div class="section-label mp-mb8">Same model, other versions</div>'
+    + '<h2 class="mp-related-h2">' + head + '</h2>'
+    + '<div class="mp-related-grid">'
+    + all.map((x, i) => {
+      const img = previewOf(x.slug);
+      const label = uniqLabel(x);
+      // «Standard» в чипе ничего не сообщает - у главной версии показываем
+      // нейтральное действие.
+      const tag = /^standard$/i.test(String(label).trim().replace(/\s*\(\d+\)$/, '')) ? 'View on TurboSquid' : label;
+      return '<a href="' + esc(x.url) + '" target="_blank" rel="noopener" class="model-card card-glow mp-rc-link">'
+        + '<div class="img-wrap mp-rc-img-wrap">'
+        + (img
+          ? '<img src="' + esc(img) + '" alt="' + esc(label) + '" width="800" height="450"'
+          + ' decoding="async" loading="lazy" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">'
+          : '')
+        + '<div class="img-placeholder" aria-hidden="true"><span class="mp-rc-placeholder-icon">&#128247;</span></div></div>'
+        + '<div class="mp-rc-body"><div class="mp-rc-head"><div class="mp-rc-title">' + esc(label)
+        + (i ? '' : ' <span class="mp-var-badge">main</span>') + '</div></div>'
+        + '<div class="mp-rc-foot"><span class="chip chip-teal mp-rc-chip mp-ver-chip">' + esc(tag) + '</span>'
+        + '<span class="mp-rc-price">$' + x.price + '</span></div></div></a>';
+    }).join('')
+    + '</div></div></section>';
 
   // Цены у вариантов расходятся: меховая версия дороже базовой. Показываем диапазон,
   // иначе на карточке будет одна цена, а по ссылке другая.
@@ -890,7 +910,13 @@ function mergeInto(g) {
   const oldGal = (html.match(/<div class="mp-gallery" data-gallery>[\s\S]*?<\/div><\/div>/) || [])[0] || '';
   const oldShots = (oldGal.match(/mp-gal-thumb/g) || []).length;
   html = html.replace(/<div class="mp-gallery" data-gallery>[\s\S]*?<\/div><\/div>/g, '');
+  // Убираем и старый боковой список, и прежнюю нижнюю секцию версий: обе
+  // соберутся заново. Заодно исчезают пустые карточки-обёртки, оставшиеся
+  // от бокового блока.
   html = html.replace(/<section class="mp-variants">[\s\S]*?<\/section>/g, '');
+  html = html.replace(/<section class="mp-related-section mp-versions-section">[\s\S]*?<\/section>/g, '');
+  html = html.replace(/<div class="mp-spec-card">\s*<div class="mp-spec-block">\s*<\/div>\s*<\/div>/g, '');
+  html = html.replace(/<div class="mp-spec-card">\s*<\/div>/g, '');
   const before = html;
   let { gallery, list, shots, priceText } = buildBlocks(g);
   // Страховка «оставить галерею, где снимков больше» больше не нужна: превью
@@ -971,15 +997,19 @@ function mergeInto(g) {
       html = html.replace(/(<img[^>]*class="mp-hero-img"[^>]*>\s*<\/div>)/, m => m + gallery);
     }
   }
-  // список вариантов - перед характеристиками
-  if (!html.includes('mp-variants')) {
-    // В функции замены '$1' - ЛИТЕРАЛ, а не подстановка группы: из-за этого
-    // заголовок Specifications затирался строкой «$1» на 9158 страницах.
-    html = html.replace(/(<h2 class="mp-block-h2">\s*Specifications)/i, m => list + m);
-    if (!html.includes('mp-variants')) html = html.replace(/(<table class="mp-spec-table")/, m => list + m);
+  // Секция версий - ВНИЗ страницы, перед блоком «Related 3D Models».
+  // В функции замены '$1' - ЛИТЕРАЛ, а не подстановка группы: из-за этого
+  // когда-то заголовок Specifications затирался строкой «$1» на 9158 страницах.
+  // Поэтому и здесь замена только функцией.
+  if (!html.includes('mp-versions-section')) {
+    if (html.includes('<section class="mp-related-section">')) {
+      html = html.replace('<section class="mp-related-section">', m => list + m);
+    } else if (html.includes('</main>')) {
+      html = html.replace('</main>', m => list + m);
+    }
   }
 
-  if (!html.includes('mp-variants')) return { ok: false, why: 'не нашёл, куда вставить список' };
+  if (!html.includes('mp-versions-section')) return { ok: false, why: 'не нашёл, куда вставить секцию версий' };
   if (!html.includes('<a href="/categories/other/" role="menuitem"')) return { ok: false, why: 'пострадало меню' };
   for (const b of html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g) || []) {
     try { JSON.parse(b.replace(/<script[^>]*>/, '').replace(/<\/script>/, '').trim()); }
@@ -1196,8 +1226,9 @@ if (!ONLY || process.argv.includes('--showcase')) {
     // TurboSquid со страницы пропали. Таких усечённых главных 971. Поэтому
     // сверяем длину: блок короче семьи - пересобираем.
     {
-      const sec = html.match(/<section class="mp-variants">([\s\S]*?)<\/section>/);
-      if (sec && (sec[1].match(/<li class="mp-var/g) || []).length >= variants.length + 1) continue;
+      // Версии теперь лежат нижней секцией карточками, а не боковым списком.
+      const sec = html.match(/<section class="mp-related-section mp-versions-section">([\s\S]*?)<\/section>/);
+      if (sec && (sec[1].match(/class="model-card card-glow mp-rc-link"/g) || []).length >= variants.length + 1) continue;
     }
     if (/http-equiv="refresh"/.test(html.slice(0, 400))) continue;
     const rest = variants.map(s => rowFor(s)).filter(x => x && x.slug !== mainSlug);
@@ -1250,11 +1281,14 @@ if (!DRY && !ONLY) {
     const file = path.join(MODELS, slug, 'index.html');
     let h;
     try { h = fs.readFileSync(file, 'utf8'); } catch (e) { continue; }
-    if (!h.includes('<section class="mp-variants">')) continue;
+    // Чистим и старый боковой список, и нижнюю секцию: у страницы, переставшей
+    // быть главной в группе, версий быть не должно ни в каком виде.
+    if (!h.includes('<section class="mp-variants">') && !h.includes('mp-versions-section')) continue;
     const real = (bySlug.get(slug) || {}).name;
     if (!real) continue;
     const out0 = h.replace(/<div class="mp-gallery" data-gallery>[\s\S]*?<\/div><\/div>/g, '')
-      .replace(/<section class="mp-variants">[\s\S]*?<\/section>/g, '');
+      .replace(/<section class="mp-variants">[\s\S]*?<\/section>/g, '')
+      .replace(/<section class="mp-related-section mp-versions-section">[\s\S]*?<\/section>/g, '');
     const nameEsc = esc(real);
     const shortName = nameEsc.replace(/\s*3d\s+models?\s*$/i, '');
     let out = out0.replace(/<h1 class="mp-h1">[\s\S]*?<\/h1>/, '<h1 class="mp-h1">' + nameEsc + '</h1>')
