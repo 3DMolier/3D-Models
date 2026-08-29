@@ -942,8 +942,6 @@ summary:focus-visible,
    Норму WCAG 2.2 AA (24x24) сайт проходил и раньше; 44x44 - это уровень AAA
    и рекомендация Apple, то есть удобство, а не соответствие стандарту. */
 @media (max-width: 767px) {
-  .nav-link,
-  .nav-mobile-toggle,
   .btn-primary,
   .btn-ghost,
   .btn-ts,
@@ -957,5 +955,11 @@ summary:focus-visible,
     display: inline-flex;
     align-items: center;
     justify-content: center;
+  }
+  .nav-mobile-toggle,
+  .nav-mobile-sub a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
   }
 }

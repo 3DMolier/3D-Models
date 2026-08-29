@@ -40,6 +40,12 @@ if (a < 0 || b < 7) { console.error('не нашёл <main> в /terms/'); proces
 let head = src.slice(0, a);
 const tail = src.slice(b);
 
+// Дата пересборки, а не вписанная строкой: иначе при следующем прогоне
+// страница уверяла бы, что не менялась с 29 августа.
+const TODAY = new Date().toISOString().slice(0, 10);
+const TODAY_HUMAN = new Date().toLocaleDateString('en-GB',
+  { day: 'numeric', month: 'long', year: 'numeric' });
+
 const TITLE = 'Model Licences Explained - Royalty Free and Editorial Uses Only | 3D Molier';
 const DESC = 'What Royalty Free and Editorial Uses Only mean in practice when you buy a '
   + '3D Molier model on TurboSquid, and how to tell which one applies before you buy.';
@@ -51,9 +57,37 @@ head = head
   .replace(/(<meta name="twitter:title" content=")[^"]*(")/, (x, p, s) => p + TITLE + s)
   .replace(/(<meta name="twitter:description" content=")[^"]*(")/, (x, p, s) => p + DESC + s)
   .replace(/(<link rel="canonical" href=")[^"]*(")/, (x, p, s) => p + URL + s)
-  .replace(/(<meta property="og:url" content=")[^"]*(")/, (x, p, s) => p + URL + s);
-// Разметку страницы условий тащить сюда нельзя: она описывает другой документ.
-head = head.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
+  .replace(/(<meta property="og:url" content=")[^"]*(")/, (x, p, s) => p + URL + s)
+  // hreflang тоже переносится из каркаса и указывал на /terms/: страница
+  // объявляла себя языковой версией чужого документа, споря с canonical.
+  .replace(/(<link rel="alternate"[^>]*href=")[^"]*(")/g, (x, p, s) => p + URL + s);
+
+// Разметку разбираем поштучно, а не сносим целиком. Organization и WebSite
+// одинаковы на всех страницах и нужны здесь так же, как везде; WebPage и
+// BreadcrumbList описывают конкретный документ - их переписываем под этот.
+head = head.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g, (whole, body) => {
+  let j;
+  try { j = JSON.parse(body); } catch (e) { return ''; }
+  const type = Array.isArray(j['@graph']) ? j['@graph'].map(x => x['@type']).join('+') : j['@type'];
+  if (/Organization|WebSite/.test(type)) return whole;
+  if (type === 'BreadcrumbList') {
+    j.itemListElement = [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://3dmolierstudio.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Model Licences', item: URL },
+    ];
+    return '<script type="application/ld+json">' + JSON.stringify(j) + '</script>';
+  }
+  if (type === 'WebPage') {
+    j.name = TITLE;
+    j.description = DESC;
+    j.url = URL;
+    if (j['@id']) j['@id'] = URL + '#webpage';
+    delete j.dateModified;
+    j.dateModified = TODAY;
+    return '<script type="application/ld+json">' + JSON.stringify(j) + '</script>';
+  }
+  return '';
+});
 
 const TS = 'https://www.turbosquid.com/?referral=3d_molier-international';
 const LEGAL = 'https://3dmolier.com/legal';
@@ -63,7 +97,7 @@ const MAIN = `<main id="main-content" class="legal-wrap">
 <div class="section-label">Buying</div>
 <h1 class="legal-h1">Model Licences Explained</h1>
 <p class="legal-lead">Every model page shows a licence in its Specifications table. There are two, and the difference decides what you may do with the model after you buy it. This page says what each one means in practice.</p>
-<p class="legal-updated">Last updated: <time datetime="2026-08-29">29 August 2026</time></p>
+<p class="legal-updated">Last updated: <time datetime="${TODAY}">${TODAY_HUMAN}</time></p>
 </div>
 <div class="legal-body">
 <h2>The short version</h2>
@@ -110,7 +144,10 @@ for (const d of fs.readdirSync(MODELS)) {
   try { h = fs.readFileSync(file, 'utf8'); } catch (e) { continue; }
   if (/http-equiv="refresh"/i.test(h.slice(0, 400))) continue;
   live++;
-  if (h.includes('href="/license/"')) { already++; continue; }
+  // Проверяем именно строку Licence, а не любую ссылку на /license/: после
+  // того как ссылка появилась в подвале, простая проверка стала срабатывать
+  // на каждой странице, и скрипт молча переставал линковать новые карточки.
+  if (/<th[^>]*>Licence<\/th><td[^>]*><a href="\/license\/">/.test(h)) { already++; continue; }
   const before = h;
   h = h.replace(/(<th[^>]*>Licence<\/th><td[^>]*>)((?:Royalty Free|Editorial Uses Only) \(TurboSquid\))(<\/td>)/,
     (x, p, val, s) => p + '<a href="/license/">' + val + '</a>' + s);

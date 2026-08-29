@@ -104,7 +104,7 @@ for (const dir of FIX) {
   if (formats) row('Formats', esc(formats));
   row('PBR', pbr);
   row('Rigged version', /\brigged\b/i.test(r.name) ? 'Available' : 'Not available');
-  row('Licence', licence);
+  row('Licence', '<a href="/license/">' + licence + '</a>');
   if (r.price != null) row('Price', '$' + r.price + ' USD');
 
   const block = '<div class="mp-spec-card"><div class="mp-spec-block">'

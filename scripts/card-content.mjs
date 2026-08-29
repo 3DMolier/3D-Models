@@ -10,6 +10,22 @@
 //   * в ответы вшиты собственные данные модели (отрасли, сценарии, подкатегория,
 //     год листинга, цена) - это уникальные строки, а не переставленные слова.
 
+import { brandOf } from './lib/brands.mjs';
+
+// Параметры файла выводятся из названия: сводного списка форматов у нас нет,
+// пока не оживёт API студии. Правила заданы основателем; порядок проверок
+// важен - «Rigged for Maya» это Maya, а не 3ds Max.
+const FORMATS = 'MAX, FBX, OBJ, Cinema 4D R23, Maya 2022, Blender 3.4, glTF, 3DS, USDz, USD 2.0';
+const MAX_NATIVE = '3ds Max 2020 + V-Ray 4.3';
+export function nativeOf(name) {
+  const n = String(name);
+  if (/\bfor\s+cinema\s*4d\b/i.test(n)) return { native: 'Cinema 4D R23', formats: null };
+  if (/\bfor\s+maya\b/i.test(n)) return { native: 'Maya 2022', formats: null };
+  if (/\bfor\s+blender\b/i.test(n)) return { native: 'Blender 3.4', formats: null };
+  if (/\brigged\b/i.test(n) || /\bfur\b/i.test(n)) return { native: MAX_NATIVE, formats: null };
+  return { native: MAX_NATIVE, formats: FORMATS };
+}
+
 export const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 export const plain = s => String(s).replace(/&amp;/g, '&').replace(/-/g, ' - ').replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/<[^>]+>/g, '');
 
@@ -230,7 +246,19 @@ export function specRows(f, name, cat, catSlug, price) {
     if (s.rigged) rows.push(['Rigging', esc(s.rigged)]);
     if (s.animated) rows.push(['Animation', esc(s.animated)]);
   }
-  rows.push(['Licence', 'Royalty Free (TurboSquid)']);
+  const nat = nativeOf(name);
+  rows.push(['Native', esc(nat.native)]);
+  if (nat.formats) rows.push(['Formats', esc(nat.formats)]);
+  if (yr) rows.push(['PBR', yr >= 2023 ? 'Yes' : 'No']);
+  // «Rigged version» вместо «Rig»: подпись отвечает на вопрос, который задают.
+  rows.push(['Rigged version',
+    (s && s.rigged && !/^\s*(static|none|no)\s*$/i.test(s.rigged)) || /\brigged\b/i.test(name)
+      ? 'Available' : 'Not available']);
+  // Лицензия зависит от того, изображает ли модель чужую торговую марку.
+  // Раньше здесь стояло безусловное «Royalty Free» - и на брендовых карточках
+  // сайт письменно разрешал то, что лицензией запрещено.
+  const licence = brandOf(name) ? 'Editorial Uses Only (TurboSquid)' : 'Royalty Free (TurboSquid)';
+  rows.push(['Licence', `<a href="/license/">${licence}</a>`]);
   rows.push(['Price', `$${price} USD`]);
   if (f.industries && f.industries.length) rows.push(['Primary industries', esc(f.industries.slice(0, 4).join(', '))]);
   if (f.uses && f.uses.length) rows.push(['Typical use', esc(f.uses.slice(0, 3).join(', '))]);
@@ -278,12 +306,19 @@ function questionPool(f, n, cat, price, tsUrl, seed) {
     `Every included file is listed on the ${ts('product page at TurboSquid')}, with format and size shown per download. That page is the source of truth rather than this summary.`,
   ], seed)]);
 
-  pool.push([`Can the ${n} model be used in a commercial project?`, pick([
-    `Yes. It is sold under TurboSquid's Royalty Free licence, which covers commercial use in games, film, advertising and visualisation without per-use fees.`,
-    `Yes - the Royalty Free licence covers commercial work, including client projects and released games, with no additional royalties per render or per copy sold.`,
-    `Commercial use is included. The Royalty Free licence allows the model in paid client work, broadcast, published games and print; only redistributing the model file itself is excluded.`,
-    `It ships with TurboSquid's Royalty Free licence, so a single purchase covers commercial delivery - you do not pay again per project or per seat of the finished work.`,
-  ], seed * 3 + 1)]);
+  // Лицензия решает половину ответов ниже. Раньше все они безусловно обещали
+  // коммерческое использование, и на брендовых карточках сайт письменно
+  // разрешал ровно то, что лицензией запрещено.
+  const editorial = !!brandOf(name);
+
+  pool.push([`Can the ${n} model be used in a commercial project?`, editorial
+    ? `No. The model depicts a real branded product, so TurboSquid lists it under the Editorial Uses Only licence. It may be used in news, commentary, education, personal projects and similar editorial contexts, but not in advertising, on merchandise or in any product offered for sale. See our <a href="/license/">licence guide</a>.`
+    : pick([
+      `Yes. It is sold under TurboSquid's Royalty Free licence, which covers commercial use in games, film, advertising and visualisation without per-use fees.`,
+      `Yes - the Royalty Free licence covers commercial work, including client projects and released games, with no additional royalties per render or per copy sold.`,
+      `Commercial use is included. The Royalty Free licence allows the model in paid client work, broadcast, published games and print; only redistributing the model file itself is excluded.`,
+      `It ships with TurboSquid's Royalty Free licence, so a single purchase covers commercial delivery - you do not pay again per project or per seat of the finished work.`,
+    ], seed * 3 + 1)]);
 
   const certQ = f.cert === 'CheckMate Lite/Pro'
     ? [`Is the ${n} model quality-checked?`, pick([
@@ -307,11 +342,19 @@ function questionPool(f, n, cat, price, tsUrl, seed) {
   pool.push([`Where can I buy the ${n} 3D model?`,
     `It is sold through ${ts('TurboSquid')}${yr ? `, where this listing has been available since ${yr}` : ''}. Purchase, download and licensing are handled by TurboSquid; delivery is immediate after checkout.`]);
 
-  if (ind) pool.push([`Which industries use the ${n} model?`, pick([
-    `This listing is catalogued for ${ind}. Those are the sectors the model was tagged for on TurboSquid, based on how comparable assets in the ${esc(cat)} range are bought.`,
-    `It is tagged for ${ind}. The categorisation reflects where similar ${esc(cat)} assets end up rather than a hard restriction - the licence does not limit the field of use.`,
-    `${ind} are the primary industries on this listing, though the Royalty Free licence puts no limit on where the model is actually used.`,
-  ], seed * 7 + 2)]);
+  // Отрасли берутся из листинга TurboSquid и у брендовых моделей нередко
+  // включают Advertising. Само по себе это не ложь - так помечен листинг, - но
+  // рядом обязана стоять оговорка про лицензию, иначе перечень читается как
+  // разрешение. Поэтому для Editorial здесь один ответ, а не выбор из трёх:
+  // два прежних варианта прямо обещали, что лицензия область применения не
+  // ограничивает.
+  if (ind) pool.push([`Which industries use the ${n} model?`, editorial
+    ? `${ind} are the primary industries on this listing. The licence, however, is Editorial Uses Only: the model depicts a real branded product, so it may appear in editorial work in those fields, but not in advertising or in products for sale.`
+    : pick([
+      `This listing is catalogued for ${ind}. Those are the sectors the model was tagged for on TurboSquid, based on how comparable assets in the ${esc(cat)} range are bought.`,
+      `It is tagged for ${ind}. The categorisation reflects where similar ${esc(cat)} assets end up rather than a hard restriction - the licence does not limit the field of use.`,
+      `${ind} are the primary industries on this listing, though the Royalty Free licence puts no limit on where the model is actually used.`,
+    ], seed * 7 + 2)]);
 
   if (uses) pool.push([`What is the ${n} model typically used for?`, pick([
     `The listing names ${uses} as the main applications. In practice it also works anywhere a finished ${esc(cat).toLowerCase()} object is needed without modelling it from scratch.`,
@@ -324,17 +367,21 @@ function questionPool(f, n, cat, price, tsUrl, seed) {
     `The product page states what ships with each format. ${f.cert === 'StemCell' ? 'StemCell delivery means a PBR material set that reads the same across renderers.' : 'Textures, when present, come inside the download rather than as a separate purchase.'} See ${ts('the listing')} for the exact contents.`,
   ], seed * 13)]);
 
-  pool.push([`How much does the ${n} 3D model cost?`, pick([
-    `It is listed at $${price} USD on TurboSquid. That is a one-off purchase under the Royalty Free licence - there is no subscription and no per-project fee afterwards.`,
-    `$${price} USD, paid once. The Royalty Free licence means no recurring cost and no extra payment when the finished work ships.`,
-    `The price is $${price} USD. TurboSquid handles payment and delivery; the licence is Royalty Free, so the cost does not repeat per use.`,
-  ], seed * 17 + 6)]);
+  pool.push([`How much does the ${n} 3D model cost?`, editorial
+    ? `$${price} USD, paid once. TurboSquid handles payment and delivery. The licence is Editorial Uses Only, because the model depicts a real branded product: it covers editorial contexts such as news, commentary and education, but not advertising or products for sale.`
+    : pick([
+      `It is listed at $${price} USD on TurboSquid. That is a one-off purchase under the Royalty Free licence - there is no subscription and no per-project fee afterwards.`,
+      `$${price} USD, paid once. The Royalty Free licence means no recurring cost and no extra payment when the finished work ships.`,
+      `The price is $${price} USD. TurboSquid handles payment and delivery; the licence is Royalty Free, so the cost does not repeat per use.`,
+    ], seed * 17 + 6)]);
 
-  pool.push([`Can the ${n} model be modified after purchase?`, pick([
-    `Yes. The Royalty Free licence allows editing the geometry, retopologising, changing materials and adapting the asset to a project. What it does not allow is reselling or redistributing the model file itself.`,
-    `Editing is allowed - remesh it, strip detail for real-time use, or rebuild the shaders. The one restriction is that the model file cannot be resold or given away as an asset.`,
-    `Yes, modification is covered by the licence. Most buyers adjust materials or decimate the mesh for their engine; only redistribution of the source file is off-limits.`,
-  ], seed * 19 + 8)]);
+  pool.push([`Can the ${n} model be modified after purchase?`, editorial
+    ? `Yes. The licence allows editing the geometry, retopologising, changing materials and adapting the asset to a project. What it does not allow is reselling or redistributing the model file itself, or using the result commercially: this listing is Editorial Uses Only.`
+    : pick([
+      `Yes. The Royalty Free licence allows editing the geometry, retopologising, changing materials and adapting the asset to a project. What it does not allow is reselling or redistributing the model file itself.`,
+      `Editing is allowed - remesh it, strip detail for real-time use, or rebuild the shaders. The one restriction is that the model file cannot be resold or given away as an asset.`,
+      `Yes, modification is covered by the licence. Most buyers adjust materials or decimate the mesh for their engine; only redistribution of the source file is off-limits.`,
+    ], seed * 19 + 8)]);
 
   // Вопросы по измеренным данным. Их задают чаще всего перед покупкой, и ответ
   // здесь конкретный, а не отсылка к листингу.

@@ -89,7 +89,11 @@ for (const m of branded) {
   const before = h;
 
   // 1. характеристики
-  h = h.replace(/(<th[^>]*>Licence<\/th><td[^>]*>)Royalty Free \(TurboSquid\)/,
+  // Значение может быть обёрнуто в ссылку на /license/ - она появилась позже
+  // этого скрипта. Без учёта обёртки таблица осталась бы «Royalty Free», хотя
+  // ответы и разметка уже говорили «Editorial»: страница противоречила бы сама
+  // себе, и молча.
+  h = h.replace(/(<th[^>]*>Licence<\/th><td[^>]*>(?:<a href="\/license\/">)?)Royalty Free \(TurboSquid\)/,
     (x, a) => { rowFix++; return a + 'Editorial Uses Only (TurboSquid)'; });
 
   // 2-5. ответы. Собираем сначала все пары, потом заменяем строками: замена

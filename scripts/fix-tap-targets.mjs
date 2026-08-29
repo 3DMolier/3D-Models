@@ -47,15 +47,19 @@ const HEAD = `
 
 // Кнопки и чипы: центрируем содержимое по обеим осям.
 const CENTRED = {
-  'styles.css': ['.nav-link', '.nav-mobile-toggle', '.btn-primary', '.btn-ghost', '.btn-ts', '.btn-primary--sm', '.btn-ghost--sm',
+  'styles.css': ['.btn-primary', '.btn-ghost', '.btn-ts', '.btn-primary--sm', '.btn-ghost--sm',
     '.btn-ghost--md', '.search-btn', '.search-tag', 'a.chip'],
   'model-pages.css': ['.mp-btn-store', '.btn-primary', '.btn-ghost', '.btn-ts-lg', '.btn-custom', 'a.chip'],
   'full-catalog.css': ['.ftag', '.ps-tag', '.mc-qv'],
   'search.css': ['.btn-ts-ghost'],
 };
-// Строки списка: только высота, текст остаётся слева.
+// Только высота, без display и выравнивания: у этих элементов своя раскладка.
+// .nav-mobile-toggle - это строка «Categories ▾» с подписью слева и стрелкой
+// справа (justify-content: space-between). Центрирование сгоняло бы их в
+// середину. .nav-mobile-sub a и .ac-item - строки списка, текст слева.
 const ROWS = {
   'search.css': ['.ac-item'],
+  'styles.css': ['.nav-mobile-toggle', '.nav-mobile-sub a'],
 };
 
 const files = new Set([...Object.keys(CENTRED), ...Object.keys(ROWS)]);
