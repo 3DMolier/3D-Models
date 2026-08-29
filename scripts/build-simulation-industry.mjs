@@ -50,6 +50,26 @@ const USE_CASES = [
   ['Industrial digital twins', 'Machinery, plant equipment and infrastructure for process modelling.'],
 ];
 
+/*
+ * Короткий список «Common Use Cases» в левой колонке. Раньше он целиком
+ * доставался от страницы-образца Aerospace, и генератор его не трогал: рядом с
+ * «Flight simulation training» стояли «Commercial advertising», «Feature film
+ * VFX» и «Museum exhibits». Эти три отвечают на другой запрос - человек,
+ * который ищет simulation 3D models, приходит не за рекламой и не за музеем.
+ * Заменены на формулировки, под которые страницу и должны находить, и подобраны
+ * под её же подборку моделей: Tesla и Ford Transit - вождение, Skull и Anatomy -
+ * медицина, UH-60 и Airbus - авиация и оборона.
+ */
+const UC_LIST = [
+  'Flight simulation training',
+  'Driving simulators',
+  'Defense system presentations',
+  'Operator training',
+  'Medical simulation',
+  'Industrial equipment training',
+  'Digital twins',
+];
+
 let src = fs.readFileSync(SRC, 'utf8');
 
 // ── тексты ──
@@ -80,6 +100,10 @@ const cards = USE_CASES.map(([t, d]) =>
   '<div class="ind-use-card"><div class="ind-use-title">' + t + '</div>'
   + '<p class="ind-use-text">' + d + '</p></div>').join('');
 h = h.replace(/(<div class="ind-use-grid">)[\s\S]*?(<\/div>\s*<\/div>\s*<\/section>)/, (x, a, b) => a + cards + b);
+
+// ── короткий список слева ──
+const ucItems = UC_LIST.map(t => '<li class="ind-uc-item">' + t + '</li>').join('\n');
+h = h.replace(/(<ul class="ind-uc-list">)[\s\S]*?(<\/ul>)/, (x, a, b) => a + '\n' + ucItems + '\n' + b);
 
 // ── заголовок блока моделей и хлебные крошки ──
 h = h.replace(/Top 3D Models for [^<]*/, 'Top 3D Models for ' + NAME);

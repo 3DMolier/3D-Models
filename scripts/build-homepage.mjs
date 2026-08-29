@@ -186,7 +186,7 @@ for (const one of [hero, studioImg]) {
 
 // ── Разметка мозаики ─────────────────────────────────────────────────────────
 const mosaic = TILES.map(t => `<a href="${t.href}" class="tile tile--${t.cols}x${t.rows}">
-<img src="${t.img}" alt="${esc(t.cat)} 3D models - ${esc(t.name)}" loading="lazy" decoding="async" width="800" height="450" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
+<img src="${t.img}" alt="${esc(t.cat)} 3D models - ${esc(t.modelName)}" loading="lazy" decoding="async" width="800" height="450" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
 <span class="tile-cap"><span class="tile-name">${esc(t.cat)}</span><span class="tile-n">${n(t.count)}</span></span>
 </a>`).join('\n');
 
@@ -432,7 +432,11 @@ for (const id of ['catalogue-facts', 'questions', 'studio']) {
 if (!html.includes('hero-shot')) {
   const m = html.match(/<section class="([^"]*hero[^"]*)"[^>]*>/);
   if (!m) { console.error('не нашёл первый экран'); process.exit(1); }
-  const shot = `<div class="hero-shot" aria-hidden="true"><img src="${hero.img}" alt="" fetchpriority="high" decoding="async" width="1920" height="1080"></div>`;
+  // Картинка первого экрана - самая крупная на сайте и первое, что встречает
+  // краулер. Пустой alt при aria-hidden делал её невидимой и для робота, и для
+  // читающей программы. Даём осмысленный alt и снимаем aria-hidden: иначе alt
+  // бессмыслен, скрытый элемент не читается.
+  const shot = `<div class="hero-shot"><img src="${hero.img}" alt="Professional 3D model catalog by 3D Molier" fetchpriority="high" decoding="async" width="1920" height="1080"></div>`;
   html = html.replace(m[0], m[0].replace(m[1], m[1] + ' hero-section') + shot);
   step.push('  добавлено: фотография в первый экран (' + hero.name + ')');
 }
