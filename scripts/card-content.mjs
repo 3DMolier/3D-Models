@@ -11,6 +11,16 @@
 //     год листинга, цена) - это уникальные строки, а не переставленные слова.
 
 import { brandOf } from './lib/brands.mjs';
+import { INDUSTRY_NAME, useLabel, industriesOf } from './lib/industries.mjs';
+
+/*
+ * Отрасли берём ТОЛЬКО отсюда. Раньше на одной карточке их описывали три
+ * независимых источника: чипы «Used In» выводились из категории, абзац - из
+ * поля use_cases, ответ в FAQ - из поля industries, где встречалась и отрасль
+ * «Graphics Multimedia and Web Design», страницы которой на сайте нет.
+ * Правила сборки набора - в lib/industries.mjs.
+ */
+const indsOf = (f, catSlug) => industriesOf(f.industries, catSlug);
 
 // Параметры файла выводятся из названия: сводного списка форматов у нас нет,
 // пока не оживёт API студии. Правила заданы основателем; порядок проверок
@@ -201,14 +211,20 @@ export function description(f, name, cat, price, seed) {
   }
   parts.push(pick(certPool, seed * 7 + 3));
   parts.push(pick(SCALE, seed * 11 + 5));
-  // предложение из СВОИХ данных модели - самая уникальная часть абзаца
-  if (f.uses && f.uses.length) {
-    parts.push(pick([
-      u => `On this listing the stated applications are ${u}.`,
-      u => `Buyers most often take it for ${u}.`,
-      u => `The listing flags ${u} as the intended applications.`,
-      u => `It is catalogued for ${u}.`,
-    ], seed * 13 + 1)(listy(f.uses.slice(0, 3).map(esc))));
+  // Предложение о применении. Сценарии берём из того же набора отраслей, что и
+  // чипы «Used In» с «Use Cases»: раньше здесь стояло поле use_cases из CSV, и
+  // абзац называл одно, чипы другое, а ответ в FAQ третье.
+  {
+    const cs = catSlug(cat);
+    const u = listy([...new Set(indsOf(f, cs).map(s => useLabel(s, cs)))].slice(0, 3));
+    if (u) {
+      parts.push(pick([
+        x => `On this listing the stated applications are ${x}.`,
+        x => `Buyers most often take it for ${x}.`,
+        x => `The listing flags ${x} as the intended applications.`,
+        x => `It is catalogued for ${x}.`,
+      ], seed * 13 + 1)(u));
+    }
   }
   // Заготовки про возраст листинга говорят о «нескольких кругах студийного
   // использования». Для модели, вышедшей пару месяцев назад, это неправда,
@@ -260,7 +276,12 @@ export function specRows(f, name, cat, catSlug, price) {
   const licence = brandOf(name) ? 'Editorial Uses Only (TurboSquid)' : 'Royalty Free (TurboSquid)';
   rows.push(['Licence', `<a href="/license/">${licence}</a>`]);
   rows.push(['Price', `$${price} USD`]);
-  if (f.industries && f.industries.length) rows.push(['Primary industries', esc(f.industries.slice(0, 4).join(', '))]);
+  // Отрасли - из единого набора, а не из сырых тегов CSV: там встречается
+  // «Graphics Multimedia and Web Design», страницы которой на сайте нет.
+  {
+    const inds = indsOf(f, catSlug);
+    if (inds.length) rows.push(['Primary industries', inds.map(x => INDUSTRY_NAME[x]).join(', ')]);
+  }
   if (f.uses && f.uses.length) rows.push(['Typical use', esc(f.uses.slice(0, 3).join(', '))]);
   return rows;
 }
@@ -292,8 +313,11 @@ ${rows.map(([k, v]) => `            <div class="mp-spec-pair"><span class="mp-sp
 // Пул из 10; на страницу попадают 4, набор и формулировки зависят от id модели.
 function questionPool(f, n, cat, price, tsUrl, seed) {
   const yr = yearOf(f);
-  const ind = listy((f.industries || []).slice(0, 3).map(esc));
-  const uses = listy((f.uses || []).slice(0, 3).map(esc));
+  // Отрасли и сценарии - две проекции одного набора, а не два разных поля.
+  const cs = catSlug(cat);
+  const inds = indsOf(f, cs);
+  const ind = listy(inds.map(s => INDUSTRY_NAME[s]));
+  const uses = listy([...new Set(inds.map(s => useLabel(s, cs)))].slice(0, 3));
   const kw = (f.keywords || []).filter(k => k && k.length < 60).slice(0, 3).map(esc);
   const ts = t => `<a href="${tsUrl}" target="_blank" rel="noopener">${t}</a>`;
 
