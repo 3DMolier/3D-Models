@@ -26,6 +26,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { nameOf, loadModelCategories } from './lib/taxonomy.mjs';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname).replace(/^\/([A-Za-z]:)/, '$1'), '..');
 const argv = process.argv.slice(2);
@@ -167,11 +168,25 @@ function heroImage(slug) {
 // Картинка, выбранная основателем (поле img), важнее выведенной из карточки.
 // Имя модели для alt всё равно берём из карточки, если она есть.
 const seen = new Set();
+const MODEL_CAT = loadModelCategories();
+
 function resolve(x) {
   let name = x.name || x.slug;
   try { const r = heroImage(x.slug); name = r.name; if (!x.img) x.img = r.img; }
   catch (e) { if (!x.img) throw e; }
   x.modelName = name;
+  // Подпись категории берём из таксономии, а не из строки, вписанной рядом со
+  // slug-ом руками. Вписанная разъезжается с карточкой: у Sigma Class
+  // Indonesian Frigate на главной стояло «Military Vehicles», тогда как в
+  // таксономии и на самой карточке - Ships & Boats. Военная принадлежность у
+  // этой модели выражена ОТРАСЛЬЮ Military & Defense; категория и отрасль -
+  // разные вещи, и подменять одно другим нельзя.
+  {
+    const s = String(x.slug);
+    const id = s.slice(s.lastIndexOf('-') + 1);
+    const real = MODEL_CAT[id];
+    if (real) x.cat = nameOf(real);
+  }
   if (seen.has(x.img)) throw new Error('повтор картинки: ' + x.slug);
   seen.add(x.img);
 }
@@ -195,7 +210,7 @@ const SECTION_MOSAIC = `<!-- ═════════════════
 <div class="max-w-7xl mx-auto">
 <div class="sec-head">
 <h2 class="section-h2">Explore the catalogue</h2>
-<a href="/catalog/" class="sec-more">All categories &rarr;</a>
+<a href="/categories/" class="sec-more">All categories &rarr;</a>
 </div>
 <div class="mosaic">
 ${mosaic}

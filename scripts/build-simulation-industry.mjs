@@ -63,11 +63,11 @@ const USE_CASES = [
 const UC_LIST = [
   'Flight simulation training',
   'Driving simulators',
-  'Defense system presentations',
-  'Operator training',
-  'Medical simulation',
-  'Industrial equipment training',
-  'Digital twins',
+  'Digital twin development',
+  'Defense training simulation',
+  'Medical procedure simulation',
+  'Industrial operator training',
+  'Emergency response simulation',
 ];
 
 let src = fs.readFileSync(SRC, 'utf8');
