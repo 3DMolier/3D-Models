@@ -128,3 +128,23 @@ footer { background: #111111; border-top: none; padding: 32px 0; }
 .ac-item:hover, .ac-item.active { background: rgba(0,0,0,0.05); }
 .ac-item .ac-n { color: var(--muted); font-size: 13px; margin-left: auto; }
 .ac-item .ac-hi { font-weight: 600; }
+
+/* ── Размер касаний на телефоне ────────────────────────────────────────────
+   На экранах до 767px всё, во что целятся пальцем, получает 44px по высоте.
+   На компьютере размеры прежние: курсор попадает и в 26 пикселей, а более
+   крупная шапка съедала бы полезную часть страницы.
+   Норму WCAG 2.2 AA (24x24) сайт проходил и раньше; 44x44 - это уровень AAA
+   и рекомендация Apple, то есть удобство, а не соответствие стандарту. */
+@media (max-width: 767px) {
+  .btn-ts-ghost {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ac-item {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+}

@@ -381,3 +381,23 @@ a.chip { text-decoration: none; }
   .mp-hero-grid > .mp-info-col{grid-column:1;grid-row:3}
 }
 .mp-gal-strip{max-width:100%}
+
+/* ── Размер касаний на телефоне ────────────────────────────────────────────
+   На экранах до 767px всё, во что целятся пальцем, получает 44px по высоте.
+   На компьютере размеры прежние: курсор попадает и в 26 пикселей, а более
+   крупная шапка съедала бы полезную часть страницы.
+   Норму WCAG 2.2 AA (24x24) сайт проходил и раньше; 44x44 - это уровень AAA
+   и рекомендация Apple, то есть удобство, а не соответствие стандарту. */
+@media (max-width: 767px) {
+  .mp-btn-store,
+  .btn-primary,
+  .btn-ghost,
+  .btn-ts-lg,
+  .btn-custom,
+  a.chip {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
