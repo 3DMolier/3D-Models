@@ -169,6 +169,14 @@ function heroImage(slug) {
 // Имя модели для alt всё равно берём из карточки, если она есть.
 const seen = new Set();
 const MODEL_CAT = loadModelCategories();
+/*
+ * Счётчики плиток берём из data/category-counts.json, а не из поля count,
+ * вписанного рядом со слагом руками. Вписанные устаревают молча: у Aircraft на
+ * главной стояло 1 514, на странице категории 1 495, а в каталоге список
+ * показывал третье число - и все три жили одновременно.
+ * Правда одна: 1 495 живых страниц категории.
+ */
+const CAT_COUNTS = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'category-counts.json'), 'utf8')).counts;
 
 function resolve(x) {
   let name = x.name || x.slug;
@@ -186,6 +194,13 @@ function resolve(x) {
     const id = s.slice(s.lastIndexOf('-') + 1);
     const real = MODEL_CAT[id];
     if (real) x.cat = nameOf(real);
+  }
+  // Счётчик плитки - по её собственной ссылке на категорию, а не по категории
+  // картинки: на плитке Aircraft может стоять снимок конкретного самолёта, но
+  // число должно считать всю категорию.
+  if (x.href) {
+    const m = String(x.href).match(/^\/categories\/([a-z0-9-]+)\/$/);
+    if (m && CAT_COUNTS[m[1]] !== undefined) x.count = CAT_COUNTS[m[1]];
   }
   if (seen.has(x.img)) throw new Error('повтор картинки: ' + x.slug);
   seen.add(x.img);

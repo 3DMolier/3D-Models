@@ -52,6 +52,11 @@ function onFirstChunk() {
   var urlQ=new URLSearchParams(location.search).get('q');
   if(urlQ&&qEl){qEl.value=urlQ;searchQ=urlQ.toLowerCase();applyFilters();}
   if('IntersectionObserver' in window) setupInfiniteScroll();
+  // Если пришли сразу с фильтром категории, счёт должен быть верным с первого
+  // экрана: /catalog/?cat=aircraft показывал «706 of 54077», пока догружались
+  // чанки, хотя самолётов 1 495. Вызов именно здесь - на момент разбора
+  // скрипта число чанков ещё неизвестно и догружать было бы нечего.
+  if(selCat)ensureRemainingChunks();
   scheduleIdlePreload();
 }
 
@@ -66,12 +71,22 @@ function scheduleIdlePreload(){
   else setTimeout(run,1200);
 }
 
+// Догружаем ВСЕ оставшиеся чанки, а не один: раньше вызов подтягивал только
+// следующий, и фильтр считал по загруженной части каталога. В строке состояния
+// это выглядело как «706 of 19999» при 1 495 самолётах и 54 077 моделях, а
+// число менялось по мере догрузки - отсюда и разные счётчики у Aircraft.
+// Все шесть чанков весят 2,9 МБ и грузятся в простое, так что это дёшево.
 function ensureRemainingChunks(){
-  if(loadedChunks>=totalChunks)return;
-  loadChunk(loadedChunks);
+  for(var i=loadedChunks;i<totalChunks;i++)loadChunk(i);
 }
 
+// Один чанк запрашивается один раз. Без этого фоновая подгрузка и догрузка по
+// фильтру могли запросить один и тот же файл дважды, и модели из него легли бы
+// в списки по второму разу - каталог показал бы дубликаты и завышенный счёт.
+var requestedChunks={};
 function loadChunk(i) {
+  if(requestedChunks[i])return Promise.resolve();
+  requestedChunks[i]=true;
   return fetch('/data/fc-chunk-'+i+'.json')
     .then(function(r){return r.json();})
     .then(function(chunk){
@@ -83,6 +98,7 @@ function loadChunk(i) {
     })
     .catch(function(err){
       console.error('Chunk '+i+' failed:',err);
+      delete requestedChunks[i];
       if(loadedChunks===0){
         var loadingEl=document.getElementById('fc-loading');
         if(loadingEl)loadingEl.innerHTML='Failed to load. <a href="javascript:location.reload()">Retry</a>';
@@ -193,11 +209,19 @@ function renderGrid(){
   var toShow=filtered.slice(0,(page+1)*PAGE_SIZE);
   if(filtered.length===0){
     grid.innerHTML='';
-    if(emptyEl)emptyEl.style.display='block';
+    // Блок «нет результатов» показываем ТОЛЬКО когда человек действительно
+    // что-то искал или фильтровал. Раньше он всегда лежал в разметке и лишь
+    // прятался стилем: робот и читающая программа видели «No models found» и
+    // «Showing 0 of 0» сразу под списком из 48 найденных моделей. Атрибут
+    // hidden, а не display: скрытое стилем всё равно попадает в дерево
+    // доступности, а у заголовка внутри стоит role="status" - его объявляют
+    // вслух при появлении.
+    var searched=!!searchQ||selPrice!==null||selCert!==null||selCat!==null;
+    if(emptyEl){ if(searched)emptyEl.removeAttribute('hidden'); else emptyEl.setAttribute('hidden',''); }
     if(lmBtn)lmBtn.style.display='none';
     return;
   }
-  if(emptyEl)emptyEl.style.display='none';
+  if(emptyEl)emptyEl.setAttribute('hidden','');
   var html='';
   for(var i=0;i<toShow.length;i++)html+=modelCard(toShow[i]);
   grid.innerHTML=html;
@@ -231,7 +255,12 @@ function modelCard(idx){
 }
 
 function updateStatus(){
-  if(resultCount)resultCount.innerHTML='<strong>'+filtered.length+'</strong> of '+FC.n.length+' models';
+  // FC.n.length - это сколько моделей УЖЕ загружено, а не сколько их в
+  // каталоге. Пока догружались чанки, в строке стояло «706 of 19999», хотя
+  // моделей 54 077, а самолётов 1 495. Отсюда и бралось третье число для
+  // Aircraft - рядом с плиткой главной и счётчиком категории.
+  var total=totalModels||FC.n.length;
+  if(resultCount)resultCount.innerHTML='<strong>'+filtered.length+'</strong> of '+total+' models';
   if(statusText)statusText.textContent='';
 }
 
@@ -246,7 +275,7 @@ if(qEl){
     },220);
   });
 }
-if(sortSel)sortSel.addEventListener('change',function(){sortMode=this.value;ensureRemainingImgChunks();applyFilters();});
+if(sortSel)sortSel.addEventListener('change',function(){sortMode=this.value;ensureRemainingChunks();ensureRemainingImgChunks();applyFilters();});
 if(clearAll)clearAll.addEventListener('click',function(){
   searchQ='';selPrice=null;selCert=null;selCat=null;
   if(qEl)qEl.value='';
@@ -263,7 +292,7 @@ document.querySelectorAll('.ftag[data-price]').forEach(function(btn){
     else{document.querySelectorAll('.ftag[data-price]').forEach(function(b){b.classList.remove('active');});selPrice=pr;this.classList.add('active');}
     if(clearAll)clearAll.classList.toggle('show',selPrice!==null||selCert!==null||selCat!==null||!!searchQ);
     if(typeof gtag==='function')gtag('event','filter_price',{price_band:selPrice||'none',page_type:'catalog'});
-    ensureRemainingImgChunks();applyFilters();
+    ensureRemainingChunks();ensureRemainingImgChunks();applyFilters();
   });
 });
 document.querySelectorAll('.ftag[data-cert]').forEach(function(btn){
@@ -272,7 +301,7 @@ document.querySelectorAll('.ftag[data-cert]').forEach(function(btn){
     if(selCert===cert){selCert=null;this.classList.remove('active');}
     else{document.querySelectorAll('.ftag[data-cert]').forEach(function(b){b.classList.remove('active');});selCert=cert;this.classList.add('active');}
     if(clearAll)clearAll.classList.toggle('show',selPrice!==null||selCert!==null||selCat!==null||!!searchQ);
-    ensureRemainingImgChunks();applyFilters();
+    ensureRemainingChunks();ensureRemainingImgChunks();applyFilters();
   });
 });
 // Фильтр по категориям. Кнопки лежат в разметке статически, слаг в data-cat -
@@ -284,7 +313,7 @@ document.querySelectorAll('.ftag[data-cat]').forEach(function(btn){
     else{document.querySelectorAll('.ftag[data-cat]').forEach(function(b){b.classList.remove('active');});selCat=cat;this.classList.add('active');}
     if(clearAll)clearAll.classList.toggle('show',selPrice!==null||selCert!==null||selCat!==null||!!searchQ);
     if(typeof gtag==='function')gtag('event','filter_category',{category:selCat||'none',page_type:'catalog'});
-    ensureRemainingImgChunks();applyFilters();
+    ensureRemainingChunks();ensureRemainingImgChunks();applyFilters();
   });
 });
 
@@ -330,6 +359,11 @@ function setupInfiniteScroll() {
 }
 
 function updateProgress() {
+  // Строка лежит в разметке скрытой и показывается, только когда числа
+  // настоящие. Иначе робот читал «Showing 0 of 0 models» сразу под списком
+  // из полусотни найденных моделей.
+  var prog = document.getElementById('fc-progress');
+  if (prog) prog.removeAttribute('hidden');
   var shown = Math.min((page + 1) * PAGE_SIZE, filtered.length);
   var shownEl = document.getElementById('fc-shown');
   var totalEl = document.getElementById('fc-total');
