@@ -66,8 +66,19 @@ const branded = [];
 for (let k = 0; k < idx.chunks; k++) {
   const c = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'fc-chunk-' + k + '.json'), 'utf8'));
   for (let j = 0; j < c.i.length; j++) {
-    const b = brandOf(c.n[j]);
-    if (b) branded.push({ id: String(c.i[j]), name: c.n[j], price: c.p[j], brand: b, dir: slugify(c.n[j]) + '-' + c.i[j] });
+    const dir = slugify(c.n[j]) + '-' + c.i[j];
+    // Марку ищем и в названии из каталога, и в ЗАГОЛОВКЕ карточки. У склеенных
+    // семейств заголовок - это общее имя вариантов, и марка бывает видна только
+    // там: у «Bell 412 Fire Department Helicopter» заголовок «Bell Helicopter»,
+    // у «Ring Smart Video Doorbell» - «Ring Doorbell». По одному лишь каталогу
+    // обе прошли мимо и остались с лицензией Royalty Free.
+    let h1 = '';
+    try {
+      const head = fs.readFileSync(path.join(ROOT, 'models', dir, 'index.html'), 'utf8');
+      h1 = (head.match(/<h1[^>]*>([^<]*)/) || [, ''])[1];
+    } catch (e) { /* заглушка или нет файла - хватит имени из каталога */ }
+    const b = brandOf(c.n[j]) || brandOf(h1);
+    if (b) branded.push({ id: String(c.i[j]), name: c.n[j], price: c.p[j], brand: b, dir });
   }
 }
 console.log('брендовых моделей по названию: ' + branded.length);
@@ -93,7 +104,9 @@ for (const m of branded) {
   // этого скрипта. Без учёта обёртки таблица осталась бы «Royalty Free», хотя
   // ответы и разметка уже говорили «Editorial»: страница противоречила бы сама
   // себе, и молча.
-  h = h.replace(/(<th[^>]*>Licence<\/th><td[^>]*>(?:<a href="\/license\/">)?)Royalty Free \(TurboSquid\)/,
+  // Licen[cs]e: после перехода на американское написание подпись строки стала
+  // «License», и регулярка со старым «Licence» молча перестала срабатывать.
+  h = h.replace(/(<th[^>]*>Licen[cs]e<\/th><td[^>]*>(?:<a href="\/license\/">)?)Royalty Free \(TurboSquid\)/,
     (x, a) => { rowFix++; return a + 'Editorial Uses Only (TurboSquid)'; });
 
   // 2-5. ответы. Собираем сначала все пары, потом заменяем строками: замена
