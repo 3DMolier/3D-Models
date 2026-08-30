@@ -193,6 +193,41 @@ a.chip { text-decoration: none; }
 .mp-related-h2 { font-family: 'Playfair Display', serif; font-size: clamp(18px,2.5vw,24px); font-weight: 700; letter-spacing: -0.02em; color: #111111; line-height: 1.2; margin-bottom: 28px; }
 .mp-related-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap: 14px; }
 
+/* ── Форматы тегами ──────────────────────────────────────────────────────────
+   Десять значений через запятую в узкой правой колонке читались сплошной
+   лентой: глаз не находил нужный формат. Каждое значение - отдельный тег. */
+.fmt-list { display: flex; flex-wrap: wrap; gap: 4px; }
+.fmt-tag {
+  display: inline-block;
+  padding: 2px 7px;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  background: #fafafa;
+  color: #444;
+  font-size: 11px;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+/* ── Блок версий, когда версий мало ──────────────────────────────────────────
+   auto-fill оставляет пустые дорожки: на широком экране две карточки версий
+   жались влево, а справа зияла пустая половина секции. Это не редкий случай -
+   у 9 537 блоков версий из 13 880 карточек три или меньше, то есть 69%.
+   Сужаем сетку и поджимаем нижний отступ, но только у блока версий и только
+   когда карточек не больше трёх: :has() проверяет, что последний ребёнок стоит
+   на позиции не дальше третьей. Блок «похожие», где всегда десять карточек,
+   правило не задевает. */
+.mp-versions-section .mp-related-grid:has(> :nth-child(-n+3):last-child) {
+  max-width: 760px;
+  /* auto-FIT, а не auto-fill: fill оставлял третью дорожку пустой даже внутри
+     760px, и справа всё равно висело 258 пикселей пустоты. fit схлопывает
+     лишние дорожки, и две карточки занимают ширину поровну. */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.mp-versions-section:has(.mp-related-grid > :nth-child(-n+3):last-child) {
+  padding-bottom: 40px;
+}
+
 /* ── Custom Order CTA ────────────────────────────────────────────────── */
 .btn-custom { opacity: 1; transition: opacity 0.2s; }
 .btn-custom:hover { opacity: .8; }

@@ -157,11 +157,24 @@ const MESH = [
   (p, v) => `Counted at the source, the model is ${fmtInt(p)} polygons and ${fmtInt(v)} vertices.`,
   (p, v) => `You are getting ${fmtInt(p)} polygons and ${fmtInt(v)} vertices, measured rather than estimated.`,
 ];
+/*
+ * Раньше здесь стоял приговор по числу полигонов: «light», «mid-weight»,
+ * «heavy». Он вводил в заблуждение. 116 тысяч полигонов - немного для
+ * offline-рендера и много для мобильной игры, WebXR или сцены с сотней
+ * экземпляров того же объекта; при этом на карточках встречались и «a light
+ * load for a scene» при 173 356 полигонах, и «mid-weight» при 618 314.
+ * Покупатель, поверивший слову, упирался в проблему уже после оплаты.
+ *
+ * Теперь число остаётся - оно измерено и полезно, - а вместо приговора
+ * называется то, от чего он на самом деле зависит. Порог по полигонам больше
+ * не нужен: формулировка верна для любого размера, поэтому все четыре ветки
+ * ведут к одному набору из трёх вариантов (варианты нужны, чтобы 54 тысячи
+ * страниц не получили одну и ту же строку).
+ */
 const MESH_WEIGHT = [
-  [12000, `That sits in low-poly territory, so it stays cheap to instance across a crowd scene or a game level.`],
-  [120000, `That is a mid-weight build: detailed enough for a foreground shot, light enough to duplicate freely.`],
-  [600000, `That is a heavy, close-up-grade build, so plan for it as a hero object rather than background filler.`],
-  [Infinity, `That is a very dense build meant for close inspection; for wide shots a decimated copy will serve better.`],
+  [Infinity, `Whether that counts as light or heavy depends on the target platform, the complexity of the scene and how many instances it carries.`],
+  [Infinity, `Its suitability for real-time use depends on the target platform, scene complexity and the number of instances.`],
+  [Infinity, `That figure reads differently on desktop, on mobile and in WebXR, so weigh it against the target platform and the number of instances in the scene.`],
 ];
 const TEX = [
   (n, r) => `Texturing runs to ${n} maps at ${r}.`,
@@ -180,8 +193,9 @@ function specSentences(f, seed) {
   const out = [];
   if (s.polygons && s.vertices) {
     out.push(pick(MESH, seed * 29 + 4)(s.polygons, s.vertices));
-    const band = MESH_WEIGHT.find(([lim]) => s.polygons <= lim);
-    if (band) out.push(band[1]);
+    // Выбор по номеру модели, а не по числу полигонов: формулировка больше не
+    // зависит от размера меша, зато нужна разной на разных страницах.
+    out.push(pick(MESH_WEIGHT, seed * 31 + 7)[1]);
   }
   if (s.textures && s.textureSizes && s.textureSizes.length) {
     const r = s.textureSizes.length === 1 ? s.textureSizes[0] : s.textureSizes.slice(0, 2).join(' and ');
@@ -245,7 +259,14 @@ export function specRows(f, name, cat, catSlug, price) {
     ['Category', `<a href="/categories/${catSlug}/">${esc(cat)}</a>`],
   ];
   if (f.sub && f.sub !== name) rows.push(['Type', esc(f.sub)]);
-  rows.push(['Certification', f.cert === 'no certification' ? 'Standard (uncertified)' : esc(f.cert)]);
+  // «CheckMate Lite/Pro» читается как «какой-то из двух, неизвестно какой».
+  // Точный уровень известен: в Excel-отчёте CheckMate Pro стоит у 37 677
+  // моделей, CheckMate Lite у 4 065. Показываем его; общее «CheckMate
+  // Certified» остаётся только там, где в отчёте пусто или #Н/Д.
+  rows.push(['Certification',
+    f.cert === 'no certification' ? 'Standard (uncertified)'
+      : f.cert === 'CheckMate Lite/Pro' ? 'CheckMate Certified'
+        : esc(f.cert)]);
   if (yr) rows.push(['On sale since', String(yr)]);
   rows.push(['Real-world scale', 'Yes']);
   // Измеренные характеристики из нашего inventory. Строки появляются только там,
@@ -413,9 +434,9 @@ function questionPool(f, n, cat, price, tsUrl, seed) {
   if (sp && sp.polygons) {
     pool.push([`How heavy is the ${n} mesh?`,
       `${fmtInt(sp.polygons)} polygons and ${fmtInt(sp.vertices || 0)} vertices${sp.geometry ? ', built as ' + esc(sp.geometry) : ''}. `
-      + (sp.polygons <= 12000 ? 'That is light enough to instance across a scene without a decimation pass.'
-        : sp.polygons <= 120000 ? 'That is a mid-weight asset: fine in the foreground, still cheap enough to duplicate.'
-          : 'Treat it as a hero object; for wide shots a reduced copy will render faster.')]);
+      // Здесь тоже без приговора по числу: он зависит от платформы и сцены,
+      // а не от одного полигонажа.
+      + pick(MESH_WEIGHT, seed * 31 + 7)[1]]);
   }
   if (sp && sp.textures && sp.textureSizes && sp.textureSizes.length) {
     pool.push([`What texture resolution ships with the ${n}?`,
