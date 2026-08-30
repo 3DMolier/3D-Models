@@ -36,6 +36,7 @@ const modelCat = loadModelCategories();
 
 // ── 1. карточки моделей ──
 let cards = 0, crumbFix = 0, specFix = 0, ldFix = 0, chipFix = 0, ctaFix = 0, textFix = 0;
+let aboutFix = 0, moreFix = 0, backFix = 0, phFix = 0;
 const idx = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'fc-index.json'), 'utf8'));
 const slugOfId = new Map();
 for (let k = 0; k < idx.chunks; k++) {
@@ -91,11 +92,35 @@ for (const [id, cat] of Object.entries(modelCat)) {
   h = h.replace(/(Browsing the )([A-Za-z][A-Za-z&; ]{1,40}?)( category shows)/,
     (x, a, cur, b) => { if (cur.trim() !== nm) textFix++; return a + nm + b; });
 
+  /*
+   * Ещё три места, где категория жила отдельной жизнью. Их пропустили в первый
+   * заход, и на 32 448 карточках - 60% каталога - они противоречили чипу и
+   * строке Specifications. Например у Grey Teddy Bear чип и характеристики
+   * говорили Toys & Games, а эти три - Animals & Creatures.
+   *   about в разметке ItemPage - то, чем страница объявляет себя поисковику;
+   *   «More in …»               - подпись над блоком похожих;
+   *   «← All … Models»          - ссылка назад в категорию.
+   */
+  h = h.replace(/("about":\{"@type":"Thing","name":")[^"]*(")/,
+    (x, a, b) => { aboutFix++; return a + nameOf(cat).replace(/"/g, '') + b; });
+  h = h.replace(/(<div class="section-label mp-mb8">More in )[^<]*(<\/div>)/,
+    (x, a, b) => { moreFix++; return a + nm + b; });
+  h = h.replace(/(<a href=")\/categories\/[a-z0-9-]+\/("[^>]*>\s*(?:&#8592;|&larr;|←)\s*All )[^<]*?( Models\s*<\/a>)/,
+    (x, a, b, c) => { backFix++; return a + '/categories/' + cat + '/' + b + nm + c; });
+  // Подпись под главной картинкой - её видно, если картинка не загрузилась.
+  // На карточке Grey Teddy Bear там стояло «Animals & Creatures» при категории
+  // Toys & Games: место редкое, но человек попадает на него именно тогда, когда
+  // и без того видит пустой прямоугольник.
+  h = h.replace(/(<span class="mp-placeholder-cat">)[^<]*(<\/span>)/g,
+    (x, a, b) => { phFix++; return a + nm + b; });
+
   if (h !== before) { cards++; if (!DRY) fs.writeFileSync(file, h); }
 }
 console.log('карточек приведено к источнику: ' + cards
   + ' (крошек ' + crumbFix + ', строк Category ' + specFix + ', полей в разметке ' + ldFix
-  + ', чипов ' + chipFix + ', кнопок Browse ' + ctaFix + ', упоминаний в тексте ' + textFix + ')');
+  + ', чипов ' + chipFix + ', кнопок Browse ' + ctaFix + ', упоминаний в тексте ' + textFix
+  + ', about ' + aboutFix + ', «More in» ' + moreFix + ', ссылок назад ' + backFix
+  + ', подписей под картинкой ' + phFix + ')');
 
 // ── 2. чипы в сетках и заголовки страниц категорий ──
 // Чип показывает категорию ТОЙ модели, на которую ведёт ссылка, поэтому

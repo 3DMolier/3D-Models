@@ -12,6 +12,7 @@
 
 import { brandOf } from './lib/brands.mjs';
 import { INDUSTRY_NAME, useLabel, industriesOf } from './lib/industries.mjs';
+import { isMilitary } from './lib/military.mjs';
 
 /*
  * Отрасли берём ТОЛЬКО отсюда. Раньше на одной карточке их описывали три
@@ -117,8 +118,20 @@ const AGE = [
   y => `${y} is when this one first went up, and it has stayed in the catalogue since.`,
 ];
 
+/*
+ * Заготовка «для чего годится» по категории. У Aircraft их теперь ДВЕ.
+ * Прежняя одна писала «flight and combat simulation, war-game environments»
+ * всем самолётам подряд - включая Air France Airbus A380 и A319. Пассажирский
+ * лайнер, рекламируемый для боевой симуляции, подрывает доверие ко всей
+ * карточке сильнее, чем нехватка ключевых слов.
+ * Боевые сценарии разрешены только при явном военном признаке в названии, см.
+ * lib/military.mjs; по умолчанию модель считается гражданской.
+ */
+const USE_SENT_AIRCRAFT_MIL = 'It works for aerospace visualisation, flight and combat simulation, war-game environments and aviation sequences in film and TV.';
+const USE_SENT_AIRCRAFT_CIV = 'It works for airline and airport visualisation, flight simulation, aviation sequences in film and TV, advertising renders and VR training.';
+
 const USE_SENT = {
-  'Aircraft': 'It works for aerospace visualisation, flight and combat simulation, war-game environments and aviation sequences in film and TV.',
+  'Aircraft': USE_SENT_AIRCRAFT_CIV,
   'Ships': 'Typical uses are naval and maritime scenes: film and TV VFX, harbour environments in games, and marine simulation.',
   'Military Vehicles': 'It suits battlefield simulation, war-game environments, defence training material and military VFX shots.',
   'Vehicles': 'Common uses are automotive advertising, film and TV backgrounds, game traffic and architectural visualisation.',
@@ -244,7 +257,10 @@ export function description(f, name, cat, price, seed) {
   // использования». Для модели, вышедшей пару месяцев назад, это неправда,
   // поэтому возраст упоминаем только у листингов старше года.
   if (yr && f.days > 365) parts.push(pick(AGE, seed * 17 + 2)(yr));
-  parts.push(USE_SENT[cat] || USE_SENT['Other']);
+  // Военная заготовка - только явным военным моделям.
+  parts.push(cat === 'Aircraft'
+    ? (isMilitary(name, catSlug(cat)) ? USE_SENT_AIRCRAFT_MIL : USE_SENT_AIRCRAFT_CIV)
+    : (USE_SENT[cat] || USE_SENT['Other']));
   return parts.join(' ');
 }
 
@@ -287,10 +303,21 @@ export function specRows(f, name, cat, catSlug, price) {
   rows.push(['Native', esc(nat.native)]);
   if (nat.formats) rows.push(['Formats', esc(nat.formats)]);
   if (yr) rows.push(['PBR', yr >= 2023 ? 'Yes' : 'No']);
-  // «Rigged version» вместо «Rig»: подпись отвечает на вопрос, который задают.
-  rows.push(['Rigged version',
-    (s && s.rigged && !/^\s*(static|none|no)\s*$/i.test(s.rigged)) || /\brigged\b/i.test(name)
-      ? 'Available' : 'Not available']);
+  /*
+   * Две строки, а не одна. Прежняя «Rigged version» описывала ТЕКУЩИЙ вариант,
+   * а читалась как ответ про товар: у Air France Airbus A380 сверху стояли
+   * Standard, Rigged, Maya Rigged и Cinema 4D Rigged, а ниже - «Rigged version:
+   * Not available». Так было на 4 440 карточках.
+   *   Current version  - что открыто сейчас;
+   *   Rigged versions  - есть ли риггинг у этой модели вообще.
+   * Границу слова после «rigged» не ставим: в каталоге есть «Generic Sport Car
+   * Rigged1», и \brigged\b его не ловит.
+   */
+  const selfRigged = /\brigged/i.test(name)
+    || !!(s && s.rigged && !/^\s*(static|none|no)\s*$/i.test(s.rigged));
+  const anyRigged = selfRigged || (f.variants || []).some(v => /\brigged/i.test(String(v)));
+  rows.push(['Current version', selfRigged ? 'Rigged' : 'Static']);
+  rows.push(['Rigged versions', anyRigged ? 'Available' : 'Not available']);
   // Лицензия зависит от того, изображает ли модель чужую торговую марку.
   // Раньше здесь стояло безусловное «Royalty Free» - и на брендовых карточках
   // сайт письменно разрешал то, что лицензией запрещено.
