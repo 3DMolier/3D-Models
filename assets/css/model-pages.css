@@ -436,3 +436,80 @@ a.chip { text-decoration: none; }
     justify-content: center;
   }
 }
+
+/* ── Перенесено из встроенного <style> карточек ──────────────────
+   Эти правила лежали внутри каждой из 54 077 карточек по 4,8 КБ. Один и тот
+   же текст, скопированный 54 тысячи раз, - это 260 МБ рабочего дерева и
+   лишние килобайты в каждом ответе посетителю. Здесь он один и кешируется.
+   Файл model-pages.css карточки и так подключают, отдельного запроса нет. */
+/* Лента кадров. Горизонтальная прокрутка была незаметна, а раскрытие всех кадров
+   в высоту растягивало страницу на экраны вниз: крупный снимок уезжал наверх, и
+   после клика по миниатюре приходилось скроллить обратно, чтобы его увидеть.
+   Плюс справа от растянутой ленты зияла пустая колонка.
+   Поэтому лента - панель ФИКСИРОВАННОЙ высоты со своей прокруткой. Длина
+   страницы от числа кадров больше не зависит вообще. */
+/* Отбивка между кадрами модели и кадрами версий. Намеренно сдержанная: линия и
+   подпись в том же стиле, что section-label, без цветных плашек. */
+.mp-gal-split{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin:16px 0 2px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6b7280}
+.mp-gal-split::after{content:"";flex:1;height:1px;background:#e5e5e5}
+.mp-gal-thumb--var{position:relative}
+.mp-gal-thumb--var::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:#111;opacity:.5;border-radius:2px 0 0 2px;z-index:1}
+.mp-gal-cap-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:6px;font-size:13px}
+.mp-gal-cap-price{color:#6b7280;font-variant-numeric:tabular-nums}
+.mp-gal-cap-link{color:#1659c9;text-decoration:none;font-weight:600}
+.mp-gal-cap-tag{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6b7280;border:1px solid #d4d4d4;border-radius:20px;padding:2px 8px}
+/* Секция версий - той же сеткой, что related, чтобы читалась как часть страницы. */
+.mp-versions-section{margin:34px 0 0}
+.mp-ver-chip{font-size:11px}
+/* Характеристики переезжают в правую колонку - так договаривались, и заодно это
+   лечит пустоту: раньше слева стояли описание, характеристики и вопросы, а
+   справа болталась одна карточка Quick Info. Колонка узкая, поэтому таблица
+   раскладывается строками «подпись - значение», как в Quick Info. */
+.mp-sidebar-col .mp-spec-block{max-width:none;margin:0}
+.mp-sidebar-col .mp-spec-block .mp-block-h2{font-size:15px;margin:0 0 12px}
+.mp-sidebar-col .mp-spec-table{width:100%;border-collapse:collapse;font-size:13px}
+.mp-sidebar-col .mp-spec-table th,.mp-sidebar-col .mp-spec-table td{display:block;width:auto}
+.mp-sidebar-col .mp-spec-table tr{display:flex;justify-content:space-between;gap:12px;align-items:baseline;
+  padding:8px 0;border-bottom:1px solid #ececec}
+.mp-sidebar-col .mp-spec-table tr:last-child{border-bottom:0}
+.mp-sidebar-col .mp-spec-table th{color:#6b7280;font-weight:500;text-align:left;flex:0 0 auto}
+.mp-sidebar-col .mp-spec-table td{text-align:right;flex:1 1 auto;overflow-wrap:anywhere}
+.mp-spec-card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:20px}
+/* Характеристики в ОДНУ колонку - так решил основатель. Двухстолбцовую раскладку
+   пробовали ради выравнивания высот, от неё отказались. Левый блок шире правого:
+   в узкой колонке подпись и значение перестают расползаться по краям. */
+@media(min-width:900px){ .mp-details-grid{grid-template-columns:2.2fr 1fr} }
+/* Разделитель между «All Versions» и «Related 3D Models». Внутренний блок был
+   шириной с контейнер и не совпадал с линией над секцией версий - та идёт во всю
+   ширину окна. Поэтому граница у самой секции. */
+.mp-versions-section{border-bottom:1px solid #e5e5e5}
+/* Ключевые слова из инвентаря: у 84% моделей они там есть и их заметно больше
+   тех четырёх, что стояли на карточке. Оформление берём у существующих чипов,
+   чтобы блок не выглядел приезжим. */
+.mp-kw-block{margin-top:26px}
+.mp-footer-back{padding-top:14px}
+/* Описание было уже вопросов: у .mp-desc-text стоит max-width 680px, а у блока
+   вопросов ограничение снято. Рядом это читалось как разная вёрстка. */
+.mp-details-left .mp-desc-text{max-width:none}
+/* Абзацный отступ по умолчанию (15px) меньше межстрочного расстояния (27px),
+   и абзацы читались слитно. Делаем зазор заметнее строки. */
+.mp-details-left .mp-desc-text{margin:0 0 20px}
+.mp-details-left .mp-desc-text:last-of-type{margin-bottom:0}
+/* Зум в просмотрщике. При увеличении картинка становится больше сцены, а
+   flex-центрирование вместе с прокруткой прижимает её к левому верхнему углу -
+   отсюда «скачок». margin:auto центрирует корректно и при переполнении, а
+   прокрутку сцены выставляет скрипт ниже, по точке, куда человек нажал. */
+.mp-lb.is-zoom .mp-lb-stage{overflow:auto;align-items:flex-start;justify-content:flex-start}
+.mp-lb.is-zoom .mp-lb-img{margin:auto}
+@media(prefers-color-scheme:dark){
+ .mp-section-split{background:#2b2f37}
+ .mp-spec-card{background:#171a1f;border-color:#2b2f37}
+ .mp-sidebar-col .mp-spec-table tr{border-color:#2b2f37}
+ .mp-sidebar-col .mp-spec-table th{color:#9ca3af}
+ .mp-gal-more{border-color:#3a3f4a;color:#e5e7eb}
+ .mp-gal-more:hover{border-color:#e5e7eb}
+ .mp-gal-split{color:#9ca3af}
+ .mp-gal-split::after{background:#3a3f4a}
+ .mp-gal-thumb--var::before{background:#e5e7eb}
+ .mp-gal-cap-tag{border-color:#3a3f4a;color:#9ca3af}
+}
