@@ -6,8 +6,8 @@
  * счётчика Aircraft, «Rigged version: Not available» под списком из четырёх
  * rigged-версий, Teddy Bear с двумя категориями, боевые сценарии у Air France,
  * заявление про PBR на /data-licensing/ против «PBR: No» на карточках. Этот
- * скрипт проверяет ровно те десять условий, которые ты выписал, и падает с
- * кодом 1, если хоть одно нарушено.
+ * скрипт проверяет двенадцать условий - десять твоих плюс две проверки против
+ * событий 3-9 августа, - и падает с кодом 1, если хоть одно нарушено.
  *
  * ЧЕМ ОТЛИЧАЕТСЯ ОТ audit-site.mjs. Тот следит за разметкой и ссылками - что
  * страница цела. Этот следит за СОГЛАСОВАННОСТЬЮ ДАННЫХ - что страница не
@@ -15,6 +15,13 @@
  *
  * Запуск:  node scripts/validate-data.mjs
  *          node scripts/validate-data.mjs --sample 5000   (быстрая проверка)
+ *
+ * ПРОВЕРКИ 11 и 12 добавлены после разбора провала трафика:
+ *   11 - ни одного массового 404: каждый адрес из карты сайта, в том числе из
+ *        её предыдущей версии, обязан иметь файл. 08.08 их не стало у 21 634
+ *        адресов, и сутки они отдавали 404;
+ *   12 - вес сайта против лимита публикации Pages: 06.08 выкладка сорвалась по
+ *        таймауту на 3,33 ГБ, и об этом узнали не сразу.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -173,10 +180,100 @@ if (bad9.length) fail(9, 'отрасль модели не существует 
   if (noindex.length) fail(10, 'заглушки /browse/ без noindex', noindex.slice(0, 6));
 }
 
+/*
+ * ── 11. НИ ОДНОГО МАССОВОГО 404 ───────────────────────────────────────────────
+ * 08.08.2026 объединение вариантов удалило схлопнутые страницы, и 21 634
+ * прежних адреса начали отдавать 404 - и поисковикам, у которых они были в
+ * индексе, и внешним ссылкам. Так продолжалось сутки, до отдельного коммита с
+ * перенаправлениями. Эта проверка поймала бы такое ДО выкладки.
+ *
+ * Сравниваем два набора: что лежит в текущих картах сайта и что было в
+ * предыдущей зафиксированной версии карт. Каждый адрес из обоих наборов обязан
+ * иметь файл на диске - живую страницу или заглушку-перенаправление.
+ */
+{
+  const smDir = path.join(ROOT, 'sitemaps');
+  const urls = new Set();
+  const addFrom = text => {
+    for (const m of text.matchAll(/<loc>https:\/\/3dmolierstudio\.com([^<]*)<\/loc>/g)) urls.add(m[1]);
+  };
+  for (const f of fs.readdirSync(smDir)) {
+    if (/^image-sitemap/.test(f)) continue;   // там адреса картинок, не страниц
+    addFrom(fs.readFileSync(path.join(smDir, f), 'utf8'));
+  }
+  // и то, что мы обещали поисковику в прошлый раз
+  let prevCount = 0;
+  try {
+    const { execSync } = await import('node:child_process');
+    for (const f of fs.readdirSync(smDir)) {
+      if (/^image-sitemap/.test(f)) continue;
+      try {
+        const old = execSync('git show HEAD:sitemaps/' + f, { cwd: ROOT, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+        const before = urls.size;
+        addFrom(old);
+        prevCount += urls.size - before;
+      } catch (e) { /* файла в прошлой версии не было - это новая карта */ }
+    }
+  } catch (e) { /* git недоступен - проверяем только текущие карты */ }
+
+  const missing = [];
+  for (const u of urls) {
+    // адрес вида /models/xxx/ -> файл models/xxx/index.html
+    const rel = u.replace(/^\/|\/$/g, '');
+    const file = rel ? path.join(ROOT, rel, 'index.html') : path.join(ROOT, 'index.html');
+    if (!fs.existsSync(file) && !fs.existsSync(path.join(ROOT, rel))) {
+      missing.push(u);
+      if (missing.length > 200) break;
+    }
+  }
+  if (missing.length) {
+    fail(11, 'адреса из карты сайта не имеют файла - будет ' + missing.length
+      + (missing.length > 200 ? '+' : '') + ' штук 404', missing.slice(0, 6));
+  }
+  console.log('  [11] адресов страниц в картах: ' + urls.size
+    + (prevCount ? ', из них только в прошлой версии: ' + prevCount : '') + ', без файла: ' + missing.length);
+}
+
+/*
+ * ── 12. ВЕС САЙТА И ЛИМИТ ПУБЛИКАЦИИ ──────────────────────────────────────────
+ * 06.08.2026 публикация GitHub Pages сорвалась: «Timeout reached, aborting!»
+ * через 608 секунд при лимите в 10 минут. Сайт вырос до 3,33 ГБ и перестал
+ * укладываться. Узнали об этом не сразу, потому что упавшая публикация ничего
+ * не ломает видимо - в проде просто остаётся прежняя версия.
+ *
+ * 3,33 ГБ - известная точка отказа. Предупреждаем на 3,0 ГБ и валим сборку на
+ * 3,3 ГБ, чтобы не выкладывать вслепую.
+ */
+{
+  const WARN = 3.0 * 1024 ** 3, STOP = 3.3 * 1024 ** 3;
+  let total = 0, files = 0;
+  const stack = [ROOT];
+  while (stack.length) {
+    const d = stack.pop();
+    let ents;
+    try { ents = fs.readdirSync(d, { withFileTypes: true }); } catch (e) { continue; }
+    for (const it of ents) {
+      if (it.name === '.git' || it.name === 'node_modules') continue;
+      const p = path.join(d, it.name);
+      if (it.isDirectory()) stack.push(p);
+      else { try { total += fs.statSync(p).size; files++; } catch (e) { /* исчез между чтением и stat */ } }
+    }
+  }
+  const gb = (total / 1024 ** 3).toFixed(2);
+  console.log('  [12] вес сайта: ' + gb + ' ГБ в ' + fmt(files) + ' файлах'
+    + '  (порог предупреждения 3.00, отказа 3.30)');
+  if (total >= STOP) {
+    fail(12, 'вес ' + gb + ' ГБ - публикация Pages на такой величине уже срывалась по таймауту 06.08.2026', []);
+  } else if (total >= WARN) {
+    console.log('       ВНИМАНИЕ: до точки отказа осталось '
+      + ((STOP - total) / 1024 ** 2).toFixed(0) + ' МБ');
+  }
+}
+
 // ── отчёт ──
-console.log('проверено карточек: ' + live + (SAMPLE ? '  (выборка, шаг ' + step + ')' : ''));
+console.log('\nпроверено карточек: ' + live + (SAMPLE ? '  (выборка, шаг ' + step + ')' : ''));
 if (!problems.length) {
-  console.log('\nВСЕ 10 ПРОВЕРОК ПРОЙДЕНЫ');
+  console.log('\nВСЕ 12 ПРОВЕРОК ПРОЙДЕНЫ');
   process.exit(0);
 }
 console.log('\nНАРУШЕНИЙ: ' + problems.length);
