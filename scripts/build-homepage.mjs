@@ -178,11 +178,34 @@ const MODEL_CAT = loadModelCategories();
  */
 const CAT_COUNTS = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'category-counts.json'), 'utf8')).counts;
 
+/*
+ * Адрес карточки НЕ вычисляем из подписи. В списке у плитки бабочки стоял
+ * slug «flying-monarch-butterfly-rigged-3d-model-1566626», а папка на диске
+ * называется «animated-flying-monarch-butterfly-rigged-for-cinema-4d-1566626»:
+ * имя в каталоге отличается от подписи на плитке. Ссылка с главной вела в 404.
+ * Единственный надёжный ключ - номер модели в конце slug-а; по нему и находим
+ * настоящую папку. Не нашли - падаем на сборке, а не в проде.
+ */
+const DIR_BY_ID = new Map();
+for (const d of fs.readdirSync(path.join(ROOT, 'models'))) {
+  const id = d.slice(d.lastIndexOf('-') + 1);
+  if (/^\d+$/.test(id) && !DIR_BY_ID.has(id)) DIR_BY_ID.set(id, d);
+}
+function realSlug(slug) {
+  const s = String(slug);
+  const id = s.slice(s.lastIndexOf('-') + 1);
+  const dir = DIR_BY_ID.get(id);
+  if (!dir) throw new Error('нет карточки для ' + slug + ' (номер ' + id + ')');
+  return dir;
+}
+
 function resolve(x) {
   let name = x.name || x.slug;
   try { const r = heroImage(x.slug); name = r.name; if (!x.img) x.img = r.img; }
   catch (e) { if (!x.img) throw e; }
   x.modelName = name;
+  // адрес - только существующая папка, см. realSlug выше
+  x.slug = realSlug(x.slug);
   // Подпись категории берём из таксономии, а не из строки, вписанной рядом со
   // slug-ом руками. Вписанная разъезжается с карточкой: у Sigma Class
   // Indonesian Frigate на главной стояло «Military Vehicles», тогда как в
@@ -650,7 +673,11 @@ if (PREVIEW) {
   const cssFile = path.join(ROOT, 'assets', 'css', 'styles.css');
   const css = fs.readFileSync(cssFile, 'utf8');
   if (!css.includes('.mosaic')) fs.writeFileSync(cssFile, css.replace(/\s*$/, '\n') + CSS);
-  html = html.replace(/(assets\/css\/[a-z-]+\.(?:min\.)?css\?v=)(\d+)/g, (m, a, v) => a + (+v + 1));
+  // Версию стилей здесь НЕ трогаем. Раньше каждая пересборка главной
+  // повышала её только на главной, и та уезжала вперёд всего сайта:
+  // index.html просил v=48, все 54 тысячи карточек - v=47. Меткой
+  // версии распоряжается один скрипт, bump-asset-version.mjs, и
+  // сразу по всему сайту.
   fs.writeFileSync(path.join(ROOT, 'index.html'), html);
   console.log('\nзаписано: index.html + assets/css/styles.css');
 }

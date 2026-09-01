@@ -95,6 +95,15 @@ function crumbs(page) {
     + '</script>';
 }
 
+/*
+ * Метка версии стилей и запрет индексации задаются ЗДЕСЬ, а не правкой
+ * готовых страниц. Оба раза правка страниц уже стиралась пересборкой:
+ * noindex, follow пропадал со 109 страниц обхода, а метка версии
+ * возвращалась к v=33, и посетитель получал стили годичной давности.
+ * Версию берём из главной страницы - она единственная точка отсчёта.
+ */
+const ASSET_V = (fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8').match(/styles\.min\.css\?v=(\d+)/) || [, '1'])[1];
+
 function shell(title, desc, canonical, body, extraHead = '') {
   return `<!DOCTYPE html>
 <html lang="en">
@@ -104,9 +113,10 @@ function shell(title, desc, canonical, body, extraHead = '') {
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${canonical}">
+<meta name="robots" content="noindex, follow">
 ${social(title, desc, canonical)}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/css/styles.min.css?v=33">
+<link rel="stylesheet" href="/assets/css/styles.min.css?v=${ASSET_V}">
 <style>.browse-filter-box{display:flex;align-items:center;gap:10px;margin:16px 0}#browse-filter{flex:1;max-width:420px;padding:10px 14px;border:1px solid rgba(0,0,0,.15);border-radius:8px;font-size:14px}.browse-filter-count{font-size:13px;opacity:.65;white-space:nowrap}.browse-search-hint{font-size:13px;opacity:.75;margin:0 0 20px}@media(prefers-color-scheme:dark){#browse-filter{border-color:rgba(255,255,255,.2);background:transparent;color:inherit}}</style>
 ${extraHead}
 </head>

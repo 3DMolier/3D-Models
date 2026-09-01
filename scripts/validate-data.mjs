@@ -344,6 +344,27 @@ if (bad9.length) fail(9, 'отрасль модели не существует 
   const md = fs.readdirSync(MODELS);
   for (let k = 0; k < md.length; k += step) check('models/' + md[k] + '/index.html');
 
+  /*
+   * Сами скрипты - тоже. Управляющий символ, попавший в исходник, ведёт себя
+   * подло: `/<div\b/` превращается в `/<div<BS>/`, регулярка перестаёт находить
+   * что-либо, скрипт отрабатывает без ошибки и рапортует ноль правок. Так уже
+   * было дважды за сутки, второй раз - в fix-keywords-block.mjs.
+   */
+  for (const f of fs.readdirSync(path.join(ROOT, 'scripts'))) {
+    if (!/\.(mjs|js)$/.test(f)) continue;
+    let src;
+    try { src = fs.readFileSync(path.join(ROOT, 'scripts', f), 'utf8'); } catch (e) { continue; }
+    const c = src.match(CTRL_RE);
+    if (c) { ctrlPlaces += c.length; if (ctrlFiles.length < 6) ctrlFiles.push('scripts/' + f + ' (' + c.length + ')'); }
+  }
+  for (const f of fs.readdirSync(path.join(ROOT, 'scripts', 'lib'))) {
+    if (!/\.(mjs|js)$/.test(f)) continue;
+    let src;
+    try { src = fs.readFileSync(path.join(ROOT, 'scripts', 'lib', f), 'utf8'); } catch (e) { continue; }
+    const c = src.match(CTRL_RE);
+    if (c) { ctrlPlaces += c.length; if (ctrlFiles.length < 6) ctrlFiles.push('scripts/lib/' + f + ' (' + c.length + ')'); }
+  }
+
   console.log('  [13] проверено на целостность адресов: ' + (pages.length + Math.ceil(md.length / step)) + ' файлов');
   if (ctrlPlaces) fail(13, 'управляющие символы в файлах - следы незавершённой обработки, ' + ctrlPlaces + ' мест', ctrlFiles);
   if (badAttr.length) fail(13, 'href или src не является адресом', badAttr);

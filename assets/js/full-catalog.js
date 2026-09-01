@@ -46,11 +46,16 @@ function onFirstChunk() {
   if(spinner)spinner.style.display='none';
   if(statusText)statusText.textContent='';
   if(sortSel)sortSel.disabled=false;
-  if(qEl){qEl.disabled=false;qEl.placeholder='Search '+(totalModels||FC.n.length).toLocaleString('en-US')+' models…';}
+  // Подсказку в поле НЕ переписываем числом: 54 077 и без того стоит в
+  // заголовке и в счётчике выдачи, третий раз - перебор.
+  if(qEl)qEl.disabled=false;
   if(filterBar)filterBar.classList.add('visible');
   applyFilters();
   var urlQ=new URLSearchParams(location.search).get('q');
-  if(urlQ&&qEl){qEl.value=urlQ;searchQ=urlQ.toLowerCase();applyFilters();}
+  // Запрос из адреса приходит с чипа ключевого слова на карточке. Искать
+  // надо по всему каталогу, а не по первому загруженному куску: иначе
+  // «tesla model 3» находит десяток моделей вместо всех.
+  if(urlQ&&qEl){qEl.value=urlQ;searchQ=urlQ.toLowerCase();applyFilters();ensureRemainingChunks();ensureRemainingImgChunks();}
   if('IntersectionObserver' in window) setupInfiniteScroll();
   // Если пришли сразу с фильтром категории, счёт должен быть верным с первого
   // экрана: /catalog/?cat=aircraft показывал «706 of 54077», пока догружались
@@ -398,6 +403,23 @@ function updateProgress() {
     html+='</div></div>';
     hero.insertAdjacentHTML('beforeend',html);
   }catch(e){}
+})();
+
+/*
+ * «View all» раскрывает остальные восемнадцать категорий. Без неё в строке
+ * фильтров стояли все двадцать шесть подряд, и глаз в них тонул.
+ */
+(function () {
+  var btn = document.getElementById('cat-more');
+  if (!btn) return;
+  btn.addEventListener('click', function () {
+    var open = btn.getAttribute('aria-expanded') === 'true';
+    document.querySelectorAll('.ftag--rest').forEach(function (b) {
+      if (open) b.setAttribute('hidden', ''); else b.removeAttribute('hidden');
+    });
+    btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+    btn.innerHTML = open ? 'View all 26 &#8595;' : 'Show fewer &#8593;';
+  });
 })();
 
 })();

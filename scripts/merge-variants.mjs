@@ -109,6 +109,27 @@ for (let i = 1; i < L.length; i++) {
 // В models_master.csv реферальный код устарел: там 3d_molier-studio, а на карточках
 // сайта и во всех наших материалах - 3d_molier-international. Без нормализации
 // 5245 объединённых страниц получили бы чужой код и продажи по ним не засчитались бы.
+
+/*
+ * Адрес карточки берём из СУЩЕСТВУЮЩЕЙ папки, а не из колонки slug.
+ * В models_master.csv она построена другим правилом: у «Harivake Koi Fish(1)»
+ * там стоит harivake-koi-fish-1-1142255, а папка на диске называется
+ * harivake-koi-fish1-1142255. Из-за расхождения заглушка появилась по
+ * несуществующему адресу, а настоящая страница осталась живой - на сайте
+ * оказались две карточки одной модели.
+ * Тот же промах был у плитки на главной: адрес нельзя вычислять, его надо брать.
+ */
+const DIR_BY_ID = new Map();
+for (const d of fs.readdirSync(MODELS)) {
+  const id = d.slice(d.lastIndexOf('-') + 1);
+  if (/^\d+$/.test(id) && !DIR_BY_ID.has(id)) DIR_BY_ID.set(id, d);
+}
+let slugFixed = 0;
+for (const r of rows) {
+  const real = DIR_BY_ID.get(String(r.id));
+  if (real && real !== r.slug) { r.slug = real; slugFixed++; }
+}
+if (slugFixed) console.log('адресов взято из существующих папок: ' + slugFixed);
 const REFERRAL = 'referral=3d_molier-international';
 const fixRef = u => {
   if (!u) return u;
@@ -491,6 +512,14 @@ const MANUAL_GROUPS = [
   // (4448 и 6880 полигонов), то есть разные предметы, а не варианты одного.
   { main: '1283452', rest: ['2553243'] },                       // трос буксировочный без крюков
   { main: '1283453', rest: ['2554921'] },                       // трос буксировочный с крюками
+  // Присланы основателем 01.09.2026. Восемь карточек кои: полигонаж и число
+  // вершин совпадают, родительский ID в отчёте общий. Автоматические проходы их
+  // не собрали, и вот почему: проход rootcat берёт только технику - машины,
+  // самолёты, корабли, военку, промоборудование, - а рыбы это Animals &
+  // Creatures. Родителей ДВА (9E2MddrTSS и Mrvqw97UQa), поэтому и групп две.
+  // Главной в каждой берём карточку с наибольшими продажами.
+  { main: '2144139', rest: ['2141469'] },                       // Harivake Koi Fish
+  { main: '1144472', rest: ['1142255', '1144466', '1144469', '1144510', '1144516'] }, // Koi Fish, позы и цвета
   { main: '2471077', rest: ['2471619', '2471626', '2471978'] }, // Cadillac Gage V-100: green / tan / woodland / simplified
   { main: '2472126', rest: ['2472131'] },                       // WWII артиллерия: green / desert
   { main: '2499896', rest: ['2499928', '2499929'] },            // Thales Hawkei: базовый / camo / simplified
@@ -554,8 +583,8 @@ function buildRootCatGroups() {
     const alive = items.filter(x => isRealCard(x.slug));
     if (alive.length < 2 || alive.length > ROOTCAT_MAX) continue;
     const rank = x => (SOFT.test(x.name) ? 16 : 0)
-      + (/simplified/i.test(x.name) ? 8 : 0)
-      + (/low\s*poly/i.test(x.name) ? 4 : 0)
+      + (/\bsimplified\b/i.test(x.name) ? 8 : 0)
+      + (/\blow\s*poly\b/i.test(x.name) ? 4 : 0)
       + (hasRig(x.name) ? 2 : 0)
       + (poseOf(x.name) ? 1 : 0);
     const order = items.slice().sort((a, b) => (rank(a) - rank(b)) || (b.sales - a.sales));
@@ -669,8 +698,8 @@ function buildGeoGroups() {
   // без софта, без упрощения, без Low Poly, без оснастки. Продажи решают внутри
   // равных.
   const rank = x => (SOFT.test(x.name) ? 16 : 0)
-    + (hasSimpl(x.name) || /simplified/i.test(x.name) ? 8 : 0)
-    + (/low\s*poly/i.test(x.name) ? 4 : 0)
+    + (hasSimpl(x.name) || /\bsimplified\b/i.test(x.name) ? 8 : 0)
+    + (/\blow\s*poly\b/i.test(x.name) ? 4 : 0)
     + (hasRig(x.name) ? 2 : 0);
   for (const slugs of JSON.parse(fs.readFileSync(F, 'utf8'))) {
     const items = slugs.map(s => bySlug.get(s)).filter(Boolean);
@@ -1290,7 +1319,7 @@ if (!DRY && !ONLY) {
       .replace(/<section class="mp-variants">[\s\S]*?<\/section>/g, '')
       .replace(/<section class="mp-related-section mp-versions-section">[\s\S]*?<\/section>/g, '');
     const nameEsc = esc(real);
-    const shortName = nameEsc.replace(/\s*3d\s+models?\s*$/i, '');
+    const shortName = nameEsc.replace(/\s*\b3d\s+models?\s*$/i, '');
     let out = out0.replace(/<h1 class="mp-h1">[\s\S]*?<\/h1>/, '<h1 class="mp-h1">' + nameEsc + '</h1>')
       .replace(/<span class="mp-bc-current">[\s\S]*?<\/span>/, '<span class="mp-bc-current">' + nameEsc + '</span>')
       // Имя тоже может кончаться на «3D Model» - приклеивать хвост нельзя,

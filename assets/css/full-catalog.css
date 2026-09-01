@@ -160,3 +160,25 @@ summary:focus-visible,
 @media (max-width: 767px){
   .fb-row .fb-label{flex:0 0 100%}
 }
+
+/* ── Поле поиска ───────────────────────────────────────────────────────────
+   Раньше оно терялось среди фильтров: тонкая рамка, мелкий шрифт, никакой
+   подписи. Это главный инструмент страницы, поэтому теперь у него подпись,
+   крупный шрифт и заметная рамка. */
+.fc-search-label{display:block;width:100%;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#666;margin-bottom:6px}
+.search-row--big .sw{max-width:640px}
+.search-row--big #q{font-size:17px;padding:14px 16px 14px 44px;border:2px solid #111;border-radius:8px}
+.search-row--big #q::placeholder{color:#999;font-size:15px}
+.search-row--big #q:focus{box-shadow:0 0 0 4px rgba(17,17,17,.10)}
+.search-row--big .si{left:16px;width:18px;height:18px;color:#111}
+
+/* ── Ряд цен ───────────────────────────────────────────────────────────────
+   Прижат влево, как и ряд категорий: по центру он читался как отдельный
+   баннер, а не как продолжение фильтров. */
+.fb-row--price{justify-content:flex-start}
+
+/* ── Раскрытие остальных категорий ─────────────────────────────────────────
+   В первой строке восемь самых крупных категорий, остальные восемнадцать
+   прячутся за кнопкой. Двадцать шесть чипов подряд читались как стена. */
+.ftag--more{border-style:dashed;color:#111;font-weight:600}
+.ftag--more[aria-expanded="true"]{background:#f2f2f2}

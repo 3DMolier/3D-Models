@@ -427,12 +427,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/models/1st-gen-toyota-corolla-e10-1966-white-rigged-for-maya1-2139814/</loc>
-    <lastmod>2026-09-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/models/1tb-hdd-1465266/</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
@@ -3428,12 +3422,6 @@
   </url>
   <url>
     <loc>https://3dmolierstudio.com/models/acura-tlx-luxury-sedan-rigged-2217110/</loc>
-    <lastmod>2026-09-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/models/acura-tlx-luxury-sedan-rigged-for-cinema-4d1-2228442/</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -6697,12 +6685,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/models/air-india-boeing-787-8-dreamliner-aircraft1-2311024/</loc>
-    <lastmod>2026-09-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/models/air-jordan-10-baseball-cleats-red-1878008/</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
@@ -7465,12 +7447,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/models/airbus-military-c295-aewc-turboprop-aircraft-rigged-1585168/</loc>
-    <lastmod>2026-09-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/models/airbus-perlan-mission-ii-glider-1420067/</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
@@ -7526,12 +7502,6 @@
   </url>
   <url>
     <loc>https://3dmolierstudio.com/models/aircar-rigged-1925918/</loc>
-    <lastmod>2026-09-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/models/aircar-rigged1-1926513/</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -21782,12 +21752,6 @@
   </url>
   <url>
     <loc>https://3dmolierstudio.com/models/astrolabe-1902559/</loc>
-    <lastmod>2026-09-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/models/astrolabe-with-wooden-stand1-1905958/</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -37567,12 +37531,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/models/blue-arc-electric-delivery-van-rigged-for-cinema-4d1-2077096/</loc>
-    <lastmod>2026-09-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/models/blue-baby-bib-2113801/</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
@@ -50713,12 +50671,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/models/car-exhaust-system1-1926875/</loc>
-    <lastmod>2026-09-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/models/car-exterior-roof-rack-with-wingbar-1642373/</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
@@ -57505,18 +57457,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/models/charter-bus-rigged-for-maya1-2127733/</loc>
-    <lastmod>2026-09-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/models/charter-bus1-2145662/</loc>
-    <lastmod>2026-09-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/models/chase-center-arena-1614541/</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
@@ -59996,6 +59936,66 @@
   </url>
   <url>
     <loc>https://3dmolierstudio.com/models/chinese-parasol-open-white-1993619/</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3dmolierstudio.com/models/chinese-pilot-head-960935/</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3dmolierstudio.com/models/chinese-red-headed-centipede-1546066/</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3dmolierstudio.com/models/chinese-restaurant-opened-takeout-box-16-oz-1769385/</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3dmolierstudio.com/models/chinese-restaurant-opened-takeout-box-32-oz-1769365/</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3dmolierstudio.com/models/chinese-restaurant-takeout-box-16-oz-1769368/</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3dmolierstudio.com/models/chinese-restaurant-takeout-box-32-oz-1769364/</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3dmolierstudio.com/models/chinese-schoolboy-head-with-google-glasses-2031264/</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3dmolierstudio.com/models/chinese-schoolboy-with-book-1865745/</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3dmolierstudio.com/models/chinese-silver-dragon-2547595/</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3dmolierstudio.com/models/chinese-snuff-bottle-with-spoon-3d-model-901261/</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

@@ -45,7 +45,28 @@ const OVERRIDES = (() => {
   const f = path.join(DATA, 'category-overrides.json');
   try { return JSON.parse(fs.readFileSync(f, 'utf8')); } catch (e) { return {}; }
 })();
-const classify = (name, id) => OVERRIDES[String(id)] || classifyByReport(id, name) || keywordClassify(name);
+/*
+ * Единый источник категорий - data/model-categories.json. Он же питает карточки,
+ * каталог, меню, хлебные крошки и счётчики. Здесь стоял СВОЙ классификатор, и
+ * хаб раскладывал модели иначе, чем весь остальной сайт: 430 живых карточек не
+ * попадали ни на одну страницу категории, а числа расходились с источником на
+ * те же 430. Теперь спрашиваем источник, а прежняя цепочка осталась запасной -
+ * для моделей, которых в нём ещё нет.
+ */
+// Папки карточек по номеру модели: единственный надёжный способ получить адрес.
+// Вычислять его из названия нельзя - правило слагов в данных и на диске местами
+// расходится, и модель молча выпадает из своей категории.
+const DIR_BY_ID = new Map();
+for (const d of fs.readdirSync(MODELS)) {
+  const id = d.slice(d.lastIndexOf('-') + 1);
+  if (/^[0-9]+$/.test(id) && !DIR_BY_ID.has(id)) DIR_BY_ID.set(id, d);
+}
+// Метка версии - из главной страницы. Зашитая v=33 возвращалась при каждой
+// пересборке и отправляла посетителю стили и скрипты годичной давности.
+const ASSET_V = (fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8')
+  .match(/site\.min\.js\?v=(\d+)/) || [, '1'])[1];
+const MODEL_CAT = JSON.parse(fs.readFileSync(path.join(DATA, 'model-categories.json'), 'utf8'));
+const classify = (name, id) => MODEL_CAT[String(id)] || OVERRIDES[String(id)] || classifyByReport(id, name) || keywordClassify(name);
 
 // ---- hero-конфиг для 9 новых категорий (иконка + описание) ----
 const HERO = {
@@ -102,7 +123,7 @@ function loadCatalog() {
 const EAGER_CARDS = 4;
 
 function card(m, catDisp, i = 99) {
-  const slug = slugify(m.name) + '-' + m.id;
+  const slug = DIR_BY_ID.get(String(m.id)) || (slugify(m.name) + '-' + m.id);
   const eager = i < EAGER_CARDS;
   const loadAttrs = eager ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
   return `      <a href="/models/${slug}/" class="model-card card-glow">
@@ -224,7 +245,7 @@ ${cards}
 </section>
 </main>
 ${FOOTER}
-<script src="/assets/js/site.min.js?v=33" defer></script>
+<script src="/assets/js/site.min.js?v=${ASSET_V}" defer></script>
 </body>
 </html>`;
 }
@@ -234,10 +255,15 @@ function buildCategory(cat, all, img) {
   let list = [];
   for (const m of all) {
     if (classify(m.name, m.id) !== cat) continue;
-    if (!img[m.id]) continue;
-    const slug = slugify(m.name) + '-' + m.id;
-    if (!fs.existsSync(path.join(MODELS, slug, 'index.html'))) continue;
-    list.push({ ...m, img: img[m.id] });
+    // Модель без превью раньше просто выбрасывалась из категории: 60 живых
+    // карточек не показывались нигде, а счётчик расходился с источником.
+    // У сайта есть своя заглушка для картинки - ставим её.
+    // Адрес карточки берём из СУЩЕСТВУЮЩЕЙ папки, а не вычисляем из названия.
+    // Вычисленный не совпадал у 372 моделей, и они молча выпадали из своей
+    // категории: страница их не показывала, а счётчик не считал.
+    const slug = DIR_BY_ID.get(String(m.id));
+    if (!slug) continue;
+    list.push({ ...m, img: img[m.id] || PLACEHOLDER });
   }
   // Сортировка по продажам, а не по цене. По цене наверх вылезали самые дорогие
   // товары - а это сложные СЦЕНЫ из многих объектов с нулём продаж: в «Nature &
@@ -272,15 +298,30 @@ function main() {
     console.error(`  ${r.cat.padEnd(24)} ${String(r.models).padStart(6)} моделей → ${r.pages} стр.`);
   }
   console.error(`\nИтого категорий: ${cats.length}, страниц: ${totalPages}.`);
-  // Числа по категориям печатают не только хабы: их берут /about/,
-  // /custom-order/ и таблица датасета на /data-licensing/. Раньше они стояли
-  // вписанными руками и после объединения вариантов разошлись с каталогом на
-  // четыре с половиной тысячи. Кладём в файл, чтобы источник был один.
+  /*
+   * Счётчики категорий ЗДЕСЬ НЕ ПИШЕМ.
+   *
+   * Раньше писали - и файл data/category-counts.json оказался с двумя авторами:
+   * build-taxonomy.mjs считал живые карточки на диске (54 025), а этот хаб -
+   * только те, что попали в его выборку (53 595). Кто запускался последним, тот
+   * и оставлял свои числа, поэтому главная, каталог и страницы категорий
+   * показывали разное. Валидатор ловил это то первой проверкой, то второй.
+   *
+   * Сверенная с диском правда - у build-taxonomy.mjs: сумма его чисел совпадает
+   * с числом живых карточек ровно. Здесь мы файл только ЧИТАЕМ, а расхождение
+   * своей выборки с ним печатаем, чтобы оно не осталось незамеченным.
+   */
   if (!one) {
     const f = path.join(ROOT, 'data', 'category-counts.json');
-    const total = Object.values(counts).reduce((x, y) => x + y, 0);
-    fs.writeFileSync(f, JSON.stringify({ total, counts }, null, 1));
-    console.error('счётчики категорий: data/category-counts.json');
+    if (fs.existsSync(f)) {
+      const src = JSON.parse(fs.readFileSync(f, 'utf8')).counts || {};
+      const diff = Object.keys(counts).filter(k => src[k] !== undefined && src[k] !== counts[k]);
+      if (diff.length) {
+        console.error('\nВНИМАНИЕ: выборка хаба расходится с data/category-counts.json у ' + diff.length + ' категорий:');
+        diff.slice(0, 6).forEach(k => console.error('   ' + k + ': хаб ' + counts[k] + ', источник ' + src[k]));
+        console.error('источник считает живые карточки на диске - при расхождении прав он.');
+      }
+    }
   }
 }
 main();
