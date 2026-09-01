@@ -34,6 +34,9 @@ const MODELS = path.join(ROOT, 'models');
 const SAMPLE = (() => { const i = process.argv.indexOf('--sample'); return i > 0 ? Number(process.argv[i + 1]) : 0; })();
 const dec = s => String(s).replace(/&amp;/g, '&').trim();
 const fmt = n => Number(n).toLocaleString('en-US');
+// Маркером в fix-us-spelling.mjs был символ с кодом 1; ловим его и любые
+// другие управляющие, кроме табуляции, перевода строки и возврата каретки.
+const CTRL_RE = new RegExp('[\\u0000-\\u0008\\u000B\\u000C\\u000E-\\u001F]', 'g');
 
 const problems = [];
 const fail = (check, msg, examples) => problems.push({ check, msg, examples: examples || [] });
@@ -270,10 +273,66 @@ if (bad9.length) fail(9, 'отрасль модели не существует 
   }
 }
 
+/*
+ * ── 13. ЦЕЛОСТНОСТЬ АДРЕСОВ ───────────────────────────────────────────────────
+ * Проверка появилась после того, как я сам сломал сайт. Правка американского
+ * написания прятала адреса под служебные маркеры N, чтобы замена
+ * слов не тронула slug-и. Маска атрибута легла поверх маски адреса, а
+ * разворачивание шло в один слой - внутренний маркер остался в 916 662 местах
+ * на всех 54 077 карточках. Картинки не грузились, кнопка покупки не работала.
+ *
+ * Ни одна из двенадцати прежних проверок этого не видела: они следят за
+ * согласованностью данных, а не за тем, что адрес вообще является адресом.
+ * Поэтому здесь два условия:
+ *   - в файлах нет управляющих символов (их там быть не может ни при каких
+ *     обстоятельствах: это следы незавершённой обработки);
+ *   - каждый href и src - либо путь от корня, либо якорь, либо адрес со
+ *     схемой; ничего другого браузер не откроет.
+ */
+{
+  const ctrlFiles = [], badAttr = [];
+  let ctrlPlaces = 0;
+  const check = rel => {
+    let h;
+    try { h = fs.readFileSync(path.join(ROOT, rel), 'utf8'); } catch (e) { return; }
+    // Управляющие символы, кроме табуляции и переводов строк. Регулярка
+    // собирается из строки: литеральный управляющий символ в исходнике
+    // сам по себе создал бы ту же беду, что мы ловим.
+    const ctrl = h.match(CTRL_RE);
+    if (ctrl) { ctrlPlaces += ctrl.length; if (ctrlFiles.length < 6) ctrlFiles.push(rel + ' (' + ctrl.length + ')'); }
+    for (const m of h.matchAll(/\b(?:href|src)="([^"]*)"/g)) {
+      const v = m[1];
+      if (!v) continue;
+      if (/^(?:https?:|mailto:|tel:|data:|\/|#|\.\.?\/)/.test(v)) continue;
+      if (badAttr.length < 6) badAttr.push(rel + ': «' + v.slice(0, 40) + '»');
+      break;
+    }
+  };
+  const pages = [];
+  (function walk(rel, d) {
+    let ents;
+    try { ents = fs.readdirSync(path.join(ROOT, rel || '.'), { withFileTypes: true }); } catch (e) { return; }
+    for (const it of ents) {
+      if (it.name === 'node_modules' || it.name === '.git') continue;
+      const nx = rel ? rel + '/' + it.name : it.name;
+      if (it.isDirectory()) { if (d < 3) walk(nx, d + 1); }
+      else if (it.name.endsWith('.html')) pages.push(nx);
+    }
+  })('', 0);
+  for (const p of pages) check(p);
+  // карточки - с тем же шагом выборки, что и основной проход
+  const md = fs.readdirSync(MODELS);
+  for (let k = 0; k < md.length; k += step) check('models/' + md[k] + '/index.html');
+
+  console.log('  [13] проверено на целостность адресов: ' + (pages.length + Math.ceil(md.length / step)) + ' файлов');
+  if (ctrlPlaces) fail(13, 'управляющие символы в файлах - следы незавершённой обработки, ' + ctrlPlaces + ' мест', ctrlFiles);
+  if (badAttr.length) fail(13, 'href или src не является адресом', badAttr);
+}
+
 // ── отчёт ──
 console.log('\nпроверено карточек: ' + live + (SAMPLE ? '  (выборка, шаг ' + step + ')' : ''));
 if (!problems.length) {
-  console.log('\nВСЕ 12 ПРОВЕРОК ПРОЙДЕНЫ');
+  console.log('\nВСЕ 13 ПРОВЕРОК ПРОЙДЕНЫ');
   process.exit(0);
 }
 console.log('\nНАРУШЕНИЙ: ' + problems.length);

@@ -237,7 +237,14 @@ ${mosaic}
 // ── Топ-продажи ──────────────────────────────────────────────────────────────
 const TS = 'https://www.turbosquid.com/3d-models/';
 const REF = '?referral=3d_molier-international';
-const topTiles = TOP.map(t => `<a href="${TS}${t.slug}${REF}" target="_blank" rel="noopener" class="tile tile--${t.cols}x${t.rows} tile--buy">
+/*
+ * Плитки топ-продаж ведут на НАШУ карточку, а не сразу на TurboSquid.
+ * Прямая ссылка уводила посетителя с сайта первым же щелчком: он не видел ни
+ * характеристик, ни версий модели, ни соседних товаров, а внутренняя
+ * перелинковка с главной на карточки пропадала совсем. Кнопка покупки стоит на
+ * самой карточке - там, где человек уже решил.
+ */
+const topTiles = TOP.map(t => `<a href="/models/${t.slug}/" class="tile tile--${t.cols}x${t.rows} tile--buy">
 <img src="${t.img}" alt="${esc(t.modelName)}" loading="lazy" decoding="async" width="800" height="450" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
 <span class="tile-tag">${esc(t.cat)}</span>
 <span class="tile-cap"><span class="tile-name">${esc(t.name)}</span><span class="tile-price">${t.price}</span></span>
