@@ -127,36 +127,46 @@ const AGE = [
  * Боевые сценарии разрешены только при явном военном признаке в названии, см.
  * lib/military.mjs; по умолчанию модель считается гражданской.
  */
-const USE_SENT_AIRCRAFT_MIL = 'It works for aerospace visualisation, flight and combat simulation, war-game environments and aviation sequences in film and TV.';
-const USE_SENT_AIRCRAFT_CIV = 'It works for airline and airport visualisation, flight simulation, aviation sequences in film and TV, advertising renders and VR training.';
+export const USE_SENT_AIRCRAFT_MIL = 'It works for aerospace visualisation, flight and combat simulation, war-game environments and aviation sequences in film and TV.';
+export const USE_SENT_AIRCRAFT_CIV = 'It works for airline and airport visualisation, flight simulation, aviation sequences in film and TV, advertising renders and VR training.';
 
-const USE_SENT = {
-  'Aircraft': USE_SENT_AIRCRAFT_CIV,
-  'Ships': 'Typical uses are naval and maritime scenes: film and TV VFX, harbour environments in games, and marine simulation.',
-  'Military Vehicles': 'It suits battlefield simulation, war-game environments, defence training material and military VFX shots.',
-  'Vehicles': 'Common uses are automotive advertising, film and TV backgrounds, game traffic and architectural visualisation.',
-  'Medical': 'It fits medical education, VR anatomy training, patient-facing visualisation and medical sequences in film.',
-  'Industrial Equipment': 'It is useful for industrial and factory visualisation, product rendering, game props and technical presentations.',
-  'Architecture': 'It is aimed at architectural visualisation, city scenes, advertising renders and VR walkthroughs.',
-  'Weapons & Tools': 'It works as a game prop, a film and TV set element, or a reference object in training material.',
-  'Animals & Creatures': 'It suits game creatures, film and TV VFX, educational material and VR experiences.',
-  'Characters & People': 'It works for game characters, crowd fills in film and TV, previsualisation and VR scenes.',
-  'Nature & Plants': 'It fits environment dressing in games, architectural visualisation, film backgrounds and VR scenes.',
-  'Furniture & Interior': 'It is built for interior visualisation, architectural renders, product advertising and game interiors.',
-  'Lighting': 'It suits interior and architectural visualisation, product rendering and game environment dressing.',
-  'Kitchen & Tableware': 'It works for interior renders, food and product advertising, and game and film set dressing.',
-  'Food & Beverages': 'It fits food advertising, packaging visualisation, restaurant interiors and game props.',
-  'Electronics': 'It is aimed at product rendering, advertising, UI and app mockups, and game and film props.',
-  'Containers & Storage': 'It works as warehouse and logistics set dressing, a game prop, or a product-rendering element.',
-  'Clothing & Accessories': 'It suits fashion visualisation, character dressing, product advertising and game assets.',
-  'Sports & Recreation': 'It fits sports broadcast graphics, game assets, advertising renders and VR experiences.',
-  'Toys & Games': 'It works for product advertising, packaging renders, game props and film set dressing.',
-  'Musical Instruments': 'It suits music-video and film sets, game props, product rendering and educational material.',
-  'Signage & Decor': 'It works as set dressing for interiors and streets, advertising renders and game environments.',
-  'Space & Sci-Fi': 'It is built for science-fiction film and TV VFX, space simulation, game environments and VR scenes.',
-  'Collections & Sets': 'The set covers several related objects at once, which saves assembling a scene from separate purchases.',
-  'Other': 'It is ready for game assets, film and TV VFX, product rendering and VR experiences.',
+/*
+ * Ключи здесь - СЛАГИ, а не названия. По названиям было шесть промахов:
+ * «Ships & Boats», «Weapons», «Tools», «Architecture & Landmarks»,
+ * «Electronics & Gadgets» и «Model Bundles & Sets» не совпадали с ключами
+ * 'Ships', 'Weapons & Tools', 'Architecture', 'Electronics' и
+ * 'Collections & Sets' - и эти категории молча получали текст для «Other».
+ * Слаг - единственное, что у категории не меняется при переименовании.
+ */
+export const USE_SENT = {
+  'aircraft': USE_SENT_AIRCRAFT_CIV,
+  'ships': 'Typical uses are naval and maritime scenes: film and TV VFX, harbour environments in games, and marine simulation.',
+  'military-vehicles': 'It suits battlefield simulation, war-game environments, defence training material and military VFX shots.',
+  'vehicles': 'Common uses are automotive advertising, film and TV backgrounds, game traffic and architectural visualisation.',
+  'medical-3d-models': 'It fits medical education, VR anatomy training, patient-facing visualisation and medical sequences in film.',
+  'industrial-equipment': 'It is useful for industrial and factory visualisation, product rendering, game props and technical presentations.',
+  'architecture-landmarks': 'It is aimed at architectural visualisation, city scenes, advertising renders and VR walkthroughs.',
+  'weapons': 'It works as a game prop, a film and TV set element, or a reference object in training material.',
+  'tools': 'It works as a game prop, a film and TV set element, or a reference object in training material.',
+  'animals-creatures': 'It suits game creatures, film and TV VFX, educational material and VR experiences.',
+  'characters-people': 'It works for game characters, crowd fills in film and TV, previsualisation and VR scenes.',
+  'nature-plants': 'It fits environment dressing in games, architectural visualisation, film backgrounds and VR scenes.',
+  'furniture-interior': 'It is built for interior visualisation, architectural renders, product advertising and game interiors.',
+  'lighting': 'It suits interior and architectural visualisation, product rendering and game environment dressing.',
+  'kitchen-tableware': 'It works for interior renders, food and product advertising, and game and film set dressing.',
+  'food-beverages': 'It fits food advertising, packaging visualisation, restaurant interiors and game props.',
+  'electronics-gadgets': 'It is aimed at product rendering, advertising, UI and app mockups, and game and film props.',
+  'containers-storage': 'It works as warehouse and logistics set dressing, a game prop, or a product-rendering element.',
+  'clothing-accessories': 'It suits fashion visualisation, character dressing, product advertising and game assets.',
+  'sports-recreation': 'It fits sports broadcast graphics, game assets, advertising renders and VR experiences.',
+  'toys-games': 'It works for product advertising, packaging renders, game props and film set dressing.',
+  'musical-instruments': 'It suits music-video and film sets, game props, product rendering and educational material.',
+  'signage-decor': 'It works as set dressing for interiors and streets, advertising renders and game environments.',
+  'space-scifi': 'It is built for science-fiction film and TV VFX, space simulation, game environments and VR scenes.',
+  'collections-sets': 'The set covers several related objects at once, which saves assembling a scene from separate purchases.',
+  'other': 'It is ready for game assets, film and TV VFX, product rendering and VR experiences.',
 };
+
 
 // ── предложения из ИЗМЕРЕННЫХ данных ─────────────────────────────────────────
 // Полигоны, вершины, разрешение текстур и габариты собраны из нашего inventory
@@ -260,7 +270,7 @@ export function description(f, name, cat, price, seed) {
   // Военная заготовка - только явным военным моделям.
   parts.push(cat === 'Aircraft'
     ? (isMilitary(name, catSlug(cat)) ? USE_SENT_AIRCRAFT_MIL : USE_SENT_AIRCRAFT_CIV)
-    : (USE_SENT[cat] || USE_SENT['Other']));
+    : (USE_SENT[catSlug(cat)] || USE_SENT['other']));
   return parts.join(' ');
 }
 

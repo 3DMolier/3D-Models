@@ -130,3 +130,33 @@ summary:focus-visible,
     justify-content: center;
   }
 }
+
+/* ── Шапка каталога ────────────────────────────────────────────────────────
+   Общий styles.css задаёт .hero-sub правило для главной страницы, где шапка
+   выровнена по центру: max-width 600px и margin 0 auto. На каталоге шапка
+   прижата влево, и подзаголовок уезжал на 300 пикселей вправо от заголовка.
+   Здесь раньше стояло только margin-top, а оно перебивает лишь верхнее поле -
+   auto по бокам оставалось. Задаём поля целиком. */
+.hero-sub{margin:6px 0 0;max-width:760px}
+
+/* ── Строки фильтров ───────────────────────────────────────────────────────
+   Категории, цена и сертификат лежали одной строкой через тонкие разделители
+   и сливались: глаз не находил, где кончается одно и начинается другое.
+   Теперь у каждой группы своя строка с подписью слева. */
+.filter-bar{flex-direction:column;align-items:stretch;gap:10px}
+.fb-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fb-row .fb-label{flex:0 0 74px}
+/* Число рядом с названием категории: показывает объём, но не спорит за
+   внимание с самим названием. */
+.ftag-n{color:#9a9a9a;font-variant-numeric:tabular-nums;font-size:11px;margin-left:2px}
+.ftag.active .ftag-n{color:#d0d0d0}
+
+/* Ссылка на постраничный обход - под сеткой. Она нужна роботу как вход в
+   /browse/, человеку на глаза не лезет. */
+.fc-browse-all{text-align:center;margin:18px 0 8px;font-size:13px}
+.fc-browse-all a{color:var(--muted);text-decoration:underline}
+.fc-browse-all a:hover{color:#111}
+
+@media (max-width: 767px){
+  .fb-row .fb-label{flex:0 0 100%}
+}

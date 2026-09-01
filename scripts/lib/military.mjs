@@ -26,7 +26,7 @@
 // «F35». Дефис поэтому необязателен - иначе Boeing B52 Stratofortress
 // проходил как гражданский. Сюда же добавлены имена собственные, по которым
 // модель узнают без буквенно-цифрового индекса: Iroquois, Huey, Kamikaze.
-const MIL = /\b(fighter|bomber|military|combat|warplane|warship|battleship|destroyer|frigate|submarine|attack|stealth|air force|navy|naval|army|missile|gunship|interceptor|reconnaissance|awacs|artillery|tank\b|armou?red|howitzer|kamikaze|f-?\d\d?\b|su-?\d\d|mig-?\d|mi-?\d\b|uh-?\d|ah-?\d|ch-?\d|a-?10\b|b-?\d\d\b|c-?130|c-?17\b|kc-?\d|apache|black\s?hawk|chinook|osprey|raptor|lightning ii|typhoon|rafale|gripen|hornet|tomcat|globemaster|hercules|spitfire|messerschmitt|junkers|lancaster|corsair|predator|reaper|patriot|abrams|leopard \d|bradley|humvee|iroquois|huey|stratofortress|warthog)/i;
+const MIL = /\b(fighter|bomber|military|combat|warplane|warship|battleship|destroyer|frigate|submarine|attack|stealth|air force|navy|naval|army|missile|gunship|interceptor|reconnaissance|awacs|artillery|tank\b|armou?red|howitzer|kamikaze|f-?\d\d?\b|su-?\d\d|mig-?\d|mi-?\d\b|uh-?\d|ah-?\d|ch-?\d|a-?10\b|b-?\d\d\b|c-?130|c-?17\b|kc-?\d|apache|black\s?hawk|chinook|osprey|raptor|lightning ii|typhoon|rafale|gripen|hornet|tomcat|globemaster|hercules|spitfire|messerschmitt|junkers|lancaster|corsair|predator|reaper|patriot|abrams|leopard \d|bradley|humvee|iroquois|huey|stratofortress|warthog|air\s?defen[cs]e|anti-?\s?aircraft|dreadnought|war\s?mech|avlb|battlefield|ak-?47|mq-?\d+|radar\s?system|multi\s?mission\s?radar)/i;
 
 // Гражданские признаки. Нужны не для решения, а для отчётности: решение
 // принимает MIL, всё остальное - гражданское.

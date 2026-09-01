@@ -25,6 +25,19 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { CATEGORIES, catBySlug, nameOf, menuNameOf, h1Of, escName, loadModelCategories } from './lib/taxonomy.mjs';
+import { USE_SENT, USE_SENT_AIRCRAFT_MIL, USE_SENT_AIRCRAFT_CIV } from './card-content.mjs';
+import { isMilitary } from './lib/military.mjs';
+import { toUS } from './lib/spelling.mjs';
+
+// Все заготовки «для чего годится» одним списком: по нему находим ту, что
+// застыла на странице от прежней категории.
+const BASE_USE_SENT = [...new Set([...Object.values(USE_SENT), USE_SENT_AIRCRAFT_MIL, USE_SENT_AIRCRAFT_CIV])];
+// Страницы переведены на американское написание, а заготовки в генераторе
+// записаны британским. Поэтому ищем оба варианта: без этого поиск молча
+// не находил ничего - «aerospace visualisation» против «visualization».
+const ALL_USE_SENT = [...new Set([...BASE_USE_SENT, ...BASE_USE_SENT.map(toUS)])];
+// Название модели берём из h1 - оно нужно военному признаку.
+const nameOfCard = html => ((html.match(/<h1[^>]*>([^<]*)</) || [])[1] || '').replace(/&amp;/g, '&');
 
 const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
 const DRY = process.argv.includes('--dry');
@@ -36,7 +49,7 @@ const modelCat = loadModelCategories();
 
 // ── 1. карточки моделей ──
 let cards = 0, crumbFix = 0, specFix = 0, ldFix = 0, chipFix = 0, ctaFix = 0, textFix = 0;
-let aboutFix = 0, moreFix = 0, backFix = 0, phFix = 0;
+let aboutFix = 0, moreFix = 0, backFix = 0, phFix = 0, faqFix = 0, useFix = 0;
 const idx = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'fc-index.json'), 'utf8'));
 const slugOfId = new Map();
 for (let k = 0; k < idx.chunks; k++) {
@@ -91,6 +104,14 @@ for (const [id, cat] of Object.entries(modelCat)) {
     (x, a, cur, b) => { if (cur.trim() !== nm) textFix++; return a + nm + b; });
   h = h.replace(/(Browsing the )([A-Za-z][A-Za-z&; ]{1,40}?)( category shows)/,
     (x, a, cur, b) => { if (cur.trim() !== nm) textFix++; return a + nm + b; });
+  /*
+   * Тот же абзац, но когда название категории в нём - ссылка. Правило выше
+   * меняет только подпись и до ссылки не дотягивается: в её адресе оставалась
+   * прежняя категория. На виниловой пластинке подпись читалась «Signage &
+   * Decor», а вела ссылка в Electronics & Gadgets - 12 342 карточки.
+   */
+  h = h.replace(/(Browsing the <a href=")\/categories\/[a-z0-9-]+\/("[^>]*>)[^<]*(<\/a> category shows)/,
+    (x, a, b, c) => { faqFix++; return a + '/categories/' + cat + '/' + b + nm + c; });
 
   /*
    * Ещё три места, где категория жила отдельной жизнью. Их пропустили в первый
@@ -113,6 +134,26 @@ for (const [id, cat] of Object.entries(modelCat)) {
   // и без того видит пустой прямоугольник.
   h = h.replace(/(<span class="mp-placeholder-cat">)[^<]*(<\/span>)/g,
     (x, a, b) => { phFix++; return a + nm + b; });
+  /*
+   * Предложение «для чего годится». Оно тоже застывало от прежней категории, и
+   * это читалось хуже всего: бак IBC на 180 галлонов в разделе «Containers &
+   * Storage» предлагался для «battlefield simulation, war-game environments,
+   * defence training material». Гражданский Airbus - для «combat simulation».
+   * Заготовок конечное число, они лежат в card-content.mjs; находим любую из
+   * них и ставим ту, что положена нынешней категории. Для самолётов выбор
+   * зависит от военного признака в названии - lib/military.mjs.
+   */
+  {
+    const want = toUS(cat === 'aircraft'
+      ? (isMilitary(nameOfCard(h), cat) ? USE_SENT_AIRCRAFT_MIL : USE_SENT_AIRCRAFT_CIV)
+      : (USE_SENT[cat] || USE_SENT['other']));
+    for (const s of ALL_USE_SENT) {
+      if (s === want || h.indexOf(s) === -1) continue;
+      h = h.split(s).join(want);
+      useFix++;
+      break;
+    }
+  }
 
   if (h !== before) { cards++; if (!DRY) fs.writeFileSync(file, h); }
 }
@@ -120,7 +161,7 @@ console.log('карточек приведено к источнику: ' + card
   + ' (крошек ' + crumbFix + ', строк Category ' + specFix + ', полей в разметке ' + ldFix
   + ', чипов ' + chipFix + ', кнопок Browse ' + ctaFix + ', упоминаний в тексте ' + textFix
   + ', about ' + aboutFix + ', «More in» ' + moreFix + ', ссылок назад ' + backFix
-  + ', подписей под картинкой ' + phFix + ')');
+  + ', подписей под картинкой ' + phFix + ', ссылок в ответах ' + faqFix + ', назначений ' + useFix + ')');
 
 // ── 2. чипы в сетках и заголовки страниц категорий ──
 // Чип показывает категорию ТОЙ модели, на которую ведёт ссылка, поэтому

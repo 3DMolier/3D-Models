@@ -26,6 +26,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { loadModelCategories } from './lib/taxonomy.mjs';
+import { proseOf } from './lib/page-text.mjs';
 import { isMilitary } from './lib/military.mjs';
 import { brandOf } from './lib/brands.mjs';
 
@@ -78,6 +79,7 @@ const SITE_INDUSTRIES = new Set(fs.readdirSync(path.join(ROOT, 'industries'), { 
 
 // ── 3-10: проходим по карточкам ──
 const dirs = fs.readdirSync(MODELS);
+const MIL_CATS = new Set(['military-vehicles', 'weapons']);
 const step = SAMPLE ? Math.max(1, Math.floor(dirs.length / SAMPLE)) : 1;
 let live = 0;
 const bad3 = [], bad4 = [], bad5 = [], bad6 = [], bad7 = [], bad8 = [], bad9 = [];
@@ -105,6 +107,18 @@ for (let k = 0; k < dirs.length; k += step) {
     if (diff.length && bad3.length < 6) {
       bad3.push(d + ' -> должно «' + want + '», стоит ' + diff.map(([k2, v]) => k2 + '=«' + dec(v) + '»').join(', '));
     } else if (diff.length) bad3.push('…');
+    // Крошка и ссылка в ответе FAQ - тоже категория, только слагом, а не
+    // подписью. Их пропускали: подпись рядом успевали поправить, а адрес
+    // оставался прежним, и человек из «Signage & Decor» уезжал в «Electronics».
+    const bySlug = {
+      крошка: (h.match(/<a href="\/categories\/([a-z0-9-]+)\/" class="mp-bc-link">/) || [])[1],
+      'ссылка в ответе': (h.match(/href="\/categories\/([a-z0-9-]+)\/">[^<]*<\/a> category shows the closest/) || [])[1],
+      'кнопка Browse': (h.match(/<a href="\/categories\/([a-z0-9-]+)\/"[^>]*>\s*Browse /) || [])[1],
+    };
+    const diffSlug = Object.entries(bySlug).filter(([, v]) => v && v !== cat);
+    if (diffSlug.length && bad3.length < 6) {
+      bad3.push(d + ' -> должно «' + cat + '», стоит ' + diffSlug.map(([k2, v]) => k2 + '=«' + v + '»').join(', '));
+    } else if (diffSlug.length) bad3.push('…');
   }
 
   // 4. есть rigged-версия -> «Rigged versions: Available»
@@ -117,8 +131,14 @@ for (let k = 0; k < dirs.length; k += step) {
   }
 
   // 5. не военная модель -> без боевых сценариев
-  if (cat === 'aircraft' && !isMilitary(h1, cat) && !isMilitary(d.replace(/-/g, ' '), cat)) {
-    if (/combat simulation|war-game|battlefield simulation|defence training/i.test(h) && bad5.length < 6) bad5.push(d);
+  // Боевые обороты допустимы только у военной техники и оружия. Раньше
+  // проверяли одни самолёты, и мимо проходил бак IBC, которому текст обещал
+  // «battlefield simulation, defence training material».
+  if (cat && !MIL_CATS.has(cat) && !isMilitary(h1, cat) && !isMilitary(d.replace(/-/g, ' '), cat)) {
+    // Только собственный текст карточки: в блоке «похожие» лежат чужие
+    // названия, и дальномер Makita ловился на соседе «Battlefield Laser
+    // Rangefinder» - см. lib/page-text.mjs.
+    if (/combat simulation|war-?game environment|battlefield (?:simulation|visuali[sz]ation)|defen[cs]e training/i.test(proseOf(h)) && bad5.length < 6) bad5.push(d);
   }
 
   // 6. PBR: No -> страница не наследует утверждение «PBR как стандарт»
@@ -329,10 +349,67 @@ if (bad9.length) fail(9, 'отрасль модели не существует 
   if (badAttr.length) fail(13, 'href или src не является адресом', badAttr);
 }
 
+
+/*
+ * 14. Каталог не должен одновременно показывать модели и объявлять, что моделей
+ * нет. Блок «No models found» лежал в разметке всегда и лишь прятался стилем:
+ * человек его не видел, а робот и читающая программа получали «No models found»
+ * и «Showing 0 of 0» прямо под сеткой из полусотни карточек. Скрывать положено
+ * атрибутом hidden - только он убирает узел из дерева доступности.
+ */
+{
+  const bad = [];
+  const f = path.join(ROOT, 'catalog', 'index.html');
+  if (fs.existsSync(f)) {
+    const h = fs.readFileSync(f, 'utf8');
+    // Классов у карточки несколько - «model-card card-glow». Точное сравнение
+    // давало ноль, и проверка молча проходила бы при ЛЮБОЙ разметке.
+    const cards = (h.match(/class="(?:model-card|mc)[ "]/g) || []).length;
+    const empty = h.match(/<div id="empty"([^>]*)>/);
+    const prog = h.match(/<div id="fc-progress"([^>]*)>/);
+    if (cards > 0 && empty && !/\bhidden\b/.test(empty[1])) bad.push('блок «No models found» не скрыт атрибутом hidden');
+    if (cards > 0 && prog && !/\bhidden\b/.test(prog[1])) bad.push('строка «Showing X of Y» видна до подсчёта');
+    console.log('  [14] каталог: карточек в разметке ' + cards
+      + ', блок «нет результатов» ' + (empty ? (/\bhidden\b/.test(empty[1]) ? 'скрыт' : 'ВИДЕН') : 'отсутствует'));
+  }
+  if (bad.length) fail(14, 'каталог одновременно показывает модели и сообщает, что их нет', bad);
+}
+
+/*
+ * 15. Формат и родная программа на карточке должны отвечать названию модели.
+ *
+ * ОГОВОРКА. Списка форматов по каждой модели у нас НЕТ: ни в Excel-отчёте, ни в
+ * models_master.csv его нет, эти строки выводятся по названию (см. правило в
+ * card-content.mjs). Поэтому «формат существует в исходных данных» проверить
+ * нечем, и мы проверяем то, что проверить можно: карточка «for Cinema 4D» не
+ * должна предлагать набор форматов 3ds Max, и наоборот.
+ */
+{
+  const bad = [];
+  let checked = 0;
+  const md = fs.readdirSync(MODELS);
+  for (let k = 0; k < md.length; k += step) {
+    const d = md[k];
+    let h;
+    try { h = fs.readFileSync(path.join(MODELS, d, 'index.html'), 'utf8'); } catch (e) { continue; }
+    if (/http-equiv="refresh"/i.test(h.slice(0, 400))) continue;
+    const nat = (h.match(/<th[^>]*>Native<\/th><td[^>]*>([^<]*)</) || [])[1];
+    if (!nat) continue;
+    checked++;
+    const n = ((h.match(/<h1[^>]*>([^<]*)</) || [])[1] || '').toLowerCase();
+    const want = /\bfor\s+cinema\s*4d\b/.test(n) ? 'Cinema 4D'
+      : /\bfor\s+maya\b/.test(n) ? 'Maya'
+        : /\bfor\s+blender\b/.test(n) ? 'Blender' : null;
+    if (want && nat.indexOf(want) === -1 && bad.length < 6) bad.push(d + ': Native «' + nat + '», в названии ' + want);
+  }
+  console.log('  [15] родная программа сверена с названием: ' + fmt(checked) + ' карточек');
+  if (bad.length) fail(15, 'родная программа не отвечает названию модели', bad);
+}
+
 // ── отчёт ──
 console.log('\nпроверено карточек: ' + live + (SAMPLE ? '  (выборка, шаг ' + step + ')' : ''));
 if (!problems.length) {
-  console.log('\nВСЕ 13 ПРОВЕРОК ПРОЙДЕНЫ');
+  console.log('\nВСЕ 15 ПРОВЕРОК ПРОЙДЕНЫ');
   process.exit(0);
 }
 console.log('\nНАРУШЕНИЙ: ' + problems.length);

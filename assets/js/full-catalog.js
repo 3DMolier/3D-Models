@@ -5,8 +5,8 @@
 // Категория едет вместе с чанком, отдельного запроса не появляется. Осторожно:
 // c - это cert, а не category; на этом легко решить, что категория уже есть.
 var FC={i:[],n:[],p:[],s:[],c:[],g:[]}, IMGS={}, fcReady=false, CATS=[];
-var searchQ='', selPrice=null, selCert=null, selCat=null, sortMode='sales';
-var filtered=[], page=0, PAGE_SIZE=60;
+var searchQ='', selPrice=null, selCat=null, sortMode='sales';
+var filtered=[], page=0, PAGE_SIZE=60, DEFAULT_LIMIT=100, noLimit=false;
 var IDLE_PRELOAD_LIMIT=2, idlePreloaded=0;
 var loadedImgChunkSet={};
 
@@ -188,7 +188,6 @@ function applyFilters(){
       else if(selPrice==='u120'&&(pr<60||pr>=120))continue;
       else if(selPrice==='u999'&&pr<120)continue;
     }
-    if(selCert!==null&&FC.c[i]!==selCert)continue;
     filtered.push(i);
   }
   filtered.sort(function(a,b){
@@ -198,9 +197,19 @@ function applyFilters(){
     if(sortMode==='name')return FC.n[a]<FC.n[b]?-1:FC.n[a]>FC.n[b]?1:0;
     return 0;
   });
+  /*
+   * Первая выдача - сотня лидеров продаж, а не весь каталог. Без фильтров в
+   * строке стояло «19 999 of 54 077»: столько никто не листает, а браузер
+   * держал в памяти всю сетку. Как только человек что-то ищет или выбирает
+   * категорию - ограничение снимается, там оно мешало бы.
+   */
+  noLimit = !!searchQ || selCat !== null || selPrice !== null;
+  if (!noLimit && filtered.length > DEFAULT_LIMIT) filtered = filtered.slice(0, DEFAULT_LIMIT);
   page=0;
+  // updateProgress() здесь больше не зовём: он внутри renderGrid. Снаружи он
+  // отменял скрытие строки при нулевой выдаче - «Showing 0 of 0 models»
+  // возвращалось прямо над надписью «No models found».
   renderGrid();
-  updateProgress();
   updateStatus();
 }
 
@@ -216,9 +225,13 @@ function renderGrid(){
     // hidden, а не display: скрытое стилем всё равно попадает в дерево
     // доступности, а у заголовка внутри стоит role="status" - его объявляют
     // вслух при появлении.
-    var searched=!!searchQ||selPrice!==null||selCert!==null||selCat!==null;
+    var searched=!!searchQ||selPrice!==null||selCat!==null;
     if(emptyEl){ if(searched)emptyEl.removeAttribute('hidden'); else emptyEl.setAttribute('hidden',''); }
     if(lmBtn)lmBtn.style.display='none';
+    // При нуле результатов строка «Showing X of Y» врала бы прошлыми
+    // числами прямо над надписью «No models found». Прячем её.
+    var pg=document.getElementById('fc-progress');
+    if(pg)pg.setAttribute('hidden','');
     return;
   }
   if(emptyEl)emptyEl.setAttribute('hidden','');
@@ -231,6 +244,11 @@ function renderGrid(){
       lmBtn.textContent='Load more ('+(filtered.length-toShow.length)+' remaining)';
     }else{lmBtn.style.display='none';}
   }
+  // Строку «Showing X of Y» обновляем здесь, а не у каждого, кто зовёт
+  // renderGrid. Раньше её обновляли снаружи, и обработчик кнопки «Load more»
+  // это делать забывал: после прокрутки поиска по слову helicopter на экране
+  // лежали все 262 карточки, а строка упрямо повторяла «Showing 60 of 262».
+  updateProgress();
 }
 
 function makeSlug(name,id){
@@ -277,7 +295,7 @@ if(qEl){
 }
 if(sortSel)sortSel.addEventListener('change',function(){sortMode=this.value;ensureRemainingChunks();ensureRemainingImgChunks();applyFilters();});
 if(clearAll)clearAll.addEventListener('click',function(){
-  searchQ='';selPrice=null;selCert=null;selCat=null;
+  searchQ='';selPrice=null;selCat=null;
   if(qEl)qEl.value='';
   document.querySelectorAll('.ftag').forEach(function(b){b.classList.remove('active');});
   clearAll.classList.remove('show');
@@ -290,17 +308,8 @@ document.querySelectorAll('.ftag[data-price]').forEach(function(btn){
     var pr=this.dataset.price;
     if(selPrice===pr){selPrice=null;this.classList.remove('active');}
     else{document.querySelectorAll('.ftag[data-price]').forEach(function(b){b.classList.remove('active');});selPrice=pr;this.classList.add('active');}
-    if(clearAll)clearAll.classList.toggle('show',selPrice!==null||selCert!==null||selCat!==null||!!searchQ);
+    if(clearAll)clearAll.classList.toggle('show',selPrice!==null||selCat!==null||!!searchQ);
     if(typeof gtag==='function')gtag('event','filter_price',{price_band:selPrice||'none',page_type:'catalog'});
-    ensureRemainingChunks();ensureRemainingImgChunks();applyFilters();
-  });
-});
-document.querySelectorAll('.ftag[data-cert]').forEach(function(btn){
-  btn.addEventListener('click',function(){
-    var cert=parseInt(this.dataset.cert);
-    if(selCert===cert){selCert=null;this.classList.remove('active');}
-    else{document.querySelectorAll('.ftag[data-cert]').forEach(function(b){b.classList.remove('active');});selCert=cert;this.classList.add('active');}
-    if(clearAll)clearAll.classList.toggle('show',selPrice!==null||selCert!==null||selCat!==null||!!searchQ);
     ensureRemainingChunks();ensureRemainingImgChunks();applyFilters();
   });
 });
@@ -311,7 +320,7 @@ document.querySelectorAll('.ftag[data-cat]').forEach(function(btn){
     var cat=this.dataset.cat;
     if(selCat===cat){selCat=null;this.classList.remove('active');}
     else{document.querySelectorAll('.ftag[data-cat]').forEach(function(b){b.classList.remove('active');});selCat=cat;this.classList.add('active');}
-    if(clearAll)clearAll.classList.toggle('show',selPrice!==null||selCert!==null||selCat!==null||!!searchQ);
+    if(clearAll)clearAll.classList.toggle('show',selPrice!==null||selCat!==null||!!searchQ);
     if(typeof gtag==='function')gtag('event','filter_category',{category:selCat||'none',page_type:'catalog'});
     ensureRemainingChunks();ensureRemainingImgChunks();applyFilters();
   });
