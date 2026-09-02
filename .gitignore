@@ -55,3 +55,18 @@ industries/softwaredevelopment/
 industries/eventmanagement/
 industries/3dprinting/
 .tmp/
+
+# Заготовки пересборки: единые записи моделей и данные, снятые со страниц.
+# Сайтом не запрашиваются - это вход и выход сборки, а не содержимое.
+# Не публикуем: 277 МБ записей плюс 32 МБ снятого утяжелили бы рабочее дерево
+# у самого предела публикации GitHub Pages (срыв был на 3,33 ГБ).
+# Всё восстанавливается: записи - build-model-records.mjs, снятое - за 70 секунд
+# скриптами extract-display-names.mjs и extract-gallery.mjs прямо со страниц.
+data/records/
+data/model-display-name.json
+data/model-hero.json
+data/model-keywords.json
+data/model-gallery.json
+data/model-subtype.json
+data/model-animated.json
+data/model-video-page.json

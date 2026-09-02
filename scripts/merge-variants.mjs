@@ -20,6 +20,7 @@ import path from 'node:path';
 // Категория новых товаров по данным отчёта TurboSquid - тот же источник, по
 // которому построены хабы категорий.
 import { classifyByReport } from './category-map.mjs';
+import { familyName } from './lib/model-name.mjs';
 
 const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
 const MODELS = path.join(ROOT, 'models');
@@ -408,54 +409,9 @@ function buildGroups(kind) {
   return out;
 }
 
-// Маркеры исполнения, которые снимаем с заголовка объединённой карточки техники.
-const IDENT_MARKS = [
-  SOFT,
-  /\s*\b(?:low\s+poly|lowpoly)\b\s*/ig,
-  /\s*\b(?:rigged|rigid|animated|simplified)\b\s*/ig,
-  /\s*\b(?:simple|basic|full|detailed)\s+interior\b\s*/ig,
-  /\s*\b(?:dirty|clean)\b\s*/ig,
-  COLOR_ANY,
-  /\s*\bcolor\b\s*/ig,
-];
-// Описательный «хвост» в заголовке объединённой карточки не нужен: главной может
-// оказаться «Mercedes-Benz 300SL Classic Sports Car Red», и серия из 11 исполнений
-// получала заголовок с чужим описанием. Убираем только общие слова - Gullwing,
-// Atlas и прочие имена остаются.
-const IDENT_TITLE_FILLER = /\b(classic|vintage|retro|sports?|car|cars|vehicle|automobile|coupe|sedan|suv|crossover|luxury|modern|airlines?|airways)\b/ig;
-const identTitle = n => {
-  let s = String(n);
-  for (const re of IDENT_MARKS) s = s.replace(re, ' ');
-  s = s.replace(IDENT_TITLE_FILLER, ' ').replace(/\s{2,}/g, ' ').trim();
-  // Если после чистки осталось меньше двух слов, чистка съела слишком много -
-  // возвращаем исходное имя без маркеров исполнения.
-  if (s.split(/\s+/).filter(Boolean).length < 2) {
-    s = String(n);
-    for (const re of IDENT_MARKS) s = s.replace(re, ' ');
-    s = s.replace(/\s{2,}/g, ' ').trim();
-  }
-  return s.replace(/\s+([,.])/g, '$1').trim();
-};
-
-// Заголовок объединённой карточки техники - только то, что общее у ВСЕХ версий.
-// Иначе главной оказывается «Jet Airliner Airbus A330-200 Qatar», а внутри ещё
-// Emirates, Lufthansa и Cathay Pacific: название обещает не то, что на странице.
-// Слово остаётся, если встречается в имени каждой версии (без учёта дефисов
-// и регистра: «Mercedes-Benz» и «Mercedes Benz» - одно и то же).
-const normTok = w => w.toLowerCase().replace(/[^a-z0-9]+/g, '');
-function commonTitle(main, rest) {
-  const setsOf = n => new Set(String(n).split(/\s+/).map(normTok).filter(Boolean));
-  const others = rest.map(x => setsOf(x.name));
-  const kept = String(main.name).split(/\s+/)
-    .filter(w => { const t = normTok(w); return t && others.every(s => s.has(t)); });
-  const title = identTitle(kept.join(' '));
-  // Чистка могла срезать слишком много: у группы Porsche Cayenne общими остались
-  // только «AWD 4dr» - как название карточки это бессмыслица. Требуем хотя бы одно
-  // полноценное слово и разумную длину, иначе берём имя главной.
-  const ws = title.split(/\s+/).filter(Boolean);
-  const meaningful = ws.length >= 2 && title.length >= 10 && ws.some(w => w.length >= 4 && !/\d/.test(w));
-  return meaningful ? title : identTitle(main.name);
-}
+// Разбор имён - из общего модуля. Своя копия этих правил жила здесь и в
+// lib/variant-label.mjs; расходились бы при первой же правке.
+const commonTitle = (main, rest) => familyName(main.name, rest.map(x => x.name));
 
 // ── проход по Root ID из отчёта «Product Report» ────────────────────────────
 //

@@ -21,6 +21,9 @@ function walk(dir) {
     if (item.isDirectory()) {
       // Skip node_modules and .git
       if (item.name === 'node_modules' || item.name === '.git') continue;
+      // .tmp - рабочая папка: пробные сборки и выгрузки. Это не часть сайта,
+      // в git она не попадает, и аудит ругался на неё как на страницы сайта.
+      if (item.name === '.tmp') continue;
       // partials/ - образцы шапки и подвала. Это куски разметки, а не страницы:
       // title и description у них быть не должно, ссылок на них нет, в robots.txt закрыты.
       if (item.name === 'partials') continue;

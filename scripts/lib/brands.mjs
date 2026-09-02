@@ -107,6 +107,22 @@ const RES = BRANDS.map(b => {
   return { brand: b, re: new RegExp('(^|[^A-Za-z0-9])' + esc + '($|[^A-Za-z0-9])', 'i') };
 });
 
+/*
+ * Отдельные модели, марку которых нельзя опознать общим правилом.
+ * «Bell» и «Ring» - настоящие марки (вертолёты Bell, звонки Ring от Amazon), но
+ * оба слова слишком общие: списком они поймали бы «Church Bell», «Boxing Ring»,
+ * «Ring Set» и сотни других. Здесь их ровно два, и они названы поимённо.
+ * Живые страницы у обеих уже стоят с лицензией Editorial - убирать ограничение
+ * на основании того, что наш список неполон, нельзя.
+ */
+const BRAND_BY_ID = {
+  '1196786': 'Bell',   // Bell 412 Fire Department Helicopter
+  '2478366': 'Ring',   // Ring Smart Video Doorbell
+};
+
+/** Марка по номеру модели, если общее правило её не находит. */
+export const brandById = id => BRAND_BY_ID[String(id)] || null;
+
 /** Какая марка нашлась в названии, или null. */
 export function brandOf(name) {
   const n = ' ' + String(name) + ' ';

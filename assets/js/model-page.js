@@ -86,3 +86,7 @@
     if(b){ watch(b); obs.disconnect(); }
   }).observe(document.body, { childList:true });
 })();
+
+/* Плеер ролика подгружается по клику: голый iframe тянул бы около мегабайта
+   и ставил куки до того, как посетитель решил смотреть. */
+(function(){var b=document.querySelector(".mp-video-frame");if(!b)return;b.addEventListener("click",function(){var id=b.getAttribute("data-yt");if(!id||b.dataset.on)return;b.dataset.on="1";var f=document.createElement("iframe");f.src="https://www.youtube.com/embed/"+id+"?autoplay=1&rel=0";f.title=b.getAttribute("data-title")||"Video";f.allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture";f.setAttribute("allowfullscreen","");f.loading="lazy";b.innerHTML="";b.appendChild(f);b.style.cursor="default";});})();

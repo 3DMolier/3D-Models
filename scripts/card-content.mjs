@@ -27,6 +27,8 @@ const indsOf = (f, catSlug) => industriesOf(f.industries, catSlug);
 // пока не оживёт API студии. Правила заданы основателем; порядок проверок
 // важен - «Rigged for Maya» это Maya, а не 3ds Max.
 const FORMATS = 'MAX, FBX, OBJ, Cinema 4D R23, Maya 2022, Blender 3.4, glTF, 3DS, USDz, USD 2.0';
+// Сокращения только там, где полное имя длиннее пользы от него.
+const FMT_SHORT = { 'Cinema 4D R23': 'C4D R23' };
 const MAX_NATIVE = '3ds Max 2020 + V-Ray 4.3';
 export function nativeOf(name) {
   const n = String(name);
@@ -38,7 +40,22 @@ export function nativeOf(name) {
 }
 
 export const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-export const plain = s => String(s).replace(/&amp;/g, '&').replace(/-/g, ' - ').replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/<[^>]+>/g, '');
+/*
+ * Текст без разметки - для полей schema.org и подписей.
+ *
+ * Дефис разносим пробелами ТОЛЬКО когда он стоит между словами как тире.
+ * Прежняя версия разносила любой, и «Space & Sci-Fi» превращалось в
+ * «Space & Sci - Fi» прямо в разметке для поисковика.
+ */
+export const plain = s => String(s)
+  .replace(/&amp;/g, '&')
+  .replace(/-/g, (m, i, str) =>
+    (/[\w]/.test(str[i - 1] || '') && /[\w]/.test(str[i + 1] || '')) ? '-' : ' - ')
+  .replace(/&#x27;|&#39;/g, "'")
+  .replace(/&quot;/g, '"')
+  .replace(/<[^>]+>/g, '')
+  // Уже разделённое тире не должно обрасти двойными пробелами.
+  .replace(/\s{2,}/g, ' ');
 
 const pick = (arr, seed) => arr[Math.abs(seed) % arr.length];
 
@@ -49,7 +66,14 @@ export const proseName = s => String(s)
   .replace(/\s+3D\s+Models?$/i, '')
   .replace(/\s+3D\s+Models?\s+(Set|Collection)$/i, ' $1')
   .trim() || String(s);
-const yearOf = f => f.days ? new Date(Date.now() - f.days * 86400000).getFullYear() : null;
+/*
+ * Год выхода листинга. Настоящая дата публикации приходит в f.published из
+ * отчёта TurboSquid; вычисление «сегодня минус дни в продаже» осталось
+ * запасным - для карточек, которых в отчёте нет. Оно неточное: снимок дней
+ * не двигается, а «сегодня» двигается, поэтому год со временем убегает.
+ */
+const yearOf = f => (f.published ? Number(String(f.published).slice(0, 4))
+  : (f.days ? new Date(Date.now() - f.days * 86400000).getFullYear() : null));
 
 // Адрес хаба категории. Раньше он вычислялся из названия по общему правилу, и для
 // двух категорий это давало несуществующие страницы: «Medical» -> /categories/medical/
@@ -73,7 +97,7 @@ const OPEN = [
   (n, c, p) => `This ${c} model - ${n} - is ready to drop into a scene as-is, and sells for $${p} on TurboSquid.`,
   (n, c, p) => `${n} belongs to our ${c} range and is offered at $${p} through the TurboSquid marketplace.`,
   (n, c, p) => `Looking for a ${c} asset? The ${n} is a finished, render-ready model at $${p}.`,
-  (n, c, p) => `${n} is one of the ${c} models in the 3D Molier catalogue, listed at $${p}.`,
+  (n, c, p) => `${n} is one of the ${c} models in the 3D Molier catalog, listed at $${p}.`,
   (n, c, p) => `Priced at $${p}, the ${n} is a finished ${c} model rather than a base mesh you have to build on.`,
 ];
 
@@ -82,7 +106,7 @@ const CERT_TXT = {
     `It carries TurboSquid's CheckMate certification, which means an independent reviewer verified the topology, the naming of objects and materials, and that the geometry is built to real-world scale.`,
     `CheckMate certification confirms the mesh passed TurboSquid's manual quality audit: clean topology, sane object naming, correct units and no stray geometry.`,
     `The model is CheckMate certified - a human reviewer checked the wireframe, the material assignments and the real-world dimensions before it went on sale.`,
-    `CheckMate is TurboSquid's manual review programme, and this model passed it: no n-gons where they would hurt, no unnamed objects, no scale surprises on import.`,
+    `CheckMate is TurboSquid's manual review program, and this model passed it: no n-gons where they would hurt, no unnamed objects, no scale surprises on import.`,
     `Because it is CheckMate certified, the usual import checks are already done - units, pivots and material names were audited by a reviewer rather than self-declared.`,
   ],
   'StemCell': [
@@ -95,7 +119,7 @@ const CERT_TXT = {
   'no certification': [
     `The mesh is built with clean quad-based topology and correct real-world proportions, so it subdivides predictably and sits at the right size next to other objects in a scene.`,
     `Geometry is modelled to real-world proportions with a tidy edge flow, which keeps it usable both as a background element and in closer shots.`,
-    `The model uses efficient, well-organised geometry - no hidden faces or overlapping shells to clean up before rendering.`,
+    `The model uses efficient, well-organized geometry - no hidden faces or overlapping shells to clean up before rendering.`,
     `Topology is kept deliberately simple where detail would not read on camera, which keeps the scene light without visibly cheapening the silhouette.`,
     `The mesh is modelled at true scale with quad-dominant flow, so subdivision behaves and the object does not need rescaling on import.`,
   ],
@@ -105,17 +129,17 @@ const SCALE = [
   `Everything is placed at the scene origin with sensible pivots, so the asset can be duplicated, arrayed or attached to a rig without hunting for transforms.`,
   `Pivot points sit where you would expect them, which matters as soon as the model needs to be instanced or parented to something else.`,
   `Objects are grouped and named logically, so isolating a single part for a material change is a two-second job rather than a cleanup task.`,
-  `The scene is organised rather than dumped into a single mesh, which makes selective texturing and partial reuse practical.`,
+  `The scene is organized rather than dumped into a single mesh, which makes selective texturing and partial reuse practical.`,
   `Naming and hierarchy are consistent, so the model behaves predictably when it is merged into a larger scene alongside other assets.`,
   `Transforms are frozen and the hierarchy is shallow, which keeps the asset easy to instance across a large environment.`,
 ];
 
 const AGE = [
-  y => `It has been on sale since ${y} and is still maintained as part of the active catalogue.`,
+  y => `It has been on sale since ${y} and is still maintained as part of the active catalog.`,
   y => `The listing dates back to ${y}, and it remains one of the models we keep current.`,
   y => `Available since ${y}, the model has been through several rounds of studio use.`,
   y => `First published in ${y}, it is part of the long-running core of the collection.`,
-  y => `${y} is when this one first went up, and it has stayed in the catalogue since.`,
+  y => `${y} is when this one first went up, and it has stayed in the catalog since.`,
 ];
 
 /*
@@ -127,8 +151,8 @@ const AGE = [
  * Боевые сценарии разрешены только при явном военном признаке в названии, см.
  * lib/military.mjs; по умолчанию модель считается гражданской.
  */
-export const USE_SENT_AIRCRAFT_MIL = 'It works for aerospace visualisation, flight and combat simulation, war-game environments and aviation sequences in film and TV.';
-export const USE_SENT_AIRCRAFT_CIV = 'It works for airline and airport visualisation, flight simulation, aviation sequences in film and TV, advertising renders and VR training.';
+export const USE_SENT_AIRCRAFT_MIL = 'It works for aerospace visualization, flight and combat simulation, war-game environments and aviation sequences in film and TV.';
+export const USE_SENT_AIRCRAFT_CIV = 'It works for airline and airport visualization, flight simulation, aviation sequences in film and TV, advertising renders and VR training.';
 
 /*
  * Ключи здесь - СЛАГИ, а не названия. По названиям было шесть промахов:
@@ -140,24 +164,24 @@ export const USE_SENT_AIRCRAFT_CIV = 'It works for airline and airport visualisa
  */
 export const USE_SENT = {
   'aircraft': USE_SENT_AIRCRAFT_CIV,
-  'ships': 'Typical uses are naval and maritime scenes: film and TV VFX, harbour environments in games, and marine simulation.',
-  'military-vehicles': 'It suits battlefield simulation, war-game environments, defence training material and military VFX shots.',
-  'vehicles': 'Common uses are automotive advertising, film and TV backgrounds, game traffic and architectural visualisation.',
-  'medical-3d-models': 'It fits medical education, VR anatomy training, patient-facing visualisation and medical sequences in film.',
-  'industrial-equipment': 'It is useful for industrial and factory visualisation, product rendering, game props and technical presentations.',
-  'architecture-landmarks': 'It is aimed at architectural visualisation, city scenes, advertising renders and VR walkthroughs.',
+  'ships': 'Typical uses are naval and maritime scenes: film and TV VFX, harbor environments in games, and marine simulation.',
+  'military-vehicles': 'It suits battlefield simulation, war-game environments, defense training material and military VFX shots.',
+  'vehicles': 'Common uses are automotive advertising, film and TV backgrounds, game traffic and architectural visualization.',
+  'medical-3d-models': 'It fits medical education, VR anatomy training, patient-facing visualization and medical sequences in film.',
+  'industrial-equipment': 'It is useful for industrial and factory visualization, product rendering, game props and technical presentations.',
+  'architecture-landmarks': 'It is aimed at architectural visualization, city scenes, advertising renders and VR walkthroughs.',
   'weapons': 'It works as a game prop, a film and TV set element, or a reference object in training material.',
   'tools': 'It works as a game prop, a film and TV set element, or a reference object in training material.',
   'animals-creatures': 'It suits game creatures, film and TV VFX, educational material and VR experiences.',
-  'characters-people': 'It works for game characters, crowd fills in film and TV, previsualisation and VR scenes.',
-  'nature-plants': 'It fits environment dressing in games, architectural visualisation, film backgrounds and VR scenes.',
-  'furniture-interior': 'It is built for interior visualisation, architectural renders, product advertising and game interiors.',
-  'lighting': 'It suits interior and architectural visualisation, product rendering and game environment dressing.',
+  'characters-people': 'It works for game characters, crowd fills in film and TV, previsualization and VR scenes.',
+  'nature-plants': 'It fits environment dressing in games, architectural visualization, film backgrounds and VR scenes.',
+  'furniture-interior': 'It is built for interior visualization, architectural renders, product advertising and game interiors.',
+  'lighting': 'It suits interior and architectural visualization, product rendering and game environment dressing.',
   'kitchen-tableware': 'It works for interior renders, food and product advertising, and game and film set dressing.',
-  'food-beverages': 'It fits food advertising, packaging visualisation, restaurant interiors and game props.',
+  'food-beverages': 'It fits food advertising, packaging visualization, restaurant interiors and game props.',
   'electronics-gadgets': 'It is aimed at product rendering, advertising, UI and app mockups, and game and film props.',
   'containers-storage': 'It works as warehouse and logistics set dressing, a game prop, or a product-rendering element.',
-  'clothing-accessories': 'It suits fashion visualisation, character dressing, product advertising and game assets.',
+  'clothing-accessories': 'It suits fashion visualization, character dressing, product advertising and game assets.',
   'sports-recreation': 'It fits sports broadcast graphics, game assets, advertising renders and VR experiences.',
   'toys-games': 'It works for product advertising, packaging renders, game props and film set dressing.',
   'musical-instruments': 'It suits music-video and film sets, game props, product rendering and educational material.',
@@ -234,8 +258,16 @@ function specSentences(f, seed) {
   return out;
 }
 
-export function description(f, name, cat, price, seed) {
-  const n = esc(proseName(name)), c = esc(cat), yr = yearOf(f);
+export function description(f, name, cat, price, seed, catSlugIn) {
+  /*
+   * «Other» - служебное имя категории, годное для крошек и таблицы, но не для
+   * предложения: «belongs to our Other range» читается как ошибка. На живых
+   * страницах в этом месте стоит «general», и так у 1 711 карточек. Правило
+   * жило в старом генераторе и при пересборке потерялось бы молча.
+   * Подменяем ТОЛЬКО в тексте: ссылка и таблица по-прежнему говорят «Other».
+   */
+  const proseCat = /^other$/i.test(String(cat || '').trim()) ? 'general' : cat;
+  const n = esc(proseName(name)), c = esc(proseCat), yr = yearOf(f);
   const parts = [pick(OPEN, seed)(n, c, price)];
   parts.push(...specSentences(f, seed));
   // Когда полигонаж измерен и он большой, нельзя ставить рядом заготовку про
@@ -252,14 +284,23 @@ export function description(f, name, cat, price, seed) {
   // чипы «Used In» с «Use Cases»: раньше здесь стояло поле use_cases из CSV, и
   // абзац называл одно, чипы другое, а ответ в FAQ третье.
   {
-    const cs = catSlug(cat);
+    /*
+     * Слаг категории берём переданный, вычисление оставляем запасным.
+     * Вычисление из названия промахивается на четырёх категориях:
+     * «Model Bundles & Sets» -> model-bundles-sets, а на деле collections-sets
+     * (4 930 карточек); «Medical» -> medical вместо medical-3d-models (2 530);
+     * «Ships & Boats» -> ships-boats вместо ships (670); «Space & Sci-Fi» ->
+     * space-sci-fi вместо space-scifi (463). Слаг есть в записи - надо брать
+     * его, а не выводить заново из имени.
+     */
+    const cs = catSlugIn || catSlug(cat);
     const u = listy([...new Set(indsOf(f, cs).map(s => useLabel(s, cs)))].slice(0, 3));
     if (u) {
       parts.push(pick([
         x => `On this listing the stated applications are ${x}.`,
         x => `Buyers most often take it for ${x}.`,
         x => `The listing flags ${x} as the intended applications.`,
-        x => `It is catalogued for ${x}.`,
+        x => `It is cataloged for ${x}.`,
       ], seed * 13 + 1)(u));
     }
   }
@@ -268,9 +309,10 @@ export function description(f, name, cat, price, seed) {
   // поэтому возраст упоминаем только у листингов старше года.
   if (yr && f.days > 365) parts.push(pick(AGE, seed * 17 + 2)(yr));
   // Военная заготовка - только явным военным моделям.
+  const csSent = catSlugIn || catSlug(cat);
   parts.push(cat === 'Aircraft'
-    ? (isMilitary(name, catSlug(cat)) ? USE_SENT_AIRCRAFT_MIL : USE_SENT_AIRCRAFT_CIV)
-    : (USE_SENT[catSlug(cat)] || USE_SENT['other']));
+    ? (isMilitary(name, csSent) ? USE_SENT_AIRCRAFT_MIL : USE_SENT_AIRCRAFT_CIV)
+    : (USE_SENT[csSent] || USE_SENT['other']));
   return parts.join(' ');
 }
 
@@ -278,7 +320,15 @@ export function description(f, name, cat, price, seed) {
 // Строки вынесены отдельно: их же использует раскладка в две колонки, где
 // характеристики рисуются сеткой пар, а не таблицей (таблицу на две колонки
 // не разложить).
-export function specRows(f, name, cat, catSlug, price) {
+/*
+ * opts.brand - марка, определённая по НАСТОЯЩЕМУ имени модели.
+ * У склеенной карточки заголовок это имя семьи, и марка в нём может пропасть:
+ * «Airbus Zephyr S Solar Powered Drone» после чистки становится просто
+ * «Zephyr S Solar Powered Drone». Определять марку по показанному имени нельзя -
+ * у 151 модели так терялась лицензия Editorial, то есть юридическое утверждение
+ * на странице. Поэтому марку передают снаружи, из записи.
+ */
+export function specRows(f, name, cat, catSlug, price, opts = {}) {
   const yr = yearOf(f);
   const rows = [
     ['Model', esc(name)],
@@ -289,10 +339,19 @@ export function specRows(f, name, cat, catSlug, price) {
   // Точный уровень известен: в Excel-отчёте CheckMate Pro стоит у 37 677
   // моделей, CheckMate Lite у 4 065. Показываем его; общее «CheckMate
   // Certified» остаётся только там, где в отчёте пусто или #Н/Д.
-  rows.push(['Certification',
-    f.cert === 'no certification' ? 'Standard (uncertified)'
-      : f.cert === 'CheckMate Lite/Pro' ? 'CheckMate Certified'
-        : esc(f.cert)]);
+  /*
+   * Без сертификата подпись другая: «Quality standard: Built to CheckMate
+   * specification». Слово «uncertified» читается как «качество не
+   * проверено», хотя речь о том, что знак не выдан: TurboSquid закрыл
+   * программу, и сертифицировать новые работы больше некому. Модели строятся
+   * по той же спецификации.
+   * «CheckMate Certified» здесь ставить нельзя: покупатель откроет страницу
+   * на TurboSquid, знака не найдёт и перестанет верить остальному.
+   * Решение применено на 18 727 карточках скриптом fix-uncertified-row.mjs;
+   * здесь оно живёт в генераторе, иначе пересборка его откатит.
+   */
+  if (f.cert === 'no certification') rows.push(['Quality standard', 'Built to CheckMate specification']);
+  else rows.push(['Certification', f.cert === 'CheckMate Lite/Pro' ? 'CheckMate Certified' : esc(f.cert)]);
   if (yr) rows.push(['On sale since', String(yr)]);
   rows.push(['Real-world scale', 'Yes']);
   // Измеренные характеристики из нашего inventory. Строки появляются только там,
@@ -311,7 +370,21 @@ export function specRows(f, name, cat, catSlug, price) {
   }
   const nat = nativeOf(name);
   rows.push(['Native', esc(nat.native)]);
-  if (nat.formats) rows.push(['Formats', esc(nat.formats)]);
+  /*
+   * Форматы - отдельными плашками, а не одной строкой через запятую. Правило
+   * жило в заплатке fix-formats-tags.mjs и при пересборке потерялось бы на
+   * ~50 тысячах страниц: набор и порядок те же, но в узкой правой колонке
+   * сплошная лента текста не читается, глаз не находит нужный формат.
+   * «Cinema 4D R23» сокращаем до «C4D R23» - так его пишут в списках форматов.
+   */
+  if (nat.formats) {
+    const items = String(nat.formats).split(',').map(s => s.trim()).filter(Boolean);
+    rows.push(['Formats', items.length > 1
+      ? '<span class="fmt-list">'
+        + items.map(t => '<span class="fmt-tag">' + esc(FMT_SHORT[t] || t) + '</span>').join('')
+        + '</span>'
+      : esc(nat.formats)]);
+  }
   if (yr) rows.push(['PBR', yr >= 2023 ? 'Yes' : 'No']);
   /*
    * Две строки, а не одна. Прежняя «Rigged version» описывала ТЕКУЩИЙ вариант,
@@ -323,29 +396,55 @@ export function specRows(f, name, cat, catSlug, price) {
    * Границу слова после «rigged» не ставим: в каталоге есть «Generic Sport Car
    * Rigged1», и \brigged\b его не ловит.
    */
-  const selfRigged = /\brigged/i.test(name)
+  /*
+   * Риггинг проверяем по СОБСТВЕННОМУ имени модели, а не по показываемому.
+   * У склеенной карточки показывается имя семьи, и слово «Rigged» из него
+   * выпадает: «2015 Porsche Cayenne S Rigged» показывается как «2015 Porsche
+   * Cayenne S». Из-за этого живая страница спорит сама с собой - строка «Rig»
+   * говорит «Rigged», а строка «Current version» тут же «Static», и так на
+   * 52 карточках. Строку «Rig» мы убираем как повтор, значит оставшаяся должна
+   * быть верной.
+   */
+  const ownName = opts.selfName || name;
+  const selfRigged = /\brigged/i.test(ownName) || /\brigged/i.test(name)
     || !!(s && s.rigged && !/^\s*(static|none|no)\s*$/i.test(s.rigged));
   const anyRigged = selfRigged || (f.variants || []).some(v => /\brigged/i.test(String(v)));
   rows.push(['Current version', selfRigged ? 'Rigged' : 'Static']);
   rows.push(['Rigged versions', anyRigged ? 'Available' : 'Not available']);
+  /*
+   * Строку про анимацию ставим ТОЛЬКО когда анимация есть. На живых страницах
+   * у 1 090 карточек стояло «model is not animated» - отрицание, которое ничего
+   * не сообщает и занимает строку. А вот положительных 173, и без этой строки
+   * факт анимации терялся бы совсем: рядом с «Current version: Static» модель
+   * «Animated Basketball Ball» читалась бы как противоречие.
+   */
+  if (f.animated) rows.push(['Animation', 'Animated']);
   // Лицензия зависит от того, изображает ли модель чужую торговую марку.
   // Раньше здесь стояло безусловное «Royalty Free» - и на брендовых карточках
   // сайт письменно разрешал то, что лицензией запрещено.
-  const licence = brandOf(name) ? 'Editorial Uses Only (TurboSquid)' : 'Royalty Free (TurboSquid)';
-  rows.push(['Licence', `<a href="/license/">${licence}</a>`]);
+  const brand = opts.brand !== undefined ? opts.brand : brandOf(name);
+  const license = brand ? 'Editorial Uses Only (TurboSquid)' : 'Royalty Free (TurboSquid)';
+  rows.push(['License', `<a href="/license/">${license}</a>`]);
   rows.push(['Price', `$${price} USD`]);
   // Отрасли - из единого набора, а не из сырых тегов CSV: там встречается
   // «Graphics Multimedia and Web Design», страницы которой на сайте нет.
-  {
+  /*
+   * Отрасли и назначения в таблице нужны только там, где рядом НЕТ чипов.
+   * На карточке они показаны дважды - блоком «Used In» в первом экране и
+   * блоком «Use Cases» под таблицей, - и третий повтор строкой таблицы это
+   * дублирование ради дублирования. Правило основателя: страница для
+   * человека, одно и то же не повторяем.
+   */
+  if (!opts.hideIndustryRows) {
     const inds = indsOf(f, catSlug);
     if (inds.length) rows.push(['Primary industries', inds.map(x => INDUSTRY_NAME[x]).join(', ')]);
+    if (f.uses && f.uses.length) rows.push(['Typical use', esc(f.uses.slice(0, 3).join(', '))]);
   }
-  if (f.uses && f.uses.length) rows.push(['Typical use', esc(f.uses.slice(0, 3).join(', '))]);
   return rows;
 }
 
-export function specTable(f, name, cat, catSlug, price) {
-  const rows = specRows(f, name, cat, catSlug, price);
+export function specTable(f, name, cat, catSlug, price, opts = {}) {
+  const rows = specRows(f, name, cat, catSlug, price, opts);
   return `        <div class="mp-spec-block">
           <h2 class="mp-block-h2">Specifications</h2>
           <table class="mp-spec-table"><tbody>
@@ -357,8 +456,8 @@ ${rows.map(([k, v]) => `            <tr><th scope="row">${k}</th><td>${v}</td></
 // Характеристики в две колонки. Таблицу разложить на две колонки нельзя, поэтому
 // здесь это сетка пар «подпись - значение»: пары идут в поток и раскладываются
 // колонками средствами CSS, порядок чтения сохраняется.
-export function specGrid(f, name, cat, catSlug, price) {
-  const rows = specRows(f, name, cat, catSlug, price);
+export function specGrid(f, name, cat, catSlug, price, opts = {}) {
+  const rows = specRows(f, name, cat, catSlug, price, opts);
   return `        <div class="mp-spec-block mp-spec-2col">
           <h2 class="mp-block-h2">Specifications</h2>
           <div class="mp-spec-pairs">
@@ -369,10 +468,19 @@ ${rows.map(([k, v]) => `            <div class="mp-spec-pair"><span class="mp-sp
 
 // ── вопросы-ответы ────────────────────────────────────────────────────────────
 // Пул из 10; на страницу попадают 4, набор и формулировки зависят от id модели.
-function questionPool(f, n, cat, price, tsUrl, seed) {
+/*
+ * rawName - НАСТОЯЩЕЕ имя модели. Оно нужно только для brandOf: бренд решает
+ * лицензию, а n к этому моменту уже причёсан для прозы (срезаны хвосты вида
+ * «3D Model»), и по нему марка может не найтись.
+ * Раньше здесь стояло brandOf(name) - переменной name в этой области нет
+ * вообще, и вызов ронял сборку карточки с ReferenceError. Не всплывало только
+ * потому, что генератор не запускали: страницы правили заплатками поверх.
+ */
+function questionPool(f, n, cat, price, tsUrl, seed, rawName, opts = {}) {
   const yr = yearOf(f);
   // Отрасли и сценарии - две проекции одного набора, а не два разных поля.
-  const cs = catSlug(cat);
+  // Слаг - из опций: вычисление из названия промахивается на четырёх категориях.
+  const cs = opts.catSlug || catSlug(cat);
   const inds = indsOf(f, cs);
   const ind = listy(inds.map(s => INDUSTRY_NAME[s]));
   const uses = listy([...new Set(inds.map(s => useLabel(s, cs)))].slice(0, 3));
@@ -391,15 +499,15 @@ function questionPool(f, n, cat, price, tsUrl, seed) {
   // Лицензия решает половину ответов ниже. Раньше все они безусловно обещали
   // коммерческое использование, и на брендовых карточках сайт письменно
   // разрешал ровно то, что лицензией запрещено.
-  const editorial = !!brandOf(name);
+  const editorial = opts.brand !== undefined ? !!opts.brand : !!brandOf(rawName || n);
 
   pool.push([`Can the ${n} model be used in a commercial project?`, editorial
-    ? `No. The model depicts a real branded product, so TurboSquid lists it under the Editorial Uses Only licence. It may be used in news, commentary, education, personal projects and similar editorial contexts, but not in advertising, on merchandise or in any product offered for sale. See our <a href="/license/">licence guide</a>.`
+    ? `No. The model depicts a real branded product, so TurboSquid lists it under the Editorial Uses Only license. It may be used in news, commentary, education, personal projects and similar editorial contexts, but not in advertising, on merchandise or in any product offered for sale. See our <a href="/license/">license guide</a>.`
     : pick([
-      `Yes. It is sold under TurboSquid's Royalty Free licence, which covers commercial use in games, film, advertising and visualisation without per-use fees.`,
-      `Yes - the Royalty Free licence covers commercial work, including client projects and released games, with no additional royalties per render or per copy sold.`,
-      `Commercial use is included. The Royalty Free licence allows the model in paid client work, broadcast, published games and print; only redistributing the model file itself is excluded.`,
-      `It ships with TurboSquid's Royalty Free licence, so a single purchase covers commercial delivery - you do not pay again per project or per seat of the finished work.`,
+      `Yes. It is sold under TurboSquid's Royalty Free license, which covers commercial use in games, film, advertising and visualization without per-use fees.`,
+      `Yes - the Royalty Free license covers commercial work, including client projects and released games, with no additional royalties per render or per copy sold.`,
+      `Commercial use is included. The Royalty Free license allows the model in paid client work, broadcast, published games and print; only redistributing the model file itself is excluded.`,
+      `It ships with TurboSquid's Royalty Free license, so a single purchase covers commercial delivery - you do not pay again per project or per seat of the finished work.`,
     ], seed * 3 + 1)]);
 
   const certQ = f.cert === 'CheckMate Lite/Pro'
@@ -415,9 +523,9 @@ function questionPool(f, n, cat, price, tsUrl, seed) {
         `StemCell covers both geometry and shading: the model is delivered across formats with materials that stay equivalent instead of needing per-engine conversion.`,
       ], seed * 5)]
       : [`How clean is the geometry on the ${n} model?`, pick([
-        `The mesh uses organised, quad-dominant topology at real-world scale, with objects named and grouped rather than merged into one block.`,
+        `The mesh uses organized, quad-dominant topology at real-world scale, with objects named and grouped rather than merged into one block.`,
         `Geometry is modelled at true scale with a tidy edge flow, and the scene is split into named objects so partial reuse and material swaps stay simple.`,
-        `It is built as an organised scene, not a single welded mesh - parts are separable, named and sized to real-world dimensions.`,
+        `It is built as an organized scene, not a single welded mesh - parts are separable, named and sized to real-world dimensions.`,
       ], seed * 5)];
   pool.push(certQ);
 
@@ -431,17 +539,17 @@ function questionPool(f, n, cat, price, tsUrl, seed) {
   // два прежних варианта прямо обещали, что лицензия область применения не
   // ограничивает.
   if (ind) pool.push([`Which industries use the ${n} model?`, editorial
-    ? `${ind} are the primary industries on this listing. The licence, however, is Editorial Uses Only: the model depicts a real branded product, so it may appear in editorial work in those fields, but not in advertising or in products for sale.`
+    ? `${ind} are the primary industries on this listing. The license, however, is Editorial Uses Only: the model depicts a real branded product, so it may appear in editorial work in those fields, but not in advertising or in products for sale.`
     : pick([
-      `This listing is catalogued for ${ind}. Those are the sectors the model was tagged for on TurboSquid, based on how comparable assets in the ${esc(cat)} range are bought.`,
-      `It is tagged for ${ind}. The categorisation reflects where similar ${esc(cat)} assets end up rather than a hard restriction - the licence does not limit the field of use.`,
-      `${ind} are the primary industries on this listing, though the Royalty Free licence puts no limit on where the model is actually used.`,
+      `This listing is cataloged for ${ind}. Those are the sectors the model was tagged for on TurboSquid, based on how comparable assets in the ${esc(cat)} range are bought.`,
+      `It is tagged for ${ind}. The categorisation reflects where similar ${esc(cat)} assets end up rather than a hard restriction - the license does not limit the field of use.`,
+      `${ind} are the primary industries on this listing, though the Royalty Free license puts no limit on where the model is actually used.`,
     ], seed * 7 + 2)]);
 
   if (uses) pool.push([`What is the ${n} model typically used for?`, pick([
-    `The listing names ${uses} as the main applications. In practice it also works anywhere a finished ${esc(cat).toLowerCase()} object is needed without modelling it from scratch.`,
+    `The listing names ${uses} as the main applications. In practice it also works anywhere a finished ${esc(cat).toLowerCase()} object is needed without modeling it from scratch.`,
     `Stated applications are ${uses}. Because the asset is finished rather than a base mesh, it also holds up as set dressing in scenes it was not specifically built for.`,
-    `It is catalogued for ${uses} - the sort of work where the object needs to look right on camera but is not the subject of the shot.`,
+    `It is cataloged for ${uses} - the sort of work where the object needs to look right on camera but is not the subject of the shot.`,
   ], seed * 11 + 4)]);
 
   pool.push([`Does the ${n} model include materials and textures?`, pick([
@@ -450,19 +558,19 @@ function questionPool(f, n, cat, price, tsUrl, seed) {
   ], seed * 13)]);
 
   pool.push([`How much does the ${n} 3D model cost?`, editorial
-    ? `$${price} USD, paid once. TurboSquid handles payment and delivery. The licence is Editorial Uses Only, because the model depicts a real branded product: it covers editorial contexts such as news, commentary and education, but not advertising or products for sale.`
+    ? `$${price} USD, paid once. TurboSquid handles payment and delivery. The license is Editorial Uses Only, because the model depicts a real branded product: it covers editorial contexts such as news, commentary and education, but not advertising or products for sale.`
     : pick([
-      `It is listed at $${price} USD on TurboSquid. That is a one-off purchase under the Royalty Free licence - there is no subscription and no per-project fee afterwards.`,
-      `$${price} USD, paid once. The Royalty Free licence means no recurring cost and no extra payment when the finished work ships.`,
-      `The price is $${price} USD. TurboSquid handles payment and delivery; the licence is Royalty Free, so the cost does not repeat per use.`,
+      `It is listed at $${price} USD on TurboSquid. That is a one-off purchase under the Royalty Free license - there is no subscription and no per-project fee afterwards.`,
+      `$${price} USD, paid once. The Royalty Free license means no recurring cost and no extra payment when the finished work ships.`,
+      `The price is $${price} USD. TurboSquid handles payment and delivery; the license is Royalty Free, so the cost does not repeat per use.`,
     ], seed * 17 + 6)]);
 
   pool.push([`Can the ${n} model be modified after purchase?`, editorial
-    ? `Yes. The licence allows editing the geometry, retopologising, changing materials and adapting the asset to a project. What it does not allow is reselling or redistributing the model file itself, or using the result commercially: this listing is Editorial Uses Only.`
+    ? `Yes. The license allows editing the geometry, retopologising, changing materials and adapting the asset to a project. What it does not allow is reselling or redistributing the model file itself, or using the result commercially: this listing is Editorial Uses Only.`
     : pick([
-      `Yes. The Royalty Free licence allows editing the geometry, retopologising, changing materials and adapting the asset to a project. What it does not allow is reselling or redistributing the model file itself.`,
+      `Yes. The Royalty Free license allows editing the geometry, retopologising, changing materials and adapting the asset to a project. What it does not allow is reselling or redistributing the model file itself.`,
       `Editing is allowed - remesh it, strip detail for real-time use, or rebuild the shaders. The one restriction is that the model file cannot be resold or given away as an asset.`,
-      `Yes, modification is covered by the licence. Most buyers adjust materials or decimate the mesh for their engine; only redistribution of the source file is off-limits.`,
+      `Yes, modification is covered by the license. Most buyers adjust materials or decimate the mesh for their engine; only redistribution of the source file is off-limits.`,
     ], seed * 19 + 8)]);
 
   // Вопросы по измеренным данным. Их задают чаще всего перед покупкой, и ответ
@@ -487,16 +595,20 @@ function questionPool(f, n, cat, price, tsUrl, seed) {
   }
 
   if (kw.length) pool.push([`What should I search for to find models like the ${n}?`,
-    `Useful search terms are ${listy(kw)}. Browsing the <a href="/categories/${catSlug(cat)}/">${esc(cat)}</a> category shows the closest alternatives at a range of prices.`]);
+    /*
+     * Слаг из опций, а не вычисленный: вычисление промахивается на четырёх
+     * категориях, и ответ уводил бы на несуществующую страницу.
+     */
+    `Useful search terms are ${listy(kw)}. Browsing the <a href="/categories/${opts.catSlug || catSlug(cat)}/">${esc(cat)}</a> category shows the closest alternatives at a range of prices.`]);
 
   return pool;
 }
 
 const gcd = (a, b) => b ? gcd(b, a % b) : a;
 
-export function faqBlock(f, name, cat, catSlug, price, tsUrl, seed) {
+export function faqBlock(f, name, cat, catSlug, price, tsUrl, seed, opts = {}) {
   const n = esc(proseName(name));
-  const pool = questionPool(f, n, cat, price, tsUrl, seed);
+  const pool = questionPool(f, n, cat, price, tsUrl, seed, name, opts);
   const len = pool.length;
   // Выбираем 4 из пула шагом, зависящим от id: у соседних моделей набор вопросов разный.
   // Шаг ОБЯЗАН быть взаимно прост с длиной пула, иначе обход зацикливается на подмножестве
@@ -519,13 +631,20 @@ ${chosen.map(([q, a]) => `          <h3 class="mp-faq-q">${q}</h3>\n          <p
 // Аудит seo-geo: 0 из 120 карточек имели дату или автора. По критериям скилла это
 // один из самых сильных рычагов - страницы без дат хуже отбираются в AI-ответы.
 //
-// datePublished берём из days_in_sales (когда листинг появился на TurboSquid) - это
-// реальный факт, а не выдумка. dateModified - дата пересборки страницы; ставим её
-// только когда контент действительно менялся, иначе это накрутка свежести.
-export function dateLine(f, updatedIso, updatedHuman) {
-  const d = f.days ? new Date(Date.now() - f.days * 86400000) : null;
-  const listed = d ? d.toISOString().slice(0, 10) : null;
-  const listedHuman = d ? d.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' }) : null;
+// dateModified - дата пересборки страницы; ставим её только когда контент
+// действительно менялся, иначе это накрутка свежести.
+//
+// datePublished раньше ВЫЧИСЛЯЛСЯ: «сегодня минус дни в продаже». Снимок дней
+// снят 02.04.2026 и с тех пор не двигался, а «сегодня» двигается каждый день -
+// поэтому дата публикации уезжала вперёд на всех 52 826 карточках, ровно на 153
+// дня, и разрыв рос сам собой. Настоящая дата есть в отчёте TurboSquid
+// (колонка Date of publication), и теперь она приходит сюда пятым доводом.
+// Вычисление осталось запасным - для карточек, которых в отчёте нет.
+export function dateLine(f, updatedIso, updatedHuman, publishedIso) {
+  const d = publishedIso ? new Date(publishedIso)
+    : (f.days ? new Date(Date.now() - f.days * 86400000) : null);
+  const listed = d && !isNaN(d) ? d.toISOString().slice(0, 10) : null;
+  const listedHuman = listed ? d.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' }) : null;
   return `        <div class="mp-meta-line">
           <span class="mp-meta-by">By <a href="/about/" rel="author">Andrey Simonenko</a>, 3D Molier</span>${listed ? `
           <span class="mp-meta-sep">&#183;</span>
@@ -536,7 +655,9 @@ export function dateLine(f, updatedIso, updatedHuman) {
 }
 
 export function pageSchema({ name, slug, cat, catSlug, desc, hero, f, site, updatedIso }) {
-  const d = f.days ? new Date(Date.now() - f.days * 86400000) : null;
+  // Дата публикации - настоящая, из отчёта; вычисление лишь запасное.
+  const d = f.published ? new Date(f.published)
+    : (f.days ? new Date(Date.now() - f.days * 86400000) : null);
   const o = {
     '@context': 'https://schema.org', '@type': 'ItemPage',
     '@id': `${site}/models/${slug}/#page`,
@@ -552,7 +673,7 @@ export function pageSchema({ name, slug, cat, catSlug, desc, hero, f, site, upda
     publisher: { '@id': site + '/#organization' },
     breadcrumb: { '@id': `${site}/models/${slug}/#breadcrumb` },
   };
-  if (d) o.datePublished = d.toISOString().slice(0, 10);
+  if (d && !isNaN(d)) o.datePublished = d.toISOString().slice(0, 10);
   return '<script type="application/ld+json">\n' + JSON.stringify(o) + '\n</script>';
 }
 

@@ -32,6 +32,10 @@ export const SPELLING_RULES = [
   ['behaviour', 'behavior'],
   ['authorised', 'authorized'],
   ['metres', 'meters'],
+  // Добавлено 02.09.2026 при переводе генератора: эти два слова стояли в
+  // заготовках текстов и остались британскими, потому что в таблице их не было.
+  ['harbour', 'harbor'],
+  ['defence', 'defense'],
 ];
 
 /**

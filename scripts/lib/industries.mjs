@@ -170,7 +170,13 @@ export function industriesOf(raw, categorySlug) {
   const out = [];
   const add = s => { if (s && INDUSTRY_LABEL[s] && !out.includes(s)) out.push(s); };
   for (const s of (CATEGORY_INDUSTRIES[categorySlug] || [])) add(s);
-  for (const r of (raw || [])) add(RAW_TO_SLUG[String(r).trim()]);
+  // Принимаем и сырые значения из Excel, и уже готовые слаги. Слаги приходят
+  // из data/model-industries.json - единственного источника отраслей; выводить
+  // их заново из сырых значений значило бы держать два ответа на один вопрос.
+  for (const r of (raw || [])) {
+    const v = String(r).trim();
+    add(RAW_TO_SLUG[v] || (INDUSTRY_LABEL[v] ? v : null));
+  }
   // Пустого набора быть не должно: блок «Used In» без единого чипа выглядит
   // как поломка. Film и Advertising стоят у подавляющего большинства листингов.
   if (!out.length) { add('film-video-production'); add('advertising'); }
