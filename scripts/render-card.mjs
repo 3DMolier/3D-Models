@@ -99,6 +99,34 @@ export function toContentFields(r) {
  */
 export const heroImg = r => r.image || PLACEHOLDER;
 
+/*
+ * Уменьшенная копия студийного снимка.
+ *
+ * ЗАЧЕМ. Студия отдаёт кадр 1200x1200 весом 303 КБ. Им же рисовалась миниатюра
+ * галереи размером 108 пикселей - и так двенадцать раз на странице: около
+ * 3,9 МБ картинок ради полосы превью. Посетитель на телефоне платит за это
+ * трафиком и ожиданием, а видит те же 108 пикселей.
+ *
+ * У студии есть готовые копии по высоте: h100 (2 КБ), h200 (5 КБ), h400
+ * (12 КБ). Больших нет - h500 и выше отдают 404, проверено.
+ *
+ * ЧТО КУДА:
+ *   главный снимок  - ОРИГИНАЛ. Это продающая картинка над сгибом, ей нужна
+ *                     резкость, и h400 на экране с двойной плотностью мылит;
+ *   миниатюры       - h200: показываются в 108 пикселей, запас двукратный;
+ *   плитки соседей
+ *   и версий        - h400: показываются около 220x150;
+ *   увеличенный вид - ОРИГИНАЛ, он грузится только по щелчку.
+ *
+ * Чужих адресов (TurboSquid, i.ytimg) не трогаем: у них таких копий нет.
+ */
+const STUDIO = 'https://www.3dmolier-studio.com/assets/';
+export const studioSize = (url, tag) => {
+  const u = String(url || '');
+  if (!u.startsWith(STUDIO)) return u;
+  return 'https://www.3dmolier-studio.com/images/' + tag + '/assets/' + u.slice(STUDIO.length);
+};
+
 
 /*
  * Описание приходит одной строкой, а на странице оно тремя абзацами: сплошной
@@ -263,7 +291,9 @@ export function hero(r) {
     + (v.label ? ` data-cap="${esc(v.label)}"` : '')
     + ` data-price="${esc('$' + (v.price || r.price))}"`
     + ` data-link="${esc(v.ts_url)}" title="${named}" aria-label="${named}">`
-    + `<img src="${esc(v.image)}" alt="${named}" width="200" height="113"`
+    // Миниатюра - уменьшенная копия. Полный кадр остаётся в data-full: его
+    // берёт увеличенный вид, и грузится он только по щелчку.
+    + `<img src="${esc(studioSize(v.image, 'h200'))}" alt="${named}" width="200" height="113"`
     + ` loading="lazy" decoding="async">`
     + (v.short ? `<span class="mp-gal-lbl">${esc(v.short)}</span>` : '')
     + `</button>`;
@@ -434,7 +464,9 @@ function relatedCard({ href, image, title, badge, chip, price, external }) {
   const tail = external ? ' target="_blank" rel="noopener"' : '';
   return `<a href="${esc(href)}"${tail} class="model-card card-glow mp-rc-link">`
     + `<div class="img-wrap mp-rc-img-wrap">`
-    + `<img src="${esc(image)}" alt="${esc(title)}" width="800" height="450" decoding="async"`
+    // Плитка показывается около 220x150 - берём копию h400, она и на экране
+    // с двойной плотностью резкая, а весит 12 КБ вместо 303 КБ.
+    + `<img src="${esc(studioSize(image, 'h400'))}" alt="${esc(title)}" width="800" height="450" decoding="async"`
     + ` loading="lazy" data-placeholder="${PLACEHOLDER}" onerror="imgErr(this)">`
     + `<div class="img-placeholder" aria-hidden="true"><span class="mp-rc-placeholder-icon">&#128247;</span></div>`
     + `</div><div class="mp-rc-body"><div class="mp-rc-head"><div class="mp-rc-title">${esc(title)}`
