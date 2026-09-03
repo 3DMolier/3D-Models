@@ -14,11 +14,21 @@ import path from 'node:path';
 const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
 const RECS = path.join(ROOT, 'data', 'records');
 
-/* На странице сертификат стоит строкой таблицы «Certification». */
+/*
+ * Строка про качество называется на страницах ДВУМЯ способами, и это не
+ * оформление, а разный смысл:
+ *   «Certification»    - сертификат есть, назван;
+ *   «Quality standard» - сертификата нет, написано «Built to CheckMate
+ *                        specification», то есть сделано по правилам, но не
+ *                        проверено сторонним рецензентом.
+ * Первая версия искала только первую и записала 18 131 карточку в «строки нет»,
+ * а потом отрапортовала «изменений нет» - хотя именно там они и были.
+ */
 const onPage = html => {
-  const m = html.match(/Certification<\/(?:th|dt|span)>\s*<(?:td|dd|span)[^>]*>([^<]*)</i)
-    || html.match(/>Certification<[^>]*>[\s\S]{0,80}?>([^<]{3,40})</i);
-  return m ? m[1].trim() : '';
+  const m = html.match(/(?:Certification|Quality standard)<\/(?:th|dt|span)>\s*<(?:td|dd|span)[^>]*>([^<]*)</i);
+  if (!m) return '';
+  const v = m[1].trim();
+  return /Built to CheckMate specification/i.test(v) ? 'no certification' : v;
 };
 
 const idx = JSON.parse(fs.readFileSync(path.join(RECS, 'index.json'), 'utf8'));

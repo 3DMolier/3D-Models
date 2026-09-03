@@ -55,6 +55,23 @@ const overBefore = Object.keys(overrides).length;
 
 // ── читаем текущее состояние и применяем правила ──
 const chunks = [];
+/*
+ * Категории из записей моделей - единственное место, где известна категория
+ * модели, ещё не попавшей в колонку g каталога.
+ */
+const RECORD_CAT = (() => {
+  const out = {};
+  const f = path.join(DATA, "records", "index.json");
+  if (!fs.existsSync(f)) return out;
+  const ix = JSON.parse(fs.readFileSync(f, "utf8"));
+  for (let k = 0; k < ix.chunks; k++) {
+    for (const r of JSON.parse(fs.readFileSync(path.join(DATA, "records", "records-" + k + ".json"), "utf8"))) {
+      if (r.category) out[String(r.id)] = r.category;
+    }
+  }
+  return out;
+})();
+
 const modelCat = {};
 let fixed = 0;
 const fixLog = new Map();
@@ -63,7 +80,20 @@ for (let k = 0; k < idx.chunks; k++) {
   chunks.push(c);
   for (let j = 0; j < c.i.length; j++) {
     const id = String(c.i[j]);
-    let slug = overrides[id] || oldCats[c.g[j]] || 'other';
+    /*
+     * Порядок источников: ручное решение -> запись модели -> прежний код в
+     * каталоге -> «other».
+     *
+     * ЗАЧЕМ ДОБАВЛЕНА ЗАПИСЬ. Здесь был замкнутый круг: таксономия берёт
+     * категорию из колонки g каталога, а новые модели попадают в каталог без
+     * неё. Выходило «other», это записывалось в единый источник, и на
+     * следующей сборке «other» побеждал настоящую категорию из отчёта
+     * TurboSquid - 581 новая карточка оказалась бы заперта в «Other» навсегда.
+     *
+     * Запись категорию знает, поэтому спрашиваем её. Ручные решения выше
+     * всего: они проверены глазами.
+     */
+    let slug = overrides[id] || RECORD_CAT[id] || oldCats[c.g[j]] || 'other';
     const name = String(c.n[j]);
     for (const [from, to, terms, not] of FIXES) {
       if (slug !== from) continue;

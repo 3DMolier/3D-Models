@@ -37,6 +37,23 @@ console.log('в индексе сейчас: ' + rows.length);
 
 const certCode = c => /CheckMate/i.test(c || '') ? 2 : (/StemCell/i.test(c || '') ? 1 : 0);
 const slugify = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+/*
+ * Папки карточек по номеру модели.
+ *
+ * Раньше адрес вычислялся из названия: slugify(имя) + номер. У модели «Broken
+ * Glass Fragments1» вычисленный адрес не совпал с настоящим, скрипт решил, что
+ * живой карточки нет, и не добавил её: страница на сайте есть, а в поиске и
+ * полном каталоге её нет. Поймано проверкой счётчиков как расхождение в одну
+ * модель.
+ *
+ * Правило уже записано кровью: АДРЕС КАРТОЧКИ НЕ ВЫЧИСЛЯТЬ - искать папку по
+ * номеру.
+ */
+const DIR_BY_ID = new Map();
+for (const d of fs.readdirSync(MODELS)) {
+  const did = d.slice(d.lastIndexOf('-') + 1);
+  if (/^[0-9]+$/.test(did) && !DIR_BY_ID.has(did)) DIR_BY_ID.set(did, d);
+}
 const HEAD = 400, buf = Buffer.alloc(HEAD);
 const isLive = slug => {
   let fd;
@@ -52,7 +69,8 @@ for (const p of np) {
   if (have.has(id)) { skipHave++; continue; }
   // Только живые карточки: свёрнутые в заглушку в индексе не нужны, иначе поиск
   // снова начнёт показывать то, что мы объединили.
-  if (!isLive(slugify(p.name) + '-' + id)) { skipDead++; continue; }
+  const dir = DIR_BY_ID.get(id);
+  if (!dir || !isLive(dir)) { skipDead++; continue; }
   rows.push({ i: Number(id), n: p.name, p: +p.price || 0, s: 0, c: certCode(p.cert) });
   added++;
 }

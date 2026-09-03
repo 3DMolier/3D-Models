@@ -41,6 +41,22 @@ const batch = JSON.parse(fs.readFileSync(SRC, 'utf8'));
 const ids = Object.keys(batch);
 console.log('в пачке моделей: ' + ids.length.toLocaleString('ru-RU'));
 
+/*
+ * Сокращённая запись адресов. При сборе адреса ужимали: общее начало
+ * «https://www.3dmolier-studio.com/assets/» отбрасывали, а поле называли `img`
+ * вместо `images`. Иначе пачка не пролезала через переписку - 703 КБ против
+ * 1,34 МБ. Здесь разворачиваем обратно, чтобы дальше по коду был один вид
+ * данных, а не два.
+ */
+const ASSETS = 'https://www.3dmolier-studio.com/assets/';
+for (const id of ids) {
+  const r = batch[id];
+  if (!r.images && Array.isArray(r.img)) {
+    r.images = r.img.map(u => (/^https?:\/\//.test(u) ? u : ASSETS + u));
+    delete r.img;
+  }
+}
+
 // ── проверка целостности до записи ──────────────────────────────────────────
 let noImg = 0, noSpec = 0, imgs = 0;
 for (const id of ids) {

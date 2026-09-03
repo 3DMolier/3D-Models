@@ -106,13 +106,54 @@ function heroFor(cat, catDisp, count) {
   return `<section class="page-section page-section--border-bottom"><div class="max-w-7xl mx-auto"><div class="cat-hero"><div class="cat-hero-left"><div class="cat-hero-top"><div class="cat-hero-icon">${icon}</div><div><div class="section-label">3D Model Category</div><h1 class="cat-page-h1">${esc(catDisp)} 3D Models</h1></div></div><p class="cat-desc">${esc(desc)}</p><div class="cat-actions"><a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-international" target="_blank" rel="noopener" class="btn-primary">Browse on TurboSquid</a> <a href="/" class="btn-ghost">&#8592; All Categories</a></div></div><div class="cat-stats"><div class="cat-stat-cell"><div class="cat-stat-num">${count.toLocaleString('en-US')}</div><div class="cat-stat-label">Total Models</div></div></div></div></div></section>`;
 }
 
+/*
+ * Список моделей - ИЗ ЗАПИСЕЙ, а не из выгрузки каталога.
+ *
+ * ПОЧЕМУ ПЕРЕДЕЛАНО. Раньше хабы читали fc-chunk - выгрузку каталога
+ * TurboSquid. Она обрывается на номере 2587532, и всё, что вышло позже, туда не
+ * попадает: 581 новая карточка оказалась в каталоге сайта, но НИ В ОДНОМ хабе
+ * категорий - внутренних ссылок на них не было вовсе.
+ *
+ * Это та же беда, ради которой затевалась единая запись, только этажом выше:
+ * хаб держал свою копию правды о модели - имя, цену, снимок, категорию - и она
+ * отставала от карточки.
+ *
+ * Категорию тоже отдаём из записи: у поля должен быть один хозяин.
+ *
+ * Запасной путь оставлен: нет записей - читаем выгрузку, как прежде, чтобы
+ * скрипт не падал у того, кто записи ещё не собрал.
+ */
 function loadCatalog() {
+  const RECS = path.join(DATA, 'records');
+  const idxFile = path.join(RECS, 'index.json');
+  if (fs.existsSync(idxFile)) {
+    const idx = JSON.parse(fs.readFileSync(idxFile, 'utf8'));
+    const all = [];
+    const img = {};
+    const catOf = {};
+    for (let k = 0; k < idx.chunks; k++) {
+      for (const r of JSON.parse(fs.readFileSync(path.join(RECS, 'records-' + k + '.json'), 'utf8'))) {
+        // Нет папки - нет страницы, в хабе показывать нечего.
+        if (!DIR_BY_ID.has(String(r.id))) continue;
+        all.push({
+          id: r.id,
+          name: r.display_name || r.name,
+          price: r.price || 0,
+          sales: r.sales || 0,
+        });
+        if (r.image) img[r.id] = r.image;
+        if (r.category) catOf[String(r.id)] = r.category;
+      }
+    }
+    return { all, img, catOf };
+  }
+
   const files = fs.readdirSync(DATA).filter(f => /^fc-chunk-\d+\.json$/.test(f));
   const all = [];
   for (const f of files) { const d = JSON.parse(fs.readFileSync(path.join(DATA, f))); for (let j = 0; j < d.i.length; j++) all.push({ id: d.i[j], name: d.n[j], price: d.p[j], sales: (d.s && d.s[j]) || 0 }); }
   const img = {};
   for (const f of fs.readdirSync(DATA).filter(f => /^fc-img-chunk-\d+\.json$/.test(f))) { try { Object.assign(img, JSON.parse(fs.readFileSync(path.join(DATA, f)))); } catch {} }
-  return { all, img };
+  return { all, img, catOf: null };
 }
 
 // Первые карточки сетки - это и есть главный элемент первого экрана (LCP).
@@ -250,11 +291,14 @@ ${FOOTER}
 </html>`;
 }
 
-function buildCategory(cat, all, img) {
+function buildCategory(cat, all, img, catOf) {
   const catDisp = dispOf[cat] || cat;
   let list = [];
   for (const m of all) {
-    if (classify(m.name, m.id) !== cat) continue;
+    // Категория из записи, если она есть: там у поля один хозяин.
+    // Вычисление остаётся запасным - для прогона без записей.
+    const mcat = (catOf && catOf[String(m.id)]) || classify(m.name, m.id);
+    if (mcat !== cat) continue;
     // Модель без превью раньше просто выбрасывалась из категории: 60 живых
     // карточек не показывались нигде, а счётчик расходился с источником.
     // У сайта есть своя заглушка для картинки - ставим её.
@@ -287,12 +331,12 @@ function buildCategory(cat, all, img) {
 
 function main() {
   const one = process.argv[2];
-  const { all, img } = loadCatalog();
+  const { all, img, catOf } = loadCatalog();
   const cats = one ? [one] : ALL_SLUGS;
   let totalPages = 0;
   const counts = {};
   for (const cat of cats) {
-    const r = buildCategory(cat, all, img);
+    const r = buildCategory(cat, all, img, catOf);
     totalPages += r.pages;
     counts[r.cat] = r.models;
     console.error(`  ${r.cat.padEnd(24)} ${String(r.models).padStart(6)} моделей → ${r.pages} стр.`);

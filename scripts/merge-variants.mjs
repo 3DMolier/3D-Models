@@ -29,6 +29,9 @@ const oi = process.argv.indexOf('--only');
 const ONLY = oi !== -1 ? process.argv[oi + 1] : null;
 const si = process.argv.indexOf('--sample');
 const SAMPLE = si !== -1 ? process.argv[si + 1] : null;
+// Ограничитель области: склеивать только группы, задевающие адреса из файла.
+const ti = process.argv.indexOf('--touching');
+const TOUCHING = ti !== -1 ? process.argv[ti + 1] : null;
 
 // Софт ищем ГДЕ УГОДНО в названии, не только в конце. «African Animals Rigged
 // for Maya Collection» и «… for Cinema Collection» - одна модель, но маркер стоит
@@ -517,6 +520,30 @@ function buildManualGroups() {
 //   • не больше шести карточек: крупные корни - это семейства, а не машины,
 //     в одном лежат Airbus A321, Boeing 767 и 737. Таких 393, их не трогаем.
 const ROOTCAT = /^(vehicles|military vehicles|aircraft|ships|industrial equipment)$/i;
+/*
+ * Категории для сверки состава групп - ИЗ ЗАПИСЕЙ, ПО АДРЕСУ КАРТОЧКИ.
+ *
+ * Две попытки до этого не сработали, и обе поучительны. Сперва брал категорию
+ * из data/model-categories.json - у новых карточек её там ещё нет, и они
+ * проходили фильтр как «категория неизвестна». Потом взял из записей, но искал
+ * по номеру модели, а строки склейки приходят из майского Excel, где ключ
+ * другой: поиск промахивался молча, и правило не срабатывало вовсе.
+ *
+ * Адрес карточки одинаков во всех источниках - поэтому ключ он.
+ */
+const CAT_BY_SLUG = (() => {
+  const out = {};
+  try {
+    const ix = JSON.parse(fs.readFileSync(path.join(ROOT, "data", "records", "index.json"), "utf8"));
+    for (let k = 0; k < ix.chunks; k++) {
+      for (const r of JSON.parse(fs.readFileSync(path.join(ROOT, "data", "records", "records-" + k + ".json"), "utf8"))) {
+        if (r.category && r.slug) out[r.slug] = r.category;
+      }
+    }
+  } catch (e) { /* записей нет - сверять нечем, работаем как раньше */ }
+  return out;
+})();
+const CAT_BY_SLUG_SIZE = Object.keys(CAT_BY_SLUG).length;
 const ROOTCAT_MAX = 6;
 
 function buildRootCatGroups() {
@@ -532,7 +559,22 @@ function buildRootCatGroups() {
   }
 
   const out = [];
-  for (const [, items] of byRoot) {
+  for (const [, items0] of byRoot) {
+    /*
+     * Внутри корня оставляем только ОДНУ категорию - ту, что у большинства.
+     *
+     * Корень публикации у TurboSquid не всегда про одну вещь: «Container Ship
+     * Generic» и «Volkswagen Golf GTI 2025» лежат под одним корнем
+     * 9kL6KCe9TM. Проход назывался «корень+категория», но категорию брал из
+     * отчёта одним общим фильтром, а не сверял внутри группы - и хэтчбек
+     * попадал в семью контейнеровоза как его «версия».
+     *
+     * Категорию берём из единого источника: там она выверена и хабами, и
+     * людьми. Меньшинство отбрасываем, а не растаскиваем по своим группам:
+     * одна-две позиции чужой категории внутри корня - это почти всегда другая
+     * вещь, а не вариант.
+     */
+    const items = items0;
     // Потолок считаем по ЖИВЫМ карточкам, а не по всем строкам корня. В корне
     // Eurofighter 14 позиций, но 10 из них уже свёрнуты прошлыми проходами -
     // живых всего 4. Счёт по всем строкам отбрасывал такие корни целиком.
@@ -1038,6 +1080,99 @@ if (!ONLY || ONLY === 'geo') groups.push(...buildGeoGroups());
   groups.push(...kept);
 }
 
+/*
+ * ── ограничитель области: --touching <файл со слагами> ──────────────────────
+ *
+ * ЗАЧЕМ. Скрипт пересобирает склейку по ВСЕМУ сайту: 12 509 групп и 22 717
+ * удалённых страниц за прогон. Когда добавилась партия новых моделей, склеить
+ * надо только их - и те живые карточки, вариантами которых они оказались.
+ * Без ограничителя пришлось бы прогонять весь сайт ради шестисот страниц.
+ *
+ * ПОЧЕМУ ИМЕННО ЗДЕСЬ. Все правила группировки уже отработали и разрешили
+ * пересечения. Мы в них ничего не меняем - только выбрасываем группы, которые
+ * не касаются названного списка. Группа, где новая модель оказалась вариантом
+ * живой карточки, остаётся ЦЕЛИКОМ: иначе склейка вышла бы половинчатой.
+ */
+/*
+ * ── одна группа - одна категория ───────────────────────────────────────────
+ *
+ * Корень публикации у TurboSquid не всегда про одну вещь: под корнем
+ * 9kL6KCe9TM лежат пять грузовых судов И «Volkswagen Golf GTI 2025». Проход
+ * «корень+категория» брал категорию общим фильтром по отчёту, а внутри группы
+ * не сверял - и хэтчбек попадал в семью контейнеровоза как его «версия».
+ *
+ * Правило: если участники группы по записям относятся к разным категориям,
+ * группу не склеиваем вовсе. Не «берём большинство»: большинства может не
+ * быть, а любой выбор сделает одну вещь версией другой. Склейка - улучшение,
+ * а не обязанность, и сомнительную группу честнее оставить как есть.
+ */
+if (CAT_BY_SLUG_SIZE) {
+  // Слова, которые есть у всех подряд и потому ничего не различают.
+  const STOPW = new Set(["3d","model","models","with","and","for","the","set","new","old",
+    "rigged","animated","simplified","simple","game","ready","fur","pose","posed","dirty",
+    "black","white","grey","gray","silver","red","blue","green","yellow","orange","gold",
+    "brown","camo","camouflage","olive","beige","pink","purple","maroon","generic",
+    "collection","sand","khaki","maya","cinema","blender","max","interior"]);
+  const wordsOf = t => new Set(String(t).toLowerCase().split(/[^a-z0-9]+/)
+    .filter(w => w.length > 2 && !STOPW.has(w)));
+  let cut = 0, killed = 0;
+  const shown = [];
+  const kept = [];
+  for (const g of groups) {
+    const all = [g.main, ...g.rest];
+    const tally = new Map();
+    for (const x of all) { const c = CAT_BY_SLUG[x.slug]; if (c) tally.set(c, (tally.get(c) || 0) + 1); }
+    if (tally.size <= 1) { kept.push(g); continue; }
+    /*
+     * Образец категории - у ГЛАВНОЙ карточки: группа названа по ней, её адрес
+     * остаётся, остальные становятся её версиями.
+     *
+     * Большинство здесь не годится. В корне контейнеровоза три категории по
+     * одной штуке - ничья, и «большинством» случайно вышли «vehicles», после
+     * чего чужаком оказался не Golf, а сами суда. Категория главной такой
+     * ничьей не знает.
+     */
+    const top = CAT_BY_SLUG[g.main.slug] || [...tally].sort((a, b) => b[1] - a[1])[0][0];
+    // Ядро названия: слова, общие хотя бы половине участников.
+    const freq = new Map();
+    for (const x of all) for (const w of wordsOf(x.name)) freq.set(w, (freq.get(w) || 0) + 1);
+    const core = new Set([...freq].filter(([, n]) => n >= Math.ceil(all.length / 2)).map(([w]) => w));
+    const alien = x => {
+      const c = CAT_BY_SLUG[x.slug];
+      /*
+       * Своя категория освобождает от проверки названия. Неизвестная - нет.
+       *
+       * Второй «Volkswagen Golf GTI 2025» в семье контейнеровоза записи не
+       * имел (он уже свёрнут другим проходом), и поблажка «категория
+       * неизвестна» пропустила его. На карточке он показался бы версией судна.
+       */
+      if (c && c === top) return false;
+      for (const w of wordsOf(x.name)) if (core.has(w)) return false;
+      return true;
+    };
+    if (alien(g.main)) { killed++; if (shown.length < 5) shown.push("группа целиком: " + g.main.name); continue; }
+    const rest = g.rest.filter(x => !alien(x));
+    cut += g.rest.length - rest.length;
+    if (!rest.length) { killed++; continue; }
+    kept.push({ ...g, rest });
+  }
+  groups.length = 0;
+  groups.push(...kept);
+  if (cut || killed) console.log("чужих по категории и названию убрано: " + cut + ", групп распалось: " + killed);
+  shown.forEach(x => console.log("   " + x.slice(0, 80)));
+}
+if (TOUCHING) {
+  const want = new Set(fs.readFileSync(TOUCHING, 'utf8').split(/\r?\n/)
+    .map(s => s.trim().replace(/^models\//, '').replace(/\/$/, '')).filter(Boolean));
+  const before = groups.length;
+  const kept = groups.filter(g => want.has(g.main.slug) || g.rest.some(r => want.has(r.slug)));
+  groups.length = 0;
+  groups.push(...kept);
+  console.log('ограничение области: в списке ' + want.size.toLocaleString('ru-RU')
+    + ' адресов, групп было ' + before.toLocaleString('ru-RU')
+    + ', осталось ' + groups.length.toLocaleString('ru-RU'));
+}
+
 console.log('групп: ' + groups.length
   + '  (софт ' + groups.filter(g => g.kind === 'soft').length
   + ', цвет ' + groups.filter(g => g.kind === 'color').length
@@ -1048,6 +1183,31 @@ console.log('групп: ' + groups.length
   + ', корень+категория ' + groups.filter(g => g.kind === 'rootcat').length
   + ', по геометрии ' + groups.filter(g => g.kind === 'geo').length + ')');
 console.log('страниц свернётся: ' + groups.reduce((s, g) => s + g.rest.length, 0));
+
+/*
+ * Сколько среди сворачиваемых страниц УЖЕ ЖИВУЩИХ на сайте.
+ *
+ * Свернуть новую страницу, которую мы сами только что собрали, - дешёво:
+ * её ещё никто не видел. Свернуть живую - значит убрать адрес, на который
+ * ходят люди и поисковик, и заменить его перенаправлением. Это разные по цене
+ * действия, и в отчёте они должны стоять раздельно, а не одним числом.
+ */
+{
+  const isFresh = TOUCHING
+    ? new Set(fs.readFileSync(TOUCHING, 'utf8').split(/\r?\n/)
+      .map(s => s.trim().replace(/^models\//, '').replace(/\/$/, '')).filter(Boolean))
+    : null;
+  if (isFresh) {
+    let fresh = 0, liveOnes = 0, mainsLive = 0;
+    for (const g of groups) {
+      if (!isFresh.has(g.main.slug)) mainsLive++;
+      for (const r of g.rest) (isFresh.has(r.slug) ? fresh++ : liveOnes++);
+    }
+    console.log('  из них новых (никто ещё не видел): ' + fresh
+      + ', УЖЕ ЖИВУЩИХ на сайте: ' + liveOnes);
+    console.log('  главными в группах остаются живые карточки: ' + mainsLive + ' из ' + groups.length);
+  }
+}
 
 // Список групп прохода для глазной проверки:  --dry --list identity 20
 const li = process.argv.indexOf('--list');
