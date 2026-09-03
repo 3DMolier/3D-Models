@@ -47,16 +47,26 @@ console.log('живых карточек: ' + livePid.size);
 const idx = JSON.parse(fs.readFileSync(path.join(DATA, 'fc-index.json'), 'utf8'));
 const KEYS = idx.keys;
 const rows = [];
+const seenId = new Set();
+let dup = 0;
 for (let n = 0; n < idx.chunks; n++) {
   const c = JSON.parse(fs.readFileSync(path.join(DATA, 'fc-chunk-' + n + '.json'), 'utf8'));
   const len = c[KEYS[0]].length;
   for (let i = 0; i < len; i++) {
     const r = {};
     for (const k of KEYS) r[k] = c[k][i];
+    /*
+     * Одна модель - одна строка. В индексе оказался задвоен id 2570748
+     * (Volkswagen Golf GTI 2025): в каталоге и поиске он показался бы двумя
+     * одинаковыми плитками. Повтор в индексе всегда ошибка, поэтому режем
+     * здесь, а не ищем, кто его добавил дважды.
+     */
+    if (seenId.has(String(r.i))) { dup++; continue; }
+    seenId.add(String(r.i));
     rows.push(r);
   }
 }
-console.log('в старом индексе: ' + rows.length + ' товаров');
+console.log('в старом индексе: ' + rows.length + ' товаров' + (dup ? ', убрано повторов: ' + dup : ''));
 
 const keep = rows.filter(r => livePid.has(String(r.i)));
 const dropped = rows.length - keep.length;
