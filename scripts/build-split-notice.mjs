@@ -68,7 +68,7 @@ ${HEADER}
         <div class="split-count">${tCount} models &#183; hand tools, power tools, workshop equipment</div>
       </a>
     </div>
-    <p class="cat-desc"><a href="/">See all categories</a> or use <a href="/search/">Search</a> to find a specific model.</p>
+    <p class="cat-desc"><a href="/">See all categories</a> or search the <a href="/catalog/">catalog</a> to find a specific model.</p>
   </div>
 </section>
 </main>

@@ -155,9 +155,9 @@ ${header}
   <div class="max-w-7xl mx-auto">
     <div class="section-label">Browse by Subject</div>
     <h1 class="cat-page-h1">3D Model Categories</h1>
-    <p class="cat-hub-note">These pages sort the catalog by what a model <em>is</em>: a vehicle, a building, an animal, a weapon. If you would rather start from the work you do, the <a href="/industries/">industry pages</a> gather the same models by field, and the <a href="/full-catalog/">full catalog</a> holds every one of them in a single searchable list.</p>
+    <p class="cat-hub-note">These pages sort the catalog by what a model <em>is</em>: a vehicle, a building, an animal, a weapon. If you would rather start from the work you do, the <a href="/industries/">industry pages</a> gather the same models by field, and the <a href="/catalog/">catalog</a> holds every one of them in a single searchable list.</p>
     <div class="cat-hub-grid">${cards}</div>
-    <p class="cat-hub-note">Looking for something specific? Use <a href="/search/">search</a>, or browse the <a href="/collections/">collections</a> for sets that ship together. For a model that does not exist yet, we build it: see <a href="/custom-order/">custom orders</a>.</p>
+    <p class="cat-hub-note">Looking for something specific? Search the <a href="/catalog/">catalog</a>, or browse the <a href="/collections/">collections</a> for sets that ship together. For a model that does not exist yet, we build it: see <a href="/custom-order/">custom orders</a>.</p>
   </div>
 </section>
 </main>

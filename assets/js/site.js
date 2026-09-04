@@ -52,11 +52,13 @@ function mobToggle(btnId,subId){var btn=d.getElementById(btnId),sub=d.getElement
 mobToggle('mob-cat-toggle','mob-cat-sub');
 mobToggle('mob-ind-toggle','mob-ind-sub');
 
-// Homepage hero search → /search/?q=...
+// Поиск с главной ведёт прямо в каталог. Раньше он вёл на /search/, а тот
+// страницей-указателем перебрасывал на /catalog/ - лишний шаг для человека и
+// разрыв цепочки для поисковика. Каталог сам читает ?q= из адреса.
 var heroSearch=d.querySelector('.hero-search-wrap .search-input');
 var heroBtn=d.querySelector('.hero-search-wrap .search-btn');
 if(heroSearch&&heroBtn){
-  function doHeroSearch(){var q=heroSearch.value.trim();if(q)window.location.href='/search/?q='+encodeURIComponent(q);}
+  function doHeroSearch(){var q=heroSearch.value.trim();if(q)window.location.href='/catalog/?q='+encodeURIComponent(q);}
   heroBtn.addEventListener('click',doHeroSearch);
   heroSearch.addEventListener('keydown',function(e){if(e.key==='Enter')doHeroSearch();});
 }

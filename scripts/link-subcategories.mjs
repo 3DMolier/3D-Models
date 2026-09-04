@@ -58,7 +58,12 @@ for (const [cat, list] of byCat) {
 
   for (const file of files) {
     let h = fs.readFileSync(file, 'utf8');
-    if (h.includes('class="chip-n"')) continue;   // уже проставлено
+    // Страница уже размечена - и в ней не осталось чипов на /search/. Второе
+    // условие нужно после того, как поиск переехал в каталог: страницы,
+    // размеченные до переезда, обязаны пройти ещё раз, чтобы уцелевшие чипы
+    // сменили адрес. Повтор безопасен: ряд собирается заново из
+    // subcategories.json, и если он совпал с тем, что в файле, файл не пишется.
+    if (h.includes('class="chip-n"') && !h.includes('href="/search/?q=')) continue;
     const before = h;
     const m = h.match(/<div class="cat-tags">([\s\S]*?)<\/div>/);
 
@@ -66,12 +71,17 @@ for (const [cat, list] of byCat) {
       // Ряд чипов есть - заменяем его. Старые чипы, которым не нашлось
       // подкатегории, оставляем: выдумывать под них страницу ради ровного
       // ряда - худшая из причин заводить страницу.
-      const old = [...m[1].matchAll(/<a href="\/search\/\?q=([^"]*)" class="chip">([^<]*)<\/a>/g)];
+      // Ловим оба адреса: и старый /search/, и уже переведённый /catalog/.
+      // Иначе повторный прогон по переведённой странице не нашёл бы эти чипы
+      // и молча выбросил их из ряда.
+      const old = [...m[1].matchAll(/<a href="\/(?:search|catalog)\/\?q=([^"]*)" class="chip">([^<]*)<\/a>/g)];
       const haveTitles = list.map(s => s.title.toLowerCase().replace(/[^a-z]/g, ''));
       const leftovers = old.filter(o => {
         const t = o[2].toLowerCase().replace(/[^a-z]/g, '').replace(/s$/, '');
         return !haveTitles.some(x => x === t || x.replace(/s$/, '') === t || t.indexOf(x) === 0 || x.indexOf(t) === 0);
-      }).map(o => o[0]);
+      // Поиска отдельной страницей больше нет: /search/ - указатель на
+      // /catalog/. Ведём чип сразу в каталог, он читает ?q= из адреса.
+      }).map(o => o[0].replace('/search/?q=', '/catalog/?q='));
       kept += leftovers.length;
       const block = '<div class="cat-tags">\n' + links + (leftovers.length ? '\n' + leftovers.join('\n') : '') + '\n</div>';
       h = h.replace(/<div class="cat-tags">[\s\S]*?<\/div>/, () => block);

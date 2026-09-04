@@ -46,7 +46,13 @@ const MARK = '<!--MP_FOOTER_BACK-->';
 const EXTRACT = process.argv.includes('--extract');
 const DRY = process.argv.includes('--dry');
 
-const reHeader = /<header[\s\S]*?<\/header>/i;
+// Ссылка «пропустить к содержимому» стоит ПЕРЕД <header> - она обязана быть
+// первой, куда попадает клавиша Tab. Значит и захватывать надо вместе с ней:
+// если искать только с <header>, замена подставит образец со ссылкой внутрь
+// страницы, где ссылка уже есть, и каждый прогон будет добавлять ещё одну.
+// Звёздочка на группе - чтобы прогон по уже испорченной странице собрал все
+// накопившиеся ссылки в одну, а не оставил лишние впереди.
+const reHeader = /(?:<a href="#main-content" class="skip-link">[\s\S]*?<\/a>\s*)*<header[\s\S]*?<\/header>/i;
 const reFooter = /<footer[\s\S]*?<\/footer>/i;
 const reBack = /<div class="max-w-7xl mx-auto mp-footer-back">[\s\S]*?<\/div>/i;
 
@@ -96,7 +102,11 @@ const pages = [];
     if (e.name === 'node_modules' || e.name.startsWith('.')) continue;
     const next = rel ? rel + '/' + e.name : e.name;
     if (e.isDirectory()) walk(next);
-    else if (e.name === 'index.html') pages.push(next);
+    // Страница ошибки лежит не в папке, а файлом 404.html в корне, поэтому
+    // обход по index.html её не видел. Она отстала на целую перестройку меню:
+    // показывала вкладки «Top 1000», «Full Catalog» и «Search», которых на
+    // сайте уже нет. Берём и её - шапка и подвал у неё те же.
+    else if (e.name === 'index.html' || (!rel && e.name === '404.html')) pages.push(next);
   }
 })('');
 

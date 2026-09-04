@@ -56,7 +56,7 @@ console.log('моделей: ' + slugs.length);
 // JS просто скрывает те, что не совпали. Работает мгновенно, не требует сети.
 const FILTER_JS = `<script>(function(){var i=document.getElementById('browse-filter');if(!i)return;var items=[].slice.call(document.querySelectorAll('.browse-list li'));var cnt=document.getElementById('browse-filter-count');i.addEventListener('input',function(){var q=i.value.trim().toLowerCase();var shown=0;items.forEach(function(li){var m=!q||li.textContent.toLowerCase().indexOf(q)>-1;li.style.display=m?'':'none';if(m)shown++;});if(cnt)cnt.textContent=q?(shown+' of '+items.length+' match'):'';});})();</script>`;
 const FILTER_BOX = `<div class="browse-filter-box"><input id="browse-filter" type="search" placeholder="Filter models on this page…" aria-label="Filter models on this page"><span id="browse-filter-count" class="browse-filter-count"></span></div>
-    <p class="browse-search-hint">Looking for something specific across the whole catalog? Use <a href="/search/">Search</a> or the <a href="/full-catalog/">Full Catalog</a> instead - this index is a flat link list meant for browsing page by page.</p>`;
+    <p class="browse-search-hint">Looking for something specific across the whole catalog? Use the <a href="/catalog/">catalog</a> instead - it searches and filters every model, while this index is a flat link list meant for browsing page by page.</p>`;
 
 const pages = Math.ceil(slugs.length / PER);
 fs.mkdirSync(OUT, { recursive: true });

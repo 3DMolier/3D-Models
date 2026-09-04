@@ -75,7 +75,10 @@ const graph = {
       inLanguage: 'en',
       potentialAction: {
         '@type': 'SearchAction',
-        target: { '@type': 'EntryPoint', urlTemplate: SITE + '/search/?q={search_term_string}' },
+        // Адрес поиска для поисковых систем. Раньше указывал на /search/ -
+        // страницу-указатель, которая сама перебрасывает на /catalog/. Ведём
+        // сразу в каталог: он и есть поиск.
+        target: { '@type': 'EntryPoint', urlTemplate: SITE + '/catalog/?q={search_term_string}' },
         'query-input': 'required name=search_term_string',
       },
     },
@@ -116,7 +119,37 @@ function upgradeGraph(src) {
       }
       if (node && node['@type'] === 'WebSite') {
         hit = true;
-        return { ...node, publisher: { '@id': node['@id'] ? node['@id'].replace(/#website$/, '#organization') : ORG['@id'] }, inLanguage: 'en' };
+        // potentialAction берём из образца, а не оставляем как есть: адрес
+        // поиска переехал с /search/ на /catalog/, и без этой строки страницы
+        // продолжали бы отдавать поисковикам адрес страницы-указателя.
+        return {
+          ...node,
+          publisher: { '@id': node['@id'] ? node['@id'].replace(/#website$/, '#organization') : ORG['@id'] },
+          inLanguage: 'en',
+          potentialAction: WEB.potentialAction,
+        };
+      }
+      // Ссылка на издателя встречается и в других узлах - на /catalog/ она
+      // указывала на #org, а такого узла в графе нет: организация зовётся
+      // #organization. Ссылка в пустоту. Сводим к одному имени.
+      if (node && node.publisher && typeof node.publisher['@id'] === 'string'
+          && /#org$/.test(node.publisher['@id'])) {
+        hit = true;
+        return { ...node, publisher: { '@id': node.publisher['@id'].replace(/#org$/, '#organization') } };
+      }
+      // Адрес поиска встречается не только у WebSite: на /catalog/ он лежит
+      // ещё и в узле WebPage. Переводим любой на действующий адрес каталога.
+      const tpl = node && node.potentialAction && node.potentialAction.target
+        && node.potentialAction.target.urlTemplate;
+      if (typeof tpl === 'string' && tpl.includes('/search/?q=')) {
+        hit = true;
+        return {
+          ...node,
+          potentialAction: {
+            ...node.potentialAction,
+            target: { ...node.potentialAction.target, urlTemplate: tpl.replace('/search/?q=', '/catalog/?q=') },
+          },
+        };
       }
       return node;
     });
@@ -133,8 +166,13 @@ for (const f of files) {
   const src = fs.readFileSync(f, 'utf8');
   let next = null, kind = '';
 
+  // Две правки идут подряд, а не «или - или». Раньше страница с целиком
+  // заменяемым блоком дальше не разбиралась, и остальные блоки разметки на ней
+  // оставались нетронутыми: на /catalog/ так и жили ссылка на издателя #org,
+  // которого в графе нет, и адрес поиска на /search/ во втором блоке.
   if (OLD.test(src)) { next = src.replace(OLD, () => BLOCK); kind = 'replaced'; }
-  else { const up = upgradeGraph(src); if (up) { next = up; kind = 'upgraded'; } }
+  const up = upgradeGraph(next || src);
+  if (up && up !== (next || src)) { next = up; if (!kind) kind = 'upgraded'; }
 
   // страницы вообще без сведений об организации — вставляем блок перед </head>
   if (!next && !/"@type":\s*"Organization"/.test(src) && src.includes('</head>')) {
