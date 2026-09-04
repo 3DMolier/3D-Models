@@ -26,7 +26,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import os from 'node:os';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const OUT = path.join(ROOT, 'data', 'product-report.json');
 const SOFFICE = 'C:/Program Files/LibreOffice/program/soffice.exe';
 const SRC = process.argv[2];

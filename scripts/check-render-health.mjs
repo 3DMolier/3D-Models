@@ -19,7 +19,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { renderCard } from './render-card.mjs';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const RECS = path.join(ROOT, 'data', 'records');
 const CTRL = new RegExp('[\\u0000-\\u0008\\u000B\\u000C\\u000E-\\u001F]');
 

@@ -28,7 +28,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const SP = 'C:/Users/MSI-PC/AppData/Local/Temp/claude/D--Clode-Work-Folder/0f828965-b789-4834-abc7-1381fac7594a/scratchpad';
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const MODELS = path.join(ROOT, 'models');
 const shi = process.argv.indexOf('--show');
 const SHOW = shi !== -1 ? +process.argv[shi + 1] || 5 : 5;

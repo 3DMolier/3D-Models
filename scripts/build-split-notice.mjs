@@ -15,7 +15,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const CATEGORIES = path.join(ROOT, 'categories');
 const BASE = 'https://3dmolierstudio.com';
 const OLD = 'weapons-tools';

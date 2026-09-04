@@ -26,7 +26,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { COLLECTION_WORDS, INDUSTRY_WORDS, score } from './lib/hub-keywords.mjs';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const DRY = process.argv.includes('--dry');
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const WIDE = /\/1920x1080\//;

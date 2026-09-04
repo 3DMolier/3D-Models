@@ -17,7 +17,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const MODELS = path.join(ROOT, 'models');
 const arg = n => { const i = process.argv.indexOf(n); return i > 0 ? Number(process.argv[i + 1]) : 0; };
 const EVERY = arg('--every') || 7;
@@ -61,3 +61,8 @@ for (const [name, v] of counts) {
   if (v) bad++;
 }
 console.log(bad ? '\nнайдено родов брака: ' + bad : '\nЯВНОГО БРАКА НЕТ');
+
+// Возврат ненулевого кода - чтобы проверку можно было ставить преградой перед
+// публикацией. Без него сборка в Actions видела красный вывод и всё равно
+// считала шаг успешным.
+process.exit(bad ? 1 : 0);

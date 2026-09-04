@@ -19,7 +19,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const SITE = 'https://3dmolierstudio.com';
 const COMPANY = '3D Molier International Corp.';
 const ADDRESS = 'East 54th Street, P.O. Box 0832-0886 W.T.C., Mossfon Building, 2nd Floor, Panama, Republic of Panama';

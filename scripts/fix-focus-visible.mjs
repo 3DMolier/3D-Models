@@ -21,7 +21,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const CSS = path.join(ROOT, 'assets', 'css');
 const RING = 'outline: 2px solid #1659c9; outline-offset: 2px;';
 

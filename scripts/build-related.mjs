@@ -18,7 +18,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { prepare, pickFor } from './lib/related.mjs';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const OUT = path.join(ROOT, 'data', 'records');
 const DRY = process.argv.includes('--dry');
 const WANT = 10;

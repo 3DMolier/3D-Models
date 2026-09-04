@@ -28,7 +28,7 @@ import {
 } from './card-content.mjs';
 import { INDUSTRY_NAME, useLabel } from './lib/industries.mjs';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const SITE = 'https://3dmolierstudio.com';
 
 // ── обвязка: шапка и подвал из единственного источника ──────────────────────

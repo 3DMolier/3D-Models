@@ -39,7 +39,7 @@ const ALL_USE_SENT = [...new Set([...BASE_USE_SENT, ...BASE_USE_SENT.map(toUS)])
 // Название модели берём из h1 - оно нужно военному признаку.
 const nameOfCard = html => ((html.match(/<h1[^>]*>([^<]*)</) || [])[1] || '').replace(/&amp;/g, '&');
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const DRY = process.argv.includes('--dry');
 const cp = v => (v === undefined || v === null) ? v : (' ' + v).slice(1);
 const slugify = s => String(s).toLowerCase().trim()

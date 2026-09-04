@@ -15,7 +15,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { CATEGORIES, catBySlug, nameOf, menuNameOf, h1Of, escName, loadModelCategories } from './lib/taxonomy.mjs';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const cp = v => (v === undefined || v === null) ? v : (' ' + v).slice(1);
 const slugify = s => String(s).toLowerCase().trim()
   .replace(/[^\w\s-]/g, '').replace(/[\s_]+/g, '-').replace(/-+/g, '-').replace(/^-+|-+$/g, '');

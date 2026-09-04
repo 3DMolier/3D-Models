@@ -29,7 +29,7 @@ import path from 'node:path';
 import { SUBCATS, MIN_MODELS } from './subcategories.mjs';
 import { nameOf } from './lib/taxonomy.mjs';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const DATA = path.join(ROOT, 'data');
 const CATEGORIES = path.join(ROOT, 'categories');
 const MODELS = path.join(ROOT, 'models');

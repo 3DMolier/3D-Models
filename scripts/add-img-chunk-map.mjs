@@ -22,10 +22,11 @@
  * Запуск:  node scripts/add-img-chunk-map.mjs --dry
  *          node scripts/add-img-chunk-map.mjs
  */
+import { ROOT } from './lib/paths.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const DATA = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website/data';
+const DATA = ROOT + '/data';
 const DRY = process.argv.includes('--dry');
 
 const imgIdx = JSON.parse(fs.readFileSync(path.join(DATA, 'fc-img-index.json'), 'utf8'));

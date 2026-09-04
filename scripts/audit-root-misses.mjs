@@ -16,7 +16,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const MODELS = path.join(ROOT, 'models');
 const shi = process.argv.indexOf('--show');
 const SHOW = shi !== -1 ? +process.argv[shi + 1] || 15 : 15;

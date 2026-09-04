@@ -4,7 +4,7 @@
 // g - номер категории модели, CATS - список слагов категорий из fc-index.json.
 // Категория едет вместе с чанком, отдельного запроса не появляется. Осторожно:
 // c - это cert, а не category; на этом легко решить, что категория уже есть.
-var FC={i:[],n:[],p:[],s:[],c:[],g:[]}, IMGS={}, fcReady=false, CATS=[];
+var FC={i:[],n:[],p:[],s:[],c:[],g:[],ic:[]}, IMGS={}, fcReady=false, CATS=[];
 var searchQ='', selPrice=null, selCat=null, sortMode='sales';
 var filtered=[], page=0, PAGE_SIZE=60, DEFAULT_LIMIT=100, noLimit=false;
 var IDLE_PRELOAD_LIMIT=2, idlePreloaded=0;
@@ -31,7 +31,10 @@ var totalChunks=0, loadedChunks=0, imgChunks=0, totalImgChunks=0;
 var totalModels=0;
 
 function mergeChunk(chunk) {
-  var keys=['i','n','p','s','c','g'];
+  // ic - номер файла, в котором лежит адрес картинки этой модели. Колонка уже
+  // была в данных, но каталог её выбрасывал и потому не знал, какой из 18
+  // файлов ему нужен: приходилось грузить все.
+  var keys=['i','n','p','s','c','g','ic'];
   for(var k=0;k<keys.length;k++){
     var key=keys[k];
     FC[key]=FC[key].concat(chunk[key]||[]);
@@ -55,7 +58,7 @@ function onFirstChunk() {
   // Запрос из адреса приходит с чипа ключевого слова на карточке. Искать
   // надо по всему каталогу, а не по первому загруженному куску: иначе
   // «tesla model 3» находит десяток моделей вместо всех.
-  if(urlQ&&qEl){qEl.value=urlQ;searchQ=urlQ.toLowerCase();applyFilters();ensureRemainingChunks();ensureRemainingImgChunks();}
+  if(urlQ&&qEl){qEl.value=urlQ;searchQ=urlQ.toLowerCase();applyFilters();ensureRemainingChunks();}
   if('IntersectionObserver' in window) setupInfiniteScroll();
   // Если пришли сразу с фильтром категории, счёт должен быть верным с первого
   // экрана: /catalog/?cat=aircraft показывал «706 of 54077», пока догружались
@@ -139,23 +142,25 @@ function injectLoadedImages(){
   });
 }
 
-function ensureRemainingImgChunks(){
-  for(var i=0;i<totalImgChunks;i++){if(!loadedImgChunkSet[i])loadImgChunk(i);}
-}
-
-// Остальные чанки картинок откладываем. Раньше сразу после первого шёл
-// ensureRemainingImgChunks, и страница тянула ВСЕ 18 файлов fc-img-chunk —
-// 6.2 МБ JSON на первой загрузке (замер показал вес страницы 7.8 МБ).
-// Первый чанк покрывает видимые карточки; остальные нужны при листании и поиске,
-// поэтому запускаем их по первому действию пользователя либо в простое.
-function scheduleRemainingImgChunks(){
-  var started=false;
-  function go(){ if(started)return; started=true; ensureRemainingImgChunks(); }
-  ['scroll','keydown','pointerdown'].forEach(function(ev){
-    window.addEventListener(ev, go, {once:true, passive:true});
-  });
-  if(window.requestIdleCallback) requestIdleCallback(go,{timeout:15000});
-  else setTimeout(go,15000);
+// Адреса картинок разложены по 18 файлам общим весом 18 МБ. Раньше страница
+// откладывала их до первой прокрутки, а потом тянула ВСЕ ВОСЕМНАДЦАТЬ - то
+// есть 18 МБ разбора JSON ради шестидесяти видимых карточек.
+//
+// Грузим ровно те файлы, в которых лежат показанные сейчас модели. Номер файла
+// известен из колонки ic, она едет вместе с данными каталога и лишнего запроса
+// не создаёт. Замер по нашим данным: первой странице нужно 2 файла из 18, это
+// 1,5 МБ вместо 18,1 МБ; поиску по слову helicopter - тоже 2. Дальше человек
+// листает, и подгружается только то, что он действительно увидел.
+//
+// ic === -1 значит «картинки у модели нет»: на её месте останется рамка-заглушка,
+// и запрашивать ради неё файл не нужно.
+function ensureImgChunksFor(rows){
+  var want={};
+  for(var i=0;i<rows.length;i++){
+    var k=FC.ic[rows[i]];
+    if(typeof k==='number'&&k>=0&&!loadedImgChunkSet[k])want[k]=true;
+  }
+  for(var key in want)if(want.hasOwnProperty(key))loadImgChunk(+key);
 }
 
 function startLoading(fcIdx, imgIdx) {
@@ -164,7 +169,6 @@ function startLoading(fcIdx, imgIdx) {
   totalModels = fcIdx.total || 0;
   totalImgChunks = imgIdx.chunks;
   loadChunk(0);
-  loadImgChunk(0).then(scheduleRemainingImgChunks);
 }
 
 Promise.all([
@@ -221,6 +225,9 @@ function applyFilters(){
 function renderGrid(){
   if(!grid||!fcReady)return;
   var toShow=filtered.slice(0,(page+1)*PAGE_SIZE);
+  // Запрашиваем адреса картинок ровно для тех карточек, что сейчас выводим.
+  // Пришедший файл сам подставит снимки на место рамок - injectLoadedImages.
+  ensureImgChunksFor(toShow);
   if(filtered.length===0){
     grid.innerHTML='';
     // Блок «нет результатов» показываем ТОЛЬКО когда человек действительно
@@ -294,11 +301,11 @@ if(qEl){
     debT=setTimeout(function(){
       searchQ=val.toLowerCase();
       applyFilters();
-      if(val.length>1){ensureRemainingChunks();ensureRemainingImgChunks();}
+      if(val.length>1){ensureRemainingChunks();}
     },220);
   });
 }
-if(sortSel)sortSel.addEventListener('change',function(){sortMode=this.value;ensureRemainingChunks();ensureRemainingImgChunks();applyFilters();});
+if(sortSel)sortSel.addEventListener('change',function(){sortMode=this.value;ensureRemainingChunks();applyFilters();});
 if(clearAll)clearAll.addEventListener('click',function(){
   searchQ='';selPrice=null;selCat=null;
   if(qEl)qEl.value='';
@@ -306,7 +313,7 @@ if(clearAll)clearAll.addEventListener('click',function(){
   clearAll.classList.remove('show');
   applyFilters();
 });
-if(lmBtn)lmBtn.addEventListener('click',function(){ensureRemainingImgChunks();page++;renderGrid();});
+if(lmBtn)lmBtn.addEventListener('click',function(){page++;renderGrid();});
 
 document.querySelectorAll('.ftag[data-price]').forEach(function(btn){
   btn.addEventListener('click',function(){
@@ -315,7 +322,7 @@ document.querySelectorAll('.ftag[data-price]').forEach(function(btn){
     else{document.querySelectorAll('.ftag[data-price]').forEach(function(b){b.classList.remove('active');});selPrice=pr;this.classList.add('active');}
     if(clearAll)clearAll.classList.toggle('show',selPrice!==null||selCat!==null||!!searchQ);
     if(typeof gtag==='function')gtag('event','filter_price',{price_band:selPrice||'none',page_type:'catalog'});
-    ensureRemainingChunks();ensureRemainingImgChunks();applyFilters();
+    ensureRemainingChunks();applyFilters();
   });
 });
 // Фильтр по категориям. Кнопки лежат в разметке статически, слаг в data-cat -
@@ -327,7 +334,7 @@ document.querySelectorAll('.ftag[data-cat]').forEach(function(btn){
     else{document.querySelectorAll('.ftag[data-cat]').forEach(function(b){b.classList.remove('active');});selCat=cat;this.classList.add('active');}
     if(clearAll)clearAll.classList.toggle('show',selPrice!==null||selCat!==null||!!searchQ);
     if(typeof gtag==='function')gtag('event','filter_category',{category:selCat||'none',page_type:'catalog'});
-    ensureRemainingChunks();ensureRemainingImgChunks();applyFilters();
+    ensureRemainingChunks();applyFilters();
   });
 });
 
@@ -366,7 +373,7 @@ function setupInfiniteScroll() {
   var io = new IntersectionObserver(function(entries) {
     if (entries[0].isIntersecting && fcReady) {
       var shown = (page + 1) * PAGE_SIZE;
-      if (shown < filtered.length) { ensureRemainingImgChunks(); page++; renderGrid(); updateProgress(); }
+      if (shown < filtered.length) {  page++; renderGrid(); updateProgress(); }
     }
   }, { rootMargin: '400px' });
   io.observe(sentinel);

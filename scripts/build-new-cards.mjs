@@ -22,7 +22,7 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { esc, description, specTable, specGrid, faqBlock, productSchema, dateLine, pageSchema, proseName } from './card-content.mjs';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const MODELS = path.join(ROOT, 'models');
 const DATA = path.join(ROOT, 'data');
 const SITE = 'https://3dmolierstudio.com';

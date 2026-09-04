@@ -30,7 +30,7 @@ import { proseOf } from './lib/page-text.mjs';
 import { isMilitary } from './lib/military.mjs';
 import { brandOf } from './lib/brands.mjs';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const MODELS = path.join(ROOT, 'models');
 const SAMPLE = (() => { const i = process.argv.indexOf('--sample'); return i > 0 ? Number(process.argv[i + 1]) : 0; })();
 const dec = s => String(s).replace(/&amp;/g, '&').trim();

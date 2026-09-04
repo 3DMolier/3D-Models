@@ -16,7 +16,7 @@
 
 import fs from 'node:fs';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 
 const REPORT = JSON.parse(fs.readFileSync(ROOT + '/data/product-report.json', 'utf8'));
 const byPid = new Map();

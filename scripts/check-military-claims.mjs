@@ -13,7 +13,7 @@ import path from 'node:path';
 import { isMilitary } from './lib/military.mjs';
 import { proseOf } from './lib/page-text.mjs';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 // Ловим ОБОРОТЫ, а не отдельные слова: «battlefield» само по себе стоит в
 // списке ключевых слов из исходных данных и обещанием не является.
 const BAD = /combat simulation|war-?game environment|battlefield (?:simulation|visuali[sz]ation)|defen[cs]e training/i;

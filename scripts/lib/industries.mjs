@@ -30,6 +30,7 @@
  * не появлялась НИ РАЗУ: карта категорий её не выдаёт. Посадочная страница
  * /industries/simulation/ не получала ни одной ссылки с карточек.
  */
+import { isMilitaryForIndustry } from './military.mjs';
 
 /** Наши 13 отраслей: slug -> подпись на чипе. */
 export const INDUSTRY_LABEL = {
@@ -158,6 +159,23 @@ export const useLabel = (industry, categorySlug) =>
   (USE_BY_CATEGORY[categorySlug] && USE_BY_CATEGORY[categorySlug][industry])
   || USE_GENERIC[industry] || INDUSTRY_NAME[industry];
 
+/*
+ * Военная ли модель - вопрос не этого файла. На него отвечает
+ * scripts/lib/military.mjs, единственный источник: там же решается, можно ли
+ * писать на карточке про боевые сценарии. Здесь берём СТРОГИЙ ответ - тот,
+ * что не считает военной цистерну-прицеп из-за слова tank и пикап Ford
+ * F-150 Raptor из-за слова raptor. Отрасль - это раздел сайта, и попасть в
+ * «Оборону» по намёку нельзя.
+ *
+ * ЗАЧЕМ ЭТО ЗДЕСЬ. F-22 Raptor, F-117 Nighthawk, AH-64D Apache, Airbus A400M,
+ * AW101 Norwegian Air Force и M-346FA лежали в отрасли Aerospace без Military
+ * & Defense: категория у них aircraft, а она даёт aerospace и simulation; в
+ * тегах листинга Military / Defense тоже нет - тег ставят при загрузке и
+ * часто забывают. Человек, пришедший на /industries/military-defense/, этих
+ * машин не находил. Целой категорией объявить нельзя: рядом пассажирские
+ * Airbus и Boeing.
+ */
+
 /** Сколько чипов показываем. Больше пяти строка переносится и теряет смысл. */
 export const MAX_INDUSTRIES = 5;
 
@@ -165,10 +183,14 @@ export const MAX_INDUSTRIES = 5;
  * Единственная функция, определяющая отрасли модели.
  * @param {string[]} raw  значения поля industries из models_master.csv
  * @param {string} categorySlug  категория модели
+ * @param {string} [name]  название модели - только чтобы узнать военную технику
  */
-export function industriesOf(raw, categorySlug) {
+export function industriesOf(raw, categorySlug, name) {
   const out = [];
   const add = s => { if (s && INDUSTRY_LABEL[s] && !out.includes(s)) out.push(s); };
+  // Оборона идёт первой: если это F-22, то главное про него - что он военный,
+  // а не что он летает. Чипов показываем пять, и последний легко теряется.
+  if (isMilitaryForIndustry(name, categorySlug)) add('military-defense');
   for (const s of (CATEGORY_INDUSTRIES[categorySlug] || [])) add(s);
   // Принимаем и сырые значения из Excel, и уже готовые слаги. Слаги приходят
   // из data/model-industries.json - единственного источника отраслей; выводить

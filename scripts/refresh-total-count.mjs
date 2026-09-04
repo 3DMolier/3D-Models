@@ -17,7 +17,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const DRY = process.argv.includes('--dry');
 const OLD = process.argv[2];
 if (!/^\d+$/.test(OLD || '')) { console.log('укажи прежнее число: node scripts/refresh-total-count.mjs 54077'); process.exit(1); }

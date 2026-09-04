@@ -34,7 +34,7 @@ import path from 'node:path';
 import { INDUSTRY_LABEL, INDUSTRY_NAME, useLabel, listOf } from './lib/industries.mjs';
 import { loadModelCategories } from './lib/taxonomy.mjs';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const MODELS = path.join(ROOT, 'models');
 const DRY = process.argv.includes('--dry');
 const slugify = s => String(s).toLowerCase().trim()

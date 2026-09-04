@@ -1,9 +1,10 @@
+import { ROOT } from './lib/paths.mjs';
 // classify15.mjs — классификатор всех 86k моделей в 15 категорий сайта (+ other).
 // Матч по ЦЕЛЫМ токенам имени (не подстроке), порядок = приоритет.
 // Режимы:  --stats  (распределение + примеры)  |  --dump <cat>  (все имена категории)
 import fs from 'node:fs';
 import path from 'node:path';
-const DATA = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website/data';
+const DATA = ROOT + '/data';
 
 const CATS = [
   ['medical-3d-models','Medical',['anatomy','anatomical','skeleton','skull','bone','bones','muscle','organ','heart','brain','tooth','teeth','surgical','surgery','vein','artery','virus','prosthetic','spine','rib','pelvis','anatomically','medical','cardiovascular','circulatory','respiratory','digestive','nervous','kidney','liver','lung','lungs','stomach','intestine','fetus','embryo','dental','blood','cell','tendon','ligament','cartilage','torso']],

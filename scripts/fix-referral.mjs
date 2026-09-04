@@ -3,7 +3,7 @@
 // Хэндл магазина в пути (Artists/3d_molier-International) НЕ трогаем - меняем только параметр referral=.
 import fs from 'node:fs';
 import path from 'node:path';
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const SKIP = new Set(['node_modules','data','assets','large_images','previews','sitemaps','.git','temporary screenshots','scripts']);
 const BAD = 'referral=3d_molier-studio';
 const GOOD = 'referral=3d_molier-international';

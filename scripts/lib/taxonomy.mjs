@@ -17,7 +17,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './paths.mjs';
 const DATA = path.join(ROOT, 'data');
 
 const raw = JSON.parse(fs.readFileSync(path.join(DATA, 'taxonomy.json'), 'utf8'));

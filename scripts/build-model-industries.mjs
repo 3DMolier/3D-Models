@@ -15,7 +15,7 @@ import path from 'node:path';
 import { industriesOf, INDUSTRY_LABEL } from './lib/industries.mjs';
 import { loadModelCategories } from './lib/taxonomy.mjs';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const OUT = path.join(ROOT, 'data', 'model-industries.json');
 
 // ── теги из CSV ──
@@ -55,7 +55,9 @@ for (let k = 0; k < idx.chunks; k++) {
     n++;
     const raw = rawOf.get(id);
     if (!raw) noRaw++;
-    const list = industriesOf(raw, modelCat[id] || 'other');
+    // Название нужно, чтобы узнать военную технику: ни категория, ни теги
+    // листинга не отличают F-22 от пассажирского Airbus - оба «aircraft».
+    const list = industriesOf(raw, modelCat[id] || 'other', c.n[j]);
     out[id] = list;
     for (const s of list) dist.set(s, (dist.get(s) || 0) + 1);
   }

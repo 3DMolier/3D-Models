@@ -36,7 +36,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { renderCard } from './render-card.mjs';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const MODELS = path.join(ROOT, 'models');
 const RECS = path.join(ROOT, 'data', 'records');
 const arg = n => { const i = process.argv.indexOf(n); return i > 0 ? process.argv[i + 1] : null; };

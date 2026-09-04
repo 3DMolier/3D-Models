@@ -10,9 +10,10 @@
  *
  * Запуск:  node scripts/split-changes.mjs
  */
+import { ROOT } from './lib/paths.mjs';
 import fs from 'node:fs';
 
-const DIR = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website/.tmp';
+const DIR = ROOT + '/.tmp';
 const NUL = String.fromCharCode(0);
 const list = fs.readFileSync(DIR + '/all.z', 'utf8').split(NUL).filter(Boolean);
 

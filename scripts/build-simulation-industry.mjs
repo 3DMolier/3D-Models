@@ -20,7 +20,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { CATEGORIES, nameOf, escName } from './lib/taxonomy.mjs';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const SRC = path.join(ROOT, 'industries', 'aerospace', 'index.html');
 const DIR = path.join(ROOT, 'industries', 'simulation');
 const OUT = path.join(DIR, 'index.html');

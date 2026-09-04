@@ -17,7 +17,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const MODELS = path.join(ROOT, 'models');
 const OUT = path.join(ROOT, 'data', 'preview-index.json');
 const REF = process.argv[2] || 'HEAD';   // дерево, из которого достаём удалённые страницы

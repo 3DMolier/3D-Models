@@ -16,7 +16,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const DRY = process.argv.includes('--dry');
 const copy = s => Buffer.from(String(s), 'utf8').toString('utf8');
 

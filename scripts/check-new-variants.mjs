@@ -23,7 +23,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const RECS = path.join(ROOT, 'data', 'records');
 
 // Те же маркеры, что в merge-variants: они отличают вариант, а не предмет.

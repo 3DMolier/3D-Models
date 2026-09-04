@@ -21,7 +21,7 @@ import path from 'node:path';
 import { isMilitary } from './lib/military.mjs';
 import { brandOf } from './lib/brands.mjs';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+import { ROOT } from './lib/paths.mjs';
 const RECS = path.join(ROOT, 'data', 'records');
 const MODELS = path.join(ROOT, 'models');
 const LIMIT = (() => { const i = process.argv.indexOf('--limit'); return i > 0 ? Number(process.argv[i + 1]) : 6; })();
