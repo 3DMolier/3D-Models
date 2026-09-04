@@ -59,6 +59,28 @@ export const plain = s => String(s)
 
 const pick = (arr, seed) => arr[Math.abs(seed) % arr.length];
 
+/*
+ * Обрезка описания ПО ГРАНИЦЕ ПРЕДЛОЖЕНИЯ.
+ *
+ * В разметке ItemPage стояло простое slice(0, 300), и 98,8% описаний
+ * обрывались посреди слова: «...The mesh is built with c». Поисковик показывает
+ * этот текст как есть, и обрубок выглядит как брак.
+ *
+ * Правило: режем по последней точке, если она не слишком рано; иначе - по
+ * последнему пробелу и ставим многоточие, чтобы обрыв был осознанным.
+ * Тот же приём уже работал внутри разметки Product - теперь он общий, а не
+ * спрятан в одной функции.
+ */
+export function trimAtSentence(text, limit) {
+  const t = String(text || '');
+  if (t.length <= limit) return t;
+  const cut = t.slice(0, limit);
+  const dot = cut.lastIndexOf('. ');
+  if (dot > limit * 0.4) return cut.slice(0, dot + 1);
+  const sp = cut.lastIndexOf(' ');
+  return (sp > 0 ? cut.slice(0, sp) : cut) + '…';
+}
+
 // Часть имён в каталоге уже оканчивается на «3D Model» / «3D Models Set».
 // В прозе и вопросах это даёт «... 3D Model model» - убираем хвост только для текста,
 // в заголовке H1 и в строке «Model» таблицы имя остаётся как есть.
@@ -267,7 +289,21 @@ export function description(f, name, cat, price, seed, catSlugIn) {
    * Подменяем ТОЛЬКО в тексте: ссылка и таблица по-прежнему говорят «Other».
    */
   const proseCat = /^other$/i.test(String(cat || '').trim()) ? 'general' : cat;
-  const n = esc(proseName(name)), c = esc(proseCat), yr = yearOf(f);
+  /*
+   * ОПИСАНИЕ СОБИРАЕТСЯ ОБЫЧНЫМ ТЕКСТОМ, БЕЗ ЭКРАНИРОВАНИЯ.
+   *
+   * Здесь стояло esc(): имя и категория экранировались при СБОРКЕ фразы. А
+   * потом голова страницы экранировала всё описание ещё раз - и «Containers &
+   * Storage» превращалось в «Containers &amp;amp; Storage» в трёх мета-тегах
+   * сразу. Разбор поисковика, сделав один разбор сущностей, видел буквальное
+   * «&amp;» вместо «&». Задето 5 339 карточек из 7 733 проверенных.
+   *
+   * Правило простое: экранировать РОВНО ОДИН РАЗ и ровно там, где текст
+   * ложится в разметку. Здесь текст ещё не разметка - значит не экранируем.
+   * Экранируют потребители: голова страницы (esc в мета-тегах) и разбивка на
+   * абзацы (esc в descParagraphs).
+   */
+  const n = proseName(name), c = proseCat, yr = yearOf(f);
   const parts = [pick(OPEN, seed)(n, c, price)];
   parts.push(...specSentences(f, seed));
   // Когда полигонаж измерен и он большой, нельзя ставить рядом заготовку про
@@ -663,7 +699,7 @@ export function pageSchema({ name, slug, cat, catSlug, desc, hero, f, site, upda
     '@id': `${site}/models/${slug}/#page`,
     url: `${site}/models/${slug}/`,
     name: plain(name) + ' 3D Model',
-    description: plain(desc).slice(0, 300),
+    description: trimAtSentence(plain(desc), 300),
     primaryImageOfPage: hero,
     inLanguage: 'en',
     dateModified: updatedIso,
@@ -679,11 +715,7 @@ export function pageSchema({ name, slug, cat, catSlug, desc, hero, f, site, upda
 
 // ── Product JSON-LD ───────────────────────────────────────────────────────────
 export function productSchema({ name, slug, id, hero, tsUrl, cat, price, desc, f, site }) {
-  const trim = t => {
-    if (t.length <= 500) return t;
-    const c = t.slice(0, 500), d = c.lastIndexOf('. ');
-    return d > 200 ? c.slice(0, d + 1) : c.slice(0, c.lastIndexOf(' ')) + '…';
-  };
+  const trim = t => trimAtSentence(t, 500);
   const o = {
     '@context': 'https://schema.org', '@type': 'Product',
     name: plain(name), url: `${site}/models/${slug}/`, image: hero,

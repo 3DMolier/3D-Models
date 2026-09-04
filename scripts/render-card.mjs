@@ -137,7 +137,15 @@ export const studioSize = (url, tag) => {
  * идёт пробел и заглавная буква.
  */
 export function descParagraphs(text, per = 3) {
-  const sentences = String(text).split(/(?<=\.)\s+(?=[A-Z0-9])/).filter(Boolean);
+  /*
+   * Экранируем ЗДЕСЬ - в точке, где текст становится разметкой.
+   *
+   * Раньше описание приходило уже экранированным из card-content, и голова
+   * страницы экранировала его второй раз: «Containers & Storage» в мета-тегах
+   * превращалось в «Containers &amp;amp; Storage». Теперь описание собирается
+   * обычным текстом, а каждый потребитель экранирует его один раз у себя.
+   */
+  const sentences = esc(String(text)).split(/(?<=\.)\s+(?=[A-Z0-9])/).filter(Boolean);
   /*
    * По три предложения в абзаце - так разбиты живые страницы: шесть
    * предложений дают два абзаца, одиннадцать - четыре. Прежнее правило «всегда
@@ -644,7 +652,14 @@ export function renderCard(r) {
   const NL = '\n';
   return '<!DOCTYPE html>' + NL + '<html lang="en">' + NL
     + head(r, desc, schema) + NL + '<body>' + NL
-    + '<a href="#main-content" class="skip-link">Skip to main content</a>' + NL
+    /*
+     * Ссылку «пропустить к содержимому» ставит ШАПКА, и только она.
+     *
+     * Здесь стояла вторая такая же, и на карточке их выходило две. Для того,
+     * кто ходит по сайту с клавиатуры или читалкой, это лишний шаг в никуда:
+     * первая ссылка ведёт туда же, куда вторая. Правило репо - обвязка живёт
+     * в partials/, значит и эта ссылка там.
+     */
     + HEADER + NL
     + '<main id="main-content" class="mp-main">'
     + breadcrumbs(r)

@@ -28,7 +28,11 @@
 #results-count strong{color:#111}
 
 /* FILTERS */
-.filter-bar{max-width:1400px;margin:0 auto;padding:12px 24px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--border)}
+/* Ряды фильтра идут ДРУГ ПОД ДРУГОМ, каждый от левого края.
+   Полоса была обычным flex с переносом, и оба ряда текли одной лентой: ряд цены
+   начинался там, где кончилась последняя кнопка категории, - то есть с отступом
+   почти в треть экрана. Со стороны это читалось как случайный сдвиг вправо. */
+.filter-bar{max-width:1400px;margin:0 auto;padding:12px 24px;display:flex;flex-direction:column;align-items:stretch;gap:10px;border-bottom:1px solid var(--border)}
 .fb-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#999;margin-right:4px}
 .ftag{background:#fff;border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:500;color:#555;cursor:pointer;transition:all .15s;white-space:nowrap}
 .ftag:hover{border-color:#888;color:#111}
@@ -174,11 +178,27 @@ summary:focus-visible,
 
 /* ── Ряд цен ───────────────────────────────────────────────────────────────
    Прижат влево, как и ряд категорий: по центру он читался как отдельный
-   баннер, а не как продолжение фильтров. */
-.fb-row--price{justify-content:flex-start}
+   баннер, а не как продолжение фильтров.
+   Тонкая черта сверху отделяет цены от категорий: два разных вопроса к
+   каталогу - «что за предмет» и «сколько стоит», - и без черты они сливались
+   в одну ленту кнопок. */
+.fb-row--price{justify-content:flex-start;border-top:1px solid var(--border);padding-top:10px}
 
 /* ── Раскрытие остальных категорий ─────────────────────────────────────────
    В первой строке восемь самых крупных категорий, остальные восемнадцать
    прячутся за кнопкой. Двадцать шесть чипов подряд читались как стена. */
 .ftag--more{border-style:dashed;color:#111;font-weight:600}
 .ftag--more[aria-expanded="true"]{background:#f2f2f2}
+
+/* ── Нижний блок каталога ──────────────────────────────────────────────────
+   Категории и избранные модели внизу страницы. Раньше это были два списка
+   обычными ссылками в контейнере шириной 900 пикселей по центру - на фоне
+   сетки во всю ширину они выглядели сдвинутыми вправо, а синие подчёркнутые
+   ссылки спорили с кнопками того же назначения наверху страницы.
+   Теперь: та же ширина, что у сетки, те же кнопки .ftag, те же карточки. */
+.seo-fallback{padding:32px 24px 48px;border-top:1px solid var(--border)}
+.seo-fb-h2{font-size:1.05rem;font-weight:700;margin:0 0 14px}
+.seo-fb-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+.seo-fb-tags .ftag{text-decoration:none;display:inline-flex;align-items:center}
+.seo-fb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+@media(max-width:640px){.seo-fb-grid{grid-template-columns:repeat(2,1fr)}}

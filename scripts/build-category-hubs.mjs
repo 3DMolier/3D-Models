@@ -141,7 +141,16 @@ function loadCatalog() {
           price: r.price || 0,
           sales: r.sales || 0,
         });
-        if (r.image) img[r.id] = r.image;
+        /*
+         * Для плитки берём thumb, а не image.
+         *
+         * Плитка занимает 200-300 пикселей, а в image лежит кадр TurboSquid
+         * 1920x1080 весом 171 КБ - и таких на страницах категорий около 63
+         * тысяч. Меньших размеров TurboSquid не отдаёт (600x600 и ниже - 404),
+         * зато у 89% карточек есть студийный снимок с готовыми копиями h200 и
+         * h400. Поле thumb как раз про это: в записи оно уже выбрано.
+         */
+        if (r.thumb || r.image) img[r.id] = r.thumb || r.image;
         if (r.category) catOf[String(r.id)] = r.category;
       }
     }
@@ -163,12 +172,34 @@ function loadCatalog() {
 // eager + высокий приоритет, остальным оставляем lazy.
 const EAGER_CARDS = 4;
 
+/*
+ * Уменьшенная копия студийного снимка для плитки.
+ *
+ * Плитка на экране 200-300 пикселей. Студия отдаёт готовые копии по высоте:
+ * h200 (5 КБ) и h400 (12 КБ) - вместо 303 КБ оригинала. Чужие адреса
+ * (TurboSquid) оставляем как есть: меньших размеров у них нет, 600x600 и ниже
+ * отдают 404.
+ */
+const STUDIO = 'https://www.3dmolier-studio.com/assets/';
+const small = (u, tag) => (String(u || '').startsWith(STUDIO)
+  ? 'https://www.3dmolier-studio.com/images/' + tag + '/assets/' + String(u).slice(STUDIO.length)
+  : u);
+
 function card(m, catDisp, i = 99) {
   const slug = DIR_BY_ID.get(String(m.id)) || (slugify(m.name) + '-' + m.id);
+  /*
+   * Высокий приоритет - ТОЛЬКО первой карточке.
+   *
+   * Раньше его получали четыре: они соревновались друг с другом за канал, и
+   * настоящий главный элемент первого экрана приезжал не быстрее, а медленнее.
+   * Первая карточка грузится жадно и с высоким приоритетом, следующие три -
+   * жадно, но обычным приоритетом, остальные лениво.
+   */
   const eager = i < EAGER_CARDS;
-  const loadAttrs = eager ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
+  const loadAttrs = i === 0 ? 'loading="eager" fetchpriority="high"'
+    : (eager ? 'loading="eager"' : 'loading="lazy"');
   return `      <a href="/models/${slug}/" class="model-card card-glow">
-        <div class="img-wrap mc-img"><img src="${m.img}" alt="${esc(m.name)} 3D model preview" width="800" height="450" decoding="async" ${loadAttrs} data-fallback="${m.img}" data-placeholder="${PLACEHOLDER}" onerror="imgErr(this)"><div class="img-placeholder"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">${esc(catDisp)}</span></div></div>
+        <div class="img-wrap mc-img"><img src="${small(m.img, 'h400')}" alt="${esc(m.name)} 3D model preview" width="800" height="450" decoding="async" ${loadAttrs} data-fallback="${m.img}" data-placeholder="${PLACEHOLDER}" onerror="imgErr(this)"><div class="img-placeholder"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">${esc(catDisp)}</span></div></div>
         <div class="mc-body">
           <div class="mc-meta"><h3 class="mc-title">${esc(m.name)}</h3></div>
           <div class="mc-foot"><span class="chip mc-chip">${esc(catDisp)}</span><span class="mc-price">$${m.price}</span></div>
@@ -213,7 +244,7 @@ function renderPage(cat, catDisp, page, total, models, heroHtml, totalCount) {
   // <head>, не дожидаясь разбора разметки и раскладки. Вместе с eager это и
   // лечит LCP - он упирался именно в первую карточку.
   const preload = models.length
-    ? `<link rel="preload" as="image" href="${models[0].img}" fetchpriority="high">`
+    ? `<link rel="preload" as="image" href="${small(models[0].img, 'h400')}" fetchpriority="high">`
     : '';
   // Хабы категорий уходили в соцсети и мессенджеры голыми: ни заголовка, ни
   // картинки в развороте ссылки. Тысяча с лишним страниц - и ни одной с
@@ -271,13 +302,23 @@ ${bcSchema}
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GDY5KTLBP1');</script>
 </head>
 <body class="relative min-h-screen">
+<a href="#main-content" class="skip-link">Skip to content</a>
 ${HEADER}
-<main class="cat-main">
+<main id="main-content" class="cat-main">
 <div class="cat-bc"><div class="max-w-7xl mx-auto px-6 py-3 cat-bc-inner"><a href="/" class="bc-link">Home</a> <span class="bc-sep">&#8250;</span> <a href="/catalog/" class="bc-link">Categories</a> <span class="bc-sep">&#8250;</span> <span class="bc-current">${bcCurrent}</span></div></div>
 ${page === 1 ? heroHtml : ''}
 <section class="page-section">
   <div class="max-w-7xl mx-auto">
-    <div class="section-header"><div><div class="section-label">${esc(catDisp)}</div><h2 class="section-h2">${h2}</h2></div><span class="cat-pg-total">${rangeFrom}-${rangeTo} of ${totalCount.toLocaleString('en-US')}</span></div>
+    <div class="section-header"><div><div class="section-label">${esc(catDisp)}</div>${
+  /*
+   * На первой странице заголовок H1 стоит в шапке категории, поэтому здесь
+   * достаточно H2. На страницах со второй и дальше шапки нет - и H1 не было
+   * вовсе: 542 индексируемые страницы уходили в поиск без главного заголовка.
+   * Ставим H1 именно там, где он отсутствует, а не добавляем второй.
+   * Класс оставляем прежний: вид страницы не меняется, меняется смысл разметки.
+   */
+  page === 1 ? `<h2 class="section-h2">${h2}</h2>` : `<h1 class="section-h2">${h2}</h1>`
+}</div><span class="cat-pg-total">${rangeFrom}-${rangeTo} of ${totalCount.toLocaleString('en-US')}</span></div>
     <div id="model-grid" class="model-grid">
 ${cards}
     </div>

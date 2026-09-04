@@ -406,6 +406,21 @@ say('читаю выгрузку студии...');
        */
       if (Array.isArray(s.images) && s.images.length) {
         r.studio_images = s.images;
+        /*
+         * Снимок для ПЛИТКИ - отдельным полем.
+         *
+         * В списках (хабы категорий, каталог, подборки) плитка занимает
+         * 200-300 пикселей, а туда ставился кадр TurboSquid 1920x1080 весом
+         * 171 КБ: около 63 тысяч таких картинок по категориям. Меньших
+         * размеров TurboSquid не отдаёт - проверено, 600x600 и ниже дают 404.
+         *
+         * Зато у 89% карточек есть студийный снимок, а у него готовые копии
+         * h200 и h400. Поэтому храним его отдельно: `image` остаётся тем, что
+         * стоит в шапке карточки (он выбран вручную и менять его нельзя), а
+         * `thumb` - тем, что годится для маленькой плитки.
+         */
+        const first = [...s.images].sort((a, b) => String(a).localeCompare(String(b)))[0];
+        if (first) r.thumb = first;
       }
     }
   }
@@ -690,6 +705,8 @@ for (const r of byId.values()) {
   if (r.seo_keywords === undefined) r.seo_keywords = [];
   if (r.cert === undefined) r.cert = 'no certification';
   if (r.date === undefined) { r.date = ''; r.year = null; }
+  // Плитка: студийный снимок, если он есть, иначе тот же, что в шапке.
+  if (!r.thumb) r.thumb = r.image || '';
   if (r.root === undefined) r.root = '';
   if (r.ts_url === undefined) r.ts_url = 'https://www.turbosquid.com/3d-models/' + r.slug + '?' + REFERRAL;
   if (!r.status) r.status = 'live';

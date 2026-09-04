@@ -727,7 +727,11 @@ footer .nav-dropdown a.active { color: #9ca3af !important; background: transpare
 /* ── Full-catalog extras ────────────────────────────────────────────────── */
 .fc-logo-link  { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 20px; color: #ffffff; text-decoration: none; letter-spacing: -0.03em; }
 .fc-filter-bar { display: none; }
-.fc-filter-bar.visible { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+/* Полоса фильтра каталога: ряды идут ДРУГ ПОД ДРУГОМ, каждый от левого края.
+   Здесь стояло align-items:center с переносом, и это правило перебивало
+   раскладку в full-catalog.css: ряд цены центрировался внутри полосы и вставал
+   с отступом в треть экрана - выглядело как случайный сдвиг вправо. */
+.fc-filter-bar.visible { display: flex; flex-direction: column; align-items: stretch; gap: 10px; }
 .text-accent   { color: var(--accent, #1659c9); }
 .rv-section    { margin-top: 20px; padding-top: 16px; border-top: 1px solid #e5e5e5; }
 .rv-label      { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .09em; color: #9ca3af; margin-bottom: 8px; }
@@ -963,3 +967,11 @@ summary:focus-visible,
     align-items: center;
   }
 }
+
+/* ── Подборки: квадратные карточки ─────────────────────────────────────────
+   Все снимки подборок сняты квадратными, а плитка была 180 пикселей высотой
+   при ширине около 250 - object-fit:cover срезал верх и низ каждого кадра.
+   Делаем окно квадратным: кадр ложится целиком, обрезать нечего.
+   Только на этой странице: в каталоге и категориях снимки широкоформатные,
+   и там квадрат оставил бы поля по бокам. */
+.collections-page .mc-img { height: auto; aspect-ratio: 1 / 1; }

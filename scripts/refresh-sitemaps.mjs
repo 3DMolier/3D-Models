@@ -12,11 +12,46 @@
 // Запуск: node scripts/refresh-sitemaps.mjs
 import fs from 'node:fs';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 
 const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
 const SM = path.join(ROOT, 'sitemaps');
 const BASE = 'https://3dmolierstudio.com';
-const TODAY = new Date().toISOString().slice(0, 10);
+/*
+ * lastmod - ДАТА, КОГДА СОДЕРЖИМОЕ ДЕЙСТВИТЕЛЬНО МЕНЯЛОСЬ, а не «сегодня».
+ *
+ * Здесь стояла текущая дата, и каждая сборка сообщала поисковику, что все
+ * 54 527 страниц изменились сегодня. Это неправда: пересборка без правок
+ * содержимого ничего не меняет. Если так делать раз за разом, Google
+ * перестаёт доверять сигналу - а он у нас единственный способ сказать
+ * «вот эта страница правда обновилась».
+ *
+ * Берём ту же дату, что страница показывает в строке «Updated»:
+ * data/site-updated.json. Она двигается ОСОЗНАННО, когда содержимое
+ * поменялось, и сайтмап говорит ровно то же, что сама страница.
+ */
+/*
+ * Карты изображений собираются В ТОМ ЖЕ ПРОГОНЕ.
+ *
+ * Их собирал отдельный скрипт, и звать его забывали: модельные карты были от
+ * 3 сентября, а картиночные - от 11 августа. Разошлись на 503 новые модели,
+ * которых в картиночных не было вовсе, и 53 свёрнутых адреса, которые в них
+ * ещё оставались. Теперь один запуск обновляет обе карты - забыть нечего.
+ */
+try {
+  execFileSync(process.execPath, [path.join(ROOT, 'scripts', 'build-image-sitemaps.mjs')],
+    { stdio: 'inherit' });
+} catch (e) {
+  console.log('карты изображений собрать не удалось: ' + e.message);
+}
+
+const TODAY = (() => {
+  try {
+    const v = JSON.parse(fs.readFileSync(path.join(ROOT, "data", "site-updated.json"), "utf8")).updated;
+    if (/^d{4}-d{2}-d{2}$/.test(v)) return v;
+  } catch (e) { /* файла нет - падать незачем */ }
+  return new Date().toISOString().slice(0, 10);
+})();
 const LIMIT = 50000;
 
 const dirsWithIndex = sub => fs.readdirSync(path.join(ROOT, sub), { withFileTypes: true })
