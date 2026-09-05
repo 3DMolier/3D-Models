@@ -5,7 +5,12 @@
 // Категория едет вместе с чанком, отдельного запроса не появляется. Осторожно:
 // c - это cert, а не category; на этом легко решить, что категория уже есть.
 var FC={i:[],n:[],p:[],s:[],c:[],g:[],ic:[]}, IMGS={}, fcReady=false, CATS=[];
-var searchQ='', selPrice=null, selCat=null, sortMode='sales';
+var searchQ='', selPrice=null, selCat=null, sortMode='sales', onlyRigged=false;
+// Признак «с оснасткой» берём из названия модели: слово Rigged стоит в нём у
+// 3 705 карточек, тогда как отдельное поле из выгрузки студии есть лишь у
+// 2 154 и почти целиком входит в первое. Значит новых данных возить не нужно -
+// имя и так едет вместе с каталогом.
+var RIGGED=/\brigged\b/i;
 var filtered=[], page=0, PAGE_SIZE=60, DEFAULT_LIMIT=100, noLimit=false;
 var IDLE_PRELOAD_LIMIT=2, idlePreloaded=0;
 var loadedImgChunkSet={};
@@ -188,6 +193,7 @@ function applyFilters(){
   for(var i=0;i<FC.n.length;i++){
     if(searchQ&&FC.n[i].toLowerCase().indexOf(searchQ)===-1)continue;
     if(catIdx>=0&&FC.g[i]!==catIdx)continue;
+    if(onlyRigged&&!RIGGED.test(FC.n[i]))continue;
     if(selPrice){
       var pr=FC.p[i];
       if(selPrice==='u5'&&pr>=5)continue;
@@ -212,7 +218,7 @@ function applyFilters(){
    * держал в памяти всю сетку. Как только человек что-то ищет или выбирает
    * категорию - ограничение снимается, там оно мешало бы.
    */
-  noLimit = !!searchQ || selCat !== null || selPrice !== null;
+  noLimit = !!searchQ || selCat !== null || selPrice !== null || onlyRigged;
   if (!noLimit && filtered.length > DEFAULT_LIMIT) filtered = filtered.slice(0, DEFAULT_LIMIT);
   page=0;
   // updateProgress() здесь больше не зовём: он внутри renderGrid. Снаружи он
@@ -307,7 +313,7 @@ if(qEl){
 }
 if(sortSel)sortSel.addEventListener('change',function(){sortMode=this.value;ensureRemainingChunks();applyFilters();});
 if(clearAll)clearAll.addEventListener('click',function(){
-  searchQ='';selPrice=null;selCat=null;
+  searchQ='';selPrice=null;selCat=null;onlyRigged=false;
   if(qEl)qEl.value='';
   document.querySelectorAll('.ftag').forEach(function(b){b.classList.remove('active');});
   clearAll.classList.remove('show');
@@ -325,6 +331,17 @@ document.querySelectorAll('.ftag[data-price]').forEach(function(btn){
     ensureRemainingChunks();applyFilters();
   });
 });
+// Кнопка «с оснасткой». Одна, включается и выключается щелчком.
+document.querySelectorAll('.ftag[data-rigged]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    onlyRigged=!onlyRigged;
+    this.classList.toggle('active',onlyRigged);
+    if(clearAll)clearAll.classList.toggle('show',selPrice!==null||selCat!==null||!!searchQ||onlyRigged);
+    if(typeof gtag==='function')gtag('event','filter_rigged',{value:onlyRigged?'on':'off',page_type:'catalog'});
+    ensureRemainingChunks();applyFilters();
+  });
+});
+
 // Фильтр по категориям. Кнопки лежат в разметке статически, слаг в data-cat -
 // так их видит и робот, и человек с выключенным JS.
 document.querySelectorAll('.ftag[data-cat]').forEach(function(btn){

@@ -152,8 +152,12 @@ const STYLE = `<style>
 .coll-theme-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px;margin:28px 0}
 .coll-theme-card{display:block;border:1px solid rgba(0,0,0,.12);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit;background:transparent}
 .coll-theme-card:hover{border-color:rgba(0,0,0,.4)}
-.coll-theme-cover{aspect-ratio:16/9;background:#f3f4f6;overflow:hidden}
-.coll-theme-cover img{width:100%;height:100%;object-fit:cover;display:block}
+/* Обложка темы - квадрат. Была 16/9: широкая рамка обрезала снимок сверху и
+   снизу, а рендеры у нас квадратные, и у машины отрезало крышу и колёса.
+   contain вместо cover: показываем предмет целиком, поля добираем фоном -
+   лучше поле по краю, чем отрезанная модель. */
+.coll-theme-cover{aspect-ratio:1/1;background:#f3f4f6;overflow:hidden}
+.coll-theme-cover img{width:100%;height:100%;object-fit:contain;display:block}
 .coll-theme-body{padding:14px 16px 16px}
 .coll-theme-name{font-weight:700;font-size:15px;margin-bottom:4px}
 .coll-theme-count{font-size:13px;opacity:.6}

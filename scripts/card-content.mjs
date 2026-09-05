@@ -386,8 +386,16 @@ export function specRows(f, name, cat, catSlug, price, opts = {}) {
    * Решение применено на 18 727 карточках скриптом fix-uncertified-row.mjs;
    * здесь оно живёт в генераторе, иначе пересборка его откатит.
    */
-  if (f.cert === 'no certification') rows.push(['Quality standard', 'Built to CheckMate specification']);
-  else rows.push(['Certification', f.cert === 'CheckMate Lite/Pro' ? 'CheckMate Certified' : esc(f.cert)]);
+  /*
+   * Значение строки - ссылка на /model-standards/. Слова «CheckMate» и
+   * «StemCell» ничего не говорят человеку, который видит их впервые, а до сих
+   * пор объяснения на сайте не было вовсе: покупатель уходил гуглить. Ссылка
+   * стоит ровно там, где возникает вопрос.
+   */
+  const STD = '/model-standards/';
+  const certLink = t => `<a href="${STD}">${t}</a>`;
+  if (f.cert === 'no certification') rows.push(['Quality standard', certLink('Built to CheckMate specification')]);
+  else rows.push(['Certification', certLink(f.cert === 'CheckMate Lite/Pro' ? 'CheckMate Certified' : esc(f.cert))]);
   if (yr) rows.push(['On sale since', String(yr)]);
   rows.push(['Real-world scale', 'Yes']);
   // Измеренные характеристики из нашего inventory. Строки появляются только там,

@@ -27,31 +27,56 @@ const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname).replac
 const DRY = process.argv.includes('--dry');
 const esc = s => String(s).replace(/&(?!(amp|lt|gt|quot|#\d+);)/g, '&amp;');
 
+const MAIL = 'mailto:3dmolier@3dmolier.com';
+
 const FAQ = [
   ['What file formats do the models come in?',
-   'FBX, OBJ, MAX, C4D, Maya, Blender and others, depending on the model. The exact list of files, '
-   + 'with their sizes, is on the TurboSquid product page each model links to - that page is the one '
-   + 'kept in step with the actual files.'],
+   'Usually MAX, C4D, Maya, Blender, FBX and OBJ. Which of them a particular model ships in is listed '
+   + 'in its Specifications table, and the exact files with their sizes are on the TurboSquid product '
+   + 'page it links to. Need a format that is not there? We convert models on request - write to '
+   + '<a href="' + MAIL + '">3dmolier@3dmolier.com</a> and tell us the model and the format you need.'],
   ['Are the models CheckMate certified?',
-   'Every model in this catalogue is built to the CheckMate specification. TurboSquid has since closed '
-   + 'the certification programme, so models published after that carry no badge - not because anything '
-   + 'changed in how they are made, but because there is no longer anyone issuing the mark. Models from '
-   + 'the years when the programme ran still show it on their TurboSquid page.'],
-  ['What does the CheckMate specification cover?',
-   'The things that break an import rather than the things that make a render look good: real-world '
-   + 'scale, clean topology with no stray or duplicated geometry, materials and textures attached where '
-   + 'they belong, and objects named rather than left as Object001. It is the standard this studio builds '
-   + 'to on every model, certified or not.'],
+   'Many are, and the badge is shown on the model page. Every model in this catalogue is built to the '
+   + 'CheckMate specification whether or not it carries the mark: TurboSquid has since closed the '
+   + 'certification programme, so work published after that has no badge simply because there is no '
+   + 'longer anyone issuing it. What the standard actually requires - geometry, UV unwrapping, textures '
+   + 'and materials - is written out on our <a href="/model-standards/">model quality standards</a> page.'],
+  ['What is StemCell?',
+   'StemCell is the stricter of the two TurboSquid standards. A StemCell model is authored once and '
+   + 'delivered across every major format and render engine without anyone repairing it in between: PBR '
+   + 'materials that survive the conversion, consistent naming, predictable scale. A StemCell model is '
+   + 'therefore also CheckMate. The full requirements are on our '
+   + '<a href="/model-standards/">model quality standards</a> page.'],
   ['Can I use these models in commercial work?',
-   'Yes. Every model is sold under the Royalty Free licence, so a single purchase covers commercial use '
-   + 'without a payment for each project it appears in. The full licence text is on the product page.'],
+   'Most of them, yes - they are sold Royalty Free, and one purchase covers commercial use for as long '
+   + 'as the work is shown. But not all: models of real branded products carry an Editorial Uses Only '
+   + 'licence, which allows news, commentary, teaching and film, and not advertising or merchandise. '
+   + 'The licence is stated on every model page, in the Specifications table. Read it before you buy - '
+   + 'and see <a href="/license/">licences explained</a> for what each one allows in practice.'],
   ['Are the models rigged?',
-   'Most are static builds. Where a subject exists both as a static model and as a rigged one, the two '
-   + 'are listed together on the same page, so choosing between them does not mean hunting for a '
-   + 'separate product.'],
-  ['What do they cost?',
-   'From $1 to $2,999, with most of the catalogue between $29 and $89. Larger, heavier and rigged '
-   + 'builds sit at the upper end.'],
+   'Some are. When a model is rigged, it says so in the description and in the Specifications table on '
+   + 'its page - and you can filter the catalogue by it. Where a subject exists both as a static model '
+   + 'and as a rigged one, the two are listed together on the same page.'],
+  ['Why are the models so inexpensive?',
+   'Because you are buying a licence to use the model, not the model itself with full rights. That is '
+   + 'what lets us price far below what the model cost to build - roughly ten times less than producing '
+   + 'it yourself or commissioning it from a studio. The work is paid for once, across many buyers, '
+   + 'instead of once by one.'],
+  ['Can I order a new model, or have an existing one modified?',
+   'Yes. We build to order and we adapt models we have already made - a different colour scheme, a '
+   + 'rig, a lower poly count, another format. See <a href="/custom-order/">custom orders</a> for how '
+   + 'it works, or write to <a href="' + MAIL + '">3dmolier@3dmolier.com</a>.'],
+  ['Can I buy in bulk by sending you a list of models in a spreadsheet?',
+   'Yes. Send us an Excel or CSV file with the models you want - names, links or TurboSquid IDs, '
+   + 'whatever you have - and we will find them and come back with the list. Write to '
+   + '<a href="' + MAIL + '">3dmolier@3dmolier.com</a>.'],
+  ['Is there a discount for a bulk purchase?',
+   'Yes. Send us the request and we will agree the terms individually - the discount depends on how '
+   + 'many models you need and which. Write to <a href="' + MAIL + '">3dmolier@3dmolier.com</a>.'],
+  ['Can I license the catalogue as data, for AI or 3D reconstruction training?',
+   'Yes. Beyond single-model sales we license the collection as a dataset - meshes, textures and '
+   + 'metadata at volume, for machine learning, simulation and reconstruction work, under terms written '
+   + 'for that use rather than for a single project. See <a href="/data-licensing/">3D data licensing</a>.'],
   ['How do I buy one?',
    'Open the model here, check the numbers, then use the link to its TurboSquid page. Payment, download '
    + 'and the licence all happen on TurboSquid - this site is the catalogue, not the checkout.'],
