@@ -677,21 +677,81 @@ say('читаю карту свёрнутых...');
      * есть (проверка 9 это стережёт), значит правило задевает ровно тех, ради
      * кого писалось, и не может расползтись.
      */
-    if (r.image) continue;
     const list = r.studio_images;
     if (!list || !list.length) continue;
-    const sorted = [...list].sort((a, b) => a.localeCompare(b));
+
+    /*
+     * Порядок кадров - по номеру в конце имени, а не по строке целиком.
+     * Сортировка строк сравнивала идентификатор файла, то есть случайный
+     * набор букв, и первым оказывался произвольный кадр - на витрину так
+     * попадали каркасы. Общий план у студии идёт первым номером.
+     */
+    const shotNo = u => {
+      const m = String(u).match(/_(\d+)\.[a-z]+$/i);
+      return m ? Number(m[1]) : Number.MAX_SAFE_INTEGER;
+    };
+    const sorted = [...list].sort((a, b) => shotNo(a) - shotNo(b) || String(a).localeCompare(String(b)));
+
+    // Превью ставим только там, где его нет вовсе: выбранный вручную кадр в
+    // шапке карточки трогать нельзя.
     if (!r.image) {
-      r.image = sorted.find(u => /_0*1\.(jpe?g|png)$/i.test(u)) || sorted[0];
+      r.image = sorted[0];
       heroed++;
     }
-    if (!(r.gallery || []).length && sorted.length > 1) {
-      r.gallery = sorted.slice(0, 12).map(u => ({ url: u, cap: '' }));
+
+    /*
+     * ГАЛЕРЕЯ - ВСЕМ, У КОГО ЕСТЬ СТУДИЙНЫЕ КАДРЫ.
+     *
+     * Раньше здесь стояло «только если галереи ещё нет», и выше в этом файле
+     * записано, что добавление галерей 47 405 карточкам было ошибкой. Тогда -
+     * да: это был побочный эффект правила, написанного ради новых моделей, и
+     * он расползся молча. Сейчас это прямое решение основателя: у студии есть
+     * все рендеры каждой модели, а на карточке стоял один снимок.
+     *
+     * Что бережём. Кадр из шапки в галерею не кладём - он и так виден сверху.
+     * Снятую со страниц галерею (model-gallery.json) не затираем, если она
+     * длиннее студийной: там уже выверенные адреса.
+     *
+     * Двенадцать кадров - потолок. У некоторых моделей их 764; страница из
+     * семисот снимков не помогает выбрать, она мешает.
+     */
+    const hero = String(r.image || '');
+    const shots = sorted.filter(u => String(u) !== hero).slice(0, 12);
+    if (shots.length > (r.gallery || []).length) {
+      r.gallery = shots.map(u => ({ url: u, cap: '' }));
       galleried++;
     }
   }
   say('превью из выгрузки студии: ' + heroed.toLocaleString('ru-RU')
     + ', галерей: ' + galleried.toLocaleString('ru-RU'));
+}
+
+/*
+ * Чистка галереи - одна на все её источники.
+ *
+ * Кадров два рода: снятые со страниц (model-gallery.json) и взятые из выгрузки
+ * студии. Каждый источник исключал дубликаты по-своему, и у 1 024 карточек
+ * снимок из шапки стоял ещё и в галерее - тот же кадр дважды на одной
+ * странице. Чистим в одном месте и после всех источников, иначе следующий
+ * источник опять принесёт своё.
+ */
+{
+  let cleaned = 0;
+  for (const r of byId.values()) {
+    if (!(r.gallery || []).length) continue;
+    const hero = String(r.image || '');
+    const seen = new Set();
+    const out = [];
+    for (const g of r.gallery) {
+      const u = String(g && g.url || '');
+      if (!u || u === hero || seen.has(u)) continue;
+      seen.add(u);
+      out.push(g);
+    }
+    if (out.length !== r.gallery.length) cleaned++;
+    if (out.length) r.gallery = out; else delete r.gallery;
+  }
+  say('галерей почищено от повторов: ' + cleaned.toLocaleString('ru-RU'));
 }
 
 // ── 8. производные признаки ─────────────────────────────────────────────────

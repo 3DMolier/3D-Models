@@ -25,6 +25,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 import { loadModelCategories } from './lib/taxonomy.mjs';
 import { proseOf } from './lib/page-text.mjs';
 import { isMilitary } from './lib/military.mjs';
@@ -268,18 +269,22 @@ if (bad9.length) fail(9, 'отрасль модели не существует 
  * 3,3 ГБ, чтобы не выкладывать вслепую.
  */
 {
+  /*
+   * Считаем ТОЛЬКО то, что публикуется, то есть файлы под контролем git.
+   *
+   * Раньше обход шёл по всей папке, и в вес попадало то, чего на сайте нет и
+   * не будет: 277 МБ записей моделей, выгрузки студии, папка .tmp - всё это в
+   * .gitignore. Проверка насчитала 3,46 ГБ и остановила выкладку, тогда как
+   * публикуемого было 2,79 ГБ с запасом в полгигабайта. Ложная тревога тут
+   * дорога вдвойне: она останавливает работу и приучает не верить проверке.
+   */
   const WARN = 3.0 * 1024 ** 3, STOP = 3.3 * 1024 ** 3;
   let total = 0, files = 0;
-  const stack = [ROOT];
-  while (stack.length) {
-    const d = stack.pop();
-    let ents;
-    try { ents = fs.readdirSync(d, { withFileTypes: true }); } catch (e) { continue; }
-    for (const it of ents) {
-      if (it.name === '.git' || it.name === 'node_modules') continue;
-      const p = path.join(d, it.name);
-      if (it.isDirectory()) stack.push(p);
-      else { try { total += fs.statSync(p).size; files++; } catch (e) { /* исчез между чтением и stat */ } }
+  {
+    const list = execFileSync('git', ['ls-files', '-z'], { cwd: ROOT, maxBuffer: 1024 ** 3 })
+      .toString('utf8').split('\0').filter(Boolean);
+    for (const rel of list) {
+      try { total += fs.statSync(path.join(ROOT, rel)).size; files++; } catch (e) { /* удалён, но ещё в индексе */ }
     }
   }
   const gb = (total / 1024 ** 3).toFixed(2);
