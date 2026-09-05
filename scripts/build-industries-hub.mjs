@@ -63,10 +63,59 @@ for (const it of live) {
   it.long = d ? d.split(/(?<=\.)\s/)[0].trim() : '';
 }
 
-const cards = live.map(i => `<a class="ind-hub-card" href="/industries/${i.slug}/">`
-  + `<div class="ind-hub-name">${esc(i.h1)}</div>`
-  + `<div class="ind-hub-desc">${esc(i.long || i.desc)}</div>`
-  + `<div class="ind-hub-tag">${esc(i.desc)}</div></a>`).join('');
+/*
+ * Обложка отрасли - номер модели, которая её показывает.
+ *
+ * Список рукописный. По продажам почти во всех отраслях наверху одно и то же -
+ * бейсболка, Tesla и орхидея: они продаются везде и ни одну отрасль не
+ * характеризуют. Человеку, выбирающему «оборону» или «медицину», нужен
+ * предмет из его работы, а не общий бестселлер.
+ */
+const COVER = {
+  'aerospace': 1230754,              // Airbus A320 Generic
+  'military-defense': 1031832,       // M1 Abrams
+  'medical': 1467539,                // Male Full Body Anatomy and Skin
+  'game-development': 1089639,       // Diver Rigged - персонаж под движок
+  'film-video-production': 1000193,  // Splashed Out Liquid - кадр для рекламы
+  'architecture': 1625177,           // Eiffel Tower
+  'virtual-reality': 982317,         // Centipede Warm Season Grass - окружение
+  'advertising': 1485059,            // Ice Cream Cone - предметная съёмка
+  'software-development': 991157,    // Generic Laptop 10
+  'event-management': 1398430,       // Santa Sleigh
+  'hardware': 1500054,               // Black Smartphone
+  'simulation': 1211595,             // F-35 Lightning II
+  '3d-printing': 1092671,            // Apple AirPods Set
+};
+
+const coverImg = (() => {
+  const want = new Set(Object.values(COVER).map(String));
+  const out = {};
+  try {
+    const RD = path.join(ROOT, 'data', 'records');
+    const idx = JSON.parse(fs.readFileSync(path.join(RD, 'index.json'), 'utf8'));
+    for (let k = 0; k < idx.chunks; k++) {
+      for (const r of JSON.parse(fs.readFileSync(path.join(RD, `records-${k}.json`), 'utf8'))) {
+        if (want.has(String(r.id)) && r.image) out[String(r.id)] = { img: r.image, name: r.name };
+      }
+    }
+  } catch (e) { console.log('записи недоступны, обложек не будет: ' + e.message); }
+  return out;
+})();
+
+const cards = live.map((i, n) => {
+  const c = coverImg[String(COVER[i.slug])];
+  const load = n < 4 ? 'decoding="async"' : 'loading="lazy" decoding="async"';
+  const cover = c
+    ? `<div class="ind-hub-cover"><img src="${esc(c.img)}" alt="${esc(c.name)} - a 3D model used in ${esc(i.h1.replace(/ 3D Models?$/i, ''))}" width="800" height="450" ${load} data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></div>`
+    : '';
+  return `<a class="ind-hub-card" href="/industries/${i.slug}/">`
+    + cover
+    + '<div class="ind-hub-text">'
+    + `<div class="ind-hub-name">${esc(i.h1)}</div>`
+    + `<div class="ind-hub-desc">${esc(i.long || i.desc)}</div>`
+    + `<div class="ind-hub-tag">${esc(i.desc)}</div>`
+    + '</div></a>';
+}).join('');
 
 const itemList = {
   '@context': 'https://schema.org', '@type': 'ItemList',
@@ -108,13 +157,17 @@ const html = `<!DOCTYPE html>
 <link rel="stylesheet" href="/assets/css/fonts.css?v=33">
 <style>
 .ind-hub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin:28px 0}
-.ind-hub-card{display:block;border:1px solid rgba(0,0,0,.12);border-radius:12px;padding:18px 20px;text-decoration:none;color:inherit}
+.ind-hub-card{display:block;border:1px solid rgba(0,0,0,.12);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit}
 .ind-hub-card:hover{border-color:rgba(0,0,0,.4)}
+/* Квадрат и вписывание - как на обложках категорий и подборок. */
+.ind-hub-cover{aspect-ratio:1/1;background:#f3f4f6;overflow:hidden}
+.ind-hub-cover img{width:100%;height:100%;object-fit:contain;display:block}
+.ind-hub-text{padding:18px 20px}
 .ind-hub-name{font-weight:700;font-size:16px;margin-bottom:6px}
 .ind-hub-desc{font-size:14px;line-height:1.55;opacity:.8}
 .ind-hub-tag{font-size:12px;opacity:.55;margin-top:10px;text-transform:lowercase}
 .ind-hub-note{font-size:14px;opacity:.8;max-width:70ch;line-height:1.6}
-@media(prefers-color-scheme:dark){.ind-hub-card{border-color:rgba(255,255,255,.18)}.ind-hub-card:hover{border-color:rgba(255,255,255,.45)}}
+@media(prefers-color-scheme:dark){.ind-hub-card{border-color:rgba(255,255,255,.18)}.ind-hub-card:hover{border-color:rgba(255,255,255,.45)}.ind-hub-cover{background:#1f2229}}
 </style>
 <script type="application/ld+json">${JSON.stringify(itemList)}</script>
 <script type="application/ld+json">${JSON.stringify(breadcrumb)}</script>

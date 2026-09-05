@@ -28,6 +28,62 @@ const BASE = 'https://3dmolierstudio.com';
 const esc = s => String(s).replace(/&(?!(amp|lt|gt|quot|#\d+);)/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const nf = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
+/*
+ * Обложка категории - номер модели, которая её представляет.
+ *
+ * Список рукописный, и это осознанно. Самая продаваемая модель категорию не
+ * представляет: у «military-vehicles» это Personal Delivery Robot, у
+ * «animals-creatures» - ракушка, у «characters-people» - R2-D2. Человек
+ * пришёл смотреть танки, животных и людей.
+ *
+ * Берём модели с кадром TurboSquid: студийный хост слишком медленный, чтобы
+ * на нём держать двадцать шесть картинок на одной странице.
+ */
+const COVER = {
+  'aircraft': 1230754,               // Airbus A320 Generic
+  'animals-creatures': 1091096,      // Penguin Rigged
+  'architecture-landmarks': 1625177, // Eiffel Tower
+  'characters-people': 1089639,      // Diver Rigged
+  'clothing-accessories': 968930,    // Baseball Hat 3
+  'collections-sets': 1041670,       // Male Skeleton Collection
+  'containers-storage': 955965,      // 20 ft ISO Container White
+  'electronics-gadgets': 1500054,    // Black Smartphone
+  'food-beverages': 1485059,         // Ice Cream Cone
+  'furniture-interior': 1227312,     // Vintage Style Curved Sofa
+  'industrial-equipment': 1227301,   // Offshore Wind Power Turbine Generic
+  'kitchen-tableware': 1456447,      // Silverware Set
+  'lighting': 926208,                // Electric Light Bulb
+  'medical-3d-models': 1023427,      // Male Human Skull
+  'military-vehicles': 1031832,      // M1 Abrams
+  'musical-instruments': 996593,     // Grand Piano Fazioli
+  'nature-plants': 896518,           // Orchid Flower
+  'other': 927490,                   // US Quarter
+  'ships': 1048299,                  // Offshore Sailing Yacht
+  'signage-decor': 1251960,          // Red Balloon with Ribbon
+  'space-scifi': 933517,             // GPS Satellite Navstar Block IIF
+  'sports-recreation': 938598,       // Rugby Ball Gilbert
+  'tools': 899027,                   // Cordless Drill
+  'toys-games': 1031643,             // Teddy Bear
+  'vehicles': 1214116,               // Tesla Model 3
+  'weapons': 1117547,                // Katana Sword
+};
+
+// Адреса обложек берём из записей: вычислять их из названия нельзя.
+const coverImg = (() => {
+  const want = new Set(Object.values(COVER).map(String));
+  const out = {};
+  try {
+    const RD = path.join(ROOT, 'data', 'records');
+    const idx = JSON.parse(fs.readFileSync(path.join(RD, 'index.json'), 'utf8'));
+    for (let k = 0; k < idx.chunks; k++) {
+      for (const r of JSON.parse(fs.readFileSync(path.join(RD, `records-${k}.json`), 'utf8'))) {
+        if (want.has(String(r.id)) && r.image) out[String(r.id)] = { img: r.image, name: r.name, slug: r.slug };
+      }
+    }
+  } catch (e) { console.log('записи недоступны, обложек не будет: ' + e.message); }
+  return out;
+})();
+
 const donor = fs.readFileSync(SRC, 'utf8');
 const headerMatch = donor.match(/<body[^>]*>([\s\S]*?<\/header>)/);
 if (!headerMatch) { console.error('не нашёл шапку в ' + SRC); process.exit(1); }
@@ -77,10 +133,22 @@ for (const it of live) {
 // Крупные разделы вперёд: посетителю полезнее сразу увидеть, где моделей больше.
 live.sort((a, b) => b.n - a.n || a.h1.localeCompare(b.h1));
 
-const cards = live.map(i => `<a class="cat-hub-card" href="/categories/${i.slug}/">`
-  + `<div class="cat-hub-name">${esc(i.h1)}</div>`
-  + `<div class="cat-hub-desc">${esc(i.long)}</div>`
-  + (i.n ? `<div class="cat-hub-tag">${nf(i.n)} models</div>` : '') + '</a>').join('');
+const cards = live.map((i, n) => {
+  const c = coverImg[String(COVER[i.slug])];
+  // Первые четыре карточки видны сразу - их грузим обычным порядком, остальные
+  // лениво. Иначе браузер потянет двадцать шесть снимков ради четырёх видимых.
+  const load = n < 4 ? 'decoding="async"' : 'loading="lazy" decoding="async"';
+  const cover = c
+    ? `<div class="cat-hub-cover"><img src="${esc(c.img)}" alt="${esc(c.name)} - example of a ${esc(i.h1.replace(/ 3D Models?$/i, ''))} 3D model" width="800" height="450" ${load} data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></div>`
+    : '';
+  return `<a class="cat-hub-card" href="/categories/${i.slug}/">`
+    + cover
+    + '<div class="cat-hub-text">'
+    + `<div class="cat-hub-name">${esc(i.h1)}</div>`
+    + `<div class="cat-hub-desc">${esc(i.long)}</div>`
+    + (i.n ? `<div class="cat-hub-tag">${nf(i.n)} models</div>` : '')
+    + '</div></a>';
+}).join('');
 
 // Итог берём из каталога, а не суммой чипов. Сумма по 26 категориям даёт 53 703,
 // а /catalog/, /search/ и /data-licensing/ показывают 54 079 - это полный размер
@@ -136,13 +204,18 @@ const html = `<!DOCTYPE html>
 <link rel="stylesheet" href="/assets/css/fonts.css?v=33">
 <style>
 .cat-hub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin:28px 0}
-.cat-hub-card{display:block;border:1px solid rgba(0,0,0,.12);border-radius:12px;padding:18px 20px;text-decoration:none;color:inherit}
+.cat-hub-card{display:block;border:1px solid rgba(0,0,0,.12);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit}
 .cat-hub-card:hover{border-color:rgba(0,0,0,.4)}
+/* Обложка квадратная и вписанная: рендеры у нас квадратные, а обрезка
+   отрезала бы у машины крышу и колёса. */
+.cat-hub-cover{aspect-ratio:1/1;background:#f3f4f6;overflow:hidden}
+.cat-hub-cover img{width:100%;height:100%;object-fit:contain;display:block}
+.cat-hub-text{padding:18px 20px}
 .cat-hub-name{font-weight:700;font-size:16px;margin-bottom:6px}
 .cat-hub-desc{font-size:14px;line-height:1.55;opacity:.8}
 .cat-hub-tag{font-size:12px;opacity:.55;margin-top:10px}
 .cat-hub-note{font-size:14px;opacity:.8;max-width:70ch;line-height:1.6}
-@media(prefers-color-scheme:dark){.cat-hub-card{border-color:rgba(255,255,255,.18)}.cat-hub-card:hover{border-color:rgba(255,255,255,.45)}}
+@media(prefers-color-scheme:dark){.cat-hub-card{border-color:rgba(255,255,255,.18)}.cat-hub-card:hover{border-color:rgba(255,255,255,.45)}.cat-hub-cover{background:#1f2229}}
 </style>
 <script type="application/ld+json">${JSON.stringify(itemList)}</script>
 <script type="application/ld+json">${JSON.stringify(breadcrumb)}</script>
