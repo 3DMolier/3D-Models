@@ -23,7 +23,7 @@ var grid=document.getElementById('model-grid');
 var statusText=document.getElementById('status-text');
 var statusMsg=document.getElementById('status-msg');
 var resultCount=document.getElementById('results-count');
-var emptyEl=document.getElementById('empty');
+// Блока «нет результатов» в разметке больше нет - его создаёт emptyBlock().
 var filterBar=document.getElementById('filter-bar');
 
 var totalChunks=0, loadedChunks=0, imgChunks=0, totalImgChunks=0;
@@ -236,15 +236,19 @@ function renderGrid(){
   ensureImgChunksFor(toShow);
   if(filtered.length===0){
     grid.innerHTML='';
-    // Блок «нет результатов» показываем ТОЛЬКО когда человек действительно
-    // что-то искал или фильтровал. Раньше он всегда лежал в разметке и лишь
-    // прятался стилем: робот и читающая программа видели «No models found» и
-    // «Showing 0 of 0» сразу под списком из 48 найденных моделей. Атрибут
-    // hidden, а не display: скрытое стилем всё равно попадает в дерево
-    // доступности, а у заголовка внутри стоит role="status" - его объявляют
-    // вслух при появлении.
-    var searched=!!searchQ||selPrice!==null||selCat!==null;
-    if(emptyEl){ if(searched)emptyEl.removeAttribute('hidden'); else emptyEl.setAttribute('hidden',''); }
+    /*
+     * Блок «нет результатов» появляется ТОЛЬКО когда человек действительно
+     * искал или фильтровал и не нашёл ничего.
+     *
+     * Раньше он лежал в разметке с атрибутом hidden. Для глаза его не было, а
+     * в исходнике страницы под полусотней карточек стояло «No models found» и
+     * «Showing 0 of 0 models». Обходчик, дерево доступности и любой разбор
+     * разметки читали противоречие. Теперь блока в HTML нет вовсе: он
+     * создаётся здесь и только по делу.
+     */
+    var searched=!!searchQ||selPrice!==null||selCat!==null||onlyRigged;
+    if(searched){ var e=emptyBlock(); if(e)e.removeAttribute('hidden'); }
+    else { var e0=document.getElementById('empty'); if(e0)e0.setAttribute('hidden',''); }
     if(lmBtn)lmBtn.style.display='none';
     // При нуле результатов строка «Showing X of Y» врала бы прошлыми
     // числами прямо над надписью «No models found». Прячем её.
@@ -252,7 +256,8 @@ function renderGrid(){
     if(pg)pg.setAttribute('hidden','');
     return;
   }
-  if(emptyEl)emptyEl.setAttribute('hidden','');
+  var eHide=document.getElementById('empty');
+  if(eHide)eHide.setAttribute('hidden','');
   var html='';
   for(var i=0;i<toShow.length;i++)html+=modelCard(toShow[i]);
   grid.innerHTML=html;
@@ -397,18 +402,59 @@ function setupInfiniteScroll() {
 }
 
 function updateProgress() {
-  // Строка лежит в разметке скрытой и показывается, только когда числа
-  // настоящие. Иначе робот читал «Showing 0 of 0 models» сразу под списком
-  // из полусотни найденных моделей.
+  /*
+   * Строка «Showing X of Y» СОЗДАЁТСЯ здесь, а не лежит в разметке скрытой.
+   *
+   * Раньше она стояла в HTML как «Showing 0 of 0 models» с атрибутом hidden.
+   * Для глаза её не было, но исходник страницы говорил: 54 527 моделей,
+   * полсотни карточек - и тут же «0 of 0». Всё, что читает разметку, а не
+   * картинку - обходчик, дерево доступности, любой разбор страницы - видело
+   * противоречие. Скрытое неверное утверждение остаётся неверным.
+   *
+   * Числа известны только после того, как данные пришли и фильтр отработал.
+   * Значит и строка должна появляться тогда же.
+   */
   var prog = document.getElementById('fc-progress');
-  if (prog) prog.removeAttribute('hidden');
+  if (!prog) {
+    var grid = document.getElementById('model-grid');
+    if (!grid || !grid.parentNode) return;
+    prog = document.createElement('div');
+    prog.id = 'fc-progress';
+    prog.className = 'fc-progress';
+    prog.appendChild(document.createTextNode('Showing '));
+    var s = document.createElement('span'); s.id = 'fc-shown'; prog.appendChild(s);
+    prog.appendChild(document.createTextNode(' of '));
+    var t = document.createElement('span'); t.id = 'fc-total'; prog.appendChild(t);
+    prog.appendChild(document.createTextNode(' models'));
+    grid.parentNode.insertBefore(prog, grid.nextSibling);
+  }
+  prog.removeAttribute('hidden');
   var shown = Math.min((page + 1) * PAGE_SIZE, filtered.length);
-  var shownEl = document.getElementById('fc-shown');
-  var totalEl = document.getElementById('fc-total');
   // Язык обязателен - см. комментарий у totalModels выше. Без него у русского
   // посетителя выходит «54 079» с неразрывными пробелами вместо запятых.
-  if (shownEl) shownEl.textContent = shown.toLocaleString('en-US');
-  if (totalEl) totalEl.textContent = filtered.length.toLocaleString('en-US');
+  document.getElementById('fc-shown').textContent = shown.toLocaleString('en-US');
+  document.getElementById('fc-total').textContent = filtered.length.toLocaleString('en-US');
+}
+
+/*
+ * Блок «ничего не найдено» - тоже создаётся, и только когда поиск
+ * действительно ничего не дал. В разметке его нет: страница, на которой
+ * лежат карточки, не должна одновременно утверждать, что моделей нет.
+ */
+function emptyBlock() {
+  var el = document.getElementById('empty');
+  if (el) return el;
+  var grid = document.getElementById('model-grid');
+  if (!grid || !grid.parentNode) return null;
+  el = document.createElement('div');
+  el.id = 'empty';
+  var ic = document.createElement('div'); ic.className = 'ei'; ic.textContent = '🔍';
+  var t = document.createElement('p'); t.className = 'empty-title'; t.setAttribute('role', 'status');
+  t.textContent = 'No models found';
+  var h = document.createElement('p'); h.textContent = 'Try a different search term or clear filters';
+  el.appendChild(ic); el.appendChild(t); el.appendChild(h);
+  grid.parentNode.insertBefore(el, grid.nextSibling);
+  return el;
 }
 
 // Recently Viewed display
