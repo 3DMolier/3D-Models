@@ -83,10 +83,28 @@ const HERO = {
   'tools': ['🔧', 'Tool 3D models - hand tools, power tools, gardening, cleaning, cutting and workshop equipment for industrial visualization, archviz and product rendering.'],
 };
 
-// ---- константы (header/footer) из vehicles ----
-const refSrc = fs.readFileSync(path.join(CATEGORIES, 'vehicles', 'index.html'), 'utf8');
-const HEADER = (refSrc.match(/<header id="site-header">[\s\S]*?<\/header>/) || [''])[0];
-const FOOTER = (refSrc.match(/<footer class="cat-footer">[\s\S]*?<\/footer>/) || [''])[0];
+/*
+ * ШАПКА И ПОДВАЛ - ИЗ partials/, а не из собственной прошлой сборки.
+ *
+ * Здесь была тихая поломка. Подвал искался в categories/vehicles/index.html по
+ * образцу <footer class="cat-footer">. Такого класса на сайте давно нет:
+ * подвал везде site-footer и живёт в partials/footer.html, его раскладывает
+ * sync-chrome.mjs. Совпадения не находилось, константа выходила пустой строкой,
+ * и КАЖДАЯ страница категории собиралась вообще без подвала. Молча: пустая
+ * строка не ошибка.
+ *
+ * Хуже того, поломка сама себя закрепляла - сборщик читал образец из своего же
+ * прошлого вывода, где подвала уже не было.
+ *
+ * Теперь оба куска берутся из partials/ - единственного источника, из которого
+ * их берут и все остальные страницы. И если файла нет, останавливаемся с
+ * ошибкой, а не выпускаем 559 страниц без подвала.
+ */
+const PARTS = path.join(ROOT, 'partials');
+const HEADER = fs.readFileSync(path.join(PARTS, 'header.html'), 'utf8').trim();
+const FOOTER = fs.readFileSync(path.join(PARTS, 'footer.html'), 'utf8')
+  .replace('<!--MP_FOOTER_BACK-->', '').trim();
+if (!HEADER || !FOOTER) { console.error('пустая шапка или подвал в partials/ - останавливаюсь'); process.exit(1); }
 
 function heroFor(cat, catDisp, count) {
   const file = path.join(CATEGORIES, cat, 'index.html');
@@ -188,8 +206,16 @@ const EAGER_CARDS = 4;
  * (TurboSquid) оставляем как есть: меньших размеров у них нет, 600x600 и ниже
  * отдают 404.
  */
+/*
+ * УМЕНЬШИТЕЛЬ ВЫКЛЮЧЕН - см. тот же флаг в render-card.mjs, переключать оба
+ * вместе. Копии /images/h400/ отдаются в 18% случаев, отказ приходит срывом
+ * соединения, а не ошибкой, поэтому запасной адрес в onerror не срабатывает.
+ * Пока сервис не починен, отдаём оригинал: тяжелее, зато видно.
+ */
+const RESIZER_WORKS = false;
+
 const STUDIO = 'https://www.3dmolier-studio.com/assets/';
-const small = (u, tag) => (String(u || '').startsWith(STUDIO)
+const small = (u, tag) => (RESIZER_WORKS && String(u || '').startsWith(STUDIO)
   ? 'https://www.3dmolier-studio.com/images/' + tag + '/assets/' + String(u).slice(STUDIO.length)
   : u);
 
@@ -310,7 +336,6 @@ ${bcSchema}
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GDY5KTLBP1');</script>
 </head>
 <body class="relative min-h-screen">
-<a href="#main-content" class="skip-link">Skip to content</a>
 ${HEADER}
 <main id="main-content" class="cat-main">
 <div class="cat-bc"><div class="max-w-7xl mx-auto px-6 py-3 cat-bc-inner"><a href="/" class="bc-link">Home</a> <span class="bc-sep">&#8250;</span> <a href="/catalog/" class="bc-link">Categories</a> <span class="bc-sep">&#8250;</span> <span class="bc-current">${bcCurrent}</span></div></div>

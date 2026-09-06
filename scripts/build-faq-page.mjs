@@ -27,14 +27,22 @@ const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname).replac
 const DRY = process.argv.includes('--dry');
 const esc = s => String(s).replace(/&(?!(amp|lt|gt|quot|#\d+);)/g, '&amp;');
 
-const MAIL = 'mailto:3dmolier@3dmolier.com';
+/*
+ * Ведём на страницу контактов, а не на mailto:.
+ *
+ * Прямой адрес почты в ответе - это письмо из ниоткуда: без темы, без номера
+ * модели, часто из личного ящика, а у части посетителей почтовая программа не
+ * настроена вовсе, и ссылка просто ничего не делает. Страница контактов
+ * спрашивает то, что нам нужно, и работает у всех.
+ */
+const MAIL = '/contact/';
 
 const FAQ = [
   ['What file formats do the models come in?',
    'Usually MAX, C4D, Maya, Blender, FBX and OBJ. Which of them a particular model ships in is listed '
    + 'in its Specifications table, and the exact files with their sizes are on the TurboSquid product '
    + 'page it links to. Need a format that is not there? We convert models on request - write to '
-   + '<a href="' + MAIL + '">3dmolier@3dmolier.com</a> and tell us the model and the format you need.'],
+   + '<a href="' + MAIL + '">contact us</a> and tell us the model and the format you need.'],
   ['Are the models CheckMate certified?',
    'Many are, and the badge is shown on the model page. Every model in this catalogue is built to the '
    + 'CheckMate specification whether or not it carries the mark: TurboSquid has since closed the '
@@ -65,14 +73,16 @@ const FAQ = [
   ['Can I order a new model, or have an existing one modified?',
    'Yes. We build to order and we adapt models we have already made - a different colour scheme, a '
    + 'rig, a lower poly count, another format. See <a href="/custom-order/">custom orders</a> for how '
-   + 'it works, or write to <a href="' + MAIL + '">3dmolier@3dmolier.com</a>.'],
+   + 'it works, or write to <a href="' + MAIL + '">contact us</a>.'],
   ['Can I buy in bulk by sending you a list of models in a spreadsheet?',
-   'Yes. Send us an Excel or CSV file with the models you want - names, links or TurboSquid IDs, '
-   + 'whatever you have - and we will find them and come back with the list. Write to '
-   + '<a href="' + MAIL + '">3dmolier@3dmolier.com</a>.'],
+   'Yes, and you do not have to look anything up. Send the list in whatever form you already have it - '
+   + 'a spreadsheet, a document, plain names typed out. We find every model in our catalogue ourselves '
+   + 'and come back with the matches, the prices and the links. If something on your list does not '
+   + 'exist yet, we will say so and can build it. Send the list through '
+   + '<a href="' + MAIL + '">our contact page</a>.'],
   ['Is there a discount for a bulk purchase?',
    'Yes. Send us the request and we will agree the terms individually - the discount depends on how '
-   + 'many models you need and which. Write to <a href="' + MAIL + '">3dmolier@3dmolier.com</a>.'],
+   + 'many models you need and which. Write to <a href="' + MAIL + '">contact us</a>.'],
   ['Can I license the catalogue as data, for AI or 3D reconstruction training?',
    'Yes. Beyond single-model sales we license the collection as a dataset - meshes, textures and '
    + 'metadata at volume, for machine learning, simulation and reconstruction work, under terms written '
