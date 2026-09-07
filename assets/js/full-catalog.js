@@ -11,17 +11,26 @@ var searchQ='', selPrice=null, selCat=null, sortMode='sales', onlyRigged=false;
 // 2 154 и почти целиком входит в первое. Значит новых данных возить не нужно -
 // имя и так едет вместе с каталогом.
 var RIGGED=/\brigged\b/i;
-var filtered=[], page=0, PAGE_SIZE=60, DEFAULT_LIMIT=100, noLimit=false;
-// fullCount - сколько моделей подходит под текущий фильтр ДО обрезки первой
-// сотней. capLifted - посетитель нажал «Load more» и снял обрезку.
-var fullCount=0, capLifted=false;
+/*
+ * Каталог листается СТРАНИЦАМИ, как разделы категорий: та же навигация внизу,
+ * те же сто карточек на странице, тот же вид кнопок.
+ *
+ * Что было. Выдача без фильтров резалась сотней насовсем, кнопки перехода не
+ * было вовсе, и каталог из 54 527 моделей заканчивался на сотой карточке.
+ * Потом на её месте появилась кнопка «Load more (54 427 remaining)» - она
+ * висела слева под сеткой, ничего не сообщала о том, где ты находишься, и
+ * прокручивала ленту без конца и без возможности вернуться.
+ *
+ * Страница едет в адресе (?page=N): ссылку можно отправить, кнопка «назад»
+ * работает, и обходчик видит нумерацию, а не бесконечную ленту.
+ */
+var filtered=[], page=0, PAGE_SIZE=100;
 var IDLE_PRELOAD_LIMIT=2, idlePreloaded=0;
 var loadedImgChunkSet={};
 
 var qEl=document.getElementById('q');
 var sortSel=document.getElementById('sort-select');
 var clearAll=document.getElementById('clear-all');
-var lmBtn=document.getElementById('lm-btn');
 var grid=document.getElementById('model-grid');
 var statusText=document.getElementById('status-text');
 var statusMsg=document.getElementById('status-msg');
@@ -61,18 +70,31 @@ function onFirstChunk() {
   // заголовке и в счётчике выдачи, третий раз - перебор.
   if(qEl)qEl.disabled=false;
   if(filterBar)filterBar.classList.add('visible');
-  applyFilters();
+  // Номер страницы из адреса - чтобы ссылка на /catalog/?page=7 открывала
+  // седьмую сотню, а не первую.
+  var urlPage=parseInt(new URLSearchParams(location.search).get('page')||'1',10);
+  if(!isNaN(urlPage)&&urlPage>1){page=urlPage-1;ensureRemainingChunks();}
+  applyFilters(page>0);
   var urlQ=new URLSearchParams(location.search).get('q');
   // Запрос из адреса приходит с чипа ключевого слова на карточке. Искать
   // надо по всему каталогу, а не по первому загруженному куску: иначе
   // «tesla model 3» находит десяток моделей вместо всех.
   if(urlQ&&qEl){qEl.value=urlQ;searchQ=urlQ.toLowerCase();applyFilters();ensureRemainingChunks();}
-  if('IntersectionObserver' in window) setupInfiniteScroll();
   // Если пришли сразу с фильтром категории, счёт должен быть верным с первого
   // экрана: /catalog/?cat=aircraft показывал «706 of 54077», пока догружались
   // чанки, хотя самолётов 1 495. Вызов именно здесь - на момент разбора
   // скрипта число чанков ещё неизвестно и догружать было бы нечего.
   if(selCat)ensureRemainingChunks();
+  /*
+   * Каталог подтягиваем ЦЕЛИКОМ, а не по мере прокрутки.
+   *
+   * Со страничной навигацией число страниц считается по длине выдачи, и пока
+   * пришёл только первый кусок, внизу стояло «200 страниц» вместо 546: нажми
+   * посетитель на последнюю - и он попал бы не туда, куда обещала кнопка.
+   * Шесть кусков весят 2,9 МБ и грузятся параллельно, первая сотня карточек
+   * при этом уже на экране.
+   */
+  ensureRemainingChunks();
   scheduleIdlePreload();
 }
 
@@ -222,35 +244,17 @@ function applyFilters(keepPage){
     return 0;
   });
   /*
-   * Первая выдача - сотня лидеров продаж, а не весь каталог: столько никто не
-   * листает, а браузер держал бы в памяти всю сетку. При поиске и фильтрах
-   * ограничения нет - там оно мешало бы.
+   * Обрезки выдачи больше нет: страницу целиком определяет номер страницы, и
+   * в память попадает ровно сотня карточек, а не весь каталог. Раньше список
+   * резался сотней насовсем - и каталог из 54 527 моделей заканчивался на
+   * сотой карточке, хотя строка над сеткой обещала все 54 527.
    *
-   * Но это ИМЕННО первая выдача, а не потолок. Раньше список резался до сотни
-   * насовсем: внизу стояло «Showing 100 of 100 models», кнопки «ещё» не было,
-   * и каталог из 54 527 моделей заканчивался на сотой. При этом строка над
-   * сеткой честно писала «100 of 54527» - страница спорила сама с собой.
-   *
-   * Теперь помним полную длину выдачи (fullCount) и снимаем ограничение по
-   * нажатию «Load more». Строка «Showing X of Y» и кнопка берут Y из
-   * fullCount, поэтому обещание и содержимое сходятся.
+   * Листать можно только по загруженным строкам, поэтому за пределами первого
+   * куска догружаем остальные - иначе на пятой странице выдача обрывалась бы
+   * там, где кончился первый файл.
    */
-  noLimit = !!searchQ || selCat !== null || selPrice !== null || onlyRigged;
-  /*
-   * Сколько моделей подходит под текущую выдачу.
-   *
-   * Без фильтров это ВЕСЬ каталог, и число известно заранее - из fc-index.json.
-   * Считать его по загруженным строкам нельзя: куски приходят постепенно, и в
-   * строке успевало постоять «Showing 60 of 20,000» при 54 527 в заголовке.
-   * С фильтром считаем по-настоящему: там ensureRemainingChunks уже подтянул
-   * весь каталог, и длина выдачи верна.
-   */
-  fullCount = noLimit ? filtered.length
-    : Math.max(totalModels || 0, filtered.length);
-  if (!noLimit && !capLifted && filtered.length > DEFAULT_LIMIT) {
-    filtered = filtered.slice(0, DEFAULT_LIMIT);
-  }
   if(!keepPage)page=0;
+  if(page>0)ensureRemainingChunks();
   // updateProgress() здесь больше не зовём: он внутри renderGrid. Снаружи он
   // отменял скрытие строки при нулевой выдаче - «Showing 0 of 0 models»
   // возвращалось прямо над надписью «No models found».
@@ -260,7 +264,8 @@ function applyFilters(keepPage){
 
 function renderGrid(){
   if(!grid||!fcReady)return;
-  var toShow=filtered.slice(0,(page+1)*PAGE_SIZE);
+  // Ровно одна страница, а не всё от начала: сетка не растёт бесконечно.
+  var toShow=filtered.slice(page*PAGE_SIZE,(page+1)*PAGE_SIZE);
   // Запрашиваем адреса картинок ровно для тех карточек, что сейчас выводим.
   // Пришедший файл сам подставит снимки на место рамок - injectLoadedImages.
   ensureImgChunksFor(toShow);
@@ -279,7 +284,7 @@ function renderGrid(){
     var searched=!!searchQ||selPrice!==null||selCat!==null||onlyRigged;
     if(searched){ var e=emptyBlock(); if(e)e.removeAttribute('hidden'); }
     else { var e0=document.getElementById('empty'); if(e0)e0.setAttribute('hidden',''); }
-    if(lmBtn)lmBtn.style.display='none';
+    renderPager(0);
     // При нуле результатов строка «Showing X of Y» врала бы прошлыми
     // числами прямо над надписью «No models found». Прячем её.
     var pg=document.getElementById('fc-progress');
@@ -291,22 +296,99 @@ function renderGrid(){
   var html='';
   for(var i=0;i<toShow.length;i++)html+=modelCard(toShow[i]);
   grid.innerHTML=html;
-  if(lmBtn){
-    // Считаем по fullCount, а не по обрезанному списку: пока обрезка стоит,
-    // filtered равен ровно сотне, и кнопка пряталась на сотой карточке, хотя
-    // за ней оставалось ещё 54 427 моделей.
-    var total=Math.max(fullCount,filtered.length);
-    if(toShow.length<total){
-      lmBtn.style.display='block';
-      lmBtn.textContent='Load more ('+(total-toShow.length).toLocaleString('en-US')+' remaining)';
-    }else{lmBtn.style.display='none';}
-  }
+  renderPager(Math.ceil(filtered.length/PAGE_SIZE));
   // Строку «Showing X of Y» обновляем здесь, а не у каждого, кто зовёт
   // renderGrid. Раньше её обновляли снаружи, и обработчик кнопки «Load more»
   // это делать забывал: после прокрутки поиска по слову helicopter на экране
   // лежали все 262 карточки, а строка упрямо повторяла «Showing 60 of 262».
   updateProgress();
 }
+
+/*
+ * НАВИГАЦИЯ ПО СТРАНИЦАМ - один в один как в разделах категорий.
+ *
+ * Разметка и классы взяты оттуда без изменений (cat-pagination, cat-pg-link,
+ * cat-pg-num, cat-pg-current, cat-pg-ellipsis), чтобы вид и поведение
+ * совпадали: те же кнопки «Prev» и «Next», тот же чёрный номер текущей
+ * страницы, то же многоточие между краями.
+ *
+ * Отличие одно и вынужденное: в категориях страницы - это отдельные адреса
+ * /page/2/, а каталог живёт одной страницей на данных из кусков. Поэтому номер
+ * едет параметром ?page=2. Ссылки настоящие, а не кнопки: их видно в строке
+ * состояния, можно открыть в новой вкладке и отправить.
+ */
+function pageHref(n){
+  var p=new URLSearchParams(location.search);
+  if(n<=1)p.delete('page'); else p.set('page',String(n));
+  var s=p.toString();
+  return location.pathname+(s?'?'+s:'');
+}
+
+function renderPager(totalPages){
+  var box=document.getElementById('fc-pager');
+  if(!box){
+    var wrap=grid&&grid.parentNode;
+    if(!wrap)return;
+    box=document.createElement('nav');
+    box.id='fc-pager';
+    box.className='cat-pagination';
+    box.setAttribute('aria-label','Catalog pages');
+    wrap.appendChild(box);
+  }
+  // Одна страница - листать нечего, и полоса кнопок только мешает.
+  if(totalPages<2){box.hidden=true;box.innerHTML='';return;}
+  box.hidden=false;
+  var cur=page+1;
+  // Какие номера показываем: края и окно вокруг текущей - как в категориях.
+  var nums=[];
+  var add=function(n){if(n>=1&&n<=totalPages&&nums.indexOf(n)<0)nums.push(n);};
+  add(1);add(2);
+  for(var d=-1;d<=1;d++)add(cur+d);
+  add(totalPages-1);add(totalPages);
+  nums.sort(function(a,b){return a-b;});
+  var html='<div class="max-w-7xl mx-auto">';
+  html+=cur>1
+    ?'<a href="'+pageHref(cur-1)+'" class="cat-pg-link" rel="prev" data-pg="'+(cur-1)+'">&#8592; Prev</a>'
+    :'<span class="cat-pg-link cat-pg-disabled">&#8592; Prev</span>';
+  var prev=0;
+  for(var i=0;i<nums.length;i++){
+    var n=nums[i];
+    if(prev&&n>prev+1)html+='<span class="cat-pg-ellipsis">&#8230;</span>';
+    html+=n===cur
+      ?'<span class="cat-pg-num cat-pg-current" aria-current="page">'+n+'</span>'
+      :'<a href="'+pageHref(n)+'" class="cat-pg-num" data-pg="'+n+'">'+n+'</a>';
+    prev=n;
+  }
+  html+=cur<totalPages
+    ?'<a href="'+pageHref(cur+1)+'" class="cat-pg-link" rel="next" data-pg="'+(cur+1)+'">Next &#8594;</a>'
+    :'<span class="cat-pg-link cat-pg-disabled">Next &#8594;</span>';
+  box.innerHTML=html+'</div>';
+}
+
+// Переход по номеру перехватываем: перезагружать страницу ради смены сотни
+// карточек незачем - данные уже в памяти. Адрес при этом всё равно меняем,
+// чтобы «назад» возвращал на прежнюю страницу.
+document.addEventListener('click',function(e){
+  var a=e.target.closest?e.target.closest('#fc-pager a[data-pg]'):null;
+  if(!a)return;
+  if(e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;   // открыть в новой вкладке
+  e.preventDefault();
+  page=Math.max(0,parseInt(a.getAttribute('data-pg'),10)-1);
+  ensureRemainingChunks();
+  history.pushState({page:page},'',a.getAttribute('href'));
+  renderGrid();
+  var top=document.getElementById('model-grid');
+  if(top)window.scrollTo({top:top.getBoundingClientRect().top+window.pageYOffset-90,behavior:'smooth'});
+});
+
+// Кнопка «назад» должна возвращать на прежнюю страницу каталога, а не уводить
+// с него: номер живёт в адресе, значит и восстанавливать его надо оттуда.
+window.addEventListener('popstate',function(){
+  var n=parseInt(new URLSearchParams(location.search).get('page')||'1',10);
+  page=Math.max(0,(isNaN(n)?1:n)-1);
+  if(page>0)ensureRemainingChunks();
+  renderGrid();
+});
 
 function makeSlug(name,id){
   var s=name.toLowerCase().trim().replace(/[^\w\s-]/g,'').replace(/[\s_]+/g,'-').replace(/-+/g,'-').replace(/^-+|-+$/g,'');
@@ -341,10 +423,10 @@ function updateStatus(){
    * и вовсе «100 of 54527», где сотня была не числом найденного, а размером
    * первой выдачи. Поэтому без фильтров пишем просто «54,527 models».
    */
-  var match=Math.max(fullCount,filtered.length);
+  var filtering = !!searchQ || selCat !== null || selPrice !== null || onlyRigged;
   if(resultCount){
-    resultCount.innerHTML = noLimit
-      ? '<strong>'+match.toLocaleString('en-US')+'</strong> of '+total.toLocaleString('en-US')+' models'
+    resultCount.innerHTML = filtering
+      ? '<strong>'+filtered.length.toLocaleString('en-US')+'</strong> of '+total.toLocaleString('en-US')+' models'
       : '<strong>'+total.toLocaleString('en-US')+'</strong> models';
   }
   if(statusText)statusText.textContent='';
@@ -369,28 +451,7 @@ if(clearAll)clearAll.addEventListener('click',function(){
   clearAll.classList.remove('show');
   applyFilters();
 });
-/*
- * «Load more» делает две разные вещи, и порядок важен.
- *
- * Пока стоит обрезка первой сотней, нажатие СНИМАЕТ её: подтягивает
- * оставшиеся куски каталога и пересобирает выдачу целиком. Дальше кнопка
- * работает как раньше - показывает следующие 60 карточек.
- *
- * Без первого шага каталог упирался в сотую модель и дальше не пускал.
- */
-if(lmBtn)lmBtn.addEventListener('click',function(){
-  if(!capLifted && !noLimit && fullCount > filtered.length){
-    capLifted = true;
-    ensureRemainingChunks();
-    // keepPage: на экране уже лежит сотня карточек, и отматывать их к первым
-    // шестидесяти по нажатию «показать ещё» было бы прямо наоборот просьбе.
-    applyFilters(true);
-    page++;
-    renderGrid();
-    return;
-  }
-  page++;renderGrid();
-});
+// Кнопки «Load more» больше нет: каталог листается страницами, см. renderPager.
 
 document.querySelectorAll('.ftag[data-price]').forEach(function(btn){
   btn.addEventListener('click',function(){
@@ -449,23 +510,9 @@ document.querySelectorAll('.ps-tag').forEach(function(btn){
 });
 
 
-function setupInfiniteScroll() {
-  var sentinel = document.getElementById('fc-sentinel');
-  if (!sentinel) {
-    sentinel = document.createElement('div');
-    sentinel.id = 'fc-sentinel';
-    sentinel.style.height = '1px';
-    var gridWrap = grid && grid.parentNode;
-    if (gridWrap) gridWrap.insertBefore(sentinel, grid.nextSibling);
-  }
-  var io = new IntersectionObserver(function(entries) {
-    if (entries[0].isIntersecting && fcReady) {
-      var shown = (page + 1) * PAGE_SIZE;
-      if (shown < filtered.length) {  page++; renderGrid(); updateProgress(); }
-    }
-  }, { rootMargin: '400px' });
-  io.observe(sentinel);
-}
+// Бесконечной прокрутки больше нет: она была обратной стороной кнопки «Load
+// more» - лента росла без конца, и вернуться к уже виденному было нельзя.
+// Теперь страницы перелистываются, см. renderPager.
 
 function updateProgress() {
   /*
@@ -495,14 +542,16 @@ function updateProgress() {
     grid.parentNode.insertBefore(prog, grid.nextSibling);
   }
   prog.removeAttribute('hidden');
-  // Итог берём по полной выдаче: при стоящей обрезке filtered равен сотне, и
-  // строка писала «Showing 100 of 100 models» под каталогом на 54 527 моделей.
-  var total = Math.max(fullCount, filtered.length);
-  var shown = Math.min((page + 1) * PAGE_SIZE, filtered.length);
+  // На странице лежит ДИАПАЗОН карточек, а не первые N: «Showing 101-200 of
+  // 54,527». Одно число здесь врало бы - на третьей странице «Showing 300»
+  // означало бы, что все триста на экране, а их сто.
+  var from = filtered.length ? page * PAGE_SIZE + 1 : 0;
+  var to = Math.min((page + 1) * PAGE_SIZE, filtered.length);
   // Язык обязателен - см. комментарий у totalModels выше. Без него у русского
   // посетителя выходит «54 079» с неразрывными пробелами вместо запятых.
-  document.getElementById('fc-shown').textContent = shown.toLocaleString('en-US');
-  document.getElementById('fc-total').textContent = total.toLocaleString('en-US');
+  document.getElementById('fc-shown').textContent =
+    from.toLocaleString('en-US') + '-' + to.toLocaleString('en-US');
+  document.getElementById('fc-total').textContent = filtered.length.toLocaleString('en-US');
 }
 
 /*
