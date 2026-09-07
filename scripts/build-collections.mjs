@@ -191,7 +191,11 @@ function shell(title, desc, canonical, body, extraHead = '') {
 ${STYLE}
 ${extraHead}
 </head>
-<body class="relative min-h-screen">
+<!-- collections-page включает квадратные плитки: снимки подборок сняты
+     квадратными, а общая плитка каталога широкая, и cover срезал верх и низ.
+     Правило в styles.css было написано, а класс сюда так и не попал - и
+     карточки резались на всех страницах раздела. -->
+<body class="relative min-h-screen collections-page">
 ${HEADER}
 <main class="cat-main" id="main-content">
 ${body}

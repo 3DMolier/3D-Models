@@ -33,6 +33,31 @@ function imgErr(img) {
 }
 
 /*
+ * КАДР ГАЛЕРЕИ НЕ ПРИШЁЛ - убираем его из полосы.
+ *
+ * Подменять его снимком модели с TurboSquid нельзя: у карточки один такой
+ * снимок на всю галерею, и когда студийный хост не отдаёт ни одного кадра,
+ * полоса превращается в двенадцать копий одной картинки. Галерея обещает
+ * разные ракурсы, а показывает один - это хуже, чем её отсутствие.
+ *
+ * Когда не осталось ни одного кадра, прячем полосу целиком вместе с подписью:
+ * пустая рамка под крупным снимком выглядит поломкой.
+ */
+function galThumbFail(img) {
+  var btn = img.closest ? img.closest('.mp-gal-thumb') : null;
+  if (!btn) { img.style.display = 'none'; return; }
+  btn.hidden = true;
+  var gal = btn.closest('[data-gallery]');
+  if (!gal) return;
+  var left = gal.querySelectorAll('.mp-gal-thumb:not([hidden])');
+  if (!left.length) { gal.hidden = true; return; }
+  // Если убрали выбранный кадр, отмечаем первый оставшийся - иначе рамка
+  // выделения исчезает и непонятно, что открыто.
+  if (!gal.querySelector('.mp-gal-thumb.is-on:not([hidden])')) left[0].classList.add('is-on');
+}
+window.galThumbFail = galThumbFail;
+
+/*
  * СТОРОЖ ПО ВРЕМЕНИ для картинок с запасным адресом.
  *
  * onerror не спасает, когда сервер не отвечает ВОВСЕ. Студийный хост именно
@@ -54,14 +79,18 @@ function imgErr(img) {
       if (!e.isIntersecting) return;
       var img = e.target;
       io.unobserve(img);
+      var drop = img.getAttribute('data-drop-on-fail');
       var alt = img.getAttribute('data-fallback');
-      if (!alt) return;
+      if (!drop && !alt) return;
       // Адрес запоминаем сейчас: в галерее крупный кадр успевает смениться, и
-      // отложенная проверка иначе подменила бы уже другой снимок.
+      // отложенная проверка иначе тронула бы уже другой снимок.
       var watched = img.src;
       setTimeout(function () {
         if (img.src !== watched) return;                    // кадр уже другой
         if (img.complete && img.naturalWidth > 0) return;   // успела прийти
+        // Кадр галереи убираем, а не подменяем: подмена размножила бы один
+        // снимок на всю полосу - см. galThumbFail.
+        if (drop) { galThumbFail(img); return; }
         if (img.src === alt) return;                        // уже подменена
         img.src = alt;
       }, WAIT);
@@ -69,7 +98,8 @@ function imgErr(img) {
   }, { rootMargin: '200px' });
 
   var arm = function () {
-    document.querySelectorAll('img[data-fallback]').forEach(function (i) { io.observe(i); });
+    document.querySelectorAll('img[data-fallback],img[data-drop-on-fail]')
+      .forEach(function (i) { io.observe(i); });
   };
   // Крупный кадр меняется по клику уже после загрузки страницы, поэтому его
   // нужно ставить под наблюдение заново - иначе сторож охраняет только тот
@@ -226,18 +256,18 @@ window.imgErr=function(img){gaEvent('image_fallback_triggered',{src:img&&img.src
   if(!gal) return;
   var hero = document.querySelector('.mp-hero-img');
   if(!hero) return;
+  // Снимок, стоявший в рамке при загрузке страницы. У 52 804 карточек это кадр
+  // с CDN TurboSquid, и он отдаётся всегда. Он и служит запасным, если
+  // выбранный студийный кадр не пришёл: одна картинка вместо пустой рамки -
+  // это не размножение, полоса миниатюр остаётся прежней.
+  var heroStart = hero.getAttribute('src') || '';
   gal.addEventListener('click', function(e){
     var btn = e.target.closest ? e.target.closest('.mp-gal-thumb') : null;
     if(!btn) return;
     var full = btn.getAttribute('data-full');
     if(!full) return;
     hero.src = full;
-    // Запасной адрес берём у самой миниатюры: там лежит снимок с TurboSquid.
-    // Ставить сюда сам full бессмысленно - при отказе студийного хоста подмена
-    // на тот же адрес ничего не даёт, и посетитель видит пустую рамку.
-    var thumbImg = btn.querySelector('img');
-    var spare = thumbImg && thumbImg.getAttribute('data-fallback');
-    hero.setAttribute('data-fallback', spare || full);
+    hero.setAttribute('data-fallback', heroStart && heroStart !== full ? heroStart : full);
     if (window.armImgFallback) window.armImgFallback(hero);
     // Подпись под крупным снимком должна меняться вместе с ним, иначе на карточке
     // серии непонятно, какой именно выпуск сейчас открыт.
@@ -270,13 +300,18 @@ window.imgErr=function(img){gaEvent('image_fallback_triggered',{src:img&&img.src
   var box, img, cap, counter, prevBtn, nextBtn, lastFocus, zoom = false;
 
   function shots(){
-    if(!gal) return [{ src: hero.getAttribute('src'), cap: '' }];
+    // Название модели со страницы. Оно и есть подпись, когда у кадра своей
+    // нет: у карточки без вариантов и у карточки вовсе без полосы миниатюр.
+    // Иначе наверху открытого кадра было бы пусто.
+    var h1 = document.querySelector('.mp-h1') || document.querySelector('h1');
+    var own = h1 ? h1.textContent.trim() : '';
+    if(!gal) return [{ src: hero.getAttribute('src'), cap: own }];
     var list = [];
-    gal.querySelectorAll('.mp-gal-thumb').forEach(function(b){
+    gal.querySelectorAll('.mp-gal-thumb:not([hidden])').forEach(function(b){
       var f = b.getAttribute('data-full');
-      if(f) list.push({ src: f, cap: b.getAttribute('data-cap') || '' });
+      if(f) list.push({ src: f, cap: b.getAttribute('data-cap') || own });
     });
-    return list.length ? list : [{ src: hero.getAttribute('src'), cap: '' }];
+    return list.length ? list : [{ src: hero.getAttribute('src'), cap: own }];
   }
   var items = [], idx = 0;
 
@@ -290,8 +325,12 @@ window.imgErr=function(img){gaEvent('image_fallback_triggered',{src:img&&img.src
       '<button type="button" class="mp-lb-close" aria-label="Close">&#10005;</button>' +
       '<button type="button" class="mp-lb-nav mp-lb-prev" aria-label="Previous image">&#8249;</button>' +
       '<button type="button" class="mp-lb-nav mp-lb-next" aria-label="Next image">&#8250;</button>' +
+      // Название открытого кадра - СВЕРХУ. Внизу оно терялось под снимком, а
+      // на карточке серии это единственное место, где написано, какой именно
+      // выпуск сейчас открыт: под миниатюрами подписей больше нет.
+      '<div class="mp-lb-top"><span class="mp-lb-cap"></span></div>' +
       '<div class="mp-lb-stage"><img class="mp-lb-img" alt=""></div>' +
-      '<div class="mp-lb-bar"><span class="mp-lb-cap"></span><span class="mp-lb-count"></span></div>';
+      '<div class="mp-lb-bar"><span class="mp-lb-count"></span></div>';
     document.body.appendChild(box);
     img = box.querySelector('.mp-lb-img');
     cap = box.querySelector('.mp-lb-cap');

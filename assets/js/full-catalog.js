@@ -12,6 +12,9 @@ var searchQ='', selPrice=null, selCat=null, sortMode='sales', onlyRigged=false;
 // имя и так едет вместе с каталогом.
 var RIGGED=/\brigged\b/i;
 var filtered=[], page=0, PAGE_SIZE=60, DEFAULT_LIMIT=100, noLimit=false;
+// fullCount - сколько моделей подходит под текущий фильтр ДО обрезки первой
+// сотней. capLifted - посетитель нажал «Load more» и снял обрезку.
+var fullCount=0, capLifted=false;
 var IDLE_PRELOAD_LIMIT=2, idlePreloaded=0;
 var loadedImgChunkSet={};
 
@@ -106,7 +109,11 @@ function loadChunk(i) {
       mergeChunk(chunk);
       loadedChunks++;
       if(loadedChunks===1) onFirstChunk();
-      else if(fcReady) applyFilters();
+      // Пришедший кусок пересобирает выдачу, но НЕ отматывает её в начало.
+      // Раньше applyFilters сбрасывал page в ноль, и после «Load more» сетка
+      // прыгала обратно на первые 60 карточек всякий раз, когда догружался
+      // очередной кусок: досмотреть каталог было нельзя.
+      else if(fcReady) applyFilters(true);
       // scheduleIdlePreload handles further auto-loading; no serial chain here
     })
     .catch(function(err){
@@ -184,7 +191,9 @@ Promise.all([
     if(statusText)statusText.textContent='Failed to load catalog. Please refresh.';
   });
 
-function applyFilters(){
+// keepPage - не отматывать выдачу в начало. Нужно тем вызовам, которые не
+// меняют условия отбора, а лишь пересобирают список после прихода куска.
+function applyFilters(keepPage){
   if(!fcReady)return;
   // Номер выбранной категории считаем один раз, а не для каждой из 54 тысяч
   // строк: indexOf внутри цикла превратил бы фильтр в квадрат.
@@ -213,14 +222,35 @@ function applyFilters(){
     return 0;
   });
   /*
-   * Первая выдача - сотня лидеров продаж, а не весь каталог. Без фильтров в
-   * строке стояло «19 999 of 54 077»: столько никто не листает, а браузер
-   * держал в памяти всю сетку. Как только человек что-то ищет или выбирает
-   * категорию - ограничение снимается, там оно мешало бы.
+   * Первая выдача - сотня лидеров продаж, а не весь каталог: столько никто не
+   * листает, а браузер держал бы в памяти всю сетку. При поиске и фильтрах
+   * ограничения нет - там оно мешало бы.
+   *
+   * Но это ИМЕННО первая выдача, а не потолок. Раньше список резался до сотни
+   * насовсем: внизу стояло «Showing 100 of 100 models», кнопки «ещё» не было,
+   * и каталог из 54 527 моделей заканчивался на сотой. При этом строка над
+   * сеткой честно писала «100 of 54527» - страница спорила сама с собой.
+   *
+   * Теперь помним полную длину выдачи (fullCount) и снимаем ограничение по
+   * нажатию «Load more». Строка «Showing X of Y» и кнопка берут Y из
+   * fullCount, поэтому обещание и содержимое сходятся.
    */
   noLimit = !!searchQ || selCat !== null || selPrice !== null || onlyRigged;
-  if (!noLimit && filtered.length > DEFAULT_LIMIT) filtered = filtered.slice(0, DEFAULT_LIMIT);
-  page=0;
+  /*
+   * Сколько моделей подходит под текущую выдачу.
+   *
+   * Без фильтров это ВЕСЬ каталог, и число известно заранее - из fc-index.json.
+   * Считать его по загруженным строкам нельзя: куски приходят постепенно, и в
+   * строке успевало постоять «Showing 60 of 20,000» при 54 527 в заголовке.
+   * С фильтром считаем по-настоящему: там ensureRemainingChunks уже подтянул
+   * весь каталог, и длина выдачи верна.
+   */
+  fullCount = noLimit ? filtered.length
+    : Math.max(totalModels || 0, filtered.length);
+  if (!noLimit && !capLifted && filtered.length > DEFAULT_LIMIT) {
+    filtered = filtered.slice(0, DEFAULT_LIMIT);
+  }
+  if(!keepPage)page=0;
   // updateProgress() здесь больше не зовём: он внутри renderGrid. Снаружи он
   // отменял скрытие строки при нулевой выдаче - «Showing 0 of 0 models»
   // возвращалось прямо над надписью «No models found».
@@ -262,9 +292,13 @@ function renderGrid(){
   for(var i=0;i<toShow.length;i++)html+=modelCard(toShow[i]);
   grid.innerHTML=html;
   if(lmBtn){
-    if(toShow.length<filtered.length){
+    // Считаем по fullCount, а не по обрезанному списку: пока обрезка стоит,
+    // filtered равен ровно сотне, и кнопка пряталась на сотой карточке, хотя
+    // за ней оставалось ещё 54 427 моделей.
+    var total=Math.max(fullCount,filtered.length);
+    if(toShow.length<total){
       lmBtn.style.display='block';
-      lmBtn.textContent='Load more ('+(filtered.length-toShow.length)+' remaining)';
+      lmBtn.textContent='Load more ('+(total-toShow.length).toLocaleString('en-US')+' remaining)';
     }else{lmBtn.style.display='none';}
   }
   // Строку «Showing X of Y» обновляем здесь, а не у каждого, кто зовёт
@@ -301,7 +335,18 @@ function updateStatus(){
   // моделей 54 077, а самолётов 1 495. Отсюда и бралось третье число для
   // Aircraft - рядом с плиткой главной и счётчиком категории.
   var total=totalModels||FC.n.length;
-  if(resultCount)resultCount.innerHTML='<strong>'+filtered.length+'</strong> of '+total+' models';
+  /*
+   * «X of Y» имеет смысл только когда что-то отобрано. Без фильтров подходит
+   * весь каталог, и строка выходила «54,527 of 54,527 models» - а до правки
+   * и вовсе «100 of 54527», где сотня была не числом найденного, а размером
+   * первой выдачи. Поэтому без фильтров пишем просто «54,527 models».
+   */
+  var match=Math.max(fullCount,filtered.length);
+  if(resultCount){
+    resultCount.innerHTML = noLimit
+      ? '<strong>'+match.toLocaleString('en-US')+'</strong> of '+total.toLocaleString('en-US')+' models'
+      : '<strong>'+total.toLocaleString('en-US')+'</strong> models';
+  }
   if(statusText)statusText.textContent='';
 }
 
@@ -324,7 +369,28 @@ if(clearAll)clearAll.addEventListener('click',function(){
   clearAll.classList.remove('show');
   applyFilters();
 });
-if(lmBtn)lmBtn.addEventListener('click',function(){page++;renderGrid();});
+/*
+ * «Load more» делает две разные вещи, и порядок важен.
+ *
+ * Пока стоит обрезка первой сотней, нажатие СНИМАЕТ её: подтягивает
+ * оставшиеся куски каталога и пересобирает выдачу целиком. Дальше кнопка
+ * работает как раньше - показывает следующие 60 карточек.
+ *
+ * Без первого шага каталог упирался в сотую модель и дальше не пускал.
+ */
+if(lmBtn)lmBtn.addEventListener('click',function(){
+  if(!capLifted && !noLimit && fullCount > filtered.length){
+    capLifted = true;
+    ensureRemainingChunks();
+    // keepPage: на экране уже лежит сотня карточек, и отматывать их к первым
+    // шестидесяти по нажатию «показать ещё» было бы прямо наоборот просьбе.
+    applyFilters(true);
+    page++;
+    renderGrid();
+    return;
+  }
+  page++;renderGrid();
+});
 
 document.querySelectorAll('.ftag[data-price]').forEach(function(btn){
   btn.addEventListener('click',function(){
@@ -429,11 +495,14 @@ function updateProgress() {
     grid.parentNode.insertBefore(prog, grid.nextSibling);
   }
   prog.removeAttribute('hidden');
+  // Итог берём по полной выдаче: при стоящей обрезке filtered равен сотне, и
+  // строка писала «Showing 100 of 100 models» под каталогом на 54 527 моделей.
+  var total = Math.max(fullCount, filtered.length);
   var shown = Math.min((page + 1) * PAGE_SIZE, filtered.length);
   // Язык обязателен - см. комментарий у totalModels выше. Без него у русского
   // посетителя выходит «54 079» с неразрывными пробелами вместо запятых.
   document.getElementById('fc-shown').textContent = shown.toLocaleString('en-US');
-  document.getElementById('fc-total').textContent = filtered.length.toLocaleString('en-US');
+  document.getElementById('fc-total').textContent = total.toLocaleString('en-US');
 }
 
 /*

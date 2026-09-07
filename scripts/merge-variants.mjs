@@ -839,7 +839,11 @@ function buildBlocks(g) {
         + ' title="' + esc(label(s.r)) + '" aria-label="' + esc(label(s.r)) + '">'
         + '<img src="' + esc(s.img) + '" alt="' + esc(g.base + ' - ' + label(s.r)) + '"'
         + ' width="200" height="113" loading="lazy" decoding="async">'
-        + '<span class="mp-gal-lbl">' + esc(shortLabel(s.r)) + '</span></button>').join('')
+        // Мелкой подписи под миниатюрой больше нет: у вариантов одного цвета
+        // под соседними кадрами стояло одно и то же слово, ничего не различая.
+        // Полное имя выпуска показывается строкой над полосой и в увеличенном
+        // виде - см. render-card.mjs.
+        + '</button>').join('')
       + '</div></div>';
   }
 

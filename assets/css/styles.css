@@ -975,3 +975,9 @@ summary:focus-visible,
    Только на этой странице: в каталоге и категориях снимки широкоформатные,
    и там квадрат оставил бы поля по бокам. */
 .collections-page .mc-img { height: auto; aspect-ratio: 1 / 1; }
+/* Квадратного окна мало: часть обложек всё-таки не квадратная - пожарные
+   машины сняты вертикально, подводная лодка горизонтально, - и cover резал их
+   и в квадрате. contain кладёт кадр целиком; поля вокруг закрывает фон плитки. */
+.collections-page .img-wrap.mc-img img { object-fit: contain; }
+.collections-page .img-wrap.mc-img { background: #f3f4f6; }
+@media (prefers-color-scheme: dark) { .collections-page .img-wrap.mc-img { background: #1f2229; } }

@@ -97,7 +97,11 @@ export function toContentFields(r) {
  * чинится. Пустой src заставляет браузер запросить саму страницу вместо
  * картинки, а пустой og:image это негодная разметка. Ставим заглушку сайта.
  */
-export const heroImg = r => r.image || PLACEHOLDER;
+// liveShot переводит просроченные подписанные адреса s3 в студийные и
+// выбрасывает мёртвый /uploads/files/ - см. его описание ниже. У 220 карточек
+// главный кадр лежал именно подписанной ссылкой и не открывался ни на
+// странице, ни в og:image.
+export const heroImg = r => liveShot(r.image) || PLACEHOLDER;
 
 /*
  * Уменьшенная копия студийного снимка.
@@ -149,6 +153,33 @@ export const studioSize = (url, tag) => {
   if (!u.startsWith(STUDIO)) return u;
   if (!RESIZER_WORKS) return u;
   return 'https://www.3dmolier-studio.com/images/' + tag + '/assets/' + u.slice(STUDIO.length);
+};
+
+/*
+ * ЖИВОЙ АДРЕС КАДРА. В записях лежат три поколения адресов, и два из них
+ * не отдают картинку вовсе:
+ *
+ *   1. s3.3dmolier.com/assetsN/<папка>/<файл>.jpg?X-Amz-...  - 166 650 кадров.
+ *      Это подписанная ссылка со сроком жизни в час, подписанная в августе.
+ *      Сейчас она мертва целиком. Но путь после имени корзины совпадает с
+ *      путём на живом хосте один в один, поэтому адрес переводится: отбросить
+ *      подпись и подставить студийный хост. Проверено на выборке - переводятся
+ *      все до единого.
+ *
+ *   2. 3dmolier-studio.com/uploads/files/<число>_<Имя>_NNN.jpg - 42 644 кадра.
+ *      Отдаёт 502 и по http, и по https. Восстановить нельзя: в адресе нет
+ *      папки ассета, а вычислить её неоткуда - студийный API отвечает 500.
+ *      Такие кадры выбрасываем: пустая рамка хуже, чем её отсутствие.
+ *
+ * Возвращает пустую строку, если кадр показывать нельзя.
+ */
+export const liveShot = (url) => {
+  const u = String(url || '');
+  if (!u) return '';
+  const s3 = u.match(/^https?:\/\/s3\.3dmolier\.com\/assets\d*\/(.+?)(\?|$)/);
+  if (s3) return STUDIO + s3[1];
+  if (u.includes('/uploads/files/')) return '';
+  return u;
 };
 
 
@@ -281,10 +312,12 @@ export function hero(r) {
    * У вариантов семьи всё наоборот: «Standard», «Rigged», «Red» различают
    * товары с разной ценой, и они на живых страницах есть. Их не трогаем.
    */
-  const ownShots = (r.gallery || []).map(g => ({
-    image: g.url, short: g.cap || '', label: g.cap || '',
-    price: r.price, ts_url: r.ts_url, kind: 'own',
-  }));
+  const ownShots = (r.gallery || [])
+    .map(g => ({
+      image: liveShot(g.url), short: g.cap || '', label: g.cap || '',
+      price: r.price, ts_url: r.ts_url, kind: 'own',
+    }))
+    .filter(s => s.image);
 
   /*
    * Раньше семья и своя галерея исключали друг друга: есть варианты - свои
@@ -294,9 +327,16 @@ export function hero(r) {
    */
   const shots = (r.family || []).length
     ? (() => {
-      const cover = new Set([heroImg(r), ...r.family.map(v => v.image)].filter(Boolean));
-      return [{ image: heroImg(r), short: 'Standard', label: 'Standard', price: r.price, ts_url: r.ts_url, kind: 'variant' }]
-        .concat(r.family.filter(v => v.image).map(v => ({ ...v, kind: 'variant' })))
+      // Обложки вариантов гоняем через liveShot по той же причине, что и свои
+      // кадры: у части семей они лежат подписанной ссылкой s3. Сравнение с
+      // «уже показанным» тоже по переведённому адресу - иначе один и тот же
+      // кадр попал бы в полосу дважды под разными адресами.
+      const fam = (r.family || [])
+        .map(v => ({ ...v, image: liveShot(v.image), kind: 'variant' }))
+        .filter(v => v.image);
+      const cover = new Set([heroImg(r), ...fam.map(v => v.image)].filter(Boolean));
+      return [{ image: heroImg(r), name: nm(r), short: 'Standard', label: 'Standard', price: r.price, ts_url: r.ts_url, kind: 'variant' }]
+        .concat(fam)
         .concat(ownShots.filter(s => !cover.has(s.image)));
     })()
     : ownShots;
@@ -317,45 +357,55 @@ export function hero(r) {
    * увеличенный вид), ни в title, ни в alt. Вместо него доступное имя -
    * «название, кадр N»: оно хотя бы различает кадры для чтения с экрана.
    */
-  // Чем подменять неотдавшийся студийный кадр: снимок модели с CDN TurboSquid.
-  // Если его нет (у 1 416 карточек), подменять нечем - оставляем как есть.
-  const tsFallback = String(r.image || '').includes('turbosquid') ? r.image : '';
+  /*
+   * ПОДПИСЬ КАДРА - полное название модели, а не слово из одного корня.
+   *
+   * Под миниатюрами стояло короткое слово из v.short: «Black», «Black»,
+   * «Brown», «Standard». У склеенной карточки половина вариантов одного цвета,
+   * и подпись повторялась под соседними кадрами, ничего не различая. Полное
+   * имя варианта - «Sikorsky UH 60 Black Hawk Military Israel Utility
+   * Helicopter Rigged for Maya» - говорит, какой именно выпуск открыт.
+   * Под самой миниатюрой такому имени места нет, поэтому оно показывается
+   * строкой над полосой и в увеличенном виде.
+   */
+  const capOf = (v, i) => v.name || v.label || (i === 0 ? nm(r) : '');
 
   const thumbs = shown.length > 1 ? shown.map((v, i) => {
-    const named = v.label ? esc(v.label) : esc(nm(r)) + ', view ' + (i + 1);
+    const cap = capOf(v, i);
+    const named = cap ? esc(cap) : esc(nm(r)) + ', view ' + (i + 1);
     return `<button type="button" class="mp-gal-thumb${i ? '' : ' is-on'}" data-kind="${v.kind}" data-full="${esc(v.image)}"`
-    + (v.label ? ` data-cap="${esc(v.label)}"` : '')
+    + ` data-cap="${esc(cap || nm(r))}"`
     + ` data-price="${esc('$' + (v.price || r.price))}"`
     + ` data-link="${esc(v.ts_url)}" title="${named}" aria-label="${named}">`
     /*
      * Миниатюра - уменьшенная копия. Полный кадр остаётся в data-full: его
      * берёт увеличенный вид, и грузится он только по щелчку.
      *
-     * data-fallback - снимок с TurboSquid. Студийный хост отдаёт неровно, и
-     * когда кадр не приходит, в ленте оставалась пустая рамка. Пусть лучше
-     * стоит главный снимок этой же модели с их CDN: он про тот же предмет и
-     * отдаётся всегда. Ставим только там, где есть чем подменить, - у 33 127
-     * карточек из 34 543 - и только для студийных адресов: кадру TurboSquid
-     * подмена не нужна.
+     * data-drop-on-fail - убрать кадр, если он не пришёл. Раньше на его месте
+     * подставлялся главный снимок модели с CDN TurboSquid, и когда студийный
+     * хост не отдавал НИ ОДНОГО кадра, полоса превращалась в двенадцать копий
+     * одной и той же картинки. Это хуже пустого места: галерея обещает разные
+     * ракурсы и не показывает ни одного. Пусть лучше кадра не будет.
      */
     + `<img src="${esc(studioSize(v.image, 'h200'))}" alt="${named}" width="200" height="113"`
-    + (tsFallback && String(v.image || '').includes('3dmolier-studio')
-      ? ` data-fallback="${esc(tsFallback)}" onerror="imgErr(this)"` : '')
+    + (String(v.image || '').includes('3dmolier-studio')
+      ? ` data-drop-on-fail="1" onerror="galThumbFail(this)"` : '')
     + ` loading="lazy" decoding="async">`
-    + (v.short ? `<span class="mp-gal-lbl">${esc(v.short)}</span>` : '')
     + `</button>`;
   }).join('') : '';
 
   /*
-   * Строка над полосой показывает подпись выбранного кадра. У галереи без
-   * вариантов подписывать нечего, и на живых страницах этой строки там нет -
-   * она пришла из карточек с вариантами вместе с чужим словом «Standard».
+   * Строка над полосой показывает ПОЛНОЕ название открытого кадра. Нужна она
+   * только там, где кадры принадлежат разным товарам, - у склеенной карточки.
+   * У галереи из снимков одной модели называть нечего: имя стоит в заголовке
+   * страницы прямо рядом, и повторять его над полосой незачем.
    */
-  const hasLabels = shown.some(v => v.short);
+  const hasCaps = shown.some(v => v.kind === 'variant');
+  const firstCap = capOf(shown[0] || {}, 0) || nm(r);
 
   const gallery = thumbs
     ? `<div class="mp-gallery" data-gallery>`
-      + (hasLabels ? `<div class="mp-gal-cap" data-gal-cap>Standard</div>` : '')
+      + (hasCaps ? `<div class="mp-gal-cap" data-gal-cap>${esc(firstCap)}</div>` : '')
       + `<div class="mp-gal-strip">${thumbs}</div></div>`
     : '';
 
