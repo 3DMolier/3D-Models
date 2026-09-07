@@ -112,13 +112,34 @@ export const catSlug = cat => CAT_SLUG_FIX[String(cat || '').trim()]
 // список в человеческом виде: «a, b and c»
 const listy = a => a.length <= 1 ? (a[0] || '') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1];
 
+/*
+ * Артикль перед названием категории.
+ *
+ * Шаблон писал «a» всегда, и на 2 085 карточках выходило «a Industrial
+ * Equipment asset», «a Aircraft asset», «a Electronics & Gadgets asset».
+ * Для англоязычного покупателя это первая же строка описания и сразу видно,
+ * что текст машинный.
+ *
+ * Смотрим на звук, а не на букву: «an hour», но «a university». Из наших
+ * двадцати шести категорий под исключения не попадает ни одна, поэтому правило
+ * простое - гласная буква в начале - и список исключений на будущее.
+ */
+const AN_EXCEPT = /^(?:eu|uni|use|user|one|once)/i;   // звучат с согласной
+const A_EXCEPT = /^(?:hour|honest|honou?r)/i;         // звучат с гласной
+const artOf = (w) => {
+  const s = String(w || '').trim();
+  if (A_EXCEPT.test(s)) return 'an';
+  if (AN_EXCEPT.test(s)) return 'a';
+  return /^[aeiou]/i.test(s) ? 'an' : 'a';
+};
+
 // ── описание ──────────────────────────────────────────────────────────────────
 const OPEN = [
   (n, c, p) => `The ${n} is a production-ready ${c} 3D model, priced at $${p} on TurboSquid.`,
   (n, c, p) => `${n} is a detailed ${c} asset built for professional 3D pipelines, available at $${p}.`,
   (n, c, p) => `This ${c} model - ${n} - is ready to drop into a scene as-is, and sells for $${p} on TurboSquid.`,
   (n, c, p) => `${n} belongs to our ${c} range and is offered at $${p} through the TurboSquid marketplace.`,
-  (n, c, p) => `Looking for a ${c} asset? The ${n} is a finished, render-ready model at $${p}.`,
+  (n, c, p) => `Looking for ${artOf(c)} ${c} asset? The ${n} is a finished, render-ready model at $${p}.`,
   (n, c, p) => `${n} is one of the ${c} models in the 3D Molier catalog, listed at $${p}.`,
   (n, c, p) => `Priced at $${p}, the ${n} is a finished ${c} model rather than a base mesh you have to build on.`,
 ];
