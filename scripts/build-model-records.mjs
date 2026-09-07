@@ -769,6 +769,14 @@ for (const r of byId.values()) {
   if (r.name === undefined && r.excel_name) r.name = r.excel_name;
   if (!r.price && r.excel_price) r.price = r.excel_price;
   if (r.name === undefined) r.name = r.slug.replace(/-\d+$/, '').replace(/-/g, ' ');
+  /*
+   * Двойные пробелы приходят из выгрузки: «Bamboo Chairs  Collection»,
+   * «Anatomical Model of Knee Joint for  Print» - таких 82. В заголовок они не
+   * попадали (там display_name, он уже очищен), но сырое имя идёт в подписи
+   * блока Related, в alt снимков и в плитки каталога - там дыра видна.
+   * Схлопываем ОДИН раз здесь, а не на каждой поверхности отдельно.
+   */
+  r.name = String(r.name).replace(/\s+/g, ' ').trim();
   if (r.price === undefined) r.price = 0;
   if (r.sales === undefined) r.sales = 0;
   if (r.days_in_sales === undefined) r.days_in_sales = 0;
