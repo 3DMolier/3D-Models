@@ -24,7 +24,17 @@ var RIGGED=/\brigged\b/i;
  * Страница едет в адресе (?page=N): ссылку можно отправить, кнопка «назад»
  * работает, и обходчик видит нумерацию, а не бесконечную ленту.
  */
-var filtered=[], page=0, PAGE_SIZE=100;
+/*
+ * page - какую страницу РИСУЕМ, wantedPage - какую просили.
+ *
+ * Числа расходятся в двух случаях, и оба живые:
+ *   • куски каталога ещё грузятся, и запрошенной страницы пока не существует;
+ *   • в адресе номер больше, чем есть страниц (?page=900 при 546).
+ * Без разделения выходила пустая сетка и строка «Showing 89,901-54,519 of
+ * 54,519 models»: срез начинался за концом списка. Теперь рисуем ближайшую
+ * существующую, а как только данные догрузятся - ту, что просили.
+ */
+var filtered=[], page=0, wantedPage=0, PAGE_SIZE=100;
 var IDLE_PRELOAD_LIMIT=2, idlePreloaded=0;
 var loadedImgChunkSet={};
 
@@ -39,6 +49,9 @@ var resultCount=document.getElementById('results-count');
 var filterBar=document.getElementById('filter-bar');
 
 var totalChunks=0, loadedChunks=0, imgChunks=0, totalImgChunks=0;
+// Строк в одном куске. Узнаём из первого пришедшего, а не зашиваем числом:
+// раскладка задаётся сборкой каталога и может измениться.
+var CHUNK_ROWS=0;
 // Всего моделей в каталоге - из fc-index.json. Подпись в поле поиска должна
 // называть весь каталог, а не первый загруженный кусок: он равен 10 000, и
 // в поле висело «Search 10000 models…» при 59 637 в каталоге.
@@ -73,8 +86,8 @@ function onFirstChunk() {
   // Номер страницы из адреса - чтобы ссылка на /catalog/?page=7 открывала
   // седьмую сотню, а не первую.
   var urlPage=parseInt(new URLSearchParams(location.search).get('page')||'1',10);
-  if(!isNaN(urlPage)&&urlPage>1){page=urlPage-1;ensureRemainingChunks();}
-  applyFilters(page>0);
+  if(!isNaN(urlPage)&&urlPage>1)wantedPage=urlPage-1;
+  applyFilters(wantedPage>0);
   var urlQ=new URLSearchParams(location.search).get('q');
   // Запрос из адреса приходит с чипа ключевого слова на карточке. Искать
   // надо по всему каталогу, а не по первому загруженному куску: иначе
@@ -85,17 +98,41 @@ function onFirstChunk() {
   // чанки, хотя самолётов 1 495. Вызов именно здесь - на момент разбора
   // скрипта число чанков ещё неизвестно и догружать было бы нечего.
   if(selCat)ensureRemainingChunks();
-  /*
-   * Каталог подтягиваем ЦЕЛИКОМ, а не по мере прокрутки.
-   *
-   * Со страничной навигацией число страниц считается по длине выдачи, и пока
-   * пришёл только первый кусок, внизу стояло «200 страниц» вместо 546: нажми
-   * посетитель на последнюю - и он попал бы не туда, куда обещала кнопка.
-   * Шесть кусков весят 2,9 МБ и грузятся параллельно, первая сотня карточек
-   * при этом уже на экране.
-   */
-  ensureRemainingChunks();
+  // Кусок под запрошенную страницу - остальные не трогаем, см. chunkForPage.
+  ensureChunkForPage(wantedPage);
   scheduleIdlePreload();
+}
+
+/*
+ * ЧИСЛО СТРАНИЦ И НУЖНЫЙ КУСОК - без загрузки всего каталога.
+ *
+ * Куски отсортированы по продажам сквозь весь каталог: в нулевом лежат первые
+ * 10 000 по продажам, в первом - следующие 10 000, и так далее. Значит при
+ * сортировке по умолчанию и без фильтров страница из ста карточек целиком
+ * лежит в одном куске, и вычислить в каком - простое деление. Десять тысяч
+ * делится на сотню без остатка, поэтому страница никогда не лежит на стыке.
+ *
+ * Отсюда две вещи. Число страниц берётся из fc-index.json (файл в 1 КБ), а не
+ * из длины загруженной выдачи - навигация верна с первого кадра. И грузится
+ * ровно один кусок вместо шести: 0,15 МБ вместо 0,9 МБ в сжатом виде.
+ *
+ * Как только человек ищет, фильтрует или меняет сортировку - порядок больше не
+ * совпадает с раскладкой по кускам, и каталог подтягивается целиком. Это уже
+ * делает ensureRemainingChunks в обработчиках фильтров.
+ */
+function plainOrder(){
+  return !searchQ && selCat===null && selPrice===null && !onlyRigged && sortMode==='sales';
+}
+function totalPages(){
+  var n = plainOrder() ? (totalModels || filtered.length) : filtered.length;
+  return Math.max(1, Math.ceil(n / PAGE_SIZE));
+}
+function ensureChunkForPage(p){
+  if(!plainOrder()){ ensureRemainingChunks(); return; }
+  var rows = CHUNK_ROWS || 0;
+  if(!rows){ ensureRemainingChunks(); return; }
+  var need = Math.floor((p * PAGE_SIZE) / rows);
+  for(var i=0;i<=need && i<totalChunks;i++) loadChunk(i);
 }
 
 function scheduleIdlePreload(){
@@ -128,6 +165,7 @@ function loadChunk(i) {
   return fetch('/data/fc-chunk-'+i+'.json')
     .then(function(r){return r.json();})
     .then(function(chunk){
+      if(!CHUNK_ROWS&&i===0&&chunk.i)CHUNK_ROWS=chunk.i.length;
       mergeChunk(chunk);
       loadedChunks++;
       if(loadedChunks===1) onFirstChunk();
@@ -253,8 +291,7 @@ function applyFilters(keepPage){
    * куска догружаем остальные - иначе на пятой странице выдача обрывалась бы
    * там, где кончился первый файл.
    */
-  if(!keepPage)page=0;
-  if(page>0)ensureRemainingChunks();
+  if(!keepPage){page=0;wantedPage=0;}
   // updateProgress() здесь больше не зовём: он внутри renderGrid. Снаружи он
   // отменял скрытие строки при нулевой выдаче - «Showing 0 of 0 models»
   // возвращалось прямо над надписью «No models found».
@@ -264,8 +301,18 @@ function applyFilters(keepPage){
 
 function renderGrid(){
   if(!grid||!fcReady)return;
+  // Просили страницу, которой пока (или вовсе) нет - рисуем ближайшую
+  // существующую. Иначе срез уходит за конец списка и сетка пуста.
+  var last=Math.max(0,totalPages()-1);
+  page=Math.min(wantedPage,last);
   // Ровно одна страница, а не всё от начала: сетка не растёт бесконечно.
   var toShow=filtered.slice(page*PAGE_SIZE,(page+1)*PAGE_SIZE);
+  /*
+   * Страница есть, а строк под неё ещё нет: кусок каталога в пути. Прежнюю
+   * сетку не стираем - иначе на секунду мигает пустота, будто ничего не
+   * нашлось. Придёт кусок - loadChunk сам позовёт applyFilters и перерисует.
+   */
+  if(!toShow.length && filtered.length && loadedChunks<totalChunks) return;
   // Запрашиваем адреса картинок ровно для тех карточек, что сейчас выводим.
   // Пришедший файл сам подставит снимки на место рамок - injectLoadedImages.
   ensureImgChunksFor(toShow);
@@ -296,7 +343,7 @@ function renderGrid(){
   var html='';
   for(var i=0;i<toShow.length;i++)html+=modelCard(toShow[i]);
   grid.innerHTML=html;
-  renderPager(Math.ceil(filtered.length/PAGE_SIZE));
+  renderPager(totalPages());
   // Строку «Showing X of Y» обновляем здесь, а не у каждого, кто зовёт
   // renderGrid. Раньше её обновляли снаружи, и обработчик кнопки «Load more»
   // это делать забывал: после прокрутки поиска по слову helicopter на экране
@@ -373,9 +420,9 @@ document.addEventListener('click',function(e){
   if(!a)return;
   if(e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;   // открыть в новой вкладке
   e.preventDefault();
-  page=Math.max(0,parseInt(a.getAttribute('data-pg'),10)-1);
-  ensureRemainingChunks();
-  history.pushState({page:page},'',a.getAttribute('href'));
+  wantedPage=Math.max(0,parseInt(a.getAttribute('data-pg'),10)-1);
+  ensureChunkForPage(wantedPage);
+  history.pushState({page:wantedPage},'',a.getAttribute('href'));
   renderGrid();
   var top=document.getElementById('model-grid');
   if(top)window.scrollTo({top:top.getBoundingClientRect().top+window.pageYOffset-90,behavior:'smooth'});
@@ -385,8 +432,8 @@ document.addEventListener('click',function(e){
 // с него: номер живёт в адресе, значит и восстанавливать его надо оттуда.
 window.addEventListener('popstate',function(){
   var n=parseInt(new URLSearchParams(location.search).get('page')||'1',10);
-  page=Math.max(0,(isNaN(n)?1:n)-1);
-  if(page>0)ensureRemainingChunks();
+  wantedPage=Math.max(0,(isNaN(n)?1:n)-1);
+  ensureChunkForPage(wantedPage);
   renderGrid();
 });
 
@@ -545,13 +592,17 @@ function updateProgress() {
   // На странице лежит ДИАПАЗОН карточек, а не первые N: «Showing 101-200 of
   // 54,527». Одно число здесь врало бы - на третьей странице «Showing 300»
   // означало бы, что все триста на экране, а их сто.
-  var from = filtered.length ? page * PAGE_SIZE + 1 : 0;
-  var to = Math.min((page + 1) * PAGE_SIZE, filtered.length);
+  // Итог берём тот же, что и навигация: без фильтров это весь каталог из
+  // fc-index.json, а не длина загруженных кусков. Иначе внизу стояло
+  // «of 20,000», пока навигация обещала 546 страниц.
+  var total = plainOrder() ? (totalModels || filtered.length) : filtered.length;
+  var from = total ? page * PAGE_SIZE + 1 : 0;
+  var to = Math.min((page + 1) * PAGE_SIZE, total);
   // Язык обязателен - см. комментарий у totalModels выше. Без него у русского
   // посетителя выходит «54 079» с неразрывными пробелами вместо запятых.
   document.getElementById('fc-shown').textContent =
     from.toLocaleString('en-US') + '-' + to.toLocaleString('en-US');
-  document.getElementById('fc-total').textContent = filtered.length.toLocaleString('en-US');
+  document.getElementById('fc-total').textContent = total.toLocaleString('en-US');
 }
 
 /*
