@@ -446,10 +446,50 @@ if (bad9.length) fail(9, 'отрасль модели не существует 
   if (bad.length) fail(15, 'родная программа не отвечает названию модели', bad);
 }
 
+/*
+ * [16] КУДА ВЕДУТ ССЫЛКИ КАТАЛОГА.
+ *
+ * Каталог рисует плитки скриптом и адрес складывает из названия:
+ *   makeSlug(name, id) -> /models/<slug>/
+ * Проверка внутренних ссылок этого не видит - в разметке таких ссылок нет,
+ * они рождаются в браузере. То есть 54 тысячи ссылок не проверял никто.
+ *
+ * Это ровно тот случай, на котором сайт уже спотыкался: адрес карточки нельзя
+ * вычислять из названия, его берут из существующей папки по номеру. Достаточно
+ * поправить имя в выгрузке - и плитка начнёт вести в никуда, молча.
+ *
+ * Повторяем makeSlug слово в слово и сверяем с папками на диске.
+ */
+{
+  const makeSlug = (name, id) => String(name).toLowerCase().trim()
+    .replace(/[^\w\s-]/g, '').replace(/[\s_]+/g, '-')
+    .replace(/-+/g, '-').replace(/^-+|-+$/g, '') + '-' + id;
+  const fcIdx = path.join(ROOT, 'data', 'fc-index.json');
+  if (fs.existsSync(fcIdx)) {
+    const idx = JSON.parse(fs.readFileSync(fcIdx, 'utf8'));
+    const dirs = new Set(fs.readdirSync(MODELS, { withFileTypes: true })
+      .filter(d => d.isDirectory()).map(d => d.name));
+    const bad = [];
+    let seen = 0;
+    for (let k = 0; k < idx.chunks; k++) {
+      const f = path.join(ROOT, 'data', 'fc-chunk-' + k + '.json');
+      if (!fs.existsSync(f)) continue;
+      const c = JSON.parse(fs.readFileSync(f, 'utf8'));
+      for (let j = 0; j < c.i.length; j++) {
+        seen++;
+        const slug = makeSlug(c.n[j], c.i[j]);
+        if (!dirs.has(slug) && bad.length < 6) bad.push('«' + c.n[j] + '» -> /models/' + slug + '/');
+      }
+    }
+    console.log('  [16] ссылок каталога проверено: ' + fmt(seen) + ', ведут в никуда: ' + bad.length);
+    if (bad.length) fail(16, 'плитка каталога ведёт на несуществующую карточку', bad);
+  }
+}
+
 // ── отчёт ──
 console.log('\nпроверено карточек: ' + live + (SAMPLE ? '  (выборка, шаг ' + step + ')' : ''));
 if (!problems.length) {
-  console.log('\nВСЕ 15 ПРОВЕРОК ПРОЙДЕНЫ');
+  console.log('\nВСЕ 16 ПРОВЕРОК ПРОЙДЕНЫ');
   process.exit(0);
 }
 console.log('\nНАРУШЕНИЙ: ' + problems.length);
