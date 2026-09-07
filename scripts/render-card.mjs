@@ -317,15 +317,30 @@ export function hero(r) {
    * увеличенный вид), ни в title, ни в alt. Вместо него доступное имя -
    * «название, кадр N»: оно хотя бы различает кадры для чтения с экрана.
    */
+  // Чем подменять неотдавшийся студийный кадр: снимок модели с CDN TurboSquid.
+  // Если его нет (у 1 416 карточек), подменять нечем - оставляем как есть.
+  const tsFallback = String(r.image || '').includes('turbosquid') ? r.image : '';
+
   const thumbs = shown.length > 1 ? shown.map((v, i) => {
     const named = v.label ? esc(v.label) : esc(nm(r)) + ', view ' + (i + 1);
     return `<button type="button" class="mp-gal-thumb${i ? '' : ' is-on'}" data-kind="${v.kind}" data-full="${esc(v.image)}"`
     + (v.label ? ` data-cap="${esc(v.label)}"` : '')
     + ` data-price="${esc('$' + (v.price || r.price))}"`
     + ` data-link="${esc(v.ts_url)}" title="${named}" aria-label="${named}">`
-    // Миниатюра - уменьшенная копия. Полный кадр остаётся в data-full: его
-    // берёт увеличенный вид, и грузится он только по щелчку.
+    /*
+     * Миниатюра - уменьшенная копия. Полный кадр остаётся в data-full: его
+     * берёт увеличенный вид, и грузится он только по щелчку.
+     *
+     * data-fallback - снимок с TurboSquid. Студийный хост отдаёт неровно, и
+     * когда кадр не приходит, в ленте оставалась пустая рамка. Пусть лучше
+     * стоит главный снимок этой же модели с их CDN: он про тот же предмет и
+     * отдаётся всегда. Ставим только там, где есть чем подменить, - у 33 127
+     * карточек из 34 543 - и только для студийных адресов: кадру TurboSquid
+     * подмена не нужна.
+     */
     + `<img src="${esc(studioSize(v.image, 'h200'))}" alt="${named}" width="200" height="113"`
+    + (tsFallback && String(v.image || '').includes('3dmolier-studio')
+      ? ` data-fallback="${esc(tsFallback)}" onerror="imgErr(this)"` : '')
     + ` loading="lazy" decoding="async">`
     + (v.short ? `<span class="mp-gal-lbl">${esc(v.short)}</span>` : '')
     + `</button>`;

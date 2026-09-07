@@ -18,6 +18,10 @@ import path from 'node:path';
 import { ROOT } from './lib/paths.mjs';
 const CATEGORIES = path.join(ROOT, 'categories');
 const BASE = 'https://3dmolierstudio.com';
+// Метка версии ассетов - из главной страницы. Зашитое число возвращалось при
+// каждой пересборке и отправляло посетителю старые стили и старый скрипт.
+const ASSET_V = (fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8')
+  .match(/styles\.min\.css\?v=(\d+)/) || [, '1'])[1];
 const OLD = 'weapons-tools';
 
 const refSrc = fs.readFileSync(path.join(CATEGORIES, 'vehicles', 'index.html'), 'utf8');
@@ -42,9 +46,9 @@ const html = `<!DOCTYPE html>
 <meta name="description" content="The Weapons &amp; Tools category has been split into two: Weapons 3D models and Tools 3D models. Pick the one you need.">
 <link rel="canonical" href="${BASE}/categories/${OLD}/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/css/critical-fonts.css?v=33">
-<link rel="stylesheet" href="/assets/css/styles.min.css?v=33">
-<link rel="stylesheet" href="/assets/css/fonts.css?v=33">
+<link rel="stylesheet" href="/assets/css/critical-fonts.css?v=${ASSET_V}">
+<link rel="stylesheet" href="/assets/css/styles.min.css?v=${ASSET_V}">
+<link rel="stylesheet" href="/assets/css/fonts.css?v=${ASSET_V}">
 <style>.split-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin:32px 0}.split-card{display:block;padding:28px;border:1px solid rgba(0,0,0,.12);border-radius:12px;text-decoration:none;color:inherit}.split-card:hover{border-color:rgba(0,0,0,.35)}.split-icon{font-size:34px;display:block;margin-bottom:12px}.split-name{font-size:20px;font-weight:700;margin-bottom:6px}.split-count{font-size:14px;opacity:.65}@media(prefers-color-scheme:dark){.split-card{border-color:rgba(255,255,255,.18)}.split-card:hover{border-color:rgba(255,255,255,.45)}}</style>
 </head>
 <body class="relative min-h-screen">
@@ -73,7 +77,7 @@ ${HEADER}
 </section>
 </main>
 ${FOOTER}
-<script src="/assets/js/site.min.js?v=33" defer></script>
+<script src="/assets/js/site.min.js?v=${ASSET_V}" defer></script>
 </body>
 </html>`;
 

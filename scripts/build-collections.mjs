@@ -38,6 +38,10 @@ const OUT = path.join(ROOT, 'collections');
 const MODELS = path.join(ROOT, 'models');
 const CATEGORIES = path.join(ROOT, 'categories');
 const BASE = 'https://3dmolierstudio.com';
+// Метка версии ассетов - из главной страницы. Зашитое число возвращалось при
+// каждой пересборке и отправляло посетителю старые стили и старый скрипт.
+const ASSET_V = (fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8')
+  .match(/styles\.min\.css\?v=(\d+)/) || [, '1'])[1];
 const PLACEHOLDER = '/assets/og/3d-molier-og.jpg';
 const PER = 60;          // карточек на странице темы
 const FEATURED = 24;     // карточек на витрине
@@ -181,9 +185,9 @@ function shell(title, desc, canonical, body, extraHead = '') {
 <meta property="og:image" content="${BASE}/assets/og/3d-molier-og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/css/critical-fonts.css?v=33">
-<link rel="stylesheet" href="/assets/css/styles.min.css?v=33">
-<link rel="stylesheet" href="/assets/css/fonts.css?v=33">
+<link rel="stylesheet" href="/assets/css/critical-fonts.css?v=${ASSET_V}">
+<link rel="stylesheet" href="/assets/css/styles.min.css?v=${ASSET_V}">
+<link rel="stylesheet" href="/assets/css/fonts.css?v=${ASSET_V}">
 ${STYLE}
 ${extraHead}
 </head>
@@ -193,7 +197,7 @@ ${HEADER}
 ${body}
 </main>
 ${FOOTER}
-<script src="/assets/js/site.min.js?v=33" defer></script>
+<script src="/assets/js/site.min.js?v=${ASSET_V}" defer></script>
 </body>
 </html>`;
 }

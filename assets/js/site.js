@@ -32,6 +32,55 @@ function imgErr(img) {
   if (sib) sib.style.display = 'flex';
 }
 
+/*
+ * СТОРОЖ ПО ВРЕМЕНИ для картинок с запасным адресом.
+ *
+ * onerror не спасает, когда сервер не отвечает ВОВСЕ. Студийный хост именно
+ * так и отказывает: соединение висит до таймаута браузера, ошибки нет, и
+ * посетитель смотрит на пустую рамку минуту и дольше. Обработчик ошибки в
+ * такой ситуации не вызывается никогда.
+ *
+ * Поэтому ждём сами. Отсчёт начинаем не от загрузки страницы, а от появления
+ * картинки в поле зрения: миниатюры ленивые и до этого момента вообще не
+ * запрашиваются, и таймер, заведённый раньше, сработал бы впустую.
+ *
+ * Семь секунд - с запасом: живой студийный кадр приходит за 1-3 секунды.
+ */
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+  var WAIT = 7000;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var img = e.target;
+      io.unobserve(img);
+      var alt = img.getAttribute('data-fallback');
+      if (!alt) return;
+      // Адрес запоминаем сейчас: в галерее крупный кадр успевает смениться, и
+      // отложенная проверка иначе подменила бы уже другой снимок.
+      var watched = img.src;
+      setTimeout(function () {
+        if (img.src !== watched) return;                    // кадр уже другой
+        if (img.complete && img.naturalWidth > 0) return;   // успела прийти
+        if (img.src === alt) return;                        // уже подменена
+        img.src = alt;
+      }, WAIT);
+    });
+  }, { rootMargin: '200px' });
+
+  var arm = function () {
+    document.querySelectorAll('img[data-fallback]').forEach(function (i) { io.observe(i); });
+  };
+  // Крупный кадр меняется по клику уже после загрузки страницы, поэтому его
+  // нужно ставить под наблюдение заново - иначе сторож охраняет только тот
+  // снимок, который был на странице изначально.
+  window.armImgFallback = function (img) {
+    if (img && img.getAttribute('data-fallback')) io.observe(img);
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', arm);
+  else arm();
+})();
+
 (function(){
 var p=location.pathname,d=document;
 // Redirect old /3dmolier-models/ → /
@@ -183,7 +232,13 @@ window.imgErr=function(img){gaEvent('image_fallback_triggered',{src:img&&img.src
     var full = btn.getAttribute('data-full');
     if(!full) return;
     hero.src = full;
-    hero.setAttribute('data-fallback', full);
+    // Запасной адрес берём у самой миниатюры: там лежит снимок с TurboSquid.
+    // Ставить сюда сам full бессмысленно - при отказе студийного хоста подмена
+    // на тот же адрес ничего не даёт, и посетитель видит пустую рамку.
+    var thumbImg = btn.querySelector('img');
+    var spare = thumbImg && thumbImg.getAttribute('data-fallback');
+    hero.setAttribute('data-fallback', spare || full);
+    if (window.armImgFallback) window.armImgFallback(hero);
     // Подпись под крупным снимком должна меняться вместе с ним, иначе на карточке
     // серии непонятно, какой именно выпуск сейчас открыт.
     var cap = gal.querySelector('[data-gal-cap]');
