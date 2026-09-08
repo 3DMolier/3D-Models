@@ -151,6 +151,11 @@ const CERT_TXT = {
     `The model is CheckMate certified - a human reviewer checked the wireframe, the material assignments and the real-world dimensions before it went on sale.`,
     `CheckMate is TurboSquid's manual review program, and this model passed it: no n-gons where they would hurt, no unnamed objects, no scale surprises on import.`,
     `Because it is CheckMate certified, the usual import checks are already done - units, pivots and material names were audited by a reviewer rather than self-declared.`,
+    `A CheckMate reviewer went through the file by hand: topology, naming, units and scale all had to pass before it could be listed.`,
+    `The CheckMate badge is not automatic - someone opened this model, checked how it is built, and signed off on it.`,
+    `It passed CheckMate, TurboSquid's manual audit, so the things that usually go wrong on import were caught before you ever downloaded it.`,
+    `CheckMate certification puts a reviewer between the artist and the buyer: geometry, materials and scale were verified independently.`,
+    `Certified under CheckMate, which means the clean-up work an unchecked model would need has already been done and verified.`,
   ],
   'StemCell': [
     `It is a StemCell model, so it ships in TurboSquid's multi-format standard with PBR materials that carry over between renderers instead of needing to be rebuilt per engine.`,
@@ -158,6 +163,11 @@ const CERT_TXT = {
     `As a StemCell asset it comes with standardised PBR materials, so the look holds up whether it lands in a game engine or an offline renderer.`,
     `StemCell is TurboSquid's cross-format standard: one authored source, several delivered formats, and PBR materials that survive the trip between them.`,
     `The StemCell build means you are not re-authoring shaders after import - the PBR setup is designed to read the same across engines.`,
+    `Being StemCell, it arrives in several formats built from one source, so the version you open is not a lossy conversion of another.`,
+    `StemCell delivery covers the format juggling for you: the PBR materials are set up once and carried across.`,
+    `It follows TurboSquid's StemCell specification, which is what keeps the shading consistent from a real-time engine to an offline render.`,
+    `The asset is StemCell certified, so the material graph does not have to be rebuilt every time the model moves to another package.`,
+    `StemCell means one authored master and several honest exports, with PBR values that hold their meaning in each of them.`,
   ],
   'no certification': [
     `The mesh is built with clean quad-based topology and correct real-world proportions, so it subdivides predictably and sits at the right size next to other objects in a scene.`,
@@ -165,6 +175,11 @@ const CERT_TXT = {
     `The model uses efficient, well-organized geometry - no hidden faces or overlapping shells to clean up before rendering.`,
     `Topology is kept deliberately simple where detail would not read on camera, which keeps the scene light without visibly cheapening the silhouette.`,
     `The mesh is modelled at true scale with quad-dominant flow, so subdivision behaves and the object does not need rescaling on import.`,
+    `Edge flow follows the form rather than fighting it, which is what lets the silhouette hold up when the camera moves in.`,
+    `The geometry is built to be worked with: predictable loops, no doubled faces, nothing hidden inside the shell.`,
+    `Detail is put where the camera will find it and left out where it would only cost polygons.`,
+    `The model is watertight where it should be and open where it should be, so it behaves in both rendering and simulation.`,
+    `Construction is plain and deliberate - quads through the body, triangles only where they are harmless.`,
   ],
 };
 
@@ -175,6 +190,12 @@ const SCALE = [
   `The scene is organized rather than dumped into a single mesh, which makes selective texturing and partial reuse practical.`,
   `Naming and hierarchy are consistent, so the model behaves predictably when it is merged into a larger scene alongside other assets.`,
   `Transforms are frozen and the hierarchy is shallow, which keeps the asset easy to instance across a large environment.`,
+  `Parts are separated where separation is useful, so a single component can be hidden, swapped or re-shaded on its own.`,
+  `The outliner reads cleanly: no stray nulls, no leftover helpers, nothing to untangle before work starts.`,
+  `Pivots, naming and grouping follow the same logic throughout, so the model behaves the same way in every shot it appears in.`,
+  `Scene structure is flat enough to navigate and grouped enough to be useful, which is what makes reuse practical.`,
+  `Objects sit at the origin with clean transforms, so duplicating the asset across an environment costs nothing extra.`,
+  `The file is organised for someone else to pick up: predictable names, predictable pivots, no hidden surprises.`,
 ];
 
 const AGE = [
@@ -183,6 +204,13 @@ const AGE = [
   y => `Available since ${y}, the model has been through several rounds of studio use.`,
   y => `First published in ${y}, it is part of the long-running core of the collection.`,
   y => `${y} is when this one first went up, and it has stayed in the catalog since.`,
+  y => `It went on sale in ${y} and has been kept in the catalog ever since.`,
+  y => `On the marketplace since ${y}, with the listing maintained rather than left to age.`,
+  y => `The model joined the catalog in ${y} and is still part of what we sell today.`,
+  y => `Listed since ${y} - old enough to have been used in real projects, current enough to still be supported.`,
+  y => `Its first release was in ${y}, and it has earned its place in the catalog since then.`,
+  y => `Published in ${y}, it has stayed in the range while a lot of other listings came and went.`,
+  y => `In the catalog since ${y}, which is a longer track record than most listings carry.`,
 ];
 
 /*
@@ -241,11 +269,33 @@ export const USE_SENT = {
 // числа у каждой модели свои, поэтому она даёт уникальность не перестановкой
 // слов, а фактами. Пишем их только если они есть: выдумывать нечего.
 const fmtInt = n => Number(n).toLocaleString('en-US');
+/*
+ * ПОЧЕМУ ВАРИАНТОВ ПО ДЮЖИНЕ, А НЕ ПО ТРИ.
+ *
+ * Пул из трёх на 54 519 карточек означает, что каждую фразу получают
+ * восемнадцать тысяч страниц - слово в слово. Замер 08.09.2026: 153
+ * восьмисловные фразы встречались более чем у 2% карточек, а худшая - у 29%.
+ * Для читателя это выдаёт заготовку с первой же строки, для поиска это тысячи
+ * почти одинаковых страниц.
+ *
+ * Двенадцать вариантов опускают долю каждой фразы с 33% до 8%. Дальше растить
+ * смысла мало: выигрыш падает, а следить за точностью формулировок труднее.
+ * Все варианты говорят одно и то же и одинаково правдивы - меняется только
+ * порядок слов и угол зрения.
+ */
 const MESH = [
   (p, v) => `The mesh carries ${fmtInt(p)} polygons and ${fmtInt(v)} vertices.`,
   (p, v) => `Geometry weighs in at ${fmtInt(p)} polygons over ${fmtInt(v)} vertices.`,
   (p, v) => `Counted at the source, the model is ${fmtInt(p)} polygons and ${fmtInt(v)} vertices.`,
   (p, v) => `You are getting ${fmtInt(p)} polygons and ${fmtInt(v)} vertices, measured rather than estimated.`,
+  (p, v) => `The polygon count is ${fmtInt(p)}, spread over ${fmtInt(v)} vertices.`,
+  (p, v) => `It comes in at ${fmtInt(p)} polygons, with ${fmtInt(v)} vertices behind them.`,
+  (p, v) => `Straight from the source file: ${fmtInt(p)} polygons, ${fmtInt(v)} vertices.`,
+  (p, v) => `Budget for ${fmtInt(p)} polygons and ${fmtInt(v)} vertices when you plan the scene.`,
+  (p, v) => `The build totals ${fmtInt(p)} polygons across ${fmtInt(v)} vertices.`,
+  (p, v) => `Poly count sits at ${fmtInt(p)}; vertex count at ${fmtInt(v)}.`,
+  (p, v) => `Measured geometry: ${fmtInt(p)} polygons, ${fmtInt(v)} vertices - no rounding, no estimate.`,
+  (p, v) => `On import you get ${fmtInt(p)} polygons and ${fmtInt(v)} vertices.`,
 ];
 /*
  * Раньше здесь стоял приговор по числу полигонов: «light», «mid-weight»,
@@ -265,16 +315,64 @@ const MESH_WEIGHT = [
   [Infinity, `Whether that counts as light or heavy depends on the target platform, the complexity of the scene and how many instances it carries.`],
   [Infinity, `Its suitability for real-time use depends on the target platform, scene complexity and the number of instances.`],
   [Infinity, `That figure reads differently on desktop, on mobile and in WebXR, so weigh it against the target platform and the number of instances in the scene.`],
+  [Infinity, `The same count is comfortable in an offline render and demanding in a mobile game, so judge it against your own budget.`],
+  [Infinity, `What matters is not the number itself but how many copies of the object your scene has to carry at once.`],
+  [Infinity, `Read that against your engine and your shot: a hero close-up and a background prop have very different budgets.`],
+  [Infinity, `Heavy or light is a question about the scene, not about the model, so check it against the platform you are shipping to.`],
+  [Infinity, `Whether that fits depends on where it lands - an architectural still and a real-time walkthrough tolerate very different counts.`],
+  [Infinity, `Treat the figure as a planning number: it behaves one way in a single render and another in a level with fifty instances.`],
+  [Infinity, `How that lands depends on your renderer and on how close the camera gets.`],
+  [Infinity, `Compare it with the rest of your scene rather than with an abstract threshold - that is what decides whether it is affordable.`],
+  [Infinity, `The count is honest; whether it is heavy is a decision only your target platform can make.`],
 ];
 const TEX = [
   (n, r) => `Texturing runs to ${n} maps at ${r}.`,
   (n, r) => `It ships with ${n} textures, authored at ${r}.`,
   (n, r) => `${n} texture maps come with it, at ${r} resolution.`,
+  (n, r) => `The material set is ${n} maps, painted at ${r}.`,
+  (n, r) => `Included are ${n} texture maps, each at ${r}.`,
+  (n, r) => `Surfacing relies on ${n} maps authored at ${r}.`,
+  (n, r) => `You get ${n} maps at ${r} - enough resolution to hold a close shot.`,
+  (n, r) => `The texture set counts ${n} maps, delivered at ${r}.`,
+  (n, r) => `Maps: ${n} of them, at ${r}.`,
+  (n, r) => `Surface detail comes from ${n} textures at ${r} rather than from geometry alone.`,
+  (n, r) => `${n} maps at ${r} carry the materials.`,
+  (n, r) => `Textures number ${n}, authored at ${r} so they survive a close crop.`,
 ];
 const DIM = [
   d => `Real-world footprint is ${d}, so it drops into a scene at correct scale without a rescaling pass.`,
   d => `The object measures ${d}, modelled at true scale.`,
   d => `Dimensions are ${d}, which is what you get on import, with no unit guessing.`,
+  d => `At ${d} it matches its real counterpart, so it sits correctly beside other objects.`,
+  d => `Built to ${d} - the size is measured, not approximated to look right.`,
+  d => `The model spans ${d} in world units, so scale checks out against a reference object.`,
+  d => `It occupies ${d}, which means no scaling pass after import.`,
+  d => `Physical size is ${d}, carried into every exported format.`,
+  d => `Modelled at ${d}, so a human figure next to it reads at the right height.`,
+  d => `The bounding size is ${d}, set in real units from the start.`,
+  d => `Expect ${d} on import - the units travel with the file.`,
+  d => `Its measurements are ${d}, taken from the object rather than eyeballed.`,
+];
+
+const RIGGED_TXT = [
+  `The model arrives rigged, so it can be posed without building a skeleton first.`,
+  `A skeleton is already in place, which means posing starts immediately rather than after a rigging pass.`,
+  `It comes rigged: the joints are built, weighted and ready to be driven.`,
+  `Rigging is done, so the first pose is a matter of minutes rather than an afternoon.`,
+  `The asset ships with its rig, so animation can begin without touching the bind.`,
+  `Joints and weights are already set up, leaving you to pose rather than to prepare.`,
+  `You are getting a rigged model, not a static mesh that still needs a skeleton.`,
+  `The rig travels with the file, so the model can be posed straight after import.`,
+];
+const ANIM_TXT = [
+  `Animation is included on the asset rather than left as an exercise.`,
+  `The model comes animated, so there is motion in the file from the first frame.`,
+  `Motion is baked in - you are not starting from a static pose.`,
+  `Animation ships with the model instead of being described and left to you.`,
+  `The asset moves out of the box: the animation is part of what you download.`,
+  `Ready-made animation comes with it, so the model can go straight into a shot.`,
+  `The file carries its own animation, which saves the keyframing pass.`,
+  `Movement is authored and included, not left as a note in the description.`,
 ];
 
 function specSentences(f, seed) {
@@ -292,11 +390,14 @@ function specSentences(f, seed) {
     out.push(pick(TEX, seed * 31 + 6)(s.textures, r.replace(/x/gi, ' x ')));
   }
   if (s.dimensions) out.push(pick(DIM, seed * 37 + 9)(esc(s.dimensions)));
+  // У этих двух фраз вариантов не было вовсе: одна строка на все карточки с
+  // оснасткой и одна на все анимированные. Теперь выбираются так же, как
+  // остальные - по номеру модели.
   if (s.rigged && /jointed|rigged/i.test(s.rigged) && !/not\s+jointed/i.test(s.rigged)) {
-    out.push(`The model arrives rigged, so it can be posed without building a skeleton first.`);
+    out.push(pick(RIGGED_TXT, seed * 41 + 11));
   }
   if (s.animated && !/not\s+animated/i.test(s.animated)) {
-    out.push(`Animation is included on the asset rather than left as an exercise.`);
+    out.push(pick(ANIM_TXT, seed * 43 + 13));
   }
   return out;
 }

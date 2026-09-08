@@ -23,6 +23,16 @@ const COUNT = argv.includes('--count') ? +argv[argv.indexOf('--count') + 1] : 20
 const queue = JSON.parse(fs.readFileSync(path.join(WORK, 'queue.json'), 'utf8'));
 const doneFile = path.join(WORK, 'done.txt');
 const done = new Set(fs.existsSync(doneFile) ? fs.readFileSync(doneFile, 'utf8').split('\n').filter(Boolean) : []);
+/*
+ * Уже написанное берём из data/model-hand-desc.json - там текст и живёт.
+ * Метка <!-- written:v1 --> в файле страницы больше не ставится: страница
+ * собирается из записи, и пометка в ней пропала бы при первой же пересборке
+ * вместе с самим текстом, как это уже случилось с 1 762 карточками.
+ */
+{
+  const f = path.join(ROOT, 'data', 'model-hand-desc.json');
+  if (fs.existsSync(f)) for (const k of Object.keys(JSON.parse(fs.readFileSync(f, 'utf8')))) done.add(k);
+}
 
 const plain = s => String(s).replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/&#39;|&#x27;/g, "'")
   .replace(/&quot;/g, '"').replace(/\s+/g, ' ').trim();
@@ -37,7 +47,6 @@ for (const slug of queue) {
   if (done.has(slug)) continue;
   let h;
   try { h = fs.readFileSync(path.join(ROOT, 'models', slug, 'index.html'), 'utf8'); } catch (e) { continue; }
-  if (h.includes('<!-- written:v1 -->')) continue;
 
   // Другие версии этой же модели - блок «All Versions of This Model».
   // Читать его обязательно: именно из-за него основатель поправил образец.

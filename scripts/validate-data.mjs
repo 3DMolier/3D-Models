@@ -486,10 +486,48 @@ if (bad9.length) fail(9, 'отрасль модели не существует 
   }
 }
 
+/*
+ * [17] РУКОПИСНЫЙ ТЕКСТ НА МЕСТЕ.
+ *
+ * Проверка ровно против того, что уже случилось. 1 762 карточки были написаны
+ * человеком, текст жил только в разметке страницы, генератор переписал
+ * страницы из записей - и текст исчез. Страницы остались целыми, все проверки
+ * прошли, никто ничего не заметил; нашлось спустя неделю и только потому, что
+ * основатель спросил про качество текстов.
+ *
+ * Теперь текст лежит в data/model-hand-desc.json, и здесь мы сверяем: у каждой
+ * карточки из этого файла первые слова авторского абзаца обязаны стоять на
+ * странице. Если сборка снова подменит его заготовкой, проверка упадёт.
+ */
+{
+  const f = path.join(ROOT, 'data', 'model-hand-desc.json');
+  if (fs.existsSync(f)) {
+    const hand = JSON.parse(fs.readFileSync(f, 'utf8'));
+    const bad = [];
+    let seen = 0, gone = 0;
+    for (const [slug, paras] of Object.entries(hand)) {
+      const p = path.join(MODELS, slug, 'index.html');
+      if (!fs.existsSync(p)) { gone++; continue; }
+      const h = fs.readFileSync(p, 'utf8');
+      if (/http-equiv="refresh"/i.test(h.slice(0, 400))) { gone++; continue; }
+      seen++;
+      // Сверяем по первым восьми словам: их достаточно, чтобы отличить
+      // авторский абзац от заготовки, и они не задеты экранированием.
+      const head = String(paras[0] || '').split(/\s+/).slice(0, 8).join(' ');
+      if (!head) continue;
+      const esced = head.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      if (!h.includes(head) && !h.includes(esced) && bad.length < 6) bad.push(slug);
+    }
+    console.log('  [17] рукописных описаний на страницах: ' + fmt(seen)
+      + (gone ? ', страниц нет: ' + gone : '') + ', потеряно: ' + bad.length);
+    if (bad.length) fail(17, 'рукописный текст подменён заготовкой', bad);
+  }
+}
+
 // ── отчёт ──
 console.log('\nпроверено карточек: ' + live + (SAMPLE ? '  (выборка, шаг ' + step + ')' : ''));
 if (!problems.length) {
-  console.log('\nВСЕ 16 ПРОВЕРОК ПРОЙДЕНЫ');
+  console.log('\nВСЕ 17 ПРОВЕРОК ПРОЙДЕНЫ');
   process.exit(0);
 }
 console.log('\nНАРУШЕНИЙ: ' + problems.length);

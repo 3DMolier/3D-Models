@@ -19,7 +19,24 @@ import path from 'node:path';
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname).replace(/^\/([A-Za-z]:)/, '$1'), '..');
 const WORK = path.join(ROOT, 'tools', 'night-writer');
 const GSC = 'D:/Clode_Work_Folder/tools/ga-analytics/gsc-top-pages.json';
-const MARK = '<!-- written:v1 -->';
+/*
+ * ИСТОЧНИК ПРАВДЫ О НАПИСАННОМ - data/model-hand-desc.json, а не метка в файле
+ * страницы.
+ *
+ * Метка <!-- written:v1 --> стояла прямо в карточке, и сам текст жил только
+ * там же. Когда карточки перевели на сборку из записи, страницы перерисовались
+ * из данных, и вместе с меткой исчез текст - 1 762 штуки. После этого очередь
+ * считала написанными ноль карточек и предлагала писать заново уже написанное.
+ *
+ * Теперь текст лежит в data/model-hand-desc.json и переживает пересборку.
+ * Метку в разметку не возвращаем: страница собирается из записи, и любая
+ * пометка в ней - это снова правда, хранящаяся не там, где надо.
+ */
+const HAND = (() => {
+  const f = path.join(ROOT, 'data', 'model-hand-desc.json');
+  if (!fs.existsSync(f)) return new Set();
+  return new Set(Object.keys(JSON.parse(fs.readFileSync(f, 'utf8'))));
+})();
 
 fs.mkdirSync(WORK, { recursive: true });
 
@@ -50,7 +67,7 @@ for (const slug of fs.readdirSync(path.join(ROOT, 'models'))) {
   try { h = fs.readFileSync(path.join(ROOT, 'models', slug, 'index.html'), 'utf8'); } catch (e) { continue; }
   if (/http-equiv="refresh"/i.test(h)) continue;
   live++;
-  if (h.includes(MARK)) { done.push(slug); continue; }
+  if (HAND.has(slug)) { done.push(slug); continue; }
   rows.push({
     slug,
     imp: impressions.get(slug) || 0,
