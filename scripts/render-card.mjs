@@ -64,6 +64,13 @@ const SITE_UPDATED_HUMAN = new Date(SITE_UPDATED)
 export function toContentFields(r) {
   const s = r.specs || null;
   return {
+    /*
+     * Рукописное описание, если оно есть. Его писала ночная смена, и оно
+     * ЛУЧШЕ сгенерированного - поэтому идёт первым, а заготовка остаётся
+     * запасной. Раньше текст жил только в файле страницы и был затёрт при
+     * переходе на сборку из записи; теперь он в записи и переживёт пересборку.
+     */
+    handDesc: (r.hand_desc && r.hand_desc.length) ? r.hand_desc : null,
     cert: r.cert || '',
     days: r.days_in_sales || 0,
     // Настоящая дата публикации из отчёта TurboSquid. Ей верят и проза, и
@@ -215,6 +222,19 @@ export function descParagraphs(text, per = 3) {
     out[out.length - 1].push(...tail);
   }
   return out.map(g => '<p class="mp-desc-text">' + g.join(' ') + '</p>').join('');
+}
+
+/*
+ * Рукописное описание - абзацы автора, как он их разбил.
+ *
+ * Разбивать его по три предложения, как сгенерированное, нельзя: человек
+ * ставит границы абзаца по смыслу, и машинная нарезка сломает ритм.
+ * Экранируем здесь - в точке, где текст становится разметкой, ровно один раз.
+ */
+export function handParagraphs(paras) {
+  return (paras || [])
+    .map(p => '<p class="mp-desc-text">' + esc(String(p)) + '</p>')
+    .join('');
 }
 
 /** Показываемое имя: у склеенной карточки - имя семьи, у обычной - своё. */
@@ -480,7 +500,7 @@ export function details(r, f, seed, faqHtml) {
   return `<section class="mp-details-section"><div class="max-w-7xl mx-auto"><div class="mp-details-grid">`
     + `<div class="mp-details-left">`
     + `<div class="section-label mp-mb12">About This Model</div>`
-    + descParagraphs(desc)
+    + (f.handDesc ? handParagraphs(f.handDesc) : descParagraphs(desc))
     /*
      * Строка «By … · Published … · Updated …». Её в генераторе не было вовсе:
      * страница теряла и указание автора, и даты - то, по чему поисковик судит
