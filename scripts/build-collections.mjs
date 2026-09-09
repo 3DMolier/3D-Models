@@ -358,6 +358,16 @@ fs.writeFileSync(path.join(OUT, 'index.html'),
 // 19 адресов вида /collections/best-vehicle-3d-models/ были той самой повторной
 // сортировкой каталога. Просто удалить их нельзя — они уже в индексе, поэтому
 // на их месте остаётся перенаправление на новый раздел.
+/*
+ * СТАРЫЕ АДРЕСА ПОДБОРОК. Держим по ним заглушки, потому что они в индексе Google
+ * и продолжают собирать показы - удалить их значит отдавать 404 прямо из выдачи.
+ *
+ * Второй блок (после «замер 09.09.2026») - шесть адресов, которых в этом списке
+ * не было вовсе. Они отдавали 404 и при этом набрали 207 показов за 90 дней:
+ * страницы удалили, а из индекса они не ушли. Нашлось сверкой выгрузки GSC с
+ * файлами на диске; check-internal-links такое не ловит - на эти адреса с сайта
+ * никто не ссылается, они живут только в индексе.
+ */
 const OLD = ['best-vehicle-3d-models', 'best-military-vehicle-3d-models', 'best-aircraft-3d-models',
   'best-ship-3d-models', 'best-industrial-equipment-3d-models', 'best-medical-3d-models',
   'best-architecture-landmark-3d-models', '3d-models-for-aerospace-visualization',
@@ -365,14 +375,37 @@ const OLD = ['best-vehicle-3d-models', 'best-military-vehicle-3d-models', 'best-
   '3d-models-for-film-production', '3d-models-for-vr-projects', '3d-models-for-game-development',
   '3d-models-for-advertising', '3d-models-for-architecture-visualization',
   '3d-models-for-event-management', '3d-models-for-hardware-presentation',
-  'checkmate-certified-3d-models', 'stemcell-certified-3d-models'];
-// Куда вести: ближайшая по смыслу тема, иначе витрина.
+  'checkmate-certified-3d-models', 'stemcell-certified-3d-models',
+  // отдавали 404, замер 09.09.2026 (в скобках - показов за 90 дней)
+  'ship-3d-models-for-maritime-simulation',                 // 87
+  'medical-anatomy-3d-models-for-education',                // 62
+  'vehicle-3d-models-for-advertising',                      // 23
+  'uav-drone-3d-models-for-defense-visualization',          // 17
+  'industrial-equipment-3d-models-for-technical-animation', // 13
+  'aircraft-3d-models-for-flight-simulation'];              // 5, из них 1 клик
+/*
+ * Куда вести: ближайшая по смыслу тема, иначе витрина.
+ *
+ * Общая витрина - плохой ответ на предметный запрос. «best-ship-3d-models»
+ * набирал 191 показ и ноль кликов, отправляя человека, искавшего корабли, на
+ * список всех тем. Поэтому у каждого адреса, где тема очевидна, она проставлена
+ * явно; витрина остаётся только там, где темы под запрос действительно нет
+ * (VR, реклама, игры, сертификация).
+ */
 const OLD_TARGET = {
-  'best-vehicle-3d-models': 'vehicles', 'best-military-vehicle-3d-models': 'weapons',
+  'best-vehicle-3d-models': 'vehicles', 'best-military-vehicle-3d-models': 'military',
   'best-industrial-equipment-3d-models': 'industrial', 'best-medical-3d-models': 'science-medical',
   'best-architecture-landmark-3d-models': 'architecture', '3d-models-for-medical-visualization': 'science-medical',
-  '3d-models-for-defense-simulation': 'weapons', '3d-models-for-architecture-visualization': 'architecture',
+  'best-ship-3d-models': 'ships', 'best-aircraft-3d-models': 'aircraft',
+  '3d-models-for-aerospace-visualization': 'aircraft', '3d-models-for-film-production': 'art-media',
+  '3d-models-for-defense-simulation': 'military', '3d-models-for-architecture-visualization': 'architecture',
   '3d-models-for-hardware-presentation': 'technology',
+  'ship-3d-models-for-maritime-simulation': 'ships',
+  'medical-anatomy-3d-models-for-education': 'science-medical',
+  'vehicle-3d-models-for-advertising': 'vehicles',
+  'uav-drone-3d-models-for-defense-visualization': 'military',
+  'industrial-equipment-3d-models-for-technical-animation': 'industrial',
+  'aircraft-3d-models-for-flight-simulation': 'aircraft',
 };
 let stubs = 0;
 for (const slug of OLD) {
