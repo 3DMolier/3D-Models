@@ -46,20 +46,33 @@ console.log('округлённо для прозы: ' + ROUND);
 const edits = [];
 const add = (file, list) => edits.push({ file, list });
 
-// Старые числа перечислены явно. Регулярка «любое число рядом со словом models»
-// сюда не годится: на тех же страницах стоят 90,000 листингов TurboSquid,
-// 100,000 моделей с 2003 года и 25,000 на CGTrader - это другие метрики, и
-// трогать их нельзя.
+/*
+ * Привязка - к ФРАЗЕ, а не к конкретному старому числу.
+ *
+ * Раньше здесь стояли «58,500» и «59,637» - числа, верные на день написания.
+ * Каталог с тех пор менялся четыре раза, и правило срабатывало ровно один раз:
+ * 12.09.2026 на /about/ висело «around 54,000 product pages», на /custom-order/
+ * «54,000-model catalog», хотя карточек было 44 501.
+ *
+ * Регулярка «любое число рядом со словом models» сюда по-прежнему не годится:
+ * на тех же страницах стоят 90 000 листингов TurboSquid, 100 000 моделей,
+ * сделанных с 2003 года, и 25 000 на CGTrader - это другие метрики, и трогать
+ * их нельзя. Поэтому ловим число внутри своей фразы целиком.
+ */
 add('catalog/index.html', [
-  [/59,637/g, T],
-  [/"numberOfItems":58527/g, '"numberOfItems":' + total],
+  [/\b\d{1,3}(?:,\d{3})+(?= 3D Models\b)/g, T],
+  [/"numberOfItems":\d+/g, '"numberOfItems":' + total],
 ]);
-add('search/index.html', [[/59,637/g, T]]);
-add('about/index.html', [[/58,500/g, ROUND]]);
+add('search/index.html', [[/\b\d{1,3}(?:,\d{3})+(?= 3D models\b)/g, T]]);
+add('about/index.html', [[/(shows around <strong>)\d{1,3}(?:,\d{3})+/g, '$1' + ROUND]]);
 add('custom-order/index.html', [
-  [/58,500/g, ROUND],
-  [/across 25 categories/g, 'across ' + CATS + ' categories'],
+  [/(around )\d{1,3}(?:,\d{3})+(?= model pages)/g, '$1' + ROUND],
+  [/\b\d{1,3}(?:,\d{3})+(?=-model catalog)/g, ROUND],
+  [/across \d{1,3} categories/g, 'across ' + CATS + ' categories'],
 ]);
+// Страница-переезд на /catalog/. Её описание поисковик читает, и число в нём
+// отставало от каталога на 15 тысяч.
+add('full-catalog/index.html', [[/(Browse all )\d{1,3}(?:,\d{3})+/g, '$1' + T]]);
 add('collections/index.html', [[/\b5630\b/g, group(cc.counts['collections-sets'])]]);
 // На главной стоял диапазон «$29–$499», хотя в каталоге цены идут от $1 до
 // $2,999 - тот же диапазон уже написан на /catalog/. Занижённый потолок прячет
