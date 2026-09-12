@@ -1,6 +1,6 @@
 {
- "total": 52013,
- "chunks": 6,
+ "total": 49507,
+ "chunks": 5,
  "chunk_size": 10000,
  "format": "columnar",
  "keys": [
