@@ -706,8 +706,13 @@ function buildIdentityGroups() {
 // готовыми из data/geo-groups.json - как они отобраны и почему крупные семьи
 // (19 крейсеров Ticonderoga, 16 фирменных прицепов) туда не попадают, написано
 // в scripts/scan-geometry-groups.mjs.
-function buildGeoGroups() {
-  const F = path.join(ROOT, 'data', 'geo-groups.json');
+//
+// Тот же разбор обслуживает проход «корень+геометрия» (kind = 'rootgeo'):
+// список групп у него свой, data/rootgeo-groups.json, а правило выбора главной
+// и сборка группы - те же. Как отбираются те группы и почему туда попадают
+// номерные знаки и купюры одной страны - в scripts/scan-root-geo-groups.mjs.
+function buildGeoGroups(file = 'geo-groups.json', kind = 'geo') {
+  const F = path.join(ROOT, 'data', file);
   if (!fs.existsSync(F)) return [];
   const out = [];
   // Главная - самая «голая» версия, тот же порядок, что и в проходе по технике:
@@ -724,7 +729,7 @@ function buildGeoGroups() {
     const main = order.find(x => isRealCard(x.slug)) || order[0];
     const rest = order.filter(x => x.slug !== main.slug);
     if (!rest.length) continue;
-    out.push({ base: commonTitle(main, rest), main, rest, kind: 'geo' });
+    out.push({ base: commonTitle(main, rest), main, rest, kind });
   }
   return out;
 }
@@ -1083,6 +1088,9 @@ if (!ONLY || ONLY === 'collection') groups.push(...buildGroups('collection'));
 // Геометрия - в самом конце: признак сильный, но грубее имени, и приоритет
 // должен остаться за проходами, которые видят смысл названия.
 if (!ONLY || ONLY === 'geo') groups.push(...buildGeoGroups());
+// Корень+геометрия - после чистой геометрии: признак тот же, но шире, и право
+// первого выбора остаётся за более осторожным списком.
+if (!ONLY || ONLY === 'rootgeo') groups.push(...buildGeoGroups('rootgeo-groups.json', 'rootgeo'));
 
 // Один слаг не должен попасть в две группы: иначе он удаляется как вариант в первой,
 // а во второй оказывается главным - и группа рушится на чтении несуществующего файла.
@@ -1203,7 +1211,8 @@ console.log('групп: ' + groups.length
   + ', по Root ID ' + groups.filter(g => g.kind === 'root').length
   + ', нулевой корень ' + groups.filter(g => g.kind === 'root0').length
   + ', корень+категория ' + groups.filter(g => g.kind === 'rootcat').length
-  + ', по геометрии ' + groups.filter(g => g.kind === 'geo').length + ')');
+  + ', по геометрии ' + groups.filter(g => g.kind === 'geo').length
+  + ', корень+геометрия ' + groups.filter(g => g.kind === 'rootgeo').length + ')');
 console.log('страниц свернётся: ' + groups.reduce((s, g) => s + g.rest.length, 0));
 
 /*

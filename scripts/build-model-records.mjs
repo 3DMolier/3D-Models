@@ -830,6 +830,33 @@ for (const r of byId.values()) {
   // Ключевые слова: со страницы, если она есть; иначе из выгрузки студии.
   const pk = PAGE_KW.get(r.slug);
   if (pk && pk.length) r.keywords = pk;
+  /*
+   * Ключевые слова свёрнутых вариантов. Склейка убирает их страницы, а вместе
+   * с ними - запросы, по которым эти вещи находили: «north korea 500 won
+   * banknote», «michigan license plate». Товар при этом никуда не делся, он
+   * лежит на той же карточке отдельной версией.
+   *
+   * Решение основателя 11.09.2026 при разрешении массовой склейки: все
+   * номиналы и все варианты обязаны остаться в ключевых словах главной.
+   *
+   * Порядок: сперва восемь собственных слов карточки (они про саму вещь),
+   * следом имена вариантов, затем остаток собственных. Группы ограничены
+   * двенадцатью, поэтому имена вариантов укладываются в те 24 слова, которые
+   * карточка показывает, и не вытесняются.
+   */
+  if ((r.family || []).length && r.keywords && r.keywords.length) {
+    const seen = new Set(r.keywords.map(k => String(k).toLowerCase().trim()));
+    const extra = [];
+    for (const v of r.family) {
+      const phrase = String(v.name || '').trim().toLowerCase();
+      if (!phrase || phrase.length > 60) continue;
+      if (seen.has(phrase)) continue;
+      seen.add(phrase);
+      extra.push(phrase);
+      if (extra.length >= 14) break;
+    }
+    if (extra.length) r.keywords = [...r.keywords.slice(0, 8), ...extra, ...r.keywords.slice(8)];
+  }
   if (!r.keywords) r.keywords = null;
   if (!r.specs) r.specs = null;
 }

@@ -13,7 +13,10 @@ import path from 'node:path';
 import { ROOT } from './lib/paths.mjs';
 const M = path.join(ROOT, 'models');
 const SITE = 'https://3dmolierstudio.com';
-const PER_FILE = 45000;
+// По 10 000 - столько в картах на сайте, и именно эти шесть адресов отправлены
+// в Search Console. При 45 000 файл укладывался в два, а sitemap-models-3..6
+// начинали отдавать 404 - у поисковика они уже в очереди на обход.
+const PER_FILE = 10000;
 const HEAD = 400;
 const buf = Buffer.alloc(HEAD);
 
