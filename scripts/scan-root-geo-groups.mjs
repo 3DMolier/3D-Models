@@ -95,7 +95,19 @@ const STOP = new Set(['the', 'a', 'an', 'and', 'of', 'with', 'for', 'in', 'on', 
   'animated', 'simplified', 'simple', 'generic', 'low', 'poly', 'lowpoly', 'fur', 'furry',
   'pose', 'posed', 'standing', 'sitting', 'walking', 'running', 'flying', 'swimming',
   'lying', 'idle', 'neutral', 'clean', 'dirty', 'version', 'variant', 'type', 'style',
-  'edition']);
+  'edition',
+  /*
+   * Цвет и отделка - 12.09.2026. Их здесь не было, и это стоило основателю
+   * ещё одной находки: «Mirror Disco Ball» и «Gold Yellow Disco Ball» при
+   * одинаковой до единицы геометрии давали похожесть 0,4 при пороге 0,5.
+   * Цвет - самая частая ось варианта, считать его различающим словом значит
+   * штрафовать ровно за то, ради чего склейка и нужна.
+   */
+  'red', 'yellow', 'green', 'blue', 'black', 'white', 'grey', 'gray', 'silver', 'gold',
+  'brown', 'orange', 'pink', 'purple', 'beige', 'bronze', 'copper', 'maroon', 'ivory',
+  'camo', 'camouflage', 'sand', 'khaki', 'tan', 'olive', 'dark', 'light', 'metallic',
+  'transparent', 'chrome', 'mirror', 'matte', 'glossy', 'polished', 'painted', 'glowing',
+  'rusty', 'worn', 'damaged', 'weathered', 'aged', 'colored', 'coloured', 'color', 'colour']);
 const toks = n => new Set(String(n).toLowerCase().replace(/[^a-z0-9]+/g, ' ').split(' ')
   .filter(t => t.length > 2 && !STOP.has(t) && !/^\d+$/.test(t)));
 
@@ -110,33 +122,92 @@ const sim = (a, b) => {
   return u ? i / u : 0;
 };
 
-const byKey = new Map();
+/*
+ * ── ДВА СПОСОБА СВЯЗАТЬ, а не один ─────────────────────────────────────────
+ *
+ * 12.09.2026 основатель прислал «Mirror Disco Ball» и «Gold Yellow Disco Ball».
+ * Геометрия у них совпадает ДО ЕДИНИЦЫ - 35 386 полигонов, 39 765 вершин, - но
+ * корни публикации РАЗНЫЕ: Kde94Dp8FX и MqRDr3EnXW. Группировка внутри корня
+ * такую пару поймать не может в принципе.
+ *
+ * Для разных корней был отдельный проход geo (scan-geometry-groups.mjs), но его
+ * ограничитель «номера TurboSquid в пределах 1 000» отсёк и эту пару: разброс
+ * 1 300. Ограничитель стоял там потому, что ТОЧНАЯ геометрия сама по себе
+ * переклеивает - 19 крейсеров Ticonderoga на общей болванке корпуса, 16
+ * прицепов с ливреями Coca-Cola и DHL, 17 футболистов разных клубов.
+ *
+ * Теперь вместо номеров работает похожесть имён, и она разбирает эти случаи
+ * лучше: у крейсеров общего только «uss», у прицепов только «trailer», у
+ * футболистов только «player» - связь не возникает. А у дискошаров после снятия
+ * цвета остаётся «disco ball» против «disco ball», похожесть 0,67.
+ *
+ * Итого связь возникает двумя путями, и оба требуют одной категории и похожих
+ * имён:
+ *   1. общий корень публикации + геометрия в пределах 10%;
+ *   2. РАЗНЫЕ корни, но геометрия совпадает точно.
+ * Второй путь строже по геометрии именно потому, что корень там не помогает.
+ */
+const byCat = new Map();
 for (const r of all) {
   if (r.status === 'new' || r.is_collection) continue;
   const s = r.specs || {};
-  if (!r.root || r.root === '0' || !s.polygons || !s.vertices) continue;
-  const k = r.root + '|' + (r.category_name || '');
-  if (!byKey.has(k)) byKey.set(k, []);
-  byKey.get(k).push(r);
+  if (!s.polygons || !s.vertices) continue;
+  const c = r.category_name || '';
+  if (!byCat.has(c)) byCat.set(c, []);
+  byCat.get(c).push(r);
 }
 
 const found = [];
 const cut = { размер: 0, разброс: 0, единицы: 0, ужеСклеены: 0 };
-for (const [, items] of byKey) {
+for (const [, items] of byCat) {
   const n = items.length;
   if (n < 2) continue;
   const T = items.map(x => toks(x.name));
   const par = [...Array(n).keys()];
   const find = a => { while (par[a] !== a) { par[a] = par[par[a]]; a = par[a]; } return a; };
-  for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) {
-    const A = items[i].specs, B = items[j].specs;
-    const bp = Math.min(A.polygons, B.polygons), bv = Math.min(A.vertices, B.vertices);
-    if (Math.abs(A.polygons - B.polygons) > bp * TOL) continue;
-    if (Math.abs(A.vertices - B.vertices) > bv * TOL) continue;
-    if (sim(T[i], T[j]) < SIM) continue;
-    const x = find(i), y = find(j);
-    if (x !== y) par[y] = x;
+  const link = (i, j) => { const x = find(i), y = find(j); if (x !== y) par[y] = x; };
+
+  // путь 1: общий корень, геометрия с допуском
+  const byRoot = new Map();
+  for (let i = 0; i < n; i++) {
+    const rt = items[i].root;
+    if (!rt || rt === '0') continue;
+    if (!byRoot.has(rt)) byRoot.set(rt, []);
+    byRoot.get(rt).push(i);
   }
+  for (const idx of byRoot.values()) {
+    if (idx.length < 2) continue;
+    for (let a = 0; a < idx.length; a++) for (let b = a + 1; b < idx.length; b++) {
+      const i = idx[a], j = idx[b];
+      const A = items[i].specs, B = items[j].specs;
+      const bp = Math.min(A.polygons, B.polygons), bv = Math.min(A.vertices, B.vertices);
+      if (Math.abs(A.polygons - B.polygons) > bp * TOL) continue;
+      if (Math.abs(A.vertices - B.vertices) > bv * TOL) continue;
+      if (sim(T[i], T[j]) < SIM) continue;
+      link(i, j);
+    }
+  }
+
+  // путь 2: геометрия совпадает точно, корень значения не имеет
+  const byGeo = new Map();
+  for (let i = 0; i < n; i++) {
+    const g = items[i].specs.polygons + 'x' + items[i].specs.vertices;
+    if (!byGeo.has(g)) byGeo.set(g, []);
+    byGeo.get(g).push(i);
+  }
+  for (const idx of byGeo.values()) {
+    if (idx.length < 2) continue;
+    // Крупная связка на одной болванке - это семейство разных товаров, а не
+    // варианты вещи. Похожесть имён такие и так разберёт, но считать пары
+    // внутри сотни карточек незачем.
+    if (idx.length > 40) continue;
+    for (let a = 0; a < idx.length; a++) for (let b = a + 1; b < idx.length; b++) {
+      const i = idx[a], j = idx[b];
+      if (sim(T[i], T[j]) < SIM) continue;
+      link(i, j);
+    }
+  }
+
   const comp = new Map();
   for (let i = 0; i < n; i++) {
     const r = find(i);
@@ -166,10 +237,10 @@ console.log('групп: ' + found.length + ', карточек в них: ' + c
 console.log('отсеяно: крупных групп ' + cut.размер + ', с большим разбросом ' + cut.разброс
   + ', с единицами измерения ' + cut.единицы + ', уже склеены ' + cut.ужеСклеены);
 
-const byCat = {};
-for (const f of found) byCat[f.cat] = (byCat[f.cat] || 0) + 1;
+const tally = {};
+for (const f of found) tally[f.cat] = (tally[f.cat] || 0) + 1;
 console.log('\nпо категориям:');
-Object.entries(byCat).sort((a, b) => b[1] - a[1]).slice(0, 12)
+Object.entries(tally).sort((a, b) => b[1] - a[1]).slice(0, 12)
   .forEach(([c, n]) => console.log('  ' + String(n).padStart(4) + '  ' + c));
 
 if (DRY) {
