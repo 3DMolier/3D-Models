@@ -46,6 +46,7 @@ import { classifyByReport } from './category-map.mjs';
 import { parseDetails, num } from './lib/specs.mjs';
 import { variantLabel, variantShortLabel } from './lib/variant-label.mjs';
 import { familyName } from './lib/model-name.mjs';
+import { variantAxis } from './lib/variant-axis.mjs';
 import { attachRelated } from './build-related.mjs';
 import { formatsFromFiles } from './lib/formats.mjs';
 
@@ -557,7 +558,19 @@ say('читаю карту свёрнутых...');
     // Рукописное описание, если оно есть для этой карточки.
     const hd = HAND_DESC.get(r.slug);
     if (hd && hd.length) r.hand_desc = hd;
-    r.display_name = DISPLAY_NAME.get(r.slug)
+    /*
+     * Названная ось различия идёт ПЕРЕД заголовком со страницы - единственное
+     * исключение из правила «заголовок это данные, а не вывод».
+     *
+     * Правило основателя 12.09.2026: если в семье не цветовые вариации, а
+     * разные вещи - банкноты разных номиналов, знаки разных штатов, - это
+     * обязано стоять в названии карточки. Старый заголовок сложился ДО
+     * склейки, он описывает одну модель из двенадцати и про группу не знает,
+     * поэтому уступает. Ось опознаётся только там, где её можно назвать
+     * словом; во всех прочих случаях функция молчит и заголовок прежний.
+     */
+    const axis = r.family.length ? variantAxis(r.name, r.family.map(v => v.name)) : null;
+    r.display_name = axis || DISPLAY_NAME.get(r.slug)
       || (r.family.length ? familyName(r.name, r.family.map(v => v.name)) : r.name);
     /*
      * Двойные пробелы схлопываем и здесь, а не только у r.name: заголовки

@@ -74,7 +74,44 @@ for (const p of np) {
   rows.push({ i: Number(id), n: p.name, p: +p.price || 0, s: 0, c: certCode(p.cert) });
   added++;
 }
-console.log('добавлено: ' + added + ', уже были: ' + skipHave + ', нет живой карточки: ' + skipDead);
+console.log('из new-products добавлено: ' + added + ', уже были: ' + skipHave + ', нет живой карточки: ' + skipDead);
+
+/*
+ * Второй источник: ЗАПИСИ. new-products.json знает только про свежие поставки,
+ * а карточка выпадает из индекса и по другой причине.
+ *
+ * 12.09.2026: основатель ввёл правило «главной становится лидер продаж», и в
+ * 25 группах главная сменилась. Прежняя главная ушла в заглушку, а новая
+ * воскресла из заглушки - её выбросил rebuild-search-index на прошлом прогоне,
+ * и вернуть её было нечем. Сайт показывал 44 501 карточку, поиск - 44 476.
+ *
+ * Правило то же, что и выше: берём только ЖИВЫЕ карточки и только те, которых
+ * в индексе нет. Адрес - из папки по номеру, не вычисляем.
+ */
+const RECS = path.join(DATA, 'records');
+let addedRec = 0;
+if (fs.existsSync(RECS)) {
+  for (const f of fs.readdirSync(RECS).filter(x => /^records-\d+\.json$/.test(x))) {
+    for (const r of JSON.parse(fs.readFileSync(path.join(RECS, f), 'utf8'))) {
+      const id = String(r.id);
+      if (have.has(id)) continue;
+      const dir = DIR_BY_ID.get(id);
+      if (!dir || !isLive(dir)) continue;
+      have.add(id);
+      /*
+       * Имя здесь - ИСХОДНОЕ, не имя семьи. Полный каталог строит адрес плитки
+       * из имени: makeSlug(name) + номер. У склеенной карточки папка названа по
+       * исходному имени главной, а имя семьи другое - «Dark Skin Cobra
+       * Crawling» вместо dark-skin-cobra-crawling-animated-rigged-2413184, и
+       * плитка вела в никуда. Поймано проверкой [16].
+       */
+      rows.push({ i: Number(id), n: r.name, p: +r.price || 0,
+        s: +r.sales || 0, c: certCode(r.cert) });
+      addedRec++;
+    }
+  }
+}
+console.log('из записей добавлено: ' + addedRec);
 
 if (!DRY) {
   const chunks = Math.ceil(rows.length / CHUNK);

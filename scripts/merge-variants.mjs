@@ -310,6 +310,24 @@ function isRealCard(slug) {
   } finally { fs.closeSync(fd); }
 }
 
+/*
+ * ── кто в группе главный ────────────────────────────────────────────────────
+ *
+ * Правило основателя 12.09.2026: «за основную карточку, к которой всё
+ * приклеивается, ты возьмёшь модель из этой серии с самыми большими продажами».
+ *
+ * До этого правила первой шла «голость» версии - без софта, без оснастки, без
+ * упрощения, - а продажи решали только внутри равных. Логика была про имя:
+ * заголовок «X» читается лучше, чем «X Rigged for Cinema 4D». Но заголовок
+ * склеенной карточки всё равно собирается по семье, а не по главной, так что
+ * от имени главной зависит только АДРЕС. И адрес разумнее оставить тому, кто
+ * продаётся: у него и история, и ссылки, и позиции.
+ *
+ * Прежний порядок остался тай-брейком. Он нужен: у большинства карточек продаж
+ * ноль, и без него главная выбиралась бы случайно - как ляжет сортировка.
+ */
+const bySalesThenBase = rank => (a, b) => (b.sales - a.sales) || (rank(a) - rank(b));
+
 // ── группировка ──
 function buildGroups(kind) {
   const re = kind === 'soft' ? SOFT : (kind === 'collection' ? IDX : COLOR);
@@ -392,7 +410,7 @@ function buildGroups(kind) {
     // прогон уже свернул и удалил: слияние падало с «главной страницы уже нет»
     // (122 группы), карта не пополнялась, а на диске оставалась старая карточка.
     // Так две «African Animals … for Maya/Cinema Collection» и жили отдельно.
-    const order = grp.items.slice().sort((a, b) => (rank(a) - rank(b)) || (b.sales - a.sales));
+    const order = grp.items.slice().sort(bySalesThenBase(rank));
     const main = order.find(x => isRealCard(x.slug)) || order.find(x => fs.existsSync(path.join(MODELS, x.slug, 'index.html'))) || order[0];
     const rest = grp.items.filter(x => x.slug !== main.slug);
     if (!rest.length) continue;
@@ -603,7 +621,7 @@ function buildRootCatGroups() {
       + (/\blow\s*poly\b/i.test(x.name) ? 4 : 0)
       + (hasRig(x.name) ? 2 : 0)
       + (poseOf(x.name) ? 1 : 0);
-    const order = items.slice().sort((a, b) => (rank(a) - rank(b)) || (b.sales - a.sales));
+    const order = items.slice().sort(bySalesThenBase(rank));
     const main = order.find(x => isRealCard(x.slug))
       || order.find(x => fs.existsSync(path.join(MODELS, x.slug, 'index.html'))) || order[0];
     const rest = order.filter(x => x.slug !== main.slug);
@@ -654,7 +672,7 @@ function buildRootGroups(zero = false) {
       + (/\blow\s*poly\b/i.test(x.name) ? 4 : 0)
       + (hasRig(x.name) ? 2 : 0)
       + (poseOf(x.name) ? 1 : 0);
-    const order = items.slice().sort((a, b) => (rank(a) - rank(b)) || (b.sales - a.sales));
+    const order = items.slice().sort(bySalesThenBase(rank));
     const main = order.find(x => isRealCard(x.slug)) || order.find(x => fs.existsSync(path.join(MODELS, x.slug, 'index.html'))) || order[0];
     const rest = order.filter(x => x.slug !== main.slug);
     if (!rest.length) continue;
@@ -682,7 +700,7 @@ function buildIdentityGroups() {
       + (/\blow\s*poly\b/i.test(x.name) ? 4 : 0)
       + (hasRig(x.name) ? 2 : 0)
       + (/\bsimple\s+interior\b/i.test(x.name) ? 1 : 0);
-    const order = items.map(x => x.r).sort((a, b) => (rank(a) - rank(b)) || (b.sales - a.sales));
+    const order = items.map(x => x.r).sort(bySalesThenBase(rank));
     const main = order.find(x => isRealCard(x.slug)) || order.find(x => fs.existsSync(path.join(MODELS, x.slug, 'index.html'))) || order[0];
     const rest = order.filter(x => x.slug !== main.slug);
     if (!rest.length) return;
@@ -725,7 +743,7 @@ function buildGeoGroups(file = 'geo-groups.json', kind = 'geo') {
   for (const slugs of JSON.parse(fs.readFileSync(F, 'utf8'))) {
     const items = slugs.map(s => bySlug.get(s)).filter(Boolean);
     if (items.length < 2) continue;
-    const order = items.slice().sort((a, b) => (rank(a) - rank(b)) || (b.sales - a.sales));
+    const order = items.slice().sort(bySalesThenBase(rank));
     const main = order.find(x => isRealCard(x.slug)) || order[0];
     const rest = order.filter(x => x.slug !== main.slug);
     if (!rest.length) continue;
