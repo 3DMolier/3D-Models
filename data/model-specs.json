@@ -16998,7 +16998,7 @@
  },
  "2576608": {
   "title": "Aircraft Access Stairway",
-  "polygons": 44501,
+  "polygons": 41543,
   "vertices": 47753,
   "geometry": "polygonal",
   "rigged": "model is not jointed",

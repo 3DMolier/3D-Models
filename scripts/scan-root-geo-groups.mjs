@@ -9,18 +9,51 @@
  *     номеров до 1 000 (у плюмерии 1 881).
  * Так же мимо прошли лоси и кои, которых пришлось склеивать руками.
  *
- * ПРИЗНАК. Общий корень публикации TurboSquid + ТОЧНОЕ совпадение полигонов и
- * вершин + одна категория. Корень говорит «выложено одним автором как одна
- * работа», геометрия - «это буквально тот же меш», категория - «это тот же род
- * вещи». Три условия вместе, поодиночке ни одно не годится.
+ * ПРИЗНАК. Общий корень публикации TurboSquid + близкая геометрия + одна
+ * категория + похожие названия. Корень говорит «выложено одним автором как одна
+ * работа», геометрия - «это тот же меш», категория - «тот же род вещи»,
+ * название - «та же вещь, а не соседняя деталь из той же поставки».
  *
- * ОГРАНИЧИТЕЛИ, чтобы не склеить разные товары:
+ * ── ПЕРЕПИСАНО 12.09.2026 ПОСЛЕ ДВУХ ПРОМАХОВ ──────────────────────────────
+ *
+ * Основатель прислал четыре карточки бабочек, которые обязаны были склеиться:
+ * red-admiral / red-admirable и две bhutanitis lidderdalii. Разбор показал две
+ * разные дыры, и обе в первой редакции этого файла.
+ *
+ * ПРОМАХ ПЕРВЫЙ: геометрия сверялась ДО ЕДИНИЦЫ. Мех и оснастка меняют меш на
+ * несколько процентов - 28 400 против 30 052 у одной пары, 24 178 против
+ * 25 662 у другой, - и родство переставало быть видимым. Теперь допуск 10% и
+ * по полигонам, и по вершинам.
+ *
+ * ПРОМАХ ВТОРОЙ, ХУЖЕ. Требовалось слово, общее для ВСЕХ членов группы. В
+ * корне бабочки девять карточек, у восьми геометрия совпадает до единицы - и
+ * группа всё равно разваливалась, потому что одна называется «Bhutanitis
+ * Lidderdalii Sitting Pose», без слов butterfly, bhutan и glory. Одно чужое
+ * имя обнуляло общее слово для всей девятки. Так отсеялись 700 групп.
+ *
+ * Теперь карточки связываются ПОПАРНО, а группа - связная компонента. «Sitting
+ * Pose» попадает в семью через «Bhutanitis Lidderdalii Butterfly Rigged», хотя
+ * со «Bhutan Glory Butterfly» у неё нет ни одного общего слова.
+ *
+ * ПОЧЕМУ ДВА УСЛОВИЯ, А НЕ ОДНО. Допуск без похожести названий связывает разные
+ * детали одной поставки: «HP Omen 15 Bottom Cover Panel Black» и «Notebook
+ * Keyboard Panel with Touchpad Black» лежат под одним корнем, в одной
+ * категории, полигонаж рядом - но это разные детали ноутбука. Общего у имён
+ * только «panel» и «black», похожесть 0,25, и связь не возникает.
+ *
+ * ЧЕГО ЭТО ПРАВИЛО НЕ УМЕЕТ. Составные сцены. «Desert Tropical Island with Palm
+ * Tree» и «Tropical Palm Tree» - остров и пальма, похожесть 0,6, связь
+ * возникает. Отделить «остров С пальмой» от «бабочки ИЛИ её второго имени»
+ * автоматически не выходит: и там и там одно имя оказывается надмножеством
+ * другого. Сказано вслух, чтобы не выдавать правило за безошибочное.
+ *
+ * ОГРАНИЧИТЕЛИ:
  *   • не больше 12 карточек в группе - крупные корни это семейства;
- *   • имена обязаны делить хотя бы одно значащее слово: в корне j2D99XWowR
- *     лежат евромонеты И «Bozok Laser Guided Rocket» с тем же полигонажем;
+ *   • разброс полигонов внутри группы не больше 25%: связь попарная, и без
+ *     потолка цепочка уходит далеко от того, с чего началась;
  *   • число С ЕДИНИЦЕЙ в названии - разные товары, а не варианты:
  *     «10 LB / 14 LB Medicine Ball», «48 / 55 inch TV»;
- *   • наборы (collection/set/pack) не трогаем - набор не вариант предмета;
+ *   • наборы (is_collection) не трогаем - набор не вариант предмета;
  *   • уже склеенные между собой пропускаем.
  *
  * ЧЕГО ЗДЕСЬ НЕТ НАМЕРЕННО. Отделять «настоящие варианты» (цвет, поза, софт) от
@@ -44,56 +77,93 @@ const RECS = path.join(ROOT, 'data', 'records');
 const OUT = path.join(ROOT, 'data', 'rootgeo-groups.json');
 
 const MAX_CARDS = 12;
+const TOL = 0.10;         // допуск по полигонам и вершинам между парой
+const SIM = 0.5;          // порог похожести названий
+const MAX_SPREAD = 1.25;  // потолок разброса полигонов внутри группы
 
 const all = [];
 for (const f of fs.readdirSync(RECS).filter(x => /^records-\d+\.json$/.test(x)))
   for (const r of JSON.parse(fs.readFileSync(path.join(RECS, f), 'utf8'))) all.push(r);
 
-// Слова, которые есть у всех подряд и родства не доказывают.
-const STOP = new Set(['the', 'a', 'an', 'and', 'of', 'with', 'for', 'in', 'on', 'to', 'by',
-  '3d', 'model', 'models', 'collection', 'set', 'new', 'old', 'used', 'rigged', 'animated',
-  'simplified', 'simple', 'generic', 'low', 'poly', 'lowpoly', 'fur', 'pose', 'posed']);
+/*
+ * Слова исполнения снимаются вместе со служебными: именно ими вариант и
+ * отличается от варианта, и учитывать их в похожести значит штрафовать за то,
+ * ради чего склейка затевается.
+ */
+const STOP = new Set(['the', 'a', 'an', 'and', 'of', 'with', 'for', 'in', 'on', 'to', 'by', 'or',
+  '3d', 'model', 'models', 'collection', 'set', 'new', 'old', 'used', 'rigged', 'rigid',
+  'animated', 'simplified', 'simple', 'generic', 'low', 'poly', 'lowpoly', 'fur', 'furry',
+  'pose', 'posed', 'standing', 'sitting', 'walking', 'running', 'flying', 'swimming',
+  'lying', 'idle', 'neutral', 'clean', 'dirty', 'version', 'variant', 'type', 'style',
+  'edition']);
 const toks = n => new Set(String(n).toLowerCase().replace(/[^a-z0-9]+/g, ' ').split(' ')
   .filter(t => t.length > 2 && !STOP.has(t) && !/^\d+$/.test(t)));
 
 // Число с единицей измерения - признак разных товаров.
 const UNIT = /\b\d{1,4}\s*(lb|lbs|kg|ml|vol|inch|in|cm|mm|ft|hp|gb|tb|oz|mah|watt|volt|litre|liter|gallon|pcs|mp|k)\b/i;
 
-const groups = new Map();
+/** Доля общих значащих слов: пересечение к объединению. */
+const sim = (a, b) => {
+  let i = 0;
+  for (const t of a) if (b.has(t)) i++;
+  const u = a.size + b.size - i;
+  return u ? i / u : 0;
+};
+
+const byKey = new Map();
 for (const r of all) {
-  if (r.status === 'new') continue;
-  if (r.is_collection) continue;
+  if (r.status === 'new' || r.is_collection) continue;
   const s = r.specs || {};
   if (!r.root || r.root === '0' || !s.polygons || !s.vertices) continue;
-  const k = r.root + '|' + s.polygons + '|' + s.vertices + '|' + (r.category_name || '');
-  if (!groups.has(k)) groups.set(k, []);
-  groups.get(k).push(r);
+  const k = r.root + '|' + (r.category_name || '');
+  if (!byKey.has(k)) byKey.set(k, []);
+  byKey.get(k).push(r);
 }
 
 const found = [];
-const cut = { размер: 0, нетОбщегоСлова: 0, единицы: 0, ужеСклеены: 0 };
-for (const [k, g] of groups) {
-  if (g.length < 2) continue;
-  if (g.length > MAX_CARDS) { cut.размер++; continue; }
-  const slugs = new Set(g.map(x => x.slug));
-  if (g.some(x => (x.family || []).some(v => slugs.has(v.slug)))) { cut.ужеСклеены++; continue; }
-  const sets = g.map(x => toks(x.name));
-  const common = [...sets[0]].filter(t => sets.every(s => s.has(t)));
-  if (!common.length) { cut.нетОбщегоСлова++; continue; }
-  if (g.some(x => UNIT.test(x.name))) { cut.единицы++; continue; }
-  found.push({
-    root: k.split('|')[0], poly: g[0].specs.polygons, cat: g[0].category_name,
-    common: common.slice(0, 3).join(' '),
-    slugs: g.slice().sort((a, b) => b.sales - a.sales).map(x => x.slug),
-    names: g.slice().sort((a, b) => b.sales - a.sales).map(x => x.name),
-  });
+const cut = { размер: 0, разброс: 0, единицы: 0, ужеСклеены: 0 };
+for (const [, items] of byKey) {
+  const n = items.length;
+  if (n < 2) continue;
+  const T = items.map(x => toks(x.name));
+  const par = [...Array(n).keys()];
+  const find = a => { while (par[a] !== a) { par[a] = par[par[a]]; a = par[a]; } return a; };
+  for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) {
+    const A = items[i].specs, B = items[j].specs;
+    const bp = Math.min(A.polygons, B.polygons), bv = Math.min(A.vertices, B.vertices);
+    if (Math.abs(A.polygons - B.polygons) > bp * TOL) continue;
+    if (Math.abs(A.vertices - B.vertices) > bv * TOL) continue;
+    if (sim(T[i], T[j]) < SIM) continue;
+    const x = find(i), y = find(j);
+    if (x !== y) par[y] = x;
+  }
+  const comp = new Map();
+  for (let i = 0; i < n; i++) {
+    const r = find(i);
+    if (!comp.has(r)) comp.set(r, []);
+    comp.get(r).push(items[i]);
+  }
+  for (const cl of comp.values()) {
+    if (cl.length < 2) continue;
+    if (cl.length > MAX_CARDS) { cut.размер++; continue; }
+    const polys = cl.map(x => x.specs.polygons);
+    if (Math.max(...polys) > Math.min(...polys) * MAX_SPREAD) { cut.разброс++; continue; }
+    if (cl.some(x => UNIT.test(x.name))) { cut.единицы++; continue; }
+    const slugs = new Set(cl.map(x => x.slug));
+    if (cl.some(x => (x.family || []).some(v => slugs.has(v.slug)))) { cut.ужеСклеены++; continue; }
+    const sorted = cl.slice().sort((a, b) => b.sales - a.sales);
+    found.push({
+      cat: sorted[0].category_name, poly: sorted[0].specs.polygons,
+      slugs: sorted.map(x => x.slug), names: sorted.map(x => x.name),
+    });
+  }
 }
 
 found.sort((a, b) => b.slugs.length - a.slugs.length);
 const cards = found.reduce((s, x) => s + x.slugs.length, 0);
 console.log('групп: ' + found.length + ', карточек в них: ' + cards
   + ', свернётся: ' + (cards - found.length));
-console.log('отсеяно: крупных корней ' + cut.размер + ', без общего слова ' + cut.нетОбщегоСлова
+console.log('отсеяно: крупных групп ' + cut.размер + ', с большим разбросом ' + cut.разброс
   + ', с единицами измерения ' + cut.единицы + ', уже склеены ' + cut.ужеСклеены);
 
 const byCat = {};
@@ -103,9 +173,9 @@ Object.entries(byCat).sort((a, b) => b[1] - a[1]).slice(0, 12)
   .forEach(([c, n]) => console.log('  ' + String(n).padStart(4) + '  ' + c));
 
 if (DRY) {
-  console.log('\n--- первые 10 групп ---');
-  for (const f of found.slice(0, 10)) {
-    console.log('\n  ' + f.cat + ', ' + f.poly + ' полиг., общее «' + f.common + '»');
+  console.log('\n--- первые 8 групп ---');
+  for (const f of found.slice(0, 8)) {
+    console.log('\n  ' + f.cat + ', ' + f.poly + ' полиг.');
     f.names.forEach(n => console.log('      ' + n.slice(0, 60)));
   }
   console.log('\nсухой прогон, файл не записан');
