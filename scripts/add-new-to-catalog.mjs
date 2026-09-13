@@ -36,6 +36,16 @@ const have = new Set(rows.map(r => String(r.i)));
 console.log('в индексе сейчас: ' + rows.length);
 
 const certCode = c => /CheckMate/i.test(c || '') ? 2 : (/StemCell/i.test(c || '') ? 1 : 0);
+/*
+ * Адрес плитки считаем ТЕМ ЖЕ правилом, что и каталог в браузере - makeSlug из
+ * assets/js/full-catalog.js, буква в букву. Здешняя slugify ниже работает
+ * иначе: скобки она превращает в дефис, а каталог их просто выбрасывает, и
+ * «Harivake Koi Fish(1)» даёт harivake-koi-fish-1- против harivake-koi-fish1.
+ * На первой попытке это стоило 258 ошибочно снятых строк.
+ */
+const catSlug = name => String(name).toLowerCase().trim()
+  .replace(/[^\w\s-]/g, '').replace(/[\s_]+/g, '-').replace(/-+/g, '-')
+  .replace(/^-+|-+$/g, '');
 const slugify = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 /*
  * Папки карточек по номеру модели.
@@ -49,11 +59,6 @@ const slugify = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace
  * Правило уже записано кровью: АДРЕС КАРТОЧКИ НЕ ВЫЧИСЛЯТЬ - искать папку по
  * номеру.
  */
-const DIR_BY_ID = new Map();
-for (const d of fs.readdirSync(MODELS)) {
-  const did = d.slice(d.lastIndexOf('-') + 1);
-  if (/^[0-9]+$/.test(did) && !DIR_BY_ID.has(did)) DIR_BY_ID.set(did, d);
-}
 const HEAD = 400, buf = Buffer.alloc(HEAD);
 const isLive = slug => {
   let fd;
@@ -61,6 +66,24 @@ const isLive = slug => {
   try { const n = fs.readSync(fd, buf, 0, HEAD, 0); return !/http-equiv="refresh"/.test(buf.slice(0, n).toString('utf8')); }
   finally { fs.closeSync(fd); }
 };
+
+/*
+ * У одного номера на диске бывает ДВЕ папки - разное написание адреса,
+ * оставшееся от старых прогонов: electric-scooter-1-1428089 и
+ * electric-scooter1-1428089. Таких номеров 50, и живая из пары всегда одна,
+ * вторая - заглушка.
+ *
+ * «Первая попавшаяся» брала заглушку, карточка считалась мёртвой и в каталог
+ * не попадала: сайт показывал 37 869, каталог 37 865. Берём ЖИВУЮ.
+ */
+const DIR_BY_ID = new Map();
+for (const d of fs.readdirSync(MODELS)) {
+  const did = d.slice(d.lastIndexOf('-') + 1);
+  if (!/^[0-9]+$/.test(did)) continue;
+  const was = DIR_BY_ID.get(did);
+  if (!was) { DIR_BY_ID.set(did, d); continue; }
+  if (!isLive(was) && isLive(d)) DIR_BY_ID.set(did, d);
+}
 
 const np = JSON.parse(fs.readFileSync(path.join(DATA, 'new-products.json'), 'utf8'));
 let added = 0, skipHave = 0, skipDead = 0;
@@ -97,14 +120,20 @@ if (fs.existsSync(RECS)) {
       if (have.has(id)) continue;
       const dir = DIR_BY_ID.get(id);
       if (!dir || !isLive(dir)) continue;
-      have.add(id);
       /*
        * Имя здесь - ИСХОДНОЕ, не имя семьи. Полный каталог строит адрес плитки
        * из имени: makeSlug(name) + номер. У склеенной карточки папка названа по
        * исходному имени главной, а имя семьи другое - «Dark Skin Cobra
        * Crawling» вместо dark-skin-cobra-crawling-animated-rigged-2413184, и
        * плитка вела в никуда. Поймано проверкой [16].
+       *
+       * Если и исходное имя не даёт папку - строку не добавляем вовсе: ниже она
+       * всё равно будет снята, и получалась петля «добавили и убрали» на каждом
+       * прогоне («Vintage Baseball Balls Collection» против папки
+       * vintage-baseball-balls-collection1-2482117).
        */
+      if (catSlug(r.name) + '-' + id !== dir) continue;
+      have.add(id);
       rows.push({ i: Number(id), n: r.name, p: +r.price || 0,
         s: +r.sales || 0, c: certCode(r.cert) });
       addedRec++;
@@ -112,6 +141,40 @@ if (fs.existsSync(RECS)) {
   }
 }
 console.log('из записей добавлено: ' + addedRec);
+
+/*
+ * ── правка строк, у которых имя не совпадает с папкой ───────────────────────
+ *
+ * Полный каталог строит адрес плитки ВЫЧИСЛЕНИЕМ: makeSlug(имя) + номер. Если
+ * имя в индексе не то, каким названа папка, плитка ведёт в никуда.
+ *
+ * 13.09.2026 проверка [16] нашла две такие строки в старой выгрузке: у товара
+ * 1500037 в индексе стояло «Black Tuxedo Suit», а папка называется
+ * bikini-woman-standing-pose-1500037; у 8694302 папки нет вовсе. Пока рядом
+ * лежали другие расхождения, эти терялись в общем шуме.
+ *
+ * Правило прежнее и записано кровью: АДРЕС КАРТОЧКИ НЕ ВЫЧИСЛЯТЬ. Здесь его
+ * вычисляет клиентский скрипт, и единственное, что мы можем, - следить, чтобы
+ * имя в индексе давало ту самую папку. Не даёт - берём имя из записи; и оно не
+ * подходит - строку убираем: показать её всё равно некуда.
+ */
+const RECNAME = new Map();
+if (fs.existsSync(RECS)) {
+  for (const f of fs.readdirSync(RECS).filter(x => /^records-\d+\.json$/.test(x)))
+    for (const r of JSON.parse(fs.readFileSync(path.join(RECS, f), 'utf8')))
+      RECNAME.set(String(r.id), r.name);
+}
+let fixed = 0, dropped = 0;
+for (let k = rows.length - 1; k >= 0; k--) {
+  const id = String(rows[k].i);
+  const dir = DIR_BY_ID.get(id);
+  if (!dir) { rows.splice(k, 1); dropped++; continue; }
+  if (catSlug(rows[k].n) + '-' + id === dir) continue;
+  const nm = RECNAME.get(id);
+  if (nm && catSlug(nm) + '-' + id === dir) { rows[k].n = nm; fixed++; continue; }
+  rows.splice(k, 1); dropped++;
+}
+if (fixed || dropped) console.log('имя не совпадало с папкой: поправлено ' + fixed + ', убрано ' + dropped);
 
 if (!DRY) {
   const chunks = Math.ceil(rows.length / CHUNK);
