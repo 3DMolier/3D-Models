@@ -148,12 +148,32 @@ const toks = n => new Set(String(n).toLowerCase().replace(/[^a-z0-9]+/g, ' ').sp
 // Число с единицей измерения - признак разных товаров.
 const UNIT = /\b\d{1,4}\s*(lb|lbs|kg|ml|vol|inch|in|cm|mm|ft|hp|gb|tb|oz|mah|watt|volt|litre|liter|gallon|pcs|mp|k)\b/i;
 
-/** Доля общих значащих слов: пересечение к объединению. */
-const sim = (a, b) => {
-  let i = 0;
-  for (const t of a) if (b.has(t)) i++;
+const inter = (a, b) => { let i = 0; for (const t of a) if (b.has(t)) i++; return i; };
+
+/*
+ * Имена считаются похожими, если верно ХОТЯ БЫ ОДНО:
+ *
+ *   • доля общих слов к объединению не ниже 0,5 - обычная мера, работает,
+ *     когда имена сопоставимой длины;
+ *   • КОРОТКОЕ имя содержится в длинном не меньше чем на 0,75.
+ *
+ * Вторая мера появилась 13.09.2026. Основатель прислал «Trumpet» и «Classic
+ * Trumpet Instrument» - геометрия совпадает полностью (17 842 / 18 667),
+ * категория одна, а склейки нет: у короткого имени одно значащее слово, у
+ * длинного три, и первая мера даёт 1/3 = 0,33 при пороге 0,5. Короткое имя
+ * всегда проигрывает длинному, даже когда входит в него целиком.
+ *
+ * Порог 0,75, а не «входит полностью»: при 0,67 связывались «1872 French
+ * Cuirassier Officer Helmet» и «French Officers Sword» - шлем и сабля делят
+ * слова «french» и «officer».
+ */
+const SIM_CONTAIN = 0.75;
+const like = (a, b) => {
+  if (!a.size || !b.size) return false;
+  const i = inter(a, b);
   const u = a.size + b.size - i;
-  return u ? i / u : 0;
+  if (u && i / u >= SIM) return true;
+  return i / Math.min(a.size, b.size) >= SIM_CONTAIN;
 };
 
 /*
@@ -221,7 +241,7 @@ for (const [, items] of byCat) {
       const bp = Math.min(A.polygons, B.polygons), bv = Math.min(A.vertices, B.vertices);
       if (Math.abs(A.polygons - B.polygons) > bp * TOL) continue;
       if (Math.abs(A.vertices - B.vertices) > bv * TOL) continue;
-      if (sim(T[i], T[j]) < SIM) continue;
+      if (!like(T[i], T[j])) continue;
       link(i, j);
     }
   }
@@ -241,7 +261,7 @@ for (const [, items] of byCat) {
     if (idx.length > 40) continue;
     for (let a = 0; a < idx.length; a++) for (let b = a + 1; b < idx.length; b++) {
       const i = idx[a], j = idx[b];
-      if (sim(T[i], T[j]) < SIM) continue;
+      if (!like(T[i], T[j])) continue;
       link(i, j);
     }
   }
