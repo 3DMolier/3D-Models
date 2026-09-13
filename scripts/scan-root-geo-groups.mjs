@@ -76,7 +76,7 @@ const DRY = process.argv.includes('--dry');
 const RECS = path.join(ROOT, 'data', 'records');
 const OUT = path.join(ROOT, 'data', 'rootgeo-groups.json');
 
-const MAX_CARDS = 12;
+const MAX_CARDS = 40;   // был 12: резал верные связки - 19 настольных флагов, 39 поз рук
 const MAX_SERIES = 40;    // серия бывает крупной: набор эмодзи это 26 карточек
 const TOL = 0.10;         // допуск по полигонам и вершинам между парой
 const SIM = 0.5;          // порог похожести названий
@@ -146,7 +146,43 @@ const toks = n => new Set(String(n).toLowerCase().replace(/[^a-z0-9]+/g, ' ').sp
   .filter(t => t.length > 2 && !STOP.has(t) && !/^\d+$/.test(t)));
 
 // Число с единицей измерения - признак разных товаров.
-const UNIT = /\b\d{1,4}\s*(lb|lbs|kg|ml|vol|inch|in|cm|mm|ft|hp|gb|tb|oz|mah|watt|volt|litre|liter|gallon|pcs|mp|k)\b/i;
+/*
+ * Число с единицей измерения. Раньше ЛЮБОЕ такое число отменяло группу - защита
+ * от «10 LB против 14 LB Medicine Ball», разные товары.
+ *
+ * 13.09.2026 сплошная проверка показала перегиб: фильтр убивал и те группы, где
+ * размер у всех ОДИНАКОВ - «20 ft ISO Container Blue» с «Shipping Cargo
+ * Container 20 ft», «18mm Aluminium Screw Cap Golden» с «Pre-threaded Aluminum
+ * Screw Cap 18mm». Так отсеялись 186 групп.
+ *
+ * Теперь отменяет только РАСХОЖДЕНИЕ: у одной единицы измерения два разных
+ * числа. Одинаковый размер и отсутствие размера склейке не мешают.
+ */
+const UNIT_RE = /\b(\d{1,4})\s*(lb|lbs|kg|ml|vol|inch|in|cm|mm|ft|hp|gb|tb|oz|mah|watt|volt|litre|liter|gallon|pcs|mp|k)\b/ig;
+const unitsOf = n => {
+  const out = new Map();
+  for (const m of String(n).matchAll(UNIT_RE)) {
+    let u = m[2].toLowerCase();
+    if (u === 'lbs') u = 'lb';
+    if (u === 'inch') u = 'in';
+    if (u === 'litre' || u === 'liter') u = 'l';
+    if (!out.has(u)) out.set(u, new Set());
+    out.get(u).add(m[1]);
+  }
+  return out;
+};
+/** Правда, если у какой-то единицы измерения в группе два разных числа. */
+const unitsClash = list => {
+  const seen = new Map();
+  for (const n of list) {
+    for (const [u, vals] of unitsOf(n)) {
+      if (!seen.has(u)) seen.set(u, new Set());
+      for (const v of vals) seen.get(u).add(v);
+    }
+  }
+  for (const vals of seen.values()) if (vals.size > 1) return true;
+  return false;
+};
 
 const inter = (a, b) => { let i = 0; for (const t of a) if (b.has(t)) i++; return i; };
 
@@ -336,7 +372,7 @@ for (const [, items] of byCat) {
     if (cl.length > (isSeries ? MAX_SERIES : MAX_CARDS)) { cut.размер++; continue; }
     const polys = cl.map(x => x.specs.polygons);
     if (!isSeries && Math.max(...polys) > Math.min(...polys) * MAX_SPREAD) { cut.разброс++; continue; }
-    if (cl.some(x => UNIT.test(x.name))) { cut.единицы++; continue; }
+    if (unitsClash(cl.map(x => x.name))) { cut.единицы++; continue; }
     const slugs = new Set(cl.map(x => x.slug));
     if (cl.some(x => (x.family || []).some(v => slugs.has(v.slug)))) { cut.ужеСклеены++; continue; }
     const sorted = cl.slice().sort((a, b) => b.sales - a.sales);
