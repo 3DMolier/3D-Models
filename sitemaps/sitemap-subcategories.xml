@@ -31,24 +31,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/categories/aircraft/airliners/page/3/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/categories/aircraft/airliners/page/4/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/categories/aircraft/airliners/page/5/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/categories/aircraft/drones/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -85,12 +67,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/categories/vehicles/trucks/page/5/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/categories/vehicles/trailers/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -98,12 +74,6 @@
   </url>
   <url>
     <loc>https://3dmolierstudio.com/categories/vehicles/trailers/page/2/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/categories/vehicles/trailers/page/3/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -121,34 +91,16 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/categories/vehicles/suvs/page/3/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/categories/vehicles/buses/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/categories/vehicles/buses/page/2/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/categories/vehicles/motorcycles/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/categories/vehicles/motorcycles/page/2/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://3dmolierstudio.com/categories/medical-3d-models/human-anatomy/</loc>
@@ -163,34 +115,16 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/categories/medical-3d-models/human-anatomy/page/3/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/categories/medical-3d-models/skeleton-bones/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/categories/medical-3d-models/skeleton-bones/page/2/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/categories/medical-3d-models/dental/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/categories/medical-3d-models/dental/page/2/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://3dmolierstudio.com/categories/medical-3d-models/medical-equipment/</loc>
@@ -229,18 +163,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/categories/animals-creatures/fish-marine/page/3/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/categories/animals-creatures/fish-marine/page/4/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/categories/animals-creatures/birds/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -259,12 +181,6 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/categories/animals-creatures/insects/page/2/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/categories/electronics-gadgets/smartphones/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -272,18 +188,6 @@
   </url>
   <url>
     <loc>https://3dmolierstudio.com/categories/electronics-gadgets/smartphones/page/2/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/categories/electronics-gadgets/smartphones/page/3/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/categories/electronics-gadgets/smartphones/page/4/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -301,12 +205,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/categories/electronics-gadgets/cameras/page/3/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/categories/electronics-gadgets/laptops-computers/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -314,12 +212,6 @@
   </url>
   <url>
     <loc>https://3dmolierstudio.com/categories/electronics-gadgets/laptops-computers/page/2/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/categories/electronics-gadgets/laptops-computers/page/3/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -367,12 +259,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/categories/weapons/missiles-rockets/page/3/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/categories/weapons/knives-swords/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -403,12 +289,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/categories/furniture-interior/chairs/page/4/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/categories/furniture-interior/tables/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -416,12 +296,6 @@
   </url>
   <url>
     <loc>https://3dmolierstudio.com/categories/furniture-interior/tables/page/2/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/categories/furniture-interior/tables/page/3/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -457,12 +331,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/categories/nature-plants/trees/page/4/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/categories/nature-plants/flowers/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -487,22 +355,10 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/categories/industrial-equipment/cranes/page/2/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/categories/industrial-equipment/tractors-agriculture/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/categories/industrial-equipment/tractors-agriculture/page/2/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://3dmolierstudio.com/categories/industrial-equipment/robots-automation/</loc>
@@ -511,22 +367,10 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/categories/industrial-equipment/robots-automation/page/2/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/categories/industrial-equipment/forklifts-loaders/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/categories/industrial-equipment/forklifts-loaders/page/2/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://3dmolierstudio.com/categories/ships/boats-yachts/</loc>
@@ -553,12 +397,6 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/categories/ships/naval-ships/page/2/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/categories/lighting/lamps/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -571,40 +409,16 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/categories/lighting/bulbs/page/2/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/categories/lighting/lanterns-outdoor/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/categories/sports-recreation/balls/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/categories/sports-recreation/balls/page/2/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/categories/sports-recreation/hockey/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/categories/sports-recreation/hockey/page/2/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://3dmolierstudio.com/categories/sports-recreation/fitness-gym/</loc>
@@ -631,12 +445,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/categories/food-beverages/fruit-vegetables/page/3/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/categories/food-beverages/desserts-sweets/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -644,18 +452,6 @@
   </url>
   <url>
     <loc>https://3dmolierstudio.com/categories/food-beverages/desserts-sweets/page/2/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/categories/food-beverages/desserts-sweets/page/3/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/categories/food-beverages/desserts-sweets/page/4/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -673,12 +469,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/categories/containers-storage/shipping-containers/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/categories/containers-storage/boxes-crates/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -686,12 +476,6 @@
   </url>
   <url>
     <loc>https://3dmolierstudio.com/categories/containers-storage/boxes-crates/page/2/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/categories/containers-storage/boxes-crates/page/3/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -709,12 +493,6 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/categories/other/emoji/page/2/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/categories/other/coins-currency/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -727,21 +505,9 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://3dmolierstudio.com/categories/other/coins-currency/page/3/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://3dmolierstudio.com/categories/other/stationery-office/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://3dmolierstudio.com/categories/other/stationery-office/page/2/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
   </url>
 </urlset>

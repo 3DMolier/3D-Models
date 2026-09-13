@@ -12,6 +12,10 @@ import { anchorClassify } from './anchors25.mjs';
 import { classifyByReport } from './category-map.mjs';
 
 import { ROOT } from './lib/paths.mjs';
+// TAXONOMY, а не CATEGORIES: в этом файле CATEGORIES уже занято под путь к
+// папке /categories.
+import { CATEGORIES as TAXONOMY } from './lib/taxonomy.mjs';
+import { CATS } from './lib/cat-keywords.mjs';
 const DATA = path.join(ROOT, 'data');
 const CATEGORIES = path.join(ROOT, 'categories');
 const MODELS = path.join(ROOT, 'models');
@@ -21,12 +25,31 @@ const PERPAGE = 100;
 const slugify = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-// ---- 25-кат классификатор (из classify15.mjs) ----
-const clsSrc = fs.readFileSync(path.join(ROOT, 'scripts', 'classify15.mjs'), 'utf8');
-const CATS = eval('[' + clsSrc.split('const CATS = [')[1].split('];')[0] + ']');
-const dispOf = Object.fromEntries(CATS.map(c => [c[0], c[1]]));
+/*
+ * ---- 25-кат классификатор (из classify15.mjs) ----
+ *
+ * Список категорий раньше добывался так: прочитать ИСХОДНИК classify15.mjs,
+ * вырезать из текста кусок между «const CATS = [» и «];» и скормить eval.
+ * Держалось это на том, что в чужом файле не поменяют форматирование.
+ *
+ * И держалось плохо: имена там разошлись с единым источником у трёх категорий -
+ * «Ships» против «Ships & Boats», «Architecture Landmarks» против
+ * «Architecture & Landmarks», «Collections & Sets» против «Model Bundles &
+ * Sets». Расхождение уходило в title, в описание, в h1 и в чип на каждой
+ * плитке: 8 656 штук, и проверка check-taxonomy ругалась на них постоянно.
+ *
+ * Теперь имена берутся из data/taxonomy.json через lib/taxonomy.mjs - того же
+ * источника, по которому живут карточки, меню и счётчики. Правило записано:
+ * имя категории в страницах не править, править источник.
+ *
+ * Правила КЛАССИФИКАЦИИ (какая модель в какую категорию) остаются в
+ * classify15.mjs, сюда они не нужны - раскладка приходит готовой из
+ * model-categories.json.
+ */
+const dispOf = Object.fromEntries(TAXONOMY.map(c => [c.slug, c.name]));
 dispOf['other'] = 'Other';
-const ALL_SLUGS = CATS.map(c => c[0]).concat('other');
+// «other» в едином источнике уже есть - без dedupe категория собиралась дважды.
+const ALL_SLUGS = [...new Set(TAXONOMY.map(c => c.slug).concat('other'))];
 // Источник истины — реальная категория TurboSquid (cat1/cat2 из отчёта продаж).
 // Ключевые слова в названии — только запасной вариант для моделей вне отчёта
 // (0.1% каталога), иначе слово может случайно совпасть не с той категорией
@@ -56,10 +79,31 @@ const OVERRIDES = (() => {
 // Папки карточек по номеру модели: единственный надёжный способ получить адрес.
 // Вычислять его из названия нельзя - правило слагов в данных и на диске местами
 // расходится, и модель молча выпадает из своей категории.
+/*
+ * И ТОЛЬКО ЖИВАЯ папка. 13.09.2026 проверка check-unknown-tiles нашла 4 678
+ * плиток, ведущих на заглушку: посетитель кликал по модели и попадал на
+ * перенаправление. Записи собираются и для свёрнутых моделей, так что «папка
+ * есть» ничего не доказывает - надо смотреть, карточка там или заглушка.
+ *
+ * Заодно: у одного номера на диске бывает две папки разного написания
+ * (electric-scooter-1-1428089 и electric-scooter1-1428089), живая из пары одна.
+ * «Первая попавшаяся» брала заглушку и выбрасывала живую карточку из хаба.
+ */
+const HEAD_BYTES = 400, headBuf = Buffer.alloc(HEAD_BYTES);
+const isLiveCard = d => {
+  let fd;
+  try { fd = fs.openSync(path.join(MODELS, d, 'index.html'), 'r'); } catch (e) { return false; }
+  try {
+    const n = fs.readSync(fd, headBuf, 0, HEAD_BYTES, 0);
+    return !/http-equiv="refresh"/.test(headBuf.slice(0, n).toString('utf8'));
+  } finally { fs.closeSync(fd); }
+};
 const DIR_BY_ID = new Map();
 for (const d of fs.readdirSync(MODELS)) {
   const id = d.slice(d.lastIndexOf('-') + 1);
-  if (/^[0-9]+$/.test(id) && !DIR_BY_ID.has(id)) DIR_BY_ID.set(id, d);
+  if (!/^[0-9]+$/.test(id)) continue;
+  if (!isLiveCard(d)) continue;
+  if (!DIR_BY_ID.has(id)) DIR_BY_ID.set(id, d);
 }
 // Метка версии - из главной страницы. Зашитая v=33 возвращалась при каждой
 // пересборке и отправляла посетителю стили и скрипты годичной давности.

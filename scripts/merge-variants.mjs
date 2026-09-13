@@ -21,6 +21,7 @@ import path from 'node:path';
 // которому построены хабы категорий.
 import { classifyByReport } from './category-map.mjs';
 import { familyName } from './lib/model-name.mjs';
+import { CATS as CAT_KEYWORDS } from './lib/cat-keywords.mjs';
 
 import { ROOT } from './lib/paths.mjs';
 const MODELS = path.join(ROOT, 'models');
@@ -159,9 +160,9 @@ for (const r of rows) r.url = fixRef(r.url);
     const slugify = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
     // Категория в CSV - отображаемое имя («Animals & Creatures»), тем же должно
     // быть и здесь: по ней работает проход «одна машина - одна карточка».
-    const clsSrc2 = fs.readFileSync(path.join(ROOT, 'scripts', 'classify15.mjs'), 'utf8');
-    const CATS2 = eval('[' + clsSrc2.split('const CATS = [')[1].split('];')[0] + ']');
-    const disp2 = Object.fromEntries(CATS2.map(c => [c[0], c[1]])); disp2.other = 'Other';
+    // Список - из общего модуля. Раньше вырезался из ТЕКСТА classify15.mjs и
+    // скармливался eval; держалось на том, что там не поменяют форматирование.
+    const disp2 = Object.fromEntries(CAT_KEYWORDS.map(c => [c[0], c[1]])); disp2.other = 'Other';
     let added = 0;
     for (const p of np) {
       const id = String(p.pid);

@@ -45,8 +45,10 @@ const NOINDEX = args.includes('--noindex');
 // ── классификатор: тот же, что у хабов ───────────────────────────────────────
 const { anchorClassify } = await import(pathToFileURL(path.join(ROOT, 'scripts', 'anchors25.mjs')).href);
 const { classifyByReport } = await import(pathToFileURL(path.join(ROOT, 'scripts', 'category-map.mjs')).href);
-const clsSrc = fs.readFileSync(path.join(ROOT, 'scripts', 'classify15.mjs'), 'utf8');
-const CATS = eval('[' + clsSrc.split('const CATS = [')[1].split('];')[0] + ']');
+// Ключевые слова - из общего модуля. Раньше список вырезался из ТЕКСТА
+// classify15.mjs и скармливался eval; держалось на том, что в чужом файле не
+// поменяют форматирование.
+const { CATS } = await import(pathToFileURL(path.join(ROOT, 'scripts', 'lib', 'cat-keywords.mjs')).href);
 const dispOf = Object.fromEntries(CATS.map(c => [c[0], c[1]])); dispOf.other = 'Other';
 const keywordClassify = name => {
   const t = new Set(String(name).toLowerCase().match(/[a-z0-9]+/g) || []);

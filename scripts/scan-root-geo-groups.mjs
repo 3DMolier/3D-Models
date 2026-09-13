@@ -372,14 +372,41 @@ for (const [, items] of byCat) {
     if (cl.length > (isSeries ? MAX_SERIES : MAX_CARDS)) { cut.размер++; continue; }
     const polys = cl.map(x => x.specs.polygons);
     if (!isSeries && Math.max(...polys) > Math.min(...polys) * MAX_SPREAD) { cut.разброс++; continue; }
-    if (unitsClash(cl.map(x => x.name))) { cut.единицы++; continue; }
-    const slugs = new Set(cl.map(x => x.slug));
-    if (cl.some(x => (x.family || []).some(v => slugs.has(v.slug)))) { cut.ужеСклеены++; continue; }
-    const sorted = cl.slice().sort((a, b) => b.sales - a.sales);
-    found.push({
-      cat: sorted[0].category_name, poly: sorted[0].specs.polygons,
-      slugs: sorted.map(x => x.slug), names: sorted.map(x => x.name),
-    });
+    /*
+     * Размеры разошлись - группу НЕ отменяем целиком, а делим по размеру.
+     *
+     * Отмена всей группы - тот же «один чужак портит всё», что уже дважды
+     * ловил основатель. «18mm Aluminium Screw Cap Golden» и «Pre-threaded
+     * Aluminum Screw Cap 18mm» - один размер и одна вещь, но рядом в корне
+     * лежала крышка другого диаметра, и не склеивалась вся тройка.
+     *
+     * Карточки без размера в имени при делении отбрасываем: приписать их к
+     * какому-то одному размеру нечем, а угадывать нельзя. Когда размер у всех
+     * один, деления не происходит и они остаются в группе.
+     */
+    let parts = [cl];
+    if (unitsClash(cl.map(x => x.name))) {
+      const bySig = new Map();
+      for (const x of cl) {
+        const u = unitsOf(x.name);
+        if (!u.size) continue;
+        const sig = [...u].map(([k, v]) => k + ':' + [...v].sort().join('/')).sort().join(',');
+        if (!bySig.has(sig)) bySig.set(sig, []);
+        bySig.get(sig).push(x);
+      }
+      parts = [...bySig.values()].filter(p => p.length >= 2);
+      if (!parts.length) { cut.единицы++; continue; }
+      cut.единицы++;
+    }
+    for (const part of parts) {
+      const slugs = new Set(part.map(x => x.slug));
+      if (part.some(x => (x.family || []).some(v => slugs.has(v.slug)))) { cut.ужеСклеены++; continue; }
+      const sorted = part.slice().sort((a, b) => b.sales - a.sales);
+      found.push({
+        cat: sorted[0].category_name, poly: sorted[0].specs.polygons,
+        slugs: sorted.map(x => x.slug), names: sorted.map(x => x.name),
+      });
+    }
   }
 }
 
