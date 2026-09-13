@@ -241,7 +241,30 @@ for (const [, items] of byCat) {
       const bp = Math.min(A.polygons, B.polygons), bv = Math.min(A.vertices, B.vertices);
       if (Math.abs(A.polygons - B.polygons) > bp * TOL) continue;
       if (Math.abs(A.vertices - B.vertices) > bv * TOL) continue;
-      if (!like(T[i], T[j])) continue;
+      /*
+       * Внутри одного корня при ТОЧНОМ совпадении геометрии имена не сверяются
+       * вовсе.
+       *
+       * Сплошная проверка 13.09.2026 показала: сверка имён здесь мешает, а не
+       * помогает. Студия выкладывает одну модель дважды - под маркой и под
+       * описательным именем, - и общих слов у них ноль:
+       *   «Bicolor Corn Cob Without Husk»  +  «Raw Maize Ear Shelled»
+       *   «Blue Linckia»                   +  «Ocean Starfish»
+       *   «Ping Pong Ball and Paddle»      +  «Table Tennis Racket»
+       *   «Modern Flat Screen Television»  +  «Sony X900B 4K Ultra HD TV»
+       *   «Cadillac V-100 Light APC Rusted Camouflage» + «Forest Camo Combat
+       *    Vehicle Worn Dirty» - ровно тот случай, ради которого писался
+       *    отдельный проход по геометрии.
+       * Таких пар нашлось 1 156 из 1 310 «без единого общего слова».
+       *
+       * Для РАЗНЫХ корней сверка остаётся: там та же выборка показала обратное -
+       * «Heavily Grilled Artisan Meat Sausage» + «White Sugar Cube 1x1x1cm»,
+       * «Pringles Potato Chips» + «Flower Shaped Marshmallows». Корень - это
+       * доказательство, что вещи выложены как одна работа; без него остаётся
+       * только совпадение чисел.
+       */
+      const exact = A.polygons === B.polygons && A.vertices === B.vertices;
+      if (!exact && !like(T[i], T[j])) continue;
       link(i, j);
     }
   }
