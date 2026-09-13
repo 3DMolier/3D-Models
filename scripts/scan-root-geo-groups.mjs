@@ -77,9 +77,43 @@ const RECS = path.join(ROOT, 'data', 'records');
 const OUT = path.join(ROOT, 'data', 'rootgeo-groups.json');
 
 const MAX_CARDS = 12;
+const MAX_SERIES = 40;    // серия бывает крупной: набор эмодзи это 26 карточек
 const TOL = 0.10;         // допуск по полигонам и вершинам между парой
 const SIM = 0.5;          // порог похожести названий
 const MAX_SPREAD = 1.25;  // потолок разброса полигонов внутри группы
+
+/*
+ * Хвост названия - слово, которым вещь НАЗЫВАЕТСЯ: «... Emoji», «... Aqueduct».
+ * Служебные слова и слова исполнения с конца снимаются, множественное число
+ * приводится к единственному грубо, по букве s.
+ */
+const TAIL_SKIP = new Set(['3d', 'model', 'models', 'rigged', 'rigid', 'animated',
+  'simplified', 'simple', 'generic', 'lowpoly', 'poly', 'fur', 'furry', 'pose', 'posed',
+  'standing', 'sitting', 'walking', 'running', 'flying', 'swimming', 'lying', 'idle',
+  'neutral', 'clean', 'dirty', 'new', 'old', 'used', 'collection', 'set', 'version',
+  'variant', 'type', 'style', 'edition', 'red', 'yellow', 'green', 'blue', 'black',
+  'white', 'grey', 'gray', 'silver', 'gold', 'brown', 'orange', 'pink', 'purple', 'beige',
+  'bronze', 'copper', 'maroon', 'camo', 'camouflage', 'sand', 'khaki', 'tan', 'olive',
+  'dark', 'light', 'metallic', 'transparent', 'chrome', 'mirror']);
+/*
+ * Хвост, называющий ДЕТАЛЬ или МАТЕРИАЛ, серию не образует: детали одного
+ * изделия не варианты друг друга («iPad Pro Battery Module» и «iPad Pro
+ * Loudspeaker Module»), а материал вообще ничего не называет («Head Gasket
+ * 6 Cylinder Steel» и «Head Gasket 4AGE Toyota Steel»).
+ */
+const NOT_A_THING = new Set(['module', 'part', 'component', 'panel', 'cover', 'board',
+  'assembly', 'bracket', 'mount', 'unit', 'element', 'section', 'piece', 'fragment',
+  'insert', 'steel', 'brass', 'metal', 'plastic', 'wood', 'wooden', 'glass', 'leather',
+  'fabric', 'rubber', 'aluminium', 'aluminum', 'ceramic', 'concrete', 'stone', 'carbon',
+  'titanium', 'iron', 'disassembled', 'interior', 'exterior', 'body', 'frame', 'base',
+  'top', 'bottom', 'side', 'back', 'front', 'left', 'right', 'inside', 'outside']);
+const tailWord = n => {
+  const w = String(n).toLowerCase().replace(/[^a-z0-9]+/g, ' ').split(' ')
+    .filter(t => t.length > 2 && !TAIL_SKIP.has(t) && !/^\d+$/.test(t));
+  if (!w.length) return null;
+  const t = w[w.length - 1];
+  return (t.length > 4 && t.endsWith('s') && !t.endsWith('ss')) ? t.slice(0, -1) : t;
+};
 
 const all = [];
 for (const f of fs.readdirSync(RECS).filter(x => /^records-\d+\.json$/.test(x)))
@@ -166,6 +200,10 @@ for (const [, items] of byCat) {
   const par = [...Array(n).keys()];
   const find = a => { while (par[a] !== a) { par[a] = par[par[a]]; a = par[a]; } return a; };
   const link = (i, j) => { const x = find(i), y = find(j); if (x !== y) par[y] = x; };
+  // Кто попал в группу как СЕРИЯ: им разрешён больший размер и любой разброс
+  // полигонов - у серии каждый предмет свой, это её природа, а не дрейф цепочки.
+  const series = new Set();
+  const slugSeries = new Set();
 
   // путь 1: общий корень, геометрия с допуском
   const byRoot = new Map();
@@ -208,6 +246,39 @@ for (const [, items] of byCat) {
     }
   }
 
+  /*
+   * путь 3: СЕРИЯ. Вся публикация целиком про одно, геометрия у каждого своя.
+   *
+   * 13.09.2026 основатель прислал шесть эмодзи-жестов: Victory Hand Sign, Open
+   * Hands, Love-You Gesture, Backhand Index Pointing Left, Right-Facing Fist,
+   * Waving Hand. Один корень, одна категория, но каждый жест - свой меш: от 559
+   * до 1130 полигонов, разброс вдвое. Ни допуск, ни точная геометрия такую
+   * группу не видят, а похожесть имён у них 0,17 - общее слово одно, «Emoji».
+   *
+   * Признак серии: ПОСЛЕДНЕЕ значащее слово одинаково у ВСЕХ карточек корня в
+   * этой категории. Тогда «... Emoji» проходит - весь корень набор эмодзи, - а
+   * «Blue Enamel Bucket» с «Construction Buckets Set» нет: в их корне лежит и
+   * другое. Требование «у всех» здесь на месте: оно и означает, что публикация
+   * целиком про одну вещь.
+   *
+   * Проверено и отвергнуто по дороге: просто общее слово где угодно (связывало
+   * «1872 French Cuirassier Helmet» с «French Officers Sword» по слову
+   * «french») и просто одинаковый хвост у ЧАСТИ корня (связывало «iPad Pro
+   * Battery Module» с «iPad Pro Loudspeaker Module» - это разные детали).
+   */
+  for (const idxAll of byRoot.values()) {
+    if (idxAll.length < 3) continue;
+    const tails = idxAll.map(i => tailWord(items[i].name));
+    const t0 = tails[0];
+    if (!t0 || NOT_A_THING.has(t0)) continue;
+    if (!tails.every(t => t === t0)) continue;
+    // Набор - не вариант своего предмета, в серию его не берём.
+    const idx = idxAll.filter(i => !/\bsets?\b/i.test(items[i].name));
+    if (idx.length < 3) continue;
+    for (const i of idx) { series.add(i); slugSeries.add(items[i].slug); }
+    for (let a = 1; a < idx.length; a++) link(idx[0], idx[a]);
+  }
+
   const comp = new Map();
   for (let i = 0; i < n; i++) {
     const r = find(i);
@@ -216,9 +287,12 @@ for (const [, items] of byCat) {
   }
   for (const cl of comp.values()) {
     if (cl.length < 2) continue;
-    if (cl.length > MAX_CARDS) { cut.размер++; continue; }
+    // У серии каждый предмет со своей геометрией, и набор бывает большим:
+    // ограничители размера и разброса к ней не применяются.
+    const isSeries = cl.every(x => slugSeries.has(x.slug));
+    if (cl.length > (isSeries ? MAX_SERIES : MAX_CARDS)) { cut.размер++; continue; }
     const polys = cl.map(x => x.specs.polygons);
-    if (Math.max(...polys) > Math.min(...polys) * MAX_SPREAD) { cut.разброс++; continue; }
+    if (!isSeries && Math.max(...polys) > Math.min(...polys) * MAX_SPREAD) { cut.разброс++; continue; }
     if (cl.some(x => UNIT.test(x.name))) { cut.единицы++; continue; }
     const slugs = new Set(cl.map(x => x.slug));
     if (cl.some(x => (x.family || []).some(v => slugs.has(v.slug)))) { cut.ужеСклеены++; continue; }

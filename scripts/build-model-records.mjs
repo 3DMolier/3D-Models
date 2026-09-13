@@ -477,6 +477,16 @@ const DISPLAY_NAME = new Map(Object.entries(
     : {}));
 
 /*
+ * Заголовки, решённые ГЛАЗАМИ. Приоритет выше вычисленного и выше снятого со
+ * страницы. Ключ, начинающийся с подчёркивания, - пояснение внутри файла, а не
+ * адрес карточки.
+ */
+const NAME_FIX = new Map(Object.entries(
+  fs.existsSync(path.join(DATA, 'display-name-overrides.json'))
+    ? JSON.parse(fs.readFileSync(path.join(DATA, 'display-name-overrides.json'), 'utf8'))
+    : {}).filter(([k]) => !k.startsWith('_')));
+
+/*
  * РУКОПИСНЫЕ ОПИСАНИЯ. Авторский текст ночной смены, абзацами.
  *
  * Это не снятые со страниц данные, а единственный экземпляр написанного
@@ -570,7 +580,16 @@ say('читаю карту свёрнутых...');
      * словом; во всех прочих случаях функция молчит и заголовок прежний.
      */
     const axis = r.family.length ? variantAxis(r.name, r.family.map(v => v.name)) : null;
-    r.display_name = axis || DISPLAY_NAME.get(r.slug)
+    /*
+     * Ручное решение главнее всего остального. Имя семьи собирается из слов,
+     * общих ВСЕМ её членам, и там, где версии названы по-разному, от заголовка
+     * остаются одни определения: «Everyday Style» на карточке из 14 пожилых
+     * афроамериканок, «with Turret» на семье бронемашин Cockerill. Правилом
+     * это не чинится - порог «слово у большинства» давал «SUV» вместо
+     * «2027 Volvo EX60». Таких 17 на 17 085 склеенных карточек, и они разобраны
+     * глазами в data/display-name-overrides.json.
+     */
+    r.display_name = NAME_FIX.get(r.slug) || axis || DISPLAY_NAME.get(r.slug)
       || (r.family.length ? familyName(r.name, r.family.map(v => v.name)) : r.name);
     /*
      * Двойные пробелы схлопываем и здесь, а не только у r.name: заголовки
