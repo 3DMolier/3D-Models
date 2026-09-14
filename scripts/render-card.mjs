@@ -698,12 +698,31 @@ export function videoBlock(r) {
     ? ` <a href="https://www.youtube.com/@dddmolier" target="_blank" rel="noopener">`
       + `${v.count - 1} more clip${v.count > 2 ? 's' : ''} of this model on our channel</a>.`
     : '';
+  const cover = `<img src="https://i.ytimg.com/vi/${esc(v.id)}/hqdefault.jpg" alt="" width="480" height="360"`
+    + ` loading="lazy" decoding="async">`
+    + `<span class="mp-video-play" aria-hidden="true"></span>`;
+  /*
+   * У части роликов канала снята галка «Разрешить встраивание». Плеер на чужом
+   * сайте им отвечает «Владелец видео запретил его просмотр на других сайтах» -
+   * вместо ролика посетитель получает чёрный прямоугольник с упрёком.
+   *
+   * Таким ставим ту же обложку, но ССЫЛКОЙ на YouTube, а не кнопкой плеера.
+   * Список запрещённых - tools/youtube/no-embed-ids.json, снят oEmbed'ом: он
+   * отдаёт 401 ровно на них и не тратит квоту API.
+   *
+   * 14.09.2026: защита была, но потерялась при переводе карточек на генератор -
+   * 95 карточек из 287 показывали запрет. Теперь она живёт в генераторе, и
+   * пересборка её не сотрёт.
+   */
+  if (v.embed === false) {
+    return `<div class="mp-video"><h2 class="mp-block-h2">See this model in motion</h2>`
+      + `<a class="mp-video-frame mp-video-frame--out" href="https://www.youtube.com/watch?v=${esc(v.id)}"`
+      + ` target="_blank" rel="noopener" aria-label="Watch on YouTube: ${esc(v.title)}">${cover}</a>`
+      + `<p class="mp-video-cap">${esc(v.title)} - watch on the 3D Molier channel.${more}</p></div>`;
+  }
   return `<div class="mp-video"><h2 class="mp-block-h2">See this model in motion</h2>`
     + `<button type="button" class="mp-video-frame" data-yt="${esc(v.id)}" data-title="${esc(v.title)}"`
-    + ` aria-label="Play video: ${esc(v.title)}">`
-    + `<img src="https://i.ytimg.com/vi/${esc(v.id)}/hqdefault.jpg" alt="" width="480" height="360"`
-    + ` loading="lazy" decoding="async">`
-    + `<span class="mp-video-play" aria-hidden="true"></span></button>`
+    + ` aria-label="Play video: ${esc(v.title)}">${cover}</button>`
     + `<p class="mp-video-cap">${esc(v.title)} - from the 3D Molier channel.${more}</p></div>`;
 }
 
@@ -711,6 +730,13 @@ export function videoBlock(r) {
 export function videoSchema(r) {
   const v = r.video;
   if (!v || !v.id) return '';
+  /*
+   * У запрещённого к встраиванию ролика embedUrl не работает, а VideoObject без
+   * рабочего embedUrl - обещание, которое страница не выполняет. Такому ролику
+   * разметку не даём: на странице стоит ссылка на YouTube, там ролик и живёт
+   * со своей разметкой.
+   */
+  if (v.embed === false) return '';
   const j = {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',

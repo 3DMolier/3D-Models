@@ -113,4 +113,38 @@ for (const rel of pages) {
   if (!DRY) fs.writeFileSync(file, h);
 }
 console.log('страниц с общим числом поправлено: ' + totals);
+
+/*
+ * ── 4. числа в чипах фильтра на /catalog/ ───────────────────────────────────
+ *
+ * Чипы категорий лежат в разметке каталога СТАТИЧЕСКИ, вместе с числом:
+ * `<button data-cat="aircraft">Aircraft <span class="ftag-n">1,499</span>`.
+ * Поставились они один раз, при сборке страницы, и с тех пор не двигались.
+ *
+ * 14.09.2026 основатель прислал снимок: чип обещает «Aircraft 1 499», а выдача
+ * по нему - «841 of 37 683». Разошлись ВСЕ 26 категорий: после склейки каталог
+ * ужался с 54 519 до 37 683, а числа на кнопках остались от прежнего.
+ *
+ * Сама выдача при этом верна - единый источник и индекс каталога сходятся до
+ * единицы. Врало только обещание на кнопке.
+ */
+let chips = 0;
+{
+  const file = path.join(ROOT, 'catalog', 'index.html');
+  if (fs.existsSync(file)) {
+    const before = fs.readFileSync(file, 'utf8');
+    let h = before;
+    for (const [slug, n] of Object.entries(counts.counts)) {
+      // Правим ТОЛЬКО число внутри своего чипа: искать его по значению нельзя,
+      // одно и то же число встречается на странице в разных ролях.
+      const re = new RegExp('(data-cat="' + slug + '"[^>]*>[^<]*<span class="ftag-n">)[\\d,]+', 'g');
+      h = h.replace(re, (m, head) => head + fmt(n));
+    }
+    const nums = s => [...s.matchAll(/<span class="ftag-n">([\d,]+)/g)].map(m => m[1]);
+    const a = nums(before), b = nums(h);
+    chips = a.filter((v, i) => v !== b[i]).length;
+    if (chips && !DRY) fs.writeFileSync(file, h);
+  }
+}
+console.log('чипов категорий в каталоге поправлено: ' + chips);
 if (DRY) console.log('(--dry, ничего не записано)');

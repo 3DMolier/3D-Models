@@ -667,6 +667,26 @@ say('читаю карту свёрнутых...');
       if (!byModel.has(id)) byModel.set(id, []);
       byModel.get(id).push({ id: row.video_id, title: row.title, date: row.date });
     });
+    /*
+     * Ролик снят по модели, которую потом СВЕРНУЛИ в другую карточку. Номер в
+     * журнале остался прежним, страницы по нему больше нет - и связь рвалась
+     * молча: 113 роликов из 338 висели на заглушках.
+     *
+     * Товар при этом никуда не делся, он лежит версией на главной карточке
+     * семьи, и облёт показывает ровно его. Поэтому ролик переносим на главную.
+     * Ключ - номер модели: он есть и в журнале, и в составе семьи.
+     */
+    let moved = 0;
+    for (const r of byId.values()) {
+      for (const v of (r.family || [])) {
+        const list = byModel.get(String(v.id));
+        if (!list || !list.length) continue;
+        if (!byModel.has(r.id)) byModel.set(r.id, []);
+        byModel.get(r.id).push(...list);
+        moved++;
+      }
+    }
+    if (moved) say('роликов перенесено со свёрнутых карточек на главные: ' + moved);
     for (const r of byId.values()) {
       const list = byModel.get(r.id);
       if (!list || !list.length) continue;
@@ -699,8 +719,30 @@ say('читаю карту свёрнутых...');
     r.video = { id: v.id, title: v.title, date: '', count: 1 };
     fromPage++;
   }
+  /*
+   * Можно ли встроить ролик. У части роликов канала снята галка «Разрешить
+   * встраивание», и плеер на карточке отвечает «Владелец видео запретил его
+   * просмотр на других сайтах». Список снят oEmbed'ом (он отдаёт 401 ровно на
+   * запрещённых и не тратит квоту API) и лежит в tools/youtube/no-embed-ids.json.
+   *
+   * Запись только ПОМЕЧАЕТ ролик; что показать вместо плеера, решает генератор
+   * страницы. До 14.09.2026 этой пометки в записи не было вовсе, и 95 карточек
+   * из 287 показывали посетителю запрет вместо ролика.
+   */
+  const NO_EMBED_FILE = 'D:/Clode_Work_Folder/tools/youtube/no-embed-ids.json';
+  let blocked = 0;
+  if (fs.existsSync(NO_EMBED_FILE)) {
+    const raw = JSON.parse(fs.readFileSync(NO_EMBED_FILE, 'utf8'));
+    const noEmbed = new Set(Array.isArray(raw) ? raw : Object.keys(raw));
+    for (const r of byId.values()) {
+      if (!r.video || !r.video.id) continue;
+      r.video.embed = !noEmbed.has(r.video.id);
+      if (!r.video.embed) blocked++;
+    }
+  }
   say('карточек с роликом: ' + (n + fromPage).toLocaleString('ru-RU')
-    + (fromPage ? ' (из них со страниц: ' + fromPage + ')' : ''));
+    + (fromPage ? ' (из них со страниц: ' + fromPage + ')' : '')
+    + (blocked ? ', встраивание запрещено у ' + blocked : ''));
 }
 
 /*
