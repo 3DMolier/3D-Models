@@ -124,10 +124,32 @@ for (let i = 1; i < L.length; i++) {
  * оказались две карточки одной модели.
  * Тот же промах был у плитки на главной: адрес нельзя вычислять, его надо брать.
  */
+/*
+ * И ТОЛЬКО ЖИВАЯ папка. У одного номера их бывает две, с разным написанием
+ * адреса: ipad-pro-2020-12-9-inch-silver-1562907 - заглушка,
+ * ipad-pro-2020-129-inch-silver-1562907 - живая карточка. Таких номеров 50.
+ *
+ * «Первая попавшаяся» брала заглушку, и модель выпадала из своей группы:
+ * 14.09.2026 так распалась группа iPad Pro, размеченная основателем вручную.
+ * Проверка на живую стоит дальше по коду (isRealCard), но к тому времени адрес
+ * уже подменён на неверный.
+ */
+const dirHead = Buffer.alloc(400);
+const dirIsLive = d => {
+  let fd;
+  try { fd = fs.openSync(path.join(MODELS, d, 'index.html'), 'r'); } catch (e) { return false; }
+  try {
+    const n = fs.readSync(fd, dirHead, 0, 400, 0);
+    return !/http-equiv="refresh"/.test(dirHead.slice(0, n).toString('utf8'));
+  } finally { fs.closeSync(fd); }
+};
 const DIR_BY_ID = new Map();
 for (const d of fs.readdirSync(MODELS)) {
   const id = d.slice(d.lastIndexOf('-') + 1);
-  if (/^\d+$/.test(id) && !DIR_BY_ID.has(id)) DIR_BY_ID.set(id, d);
+  if (!/^\d+$/.test(id)) continue;
+  const was = DIR_BY_ID.get(id);
+  if (!was) { DIR_BY_ID.set(id, d); continue; }
+  if (!dirIsLive(was) && dirIsLive(d)) DIR_BY_ID.set(id, d);
 }
 let slugFixed = 0;
 for (const r of rows) {
