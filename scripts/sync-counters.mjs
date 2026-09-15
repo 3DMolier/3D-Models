@@ -137,8 +137,17 @@ let chips = 0;
     for (const [slug, n] of Object.entries(counts.counts)) {
       // Правим ТОЛЬКО число внутри своего чипа: искать его по значению нельзя,
       // одно и то же число встречается на странице в разных ролях.
-      const re = new RegExp('(data-cat="' + slug + '"[^>]*>[^<]*<span class="ftag-n">)[\\d,]+', 'g');
-      h = h.replace(re, (m, head) => head + fmt(n));
+      const byBtn = new RegExp('(data-cat="' + slug + '"[^>]*>[^<]*<span class="ftag-n">)[\\d,]+', 'g');
+      h = h.replace(byBtn, (m, head) => head + fmt(n));
+      /*
+       * Второе место на той же странице: блок «Popular 3D model categories»
+       * внизу. Там не кнопки фильтра, а ССЫЛКИ на разделы, и первая правка их
+       * не задевала - основатель прислал снимок, где фильтр говорит «Vehicles
+       * 2 607», а блок под ним «Vehicles 3 798». Одна страница, два ответа на
+       * один вопрос.
+       */
+      const byLink = new RegExp('(href="/categories/' + slug + '/"[^>]*class="ftag"[^>]*>[^<]*<span class="ftag-n">)[\\d,]+', 'g');
+      h = h.replace(byLink, (m, head) => head + fmt(n));
     }
     const nums = s => [...s.matchAll(/<span class="ftag-n">([\d,]+)/g)].map(m => m[1]);
     const a = nums(before), b = nums(h);
