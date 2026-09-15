@@ -34,6 +34,22 @@ const done = new Set(fs.existsSync(doneFile) ? fs.readFileSync(doneFile, 'utf8')
   if (fs.existsSync(f)) for (const k of Object.keys(JSON.parse(fs.readFileSync(f, 'utf8')))) done.add(k);
 }
 
+/*
+ * Записи нужны ради ПРОДАЖ: на странице их нет, а в тексте это самый весомый
+ * факт - «продана 439 раз» говорит покупателю больше любого прилагательного.
+ * На плитке каталога число и так показано, так что тайны из него не делаем.
+ * Пока его не было в справке, проверка чисел честно отклоняла такой текст:
+ * сверять было не с чем.
+ */
+const bySlug = new Map();
+{
+  const RECS = path.join(ROOT, 'data', 'records');
+  if (fs.existsSync(RECS)) {
+    for (const f of fs.readdirSync(RECS).filter(x => /^records-\d+\.json$/.test(x)))
+      for (const r of JSON.parse(fs.readFileSync(path.join(RECS, f), 'utf8'))) bySlug.set(r.slug, r);
+  }
+}
+
 const plain = s => String(s).replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/&#39;|&#x27;/g, "'")
   .replace(/&quot;/g, '"').replace(/\s+/g, ' ').trim();
 const cell = (h, k) => {
@@ -75,6 +91,7 @@ for (const slug of queue) {
     slug,
     name: plain((h.match(/<h1[^>]*>([\s\S]*?)<\/h1>/) || [])[1] || slug),
     category: cell(h, 'Category'),
+    sales: +(bySlug.get(slug) || {}).sales || 0,
     price: cell(h, 'Price'),
     quality: cell(h, 'Quality standard') || cell(h, 'Certification'),
     polygons: cell(h, 'Polygons'),

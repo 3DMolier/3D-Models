@@ -58,6 +58,18 @@ const cell = (h, k) => {
   return m ? plain(m[1]) : '';
 };
 
+/*
+ * Цена, продажи и состав семьи берутся из ЗАПИСЕЙ, а не разбором HTML
+ * карточки: там они лежат полями. Вытаскивать их регуляркой из готовой
+ * страницы значит читать то, что сам же и напечатал.
+ */
+const RECS = path.join(ROOT, 'data', 'records');
+const byslug = new Map();
+if (fs.existsSync(RECS)) {
+  for (const f of fs.readdirSync(RECS).filter(x => /^records-\d+\.json$/.test(x)))
+    for (const r of JSON.parse(fs.readFileSync(path.join(RECS, f), 'utf8'))) byslug.set(r.slug, r);
+}
+
 const rows = [];
 const done = [];
 let live = 0;
@@ -65,26 +77,54 @@ for (const slug of fs.readdirSync(path.join(ROOT, 'models'))) {
   if (isVar.has(slug)) continue;
   let h;
   try { h = fs.readFileSync(path.join(ROOT, 'models', slug, 'index.html'), 'utf8'); } catch (e) { continue; }
-  if (/http-equiv="refresh"/i.test(h)) continue;
+  if (/http-equiv="refresh"/i.test(h.slice(0, 400))) continue;
   live++;
   if (HAND.has(slug)) { done.push(slug); continue; }
+  const r = byslug.get(slug) || {};
   rows.push({
     slug,
     imp: impressions.get(slug) || 0,
-    price: +(cell(h, 'Price').match(/\$([\d.]+)/) || [])[1] || 0,
+    sales: +r.sales || 0,
+    family: (r.family || []).length,
+    price: +r.price || +(cell(h, 'Price').match(/\$([\d.]+)/) || [])[1] || 0,
   });
 }
 
-rows.sort((a, b) => (b.imp - a.imp) || (b.price - a.price) || a.slug.localeCompare(b.slug));
+/*
+ * ПОРЯДОК, утверждённый основателем 15.09.2026. Карточек без текста 36 421, за
+ * прогон выходит сотня-полторы - значит вопрос не «когда всё», а «что первым».
+ *
+ *   1. ПРОДАЖИ. Карточка уже доказала спрос деньгами - самый твёрдый признак
+ *      из всех, что у нас есть.
+ *   2. ПОКАЗЫ В ПОИСКЕ. Google страницу показывает, а кликов нет: тексту тут
+ *      работать заметнее всего.
+ *   3. РАЗМЕР СЕМЬИ. Склеенная карточка работает за десяток - один текст
+ *      закрывает все её версии. Плюс у пятисот таких текст уже частично
+ *      написан: он лежит на свёрнутых адресах и годится как основа.
+ *
+ * Цена - последний разделитель: при прочих равных дорогая модель приносит
+ * больше с той же строчки текста.
+ *
+ * Прежний порядок начинался с показов. Продажи стоят выше, потому что показ -
+ * это обещание, а продажа - факт.
+ */
+rows.sort((a, b) => (b.sales - a.sales) || (b.imp - a.imp)
+  || (b.family - a.family) || (b.price - a.price) || a.slug.localeCompare(b.slug));
 
 fs.writeFileSync(path.join(WORK, 'queue.json'), JSON.stringify(rows.map(r => r.slug), null, 0));
 fs.writeFileSync(path.join(WORK, 'done.txt'), done.join('\n') + (done.length ? '\n' : ''));
 
-const withImp = rows.filter(r => r.imp > 0).length;
-console.log('живых карточек:      ' + live);
-console.log('уже написано:        ' + done.length);
-console.log('в очереди:           ' + rows.length);
-console.log('  из них с показами: ' + withImp + '  (их пишем первыми)');
+const withSales = rows.filter(r => r.sales > 0).length;
+const withImp = rows.filter(r => r.sales === 0 && r.imp > 0).length;
+const withFam = rows.filter(r => r.sales === 0 && r.imp === 0 && r.family > 0).length;
+console.log('живых карточек:        ' + live);
+console.log('уже написано:          ' + done.length);
+console.log('в очереди:             ' + rows.length);
+console.log('  1. с продажами:      ' + withSales);
+console.log('  2. с показами:       ' + withImp);
+console.log('  3. склеенные семьи:  ' + withFam);
+console.log('  остальные:           ' + (rows.length - withSales - withImp - withFam));
 console.log('\nпервые десять в очереди:');
-rows.slice(0, 10).forEach((r, i) => console.log('  ' + (i + 1) + '. показов ' + String(r.imp).padStart(3)
+rows.slice(0, 10).forEach((r, i) => console.log('  ' + (i + 1) + '. продаж ' + String(r.sales).padStart(3)
+  + '  показов ' + String(r.imp).padStart(3) + '  версий ' + String(r.family).padStart(2)
   + '  $' + String(r.price).padEnd(5) + '  ' + r.slug));

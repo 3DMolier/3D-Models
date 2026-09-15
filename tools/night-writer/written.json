@@ -1,310 +1,42 @@
 [
  {
-  "slug": "hydrant-wrench-2416627",
+  "slug": "baseball-hat-3-968930",
   "paragraphs": [
-   "A hydrant key is deliberately not a standard tool. The pentagon nut it fits exists so that only somebody with the right wrench can open the water, and every fire service in a region carries the same one.",
-   "The model is supplied in quads and tris with non-overlapping UVs, and is built to CheckMate specification.",
-   "At $19 it suits emergency services and utility visualisation, equipment marketing, training material, street and site scenes, film props and game environments. On sale since 2025."
-  ],
-  "keywords": [
-   "hydrant wrench 3d model",
-   "fire service tool asset",
-   "checkmate product model",
-   "utility equipment render",
-   "training material visual",
-   "street scene prop",
-   "e-commerce tool imagery",
-   "film set object",
-   "game item model",
-   "pentagon key tool",
-   "municipal equipment asset",
-   "editorial safety illustration"
+   "A curved-brim fitted cap built at 16,068 polygons, which is the range where a hat still reads as fabric in a close-up but costs almost nothing when you put it on a stadium crowd. The shape carries the parts people actually look at: the panel seams, the eyelets, the button at the crown and the slight lift where the brim leaves the band. Nine texture maps do the rest, so the stitching and the weave come from the material rather than from geometry you would pay for twice.",
+   "This page holds the whole run of caps built on that shape. Alongside the plain version there are NASCAR team caps, a New Era classic curved visor, a vintage 00s racing hat and a flame-stripe brim. Same mesh underneath, different livery on top, which is why they sit together instead of scattering across five near-identical pages. The branded ones carry editorial terms; the plain cap does not, and that is usually the one that ends up in commercial work.",
+   "It has sold 439 times, mostly into advertising and game work, where a cap is set dressing that still has to survive being looked at. CheckMate Pro certification means the scene opens clean: real-world scale, no stray geometry, materials named the way a lighting artist expects to find them."
   ]
  },
  {
-  "slug": "jelly-pudding-chery-milk-1735548",
+  "slug": "tesla-model-3-1214116",
   "paragraphs": [
-   "The milk variant of a jelly cup is a different product held to different rules. Dairy content changes the shelf life, the storage and often the packaging material, even when the cup looks identical on a shelf.",
-   "The model is extremely light at 1,640 polygons and 1,642 vertices in quads and tris with non-overlapping UVs. It carries CheckMate Lite and Pro certification.",
-   "At $19 it suits food and packaging visualisation, e-commerce and retail imagery, advertising, kitchen and interior scenes, film set dressing and editorial illustration. On sale since 2021."
-  ],
-  "keywords": [
-   "milk jelly cup 3d",
-   "sealed dessert packaging",
-   "checkmate product model",
-   "very low poly mesh",
-   "e-commerce packshot imagery",
-   "retail shelf prop",
-   "advertising confectionery visual",
-   "kitchen scene object",
-   "film set dressing",
-   "game interior prop",
-   "portion dessert render",
-   "editorial food illustration"
+   "The Model 3 exterior at 116,225 polygons and 130,476 vertices, modelled to the proportions that make this car recognisable from fifty metres: the low nose with no grille, the single unbroken roof glass, the flush door handles. Nine texture maps cover the body, the glass and the wheels. It is a driving-shot car, built to be seen in motion or parked in an architectural scene rather than opened up and inspected panel by panel.",
+   "Two further versions sit on this page. The rigged one turns the wheels and the steering, which is what a walk-around or a street loop needs. The simple-interior one gives you a cabin that holds up through the window glass without loading a full trim set nobody sees from outside. Pick by shot, not by completeness.",
+   "Licensing is editorial only. Tesla owns the marks and the car design, so this model belongs in news, commentary, education and film, not in advertising for a product and not where it might imply endorsement. That restriction comes from the manufacturer and applies to any faithful model of a current production car. If a project needs commercial clearance, a generic electric sedan is the honest answer, and we build those too."
   ]
  },
  {
-  "slug": "karcher-pressure-washer-gun-1290334",
+  "slug": "orchid-flower-896518",
   "paragraphs": [
-   "The trigger gun is the safety device on a pressure washer. Everything upstream of it is running at full pressure whenever the machine is on, and the whole design is about that pressure stopping instantly when a hand lets go.",
-   "The model is very light at 11,083 polygons and 11,165 vertices in quads and tris with non-overlapping UVs, textured with 3 maps all at 2048x2048. It carries CheckMate Lite and Pro certification.",
-   "At $19 it suits tool and equipment visualisation, e-commerce and retail imagery, garage and outdoor scenes, advertising, film props and game environments. On sale since 2018."
-  ],
-  "keywords": [
-   "pressure washer gun 3d",
-   "cleaning tool asset",
-   "checkmate product model",
-   "e-commerce equipment imagery",
-   "garage scene prop",
-   "outdoor cleaning visual",
-   "advertising tools model",
-   "very low poly mesh",
-   "film set object",
-   "game exterior environment",
-   "trigger lance render",
-   "editorial tools illustration"
+   "A single phalaenopsis stem at 2,358 polygons, all quads, which is about as light as a believable flower gets. The petals are modelled rather than cut out of an alpha map, so the shape survives being lit from behind and does not go flat when the camera moves around it. Five texture maps carry the vein pattern and the colour fall from throat to petal edge.",
+   "That weight is the point. An orchid is a dressing prop: it goes on the reception desk, the hotel nightstand, the corner of a kitchen counter. You place twenty of them in a scene and never think about them again. At two thousand polygons each, twenty cost less than one hero plant, and the silhouette still reads at the size it appears on screen.",
+   "StemCell certification means the asset is built to a shared standard for runtime engines, so it drops into Unreal or Unity without a rebuild. It has sold 326 times, largely into architectural visualisation, where the difference between an empty room and a lived-in one is usually three plants and a bowl of fruit."
   ]
  },
  {
-  "slug": "kh-11-satellite-solar-array-panels-black-2496990",
+  "slug": "20-ft-iso-container-white-955965",
   "paragraphs": [
-   "Reconnaissance satellite panels are shaped by the same constraints as any other, with one addition: the whole spacecraft is designed not to be identified from the ground, and the array geometry is part of that signature.",
-   "The model holds 28,504 polygons and 30,128 vertices, built in quads only with mixed UV layout, in black, and carries StemCell certification.",
-   "At $19 it suits space and defence visualisation, news and documentary graphics, education material, spacecraft assembly scenes, game environments and editorial illustration. On sale since 2026."
-  ],
-  "keywords": [
-   "satellite solar array 3d",
-   "spacecraft panel component",
-   "all quads mesh model",
-   "stemcell certified asset",
-   "news graphics space",
-   "defence visualisation model",
-   "documentary space visual",
-   "education aerospace resource",
-   "game sci-fi environment",
-   "orbital hardware render",
-   "reconnaissance satellite part",
-   "editorial space illustration"
+   "A 20-foot ISO shipping container at 42,248 polygons, built to the real specification: corrugation pitch, corner castings, the cam-lock door gear and the lashing points that everything else in a port scene hangs from. Five texture maps carry the paint, the weld lines and the wear. Because the outer dimensions are the standard ones, it stacks and lines up with itself without anyone nudging numbers.",
+   "Eight versions share this page. Green, blue, brown and white are the same box in different liveries, and there is a Linde reach stacker carrying one, rigged, for when the container has to be lifted rather than parked. That combination is why the page exists: a port is never one container, it is forty of them in four colours and a machine moving one.",
+   "It has sold 308 times, into logistics visualisation, architecture and simulation. CheckMate Pro certification means real-world scale, so it sits correctly next to a truck chassis or a crane without being measured first."
   ]
  },
  {
-  "slug": "khinkali-dumpling-cooked-2244921",
+  "slug": "ford-transit-cargo-2020-1485058",
   "paragraphs": [
-   "The twisted knot on top of a khinkali is a handle, not a garnish. It is held, the dumpling is bitten and the broth drunk, and the knot itself is traditionally left on the plate as a count of how many were eaten.",
-   "The model is extremely light at 1,208 polygons and 1,174 vertices in quads and tris with non-overlapping UVs. It is built to CheckMate specification.",
-   "At $19 it suits food and menu visualisation, restaurant and packaging imagery, cultural and culinary illustration, advertising, kitchen scenes and game props. On sale since 2024."
-  ],
-  "keywords": [
-   "khinkali dumpling 3d",
-   "georgian food asset",
-   "checkmate product model",
-   "very low poly mesh",
-   "menu imagery render",
-   "restaurant scene prop",
-   "advertising food visual",
-   "cultural cuisine model",
-   "kitchen scene object",
-   "game interior prop",
-   "plated dish render",
-   "editorial food illustration"
-  ]
- },
- {
-  "slug": "kinder-surprise-christmas-chocolate-egg-1803307",
-  "paragraphs": [
-   "The chocolate egg with a toy inside is banned in some countries and beloved in others, over exactly the same feature. It is one of very few products whose central idea is legally contentious rather than its ingredients.",
-   "The model is extremely light at 209 polygons and 224 vertices, built in quads only with non-overlapping UVs, so it costs nothing anywhere. It carries CheckMate Lite and Pro certification.",
-   "At $19 it suits food and packaging visualisation, e-commerce and retail imagery, seasonal and children's media, advertising, film set dressing and editorial illustration. On sale since 2022."
-  ],
-  "keywords": [
-   "chocolate egg 3d model",
-   "confectionery packaging asset",
-   "all quads mesh model",
-   "checkmate product model",
-   "very low poly mesh",
-   "seasonal scene prop",
-   "e-commerce food imagery",
-   "children media object",
-   "advertising sweets visual",
-   "retail shelf model",
-   "film set dressing",
-   "editorial food illustration"
-  ]
- },
- {
-  "slug": "large-modern-checkout-counter-grey-2178969",
-  "paragraphs": [
-   "The checkout is where a shop's whole layout terminates, and its dimensions are set by the queue rather than by the till. Belt length, bagging area and the gap a trolley has to pass through are all decided before anything else.",
-   "The model is light at 26,568 polygons and 13,325 vertices in quads and tris with non-overlapping UVs, in grey, and carries StemCell certification. A red rigged build is offered separately.",
-   "At $19 it suits retail and interior visualisation, shopfitting presentation, store scenes, advertising, film sets and game environments. On sale since 2024."
-  ],
-  "keywords": [
-   "checkout counter 3d model",
-   "retail shopfitting asset",
-   "stemcell certified product",
-   "store interior prop",
-   "supermarket scene object",
-   "rigged variant available",
-   "commercial furniture render",
-   "film retail set",
-   "game interior environment",
-   "point of sale furniture",
-   "architectural interior model",
-   "editorial retail illustration"
-  ]
- },
- {
-  "slug": "law-organic-fertilizer-bag-600-kg-white-2491294",
-  "paragraphs": [
-   "Fertiliser is sold in bulk bags because the quantities involved make sacks absurd. One bag is a field's worth, it is lifted by a tractor rather than a person, and the printing on it is the only branding a farmer will ever see.",
-   "The model holds 7,304 polygons over 58,308 vertices, built in quads only with overlapping UVs, in white, and carries StemCell certification.",
-   "At $19 it suits agricultural and logistics visualisation, packaging presentation, farm and warehouse scenes, equipment marketing, film backgrounds and game environments. On sale since 2026."
-  ],
-  "keywords": [
-   "fertiliser bulk bag 3d",
-   "agricultural packaging asset",
-   "all quads mesh model",
-   "stemcell certified product",
-   "farm scene prop",
-   "warehouse logistics object",
-   "packaging presentation render",
-   "film set dressing",
-   "game rural environment",
-   "big bag container model",
-   "agronomy visualisation asset",
-   "editorial agriculture illustration"
-  ]
- },
- {
-  "slug": "leaf-2-927043",
-  "paragraphs": [
-   "A single leaf is the smallest unit of a landscape and the one most often faked. Scattered on ground, floating on water or blown across a road, it is the detail that makes an environment read as outdoors rather than as a set.",
-   "The model is extremely light at 472 polygons and 470 vertices in quads and tris with non-overlapping UVs, textured with 3 maps all at 4096x4096. It carries StemCell certification.",
-   "At $19 it suits landscape and environment visualisation, seasonal and architectural scenes, scatter and ground dressing, film backgrounds, game environments and editorial illustration. On sale since 2015."
-  ],
-  "keywords": [
-   "single leaf 3d model",
-   "scatter vegetation asset",
-   "stemcell certified plant",
-   "landscape ground dressing",
-   "very low poly mesh",
-   "seasonal scene element",
-   "architectural render detail",
-   "film background dressing",
-   "game environment scatter",
-   "4k textured foliage",
-   "autumn scene object",
-   "editorial nature illustration"
-  ]
- },
- {
-  "slug": "leather-desk-journal-3d-model-966112",
-  "paragraphs": [
-   "A bound notebook on a desk says something no laptop can. It signals that whatever is in it was written by hand, which is why the format survived the entire digital transition without changing at all.",
-   "The model is extremely light at 932 polygons and 996 vertices, built in quads only with non-overlapping UVs, textured with maps up to 4096x4096. It carries CheckMate Lite and Pro certification.",
-   "At $19 it suits office and interior visualisation, product and e-commerce imagery, advertising, desk and study scenes, film set dressing and editorial illustration. On sale since 2016."
-  ],
-  "keywords": [
-   "leather journal 3d model",
-   "desk stationery asset",
-   "all quads mesh model",
-   "checkmate product model",
-   "office interior prop",
-   "e-commerce stationery imagery",
-   "very low poly mesh",
-   "study scene object",
-   "advertising lifestyle visual",
-   "film set dressing",
-   "game interior prop",
-   "editorial product illustration"
-  ]
- },
- {
-  "slug": "lemondar-hydroponic-indoor-garden-with-led-lamp-black-2446970",
-  "paragraphs": [
-   "A countertop hydroponic unit is mostly a lamp. The water and nutrients are trivial; the difficult part is delivering enough light in a kitchen, and that is where the whole cost of the product goes.",
-   "The model is light at 37,290 polygons and 38,119 vertices in quads and tris with non-overlapping UVs, in black, and carries StemCell certification.",
-   "At $19 it suits kitchen and interior visualisation, product and e-commerce imagery, advertising, sustainability and lifestyle scenes, film props and game environments. On sale since 2025."
-  ],
-  "keywords": [
-   "hydroponic garden 3d model",
-   "indoor growing appliance",
-   "stemcell certified product",
-   "kitchen interior prop",
-   "e-commerce appliance imagery",
-   "led grow lamp asset",
-   "advertising lifestyle visual",
-   "sustainability scene object",
-   "film set dressing",
-   "game interior prop",
-   "countertop planter render",
-   "editorial home illustration"
-  ]
- },
- {
-  "slug": "loose-anatomical-fat-block-teaching-tool-2411019",
-  "paragraphs": [
-   "The fat block is a teaching object rather than an anatomical one. It represents a volume of adipose tissue at scale so that a patient can hold it, and its entire purpose is that a number on a chart becomes something with weight.",
-   "The model is extremely light at 3,129 polygons and 3,131 vertices in quads and tris with non-overlapping UVs. It is built to CheckMate specification.",
-   "At $19 it suits medical and nutrition education, patient explanation, clinic and fitness marketing, health campaigns and editorial illustration. On sale since 2025."
-  ],
-  "keywords": [
-   "anatomical fat block 3d",
-   "medical teaching tool",
-   "checkmate medical model",
-   "patient explanation visual",
-   "nutrition education asset",
-   "clinic marketing render",
-   "health campaign illustration",
-   "very low poly mesh",
-   "fitness education model",
-   "weight loss visual",
-   "clinical demonstration prop",
-   "editorial health illustration"
-  ]
- },
- {
-  "slug": "makeup-mirror-desktop-2045828",
-  "paragraphs": [
-   "A lit mirror is a lighting product pretending to be a mirror. The bulbs around the frame exist to remove shadows from a face, which is the one thing a bathroom ceiling light is guaranteed to get wrong.",
-   "The model is very light at 10,688 polygons and 5,550 vertices in quads and tris with non-overlapping UVs. It carries CheckMate Lite and Pro certification.",
-   "At $19 it suits interior and product visualisation, e-commerce and retail imagery, advertising, bedroom and bathroom scenes, film sets and game environments. On sale since 2023."
-  ],
-  "keywords": [
-   "makeup mirror 3d model",
-   "lit vanity mirror",
-   "checkmate product model",
-   "e-commerce homeware imagery",
-   "bedroom interior prop",
-   "advertising beauty visual",
-   "very low poly mesh",
-   "dressing table object",
-   "film set dressing",
-   "game interior environment",
-   "desktop lighting product",
-   "editorial interiors illustration"
-  ]
- },
- {
-  "slug": "manual-call-point-fire-alarm-1685636",
-  "paragraphs": [
-   "The break glass point is designed so that raising an alarm is irreversible. Somebody who presses it has committed the building to an evacuation, and the deliberate finality of breaking something is part of the psychology.",
-   "The model is very light at 8,616 polygons and 8,624 vertices in quads and tris with non-overlapping UVs. It carries CheckMate Lite and Pro certification.",
-   "At $19 it suits building services and safety visualisation, architectural interiors, equipment marketing, training material, film sets and game environments. On sale since 2021."
-  ],
-  "keywords": [
-   "fire alarm call point 3d",
-   "break glass unit",
-   "checkmate product model",
-   "building safety asset",
-   "architectural interior fitting",
-   "training material visual",
-   "equipment marketing render",
-   "very low poly mesh",
-   "corridor scene prop",
-   "film set object",
-   "game interior environment",
-   "editorial safety illustration"
+   "The 2020 Transit cargo van at 153,391 polygons and 174,527 vertices, with seventeen texture maps across the body, the glass, the lamps and the wheels. The density goes where a van is actually looked at: the front end, the sliding door track, the rear door seams and the ribbing along the load side. This is the working configuration, panel van with no side glass, which is what most commercial scenes need.",
+   "A rigged version and a white variant sit alongside it. The rigged one steers and rolls, which matters because a delivery van is almost always moving in the shot or being loaded in it.",
+   "Sold 289 times, mostly into simulation, advertising and architectural work, where a parked van does the job of telling you the building is in use. Licensing is editorial only: Ford owns the marks and the body design, so this model belongs in editorial, educational and film contexts rather than in advertising for a product. That limit is set by the manufacturer and applies to any faithful model of a current vehicle."
   ]
  }
 ]

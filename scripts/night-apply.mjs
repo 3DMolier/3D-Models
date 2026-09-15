@@ -143,6 +143,38 @@ for (const it of items) {
   stat.ok++;
 }
 
+/*
+ * ── ГЛАВНОЕ: текст кладём В ДАННЫЕ, а не только в разметку ──────────────────
+ *
+ * Правка страницы выше нужна, чтобы текст было видно сразу, не дожидаясь
+ * пересборки. Но страница НЕ хранилище: 02.09.2026 карточки перевели на сборку
+ * из записи, страницы перерисовались - и 1 762 написанных описания исчезли
+ * вместе с разметкой, в которой только и жили.
+ *
+ * Источник правды - data/model-hand-desc.json. Его читает build-model-records,
+ * оттуда текст попадает в запись и на страницу при каждой пересборке. С
+ * 14.09.2026 пересборка идёт сама каждый день в 11:30, так что описание, не
+ * попавшее в этот файл, умрёт в тот же день.
+ *
+ * Пишем только тех, кого действительно поставили: doneAdd.
+ */
+if (!DRY && doneAdd.length) {
+  const HAND_FILE = path.join(ROOT, 'data', 'model-hand-desc.json');
+  const hand = fs.existsSync(HAND_FILE)
+    ? JSON.parse(fs.readFileSync(HAND_FILE, 'utf8')) : {};
+  const bySlug = new Map(items.map(i => [i.slug, i]));
+  let saved = 0;
+  for (const slug of doneAdd) {
+    const it = bySlug.get(slug);
+    if (!it || !Array.isArray(it.paragraphs) || !it.paragraphs.length) continue;
+    hand[slug] = it.paragraphs;
+    saved++;
+  }
+  fs.writeFileSync(HAND_FILE, JSON.stringify(hand, null, 1));
+  console.log('  в data/model-hand-desc.json: ' + saved
+    + ', всего в файле: ' + Object.keys(hand).length);
+}
+
 if (!DRY && doneAdd.length) {
   fs.appendFileSync(path.join(WORK, 'done.txt'), doneAdd.join('\n') + '\n');
   const pf = path.join(WORK, 'progress.json');
