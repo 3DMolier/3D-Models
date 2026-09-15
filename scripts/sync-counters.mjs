@@ -156,4 +156,30 @@ let chips = 0;
   }
 }
 console.log('чипов категорий в каталоге поправлено: ' + chips);
+
+/*
+ * ── 5. число страниц на /data-licensing/ ────────────────────────────────────
+ *
+ * На первом экране две цифры, и их нельзя путать: 37 683 - наши страницы
+ * товаров, 90 000+ - позиции и версии на маркетплейсе. Раньше там стояла одна
+ * крупная «90 000+ production-ready 3D models», а ниже объяснялось про 37 683 -
+ * для менеджера по закупкам это выглядело как две разные правды.
+ *
+ * Здесь синхронизируем только НАШЕ число: второе про маркетплейс, и мы им не
+ * управляем.
+ */
+let dlStat = 0;
+{
+  const file = path.join(ROOT, 'data-licensing', 'index.html');
+  if (fs.existsSync(file)) {
+    const before = fs.readFileSync(file, 'utf8');
+    let h = before
+      .replace(/(class="about-stat-num">)[\d,]+(<\/div><div class="about-stat-lbl">Product pages on this site)/g,
+        (m, a, b) => a + fmt(TOTAL) + b)
+      .replace(/(Not a scraped dataset\. )[\d,]+( product pages on this site)/g,
+        (m, a, b) => a + fmt(TOTAL) + b);
+    if (h !== before) { dlStat = 1; if (!DRY) fs.writeFileSync(file, h); }
+  }
+}
+console.log('числа страниц на /data-licensing/: ' + (dlStat ? 'поправлено' : 'уже верно'));
 if (DRY) console.log('(--dry, ничего не записано)');
