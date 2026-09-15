@@ -21,7 +21,9 @@ import { isMilitary } from './lib/military.mjs';
  * «Graphics Multimedia and Web Design», страницы которой на сайте нет.
  * Правила сборки набора - в lib/industries.mjs.
  */
-const indsOf = (f, catSlug) => industriesOf(f.industries, catSlug);
+// Марку передаём как признак редакционной лицензии: у брендовой модели реклама
+// запрещена, и в отраслях её быть не должно (см. industriesOf).
+const indsOf = (f, catSlug) => industriesOf(f.industries, catSlug, undefined, !!f.brand);
 
 // Параметры файла выводятся из названия: сводного списка форматов у нас нет,
 // пока не оживёт API студии. Правила заданы основателем; порядок проверок
@@ -475,9 +477,31 @@ export function description(f, name, cat, price, seed, catSlugIn) {
   if (yr && f.days > 365) parts.push(pick(AGE, seed * 17 + 2)(yr));
   // Военная заготовка - только явным военным моделям.
   const csSent = catSlugIn || catSlug(cat);
-  parts.push(cat === 'Aircraft'
+  let useSent = cat === 'Aircraft'
     ? (isMilitary(name, csSent) ? USE_SENT_AIRCRAFT_MIL : USE_SENT_AIRCRAFT_CIV)
-    : (USE_SENT[csSent] || USE_SENT['other']));
+    : (USE_SENT[csSent] || USE_SENT['other']);
+  /*
+   * У брендовой модели лицензия редакционная - реклама ей запрещена. А фраза о
+   * применении называла «automotive advertising» первым пунктом: страница
+   * письменно предлагала то, что лицензией запрещено, и тут же ниже объясняла,
+   * что это запрещено. Поймано основателем на Ford и Tesla 15.09.2026.
+   *
+   * Вычёркиваем рекламу из перечисления, а не переписываем фразу целиком:
+   * остальные применения - кино, игры, архитектура - редакционной лицензии не
+   * противоречат, и они в этой фразе верные.
+   */
+  if (f.brand || brandOf(name)) {
+    useSent = useSent
+      .replace(/\b(automotive|product|food|fashion|sports?)\s+advertising,\s*/gi, '')
+      .replace(/,\s*(automotive|product|food|fashion|sports?)?\s*advertising\s+renders/gi, '')
+      .replace(/,\s*(automotive|product|food|fashion|sports?)?\s*advertising\b/gi, '')
+      .replace(/\badvertising\s+renders,\s*/gi, '')
+      .replace(/\badvertising,\s*/gi, '')
+      .replace(/\s{2,}/g, ' ')
+      .replace(/\s+and\s+and\s+/gi, ' and ')
+      .replace(/,\s*and\b/i, ' and ');
+  }
+  parts.push(useSent);
   return parts.join(' ');
 }
 

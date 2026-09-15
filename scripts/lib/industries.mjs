@@ -185,9 +185,25 @@ export const MAX_INDUSTRIES = 5;
  * @param {string} categorySlug  категория модели
  * @param {string} [name]  название модели - только чтобы узнать военную технику
  */
-export function industriesOf(raw, categorySlug, name) {
+/*
+ * @param {boolean} [editorial] - лицензия Editorial Uses Only (брендовая модель).
+ *
+ * РЕКЛАМА И РЕДАКЦИОННАЯ ЛИЦЕНЗИЯ НЕСОВМЕСТИМЫ. Брендовую модель нельзя
+ * использовать для продвижения товара, а страница писала «Used In: Advertising»
+ * и «automotive advertising» среди применений - предлагала ровно то, что
+ * лицензией запрещено, и тут же ниже объясняла запрет. Поймано основателем на
+ * Ford и Tesla 15.09.2026.
+ *
+ * Чистить список В ЗАПИСИ бесполезно: запасной набор по категории
+ * (CATEGORY_INDUSTRIES) подмешивается здесь ВСЕГДА, и у vehicles в нём стоит
+ * advertising. Поэтому решение принимается здесь, в одном месте.
+ */
+export function industriesOf(raw, categorySlug, name, editorial) {
   const out = [];
-  const add = s => { if (s && INDUSTRY_LABEL[s] && !out.includes(s)) out.push(s); };
+  const add = s => {
+    if (editorial && s === 'advertising') return;
+    if (s && INDUSTRY_LABEL[s] && !out.includes(s)) out.push(s);
+  };
   // Оборона идёт первой: если это F-22, то главное про него - что он военный,
   // а не что он летает. Чипов показываем пять, и последний легко теряется.
   if (isMilitaryForIndustry(name, categorySlug)) add('military-defense');
@@ -200,8 +216,12 @@ export function industriesOf(raw, categorySlug, name) {
     add(RAW_TO_SLUG[v] || (INDUSTRY_LABEL[v] ? v : null));
   }
   // Пустого набора быть не должно: блок «Used In» без единого чипа выглядит
-  // как поломка. Film и Advertising стоят у подавляющего большинства листингов.
-  if (!out.length) { add('film-video-production'); add('advertising'); }
+  // как поломка. Film и Advertising стоят у подавляющего большинства листингов,
+  // а у редакционной лицензии вместо рекламы - игры: они ей не противоречат.
+  if (!out.length) {
+    add('film-video-production');
+    add(editorial ? 'game-development' : 'advertising');
+  }
   return out.slice(0, MAX_INDUSTRIES);
 }
 

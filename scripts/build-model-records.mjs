@@ -856,6 +856,7 @@ say('читаю карту свёрнутых...');
 }
 
 // ── 8. производные признаки ─────────────────────────────────────────────────
+let editorialFixed = 0;
 for (const r of byId.values()) {
   // Значения по умолчанию для 69 карточек, которых нет в отчёте TurboSquid:
   // без этого поле просто отсутствует в записи, и потребитель молча получает
@@ -901,6 +902,28 @@ for (const r of byId.values()) {
   r.brand = brandOf(r.name || '') || brandById(r.id) || null;
   r.military = isMilitary(r.name || '', r.category);
   r.licence = r.brand ? 'Editorial Uses Only (TurboSquid)' : 'Royalty Free (TurboSquid)';
+  /*
+   * РЕКЛАМА НЕСОВМЕСТИМА С РЕДАКЦИОННОЙ ЛИЦЕНЗИЕЙ.
+   *
+   * У брендовых моделей лицензия Editorial Uses Only: их нельзя использовать
+   * для продвижения товара. А страница при этом писала сверху «Used In:
+   * Advertising» и среди сценариев «automotive advertising» - то есть сайт
+   * письменно предлагал ровно то, что лицензией запрещено, и тут же ниже
+   * объяснял, что это запрещено. Поймано основателем на Ford и Tesla
+   * 15.09.2026.
+   *
+   * Это не косметика: страница товара - часть оферты. Обещать применение,
+   * которого лицензия не даёт, нельзя даже случайно.
+   *
+   * Снимаем рекламу из отраслей и из сценариев. Остальное - симуляция, игры,
+   * кино, архитектура - редакционной лицензии не противоречит.
+   */
+  if (r.brand) {
+    const before = (r.industries || []).length + (r.use_cases || []).length;
+    r.industries = (r.industries || []).filter(s => !/advertis/i.test(s));
+    r.use_cases = (r.use_cases || []).filter(s => !/advertis/i.test(s));
+    if (before !== r.industries.length + r.use_cases.length) editorialFixed++;
+  }
   // Ключевые слова: со страницы, если она есть; иначе из выгрузки студии.
   const pk = PAGE_KW.get(r.slug);
   if (pk && pk.length) r.keywords = pk;
@@ -933,6 +956,11 @@ for (const r of byId.values()) {
   }
   if (!r.keywords) r.keywords = null;
   if (!r.specs) r.specs = null;
+}
+
+if (editorialFixed) {
+  say('брендовых карточек, где снята реклама (лицензия редакционная): '
+    + editorialFixed.toLocaleString('ru-RU'));
 }
 
 // ── 9. где источники разошлись ──────────────────────────────────────────────
