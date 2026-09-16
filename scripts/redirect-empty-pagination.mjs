@@ -167,6 +167,50 @@ for (const [slug, models] of Object.entries(cc.counts)) {
   } else console.log('\nподкатегории: сайтмапа нет, страницы не трогаю');
 }
 
+/*
+ * ── подборки ────────────────────────────────────────────────────────────────
+ *
+ * 16.09.2026, третий этаж той же лестницы. Подборки пересобрались на 101
+ * страницу, а на диске лежало 134. Лишние показывают старую сетку, где часть
+ * плиток ведёт на карточки, свёрнутые с тех пор в заглушки.
+ *
+ * Живые адреса - из sitemap-collections.xml, его пишет refresh-sitemaps в том
+ * же прогоне. Условие «страница пустая» здесь снова не годится: осиротевшие
+ * полны устаревших плиток.
+ */
+{
+  const sm = path.join(ROOT, 'sitemaps', 'sitemap-collections.xml');
+  const live = new Set();
+  if (fs.existsSync(sm)) {
+    for (const m of fs.readFileSync(sm, 'utf8').matchAll(/<loc>https?:\/\/[^/]+(\/collections\/[^<]*)<\/loc>/g)) live.add(m[1]);
+  }
+  let cdone = 0, calready = 0;
+  const dir = path.join(ROOT, 'collections');
+  if (live.size && fs.existsSync(dir)) {
+    const walk = (d, url) => {
+      const file = path.join(d, 'index.html');
+      if (fs.existsSync(file) && !live.has(url)) {
+        const h = fs.readFileSync(file, 'utf8');
+        if (/http-equiv="refresh"/i.test(h)) calready++;
+        else {
+          const title = (h.match(/<title[^>]*>([^<|]+)/) || [])[1] || 'Collections';
+          const clean = title.replace(/\s*-\s*Page\s*\d+\s*$/i, '').trim();
+          // Ведём на первую страницу темы, а если её нет - в корень подборок.
+          const theme = url.replace(/page\/\d+\/$/, '');
+          if (!DRY) fs.writeFileSync(file, stub(live.has(theme) ? theme : '/collections/', clean));
+          cdone++;
+        }
+      }
+      for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+        if (e.isDirectory()) walk(path.join(d, e.name), url + e.name + '/');
+      }
+    };
+    walk(dir, '/collections/');
+    console.log('\nподборки: перенаправлено лишних страниц: ' + cdone
+      + ', уже были заглушками: ' + calready);
+  } else console.log('\nподборки: сайтмапа нет, страницы не трогаю');
+}
+
 console.log('перенаправлено пустых страниц: ' + done);
 console.log('  уже были заглушками:        ' + already);
 if (skippedNonEmpty) console.log('  НЕ ТРОНУТЫ, карточки есть:  ' + skippedNonEmpty);

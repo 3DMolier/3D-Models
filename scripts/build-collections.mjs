@@ -119,15 +119,48 @@ for (let n = 0; n < idx.chunks; n++) {
   }
 }
 
+/*
+ * Папка карточки - ПО НОМЕРУ и только ЖИВАЯ.
+ *
+ * Было две болезни сразу. Адрес вычислялся из названия - против правила,
+ * записанного кровью: у «Harivake Koi Fish(1)» вычисленный адрес с настоящей
+ * папкой не совпадает. И проверка «файл существует» пропускала заглушки:
+ * заглушка это тоже файл. В итоге 253 плитки в подборках вели на
+ * перенаправление - посетитель кликал по набору и попадал не туда. Поймано
+ * 16.09.2026 проверкой check-hub-freshness.
+ *
+ * У одного номера на диске бывает две папки разного написания, живая из них
+ * одна - берём её.
+ */
+const HEAD_B = 400, headB = Buffer.alloc(HEAD_B);
+const dirLive = d => {
+  let fd;
+  try { fd = fs.openSync(path.join(MODELS, d, 'index.html'), 'r'); } catch (e) { return false; }
+  try {
+    const n = fs.readSync(fd, headB, 0, HEAD_B, 0);
+    return !/http-equiv="refresh"/.test(headB.slice(0, n).toString('utf8'));
+  } finally { fs.closeSync(fd); }
+};
+const DIR_BY_ID = new Map();
+for (const d of fs.readdirSync(MODELS)) {
+  const id = d.slice(d.lastIndexOf('-') + 1);
+  if (!/^\d+$/.test(id)) continue;
+  const was = DIR_BY_ID.get(id);
+  if (!was) { DIR_BY_ID.set(id, d); continue; }
+  if (!dirLive(was) && dirLive(d)) DIR_BY_ID.set(id, d);
+}
+
 // Берём только те коллекции, у которых есть живая карточка и превью: карточка
 // без картинки на витрине выглядит поломкой.
 const items = [];
+let skippedStub = 0;
 for (const m of all) {
   if (!COLL_RE.test(m.name)) continue;
   const cover = img[m.id];
   if (!cover) continue;
-  const slug = slugify(m.name) + '-' + m.id;
-  if (!fs.existsSync(path.join(MODELS, slug, 'index.html'))) continue;
+  const slug = DIR_BY_ID.get(String(m.id));
+  if (!slug) continue;
+  if (!dirLive(slug)) { skippedStub++; continue; }
   const r = byPid.get(String(m.id));
   // Тема сначала по уточнению cat2, потом по cat1. Без первого шага всё, что
   // плавает, летает и летит в космос, сваливалось в «Vehicle Collections»:
@@ -137,7 +170,8 @@ for (const m of all) {
   const theme = TOPIC_THEME[topic] || themeOf.get(r && r.cat1) || null;
   items.push({ ...m, slug, cover, theme });
 }
-console.log('товаров-коллекций с живой карточкой и превью: ' + items.length);
+console.log('товаров-коллекций с живой карточкой и превью: ' + items.length
+  + (skippedStub ? ', пропущено свёрнутых: ' + skippedStub : ''));
 
 const byTheme = new Map(THEMES.map(t => [t[0], []]));
 for (const it of items) if (it.theme && byTheme.has(it.theme)) byTheme.get(it.theme).push(it);
@@ -264,7 +298,7 @@ function featuredPicks(n) {
 }
 
 // ---- страницы тем ----
-let themePages = 0;
+let themePages = 0, orphanStubs = 0;
 for (const [slug, name, icon, , desc] of THEMES) {
   const list = byTheme.get(slug) || [];
   if (!list.length) continue;
@@ -309,6 +343,40 @@ ${part.map(m => card(m, name)).join('\n')}
       shell(title, `${desc} ${list.length} collection products by 3D Molier.`, canonical, body,
         itemListSchema(name, canonical, part)), 'utf8');
     themePages++;
+  }
+
+  /*
+   * Лишние страницы прошлой сборки. Тема ужимается (склейка вариантов свела
+   * каталог с 54 519 до 37 683), и вчерашние /page/7..9/ остаются на диске с
+   * плитками, половина которых уже ведёт на свёрнутые карточки.
+   *
+   * Удалять нельзя: адрес был в выдаче. Ставим перенаправление на первую
+   * страницу темы. Это же снимает вторую беду: sitemap-collections.xml потом
+   * пересобирается С ДИСКА (refresh-sitemaps.mjs), заглушки он пропускает, а
+   * живые файлы считал живыми страницами и звал на них обход.
+   */
+  const leftDir = path.join(OUT, slug, 'page');
+  if (fs.existsSync(leftDir)) {
+    for (const n of fs.readdirSync(leftDir).map(Number).filter(n => n > total)) {
+      const f = path.join(leftDir, String(n), 'index.html');
+      if (!fs.existsSync(f)) continue;
+      const target = `/collections/${slug}/`;
+      fs.writeFileSync(f, `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="refresh" content="0; url=${target}">
+<link rel="canonical" href="${BASE}${target}">
+<meta name="robots" content="noindex, follow">
+<title>Moved | 3D Molier</title>
+<meta name="description" content="This page has moved. Browse 3D model collections by 3D Molier.">
+</head>
+<body>
+<p>This page has moved. <a href="${target}">Continue to ${esc(name)}</a>.</p>
+</body>
+</html>`, 'utf8');
+      orphanStubs++;
+    }
   }
 }
 
@@ -446,6 +514,7 @@ fs.writeFileSync(path.join(ROOT, 'sitemaps', 'sitemap-collections.xml'),
 console.log('тем: ' + THEMES.filter(t => (byTheme.get(t[0]) || []).length).length + ', страниц тем: ' + themePages);
 console.log('на витрине: ' + picks.length + ' карточек из ' + new Set(picks.map(p => p.theme)).size + ' тем');
 console.log('перенаправлений со старых подборок: ' + stubs);
+console.log('лишних страниц пагинации свёрнуто в перенаправления: ' + orphanStubs);
 console.log('sitemap-collections.xml: ' + urls.length + ' URL');
 for (const [slug, name] of THEMES) {
   const l = (byTheme.get(slug) || []).length;
