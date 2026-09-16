@@ -155,7 +155,7 @@ if (DRY) finish(0, 'ПРОБНЫЙ ПРОГОН: собрано и провер�
  * десятки тысяч путей и git падает с «Argument list too long».
  */
 const AREAS = ['data', 'sitemaps', 'sitemap.xml', 'sitemap-index.xml', 'index.html',
-  'catalog/index.html', 'browse', 'categories', 'about/index.html',
+  'catalog/index.html', 'browse', 'categories', 'collections', 'about/index.html',
   'custom-order/index.html', 'data-licensing/index.html', 'full-catalog/index.html'];
 for (const a of AREAS) {
   if (!fs.existsSync(path.join(ROOT, a))) continue;

@@ -26,7 +26,13 @@ const exists = new Set();
   let ents;
   try { ents = fs.readdirSync(path.join(ROOT, rel || '.'), { withFileTypes: true }); } catch (e) { return; }
   for (const it of ents) {
-    if (it.name === 'node_modules' || it.name === '.git' || it.name === '.tmp') continue;
+    /*
+     * Скрытые папки - не сайт. В .claude/worktrees/ лежит рабочая копия из
+     * чужой сессии: 19 384 её страницы попали в обход, и проверка нашла в них
+     * два мёртвых адреса от старой версии каталога. Публикация остановилась
+     * из-за файлов, которых на сайте нет и не будет.
+     */
+    if (it.name === 'node_modules' || it.name.startsWith('.')) continue;
     const nx = rel ? rel + '/' + it.name : it.name;
     // Обходим ВСЮ глубину. С ограничением по уровню вложенности каталог
     // categories/<кат>/<подкат>/page/2/ не попадал в список известных

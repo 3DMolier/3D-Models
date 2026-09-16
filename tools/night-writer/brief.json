@@ -1,318 +1,5 @@
 [
  {
-  "slug": "baseball-hat-3-968930",
-  "name": "Baseball Hat 3",
-  "category": "Clothing & Accessories",
-  "sales": 439,
-  "price": "$49 USD",
-  "quality": "CheckMate Pro",
-  "polygons": "16,068",
-  "vertices": "16,154",
-  "geometry": "polygonal quads/tris",
-  "uv": "Yes, non-overlapping",
-  "textures": "9 at 4096 x 4096, 2048 x 2048",
-  "rig": "",
-  "animation": "",
-  "dimensions": "",
-  "onSaleSince": "2015",
-  "industries": "",
-  "typicalUse": "",
-  "versions": [
-   {
-    "name": "Baseball Hat 3",
-    "price": "$49",
-    "main": true
-   },
-   {
-    "name": "NASCAR 47 MVP Adjustable Cap Black Black",
-    "price": "$49",
-    "main": false
-   },
-   {
-    "name": "NASCAR Racing New Era 9FORTY A Frame Adjustable Hat Black Red Black+Red",
-    "price": "$49",
-    "main": false
-   },
-   {
-    "name": "New Era Classic Curved Visor Cap Black Black",
-    "price": "$49",
-    "main": false
-   },
-   {
-    "name": "Vintage NASCAR Racing Hat 00s",
-    "price": "$49",
-    "main": false
-   },
-   {
-    "name": "Flame Stripe Curve Brim Cap Red Black Red+Black",
-    "price": "$49",
-    "main": false
-   }
-  ],
-  "keywordsNow": [
-   "baseball hat 3",
-   "clothing",
-   "accessory",
-   "baseball hat 3 for advertising",
-   "nascar 47 mvp adjustable cap black",
-   "new era classic curved visor cap black",
-   "vintage nascar racing hat 00s",
-   "flame stripe curve brim cap red black"
-  ],
-  "descriptionNow": [
-   "Baseball Hat 3 belongs to our Clothing & Accessories range and is offered at $49 through the TurboSquid marketplace. The build totals 16,068 polygons across 16,154 vertices. The same count is comfortable in an offline render and demanding in a mobile game, so judge it against your own budget.",
-   "9 texture maps come with it, at 4096 x 4096 and 2048 x 2048 resolution. Detail is put where the camera will find it and left out where it would only cost polygons. Scene structure is flat enough to navigate and grouped enough to be useful, which is what makes reuse practical.",
-   "Buyers most often take it for product rendering, game assets and film & TV VFX. On the marketplace since 2015, with the listing maintained rather than left to age. It suits fashion visualization, character dressing, product advertising and game assets."
-  ],
-  "wordsNow": 141
- },
- {
-  "slug": "tesla-model-3-1214116",
-  "name": "Tesla Model 3",
-  "category": "Vehicles",
-  "sales": 354,
-  "price": "$129 USD",
-  "quality": "CheckMate Pro",
-  "polygons": "116,225",
-  "vertices": "130,476",
-  "geometry": "polygonal quads/tris",
-  "uv": "Yes, non-overlapping",
-  "textures": "9 at 4096 x 4096, 2048 x 2048",
-  "rig": "",
-  "animation": "",
-  "dimensions": "",
-  "onSaleSince": "2017",
-  "industries": "",
-  "typicalUse": "",
-  "versions": [
-   {
-    "name": "Tesla Model 3",
-    "price": "$129",
-    "main": true
-   },
-   {
-    "name": "Tesla Model 3 Rigged Rigged",
-    "price": "$169",
-    "main": false
-   },
-   {
-    "name": "Tesla Model 3 Simple Interior Simple Interior",
-    "price": "$129",
-    "main": false
-   }
-  ],
-  "keywordsNow": [
-   "tesla model 3",
-   "vehicle",
-   "car",
-   "tesla model 3 rigged",
-   "tesla model 3 simple interior"
-  ],
-  "descriptionNow": [
-   "This Vehicles model - Tesla Model 3 - is ready to drop into a scene as-is, and sells for $129 on TurboSquid. Counted at the source, the model is 116,225 polygons and 130,476 vertices. How that lands depends on your renderer and on how close the camera gets.",
-   "Maps: 9 of them, at 4096 x 4096 and 2048 x 2048. Topology is kept deliberately simple where detail would not read on camera, which keeps the scene light without visibly cheapening the silhouette. The scene is organized rather than dumped into a single mesh, which makes selective texturing and partial reuse practical.",
-   "It is cataloged for driving simulation, automotive advertising and game traffic. It has been on sale since 2017 and is still maintained as part of the active catalog. Common uses are automotive advertising, film and TV backgrounds, game traffic and architectural visualization."
-  ],
-  "wordsNow": 143
- },
- {
-  "slug": "orchid-flower-896518",
-  "name": "Orchid Flower",
-  "category": "Nature & Plants",
-  "sales": 326,
-  "price": "$19 USD",
-  "quality": "StemCell",
-  "polygons": "2,358",
-  "vertices": "2,368",
-  "geometry": "polygonal quads only",
-  "uv": "Yes, non-overlapping",
-  "textures": "5 at 4096 x 4096",
-  "rig": "",
-  "animation": "",
-  "dimensions": "",
-  "onSaleSince": "2015",
-  "industries": "",
-  "typicalUse": "",
-  "versions": [
-   {
-    "name": "Orchid Flower",
-    "price": "$19",
-    "main": true
-   },
-   {
-    "name": "Orchid Flower",
-    "price": "$19",
-    "main": false
-   }
-  ],
-  "keywordsNow": [
-   "orchid flower",
-   "plant",
-   "nature",
-   "tree"
-  ],
-  "descriptionNow": [
-   "Orchid Flower belongs to our Nature & Plants range and is offered at $19 through the TurboSquid marketplace. On import you get 2,358 polygons and 2,368 vertices. Whether that counts as light or heavy depends on the target platform, the complexity of the scene and how many instances it carries.",
-   "Textures number 5, authored at 4096 x 4096 so they survive a close crop. As a StemCell asset it comes with standardised PBR materials, so the look holds up whether it lands in a game engine or an offline renderer. Parts are separated where separation is useful, so a single component can be hidden, swapped or re-shaded on its own.",
-   "On this listing the stated applications are architectural visualization, film & TV VFX and game assets. Its first release was in 2015, and it has earned its place in the catalog since then. It fits environment dressing in games, architectural visualization, film backgrounds and VR scenes."
-  ],
-  "wordsNow": 156
- },
- {
-  "slug": "20-ft-iso-container-white-955965",
-  "name": "20 ft ISO Container",
-  "category": "Containers & Storage",
-  "sales": 308,
-  "price": "$59 USD",
-  "quality": "CheckMate Pro",
-  "polygons": "42,248",
-  "vertices": "42,332",
-  "geometry": "polygonal quads/tris",
-  "uv": "Yes, non-overlapping",
-  "textures": "5 at 4096 x 4096",
-  "rig": "",
-  "animation": "",
-  "dimensions": "",
-  "onSaleSince": "2015",
-  "industries": "",
-  "typicalUse": "",
-  "versions": [
-   {
-    "name": "20 ft ISO Container",
-    "price": "$59",
-    "main": true
-   },
-   {
-    "name": "20 ft ISO Container Green 3D Model Green",
-    "price": "$39",
-    "main": false
-   },
-   {
-    "name": "20 ft ISO Container Blue 3D Model Blue",
-    "price": "$49",
-    "main": false
-   },
-   {
-    "name": "20 ft ISO Container Brown 3D Model Brown",
-    "price": "$49",
-    "main": false
-   },
-   {
-    "name": "Linde Reach Staker with 20ft ISO Container Rigged Rigged",
-    "price": "$149",
-    "main": false
-   },
-   {
-    "name": "Reach Staker with 20ft ISO Container Rigged 3D Model Rigged",
-    "price": "$149",
-    "main": false
-   },
-   {
-    "name": "20 ft ISO Container Blue 2 Blue",
-    "price": "$49",
-    "main": false
-   },
-   {
-    "name": "Shipping Cargo Container 20 ft",
-    "price": "$49",
-    "main": false
-   },
-   {
-    "name": "Cargo Shipping Container 20 ft",
-    "price": "$49",
-    "main": false
-   }
-  ],
-  "keywordsNow": [
-   "20 ft iso container",
-   "industrial",
-   "equipment",
-   "machinery",
-   "20 ft iso container green 3d model",
-   "20 ft iso container blue 3d model",
-   "20 ft iso container brown 3d model",
-   "linde reach staker with 20ft iso container rigged",
-   "reach staker with 20ft iso container rigged 3d model",
-   "20 ft iso container blue 2",
-   "shipping cargo container 20 ft",
-   "cargo shipping container 20 ft"
-  ],
-  "descriptionNow": [
-   "Looking for a Containers & Storage asset? The 20 ft ISO Container is a finished, render-ready model at $59. Budget for 42,248 polygons and 42,332 vertices when you plan the scene. What matters is not the number itself but how many copies of the object your scene has to carry at once.",
-   "The material set is 5 maps, painted at 4096 x 4096. The model is watertight where it should be and open where it should be, so it behaves in both rendering and simulation. Objects are grouped and named logically, so isolating a single part for a material change is a two-second job rather than a cleanup task.",
-   "On this listing the stated applications are technical visualization, architectural visualization and software demos. It went on sale in 2015 and has been kept in the catalog ever since. It works as warehouse and logistics set dressing, a game prop, or a product-rendering element."
-  ],
-  "wordsNow": 153
- },
- {
-  "slug": "ford-transit-cargo-2020-1485058",
-  "name": "Ford Transit Cargo 2020",
-  "category": "Vehicles",
-  "sales": 289,
-  "price": "$189 USD",
-  "quality": "CheckMate Pro",
-  "polygons": "153,391",
-  "vertices": "174,527",
-  "geometry": "polygonal quads/tris",
-  "uv": "Yes, non-overlapping",
-  "textures": "17 at 4096 x 4096",
-  "rig": "",
-  "animation": "",
-  "dimensions": "",
-  "onSaleSince": "2019",
-  "industries": "",
-  "typicalUse": "",
-  "versions": [
-   {
-    "name": "Ford Transit Cargo 2020",
-    "price": "$189",
-    "main": true
-   },
-   {
-    "name": "Ford Transit Cargo 2020 Rigged Rigged",
-    "price": "$179",
-    "main": false
-   },
-   {
-    "name": "2020 Ford Transit Cargo Van White White",
-    "price": "$189",
-    "main": false
-   }
-  ],
-  "keywordsNow": [
-   "ford",
-   "transit",
-   "van",
-   "vehicle",
-   "car",
-   "automobile",
-   "minivan",
-   "wagon",
-   "ford transit cargo 2020 rigged",
-   "2020 ford transit cargo van white",
-   "transportation",
-   "transport",
-   "auto",
-   "automotive",
-   "truck",
-   "bus",
-   "lorry",
-   "machine",
-   "delivery",
-   "carrier",
-   "driver",
-   "light",
-   "commercial",
-   "cargo"
-  ],
-  "descriptionNow": [
-   "Ford Transit Cargo 2020 is one of the Vehicles models in the 3D Molier catalog, listed at $189. You are getting 153,391 polygons and 174,527 vertices, measured rather than estimated. Treat the figure as a planning number: it behaves one way in a single render and another in a level with fifty instances.",
-   "The texture set counts 17 maps, delivered at 4096 x 4096. The geometry is built to be worked with: predictable loops, no doubled faces, nothing hidden inside the shell. Objects sit at the origin with clean transforms, so duplicating the asset across an environment costs nothing extra.",
-   "On this listing the stated applications are driving simulation, automotive advertising and game traffic. The listing dates back to 2019, and it remains one of the models we keep current. Common uses are automotive advertising, film and TV backgrounds, game traffic and architectural visualization."
-  ],
-  "wordsNow": 144
- },
- {
   "slug": "splashed-out-liquid-1000193",
   "name": "Splashed Out Liquid",
   "category": "Nature & Plants",
@@ -743,7 +430,7 @@
   "descriptionNow": [
    "The Tesla Model S P100D is a production-ready Vehicles 3D model, priced at $149 on TurboSquid. Poly count sits at 133,790; vertex count at 153,071. That figure reads differently on desktop, on mobile and in WebXR, so weigh it against the target platform and the number of instances in the scene.",
    "It ships with 7 textures, authored at 4096 x 4096 and 2048 x 2048. The mesh is modelled at true scale with quad-dominant flow, so subdivision behaves and the object does not need rescaling on import. Naming and hierarchy are consistent, so the model behaves predictably when it is merged into a larger scene alongside other assets.",
-   "The listing flags driving simulation, automotive advertising and game traffic as the intended applications. The model joined the catalog in 2017 and is still part of what we sell today. Common uses are automotive advertising, film and TV backgrounds, game traffic and architectural visualization."
+   "The listing flags driving simulation, game traffic and film & TV VFX as the intended applications. The model joined the catalog in 2017 and is still part of what we sell today. Common uses are film and TV backgrounds, game traffic and architectural visualization."
   ],
   "wordsNow": 152
  },
@@ -1239,5 +926,4587 @@
    "It is cataloged for film & TV VFX and product rendering. Listed since 2016 - old enough to have been used in real projects, current enough to still be supported. It is ready for game assets, film and TV VFX, product rendering and VR experiences."
   ],
   "wordsNow": 137
+ },
+ {
+  "slug": "generic-wind-turbine-1096440",
+  "name": "Generic Wind Turbine",
+  "category": "Industrial Equipment",
+  "sales": 165,
+  "price": "$49 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "20,879",
+  "vertices": "22,751",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "18 at 6144 x 6144, 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2016",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "generic wind turbine",
+   "download",
+   "generic wind turbine turbosquid"
+  ],
+  "descriptionNow": [
+   "Generic Wind Turbine is one of the Industrial Equipment models in the 3D Molier catalog, listed at $49. You are getting 20,879 polygons and 22,751 vertices, measured rather than estimated. Treat the figure as a planning number: it behaves one way in a single render and another in a level with fifty instances.",
+   "The texture set counts 18 maps, delivered at 6144 x 6144 and 4096 x 4096. The mesh is built with clean quad-based topology and correct real-world proportions, so it subdivides predictably and sits at the right size next to other objects in a scene. Objects sit at the origin with clean transforms, so duplicating the asset across an environment costs nothing extra.",
+   "On this listing the stated applications are industrial visualization, operator training and film & TV VFX. The listing dates back to 2016, and it remains one of the models we keep current. It is useful for industrial and factory visualization, product rendering, game props and technical presentations."
+  ],
+  "wordsNow": 162
+ },
+ {
+  "slug": "box-truck-isuzu-npr-2018-1233256",
+  "name": "Box Truck Isuzu NPR 2018",
+  "category": "Vehicles",
+  "sales": 164,
+  "price": "$129 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "330,548",
+  "vertices": "346,483",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "14 at 4096 x 4096, 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2017",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Box Truck Isuzu NPR 2018",
+    "price": "$129",
+    "main": true
+   },
+   {
+    "name": "Box Truck Isuzu NPR 2018 Rigged Rigged",
+    "price": "$149",
+    "main": false
+   },
+   {
+    "name": "Box Truck Generic Rigged Rigged",
+    "price": "$119",
+    "main": false
+   },
+   {
+    "name": "Isuzu NPR Cargo Truck White Simplified White",
+    "price": "$89",
+    "main": false
+   },
+   {
+    "name": "Isuzu NPR Cargo Truck White White",
+    "price": "$99",
+    "main": false
+   },
+   {
+    "name": "Box Truck Isuzu NPR 2018 Simple Interior Simple Interior",
+    "price": "$89",
+    "main": false
+   },
+   {
+    "name": "Box Truck Generic Simple Interior Simple Interior",
+    "price": "$89",
+    "main": false
+   },
+   {
+    "name": "Box Truck Generic",
+    "price": "$99",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "box",
+   "truck",
+   "isuzu",
+   "transport",
+   "cargo",
+   "refrigerated",
+   "commercial",
+   "transportation",
+   "box truck isuzu npr 2018 rigged",
+   "box truck generic rigged",
+   "isuzu npr cargo truck white simplified",
+   "isuzu npr cargo truck white",
+   "box truck isuzu npr 2018 simple interior",
+   "box truck generic simple interior",
+   "box truck generic",
+   "vehicle",
+   "lorry",
+   "haulage",
+   "goods",
+   "machine",
+   "auto",
+   "delivery",
+   "shipping",
+   "freight"
+  ],
+  "descriptionNow": [
+   "The Box Truck Isuzu NPR 2018 is a production-ready Vehicles 3D model, priced at $129 on TurboSquid. Straight from the source file: 330,548 polygons, 346,483 vertices. Read that against your engine and your shot: a hero close-up and a background prop have very different budgets.",
+   "Included are 14 texture maps, each at 4096 x 4096 and 2048 x 2048. Detail is put where the camera will find it and left out where it would only cost polygons. The outliner reads cleanly: no stray nulls, no leftover helpers, nothing to untangle before work starts.",
+   "It is cataloged for driving simulation, game traffic and film & TV VFX. 2017 is when this one first went up, and it has stayed in the catalog since. Common uses are film and TV backgrounds, game traffic and architectural visualization."
+  ],
+  "wordsNow": 134
+ },
+ {
+  "slug": "santa-sleigh-1398430",
+  "name": "Santa Sleigh",
+  "category": "Signage & Decor",
+  "sales": 164,
+  "price": "$59 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "30,002",
+  "vertices": "32,005",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "24 at 2048 x 2048, 1024 x 1024",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2019",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Santa Sleigh",
+    "price": "$59",
+    "main": true
+   },
+   {
+    "name": "Santa Sleigh with Fur 3D Model",
+    "price": "$49",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "sleigh",
+   "christmas",
+   "santa",
+   "gold",
+   "sled",
+   "claus",
+   "empty",
+   "sledge",
+   "santa sleigh with fur 3d model",
+   "red",
+   "holiday",
+   "xmas",
+   "celebration",
+   "winter",
+   "snow",
+   "season",
+   "year",
+   "traditional",
+   "seasonal",
+   "festive",
+   "reindeer",
+   "golden",
+   "gift",
+   "present"
+  ],
+  "descriptionNow": [
+   "This Signage & Decor model - Santa Sleigh - is ready to drop into a scene as-is, and sells for $59 on TurboSquid. It comes in at 30,002 polygons, with 32,005 vertices behind them. Heavy or light is a question about the scene, not about the model, so check it against the platform you are shipping to.",
+   "Surfacing relies on 24 maps authored at 2048 x 2048 and 1024 x 1024. The mesh is modelled at true scale with quad-dominant flow, so subdivision behaves and the object does not need rescaling on import. Everything is placed at the scene origin with sensible pivots, so the asset can be duplicated, arrayed or attached to a rig without hunting for transforms.",
+   "The listing flags event visualization, product rendering and film & TV VFX as the intended applications. First published in 2019, it is part of the long-running core of the collection. It works as set dressing for interiors and streets, advertising renders and game environments."
+  ],
+  "wordsNow": 163
+ },
+ {
+  "slug": "diamonds-collection-1222269",
+  "name": "Diamonds Collection",
+  "category": "Model Bundles & Sets",
+  "sales": 161,
+  "price": "$29 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "",
+  "vertices": "",
+  "geometry": "",
+  "uv": "",
+  "textures": "",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2017",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "diamonds collection",
+   "download",
+   "diamonds collection turbosquid"
+  ],
+  "descriptionNow": [
+   "The Diamonds Collection is a production-ready Model Bundles & Sets 3D model, priced at $29 on TurboSquid. The mesh is built with clean quad-based topology and correct real-world proportions, so it subdivides predictably and sits at the right size next to other objects in a scene. Objects are grouped and named logically, so isolating a single part for a material change is a two-second job rather than a cleanup task.",
+   "On this listing the stated applications are game assets, film & TV VFX and product rendering. It went on sale in 2017 and has been kept in the catalog ever since. The set covers several related objects at once, which saves assembling a scene from separate purchases."
+  ],
+  "wordsNow": 117
+ },
+ {
+  "slug": "scaffolding-965179",
+  "name": "Scaffolding",
+  "category": "Industrial Equipment",
+  "sales": 156,
+  "price": "$39 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "207,920",
+  "vertices": "242,924",
+  "geometry": "polygonal quads only",
+  "uv": "Yes, non-overlapping",
+  "textures": "7 at 4096 x 4096, 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Scaffolding",
+    "price": "$39",
+    "main": true
+   },
+   {
+    "name": "Construction Scaffolding",
+    "price": "$39",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "scaffolding",
+   "download",
+   "scaffolding turbosquid",
+   "construction scaffolding"
+  ],
+  "descriptionNow": [
+   "This Industrial Equipment model - Scaffolding - is ready to drop into a scene as-is, and sells for $39 on TurboSquid. The mesh carries 207,920 polygons and 242,924 vertices. The count is honest; whether it is heavy is a decision only your target platform can make.",
+   "7 maps at 4096 x 4096 and 2048 x 2048 carry the materials. Construction is plain and deliberate - quads through the body, triangles only where they are harmless. Pivot points sit where you would expect them, which matters as soon as the model needs to be instanced or parented to something else.",
+   "Buyers most often take it for industrial visualization, operator training and film & TV VFX. Published in 2015, it has stayed in the range while a lot of other listings came and went. It is useful for industrial and factory visualization, product rendering, game props and technical presentations."
+  ],
+  "wordsNow": 147
+ },
+ {
+  "slug": "disco-ball-rainbow-939054",
+  "name": "Disco Ball",
+  "category": "Furniture & Interior",
+  "sales": 155,
+  "price": "$29 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "29,188",
+  "vertices": "39,765",
+  "geometry": "polygonal quads only",
+  "uv": "Yes, non-overlapping",
+  "textures": "3 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Disco Ball",
+    "price": "$29",
+    "main": true
+   },
+   {
+    "name": "Rainbow Disco Ball",
+    "price": "$29",
+    "main": false
+   },
+   {
+    "name": "Disco Ball",
+    "price": "$29",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "disco ball rainbow",
+   "download",
+   "disco ball rainbow turbosquid",
+   "rainbow disco ball",
+   "disco ball"
+  ],
+  "descriptionNow": [
+   "Disco Ball is one of the Furniture & Interior models in the 3D Molier catalog, listed at $29. Counted at the source, the model is 29,188 polygons and 39,765 vertices. How that lands depends on your renderer and on how close the camera gets.",
+   "Maps: 3 of them, at 4096 x 4096. Construction is plain and deliberate - quads through the body, triangles only where they are harmless. The scene is organized rather than dumped into a single mesh, which makes selective texturing and partial reuse practical.",
+   "It is cataloged for interior visualization, product rendering and film & TV VFX. It has been on sale since 2015 and is still maintained as part of the active catalog. It is built for interior visualization, architectural renders, product advertising and game interiors."
+  ],
+  "wordsNow": 130
+ },
+ {
+  "slug": "stage-curtain-1417929",
+  "name": "Stage Curtain",
+  "category": "Furniture & Interior",
+  "sales": 153,
+  "price": "$39 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "229,816",
+  "vertices": "242,272",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "5 at 8192 x 8192, 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2019",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "stage",
+   "curtain",
+   "red",
+   "theater",
+   "theatre",
+   "opera",
+   "velvet",
+   "presentation",
+   "show",
+   "art",
+   "backdrop",
+   "performance",
+   "classic",
+   "cloth",
+   "event",
+   "drapes",
+   "fabric",
+   "cinema",
+   "concert",
+   "dramatic",
+   "theatrical",
+   "entertainment",
+   "drama",
+   "ceremony"
+  ],
+  "descriptionNow": [
+   "Stage Curtain belongs to our Furniture & Interior range and is offered at $39 through the TurboSquid marketplace. It comes in at 229,816 polygons, with 242,272 vertices behind them. Heavy or light is a question about the scene, not about the model, so check it against the platform you are shipping to.",
+   "Surfacing relies on 5 maps authored at 8192 x 8192 and 2048 x 2048. The model is watertight where it should be and open where it should be, so it behaves in both rendering and simulation. Everything is placed at the scene origin with sensible pivots, so the asset can be duplicated, arrayed or attached to a rig without hunting for transforms.",
+   "The listing flags interior visualization, product rendering and film & TV VFX as the intended applications. First published in 2019, it is part of the long-running core of the collection. It is built for interior visualization, architectural renders, product advertising and game interiors."
+  ],
+  "wordsNow": 157
+ },
+ {
+  "slug": "soap-bubble-1255615",
+  "name": "Soap Bubble",
+  "category": "Nature & Plants",
+  "sales": 151,
+  "price": "$9 USD",
+  "quality": "StemCell",
+  "polygons": "1,200",
+  "vertices": "1,204",
+  "geometry": "polygonal quads only",
+  "uv": "Yes, non-overlapping",
+  "textures": "1 at 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2018",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Soap Bubble",
+    "price": "$9",
+    "main": true
+   },
+   {
+    "name": "Soapy Bubble",
+    "price": "$9",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "soap",
+   "bubble",
+   "sphere",
+   "transparent",
+   "floating",
+   "light",
+   "air",
+   "reflection",
+   "soapy bubble",
+   "rainbow",
+   "clean",
+   "fresh",
+   "abstract",
+   "shiny",
+   "minimal",
+   "design"
+  ],
+  "descriptionNow": [
+   "Priced at $9, the Soap Bubble is a finished Nature & Plants model rather than a base mesh you have to build on. Counted at the source, the model is 1,200 polygons and 1,204 vertices. How that lands depends on your renderer and on how close the camera gets.",
+   "Maps: 1 of them, at 2048 x 2048. StemCell means one authored master and several honest exports, with PBR values that hold their meaning in each of them. The scene is organized rather than dumped into a single mesh, which makes selective texturing and partial reuse practical.",
+   "It is cataloged for architectural visualization, film & TV VFX and product rendering. It has been on sale since 2018 and is still maintained as part of the active catalog. It fits environment dressing in games, architectural visualization, film backgrounds and VR scenes."
+  ],
+  "wordsNow": 139
+ },
+ {
+  "slug": "vinyl-920660",
+  "name": "Vinyl",
+  "category": "Signage & Decor",
+  "sales": 150,
+  "price": "$19 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "9,412",
+  "vertices": "9,464",
+  "geometry": "polygonal quads only",
+  "uv": "Yes, non-overlapping",
+  "textures": "8 at 4096 x 4096, 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Vinyl",
+    "price": "$19",
+    "main": true
+   },
+   {
+    "name": "Vinyl Record The Beatles",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Bob Marley Vinyl",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Vinyl Elvis Presley",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Vinyl Record(1)",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Vinyl Record",
+    "price": "$19",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "vinyl",
+   "download",
+   "vinyl turbosquid",
+   "vinyl record the beatles",
+   "bob marley vinyl",
+   "vinyl elvis presley",
+   "vinyl record(1)",
+   "vinyl record"
+  ],
+  "descriptionNow": [
+   "This Signage & Decor model - Vinyl - is ready to drop into a scene as-is, and sells for $19 on TurboSquid. The build totals 9,412 polygons across 9,464 vertices. The same count is comfortable in an offline render and demanding in a mobile game, so judge it against your own budget.",
+   "8 texture maps come with it, at 4096 x 4096 and 2048 x 2048 resolution. Construction is plain and deliberate - quads through the body, triangles only where they are harmless. Scene structure is flat enough to navigate and grouped enough to be useful, which is what makes reuse practical.",
+   "Buyers most often take it for event visualization, product rendering and film & TV VFX. On the marketplace since 2015, with the listing maintained rather than left to age. It works as set dressing for interiors and streets, advertising renders and game environments."
+  ],
+  "wordsNow": 145
+ },
+ {
+  "slug": "ice-cream-cone-1485059",
+  "name": "Ice Cream Cone",
+  "category": "Food & Beverages",
+  "sales": 147,
+  "price": "$29 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "25,866",
+  "vertices": "25,762",
+  "geometry": "polygonal quads/tris",
+  "uv": "Mixed",
+  "textures": "10 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2019",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Ice Cream Cone",
+    "price": "$29",
+    "main": true
+   },
+   {
+    "name": "Strawberry Ice Cream Cone Waffle Pink Pink",
+    "price": "$29",
+    "main": false
+   },
+   {
+    "name": "Vanilla Ice Cream in Waffle Cone",
+    "price": "$29",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "ice",
+   "cream",
+   "cone",
+   "sweet",
+   "dessert",
+   "food",
+   "refreshment",
+   "wafer",
+   "strawberry ice cream cone waffle pink",
+   "vanilla ice cream in waffle cone",
+   "waffle",
+   "icecream",
+   "ice-cream",
+   "vanilla",
+   "creamy",
+   "creme",
+   "classic",
+   "cold",
+   "snack",
+   "refreshing",
+   "cool",
+   "product",
+   "dairy",
+   "milk"
+  ],
+  "descriptionNow": [
+   "Priced at $29, the Ice Cream Cone is a finished Food & Beverages model rather than a base mesh you have to build on. On import you get 25,866 polygons and 25,762 vertices. Whether that counts as light or heavy depends on the target platform, the complexity of the scene and how many instances it carries.",
+   "Textures number 10, authored at 4096 x 4096 so they survive a close crop. The mesh is modelled at true scale with quad-dominant flow, so subdivision behaves and the object does not need rescaling on import. Parts are separated where separation is useful, so a single component can be hidden, swapped or re-shaded on its own.",
+   "On this listing the stated applications are food photography, film & TV VFX and 3D printing. Its first release was in 2019, and it has earned its place in the catalog since then. It fits food advertising, packaging visualization, restaurant interiors and game props."
+  ],
+  "wordsNow": 156
+ },
+ {
+  "slug": "claw-vending-machine-empty-1280650",
+  "name": "Claw Vending Machine",
+  "category": "Furniture & Interior",
+  "sales": 147,
+  "price": "$34 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "203,824",
+  "vertices": "205,730",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "10 at 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2018",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Claw Vending Machine",
+    "price": "$34",
+    "main": true
+   },
+   {
+    "name": "Claw Vending Machine Rigged Rigged",
+    "price": "$49",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "claw vending machine empty",
+   "download",
+   "claw vending machine empty turbosquid",
+   "claw vending machine rigged"
+  ],
+  "descriptionNow": [
+   "Looking for a Furniture & Interior asset? The Claw Vending Machine is a finished, render-ready model at $34. The polygon count is 203,824, spread over 205,730 vertices. Whether that fits depends on where it lands - an architectural still and a real-time walkthrough tolerate very different counts.",
+   "You get 10 maps at 2048 x 2048 - enough resolution to hold a close shot. Construction is plain and deliberate - quads through the body, triangles only where they are harmless. Transforms are frozen and the hierarchy is shallow, which keeps the asset easy to instance across a large environment.",
+   "Buyers most often take it for interior visualization, product rendering and film & TV VFX. Available since 2018, the model has been through several rounds of studio use. It is built for interior visualization, architectural renders, product advertising and game interiors."
+  ],
+  "wordsNow": 139
+ },
+ {
+  "slug": "semi-truck-with-trailer-generic-simple-interior-1521260",
+  "name": "Semi Truck with Trailer Generic Simple Interior",
+  "category": "Vehicles",
+  "sales": 144,
+  "price": "$169 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "724,720",
+  "vertices": "766,665",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "16 at 4096 x 4096, 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2020",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Semi Truck with Trailer Generic Simple Interior",
+    "price": "$169",
+    "main": true
+   },
+   {
+    "name": "Semi Truck with Trailer Generic Rigged Rigged",
+    "price": "$149",
+    "main": false
+   },
+   {
+    "name": "Semi Truck with Trailer Generic",
+    "price": "$149",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "truck",
+   "trailer",
+   "semi",
+   "semi-trailer",
+   "car",
+   "vehicle",
+   "delivery",
+   "shipping",
+   "semi truck with trailer generic rigged",
+   "semi truck with trailer generic",
+   "heavy",
+   "duty",
+   "transport",
+   "transportation",
+   "diesel",
+   "cargo",
+   "tractor",
+   "lorry",
+   "industry",
+   "automobile",
+   "carrier",
+   "freight",
+   "auto",
+   "fast"
+  ],
+  "descriptionNow": [
+   "This Vehicles model - Semi Truck with Trailer Generic Simple Interior - is ready to drop into a scene as-is, and sells for $169 on TurboSquid. It comes in at 724,720 polygons, with 766,665 vertices behind them. Heavy or light is a question about the scene, not about the model, so check it against the platform you are shipping to.",
+   "Surfacing relies on 16 maps authored at 4096 x 4096 and 2048 x 2048. The model is watertight where it should be and open where it should be, so it behaves in both rendering and simulation. Everything is placed at the scene origin with sensible pivots, so the asset can be duplicated, arrayed or attached to a rig without hunting for transforms.",
+   "The listing flags driving simulation, automotive advertising and game traffic as the intended applications. First published in 2020, it is part of the long-running core of the collection. Common uses are automotive advertising, film and TV backgrounds, game traffic and architectural visualization."
+  ],
+  "wordsNow": 164
+ },
+ {
+  "slug": "fresh-rosemary-1249249",
+  "name": "Fresh Rosemary",
+  "category": "Food & Beverages",
+  "sales": 144,
+  "price": "$29 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "32,128",
+  "vertices": "32,428",
+  "geometry": "polygonal quads only",
+  "uv": "Yes, non-overlapping",
+  "textures": "7 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2018",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "fresh rosemary",
+   "download",
+   "fresh rosemary turbosquid"
+  ],
+  "descriptionNow": [
+   "The Fresh Rosemary is a production-ready Food & Beverages 3D model, priced at $29 on TurboSquid. Geometry weighs in at 32,128 polygons over 32,428 vertices. Compare it with the rest of your scene rather than with an abstract threshold - that is what decides whether it is affordable.",
+   "Surface detail comes from 7 textures at 4096 x 4096 rather than from geometry alone. The mesh is modelled at true scale with quad-dominant flow, so subdivision behaves and the object does not need rescaling on import. Pivots, naming and grouping follow the same logic throughout, so the model behaves the same way in every shot it appears in.",
+   "The listing flags food photography and film & TV VFX as the intended applications. In the catalog since 2018, which is a longer track record than most listings carry. It fits food advertising, packaging visualization, restaurant interiors and game props."
+  ],
+  "wordsNow": 147
+ },
+ {
+  "slug": "classic-sunglasses-gradient-light-blue-1237030",
+  "name": "Classic Sunglasses Gradient Light Blue",
+  "category": "Clothing & Accessories",
+  "sales": 143,
+  "price": "$29 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "7,990",
+  "vertices": "8,142",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "9 at 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2017",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Classic Sunglasses Gradient Light Blue",
+    "price": "$29",
+    "main": true
+   },
+   {
+    "name": "Leather Trim Aviator Sunglasses Gold Gold",
+    "price": "$29",
+    "main": false
+   },
+   {
+    "name": "Aviator Sunglasses Gold Gold",
+    "price": "$29",
+    "main": false
+   },
+   {
+    "name": "Classic Sunglasses",
+    "price": "$29",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "classic sunglasses gradient light",
+   "clothing",
+   "accessory",
+   "leather trim aviator sunglasses gold",
+   "aviator sunglasses gold",
+   "classic sunglasses"
+  ],
+  "descriptionNow": [
+   "The Classic Sunglasses Gradient Light Blue is a production-ready Clothing & Accessories 3D model, priced at $29 on TurboSquid. It comes in at 7,990 polygons, with 8,142 vertices behind them. Heavy or light is a question about the scene, not about the model, so check it against the platform you are shipping to.",
+   "Surfacing relies on 9 maps authored at 2048 x 2048. The model uses efficient, well-organized geometry - no hidden faces or overlapping shells to clean up before rendering. Everything is placed at the scene origin with sensible pivots, so the asset can be duplicated, arrayed or attached to a rig without hunting for transforms.",
+   "The listing flags product rendering, game assets and film & TV VFX as the intended applications. First published in 2017, it is part of the long-running core of the collection. It suits fashion visualization, character dressing, product advertising and game assets."
+  ],
+  "wordsNow": 148
+ },
+ {
+  "slug": "red-balloon-with-ribbon-1251960",
+  "name": "Red Balloon with Ribbon",
+  "category": "Signage & Decor",
+  "sales": 142,
+  "price": "$29 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "5,166",
+  "vertices": "5,161",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "1 at 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2018",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "red balloon with ribbon",
+   "download",
+   "red balloon with ribbon turbosquid"
+  ],
+  "descriptionNow": [
+   "Red Balloon with Ribbon belongs to our Signage & Decor range and is offered at $29 through the TurboSquid marketplace. The polygon count is 5,166, spread over 5,161 vertices. Whether that fits depends on where it lands - an architectural still and a real-time walkthrough tolerate very different counts.",
+   "You get 1 maps at 2048 x 2048 - enough resolution to hold a close shot. Edge flow follows the form rather than fighting it, which is what lets the silhouette hold up when the camera moves in. Transforms are frozen and the hierarchy is shallow, which keeps the asset easy to instance across a large environment.",
+   "Buyers most often take it for event visualization, product rendering and film & TV VFX. Available since 2018, the model has been through several rounds of studio use. It works as set dressing for interiors and streets, advertising renders and game environments."
+  ],
+  "wordsNow": 148
+ },
+ {
+  "slug": "pill-bottle-set-1378729",
+  "name": "Pill Bottle Set",
+  "category": "Medical",
+  "sales": 141,
+  "price": "$29 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "35,384",
+  "vertices": "36,050",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "2 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2019",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "bottle",
+   "pill",
+   "prescription",
+   "medical",
+   "pharmacy",
+   "healthcare",
+   "medicine",
+   "health",
+   "drug",
+   "medication",
+   "antibiotics",
+   "capsule",
+   "container",
+   "tablet",
+   "care",
+   "healthy",
+   "pharmaceutical",
+   "vitamin",
+   "treatment",
+   "cure",
+   "dose",
+   "pharmaceutic",
+   "dosage",
+   "medicament"
+  ],
+  "descriptionNow": [
+   "The Pill Bottle Set is a production-ready Medical 3D model, priced at $29 on TurboSquid. Geometry weighs in at 35,384 polygons over 36,050 vertices. Compare it with the rest of your scene rather than with an abstract threshold - that is what decides whether it is affordable.",
+   "Surface detail comes from 2 textures at 4096 x 4096 rather than from geometry alone. The mesh is modelled at true scale with quad-dominant flow, so subdivision behaves and the object does not need rescaling on import. Pivots, naming and grouping follow the same logic throughout, so the model behaves the same way in every shot it appears in.",
+   "The listing flags medical visualization, medical simulation and film & TV VFX as the intended applications. In the catalog since 2019, which is a longer track record than most listings carry. It fits medical education, VR anatomy training, patient-facing visualization and medical sequences in film."
+  ],
+  "wordsNow": 151
+ },
+ {
+  "slug": "blooming-red-hibiscus-flower-1648907",
+  "name": "Hibiscus Flower",
+  "category": "Nature & Plants",
+  "sales": 139,
+  "price": "$19 USD",
+  "quality": "StemCell",
+  "polygons": "17,885",
+  "vertices": "17,615",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "6 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2020",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Hibiscus Flower",
+    "price": "$19",
+    "main": true
+   },
+   {
+    "name": "Blooming Hibiscus Flower Orange Orange",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Hibiscus Flower Pink Pink",
+    "price": "$19",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "hibiscus",
+   "flower",
+   "plant",
+   "blossom",
+   "flora",
+   "petal",
+   "bloom",
+   "blooming",
+   "blooming hibiscus flower orange",
+   "hibiscus flower pink",
+   "bouquet",
+   "botanical",
+   "mallow",
+   "malvaceae",
+   "ornate",
+   "garden",
+   "gardening",
+   "field",
+   "wild",
+   "wildflower",
+   "meadow",
+   "floral",
+   "decoration",
+   "ornamental"
+  ],
+  "descriptionNow": [
+   "The Hibiscus Flower is a production-ready Nature & Plants 3D model, priced at $19 on TurboSquid. Straight from the source file: 17,885 polygons, 17,615 vertices. Read that against your engine and your shot: a hero close-up and a background prop have very different budgets.",
+   "Included are 6 texture maps, each at 4096 x 4096. Being StemCell, it arrives in several formats built from one source, so the version you open is not a lossy conversion of another. The outliner reads cleanly: no stray nulls, no leftover helpers, nothing to untangle before work starts.",
+   "It is cataloged for architectural visualization, film & TV VFX and game assets. 2020 is when this one first went up, and it has stayed in the catalog since. It fits environment dressing in games, architectural visualization, film backgrounds and VR scenes."
+  ],
+  "wordsNow": 135
+ },
+ {
+  "slug": "shopping-trolley-1113946",
+  "name": "Shopping Trolley",
+  "category": "Tools",
+  "sales": 139,
+  "price": "$29 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "13,184",
+  "vertices": "13,660",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "2 at 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2017",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "shopping trolley",
+   "download",
+   "shopping trolley turbosquid"
+  ],
+  "descriptionNow": [
+   "Shopping Trolley is one of the Tools models in the 3D Molier catalog, listed at $29. The polygon count is 13,184, spread over 13,660 vertices. Whether that fits depends on where it lands - an architectural still and a real-time walkthrough tolerate very different counts.",
+   "You get 2 maps at 2048 x 2048 - enough resolution to hold a close shot. Topology is kept deliberately simple where detail would not read on camera, which keeps the scene light without visibly cheapening the silhouette. Transforms are frozen and the hierarchy is shallow, which keeps the asset easy to instance across a large environment.",
+   "Buyers most often take it for technical visualization, film & TV VFX and product rendering. Available since 2017, the model has been through several rounds of studio use. It works as a game prop, a film and TV set element, or a reference object in training material."
+  ],
+  "wordsNow": 149
+ },
+ {
+  "slug": "fedora-hat-931630",
+  "name": "Fedora Hat",
+  "category": "Clothing & Accessories",
+  "sales": 137,
+  "price": "$29 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "9,100",
+  "vertices": "9,102",
+  "geometry": "polygonal quads only",
+  "uv": "Yes, non-overlapping",
+  "textures": "4 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Fedora Hat",
+    "price": "$29",
+    "main": true
+   },
+   {
+    "name": "Fedora Hat Brown Brown",
+    "price": "$29",
+    "main": false
+   },
+   {
+    "name": "Fedora Hat Blue Blue",
+    "price": "$29",
+    "main": false
+   },
+   {
+    "name": "Fedora Hat 2 Brown Brown",
+    "price": "$39",
+    "main": false
+   },
+   {
+    "name": "Fedora Hat 2 Blue Blue",
+    "price": "$39",
+    "main": false
+   },
+   {
+    "name": "Black Fedora Hat Black",
+    "price": "$29",
+    "main": false
+   },
+   {
+    "name": "Fedora Hat For Gentleman",
+    "price": "$29",
+    "main": false
+   },
+   {
+    "name": "Royal Blue Fedora Hat Blue",
+    "price": "$29",
+    "main": false
+   },
+   {
+    "name": "Classic Fedora Hat for Men",
+    "price": "$39",
+    "main": false
+   },
+   {
+    "name": "Fedora Hat 2",
+    "price": "$39",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "fedora hat",
+   "clothing",
+   "accessory",
+   "fedora hat for advertising",
+   "fedora hat brown",
+   "fedora hat blue",
+   "fedora hat 2 brown",
+   "fedora hat 2 blue",
+   "black fedora hat",
+   "fedora hat for gentleman",
+   "royal blue fedora hat",
+   "classic fedora hat for men",
+   "fedora hat 2"
+  ],
+  "descriptionNow": [
+   "Fedora Hat belongs to our Clothing & Accessories range and is offered at $29 through the TurboSquid marketplace. Counted at the source, the model is 9,100 polygons and 9,102 vertices. How that lands depends on your renderer and on how close the camera gets.",
+   "Maps: 4 of them, at 4096 x 4096. Detail is put where the camera will find it and left out where it would only cost polygons. The scene is organized rather than dumped into a single mesh, which makes selective texturing and partial reuse practical.",
+   "It is cataloged for product rendering, game assets and film & TV VFX. It has been on sale since 2015 and is still maintained as part of the active catalog. It suits fashion visualization, character dressing, product advertising and game assets."
+  ],
+  "wordsNow": 130
+ },
+ {
+  "slug": "st-edwards-crown-904223",
+  "name": "St Edwards Crown",
+  "category": "Clothing & Accessories",
+  "sales": 134,
+  "price": "$49 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "324,811",
+  "vertices": "332,082",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "7 at 4096 x 4096, 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "St Edwards Crown",
+    "price": "$49",
+    "main": true
+   },
+   {
+    "name": "St Edwards Crown Fur",
+    "price": "$49",
+    "main": false
+   },
+   {
+    "name": "St Edwards Crown",
+    "price": "$49",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "st edwards crown",
+   "download",
+   "st edwards crown turbosquid",
+   "st edwards crown fur"
+  ],
+  "descriptionNow": [
+   "This Clothing & Accessories model - St Edwards Crown - is ready to drop into a scene as-is, and sells for $49 on TurboSquid. It comes in at 324,811 polygons, with 332,082 vertices behind them. Heavy or light is a question about the scene, not about the model, so check it against the platform you are shipping to.",
+   "Surfacing relies on 7 maps authored at 4096 x 4096 and 2048 x 2048. The model is watertight where it should be and open where it should be, so it behaves in both rendering and simulation. Everything is placed at the scene origin with sensible pivots, so the asset can be duplicated, arrayed or attached to a rig without hunting for transforms.",
+   "The listing flags product rendering, game assets and film & TV VFX as the intended applications. First published in 2015, it is part of the long-running core of the collection. It suits fashion visualization, character dressing, product advertising and game assets."
+  ],
+  "wordsNow": 161
+ },
+ {
+  "slug": "gas-grill-922699",
+  "name": "Gas Grill",
+  "category": "Furniture & Interior",
+  "sales": 132,
+  "price": "$39 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "46,871",
+  "vertices": "47,209",
+  "geometry": "polygonal quads only",
+  "uv": "Yes, non-overlapping",
+  "textures": "5 at 4096 x 4096, 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "gas grill",
+   "download",
+   "gas grill turbosquid"
+  ],
+  "descriptionNow": [
+   "Gas Grill is a detailed Furniture & Interior asset built for professional 3D pipelines, available at $39. The build totals 46,871 polygons across 47,209 vertices. The same count is comfortable in an offline render and demanding in a mobile game, so judge it against your own budget.",
+   "5 texture maps come with it, at 4096 x 4096 and 2048 x 2048 resolution. Edge flow follows the form rather than fighting it, which is what lets the silhouette hold up when the camera moves in. Scene structure is flat enough to navigate and grouped enough to be useful, which is what makes reuse practical.",
+   "Buyers most often take it for interior visualization, product rendering and film & TV VFX. On the marketplace since 2015, with the listing maintained rather than left to age. It is built for interior visualization, architectural renders, product advertising and game interiors."
+  ],
+  "wordsNow": 145
+ },
+ {
+  "slug": "ice-train-927751",
+  "name": "Ice Train",
+  "category": "Vehicles",
+  "sales": 129,
+  "price": "$149 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "3,960,288",
+  "vertices": "4,086,746",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "30 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Ice Train",
+    "price": "$149",
+    "main": true
+   },
+   {
+    "name": "ICE 4 High Speed Intercity Long Distance Train",
+    "price": "$149",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "ice train",
+   "download",
+   "ice train turbosquid",
+   "ice 4 high speed intercity long distance train"
+  ],
+  "descriptionNow": [
+   "This Vehicles model - Ice Train - is ready to drop into a scene as-is, and sells for $149 on TurboSquid. The build totals 3,960,288 polygons across 4,086,746 vertices. The same count is comfortable in an offline render and demanding in a mobile game, so judge it against your own budget.",
+   "30 texture maps come with it, at 4096 x 4096 resolution. Construction is plain and deliberate - quads through the body, triangles only where they are harmless. Scene structure is flat enough to navigate and grouped enough to be useful, which is what makes reuse practical.",
+   "Buyers most often take it for driving simulation, automotive advertising and film & TV VFX. On the marketplace since 2015, with the listing maintained rather than left to age. Common uses are automotive advertising, film and TV backgrounds, game traffic and architectural visualization."
+  ],
+  "wordsNow": 140
+ },
+ {
+  "slug": "conveyor-belt-909860",
+  "name": "Conveyor Belt",
+  "category": "Industrial Equipment",
+  "sales": 128,
+  "price": "$39 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "40,890",
+  "vertices": "40,086",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "6 at 4096 x 4096, 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Conveyor Belt",
+    "price": "$39",
+    "main": true
+   },
+   {
+    "name": "Belt Conveyor",
+    "price": "$49",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "conveyor belt",
+   "industrial",
+   "equipment",
+   "machinery",
+   "belt conveyor"
+  ],
+  "descriptionNow": [
+   "Conveyor Belt is one of the Industrial Equipment models in the 3D Molier catalog, listed at $39. The build totals 40,890 polygons across 40,086 vertices. The same count is comfortable in an offline render and demanding in a mobile game, so judge it against your own budget.",
+   "6 texture maps come with it, at 4096 x 4096 and 2048 x 2048 resolution. Edge flow follows the form rather than fighting it, which is what lets the silhouette hold up when the camera moves in. Scene structure is flat enough to navigate and grouped enough to be useful, which is what makes reuse practical.",
+   "Buyers most often take it for industrial visualization, operator training and software demos. On the marketplace since 2015, with the listing maintained rather than left to age. It is useful for industrial and factory visualization, product rendering, game props and technical presentations."
+  ],
+  "wordsNow": 145
+ },
+ {
+  "slug": "stealth-multirole-fighter-f-35-lightning-ii-1211595",
+  "name": "Stealth Multirole Fighter Lightning II",
+  "category": "Aircraft",
+  "sales": 123,
+  "price": "$199 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "206,388",
+  "vertices": "209,982",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "9 at 4096 x 4096, 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2017",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Stealth Multirole Fighter Lightning II",
+    "price": "$199",
+    "main": true
+   },
+   {
+    "name": "Stealth Multirole Fighter F 35 Lightning II With a Pilot Rigged for Maya Maya",
+    "price": "$269",
+    "main": false
+   },
+   {
+    "name": "Stealth Multirole Fighter F 35 Lightning II Pilot Rigged for Maya Maya",
+    "price": "$319",
+    "main": false
+   },
+   {
+    "name": "Stealth Multirole Fighter F 35 Lightning II Rigged Rigged",
+    "price": "$229",
+    "main": false
+   },
+   {
+    "name": "Stealth Multirole Fighter F 35 Lightning II Pilot Rigged Rigged",
+    "price": "$299",
+    "main": false
+   },
+   {
+    "name": "Stealth Multirole Fighter F 35 Lightning II With a Pilot Gesture Ok",
+    "price": "$219",
+    "main": false
+   },
+   {
+    "name": "Stealth Multirole Fighter F 35 Lightning II Pilot OK Pose",
+    "price": "$289",
+    "main": false
+   },
+   {
+    "name": "Stealth Multirole Fighter F 35 Lightning II With a Pilot Rigged Rigged",
+    "price": "$269",
+    "main": false
+   },
+   {
+    "name": "Stealth Multirole Fighter F35 Lightning II Rigged Rigged",
+    "price": "$199",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "stealth multirole fighter f-35",
+   "military vehicle",
+   "military",
+   "tank",
+   "stealth multirole fighter f 35 lightning ii rigged",
+   "stealth multirole fighter f 35 lightning ii pilot rigged",
+   "stealth multirole fighter f 35 lightning ii pilot ok pose",
+   "stealth multirole fighter f35 lightning ii rigged"
+  ],
+  "descriptionNow": [
+   "This Aircraft model - Stealth Multirole Fighter Lightning II - is ready to drop into a scene as-is, and sells for $199 on TurboSquid. Measured geometry: 206,388 polygons, 209,982 vertices - no rounding, no estimate. Its suitability for real-time use depends on the target platform, scene complexity and the number of instances.",
+   "Texturing runs to 9 maps at 4096 x 4096 and 2048 x 2048. Geometry is modelled to real-world proportions with a tidy edge flow, which keeps it usable both as a background element and in closer shots. The file is organised for someone else to pick up: predictable names, predictable pivots, no hidden surprises.",
+   "It is cataloged for aerospace visualization, flight simulation and defense simulation. Listed since 2017 - old enough to have been used in real projects, current enough to still be supported. It works for aerospace visualization, flight and combat simulation, war-game environments and aviation sequences in film and TV."
+  ],
+  "wordsNow": 154
+ },
+ {
+  "slug": "basketball-rim-spalding-944920",
+  "name": "Basketball Rim",
+  "category": "Sports & Recreation",
+  "sales": 123,
+  "price": "$29 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "49,529",
+  "vertices": "49,898",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "9 at 4096 x 4096, 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Basketball Rim",
+    "price": "$29",
+    "main": true
+   },
+   {
+    "name": "Basketball Rim Generic",
+    "price": "$29",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "basketball rim spalding",
+   "download",
+   "basketball rim spalding turbosquid",
+   "basketball rim generic"
+  ],
+  "descriptionNow": [
+   "The Basketball Rim is a production-ready Sports & Recreation 3D model, priced at $29 on TurboSquid. Counted at the source, the model is 49,529 polygons and 49,898 vertices. How that lands depends on your renderer and on how close the camera gets.",
+   "Maps: 9 of them, at 4096 x 4096 and 2048 x 2048. Construction is plain and deliberate - quads through the body, triangles only where they are harmless. The scene is organized rather than dumped into a single mesh, which makes selective texturing and partial reuse practical.",
+   "It is cataloged for game assets and film & TV VFX. It has been on sale since 2015 and is still maintained as part of the active catalog. It fits sports broadcast graphics, game assets and VR experiences."
+  ],
+  "wordsNow": 127
+ },
+ {
+  "slug": "water-splash-in-air-1236284",
+  "name": "Water Splash in Air",
+  "category": "Nature & Plants",
+  "sales": 123,
+  "price": "$29 USD",
+  "quality": "StemCell",
+  "polygons": "21,180",
+  "vertices": "21,368",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "1 at 8192 x 8192",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2017",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Water Splash in Air",
+    "price": "$29",
+    "main": true
+   },
+   {
+    "name": "Orange Splash in Air Orange",
+    "price": "$29",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "water",
+   "splash",
+   "abstract",
+   "circle",
+   "blue",
+   "splashing",
+   "liquid",
+   "spa",
+   "orange splash in air",
+   "clean",
+   "falling",
+   "drink",
+   "motion",
+   "clear",
+   "bubble",
+   "transparent",
+   "purity",
+   "shape",
+   "drops",
+   "flowing"
+  ],
+  "descriptionNow": [
+   "Priced at $29, the Water Splash in Air is a finished Nature & Plants model rather than a base mesh you have to build on. You are getting 21,180 polygons and 21,368 vertices, measured rather than estimated. Treat the figure as a planning number: it behaves one way in a single render and another in a level with fifty instances.",
+   "The texture set counts 1 maps, delivered at 8192 x 8192. It is a StemCell model, so it ships in TurboSquid's multi-format standard with PBR materials that carry over between renderers instead of needing to be rebuilt per engine. Objects sit at the origin with clean transforms, so duplicating the asset across an environment costs nothing extra.",
+   "On this listing the stated applications are architectural visualization, film & TV VFX and product rendering. The listing dates back to 2017, and it remains one of the models we keep current. It fits environment dressing in games, architectural visualization, film backgrounds and VR scenes."
+  ],
+  "wordsNow": 162
+ },
+ {
+  "slug": "water-crown-splash-1233516",
+  "name": "Crown Splash",
+  "category": "Nature & Plants",
+  "sales": 121,
+  "price": "$29 USD",
+  "quality": "StemCell",
+  "polygons": "24,884",
+  "vertices": "25,131",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "1 at 8192 x 8192",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2017",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Crown Splash",
+    "price": "$29",
+    "main": true
+   },
+   {
+    "name": "Chocolate Crown Splash",
+    "price": "$29",
+    "main": false
+   },
+   {
+    "name": "Milk Crown Splash",
+    "price": "$29",
+    "main": false
+   },
+   {
+    "name": "Orange Crown Splash Orange",
+    "price": "$29",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "water",
+   "crown",
+   "splash",
+   "nature",
+   "drop",
+   "liquid",
+   "wave",
+   "motion",
+   "chocolate crown splash",
+   "milk crown splash",
+   "orange crown splash",
+   "falling",
+   "bubble",
+   "purity",
+   "clear",
+   "rain",
+   "transparent",
+   "splashing",
+   "circle",
+   "raindrop",
+   "waterdrop",
+   "vray"
+  ],
+  "descriptionNow": [
+   "Priced at $29, the Crown Splash is a finished Nature & Plants model rather than a base mesh you have to build on. Budget for 24,884 polygons and 25,131 vertices when you plan the scene. What matters is not the number itself but how many copies of the object your scene has to carry at once.",
+   "The material set is 1 maps, painted at 8192 x 8192. As a StemCell asset it comes with standardised PBR materials, so the look holds up whether it lands in a game engine or an offline renderer. Objects are grouped and named logically, so isolating a single part for a material change is a two-second job rather than a cleanup task.",
+   "On this listing the stated applications are architectural visualization, film & TV VFX and product rendering. It went on sale in 2017 and has been kept in the catalog ever since. It fits environment dressing in games, architectural visualization, film backgrounds and VR scenes."
+  ],
+  "wordsNow": 161
+ },
+ {
+  "slug": "a7l-apollo-and-skylab-spacesuit-3d-model-1006319",
+  "name": "A7L Apollo and Skylab Spacesuit 3D Model",
+  "category": "Clothing & Accessories",
+  "sales": 120,
+  "price": "$149 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "25,662",
+  "vertices": "26,351",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "7 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2016",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "a7l apollo and skylab",
+   "download",
+   "a7l apollo and skylab turbosquid"
+  ],
+  "descriptionNow": [
+   "The A7L Apollo and Skylab Spacesuit is a production-ready Clothing & Accessories 3D model, priced at $149 on TurboSquid. The polygon count is 25,662, spread over 26,351 vertices. Whether that fits depends on where it lands - an architectural still and a real-time walkthrough tolerate very different counts.",
+   "You get 7 maps at 4096 x 4096 - enough resolution to hold a close shot. Edge flow follows the form rather than fighting it, which is what lets the silhouette hold up when the camera moves in. Transforms are frozen and the hierarchy is shallow, which keeps the asset easy to instance across a large environment.",
+   "Buyers most often take it for product rendering, game assets and film & TV VFX. Available since 2016, the model has been through several rounds of studio use. It suits fashion visualization, character dressing, product advertising and game assets."
+  ],
+  "wordsNow": 144
+ },
+ {
+  "slug": "2-iron-golf-club-generic-924303",
+  "name": "2 Iron Golf Club",
+  "category": "Sports & Recreation",
+  "sales": 118,
+  "price": "$19 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "2,274",
+  "vertices": "2,334",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "11 at 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "2 Iron Golf Club",
+    "price": "$19",
+    "main": true
+   },
+   {
+    "name": "Golf Club 2 Iron",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "2 Iron Golf Club Nike",
+    "price": "$19",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "2 iron golf club",
+   "download",
+   "2 iron golf club turbosquid",
+   "golf club 2 iron",
+   "2 iron golf club nike"
+  ],
+  "descriptionNow": [
+   "This Sports & Recreation model - 2 Iron Golf Club - is ready to drop into a scene as-is, and sells for $19 on TurboSquid. On import you get 2,274 polygons and 2,334 vertices. Whether that counts as light or heavy depends on the target platform, the complexity of the scene and how many instances it carries.",
+   "Textures number 11, authored at 2048 x 2048 so they survive a close crop. The geometry is built to be worked with: predictable loops, no doubled faces, nothing hidden inside the shell. Parts are separated where separation is useful, so a single component can be hidden, swapped or re-shaded on its own.",
+   "On this listing the stated applications are product rendering, game assets and film & TV VFX. Its first release was in 2015, and it has earned its place in the catalog since then. It fits sports broadcast graphics, game assets, advertising renders and VR experiences."
+  ],
+  "wordsNow": 154
+ },
+ {
+  "slug": "sea-shell-2-1242131",
+  "name": "Sea Shell 2",
+  "category": "Animals & Creatures",
+  "sales": 118,
+  "price": "$29 USD",
+  "quality": "StemCell",
+  "polygons": "2,194",
+  "vertices": "2,196",
+  "geometry": "polygonal quads only",
+  "uv": "Yes, non-overlapping",
+  "textures": "5 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2018",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "sea shell 2",
+   "download",
+   "sea shell 2 turbosquid"
+  ],
+  "descriptionNow": [
+   "Sea Shell 2 is a detailed Animals & Creatures asset built for professional 3D pipelines, available at $29. Measured geometry: 2,194 polygons, 2,196 vertices - no rounding, no estimate. Its suitability for real-time use depends on the target platform, scene complexity and the number of instances.",
+   "Texturing runs to 5 maps at 4096 x 4096. StemCell is TurboSquid's cross-format standard: one authored source, several delivered formats, and PBR materials that survive the trip between them. The file is organised for someone else to pick up: predictable names, predictable pivots, no hidden surprises.",
+   "It is cataloged for film & TV VFX, game assets and product rendering. Listed since 2018 - old enough to have been used in real projects, current enough to still be supported. It suits game creatures, film and TV VFX, educational material and VR experiences."
+  ],
+  "wordsNow": 137
+ },
+ {
+  "slug": "volkswagen-type-2-green-simple-interior-981198",
+  "name": "Volkswagen Type 2",
+  "category": "Vehicles",
+  "sales": 116,
+  "price": "$99 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "176,419",
+  "vertices": "183,162",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "25 at 4096 x 4096, 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Volkswagen Type 2",
+    "price": "$99",
+    "main": true
+   },
+   {
+    "name": "Volkswagen Type 2 Red Simple Interior Red",
+    "price": "$99",
+    "main": false
+   },
+   {
+    "name": "Volkswagen Type 2 Brown Simple Interior Brown",
+    "price": "$99",
+    "main": false
+   },
+   {
+    "name": "Volkswagen Type 2 White Simple Interior White",
+    "price": "$99",
+    "main": false
+   },
+   {
+    "name": "Volkswagen Type 2 Hippie Simple Interior Simple Interior",
+    "price": "$99",
+    "main": false
+   },
+   {
+    "name": "Volkswagen Type 2 Bus Simple Interior Simple Interior",
+    "price": "$99",
+    "main": false
+   },
+   {
+    "name": "Classic Volkswagen Type 2 Bus Simple Interior Simple Interior",
+    "price": "$99",
+    "main": false
+   },
+   {
+    "name": "Hippie Volkswagen Bus Simple Interior Simple Interior",
+    "price": "$99",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "volkswagen type 2 green",
+   "download",
+   "volkswagen type 2 green turbosquid",
+   "volkswagen type 2 red simple interior",
+   "volkswagen type 2 brown simple interior",
+   "volkswagen type 2 white simple interior",
+   "volkswagen type 2 hippie simple interior",
+   "volkswagen type 2 bus simple interior",
+   "classic volkswagen type 2 bus simple interior",
+   "hippie volkswagen bus simple interior"
+  ],
+  "descriptionNow": [
+   "Volkswagen Type 2 is one of the Vehicles models in the 3D Molier catalog, listed at $99. Measured geometry: 176,419 polygons, 183,162 vertices - no rounding, no estimate. Its suitability for real-time use depends on the target platform, scene complexity and the number of instances.",
+   "Texturing runs to 25 maps at 4096 x 4096 and 2048 x 2048. Detail is put where the camera will find it and left out where it would only cost polygons. The file is organised for someone else to pick up: predictable names, predictable pivots, no hidden surprises.",
+   "It is cataloged for driving simulation and film & TV VFX. Listed since 2015 - old enough to have been used in real projects, current enough to still be supported. Common uses are film and TV backgrounds, game traffic and architectural visualization."
+  ],
+  "wordsNow": 135
+ },
+ {
+  "slug": "wooden-fruit-crate-915070",
+  "name": "Wooden Fruit Crate",
+  "category": "Containers & Storage",
+  "sales": 116,
+  "price": "$19 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "6,330",
+  "vertices": "6,668",
+  "geometry": "polygonal quads only",
+  "uv": "Yes, non-overlapping",
+  "textures": "16 at 2048 x 4096, 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Wooden Fruit Crate",
+    "price": "$19",
+    "main": true
+   },
+   {
+    "name": "Wooden Fruit Crate 2",
+    "price": "$9",
+    "main": false
+   },
+   {
+    "name": "Wooden Fruit Box",
+    "price": "$19",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "wooden fruit crate",
+   "food",
+   "product",
+   "wooden fruit crate for advertising",
+   "wooden fruit crate 2",
+   "wooden fruit box"
+  ],
+  "descriptionNow": [
+   "The Wooden Fruit Crate is a production-ready Containers & Storage 3D model, priced at $19 on TurboSquid. Counted at the source, the model is 6,330 polygons and 6,668 vertices. How that lands depends on your renderer and on how close the camera gets.",
+   "Maps: 16 of them, at 2048 x 4096 and 2048 x 2048. Detail is put where the camera will find it and left out where it would only cost polygons. The scene is organized rather than dumped into a single mesh, which makes selective texturing and partial reuse practical.",
+   "It is cataloged for technical visualization, architectural visualization and product rendering. It has been on sale since 2015 and is still maintained as part of the active catalog. It works as warehouse and logistics set dressing, a game prop, or a product-rendering element."
+  ],
+  "wordsNow": 135
+ },
+ {
+  "slug": "apple-iphone-12-with-silicone-case-collection-1682616",
+  "name": "Apple iPhone 12 with Silicone Case Collection",
+  "category": "Model Bundles & Sets",
+  "sales": 116,
+  "price": "$9 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "",
+  "vertices": "",
+  "geometry": "",
+  "uv": "",
+  "textures": "",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2021",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "apple iphone 12 with",
+   "electronics",
+   "gadget"
+  ],
+  "descriptionNow": [
+   "Looking for a Model Bundles & Sets asset? The Apple iPhone 12 with Silicone Case Collection is a finished, render-ready model at $9. The model is watertight where it should be and open where it should be, so it behaves in both rendering and simulation. Parts are separated where separation is useful, so a single component can be hidden, swapped or re-shaded on its own.",
+   "On this listing the stated applications are game assets, film & TV VFX and technical visualization. Its first release was in 2021, and it has earned its place in the catalog since then. The set covers several related objects at once, which saves assembling a scene from separate purchases."
+  ],
+  "wordsNow": 114
+ },
+ {
+  "slug": "digital-camera-slr-generic-934661",
+  "name": "Digital Camera",
+  "category": "Electronics & Gadgets",
+  "sales": 115,
+  "price": "$79 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "58,619",
+  "vertices": "61,504",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "11 at 4096 x 4096, 3000 x 3000",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Digital Camera",
+    "price": "$79",
+    "main": true
+   },
+   {
+    "name": "Digital SLR Camera",
+    "price": "$79",
+    "main": false
+   },
+   {
+    "name": "Digital Camera Canon EOS 5D Mark III",
+    "price": "$99",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "digital camera slr generic",
+   "electronics",
+   "gadget",
+   "digital slr camera",
+   "digital camera canon eos 5d mark iii"
+  ],
+  "descriptionNow": [
+   "Digital Camera is a detailed Electronics & Gadgets asset built for professional 3D pipelines, available at $79. The mesh carries 58,619 polygons and 61,504 vertices. The count is honest; whether it is heavy is a decision only your target platform can make.",
+   "11 maps at 4096 x 4096 and 3000 x 3000 carry the materials. Detail is put where the camera will find it and left out where it would only cost polygons. Pivot points sit where you would expect them, which matters as soon as the model needs to be instanced or parented to something else.",
+   "Buyers most often take it for technical visualization, software demos and product rendering. Published in 2015, it has stayed in the range while a lot of other listings came and went. It is aimed at product rendering, advertising, UI and app mockups, and game and film props."
+  ],
+  "wordsNow": 144
+ },
+ {
+  "slug": "coronavirus-2019-ncov-sars-cov-2-1515999",
+  "name": "Coronavirus 2019-nCoV SARS-CoV-2",
+  "category": "Medical",
+  "sales": 114,
+  "price": "$29 USD",
+  "quality": "StemCell",
+  "polygons": "108,528",
+  "vertices": "109,018",
+  "geometry": "polygonal quads only",
+  "uv": "Yes, non-overlapping",
+  "textures": "6 at 4096 x 4096, 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2020",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Coronavirus 2019-nCoV SARS-CoV-2",
+    "price": "$29",
+    "main": true
+   },
+   {
+    "name": "Coronavirus MERS-CoV",
+    "price": "$29",
+    "main": false
+   },
+   {
+    "name": "Coronavirus SARS-CoV",
+    "price": "$29",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "coronavirus",
+   "virus",
+   "corona",
+   "epidemic",
+   "infection",
+   "illness",
+   "flu",
+   "pandemic",
+   "coronavirus mers-cov",
+   "coronavirus sars-cov",
+   "infect",
+   "lethal",
+   "viral",
+   "microscopic",
+   "pathogen",
+   "treatment",
+   "microscope",
+   "china",
+   "infectious",
+   "2019-ncov",
+   "n-cov",
+   "ncov",
+   "novel",
+   "sars-cov-2"
+  ],
+  "descriptionNow": [
+   "Coronavirus 2019-nCoV SARS-CoV-2 belongs to our Medical range and is offered at $29 through the TurboSquid marketplace. On import you get 108,528 polygons and 109,018 vertices. Whether that counts as light or heavy depends on the target platform, the complexity of the scene and how many instances it carries.",
+   "Textures number 6, authored at 4096 x 4096 and 2048 x 2048 so they survive a close crop. StemCell delivery covers the format juggling for you: the PBR materials are set up once and carried across. Parts are separated where separation is useful, so a single component can be hidden, swapped or re-shaded on its own.",
+   "On this listing the stated applications are medical visualization, medical simulation and film & TV VFX. Its first release was in 2020, and it has earned its place in the catalog since then. It fits medical education, VR anatomy training, patient-facing visualization and medical sequences in film."
+  ],
+  "wordsNow": 152
+ },
+ {
+  "slug": "complete-female-body-anatomy-1611038",
+  "name": "Complete Female Body Anatomy",
+  "category": "Medical",
+  "sales": 114,
+  "price": "$599 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "784,570",
+  "vertices": "789,755",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "434 at 4096 x 4096, 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2020",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Complete Female Body Anatomy",
+    "price": "$599",
+    "main": true
+   },
+   {
+    "name": "Complete Female Body Anatomy Fur",
+    "price": "$599",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "human",
+   "full",
+   "anatomy",
+   "body",
+   "system",
+   "anatomical",
+   "medical",
+   "medicine",
+   "complete female body anatomy fur",
+   "structure",
+   "organ",
+   "female",
+   "woman",
+   "skin",
+   "nervous",
+   "muscular",
+   "reproductive",
+   "respiratory",
+   "digestive",
+   "urinary",
+   "educational",
+   "material",
+   "hospital",
+   "internship"
+  ],
+  "descriptionNow": [
+   "Complete Female Body Anatomy is a detailed Medical asset built for professional 3D pipelines, available at $599. The build totals 784,570 polygons across 789,755 vertices. The same count is comfortable in an offline render and demanding in a mobile game, so judge it against your own budget.",
+   "434 texture maps come with it, at 4096 x 4096 and 2048 x 2048 resolution. Edge flow follows the form rather than fighting it, which is what lets the silhouette hold up when the camera moves in. Scene structure is flat enough to navigate and grouped enough to be useful, which is what makes reuse practical.",
+   "Buyers most often take it for medical visualization, medical simulation and software demos. On the marketplace since 2020, with the listing maintained rather than left to age. It fits medical education, VR anatomy training, patient-facing visualization and medical sequences in film."
+  ],
+  "wordsNow": 144
+ },
+ {
+  "slug": "roasted-turkey-3d-model-1027608",
+  "name": "Roasted Turkey 3D Model",
+  "category": "Food & Beverages",
+  "sales": 114,
+  "price": "$49 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "19,539",
+  "vertices": "19,541",
+  "geometry": "polygonal quads only",
+  "uv": "Yes, non-overlapping",
+  "textures": "3 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2016",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Roasted Turkey 3D Model",
+    "price": "$49",
+    "main": true
+   },
+   {
+    "name": "Roasted Turkey Realistic",
+    "price": "$49",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "roasted turkey",
+   "download",
+   "roasted turkey turbosquid",
+   "roasted turkey realistic"
+  ],
+  "descriptionNow": [
+   "Roasted Turkey belongs to our Food & Beverages range and is offered at $49 through the TurboSquid marketplace. The polygon count is 19,539, spread over 19,541 vertices. Whether that fits depends on where it lands - an architectural still and a real-time walkthrough tolerate very different counts.",
+   "You get 3 maps at 4096 x 4096 - enough resolution to hold a close shot. Detail is put where the camera will find it and left out where it would only cost polygons. Transforms are frozen and the hierarchy is shallow, which keeps the asset easy to instance across a large environment.",
+   "Buyers most often take it for food photography and film & TV VFX. Available since 2016, the model has been through several rounds of studio use. It fits food advertising, packaging visualization, restaurant interiors and game props."
+  ],
+  "wordsNow": 137
+ },
+ {
+  "slug": "branch-with-leaves-2-927705",
+  "name": "Branch With Leaves 2",
+  "category": "Nature & Plants",
+  "sales": 114,
+  "price": "$29 USD",
+  "quality": "StemCell",
+  "polygons": "2,505",
+  "vertices": "2,497",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "3 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Branch With Leaves 2",
+    "price": "$29",
+    "main": true
+   },
+   {
+    "name": "Branch with Green Leaves Green",
+    "price": "$29",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "branch with leaves 2",
+   "plant",
+   "nature",
+   "tree",
+   "branch with green leaves"
+  ],
+  "descriptionNow": [
+   "Branch With Leaves 2 is one of the Nature & Plants models in the 3D Molier catalog, listed at $29. Counted at the source, the model is 2,505 polygons and 2,497 vertices. How that lands depends on your renderer and on how close the camera gets.",
+   "Maps: 3 of them, at 4096 x 4096. StemCell is TurboSquid's cross-format standard: one authored source, several delivered formats, and PBR materials that survive the trip between them. The scene is organized rather than dumped into a single mesh, which makes selective texturing and partial reuse practical.",
+   "It is cataloged for architectural visualization, film & TV VFX and game assets. It has been on sale since 2015 and is still maintained as part of the active catalog. It fits environment dressing in games, architectural visualization, film backgrounds and VR scenes."
+  ],
+  "wordsNow": 136
+ },
+ {
+  "slug": "subnotebook-silver-1379962",
+  "name": "Subnotebook Silver",
+  "category": "Electronics & Gadgets",
+  "sales": 112,
+  "price": "$89 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "33,922",
+  "vertices": "36,632",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "8 at 8192 x 8192, 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2019",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Subnotebook Silver",
+    "price": "$89",
+    "main": true
+   },
+   {
+    "name": "Ultraportable Laptop Silver Silver",
+    "price": "$79",
+    "main": false
+   },
+   {
+    "name": "MacBook Air Space Gray Gray",
+    "price": "$79",
+    "main": false
+   },
+   {
+    "name": "MacBook Air Gold 3D Model Gold",
+    "price": "$69",
+    "main": false
+   },
+   {
+    "name": "Apple MacBook Air Silver 13-inch 2018 Silver",
+    "price": "$79",
+    "main": false
+   },
+   {
+    "name": "Ultraportable Laptop Gold Gold",
+    "price": "$69",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "subnotebook",
+   "silver",
+   "laptop",
+   "computer",
+   "design",
+   "screen",
+   "mac",
+   "technology",
+   "ultraportable laptop silver",
+   "macbook air space gray",
+   "macbook air gold 3d model",
+   "apple macbook air silver 13-inch 2018",
+   "ultraportable laptop gold",
+   "business",
+   "internet",
+   "notebook",
+   "communication",
+   "home",
+   "display",
+   "digital",
+   "network",
+   "monitor",
+   "gadget",
+   "retina"
+  ],
+  "descriptionNow": [
+   "Subnotebook Silver is a detailed Electronics & Gadgets asset built for professional 3D pipelines, available at $89. You are getting 33,922 polygons and 36,632 vertices, measured rather than estimated. Treat the figure as a planning number: it behaves one way in a single render and another in a level with fifty instances.",
+   "The texture set counts 8 maps, delivered at 8192 x 8192 and 4096 x 4096. The model uses efficient, well-organized geometry - no hidden faces or overlapping shells to clean up before rendering. Objects sit at the origin with clean transforms, so duplicating the asset across an environment costs nothing extra.",
+   "On this listing the stated applications are technical visualization, software demos and film & TV VFX. The listing dates back to 2019, and it remains one of the models we keep current. It is aimed at product rendering, advertising, UI and app mockups, and game and film props."
+  ],
+  "wordsNow": 151
+ },
+ {
+  "slug": "ipad-pro-silver-962813",
+  "name": "iPad Pro Silver",
+  "category": "Electronics & Gadgets",
+  "sales": 111,
+  "price": "$29 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "9,112",
+  "vertices": "9,580",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "5 at 4096 x 4096, 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "ipad",
+   "pro",
+   "silver",
+   "tablet",
+   "device",
+   "mobile",
+   "touchscreen",
+   "electronics",
+   "gadget",
+   "apple",
+   "digital",
+   "tech",
+   "product",
+   "ipadpro",
+   "tabletmodel"
+  ],
+  "descriptionNow": [
+   "The iPad Pro Silver is a production-ready Electronics & Gadgets 3D model, priced at $29 on TurboSquid. Counted at the source, the model is 9,112 polygons and 9,580 vertices. How that lands depends on your renderer and on how close the camera gets.",
+   "Maps: 5 of them, at 4096 x 4096 and 2048 x 2048. Geometry is modelled to real-world proportions with a tidy edge flow, which keeps it usable both as a background element and in closer shots. The scene is organized rather than dumped into a single mesh, which makes selective texturing and partial reuse practical.",
+   "It is cataloged for technical visualization, software demos and film & TV VFX. It has been on sale since 2015 and is still maintained as part of the active catalog. It is aimed at product rendering, UI and app mockups and game and film props."
+  ],
+  "wordsNow": 143
+ },
+ {
+  "slug": "leather-wallet-917257",
+  "name": "Leather Wallet",
+  "category": "Clothing & Accessories",
+  "sales": 110,
+  "price": "$39 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "7,455",
+  "vertices": "7,955",
+  "geometry": "polygonal quads only",
+  "uv": "Yes, non-overlapping",
+  "textures": "5 at 8196 x 8196",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Leather Wallet",
+    "price": "$39",
+    "main": true
+   },
+   {
+    "name": "Men Leather Wallet Black Black",
+    "price": "$39",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "leather wallet",
+   "download",
+   "leather wallet turbosquid",
+   "men leather wallet black"
+  ],
+  "descriptionNow": [
+   "This Clothing & Accessories model - Leather Wallet - is ready to drop into a scene as-is, and sells for $39 on TurboSquid. Geometry weighs in at 7,455 polygons over 7,955 vertices. Compare it with the rest of your scene rather than with an abstract threshold - that is what decides whether it is affordable.",
+   "Surface detail comes from 5 textures at 8196 x 8196 rather than from geometry alone. The mesh is built with clean quad-based topology and correct real-world proportions, so it subdivides predictably and sits at the right size next to other objects in a scene. Pivots, naming and grouping follow the same logic throughout, so the model behaves the same way in every shot it appears in.",
+   "The listing flags product rendering, game assets and film & TV VFX as the intended applications. In the catalog since 2015, which is a longer track record than most listings carry. It suits fashion visualization, character dressing, product advertising and game assets."
+  ],
+  "wordsNow": 163
+ },
+ {
+  "slug": "eiffel-tower-1625177",
+  "name": "Eiffel Tower",
+  "category": "Architecture & Landmarks",
+  "sales": 109,
+  "price": "$199 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "522,388",
+  "vertices": "552,451",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2020",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "eiffel",
+   "tower",
+   "paris",
+   "france",
+   "landmark",
+   "europe",
+   "architecture",
+   "construction",
+   "famous",
+   "structure",
+   "tour",
+   "historic",
+   "metal",
+   "city",
+   "art",
+   "capital",
+   "urban",
+   "building",
+   "retro",
+   "vintage",
+   "national",
+   "history",
+   "european",
+   "landscape"
+  ],
+  "descriptionNow": [
+   "Priced at $199, the Eiffel Tower is a finished Architecture & Landmarks model rather than a base mesh you have to build on. You are getting 522,388 polygons and 552,451 vertices, measured rather than estimated. Treat the figure as a planning number: it behaves one way in a single render and another in a level with fifty instances.",
+   "The mesh is built with clean quad-based topology and correct real-world proportions, so it subdivides predictably and sits at the right size next to other objects in a scene. Objects sit at the origin with clean transforms, so duplicating the asset across an environment costs nothing extra. On this listing the stated applications are architectural visualization, event visualization and product rendering.",
+   "The listing dates back to 2020, and it remains one of the models we keep current. It is aimed at architectural visualization, city scenes, advertising renders and VR walkthroughs."
+  ],
+  "wordsNow": 148
+ },
+ {
+  "slug": "red-oak-old-tree-winter-1007063",
+  "name": "Red Oak Old Tree Winter",
+  "category": "Nature & Plants",
+  "sales": 109,
+  "price": "$29 USD",
+  "quality": "StemCell",
+  "polygons": "275,063",
+  "vertices": "337,395",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "2 at 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2016",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "red oak old tree",
+   "plant",
+   "nature",
+   "tree"
+  ],
+  "descriptionNow": [
+   "Looking for a Nature & Plants asset? The Red Oak Old Tree Winter is a finished, render-ready model at $29. The polygon count is 275,063, spread over 337,395 vertices. Whether that fits depends on where it lands - an architectural still and a real-time walkthrough tolerate very different counts.",
+   "You get 2 maps at 2048 x 2048 - enough resolution to hold a close shot. StemCell is TurboSquid's cross-format standard: one authored source, several delivered formats, and PBR materials that survive the trip between them. Transforms are frozen and the hierarchy is shallow, which keeps the asset easy to instance across a large environment.",
+   "Buyers most often take it for architectural visualization, film & TV VFX and game assets. Available since 2016, the model has been through several rounds of studio use. It fits environment dressing in games, architectural visualization, film backgrounds and VR scenes."
+  ],
+  "wordsNow": 145
+ },
+ {
+  "slug": "broken-glass-fragments-1446806",
+  "name": "Broken Glass Fragments",
+  "category": "Other",
+  "sales": 109,
+  "price": "$19 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "4,165",
+  "vertices": "4,183",
+  "geometry": "polygonal quads only",
+  "uv": "Yes, non-overlapping",
+  "textures": "",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2019",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "shattered",
+   "broken",
+   "glass",
+   "window",
+   "demolished",
+   "splitted",
+   "vandalism",
+   "demolishing",
+   "damage",
+   "crash",
+   "destruction",
+   "accident",
+   "sharp",
+   "pattern",
+   "transparent",
+   "fracture",
+   "safety",
+   "wreckage",
+   "debris",
+   "fragment",
+   "sabotage",
+   "ruined",
+   "robbery",
+   "split"
+  ],
+  "descriptionNow": [
+   "Looking for a general asset? The Broken Glass Fragments is a finished, render-ready model at $19. Straight from the source file: 4,165 polygons, 4,183 vertices. Read that against your engine and your shot: a hero close-up and a background prop have very different budgets.",
+   "Topology is kept deliberately simple where detail would not read on camera, which keeps the scene light without visibly cheapening the silhouette. The outliner reads cleanly: no stray nulls, no leftover helpers, nothing to untangle before work starts. It is cataloged for film & TV VFX and product rendering.",
+   "2019 is when this one first went up, and it has stayed in the catalog since. It is ready for game assets, film and TV VFX, product rendering and VR experiences."
+  ],
+  "wordsNow": 124
+ },
+ {
+  "slug": "white-goose-feather-1428989",
+  "name": "White Goose Feather",
+  "category": "Animals & Creatures",
+  "sales": 108,
+  "price": "$19 USD",
+  "quality": "StemCell",
+  "polygons": "860",
+  "vertices": "852",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "3 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2019",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "White Goose Feather",
+    "price": "$19",
+    "main": true
+   },
+   {
+    "name": "Dark Gold Goose Feather Gold",
+    "price": "$9",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "feather",
+   "quill",
+   "pen",
+   "goose",
+   "ink",
+   "antique",
+   "vintage",
+   "retro",
+   "dark gold goose feather",
+   "letter",
+   "bird",
+   "handwriting",
+   "carnival",
+   "historical",
+   "calligraphy",
+   "plume",
+   "poem",
+   "drawing",
+   "inkwell",
+   "ancient",
+   "plumage",
+   "cosplay",
+   "writing",
+   "white"
+  ],
+  "descriptionNow": [
+   "This Animals & Creatures model - White Goose Feather - is ready to drop into a scene as-is, and sells for $19 on TurboSquid. Budget for 860 polygons and 852 vertices when you plan the scene. What matters is not the number itself but how many copies of the object your scene has to carry at once.",
+   "The material set is 3 maps, painted at 4096 x 4096. The StemCell build means you are not re-authoring shaders after import - the PBR setup is designed to read the same across engines. Objects are grouped and named logically, so isolating a single part for a material change is a two-second job rather than a cleanup task.",
+   "On this listing the stated applications are film & TV VFX, game assets and product rendering. It went on sale in 2019 and has been kept in the catalog ever since. It suits game creatures, film and TV VFX, educational material and VR experiences."
+  ],
+  "wordsNow": 159
+ },
+ {
+  "slug": "pile-of-french-fries-1139379",
+  "name": "Pile Of French Fries",
+  "category": "Food & Beverages",
+  "sales": 107,
+  "price": "$39 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "59,208",
+  "vertices": "61,748",
+  "geometry": "polygonal quads only",
+  "uv": "Mixed",
+  "textures": "",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2017",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Pile Of French Fries",
+    "price": "$39",
+    "main": true
+   },
+   {
+    "name": "Crispy French Fries Pile",
+    "price": "$29",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "pile of french fries",
+   "download",
+   "pile of french fries turbosquid",
+   "crispy french fries pile"
+  ],
+  "descriptionNow": [
+   "Pile Of French Fries belongs to our Food & Beverages range and is offered at $39 through the TurboSquid marketplace. Poly count sits at 59,208; vertex count at 61,748. That figure reads differently on desktop, on mobile and in WebXR, so weigh it against the target platform and the number of instances in the scene.",
+   "The mesh is modelled at true scale with quad-dominant flow, so subdivision behaves and the object does not need rescaling on import. Naming and hierarchy are consistent, so the model behaves predictably when it is merged into a larger scene alongside other assets. The listing flags food photography and film & TV VFX as the intended applications.",
+   "The model joined the catalog in 2017 and is still part of what we sell today. It fits food advertising, packaging visualization, restaurant interiors and game props."
+  ],
+  "wordsNow": 139
+ },
+ {
+  "slug": "atlantic-salmon-fish-1118994",
+  "name": "Atlantic Salmon Fish",
+  "category": "Animals & Creatures",
+  "sales": 105,
+  "price": "$59 USD",
+  "quality": "StemCell",
+  "polygons": "3,930",
+  "vertices": "3,900",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "5 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2017",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Atlantic Salmon Fish",
+    "price": "$59",
+    "main": true
+   },
+   {
+    "name": "Atlantic Salmon Fish Rigged Rigged",
+    "price": "$79",
+    "main": false
+   },
+   {
+    "name": "Atlantic Salmon Fish Swimming Pose Swimming Pose",
+    "price": "$59",
+    "main": false
+   },
+   {
+    "name": "Atlantic Salmon Fish Rigged for Maya Maya",
+    "price": "$99",
+    "main": false
+   },
+   {
+    "name": "Atlantic Salmon Fish Rigged for Cinema 4D Cinema 4D",
+    "price": "$99",
+    "main": false
+   },
+   {
+    "name": "Atlantic Salmon Fish Attacks",
+    "price": "$59",
+    "main": false
+   },
+   {
+    "name": "Atlantic Salmon Fish Lying on the Floor",
+    "price": "$79",
+    "main": false
+   },
+   {
+    "name": "Atlantic Salmon Jump Pose",
+    "price": "$79",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "atlantic",
+   "salmon",
+   "fish",
+   "seafood",
+   "marine",
+   "animal",
+   "underwater",
+   "aquatic",
+   "atlantic salmon fish rigged",
+   "atlantic salmon fish swimming pose",
+   "atlantic salmon fish rigged for maya",
+   "atlantic salmon fish rigged for cinema 4d",
+   "atlantic salmon fish attacks",
+   "atlantic salmon fish lying on the floor",
+   "atlantic salmon jump pose",
+   "wildlife",
+   "river",
+   "ocean",
+   "animation",
+   "fishmodel",
+   "sea",
+   "life",
+   "fishing",
+   "nature"
+  ],
+  "descriptionNow": [
+   "Priced at $59, the Atlantic Salmon Fish is a finished Animals & Creatures model rather than a base mesh you have to build on. Counted at the source, the model is 3,930 polygons and 3,900 vertices. How that lands depends on your renderer and on how close the camera gets.",
+   "Maps: 5 of them, at 4096 x 4096. It follows TurboSquid's StemCell specification, which is what keeps the shading consistent from a real-time engine to an offline render. The scene is organized rather than dumped into a single mesh, which makes selective texturing and partial reuse practical.",
+   "It is cataloged for film & TV VFX, game assets and VR experiences. It has been on sale since 2017 and is still maintained as part of the active catalog. It suits game creatures, film and TV VFX, educational material and VR experiences."
+  ],
+  "wordsNow": 140
+ },
+ {
+  "slug": "plumeria-exotic-flower-1215948",
+  "name": "Plumeria Exotic Flower",
+  "category": "Nature & Plants",
+  "sales": 105,
+  "price": "$19 USD",
+  "quality": "StemCell",
+  "polygons": "2,000",
+  "vertices": "2,010",
+  "geometry": "polygonal quads only",
+  "uv": "Yes, non-overlapping",
+  "textures": "4 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2017",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Plumeria Exotic Flower",
+    "price": "$19",
+    "main": true
+   },
+   {
+    "name": "Plumeria Yellow Tropical Flower Hawaiian Lei Yellow",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Plumeria Red Flower Lei Red",
+    "price": "$29",
+    "main": false
+   },
+   {
+    "name": "Tropical Plumeria Flower Open Red Red",
+    "price": "$29",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "plumeria exotic flower",
+   "plant",
+   "nature",
+   "tree",
+   "plumeria yellow tropical flower hawaiian lei",
+   "plumeria red flower lei",
+   "tropical plumeria flower open red"
+  ],
+  "descriptionNow": [
+   "The Plumeria Exotic Flower is a production-ready Nature & Plants 3D model, priced at $19 on TurboSquid. Poly count sits at 2,000; vertex count at 2,010. That figure reads differently on desktop, on mobile and in WebXR, so weigh it against the target platform and the number of instances in the scene.",
+   "It ships with 4 textures, authored at 4096 x 4096. StemCell delivery covers the format juggling for you: the PBR materials are set up once and carried across. Naming and hierarchy are consistent, so the model behaves predictably when it is merged into a larger scene alongside other assets.",
+   "The listing flags architectural visualization, film & TV VFX and game assets as the intended applications. The model joined the catalog in 2017 and is still part of what we sell today. It fits environment dressing in games, architectural visualization, film backgrounds and VR scenes."
+  ],
+  "wordsNow": 146
+ },
+ {
+  "slug": "road-bike-cannondale-1006680",
+  "name": "Road Bike Cannondale",
+  "category": "Vehicles",
+  "sales": 104,
+  "price": "$109 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "114,245",
+  "vertices": "111,817",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "16 at 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2016",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Road Bike Cannondale",
+    "price": "$109",
+    "main": true
+   },
+   {
+    "name": "Road Bike Cube Rigged Rigged",
+    "price": "$119",
+    "main": false
+   },
+   {
+    "name": "Road Bike Giant Rigged Rigged",
+    "price": "$119",
+    "main": false
+   },
+   {
+    "name": "Road Bike Cannondale Rigged 3D Model Rigged",
+    "price": "$119",
+    "main": false
+   },
+   {
+    "name": "Road Bicycle Rigged Rigged",
+    "price": "$119",
+    "main": false
+   },
+   {
+    "name": "Road Bike Cube",
+    "price": "$99",
+    "main": false
+   },
+   {
+    "name": "Road Bike Giant",
+    "price": "$99",
+    "main": false
+   },
+   {
+    "name": "Road Bike",
+    "price": "$99",
+    "main": false
+   },
+   {
+    "name": "Road Bike Cadillac Rigged 3D Model Rigged",
+    "price": "$119",
+    "main": false
+   },
+   {
+    "name": "Road Bike",
+    "price": "$99",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "road bike cannondale",
+   "vehicle",
+   "car",
+   "road bike cube rigged",
+   "road bike giant rigged",
+   "road bike cannondale rigged 3d model",
+   "road bicycle rigged",
+   "road bike cube",
+   "road bike giant",
+   "road bike",
+   "road bike cadillac rigged 3d model"
+  ],
+  "descriptionNow": [
+   "This Vehicles model - Road Bike Cannondale - is ready to drop into a scene as-is, and sells for $109 on TurboSquid. Measured geometry: 114,245 polygons, 111,817 vertices - no rounding, no estimate. Its suitability for real-time use depends on the target platform, scene complexity and the number of instances.",
+   "Texturing runs to 16 maps at 2048 x 2048. Detail is put where the camera will find it and left out where it would only cost polygons. The file is organised for someone else to pick up: predictable names, predictable pivots, no hidden surprises.",
+   "It is cataloged for driving simulation, automotive advertising and game traffic. Listed since 2016 - old enough to have been used in real projects, current enough to still be supported. Common uses are automotive advertising, film and TV backgrounds, game traffic and architectural visualization."
+  ],
+  "wordsNow": 138
+ },
+ {
+  "slug": "football-helmet-3-riddell-945091",
+  "name": "Football Helmet 3 Riddell",
+  "category": "Sports & Recreation",
+  "sales": 104,
+  "price": "$49 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "52,406",
+  "vertices": "52,355",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "14 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Football Helmet 3 Riddell",
+    "price": "$49",
+    "main": true
+   },
+   {
+    "name": "Football Helmet 3 Schutt Red Red",
+    "price": "$49",
+    "main": false
+   },
+   {
+    "name": "Football Helmet 3 Riddell Black Black",
+    "price": "$49",
+    "main": false
+   },
+   {
+    "name": "Football Helmet 3 Generic",
+    "price": "$49",
+    "main": false
+   },
+   {
+    "name": "Football Helmet 3 Schutt Blue Blue",
+    "price": "$49",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "football helmet 3 riddell",
+   "download",
+   "football helmet 3 riddell turbosquid",
+   "football helmet 3 schutt red",
+   "football helmet 3 riddell black",
+   "football helmet 3 generic",
+   "football helmet 3 schutt blue"
+  ],
+  "descriptionNow": [
+   "Looking for a Sports & Recreation asset? The Football Helmet 3 Riddell is a finished, render-ready model at $49. You are getting 52,406 polygons and 52,355 vertices, measured rather than estimated. Treat the figure as a planning number: it behaves one way in a single render and another in a level with fifty instances.",
+   "The texture set counts 14 maps, delivered at 4096 x 4096. The mesh is modelled at true scale with quad-dominant flow, so subdivision behaves and the object does not need rescaling on import. Objects sit at the origin with clean transforms, so duplicating the asset across an environment costs nothing extra.",
+   "On this listing the stated applications are product rendering, game assets and film & TV VFX. The listing dates back to 2015, and it remains one of the models we keep current. It fits sports broadcast graphics, game assets, advertising renders and VR experiences."
+  ],
+  "wordsNow": 149
+ },
+ {
+  "slug": "babolat-pure-drive-tennis-racquet-blue-1350967",
+  "name": "BABOLAT Pure Drive Tennis Racquet",
+  "category": "Sports & Recreation",
+  "sales": 104,
+  "price": "$39 USD",
+  "quality": "StemCell",
+  "polygons": "45,077",
+  "vertices": "46,781",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "1 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2018",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "BABOLAT Pure Drive Tennis Racquet",
+    "price": "$39",
+    "main": true
+   },
+   {
+    "name": "Tennis Racquet BABOLAT Pure Drive",
+    "price": "$39",
+    "main": false
+   },
+   {
+    "name": "BABOLAT Pure Drive Blue Tennis Racquet Blue",
+    "price": "$39",
+    "main": false
+   },
+   {
+    "name": "Tennis Racquet",
+    "price": "$39",
+    "main": false
+   },
+   {
+    "name": "Tennis Racquet Babolat Pure Drive Pro",
+    "price": "$39",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "tennis",
+   "racquet",
+   "racket",
+   "equipment",
+   "sport",
+   "game",
+   "play",
+   "recreation",
+   "tennis racquet babolat pure drive",
+   "babolat pure drive blue tennis racquet",
+   "tennis racquet",
+   "tennis racquet babolat pure drive pro",
+   "activity",
+   "ball",
+   "gear",
+   "competition",
+   "strings",
+   "frame",
+   "competitive",
+   "cord",
+   "stringed",
+   "handled",
+   "stretched",
+   "leisure"
+  ],
+  "descriptionNow": [
+   "Priced at $39, the BABOLAT Pure Drive Tennis Racquet is a finished Sports & Recreation model rather than a base mesh you have to build on. The mesh carries 45,077 polygons and 46,781 vertices. The count is honest; whether it is heavy is a decision only your target platform can make.",
+   "1 maps at 4096 x 4096 carry the materials. StemCell certification means the asset was authored once and delivered across formats with consistent PBR shading, which saves the conversion step when moving between renderers. Pivot points sit where you would expect them, which matters as soon as the model needs to be instanced or parented to something else.",
+   "Buyers most often take it for game assets and film & TV VFX. Published in 2018, it has stayed in the range while a lot of other listings came and went. It fits sports broadcast graphics, game assets and VR experiences."
+  ],
+  "wordsNow": 150
+ },
+ {
+  "slug": "apple-lightning-to-usb-cable-901504",
+  "name": "Apple Lightning to USB Cable",
+  "category": "Electronics & Gadgets",
+  "sales": 103,
+  "price": "$19 USD",
+  "quality": "CheckMate Lite",
+  "polygons": "6,526",
+  "vertices": "6,845",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "8 at 2048 x 2048, 1024 x 1024",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "apple lightning to usb",
+   "food",
+   "product",
+   "apple lightning to usb for advertising"
+  ],
+  "descriptionNow": [
+   "Looking for an Electronics & Gadgets asset? The Apple Lightning to USB Cable is a finished, render-ready model at $19. The mesh carries 6,526 polygons and 6,845 vertices. The count is honest; whether it is heavy is a decision only your target platform can make.",
+   "8 maps at 2048 x 2048 and 1024 x 1024 carry the materials. Construction is plain and deliberate - quads through the body, triangles only where they are harmless. Pivot points sit where you would expect them, which matters as soon as the model needs to be instanced or parented to something else.",
+   "Buyers most often take it for technical visualization, software demos and product rendering. Published in 2015, it has stayed in the range while a lot of other listings came and went. It is aimed at product rendering, advertising, UI and app mockups, and game and film props."
+  ],
+  "wordsNow": 145
+ },
+ {
+  "slug": "glasses-926703",
+  "name": "Glasses",
+  "category": "Clothing & Accessories",
+  "sales": 101,
+  "price": "$19 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "5,178",
+  "vertices": "5,220",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "1 at 2000 x 2000",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Glasses",
+    "price": "$19",
+    "main": true
+   },
+   {
+    "name": "Round Circle Frame Clear Lens Glasses",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Round Circle Golden Frame with Clear Lens Glasses",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Round Circle Black Frame Glasses Black",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Copper Round Circle Frame with Blue Lens Glasses Blue",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Round Circle Golden Frame Red Lens Glasses Red",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Vintage Round Metal Clear Lens Glasses Folded",
+    "price": "$19",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "glasses",
+   "clothing",
+   "accessory",
+   "glasses for advertising",
+   "round circle frame clear lens glasses",
+   "round circle golden frame with clear lens glasses",
+   "round circle black frame glasses",
+   "copper round circle frame with blue lens glasses",
+   "round circle golden frame red lens glasses",
+   "vintage round metal clear lens glasses folded"
+  ],
+  "descriptionNow": [
+   "Glasses belongs to our Clothing & Accessories range and is offered at $19 through the TurboSquid marketplace. The build totals 5,178 polygons across 5,220 vertices. The same count is comfortable in an offline render and demanding in a mobile game, so judge it against your own budget.",
+   "1 texture maps come with it, at 2000 x 2000 resolution. Edge flow follows the form rather than fighting it, which is what lets the silhouette hold up when the camera moves in. Scene structure is flat enough to navigate and grouped enough to be useful, which is what makes reuse practical.",
+   "Buyers most often take it for product rendering, game assets and film & TV VFX. On the marketplace since 2015, with the listing maintained rather than left to age. It suits fashion visualization, character dressing, product advertising and game assets."
+  ],
+  "wordsNow": 139
+ },
+ {
+  "slug": "great-white-shark-jaw-bone-3d-model-1168353",
+  "name": "Great White Shark Jaw Bone 3D Model",
+  "category": "Animals & Creatures",
+  "sales": 101,
+  "price": "$39 USD",
+  "quality": "StemCell",
+  "polygons": "26,675",
+  "vertices": "26,803",
+  "geometry": "polygonal quads only",
+  "uv": "Yes, non-overlapping",
+  "textures": "6 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2017",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "great",
+   "white",
+   "shark",
+   "jaw",
+   "bone",
+   "3dprint",
+   "sharkjaw",
+   "teeth",
+   "sharkbone",
+   "marine",
+   "biology",
+   "ocean",
+   "predator",
+   "jawskeleton",
+   "sealife",
+   "oceanlife",
+   "sharkteeth",
+   "sharkskull",
+   "marineanimal",
+   "printmodel",
+   "anatomy"
+  ],
+  "descriptionNow": [
+   "Great White Shark Jaw Bone is a detailed Animals & Creatures asset built for professional 3D pipelines, available at $39. Budget for 26,675 polygons and 26,803 vertices when you plan the scene. What matters is not the number itself but how many copies of the object your scene has to carry at once.",
+   "The material set is 6 maps, painted at 4096 x 4096. It is a StemCell model, so it ships in TurboSquid's multi-format standard with PBR materials that carry over between renderers instead of needing to be rebuilt per engine. Objects are grouped and named logically, so isolating a single part for a material change is a two-second job rather than a cleanup task.",
+   "On this listing the stated applications are film & TV VFX, game assets and medical visualization. It went on sale in 2017 and has been kept in the catalog ever since. It suits game creatures, film and TV VFX, educational material and VR experiences."
+  ],
+  "wordsNow": 160
+ },
+ {
+  "slug": "endoscope-1245188",
+  "name": "Endoscope",
+  "category": "Medical",
+  "sales": 100,
+  "price": "$29 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "6,117",
+  "vertices": "6,327",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "1 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2018",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "endoscope",
+   "download",
+   "endoscope turbosquid"
+  ],
+  "descriptionNow": [
+   "Endoscope is a detailed Medical asset built for professional 3D pipelines, available at $29. Measured geometry: 6,117 polygons, 6,327 vertices - no rounding, no estimate. Its suitability for real-time use depends on the target platform, scene complexity and the number of instances.",
+   "Texturing runs to 1 maps at 4096 x 4096. Edge flow follows the form rather than fighting it, which is what lets the silhouette hold up when the camera moves in. The file is organised for someone else to pick up: predictable names, predictable pivots, no hidden surprises.",
+   "It is cataloged for medical visualization, medical simulation and film & TV VFX. Listed since 2018 - old enough to have been used in real projects, current enough to still be supported. It fits medical education, VR anatomy training, patient-facing visualization and medical sequences in film."
+  ],
+  "wordsNow": 136
+ },
+ {
+  "slug": "tesla-model-s-and-frame-collection-1191572",
+  "name": "Tesla Model S and Frame Collection",
+  "category": "Model Bundles & Sets",
+  "sales": 100,
+  "price": "$249 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "",
+  "vertices": "",
+  "geometry": "",
+  "uv": "",
+  "textures": "",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2017",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "tesla model s and",
+   "vehicle",
+   "car"
+  ],
+  "descriptionNow": [
+   "Looking for a Model Bundles & Sets asset? The Tesla Model S and Frame Collection is a finished, render-ready model at $249. The mesh is built with clean quad-based topology and correct real-world proportions, so it subdivides predictably and sits at the right size next to other objects in a scene. Parts are separated where separation is useful, so a single component can be hidden, swapped or re-shaded on its own.",
+   "On this listing the stated applications are game assets, film & TV VFX and architectural visualization. Its first release was in 2017, and it has earned its place in the catalog since then. The set covers several related objects at once, which saves assembling a scene from separate purchases."
+  ],
+  "wordsNow": 120
+ },
+ {
+  "slug": "gps-satellite-navstar-block-iif-933517",
+  "name": "GPS Satellite Navstar Block IIF",
+  "category": "Space & Sci-Fi",
+  "sales": 100,
+  "price": "$59 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "72,381",
+  "vertices": "87,448",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "3 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "gps satellite navstar block",
+   "download",
+   "gps satellite navstar block turbosquid"
+  ],
+  "descriptionNow": [
+   "This Space & Sci-Fi model - GPS Satellite Navstar Block IIF - is ready to drop into a scene as-is, and sells for $59 on TurboSquid. Measured geometry: 72,381 polygons, 87,448 vertices - no rounding, no estimate. Its suitability for real-time use depends on the target platform, scene complexity and the number of instances.",
+   "Texturing runs to 3 maps at 4096 x 4096. Detail is put where the camera will find it and left out where it would only cost polygons. The file is organised for someone else to pick up: predictable names, predictable pivots, no hidden surprises.",
+   "It is cataloged for aerospace visualization, game assets and film & TV VFX. Listed since 2015 - old enough to have been used in real projects, current enough to still be supported. It is built for science-fiction film and TV VFX, space simulation, game environments and VR scenes."
+  ],
+  "wordsNow": 146
+ },
+ {
+  "slug": "formula-one-wheel-1034897",
+  "name": "Formula One Wheel",
+  "category": "Vehicles",
+  "sales": 100,
+  "price": "$39 USD",
+  "quality": "CheckMate Lite",
+  "polygons": "14,308",
+  "vertices": "14,655",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "9 at 4096 x 4096, 1200 x 1200",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2016",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "formula",
+   "one",
+   "wheel",
+   "tire",
+   "pirelli",
+   "racing",
+   "race",
+   "motorsport",
+   "car",
+   "slick",
+   "formula1",
+   "automotive",
+   "rim",
+   "brake",
+   "disc",
+   "racingcar",
+   "sportscar",
+   "tiremodel",
+   "motorsportdesign"
+  ],
+  "descriptionNow": [
+   "Priced at $39, the Formula One Wheel is a finished Vehicles model rather than a base mesh you have to build on. Counted at the source, the model is 14,308 polygons and 14,655 vertices. How that lands depends on your renderer and on how close the camera gets.",
+   "Maps: 9 of them, at 4096 x 4096 and 1200 x 1200. Construction is plain and deliberate - quads through the body, triangles only where they are harmless. The scene is organized rather than dumped into a single mesh, which makes selective texturing and partial reuse practical.",
+   "It is cataloged for driving simulation, automotive advertising and film & TV VFX. It has been on sale since 2016 and is still maintained as part of the active catalog. Common uses are automotive advertising, film and TV backgrounds, game traffic and architectural visualization."
+  ],
+  "wordsNow": 139
+ },
+ {
+  "slug": "surfboard-funboard-2-927651",
+  "name": "Surfboard Funboard 2",
+  "category": "Sports & Recreation",
+  "sales": 99,
+  "price": "$19 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "1,482",
+  "vertices": "1,542",
+  "geometry": "polygonal quads only",
+  "uv": "Yes, non-overlapping",
+  "textures": "2 at 4096 x 4096, 1024 x 1024",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Surfboard Funboard 2",
+    "price": "$19",
+    "main": true
+   },
+   {
+    "name": "Funboard Surfboard",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Surfboard Funboard 3",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Surfboard Funboard",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Hybrid Funboard Surfboard",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Surfboard Funboard 4 3D Model",
+    "price": "$19",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "surfboard funboard 2",
+   "download",
+   "surfboard funboard 2 turbosquid",
+   "funboard surfboard",
+   "surfboard funboard 3",
+   "surfboard funboard",
+   "hybrid funboard surfboard",
+   "surfboard funboard 4 3d model"
+  ],
+  "descriptionNow": [
+   "Surfboard Funboard 2 is a detailed Sports & Recreation asset built for professional 3D pipelines, available at $19. The mesh carries 1,482 polygons and 1,542 vertices. The count is honest; whether it is heavy is a decision only your target platform can make.",
+   "2 maps at 4096 x 4096 and 1024 x 1024 carry the materials. Edge flow follows the form rather than fighting it, which is what lets the silhouette hold up when the camera moves in. Pivot points sit where you would expect them, which matters as soon as the model needs to be instanced or parented to something else.",
+   "Buyers most often take it for product rendering, game assets and film & TV VFX. Published in 2015, it has stayed in the range while a lot of other listings came and went. It fits sports broadcast graphics, game assets, advertising renders and VR experiences."
+  ],
+  "wordsNow": 147
+ },
+ {
+  "slug": "a920-payment-tablet-terminal-1625249",
+  "name": "Payment Tablet Terminal",
+  "category": "Furniture & Interior",
+  "sales": 99,
+  "price": "$39 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "6,213",
+  "vertices": "6,661",
+  "geometry": "subdivision",
+  "uv": "Yes, non-overlapping",
+  "textures": "",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2020",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Payment Tablet Terminal",
+    "price": "$39",
+    "main": true
+   },
+   {
+    "name": "Payment Tablet Terminal",
+    "price": "$39",
+    "main": false
+   },
+   {
+    "name": "Payment Mobile Tablet Terminal with Card",
+    "price": "$49",
+    "main": false
+   },
+   {
+    "name": "A920 Mobile Tablet Terminal with Card",
+    "price": "$49",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "credit",
+   "card",
+   "payment",
+   "tablet",
+   "terminal",
+   "mobile",
+   "pay",
+   "pos",
+   "payment tablet terminal",
+   "payment mobile tablet terminal with card",
+   "a920 mobile tablet terminal with card",
+   "finance",
+   "money",
+   "financial",
+   "nfc",
+   "device",
+   "online",
+   "wireless",
+   "cash",
+   "shop",
+   "banking",
+   "service",
+   "commerce",
+   "internet"
+  ],
+  "descriptionNow": [
+   "This Furniture & Interior model - Payment Tablet Terminal - is ready to drop into a scene as-is, and sells for $39 on TurboSquid. Budget for 6,213 polygons and 6,661 vertices when you plan the scene. What matters is not the number itself but how many copies of the object your scene has to carry at once.",
+   "The model uses efficient, well-organized geometry - no hidden faces or overlapping shells to clean up before rendering. Objects are grouped and named logically, so isolating a single part for a material change is a two-second job rather than a cleanup task. On this listing the stated applications are interior visualization, product rendering and film & TV VFX.",
+   "It went on sale in 2020 and has been kept in the catalog ever since. It is built for interior visualization, architectural renders, product advertising and game interiors."
+  ],
+  "wordsNow": 143
+ },
+ {
+  "slug": "zoysia-grass-982776",
+  "name": "Zoysia Grass",
+  "category": "Nature & Plants",
+  "sales": 98,
+  "price": "$29 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "822,000",
+  "vertices": "1,529,251",
+  "geometry": "polygonal quads/tris",
+  "uv": "Mixed",
+  "textures": "6 at 1500 x 1500, 1024 x 1024",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Zoysia Grass",
+    "price": "$29",
+    "main": true
+   },
+   {
+    "name": "Zoysia Grass Patch",
+    "price": "$29",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "zoysia grass",
+   "plant",
+   "nature",
+   "tree",
+   "zoysia grass patch"
+  ],
+  "descriptionNow": [
+   "Looking for a Nature & Plants asset? The Zoysia Grass is a finished, render-ready model at $29. The polygon count is 822,000, spread over 1,529,251 vertices. Whether that fits depends on where it lands - an architectural still and a real-time walkthrough tolerate very different counts.",
+   "You get 6 maps at 1500 x 1500 and 1024 x 1024 - enough resolution to hold a close shot. Edge flow follows the form rather than fighting it, which is what lets the silhouette hold up when the camera moves in. Transforms are frozen and the hierarchy is shallow, which keeps the asset easy to instance across a large environment.",
+   "Buyers most often take it for architectural visualization, film & TV VFX and game assets. Available since 2015, the model has been through several rounds of studio use. It fits environment dressing in games, architectural visualization, film backgrounds and VR scenes."
+  ],
+  "wordsNow": 148
+ },
+ {
+  "slug": "anatomical-male-head-model-with-neck-1467452",
+  "name": "Anatomical Male Head Model with Neck",
+  "category": "Medical",
+  "sales": 97,
+  "price": "$139 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "141,583",
+  "vertices": "142,259",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "311 at 8192 x 8192, 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2019",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "head",
+   "anatomy",
+   "medical",
+   "skinless",
+   "biology",
+   "person",
+   "science",
+   "anatomical",
+   "muscle",
+   "human",
+   "medicine",
+   "face",
+   "halloween",
+   "anatomic",
+   "skin",
+   "structure",
+   "musculature",
+   "male",
+   "muslces",
+   "man",
+   "neck",
+   "divided",
+   "skull",
+   "healthcare"
+  ],
+  "descriptionNow": [
+   "Priced at $139, the Anatomical Male Head Model with Neck is a finished Medical model rather than a base mesh you have to build on. Budget for 141,583 polygons and 142,259 vertices when you plan the scene. What matters is not the number itself but how many copies of the object your scene has to carry at once.",
+   "The material set is 311 maps, painted at 8192 x 8192 and 4096 x 4096. The mesh is built with clean quad-based topology and correct real-world proportions, so it subdivides predictably and sits at the right size next to other objects in a scene. Objects are grouped and named logically, so isolating a single part for a material change is a two-second job rather than a cleanup task.",
+   "On this listing the stated applications are medical visualization, medical simulation and film & TV VFX. It went on sale in 2019 and has been kept in the catalog ever since. It fits medical education, VR anatomy training, patient-facing visualization and medical sequences in film."
+  ],
+  "wordsNow": 171
+ },
+ {
+  "slug": "disposable-syringe-2ml-set-1011744",
+  "name": "Disposable Syringe 2ml Set",
+  "category": "Medical",
+  "sales": 97,
+  "price": "$29 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "7,778",
+  "vertices": "7,830",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "6 at 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2016",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "disposable syringe 2ml set",
+   "medical",
+   "anatomy",
+   "healthcare"
+  ],
+  "descriptionNow": [
+   "Disposable Syringe 2ml Set is a detailed Medical asset built for professional 3D pipelines, available at $29. Counted at the source, the model is 7,778 polygons and 7,830 vertices. How that lands depends on your renderer and on how close the camera gets.",
+   "Maps: 6 of them, at 2048 x 2048. Edge flow follows the form rather than fighting it, which is what lets the silhouette hold up when the camera moves in. The scene is organized rather than dumped into a single mesh, which makes selective texturing and partial reuse practical.",
+   "It is cataloged for medical visualization, medical simulation and software demos. It has been on sale since 2016 and is still maintained as part of the active catalog. It fits medical education, VR anatomy training, patient-facing visualization and medical sequences in film."
+  ],
+  "wordsNow": 134
+ },
+ {
+  "slug": "folded-sleeping-bag-995305",
+  "name": "Folded Sleeping Bag",
+  "category": "Sports & Recreation",
+  "sales": 96,
+  "price": "$29 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "5,608",
+  "vertices": "5,809",
+  "geometry": "polygonal quads only",
+  "uv": "Yes, non-overlapping",
+  "textures": "7 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2016",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Folded Sleeping Bag",
+    "price": "$29",
+    "main": true
+   },
+   {
+    "name": "Folded Sleeping Bag Green Green",
+    "price": "$29",
+    "main": false
+   },
+   {
+    "name": "Folded Blue Sleeping Bag Blue",
+    "price": "$29",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "folded sleeping bag",
+   "clothing",
+   "accessory",
+   "folded sleeping bag for advertising",
+   "folded sleeping bag green",
+   "folded blue sleeping bag"
+  ],
+  "descriptionNow": [
+   "The Folded Sleeping Bag is a production-ready Sports & Recreation 3D model, priced at $29 on TurboSquid. Geometry weighs in at 5,608 polygons over 5,809 vertices. Compare it with the rest of your scene rather than with an abstract threshold - that is what decides whether it is affordable.",
+   "Surface detail comes from 7 textures at 4096 x 4096 rather than from geometry alone. The mesh is modelled at true scale with quad-dominant flow, so subdivision behaves and the object does not need rescaling on import. Pivots, naming and grouping follow the same logic throughout, so the model behaves the same way in every shot it appears in.",
+   "The listing flags product rendering, game assets and film & TV VFX as the intended applications. In the catalog since 2016, which is a longer track record than most listings carry. It fits sports broadcast graphics, game assets, advertising renders and VR experiences."
+  ],
+  "wordsNow": 151
+ },
+ {
+  "slug": "hospital-building-1226681",
+  "name": "Hospital Building",
+  "category": "Architecture & Landmarks",
+  "sales": 96,
+  "price": "$99 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "244,735",
+  "vertices": "291,221",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "37 at 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2017",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "hospital",
+   "building",
+   "exterior",
+   "entrance",
+   "medical",
+   "architecture",
+   "healthcare",
+   "health",
+   "facility",
+   "care",
+   "center",
+   "clinic",
+   "treatment",
+   "emergency",
+   "street",
+   "medicine",
+   "archviz",
+   "visualization",
+   "flowers",
+   "service"
+  ],
+  "descriptionNow": [
+   "Hospital Building belongs to our Architecture & Landmarks range and is offered at $99 through the TurboSquid marketplace. The polygon count is 244,735, spread over 291,221 vertices. Whether that fits depends on where it lands - an architectural still and a real-time walkthrough tolerate very different counts.",
+   "You get 37 maps at 2048 x 2048 - enough resolution to hold a close shot. Construction is plain and deliberate - quads through the body, triangles only where they are harmless. Transforms are frozen and the hierarchy is shallow, which keeps the asset easy to instance across a large environment.",
+   "Buyers most often take it for architectural visualization, medical visualization and software demos. Available since 2017, the model has been through several rounds of studio use. It is aimed at architectural visualization, city scenes, advertising renders and VR walkthroughs."
+  ],
+  "wordsNow": 137
+ },
+ {
+  "slug": "toilet-classic-white-1214493",
+  "name": "Toilet Classic White",
+  "category": "Furniture & Interior",
+  "sales": 95,
+  "price": "$39 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "4,844",
+  "vertices": "5,048",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "2 at 2048 x 2048, 1024 x 1042",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2017",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Toilet Classic White",
+    "price": "$39",
+    "main": true
+   },
+   {
+    "name": "WC Ceramic Toilet Black 3D Model Black",
+    "price": "$29",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "toilet classic white",
+   "furniture",
+   "interior",
+   "toilet classic white for visualization",
+   "wc ceramic toilet black 3d model"
+  ],
+  "descriptionNow": [
+   "Looking for a Furniture & Interior asset? The Toilet Classic White is a finished, render-ready model at $39. On import you get 4,844 polygons and 5,048 vertices. Whether that counts as light or heavy depends on the target platform, the complexity of the scene and how many instances it carries.",
+   "Textures number 2, authored at 2048 x 2048 and 1024 x 1042 so they survive a close crop. The mesh is built with clean quad-based topology and correct real-world proportions, so it subdivides predictably and sits at the right size next to other objects in a scene. Parts are separated where separation is useful, so a single component can be hidden, swapped or re-shaded on its own.",
+   "On this listing the stated applications are interior visualization, product rendering and film & TV VFX. Its first release was in 2017, and it has earned its place in the catalog since then. It is built for interior visualization, architectural renders, product advertising and game interiors."
+  ],
+  "wordsNow": 163
+ },
+ {
+  "slug": "toyota-camry-simple-interior-1290123",
+  "name": "Toyota Camry Simple Interior",
+  "category": "Vehicles",
+  "sales": 94,
+  "price": "$129 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "166,681",
+  "vertices": "187,074",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "8 at 4096 x 4096, 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2018",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Toyota Camry Simple Interior",
+    "price": "$129",
+    "main": true
+   },
+   {
+    "name": "Toyota Camry 2018 Rigged 3D Model Rigged",
+    "price": "$169",
+    "main": false
+   },
+   {
+    "name": "Toyota Camry 2018",
+    "price": "$149",
+    "main": false
+   },
+   {
+    "name": "Business Sedan Generic",
+    "price": "$149",
+    "main": false
+   },
+   {
+    "name": "Toyota Camry Full Interior 2018 Rigged Rigged",
+    "price": "$169",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "toyota camry simple interior",
+   "vehicle",
+   "car",
+   "toyota camry 2018 rigged 3d model",
+   "toyota camry 2018",
+   "business sedan generic",
+   "toyota camry full interior 2018 rigged"
+  ],
+  "descriptionNow": [
+   "The Toyota Camry Simple Interior is a production-ready Vehicles 3D model, priced at $129 on TurboSquid. Measured geometry: 166,681 polygons, 187,074 vertices - no rounding, no estimate. Its suitability for real-time use depends on the target platform, scene complexity and the number of instances.",
+   "Texturing runs to 8 maps at 4096 x 4096 and 2048 x 2048. Geometry is modelled to real-world proportions with a tidy edge flow, which keeps it usable both as a background element and in closer shots. The file is organised for someone else to pick up: predictable names, predictable pivots, no hidden surprises.",
+   "It is cataloged for driving simulation, game traffic and film & TV VFX. Listed since 2018 - old enough to have been used in real projects, current enough to still be supported. Common uses are film and TV backgrounds, game traffic and architectural visualization."
+  ],
+  "wordsNow": 142
+ },
+ {
+  "slug": "samsung-4k-suhd-js7000-series-smart-tv-55-inch-964894",
+  "name": "Samsung 4K SUHD JS7000 Series Smart TV inch",
+  "category": "Electronics & Gadgets",
+  "sales": 94,
+  "price": "$39 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "34,941",
+  "vertices": "37,331",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "18 at 4096 x 4096, 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Samsung 4K SUHD JS7000 Series Smart TV inch",
+    "price": "$39",
+    "main": true
+   },
+   {
+    "name": "Samsung 4K SUHD JS7000 Series Smart TV 65 inch",
+    "price": "$39",
+    "main": false
+   },
+   {
+    "name": "Samsung 4K SUHD JS7000 Series Smart TV 50 inch",
+    "price": "$29",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "samsung 4k suhd js7000",
+   "electronics",
+   "gadget",
+   "samsung 4k suhd js7000 series smart tv 65 inch",
+   "samsung 4k suhd js7000 series smart tv 50 inch"
+  ],
+  "descriptionNow": [
+   "Priced at $39, the Samsung 4K SUHD JS7000 Series Smart TV inch is a finished Electronics & Gadgets model rather than a base mesh you have to build on. Counted at the source, the model is 34,941 polygons and 37,331 vertices. How that lands depends on your renderer and on how close the camera gets.",
+   "Maps: 18 of them, at 4096 x 4096 and 2048 x 2048. Topology is kept deliberately simple where detail would not read on camera, which keeps the scene light without visibly cheapening the silhouette. The scene is organized rather than dumped into a single mesh, which makes selective texturing and partial reuse practical.",
+   "It is cataloged for technical visualization, software demos and film & TV VFX. It has been on sale since 2015 and is still maintained as part of the active catalog. It is aimed at product rendering, UI and app mockups and game and film props."
+  ],
+  "wordsNow": 153
+ },
+ {
+  "slug": "male-arm-full-anatomy-and-skin-1469602",
+  "name": "Male Arm Full Anatomy and Skin",
+  "category": "Medical",
+  "sales": 94,
+  "price": "$149 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "51,639",
+  "vertices": "51,875",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "55 at 8192 x 8192, 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2019",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Male Arm Full Anatomy and Skin",
+    "price": "$149",
+    "main": true
+   },
+   {
+    "name": "Male Arm Full Anatomy",
+    "price": "$99",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "anatomy",
+   "skeleton",
+   "arm",
+   "skeletal",
+   "cardiovascular",
+   "system",
+   "hand",
+   "musculature",
+   "male arm full anatomy",
+   "skinless",
+   "muscles",
+   "bone",
+   "blood",
+   "human",
+   "medical",
+   "body",
+   "medicine",
+   "anatomic",
+   "structure",
+   "skin",
+   "artery",
+   "vein",
+   "vascular",
+   "lymph"
+  ],
+  "descriptionNow": [
+   "Male Arm Full Anatomy and Skin is one of the Medical models in the 3D Molier catalog, listed at $149. You are getting 51,639 polygons and 51,875 vertices, measured rather than estimated. Treat the figure as a planning number: it behaves one way in a single render and another in a level with fifty instances.",
+   "The texture set counts 55 maps, delivered at 8192 x 8192 and 4096 x 4096. The geometry is built to be worked with: predictable loops, no doubled faces, nothing hidden inside the shell. Objects sit at the origin with clean transforms, so duplicating the asset across an environment costs nothing extra.",
+   "On this listing the stated applications are medical visualization, medical simulation and software demos. The listing dates back to 2019, and it remains one of the models we keep current. It fits medical education, VR anatomy training, patient-facing visualization and medical sequences in film."
+  ],
+  "wordsNow": 150
+ },
+ {
+  "slug": "soccer-goal-977423",
+  "name": "Soccer Goal",
+  "category": "Sports & Recreation",
+  "sales": 94,
+  "price": "$49 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "",
+  "vertices": "",
+  "geometry": "",
+  "uv": "",
+  "textures": "",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "soccer goal",
+   "download",
+   "soccer goal turbosquid"
+  ],
+  "descriptionNow": [
+   "Soccer Goal is a detailed Sports & Recreation asset built for professional 3D pipelines, available at $49. Detail is put where the camera will find it and left out where it would only cost polygons. The scene is organized rather than dumped into a single mesh, which makes selective texturing and partial reuse practical.",
+   "It is cataloged for product rendering, game assets and film & TV VFX. It has been on sale since 2015 and is still maintained as part of the active catalog. It fits sports broadcast graphics, game assets, advertising renders and VR experiences."
+  ],
+  "wordsNow": 96
+ },
+ {
+  "slug": "air-balloon-1235402",
+  "name": "Air Balloon",
+  "category": "Aircraft",
+  "sales": 93,
+  "price": "$79 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "126,115",
+  "vertices": "126,947",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "14 at 4096 x 4096, 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2017",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Air Balloon",
+    "price": "$79",
+    "main": true
+   },
+   {
+    "name": "Hot Air Balloon",
+    "price": "$79",
+    "main": false
+   },
+   {
+    "name": "Colorful Hot Air Balloon",
+    "price": "$79",
+    "main": false
+   },
+   {
+    "name": "Hot Air Balloon Basket",
+    "price": "$39",
+    "main": false
+   },
+   {
+    "name": "Hot Air Balloon Gondola",
+    "price": "$29",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "air balloon",
+   "download",
+   "air balloon turbosquid",
+   "hot air balloon",
+   "colorful hot air balloon",
+   "hot air balloon basket",
+   "hot air balloon gondola"
+  ],
+  "descriptionNow": [
+   "Priced at $79, the Air Balloon is a finished Aircraft model rather than a base mesh you have to build on. Measured geometry: 126,115 polygons, 126,947 vertices - no rounding, no estimate. Its suitability for real-time use depends on the target platform, scene complexity and the number of instances.",
+   "Texturing runs to 14 maps at 4096 x 4096 and 2048 x 2048. Geometry is modelled to real-world proportions with a tidy edge flow, which keeps it usable both as a background element and in closer shots. The file is organised for someone else to pick up: predictable names, predictable pivots, no hidden surprises.",
+   "It is cataloged for aerospace visualization, flight simulation and film & TV VFX. Listed since 2017 - old enough to have been used in real projects, current enough to still be supported. It works for airline and airport visualization, flight simulation, aviation sequences in film and TV, advertising renders and VR training."
+  ],
+  "wordsNow": 155
+ },
+ {
+  "slug": "white-envelope-2-922250",
+  "name": "White Envelope 2",
+  "category": "Other",
+  "sales": 93,
+  "price": "$5 USD",
+  "quality": "CheckMate Lite",
+  "polygons": "330",
+  "vertices": "331",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "2 at 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "white envelope 2",
+   "download",
+   "white envelope 2 turbosquid"
+  ],
+  "descriptionNow": [
+   "The White Envelope 2 is a production-ready general 3D model, priced at $5 on TurboSquid. The build totals 330 polygons across 331 vertices. The same count is comfortable in an offline render and demanding in a mobile game, so judge it against your own budget.",
+   "2 texture maps come with it, at 2048 x 2048 resolution. Detail is put where the camera will find it and left out where it would only cost polygons. Scene structure is flat enough to navigate and grouped enough to be useful, which is what makes reuse practical.",
+   "Buyers most often take it for film & TV VFX and product rendering. On the marketplace since 2015, with the listing maintained rather than left to age. It is ready for game assets, film and TV VFX, product rendering and VR experiences."
+  ],
+  "wordsNow": 135
+ },
+ {
+  "slug": "plastic-window-981263",
+  "name": "Plastic Window",
+  "category": "Architecture & Landmarks",
+  "sales": 92,
+  "price": "$19 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "13,231",
+  "vertices": "14,190",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Plastic Window",
+    "price": "$19",
+    "main": true
+   },
+   {
+    "name": "Plastic Window 6 3D Model",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Classic Window 2x2 Panels",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Plastic Casement Window",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Plastic Window 2",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Plastic Window 3",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Plastic Window 4",
+    "price": "$9",
+    "main": false
+   },
+   {
+    "name": "Plastic Window 5 3D Model",
+    "price": "$9",
+    "main": false
+   },
+   {
+    "name": "Plastic Window 8 3D Model",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Robot Window Cleaner On Plastic Window Fur",
+    "price": "$44",
+    "main": false
+   },
+   {
+    "name": "Plastic Window 9",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Plastic Window 7",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Classic Casement Window",
+    "price": "$19",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "plastic window",
+   "download",
+   "plastic window turbosquid",
+   "plastic window 6 3d model",
+   "classic window 2x2 panels",
+   "plastic casement window",
+   "plastic window 2",
+   "plastic window 3",
+   "plastic window 4",
+   "plastic window 5 3d model",
+   "plastic window 8 3d model",
+   "robot window cleaner on plastic window fur",
+   "plastic window 9",
+   "plastic window 7",
+   "classic casement window"
+  ],
+  "descriptionNow": [
+   "This Architecture & Landmarks model - Plastic Window - is ready to drop into a scene as-is, and sells for $19 on TurboSquid. It comes in at 13,231 polygons, with 14,190 vertices behind them. Heavy or light is a question about the scene, not about the model, so check it against the platform you are shipping to.",
+   "The model is watertight where it should be and open where it should be, so it behaves in both rendering and simulation. Everything is placed at the scene origin with sensible pivots, so the asset can be duplicated, arrayed or attached to a rig without hunting for transforms. The listing flags architectural visualization, film & TV VFX and product rendering as the intended applications.",
+   "First published in 2015, it is part of the long-running core of the collection. It is aimed at architectural visualization, city scenes, advertising renders and VR walkthroughs."
+  ],
+  "wordsNow": 148
+ },
+ {
+  "slug": "electric-car-charging-station-1232634",
+  "name": "Electric Car Charging Station",
+  "category": "Vehicles",
+  "sales": 92,
+  "price": "$39 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "73,894",
+  "vertices": "78,982",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "7 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2017",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Electric Car Charging Station",
+    "price": "$39",
+    "main": true
+   },
+   {
+    "name": "Electric Vehicle Charging Station Volta",
+    "price": "$39",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "electric car charging station",
+   "vehicle",
+   "car",
+   "electric vehicle charging station volta"
+  ],
+  "descriptionNow": [
+   "Looking for a Vehicles asset? The Electric Car Charging Station is a finished, render-ready model at $39. On import you get 73,894 polygons and 78,982 vertices. Whether that counts as light or heavy depends on the target platform, the complexity of the scene and how many instances it carries.",
+   "Textures number 7, authored at 4096 x 4096 so they survive a close crop. The model uses efficient, well-organized geometry - no hidden faces or overlapping shells to clean up before rendering. Parts are separated where separation is useful, so a single component can be hidden, swapped or re-shaded on its own.",
+   "On this listing the stated applications are driving simulation, automotive advertising and game traffic. Its first release was in 2017, and it has earned its place in the catalog since then. Common uses are automotive advertising, film and TV backgrounds, game traffic and architectural visualization."
+  ],
+  "wordsNow": 146
+ },
+ {
+  "slug": "slice-of-watermelon-1199544",
+  "name": "Slice Watermelon",
+  "category": "Food & Beverages",
+  "sales": 92,
+  "price": "$29 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "1,492",
+  "vertices": "1,485",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "7 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2017",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Slice Watermelon",
+    "price": "$29",
+    "main": true
+   },
+   {
+    "name": "Watermelon Slice",
+    "price": "$29",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "slice of watermelon",
+   "download",
+   "slice of watermelon turbosquid",
+   "watermelon slice"
+  ],
+  "descriptionNow": [
+   "Priced at $29, the Slice Watermelon is a finished Food & Beverages model rather than a base mesh you have to build on. You are getting 1,492 polygons and 1,485 vertices, measured rather than estimated. Treat the figure as a planning number: it behaves one way in a single render and another in a level with fifty instances.",
+   "The texture set counts 7 maps, delivered at 4096 x 4096. The mesh is modelled at true scale with quad-dominant flow, so subdivision behaves and the object does not need rescaling on import. Objects sit at the origin with clean transforms, so duplicating the asset across an environment costs nothing extra.",
+   "On this listing the stated applications are food photography and film & TV VFX. The listing dates back to 2017, and it remains one of the models we keep current. It fits food advertising, packaging visualization, restaurant interiors and game props."
+  ],
+  "wordsNow": 150
+ },
+ {
+  "slug": "vallisneria-spiralis-background-aquarium-plants-set-1286607",
+  "name": "Vallisneria Spiralis Background Aquarium Plants Set",
+  "category": "Nature & Plants",
+  "sales": 92,
+  "price": "$29 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "15,432",
+  "vertices": "15,736",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "2 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2018",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Vallisneria Spiralis Background Aquarium Plants Set",
+    "price": "$29",
+    "main": true
+   },
+   {
+    "name": "Spiral Vallisneria Aquatic Plant for Aquarium Set",
+    "price": "$19",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "vallisneria spiralis background aquarium",
+   "download",
+   "spiral vallisneria aquatic plant for aquarium set"
+  ],
+  "descriptionNow": [
+   "Vallisneria Spiralis Background Aquarium Plants Set belongs to our Nature & Plants range and is offered at $29 through the TurboSquid marketplace. The polygon count is 15,432, spread over 15,736 vertices. Whether that fits depends on where it lands - an architectural still and a real-time walkthrough tolerate very different counts.",
+   "You get 2 maps at 4096 x 4096 - enough resolution to hold a close shot. Edge flow follows the form rather than fighting it, which is what lets the silhouette hold up when the camera moves in. Transforms are frozen and the hierarchy is shallow, which keeps the asset easy to instance across a large environment.",
+   "Buyers most often take it for architectural visualization, film & TV VFX and product rendering. Available since 2018, the model has been through several rounds of studio use. It fits environment dressing in games, architectural visualization, film backgrounds and VR scenes."
+  ],
+  "wordsNow": 149
+ },
+ {
+  "slug": "train-es40dc-csx-blue-and-covered-hopper-car-949756",
+  "name": "Train ES40DC CSX Blue and Covered Hopper Car",
+  "category": "Vehicles",
+  "sales": 91,
+  "price": "$179 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "3,111,707",
+  "vertices": "3,194,707",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "29 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Train ES40DC CSX Blue and Covered Hopper Car",
+    "price": "$179",
+    "main": true
+   },
+   {
+    "name": "USA Diesel Locomotive with Coal Hopper Cars",
+    "price": "$179",
+    "main": false
+   },
+   {
+    "name": "Norfolk Southern ES44AC Locomotive with Coal Hopper Cars",
+    "price": "$179",
+    "main": false
+   },
+   {
+    "name": "CSX GE ES44AC Locomotive Train with Freight Cars",
+    "price": "$179",
+    "main": false
+   },
+   {
+    "name": "Diesel Electric Locomotive Train with Freight Cars",
+    "price": "$179",
+    "main": false
+   },
+   {
+    "name": "Train ES40DC Norfolk Southern and Hopper Car",
+    "price": "$179",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "train es40dc csx blue",
+   "vehicle",
+   "car",
+   "usa diesel locomotive with coal hopper cars",
+   "norfolk southern es44ac locomotive with coal hopper cars",
+   "csx ge es44ac locomotive train with freight cars",
+   "diesel electric locomotive train with freight cars",
+   "train es40dc norfolk southern and hopper car"
+  ],
+  "descriptionNow": [
+   "Priced at $179, the Train ES40DC CSX Blue and Covered Hopper Car is a finished Vehicles model rather than a base mesh you have to build on. The build totals 3,111,707 polygons across 3,194,707 vertices. The same count is comfortable in an offline render and demanding in a mobile game, so judge it against your own budget.",
+   "29 texture maps come with it, at 4096 x 4096 resolution. Edge flow follows the form rather than fighting it, which is what lets the silhouette hold up when the camera moves in. Scene structure is flat enough to navigate and grouped enough to be useful, which is what makes reuse practical.",
+   "Buyers most often take it for driving simulation, automotive advertising and game traffic. On the marketplace since 2015, with the listing maintained rather than left to age. Common uses are automotive advertising, film and TV backgrounds, game traffic and architectural visualization."
+  ],
+  "wordsNow": 150
+ },
+ {
+  "slug": "plumeria-flower-collection-1217827",
+  "name": "Plumeria Flower Collection",
+  "category": "Model Bundles & Sets",
+  "sales": 90,
+  "price": "$29 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "",
+  "vertices": "",
+  "geometry": "",
+  "uv": "",
+  "textures": "",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2017",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "plumeria flower collection",
+   "plant",
+   "nature",
+   "tree"
+  ],
+  "descriptionNow": [
+   "Plumeria Flower Collection is a detailed Model Bundles & Sets asset built for professional 3D pipelines, available at $29. The mesh is built with clean quad-based topology and correct real-world proportions, so it subdivides predictably and sits at the right size next to other objects in a scene. Naming and hierarchy are consistent, so the model behaves predictably when it is merged into a larger scene alongside other assets.",
+   "The listing flags game assets, film & TV VFX and architectural visualization as the intended applications. The model joined the catalog in 2017 and is still part of what we sell today. The set covers several related objects at once, which saves assembling a scene from separate purchases."
+  ],
+  "wordsNow": 117
+ },
+ {
+  "slug": "curtain-2-gray-989429",
+  "name": "Curtain 2",
+  "category": "Furniture & Interior",
+  "sales": 89,
+  "price": "$29 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "168,766",
+  "vertices": "168,519",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "6 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Curtain 2",
+    "price": "$29",
+    "main": true
+   },
+   {
+    "name": "Curtain 2 Green Green",
+    "price": "$29",
+    "main": false
+   },
+   {
+    "name": "Curtain 2 Brown Brown",
+    "price": "$29",
+    "main": false
+   },
+   {
+    "name": "Curtain 2 Yellow 3D Model Yellow",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Classic Curtains with Tieback on Rod",
+    "price": "$29",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "curtain 2 gray",
+   "furniture",
+   "interior",
+   "curtain 2 gray for visualization",
+   "curtain 2 green",
+   "curtain 2 brown",
+   "curtain 2 yellow 3d model",
+   "classic curtains with tieback on rod"
+  ],
+  "descriptionNow": [
+   "Curtain 2 belongs to our Furniture & Interior range and is offered at $29 through the TurboSquid marketplace. Geometry weighs in at 168,766 polygons over 168,519 vertices. Compare it with the rest of your scene rather than with an abstract threshold - that is what decides whether it is affordable.",
+   "Surface detail comes from 6 textures at 4096 x 4096 rather than from geometry alone. The model is watertight where it should be and open where it should be, so it behaves in both rendering and simulation. Pivots, naming and grouping follow the same logic throughout, so the model behaves the same way in every shot it appears in.",
+   "The listing flags interior visualization, product rendering and film & TV VFX as the intended applications. In the catalog since 2015, which is a longer track record than most listings carry. It is built for interior visualization, architectural renders, product advertising and game interiors."
+  ],
+  "wordsNow": 153
+ },
+ {
+  "slug": "handshake-gesture-emoji-1549535",
+  "name": "Hand Gesture Emoji",
+  "category": "Medical",
+  "sales": 88,
+  "price": "$19 USD",
+  "quality": "StemCell",
+  "polygons": "1,376",
+  "vertices": "1,376",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "5 at 1024 x 1024",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2020",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Hand Gesture Emoji",
+    "price": "$19",
+    "main": true
+   },
+   {
+    "name": "Handshake Emoji Gesture",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Raised Back Hand Emoji",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Raised Back of Hand Emoji",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Vulcan Salute Emoji",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Backhand Index Pointing Down Emoji",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Palms Up Together Emoji",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Raised Hand Emoji",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "OK Hand Emoji",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Folded Hands Emoji",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Victory Hand Sign Emoji",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Flexed Biceps Emoji",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Raising Hands Emoji",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Waving Hand Emoji",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Right-Facing Fist Emoji",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Love-You Gesture Emoji",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Backhand Index Pointing Left Emoji",
+    "price": "$19",
+    "main": false
+   },
+   {
+    "name": "Open Hands Emoji",
+    "price": "$19",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "hand",
+   "gesture",
+   "smiley",
+   "emoji",
+   "icon",
+   "emoticon",
+   "agreement",
+   "partnership",
+   "handshake emoji gesture",
+   "raised back hand emoji",
+   "raised back of hand emoji",
+   "vulcan salute emoji",
+   "backhand index pointing down emoji",
+   "palms up together emoji",
+   "raised hand emoji",
+   "ok hand emoji",
+   "folded hands emoji",
+   "victory hand sign emoji",
+   "flexed biceps emoji",
+   "raising hands emoji",
+   "waving hand emoji",
+   "right-facing fist emoji",
+   "handshake",
+   "deal"
+  ],
+  "descriptionNow": [
+   "Priced at $19, the Hand Gesture Emoji is a finished Medical model rather than a base mesh you have to build on. Poly count sits at 1,376; vertex count at 1,376. That figure reads differently on desktop, on mobile and in WebXR, so weigh it against the target platform and the number of instances in the scene.",
+   "It ships with 5 textures, authored at 1024 x 1024. The StemCell build means you are not re-authoring shaders after import - the PBR setup is designed to read the same across engines. Naming and hierarchy are consistent, so the model behaves predictably when it is merged into a larger scene alongside other assets.",
+   "The listing flags medical visualization, medical simulation and film & TV VFX as the intended applications. The model joined the catalog in 2020 and is still part of what we sell today. It fits medical education, VR anatomy training, patient-facing visualization and medical sequences in film."
+  ],
+  "wordsNow": 157
+ },
+ {
+  "slug": "hay-bale-929597",
+  "name": "Hay Bale",
+  "category": "Industrial Equipment",
+  "sales": 88,
+  "price": "$24 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "977,700",
+  "vertices": "1,149,835",
+  "geometry": "polygonal quads/tris",
+  "uv": "Mixed",
+  "textures": "2 at 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Hay Bale",
+    "price": "$24",
+    "main": true
+   },
+   {
+    "name": "Straw Square Bale",
+    "price": "$24",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "hay bale",
+   "download",
+   "hay bale turbosquid",
+   "straw square bale"
+  ],
+  "descriptionNow": [
+   "The Hay Bale is a production-ready Industrial Equipment 3D model, priced at $24 on TurboSquid. Budget for 977,700 polygons and 1,149,835 vertices when you plan the scene. What matters is not the number itself but how many copies of the object your scene has to carry at once.",
+   "The material set is 2 maps, painted at 2048 x 2048. The mesh is built with clean quad-based topology and correct real-world proportions, so it subdivides predictably and sits at the right size next to other objects in a scene. Objects are grouped and named logically, so isolating a single part for a material change is a two-second job rather than a cleanup task.",
+   "On this listing the stated applications are industrial visualization, operator training and film & TV VFX. It went on sale in 2015 and has been kept in the catalog ever since. It is useful for industrial and factory visualization, product rendering, game props and technical presentations."
+  ],
+  "wordsNow": 158
+ },
+ {
+  "slug": "paper-boat-1260746",
+  "name": "Paper Boat",
+  "category": "Signage & Decor",
+  "sales": 88,
+  "price": "$19 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "1,803",
+  "vertices": "1,796",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "2 at 2048 x 2048",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2018",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Paper Boat",
+    "price": "$19",
+    "main": true
+   },
+   {
+    "name": "Newspaper Paper Boat",
+    "price": "$19",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "paper boat",
+   "ship",
+   "boat",
+   "vessel",
+   "newspaper paper boat"
+  ],
+  "descriptionNow": [
+   "Paper Boat is a detailed Signage & Decor asset built for professional 3D pipelines, available at $19. Measured geometry: 1,803 polygons, 1,796 vertices - no rounding, no estimate. Its suitability for real-time use depends on the target platform, scene complexity and the number of instances.",
+   "Texturing runs to 2 maps at 2048 x 2048. Construction is plain and deliberate - quads through the body, triangles only where they are harmless. The file is organised for someone else to pick up: predictable names, predictable pivots, no hidden surprises.",
+   "It is cataloged for event visualization, product rendering and film & TV VFX. Listed since 2018 - old enough to have been used in real projects, current enough to still be supported. It works as set dressing for interiors and streets, advertising renders and game environments."
+  ],
+  "wordsNow": 133
+ },
+ {
+  "slug": "viking-arrow-1362774",
+  "name": "Viking Arrow",
+  "category": "Weapons",
+  "sales": 88,
+  "price": "$29 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "632",
+  "vertices": "686",
+  "geometry": "polygonal quads only",
+  "uv": "Yes, non-overlapping",
+  "textures": "5 at 2816 x 384",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2019",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [],
+  "keywordsNow": [
+   "arrow",
+   "bow",
+   "archery",
+   "viking",
+   "wooden",
+   "weapon",
+   "antique",
+   "archer",
+   "medieval",
+   "hunter",
+   "aim",
+   "ancient",
+   "sport",
+   "traditional",
+   "history",
+   "target",
+   "shoot",
+   "quiver",
+   "equipment",
+   "competition",
+   "feather",
+   "rpg",
+   "hunting",
+   "feathered"
+  ],
+  "descriptionNow": [
+   "Viking Arrow is one of the Weapons models in the 3D Molier catalog, listed at $29. On import you get 632 polygons and 686 vertices. Whether that counts as light or heavy depends on the target platform, the complexity of the scene and how many instances it carries.",
+   "Textures number 5, authored at 2816 x 384 so they survive a close crop. The model is watertight where it should be and open where it should be, so it behaves in both rendering and simulation. Parts are separated where separation is useful, so a single component can be hidden, swapped or re-shaded on its own.",
+   "On this listing the stated applications are defense simulation, game assets and film & TV VFX. Its first release was in 2019, and it has earned its place in the catalog since then. It works as a game prop, a film and TV set element, or a reference object in training material."
+  ],
+  "wordsNow": 156
+ },
+ {
+  "slug": "railroad-tank-car-948459",
+  "name": "Railroad Tank Car",
+  "category": "Vehicles",
+  "sales": 87,
+  "price": "$59 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "538,713",
+  "vertices": "542,695",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "8 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2015",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Railroad Tank Car",
+    "price": "$59",
+    "main": true
+   },
+   {
+    "name": "Railroad Tank Car 2",
+    "price": "$59",
+    "main": false
+   },
+   {
+    "name": "Railroad Tank Car 3",
+    "price": "$59",
+    "main": false
+   },
+   {
+    "name": "Tank Car",
+    "price": "$59",
+    "main": false
+   },
+   {
+    "name": "Rail Tank Car",
+    "price": "$59",
+    "main": false
+   },
+   {
+    "name": "Rail Tank Car 2",
+    "price": "$59",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "railroad tank car",
+   "military vehicle",
+   "military",
+   "tank",
+   "railroad tank car 2",
+   "railroad tank car 3",
+   "tank car",
+   "rail tank car",
+   "rail tank car 2"
+  ],
+  "descriptionNow": [
+   "Railroad Tank Car is a detailed Vehicles asset built for professional 3D pipelines, available at $59. The mesh carries 538,713 polygons and 542,695 vertices. The count is honest; whether it is heavy is a decision only your target platform can make.",
+   "8 maps at 4096 x 4096 carry the materials. Construction is plain and deliberate - quads through the body, triangles only where they are harmless. Pivot points sit where you would expect them, which matters as soon as the model needs to be instanced or parented to something else.",
+   "Buyers most often take it for driving simulation, automotive advertising and defense simulation. Published in 2015, it has stayed in the range while a lot of other listings came and went. Common uses are automotive advertising, film and TV backgrounds, game traffic and architectural visualization."
+  ],
+  "wordsNow": 135
+ },
+ {
+  "slug": "parfum-chanel-no-5-1218907",
+  "name": "Parfum Chanel No 5",
+  "category": "Clothing & Accessories",
+  "sales": 87,
+  "price": "$39 USD",
+  "quality": "CheckMate Pro",
+  "polygons": "7,127",
+  "vertices": "7,156",
+  "geometry": "polygonal quads/tris",
+  "uv": "Yes, non-overlapping",
+  "textures": "6 at 4096 x 4096",
+  "rig": "",
+  "animation": "",
+  "dimensions": "",
+  "onSaleSince": "2017",
+  "industries": "",
+  "typicalUse": "",
+  "versions": [
+   {
+    "name": "Parfum Chanel No 5",
+    "price": "$39",
+    "main": true
+   },
+   {
+    "name": "Perfume Bottle Generic 2",
+    "price": "$29",
+    "main": false
+   },
+   {
+    "name": "Cosmetic Perfume Spray Bottle",
+    "price": "$34",
+    "main": false
+   },
+   {
+    "name": "Chanel No5 Eau De Parfum Spray",
+    "price": "$34",
+    "main": false
+   },
+   {
+    "name": "Glass Perfume Bottle(1)",
+    "price": "$34",
+    "main": false
+   },
+   {
+    "name": "Classic Womens Eau De Parfum",
+    "price": "$34",
+    "main": false
+   }
+  ],
+  "keywordsNow": [
+   "parfum chanel no 5",
+   "download",
+   "parfum chanel no 5 turbosquid",
+   "perfume bottle generic 2",
+   "cosmetic perfume spray bottle",
+   "chanel no5 eau de parfum spray",
+   "glass perfume bottle(1)",
+   "classic womens eau de parfum"
+  ],
+  "descriptionNow": [
+   "Parfum Chanel No 5 belongs to our Clothing & Accessories range and is offered at $39 through the TurboSquid marketplace. The polygon count is 7,127, spread over 7,156 vertices. Whether that fits depends on where it lands - an architectural still and a real-time walkthrough tolerate very different counts.",
+   "You get 6 maps at 4096 x 4096 - enough resolution to hold a close shot. Construction is plain and deliberate - quads through the body, triangles only where they are harmless. Transforms are frozen and the hierarchy is shallow, which keeps the asset easy to instance across a large environment.",
+   "Buyers most often take it for game assets and film & TV VFX. Available since 2017, the model has been through several rounds of studio use. It suits fashion visualization, character dressing and game assets."
+  ],
+  "wordsNow": 135
  }
 ]

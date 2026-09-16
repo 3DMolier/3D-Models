@@ -20,7 +20,9 @@ function walk(dir) {
     const full = path.join(dir, item.name);
     if (item.isDirectory()) {
       // Skip node_modules and .git
-      if (item.name === 'node_modules' || item.name === '.git') continue;
+      // Скрытые папки пропускаем целиком: .claude/worktrees - рабочая копия
+      // чужой сессии, её страницы к сайту отношения не имеют.
+      if (item.name === 'node_modules' || item.name.startsWith('.')) continue;
       // .tmp - рабочая папка: пробные сборки и выгрузки. Это не часть сайта,
       // в git она не попадает, и аудит ругался на неё как на страницы сайта.
       if (item.name === '.tmp') continue;
