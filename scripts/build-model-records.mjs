@@ -685,6 +685,59 @@ say('читаю карту свёрнутых...');
       if (!byModel.has(id)) byModel.set(id, []);
       byModel.get(id).push({ id: row.video_id, title: row.title, date: row.date });
     });
+
+    /*
+     * ВТОРОЙ ЖУРНАЛ: ежедневные загрузки.
+     *
+     * upload_daily.py пишет в свой файл - upload-log.csv, и по-другому: там
+     * date, video_id, slug, tsid, title, url. Номер модели в нём часто пуст,
+     * зато есть slug облёта, а он совпадает с адресом папки карточки без
+     * номера: «krone-mx-silage-forage-wagon» -> krone-mx-silage-forage-wagon-2498405.
+     *
+     * Пока сборщик читал только publish-log.csv, ежедневные ролики на карточки
+     * не попадали вовсе: с 09.09.2026 их накопилось 74, и ни один не был
+     * привязан. Основатель просил обратное - ролик вышел, карточка его
+     * показывает в тот же день.
+     *
+     * Сопоставляем строго: по номеру модели, если он есть, иначе по адресу и
+     * только когда совпадение ЕДИНСТВЕННОЕ. Неоднозначное не берём - лучше без
+     * ролика, чем облёт чужой модели на карточке.
+     */
+    {
+      const uf = 'D:/Clode_Work_Folder/tools/youtube/upload-log.csv';
+      if (fs.existsSync(uf)) {
+        const baseOf = x => String(x).replace(/-\d+$/, '');
+        const idByBase = new Map();     // адрес без номера -> id живой карточки
+        const dup = new Set();
+        for (const r of byId.values()) {
+          const b = baseOf(r.slug);
+          if (idByBase.has(b)) dup.add(b); else idByBase.set(b, r.id);
+          for (const v of (r.family || [])) {
+            if (!v.slug) continue;
+            const vb = baseOf(v.slug);
+            if (idByBase.has(vb)) dup.add(vb); else idByBase.set(vb, r.id);
+          }
+        }
+        let added = 0, noCard = 0;
+        readCsv(fs.readFileSync(uf, 'utf8'), row => {
+          const vid = String(row.video_id || '').trim();
+          if (!vid) return;
+          let id = String(row.tsid || '').trim();
+          if (!byId.has(id)) id = '';
+          if (!id) {
+            const b = baseOf(String(row.slug || '').trim());
+            if (b && !dup.has(b) && idByBase.has(b)) id = idByBase.get(b);
+          }
+          if (!id) { noCard++; return; }
+          if (!byModel.has(id)) byModel.set(id, []);
+          if (byModel.get(id).some(v => v.id === vid)) return;
+          byModel.get(id).push({ id: vid, title: row.title, date: row.date });
+          added++;
+        });
+        say('ежедневных роликов привязано к карточкам: ' + added
+          + ', карточки ещё нет: ' + noCard);
+      }
+    }
     /*
      * Ролик снят по модели, которую потом СВЕРНУЛИ в другую карточку. Номер в
      * журнале остался прежним, страницы по нему больше нет - и связь рвалась
