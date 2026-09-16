@@ -94,7 +94,10 @@ for (const p of np) {
   // снова начнёт показывать то, что мы объединили.
   const dir = DIR_BY_ID.get(id);
   if (!dir || !isLive(dir)) { skipDead++; continue; }
-  rows.push({ i: Number(id), n: p.name, p: +p.price || 0, s: 0, c: certCode(p.cert) });
+  // u - адрес папки. Пишем его только тогда, когда из имени он бы не сложился:
+  // колонка разрежённая, лишний вес выгрузки ни к чему.
+  rows.push({ i: Number(id), n: p.name, p: +p.price || 0, s: 0, c: certCode(p.cert),
+    u: catSlug(p.name) + '-' + id === dir ? null : dir });
   added++;
 }
 console.log('из new-products добавлено: ' + added + ', уже были: ' + skipHave + ', нет живой карточки: ' + skipDead);
@@ -121,21 +124,18 @@ if (fs.existsSync(RECS)) {
       const dir = DIR_BY_ID.get(id);
       if (!dir || !isLive(dir)) continue;
       /*
-       * Имя здесь - ИСХОДНОЕ, не имя семьи. Полный каталог строит адрес плитки
-       * из имени: makeSlug(name) + номер. У склеенной карточки папка названа по
-       * исходному имени главной, а имя семьи другое - «Dark Skin Cobra
-       * Crawling» вместо dark-skin-cobra-crawling-animated-rigged-2413184, и
-       * плитка вела в никуда. Поймано проверкой [16].
-       *
-       * Если и исходное имя не даёт папку - строку не добавляем вовсе: ниже она
-       * всё равно будет снята, и получалась петля «добавили и убрали» на каждом
-       * прогоне («Vintage Baseball Balls Collection» против папки
-       * vintage-baseball-balls-collection1-2482117).
+       * Имя - то, что видит посетитель: имя семьи, если карточка склеенная.
+       * Раньше сюда клали ИСХОДНОЕ имя, и не по доброй воле: каталог складывал
+       * адрес плитки из имени, а папка склеенной карточки названа по-старому.
+       * С 16.09.2026 адрес лежит рядом, в колонке u, и подгонять имя под папку
+       * больше не нужно - именно эта подгонка и показывала в каталоге
+       * вчерашние названия.
        */
-      if (catSlug(r.name) + '-' + id !== dir) continue;
       have.add(id);
-      rows.push({ i: Number(id), n: r.name, p: +r.price || 0,
-        s: +r.sales || 0, c: certCode(r.cert) });
+      const nm = r.display_name || r.name;
+      rows.push({ i: Number(id), n: nm, p: +r.price || 0,
+        s: +r.sales || 0, c: certCode(r.cert),
+        u: catSlug(nm) + '-' + id === dir ? null : dir });
       addedRec++;
     }
   }
@@ -143,38 +143,31 @@ if (fs.existsSync(RECS)) {
 console.log('из записей добавлено: ' + addedRec);
 
 /*
- * ── правка строк, у которых имя не совпадает с папкой ───────────────────────
+ * ── адрес плитки у каждой строки ────────────────────────────────────────────
  *
- * Полный каталог строит адрес плитки ВЫЧИСЛЕНИЕМ: makeSlug(имя) + номер. Если
- * имя в индексе не то, каким названа папка, плитка ведёт в никуда.
+ * Раньше здесь шла подгонка ИМЕНИ под папку: каталог складывал адрес плитки
+ * вычислением, makeSlug(имя) + номер, и любое расхождение уводило посетителя
+ * в никуда. 13.09.2026 проверка [16] нашла две такие строки: у товара 1500037
+ * в индексе стояло «Black Tuxedo Suit», а папка называется
+ * bikini-woman-standing-pose-1500037.
  *
- * 13.09.2026 проверка [16] нашла две такие строки в старой выгрузке: у товара
- * 1500037 в индексе стояло «Black Tuxedo Suit», а папка называется
- * bikini-woman-standing-pose-1500037; у 8694302 папки нет вовсе. Пока рядом
- * лежали другие расхождения, эти терялись в общем шуме.
- *
- * Правило прежнее и записано кровью: АДРЕС КАРТОЧКИ НЕ ВЫЧИСЛЯТЬ. Здесь его
- * вычисляет клиентский скрипт, и единственное, что мы можем, - следить, чтобы
- * имя в индексе давало ту самую папку. Не даёт - берём имя из записи; и оно не
- * подходит - строку убираем: показать её всё равно некуда.
+ * Правило «адрес карточки не вычислять» теперь выполняется по-настоящему:
+ * адрес лежит в самой строке, в колонке u. Здесь мы его проставляем - и только
+ * там, где из имени он бы не сложился. Имя не трогаем: оно для человека.
  */
-const RECNAME = new Map();
-if (fs.existsSync(RECS)) {
-  for (const f of fs.readdirSync(RECS).filter(x => /^records-\d+\.json$/.test(x)))
-    for (const r of JSON.parse(fs.readFileSync(path.join(RECS, f), 'utf8')))
-      RECNAME.set(String(r.id), r.name);
-}
 let fixed = 0, dropped = 0;
 for (let k = rows.length - 1; k >= 0; k--) {
   const id = String(rows[k].i);
   const dir = DIR_BY_ID.get(id);
+  // Папки нет - показывать строку некуда, убираем.
   if (!dir) { rows.splice(k, 1); dropped++; continue; }
-  if (catSlug(rows[k].n) + '-' + id === dir) continue;
-  const nm = RECNAME.get(id);
-  if (nm && catSlug(nm) + '-' + id === dir) { rows[k].n = nm; fixed++; continue; }
-  rows.splice(k, 1); dropped++;
+  // Адрес складывается из имени сам - колонку не занимаем.
+  const want = catSlug(rows[k].n) + '-' + id === dir ? null : dir;
+  if ((rows[k].u || null) === want) continue;
+  rows[k].u = want;
+  fixed++;
 }
-if (fixed || dropped) console.log('имя не совпадало с папкой: поправлено ' + fixed + ', убрано ' + dropped);
+if (fixed || dropped) console.log('адрес плитки проставлен заново: ' + fixed + ', строк убрано: ' + dropped);
 
 if (!DRY) {
   const chunks = Math.ceil(rows.length / CHUNK);

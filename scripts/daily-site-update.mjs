@@ -96,10 +96,17 @@ say((pagesOut.match(/переписано карточек: [\d\s,]+/) || ['ст
 
 run('rebuild-search-index.mjs');
 run('add-new-to-catalog.mjs');
+// Имя и адрес в выгрузке каталога - из записей. Без этого шага каталог
+// показывает вчерашние названия склеенных карточек: на плитке одно, на
+// странице другое (5 699 штук на 16.09.2026).
+run('sync-catalog-names.mjs');
 run('build-category-hubs.mjs');
 run('build-categories-hub.mjs');
 run('build-subcategories.mjs');
 run('build-browse-index.mjs');
+// Подборки собираются здесь же: их плитки должны вести на живые карточки, а
+// лишние страницы пагинации - сворачиваться в перенаправления ДО сайтмапов.
+run('build-collections.mjs');
 run('sync-counters.mjs');
 run('build-model-sitemaps.mjs');
 run('refresh-sitemaps.mjs');

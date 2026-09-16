@@ -45,12 +45,15 @@ import { isMilitary } from './lib/military.mjs';
 import { classifyByReport } from './category-map.mjs';
 import { parseDetails, num } from './lib/specs.mjs';
 import { variantLabel, variantShortLabel } from './lib/variant-label.mjs';
-import { familyName } from './lib/model-name.mjs';
+import { familyName, brokenTitle, colorEaten } from './lib/model-name.mjs';
 import { variantAxis } from './lib/variant-axis.mjs';
 import { attachRelated } from './build-related.mjs';
 import { formatsFromFiles } from './lib/formats.mjs';
 
 import { ROOT } from './lib/paths.mjs';
+
+// Сколько заголовков, снятых со страниц, отвергнуто как сломанные (см. ниже).
+let titleFixed = 0;
 const MODELS = path.join(ROOT, 'models');
 const DATA = path.join(ROOT, 'data');
 const OUT = path.join(DATA, 'records');
@@ -589,8 +592,23 @@ say('читаю карту свёрнутых...');
      * «2027 Volvo EX60». Таких 17 на 17 085 склеенных карточек, и они разобраны
      * глазами в data/display-name-overrides.json.
      */
-    r.display_name = NAME_FIX.get(r.slug) || axis || DISPLAY_NAME.get(r.slug)
-      || (r.family.length ? familyName(r.name, r.family.map(v => v.name)) : r.name);
+    /*
+     * Заголовок со страницы уступает пересчитанному в двух случаях, и оба -
+     * не «так красивее», а поломка, застывшая в разметке:
+     *   - обрубок: «9T234 with», «Pilot with», «Utility Knife With» (280 штук);
+     *   - съеденный цвет: «Bird Commercial Bus» вместо «Blue Bird Commercial
+     *     Bus», «Razer Widow» вместо «Razer Black Widow» (49 штук).
+     * Прежнее правило рвало составное имя, страница это записала, извлечение
+     * заголовков сделало из ошибки «данные», и круг замкнулся. Здесь он
+     * размыкается: сломанный заголовок данными не считаем.
+     */
+    const fam = r.family.length ? familyName(r.name, r.family.map(v => v.name)) : r.name;
+    let fromPage = DISPLAY_NAME.get(r.slug);
+    if (fromPage && (brokenTitle(fromPage) || colorEaten(fromPage, fam))) {
+      fromPage = null;
+      titleFixed++;
+    }
+    r.display_name = NAME_FIX.get(r.slug) || axis || fromPage || fam;
     /*
      * Двойные пробелы схлопываем и здесь, а не только у r.name: заголовки
      * сняты со старых страниц, и у четырёх из них дыра внутри. Заголовок
@@ -958,6 +976,10 @@ for (const r of byId.values()) {
   if (!r.specs) r.specs = null;
 }
 
+if (titleFixed) {
+  say('заголовков со страниц отвергнуто как сломанные (обрубок или съеденный цвет): '
+    + titleFixed.toLocaleString('ru-RU'));
+}
 if (editorialFixed) {
   say('брендовых карточек, где снята реклама (лицензия редакционная): '
     + editorialFixed.toLocaleString('ru-RU'));

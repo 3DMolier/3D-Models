@@ -263,7 +263,7 @@ function loadFcData(){
             // g - номер категории, чтобы показать её в выдаче.
             // ic - номер файла с картинкой этой модели. Без него пришлось бы
             // грузить все 18 картиночных чанков, а это 19 МБ.
-            FC_MODELS.push({id:id,n:ch.n[i],ln:String(ch.n[i]||'').toLowerCase(),p:ch.p[i],c:ch.c[i],g:ch.g?ch.g[i]:-1,ic:ch.ic?ch.ic[i]:-1});
+            FC_MODELS.push({id:id,n:ch.n[i],ln:String(ch.n[i]||'').toLowerCase(),p:ch.p[i],c:ch.c[i],g:ch.g?ch.g[i]:-1,ic:ch.ic?ch.ic[i]:-1,u:ch.u?ch.u[i]:null});
           }
         }
       });
@@ -387,6 +387,9 @@ function modelCard(m){
 // мимо наших же страниц - человек уходил с сайта на первом же клике, а мы
 // теряли и просмотр карточки, и её перелинковку.
 function fcLocalUrl(fc){
+  // Адрес папки, если он записан в выгрузке: у склеенных карточек имя новое,
+  // а папка прежняя, и вычисленный адрес вёл бы в никуда.
+  if(fc.u)return '/models/'+fc.u+'/';
   var s=String(fc.n||'').toLowerCase().trim()
     .replace(/[^\w\s-]/g,'').replace(/[\s_]+/g,'-').replace(/-+/g,'-').replace(/^-+|-+$/g,'');
   return s?('/models/'+s+'-'+fc.id+'/'):'';

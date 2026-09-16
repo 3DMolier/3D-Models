@@ -4,7 +4,7 @@
 // g - номер категории модели, CATS - список слагов категорий из fc-index.json.
 // Категория едет вместе с чанком, отдельного запроса не появляется. Осторожно:
 // c - это cert, а не category; на этом легко решить, что категория уже есть.
-var FC={i:[],n:[],p:[],s:[],c:[],g:[],ic:[]}, IMGS={}, fcReady=false, CATS=[];
+var FC={i:[],n:[],p:[],s:[],c:[],g:[],ic:[],u:[]}, IMGS={}, fcReady=false, CATS=[];
 var searchQ='', selPrice=null, selCat=null, sortMode='sales', onlyRigged=false;
 // Признак «с оснасткой» берём из названия модели: слово Rigged стоит в нём у
 // 3 705 карточек, тогда как отдельное поле из выгрузки студии есть лишь у
@@ -64,7 +64,10 @@ function mergeChunk(chunk) {
   // ic - номер файла, в котором лежит адрес картинки этой модели. Колонка уже
   // была в данных, но каталог её выбрасывал и потому не знал, какой из 18
   // файлов ему нужен: приходилось грузить все.
-  var keys=['i','n','p','s','c','g','ic'];
+  // u - настоящий адрес папки карточки. Колонка разрежённая: значение стоит
+  // только там, где адрес из названия не сложился бы (склеенные карточки
+  // получили новое имя, а папка осталась прежней).
+  var keys=['i','n','p','s','c','g','ic','u'];
   for(var k=0;k<keys.length;k++){
     var key=keys[k];
     FC[key]=FC[key].concat(chunk[key]||[]);
@@ -444,7 +447,10 @@ function makeSlug(name,id){
 
 function modelCard(idx){
   var id=FC.i[idx],name=FC.n[idx],price=FC.p[idx],cert=FC.c[idx],sales=FC.s[idx];
-  var slug=makeSlug(name,id);
+  // Адрес - из данных, а не из названия. Правило записано кровью: имя меняется
+  // (склейка дала «License Plate - 8 US States»), папка остаётся. makeSlug
+  // остаётся запасным ходом для старых выгрузок, где колонки u ещё нет.
+  var slug=(FC.u&&FC.u[idx])||makeSlug(name,id);
   var imgHtml=IMGS[id]
     ?'<img src="'+IMGS[id]+'" alt="'+name.replace(/"/g,'&quot;')+'" loading="lazy" width="800" height="450" decoding="async">'
     :'<div class="mc-ph" data-img-pid="'+id+'">&#128246;</div>';

@@ -477,7 +477,13 @@ if (bad9.length) fail(9, 'отрасль модели не существует 
       const c = JSON.parse(fs.readFileSync(f, 'utf8'));
       for (let j = 0; j < c.i.length; j++) {
         seen++;
-        const slug = makeSlug(c.n[j], c.i[j]);
+        /*
+         * С 16.09.2026 адрес лежит в самой выгрузке (колонка u) - именно
+         * затем, чтобы имя можно было менять свободно. Проверяем то, по чему
+         * пойдёт браузер: сначала записанный адрес, и только если его нет -
+         * вычисленный.
+         */
+        const slug = (c.u && c.u[j]) || makeSlug(c.n[j], c.i[j]);
         if (!dirs.has(slug) && bad.length < 6) bad.push('«' + c.n[j] + '» -> /models/' + slug + '/');
       }
     }

@@ -47,7 +47,8 @@ const all = [];
 for (let k = 0; k < idx.chunks; k++) {
   const c = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'fc-chunk-' + k + '.json'), 'utf8'));
   for (let j = 0; j < c.i.length; j++) {
-    all.push({ id: c.i[j], name: c.n[j], price: c.p[j], sales: c.s[j], cat: cats[c.g[j]] || '', ic: c.ic ? c.ic[j] : -1 });
+    all.push({ id: c.i[j], name: c.n[j], price: c.p[j], sales: c.s[j], cat: cats[c.g[j]] || '',
+      ic: c.ic ? c.ic[j] : -1, u: c.u ? c.u[j] : null });
   }
 }
 all.sort((a, b) => (b.sales - a.sales) || (b.price - a.price));
@@ -55,7 +56,10 @@ all.sort((a, b) => (b.sales - a.sales) || (b.price - a.price));
 const picked = [];
 for (const m of all) {
   if (picked.length >= COUNT) break;
-  const slug = slugify(m.name) + '-' + m.id;
+  // Адрес - из выгрузки (колонка u), и только если её нет - из названия.
+  // У склеенной карточки имя семьи новое, а папка прежняя, и вычисленный
+  // адрес вёл бы в никуда: плитка просто не находилась и молча пропускалась.
+  const slug = m.u || (slugify(m.name) + '-' + m.id);
   if (!fs.existsSync(path.join(ROOT, 'models', slug, 'index.html'))) continue;
   const img = imgFor(m.ic, m.id);
   if (!img) continue;
