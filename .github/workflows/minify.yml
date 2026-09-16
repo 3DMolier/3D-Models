@@ -69,5 +69,16 @@ jobs:
             echo "Nothing to commit"
           else
             git commit -m "chore: auto-minify CSS and JS [skip ci]"
-            git push origin HEAD
+            # Ветка за время сборки уходит вперёд: правки публикуются частями,
+            # и пока шёл npm install, в main прилетело ещё два коммита. Простой
+            # push тогда отвергается, шаг падает, а на проде остаётся СТАРЫЙ
+            # минифицированный файл рядом с НОВЫМИ данными - худший из исходов.
+            # Поймано 16.09.2026, запуск #83.
+            for i in 1 2 3 4 5; do
+              git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+              echo "попытка $i не прошла, ветка ушла вперёд - пробую снова"
+              sleep 10
+            done
+            echo "не удалось опубликовать минифицированные файлы"
+            exit 1
           fi
