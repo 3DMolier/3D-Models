@@ -9824,5 +9824,495 @@
   "A closed umbrella at 16,859 polygons, with the furled canopy, the strap, the ribs underneath and the handle built separately. Furled fabric is the hard part - the flutes where the canopy wraps around the shaft are what make a closed umbrella look like cloth rather than a cone.",
   "Fifteen maps at 4096 x 4096 and 256 x 256 carry the canopy fabric, the metal ribs and the handle material. CheckMate Pro certification means real-world scale, so it leans in a stand or hangs on an arm at the right size.",
   "A compact folded umbrella shares the page. Sold 61 times since 2015, which makes it one of the steadier sellers in accessories: it goes into interior scenes, character props, retail visualisation and advertising."
+ ],
+ "air-compressor-pump-black-2148980": [
+  "A piston compressor pump at 71,547 polygons, with the cooling fins, the cylinder heads, the crankcase and the belt pulley modelled. Fins are the reason for the polygon count: they are thin, closely spaced plates, and they are what identifies the machine as an air pump rather than a motor.",
+  "CheckMate Pro certification means real-world scale and clean topology, so the pump mates to a tank or a frame from another asset. Non-overlapping UVs keep the cast aluminium and the painted housing separate.",
+  "Four versions share the page: black and blue single cylinders, an aluminium build and a twin-cylinder V-style in yellow. For industrial and workshop visualisation, tool retail imagery and technical animation."
+ ],
+ "road-curb-3m-yellow-2028882": [
+  "A three-metre kerb section at 1,276 polygons. It is a modular piece: you line them end to end along a street, and keeping each one almost free is the entire design brief. The chamfer and the joint face are correct, which is all a kerb needs.",
+  "CheckMate Pro certification means real-world scale, which matters for street furniture more than for almost anything else: kerb height sets the relationship between road, pavement and every vehicle wheel in the scene.",
+  "Four versions share the page: yellow, red fire-lane, plain concrete and a second red. Sold twice since 2023, at $9, into architectural visualisation, city scenes, simulation and games."
+ ],
+ "cordless-drill-driver-2022417": [
+  "A cordless drill at 32,945 polygons, with the keyless chuck, the clutch collar, the trigger and the battery pack built as separate parts. The chuck is where a tool model is judged: three jaws with real gaps between them, not a smooth cone with a metallic texture.",
+  "CheckMate Pro certification means real-world scale and clean topology, so the drill sits in a hand or a tool case at believable size. Non-overlapping UVs keep the soft-touch grip and the hard plastic separate.",
+  "A Black and Decker build shares the page; that one carries editorial terms, while this unbranded drill does not and is the one for commercial work. Sold three times since 2023, into tool retail imagery, workshop scenes, DIY advertising and games."
+ ],
+ "cover-packing-machine-2258154": [
+  "A cover packing machine at 131,950 polygons: the frame, the feed magazine, the forming head, the guarding and the control panel. Packaging machinery is read through its guards and its transparent panels, because that is how it looks on a factory floor - a box of mechanism you see partly through.",
+  "StemCell certification means standardised PBR materials, so the painted steel and the perspex read correctly in a real-time engine as well as in an offline render. Non-overlapping UVs keep the warning labels crisp.",
+  "A LandPack-branded version shares the page. Sold twice since 2024, into industrial visualisation, trade show presentation and process animation."
+ ],
+ "cryogenic-freezer-abeyance-1995759": [
+  "A cryogenic storage freezer at 100,042 polygons, with the lid mechanism, the inner racking and the vacuum-jacketed body modelled. The racking is the detail that makes it a laboratory object: a plain white chest is a domestic freezer, and the cryo-box columns inside are what change that.",
+  "CheckMate Pro certification means real-world scale and clean topology, so it stands correctly in a laboratory layout beside benches and figures. Non-overlapping UVs keep the labelling and control panel readable.",
+  "A version with cryo-boxes loaded shares the page. Sold three times since 2022, into laboratory and biotech visualisation, medical presentation and science communication."
+ ],
+ "black-crystal-decanter-tinted-glass-2411072": [
+  "A tinted crystal decanter at 13,172 polygons, with the cut facets and the stopper built as real geometry. Cut glass is the one case where polygons buy the whole effect: every facet is a separate reflecting plane, and faking them with a normal map produces a smooth bottle with a strange pattern on it.",
+  "The build follows CheckMate specification for topology and real-world scale. Non-overlapping UVs mean the tint can be changed or removed without touching the facets.",
+  "Three versions share the page: this black tinted decanter, a cognac decanter with stopper and a tall-necked red wine decanter. Sold once since 2025, into drinks and hospitality visualisation, interior scenes and advertising."
+ ],
+ "shikara-serenity-yellow-old-2289937": [
+  "A Kashmiri shikara at 57,465 polygons: the long flat hull, the curved prow, the canopy frame and the cushioned seating under it. The canopy is what makes a shikara a shikara, and it has to be built as a frame with fabric over it rather than a solid shell.",
+  "StemCell certification means standardised PBR materials, so the painted timber and the faded fabric read correctly in a real-time engine as well as in an offline render. The weathered finish is deliberate: a bright new shikara looks wrong on Dal Lake.",
+  "Nine versions share the page: white, blue and yellow boats, aged and clean finishes, and Dal Lake and royal builds. Sold once since 2024, at $19, into travel and tourism visualisation, documentary work and games."
+ ],
+ "dassault-falcon-900-business-jet-grey-2384435": [
+  "A Falcon 900 at 210,331 polygons, with the three-engine tail arrangement, the cabin windows, the gear bays and the wing fences modelled. The trijet layout is the identification - that centre engine in the tail is what separates a Falcon from every twin-engine business jet.",
+  "StemCell certification means standardised PBR materials, so the paint and the glass read correctly in a real-time engine as well as under an offline renderer. Non-overlapping UVs mean a corporate livery goes on as texture work.",
+  "Thirty-five versions share the page: Falcon 900 and 2000 bodies, grey, red and white schemes, simplified builds for background traffic, and rigged versions with dedicated Maya and Cinema 4D rigs. Priced at $299, sold twice since 2025, into aviation visualisation, charter presentation, film and simulation."
+ ],
+ "generic-servers-in-rack-3-989113": [
+  "A populated server rack at 128,753 polygons, with the rails, the server faces, the drive bays, the cable management and the perforated door modelled. Perforation is the detail that matters: a data centre is a wall of small holes and blinking LEDs, and a flat panel with a texture reads as a cupboard.",
+  "Five maps at 4096 x 4096 and 2048 x 2048 carry the brushed steel, the plastic bezels and the indicator lights. CheckMate Pro certification means real-world scale, so racks line up in a row at correct pitch.",
+  "Five versions share the page, including Dell PowerEdge builds and a data centre rack. The branded ones carry editorial terms; the generic rack does not. Sold 31 times since 2015, into data centre and IT visualisation, corporate presentation and games."
+ ],
+ "ancient-zombie-mummy-in-bending-pose-2464965": [
+  "A mummy in a bending pose at 4,328 polygons, which is game weight: light enough for a crowd of them, posed so the silhouette reads as a creature advancing rather than a figure standing still. Bandage overlap and the gaps where wrapping has come loose are in the mesh.",
+  "The build follows CheckMate specification for topology and real-world scale. Overlapping UVs are the right economy on a figure wrapped in a repeating material.",
+  "Fourteen versions share the page: clean and dirty bandage states, A-poses, and rigged builds with dedicated Maya and Cinema 4D rigs. Priced at $149, for games, film and television, Halloween advertising and themed attractions."
+ ],
+ "lufthansa-airbus-a321-with-interior-and-doors-2376366": [
+  "An A321 with a full cabin and operable doors, at 2,405,109 polygons. Doors that open are the specification here: the passenger doors, the overwing exits and the cargo holds are separate parts with their own hinges, which is what makes boarding and turnaround sequences possible without cheating.",
+  "The build follows CheckMate specification for topology and real-world scale, and the UVs are non-overlapping across both the exterior paint and the cabin trim - necessary when the camera travels from the apron into the aisle.",
+  "Sixteen versions share the page: Lufthansa and Delta liveries, a generic body, and rigged builds including Maya and Cinema 4D rigs. Priced at $349. Editorial terms apply to the airline marks; the generic build is the one for commercial work. Sold once since 2025, into film, aviation presentation and simulation."
+ ],
+ "heavy-duty-padded-tool-belt-1808181": [
+  "A padded tool belt at 11,266 polygons, with the pouches, the hammer loop, the buckle and the stitched edges built as separate parts. Loaded belts sag and the pouches gape - that slackness is what makes it look used rather than new on a shelf.",
+  "CheckMate Pro certification means real-world scale, so the belt fits a figure at the waist without adjustment. Non-overlapping UVs keep the leather, the nylon webbing and the metal hardware separately editable.",
+  "Three versions share the page, including a dusty build and a DeWalt-badged belt; the branded one carries editorial terms. Sold twice since 2021, into construction scenes, tool retail imagery, character work and games."
+ ],
+ "self-service-counter-scales-1889166": [
+  "A self-service retail scale at 15,396 polygons, with the weighing platter, the pillar, the display head and the preset key panel modelled. The key panel is what makes it a supermarket scale rather than a laboratory balance, and it is where a shopper's hand goes.",
+  "CheckMate Pro certification means real-world scale, so the scale stands at counter height in a produce aisle. Non-overlapping UVs leave the display and the key legends readable, and they can be relabelled as a texture change.",
+  "Four versions share the page: Dibal D955T and D955S builds and a generic scale. The branded ones carry editorial terms; the generic one is for commercial work. Sold once since 2022, into retail interiors, supermarket visualisation and advertising."
+ ],
+ "carton-refrigerator-package-box-old-2115695": [
+  "A large appliance carton at 15,810 polygons, modelled worn: scuffed corners, a dented edge, tape lines and the slight bow a big box develops once it has been moved. Pristine cardboard is easy; used cardboard is what appears in warehouses, hallways and delivery scenes.",
+  "CheckMate Lite certification covers scale and topology through the same review process. Real-world scale matters because this box exists to indicate a fridge inside it, and the dimensions have to match the appliance.",
+  "Four versions share the page: a new double-door fridge box, a dirty big carton and a plain old cardboard box. Sold once since 2023, into logistics and retail visualisation, delivery scenes and set dressing."
+ ],
+ "domestic-wiener-dog-with-short-legs-black-2450176": [
+  "A smooth-haired dachshund at 31,119 polygons. The proportions are the whole job: the long back, the short bowed legs and the deep chest are what make the breed instantly recognisable, and any error in that ratio turns the dog into a generic hound.",
+  "The build follows CheckMate specification for topology and real-world scale. Overlapping UVs are the right economy for a short-coated animal whose surface is mostly one continuous material.",
+  "Thirty-seven versions share the page, which is the whole dachshund family: black and red coats, fur builds for close work, and rigged versions with dedicated Maya and Cinema 4D rigs. Priced at $99, sold once since 2025, into pet retail and veterinary visualisation, advertising, games and film."
+ ],
+ "insulating-electrical-tape-black-1832664": [
+  "A roll of electrical tape at 1,058 polygons in quads only. It is a torus with a core, and that is all it should cost: tape appears on benches, in toolboxes and in the hands of electricians, never as the subject of the shot.",
+  "CheckMate Pro certification means real-world scale, which is what keeps a 19 mm roll looking like tape rather than a hockey puck. Non-overlapping UVs mean the colour and the printed core label change as texture work.",
+  "Fourteen versions share the page, and that breadth is the value: vinyl and PVC insulating tapes in several colours, 3M Temflex builds, and double-sided acrylic and foam tapes. Branded rolls carry editorial terms; the plain ones do not. Sold six times since 2021, into workshop scenes, tool retail imagery and technical illustration."
+ ],
+ "double-tap-draft-beer-tower-stainless-steel-1624465": [
+  "A twin-tap beer tower at 5,636 polygons, built with subdivision geometry - the right choice for a polished cylinder with curved tap bodies, because it stays smooth at any camera distance without carrying unnecessary triangles.",
+  "CheckMate Pro certification means real-world scale, so the tower stands at bar height and the taps reach a glass. Non-overlapping UVs keep the brushed steel clean, and the drip tray and handle materials separate.",
+  "A brass version shares the page for warmer interiors. Sold once since 2020, at $19, into bar and hospitality visualisation, restaurant interiors and beverage advertising."
+ ],
+ "shampoo-bottle-curved-shape-pink-400ml-2172236": [
+  "A 400 ml shampoo bottle at 9,474 polygons, with the curved body, the flip cap and the shoulder transition built as geometry. Personal care packaging competes on silhouette - the curve is the brand before the label is even read.",
+  "CheckMate Pro certification means real-world scale, which on a 400 ml bottle is what keeps it from reading as a travel size or a family pack. Non-overlapping UVs leave the label as its own clean area for artwork.",
+  "Five versions share the page: curved, triangular-long and round pump bottles plus a Dove-branded build. The branded one carries editorial terms; the unbranded bottles are the ones for commercial work. Sold once since 2024, into cosmetics packaging design, retail and bathroom visualisation."
+ ],
+ "drainable-colostomy-pouch-with-flat-adhesive-base-2459094": [
+  "A drainable colostomy pouch at 2,189 polygons: the pouch body, the flat adhesive base plate and the drain outlet with its clip. The flat base is the clinical distinction from a two-piece system, and it is the part that has to be unambiguous in educational material.",
+  "StemCell certification means standardised PBR materials, so the translucent film and the adhesive wafer read correctly in a real-time explainer as well as an offline render. Mixed UVs keep the asset light.",
+  "A white drainable pouch shares the page. Priced at $15, sold once since 2025, into medical device visualisation, patient education and clinical training content."
+ ],
+ "drill-machine-bauer-rg16t-rigged-1277066": [
+  "A rigged piling drill at 359,900 polygons: the tracked base, the mast, the kelly bar, the rotary head and the auger. The rig is the product - this machine is bought to be animated, because what makes a piling drill interesting is the mast raising and the auger turning.",
+  "Nineteen maps at 4096 x 4096 and 2048 x 2048 carry the painted steel, the hydraulic lines and the clay-caked auger. CheckMate Pro certification means real-world scale, so the machine sits on a site beside figures and spoil correctly.",
+  "Six versions share the page: working and folded positions, spiral drill builds and rigged variants. Priced at $199, sold 18 times since 2018, into construction and infrastructure visualisation, process animation and simulation."
+ ],
+ "sky-drop-amusement-park-equipment-1872875": [
+  "A drop tower ride at 220,344 polygons: the lattice tower, the gondola with its seats and restraints, the catch rails and the base station. The restraints are what make a ride look operational rather than sculptural, and they are modelled per seat.",
+  "CheckMate Pro certification means real-world scale, which for a thrill ride is the whole impression - a tower that is even slightly short stops looking frightening. Non-overlapping UVs keep the paint and the warning signage crisp.",
+  "Four versions share the page, including rigged builds so the gondola can travel the tower on camera. Sold four times since 2022, into amusement park visualisation, advertising, film and games."
+ ],
+ "vinegar-fly-2356951": [
+  "A Drosophila at 14,822 polygons, which is high for an insect two millimetres long and exactly right for what it is used for: fruit flies appear in laboratory and biology material at extreme magnification, where the compound eye facets, the wing venation and the bristles all have to be present.",
+  "The build follows CheckMate specification for topology and real-world scale. Non-overlapping UVs keep the eye, the thorax and the translucent wings as separate areas - necessary when each is a different optical problem.",
+  "Twenty-one versions share the page: vinegar fly and fruit fly builds, black colouring, fur variants for the bristles, and rigged versions with dedicated Maya and Cinema 4D rigs. Priced at $59, sold once since 2025, into biology education, laboratory visualisation and science communication."
+ ],
+ "duck-hunter-in-grass-camo-fur-rigged-1959650": [
+  "A rigged hunter in grass camouflage at 154,458 polygons, supplied with fur so the camo pattern breaks up with real hair and fabric nap at close range. The figure comes posed for the field rather than standing to attention, which is what makes it usable in an outdoor scene without re-posing.",
+  "CheckMate Pro certification means correct human proportion and clean topology, so the rig deforms properly when the figure crouches or raises a gun. Non-overlapping UVs keep the clothing, skin and kit separately editable.",
+  "Ten versions share the page: forest and grass camo, creeping, standing, aiming and A-poses, with and without a gun, and rigged builds. Priced at $239, sold three times since 2022, into hunting and outdoor advertising, games and film."
+ ],
+ "lrhw-launcher-launch-ready-state-green-2467679": [
+  "A hypersonic missile launcher in the launch-ready position, at 1,053,225 polygons: the trailer, the erected canisters, the hydraulic rams, the outriggers and the cab. Launch-ready is a specific state, and the raised canisters with the stabilisers deployed are what the whole asset exists to show.",
+  "The build follows CheckMate specification for topology and real-world scale. Non-overlapping UVs keep the olive paint, the markings and the hydraulic hardware as separate areas.",
+  "Eleven versions share the page: transport and deployed modes, two-tone paint, green schemes and rigged builds with dedicated Maya and Cinema 4D rigs. Priced at $139, sold once since 2025, into defence visualisation, broadcast and documentary graphics and simulation."
+ ],
+ "old-earth-auger-bit-2104811": [
+  "A worn earth auger bit at 3,888 polygons: the flighting, the pilot point and the hex shank, with the paint knocked off the leading edges where soil has scoured it. Worn is the specification - a shiny new auger looks like a product shot, not a tool in use.",
+  "CheckMate Pro certification means real-world scale and clean topology, so the bit mates to a post-hole digger or a hand auger from another asset. Non-overlapping UVs keep the bare steel and the remaining paint separate.",
+  "A new version shares the page for retail and packaging work. At $9, for garden and construction scenes, tool retail imagery and games."
+ ],
+ "pile-of-dirty-sand-2373179": [
+  "A heap of sand at 32,210 polygons, with the angle of repose correct and the surface broken the way loose material actually settles: slumped at the base, slightly crested at the top, with footprints and tool marks possible in the texture.",
+  "StemCell certification means standardised PBR materials, so the grain reads at both wide and close range in a real-time engine as well as in an offline render. Non-overlapping UVs let the material change from sand to soil to snow without new geometry.",
+  "Eight versions share the page, which is the real value: soil, fertile soil, gold grain, red Mars soil, an earth mound and two snow piles with shovels. Sold eight times since 2025, into construction and site visualisation, agriculture, space scenes and games."
+ ],
+ "electrocardiograph-machine-2-3d-model-994886": [
+  "An ECG machine at 24,333 polygons, with the trolley, the display, the control panel, the lead ports and the cable bundle modelled. The leads are the part that makes it read as cardiac equipment rather than a generic monitor, and they need to hang properly.",
+  "Six maps at 4096 x 4096 and 2048 x 2048 carry the plastic housing, the screen and the labelling. CheckMate Lite certification covers scale and topology through the same review process, which matters in a ward layout full of other equipment.",
+  "Four versions share the page, including a build with a printout coming out of the machine - a small detail that does a lot of work in a clinical scene. Sold eight times since 2016, into medical visualisation, hospital interiors and healthcare presentation."
+ ],
+ "elderly-woman-wearing-casual-clothes-1633737": [
+  "An older woman in casual clothes at 10,707 polygons, which is light enough for crowd work. Age is in the model rather than only in the texture: the posture, the softer jawline and the way the clothing hangs are what separate an elderly figure from a young one with grey hair.",
+  "Seventeen maps at 4096 x 4096 and 3000 x 3000 carry the skin, the hair and the fabric - a generous budget for a figure this light, and the reason she holds up in close shots. StemCell certification means standardised PBR materials.",
+  "Eight versions share the page: casual and party dresses, a T-pose, and rigged builds with dedicated Maya, Cinema 4D and Modo rigs. Sold four times since 2020, into advertising, architectural visualisation with people, healthcare material and games."
+ ],
+ "commercial-electric-truck-132-inch-2025-2385617": [
+  "A 132-inch wheelbase electric delivery truck at 649,120 polygons: the cab, the battery pack under the frame, the charge port and the box body. Electric commercials are read by what is missing - no grille, no exhaust, no transmission tunnel - and those absences have to be deliberate rather than accidental.",
+  "StemCell certification means standardised PBR materials, so the paint and the aluminium body read the same in a real-time engine as in an offline render. Non-overlapping UVs mean a fleet livery is texture work.",
+  "Six versions share the page: full and bodiless builds (useful for showing the chassis and battery), rigged versions and dedicated Maya and Cinema 4D rigs. Editorial terms apply to the badged build; the unbranded truck is for commercial work. Sold once since 2025, into logistics, fleet and sustainability presentation."
+ ],
+ "tuxedo-suit-for-dwarf-man-black-2446692": [
+  "A tuxedo tailored for a dwarf figure at 3,481 polygons. Proportion is the entire point: formalwear cut for average proportions and then scaled down looks wrong on a dwarf character, and getting the jacket length and sleeve break right is what this asset exists for.",
+  "The build follows CheckMate specification for topology and real-world scale. Non-overlapping UVs keep the cloth, the satin lapel and the shirt as separate areas, so a different colourway is texture work.",
+  "A beige version with a bow tie shares the page. Priced at $79, for character work, film and television costume previews, games and advertising."
+ ],
+ "watch-patek-philippe-aquanaut-self-winding-2387184": [
+  "A luxury sports watch at 85,480 polygons. That count goes where watch buyers look: the embossed dial pattern, the applied numerals, the crown guards, the bracelet links and the clasp. A watch is the densest small object in product rendering, and there is nowhere to hide.",
+  "StemCell certification means standardised PBR materials, so the steel, the sapphire and the rubber strap read correctly in both real-time and offline renderers. Non-overlapping UVs keep the dial printing crisp at macro range.",
+  "Four versions share the page in black, green and blue-grey dials. Editorial terms apply to the brand, so this belongs in film, editorial and design work rather than brand advertising. Sold once since 2025."
+ ],
+ "embroidery-machine-black-screen-on-2193936": [
+  "A domestic embroidery machine at 40,108 polygons, with the hoop arm, the needle assembly, the thread path, the spool pin and the touchscreen modelled. Screen on is a deliberate state - a lit display is what makes a machine look in use rather than boxed.",
+  "CheckMate Pro certification means real-world scale and clean topology, so the machine sits on a table at believable size next to fabric and thread. Non-overlapping UVs keep the screen as its own surface for a UI texture.",
+  "Eight versions share the page: Bernette b70 Deco builds, a black sewing printer, screen-on states and rigged versions with dedicated Maya and Cinema 4D rigs. The branded builds carry editorial terms. Sold twice since 2024, into craft and retail visualisation, product presentation and advertising."
+ ],
+ "emoji-cold-face-2240390": [
+  "A cold face emoji at 3,964 polygons, built as a dimensional object rather than a flat sticker: the rounded head, the gritted teeth and the ice crystals as separate geometry, which is what lets it be lit and rotated in a title sequence.",
+  "The build follows CheckMate specification for topology and real-world scale within the set, so it matches the other emoji in size. Non-overlapping UVs keep the flat colours clean at any resolution.",
+  "A woozy face shares the page. Priced at $19, for motion graphics, UI animation, social content and advertising. Emoji in 3D are bought in groups, and these two cover the two most-used reaction faces for weather and tiredness."
+ ],
+ "small-empty-glass-injection-vial-1605974": [
+  "A small glass injection vial at 2,928 polygons, with the crimped aluminium cap, the rubber septum and the moulded glass shoulder. Empty is deliberate: the vial is a container for whatever the scene needs, and a pre-filled one limits where it can be used.",
+  "Seven maps at 4096 x 4096 carry the glass, the crimp and the label area. StemCell certification means standardised PBR materials, so the glass behaves consistently across renderers - important for a transparent object shot in rows.",
+  "A second empty vial build shares the page. Sold 12 times since 2020, into pharmaceutical and medical visualisation, laboratory scenes and packaging design."
+ ],
+ "engine-powered-scissor-lift-jlg-2-965721": [
+  "A rough-terrain scissor lift at 103,347 polygons, with the scissor stack, the platform rails, the hydraulic cylinders, the outriggers and the engine deck modelled. The scissor stack is the asset - it has to fold correctly, because the half-raised position is what most site scenes want.",
+  "Thirteen maps at 8192 x 8192 and 4096 x 4096 carry the paint, the diamond plate and the hydraulic hardware. CheckMate Pro certification means real-world scale, so the platform reaches a believable working height.",
+  "Sixteen versions share the page: JLG and generic builds, heavy-duty variants, and rigged versions with dedicated Maya and Cinema 4D rigs so the lift can rise on camera. Sold 18 times since 2015, into construction visualisation, site safety training and simulation."
+ ],
+ "fake-news-handheld-microphone-triangular-2169052": [
+  "A triangular handheld reporter microphone at 18,836 polygons, with the mic flag, the grille, the body and the XLR base. The flag is the whole object socially - it is the panel a network badge goes on, and it is built as a separate face so the badge can be swapped.",
+  "StemCell certification means standardised PBR materials, so the matte body and the metal mesh read correctly in both real-time and offline renderers. Non-overlapping UVs leave each flag face clean for artwork.",
+  "Five versions share the page: an unbranded mic plus CNN, ESPN, Fox News and NBC flags. The network builds carry editorial terms; the unbranded one is for commercial work. Sold twice since 2023, into broadcast and news scenes, film and games."
+ ],
+ "drinking-jar-with-handle-1790644": [
+  "A mason-style drinking jar with a handle at 4,316 polygons, with the embossed ribs, the threaded neck and the moulded handle built as geometry. The handle join is the part that matters - it is a thick glass weld, and faking it leaves the mug looking like two separate objects.",
+  "CheckMate Pro certification means real-world scale and clean topology, so the jar holds a believable volume next to a bottle or a plate. Non-overlapping UVs mean a tinted glass or a printed logo is texture work.",
+  "An Estilo mason jar mug shares the page. Sold four times since 2021, into hospitality and beverage visualisation, kitchen interiors and food photography."
+ ],
+ "ethane-molecule-1008416": [
+  "An ethane molecule at 7,974 polygons in ball-and-stick form: two carbons, six hydrogens and the bonds between them, built with the correct tetrahedral angles. Molecular models are only useful if the geometry is right - a wrong bond angle is a factual error, not a stylistic one.",
+  "Three maps at 2048 x 2048 carry the atom colours and the bond material. CheckMate Pro certification means clean topology, which matters when the model is rotated slowly in an explainer and every silhouette is inspected.",
+  "A structural version shares the page. Sold six times since 2016, into chemistry education, science communication, textbook illustration and broadcast graphics."
+ ],
+ "mole-animal-2228023": [
+  "A European mole at 23,673 polygons, with the shovel forepaws, the pointed snout and the cylindrical body built for the one pose everybody wants: emerging from soil. The forepaws are the identification, and they are nothing like a rodent's.",
+  "StemCell certification means standardised PBR materials, so the velvet fur and the pink skin of the paws read correctly in a real-time engine as well as in an offline render. Non-overlapping UVs keep the fur and skin areas separate.",
+  "Five versions share the page: fur builds and rigged versions with dedicated Maya and Cinema 4D rigs. Priced at $99, sold three times since 2024, into natural history and garden visualisation, education, advertising and games."
+ ],
+ "movie-ticket-955494": [
+  "A cinema ticket at 1,818 polygons: a stub with a perforation line and a slight curl where it has been held. The curl is what keeps it from reading as a flat card, and it is the only geometry a ticket really needs.",
+  "Four maps at 4096 x 4096 carry the thermal print, the paper fibre and the perforation. Non-overlapping UVs mean your own film title, seat number and date drop straight on - which is how this asset is nearly always used.",
+  "Six versions share the page: printed and blank movie tickets, a cinema ticket, a vintage admission stub and event tickets. Sold 17 times since 2015, into film and event marketing, motion graphics and set dressing."
+ ],
+ "plastic-dropper-bottle-20ml-2148977": [
+  "A 20 ml dropper bottle at 8,820 polygons: the body, the threaded neck, the pipette insert and the cap. The pipette seen through the plastic wall is the detail that makes it read as a dropper rather than a miniature bottle.",
+  "CheckMate Pro certification means real-world scale, which on small-volume packaging is the whole credibility question. Non-overlapping UVs leave the label panel clean for artwork, which is what a mockup needs.",
+  "An eye dropper bottle mockup shares the page. Priced at $15, sold three times since 2023, into pharmaceutical and cosmetics packaging design, pharmacy visualisation and e-commerce imagery."
+ ],
+ "coca-cola-crushed-beverage-can-red-old-2501221": [
+  "A crushed drinks can at 6,193 polygons. Crushing is the model: the buckled wall, the folded rim and the asymmetric collapse are what make it litter rather than product, and they cannot be faked with a dent map on a cylinder.",
+  "StemCell certification means standardised PBR materials, so the scuffed aluminium and the torn print read correctly in a real-time scene as well as an offline render. Overlapping UVs are the right economy on a deformed surface.",
+  "Four versions share the page: Coca-Cola, Fanta and Sprite cans plus a plain silver flattened can. The branded ones carry editorial terms; the unbranded can is the one for commercial work. For street scenes, recycling and environmental material, games and film set dressing."
+ ],
+ "disneyland-cinderella-castle-1439041": [
+  "A fairytale castle at 2,558,180 polygons with 75 maps at 4096 x 4096. Those numbers are what a building like this needs: dozens of turrets, spires and finials, each with its own roof, plus the stonework, the gilding and the window tracery. Fantasy architecture is detail stacked on detail, and simplifying it produces a wedding cake.",
+  "CheckMate Pro certification means real-world scale and clean topology across that geometry, which is what makes the model usable rather than just impressive - figures, fireworks and camera moves all depend on the scale being right.",
+  "Five versions share the page: the main castle, a magic castle, a floating fantasy build and a courtyard version with fur detailing. Priced at $399 and sold 27 times since 2019, which makes it one of the strongest sellers in architecture. Editorial terms apply, so it belongs in film, games and editorial work rather than brand advertising."
+ ],
+ "restaurant-self-ordering-touch-kiosk-1736953": [
+  "A self-ordering kiosk at 13,895 polygons: the pedestal, the angled screen bezel, the card reader and the receipt slot. The screen angle is what makes it readable as a kiosk rather than a monitor on a stand, and it is the surface a UI render drops onto.",
+  "CheckMate Pro certification means real-world scale, so the kiosk stands at the height a standing customer uses. Non-overlapping UVs leave the screen and the brandable side panels as their own areas.",
+  "A fast food version shares the page. Sold six times since 2021, into restaurant and retail interiors, fintech and UI presentation, and advertising."
+ ],
+ "fbi-badge-open-1841345": [
+  "A credential wallet open to show badge and ID at 34,159 polygons. Open is the state that matters: the badge flashed at arm's length is the shot this prop exists for, and it needs the leather fold, the metal shield and the card window all modelled.",
+  "CheckMate Pro certification means real-world scale, so the wallet reads correctly in a hand. Non-overlapping UVs keep the engraved shield and the printed ID as separate areas, which is what lets the ID be replaced with a fictional one for a production.",
+  "A closed version shares the page. Sold seven times since 2022, into film and television props, games and editorial illustration. For productions, the ID artwork is normally replaced with a fictional agency."
+ ],
+ "eactros-600-freight-trailer-unit-white-2402954": [
+  "An electric tractor unit with a curtain-side trailer at 237,502 polygons. The curtain is the interesting surface: tensioned fabric with buckle straps along the bottom rail, and a large flat printable area, which is exactly why this asset is built as a mockup.",
+  "StemCell certification means standardised PBR materials, so the cab paint and the curtain fabric read the same in a real-time engine as in an offline render. Non-overlapping UVs mean a livery drops straight on.",
+  "Sixteen versions share the page: mockup curtains in white and red plus Coca-Cola, DHL, Nestle, PepsiCo and UPS liveries. The branded ones carry editorial terms; the mockup trailers are the ones for commercial work. Sold once since 2025, into logistics visualisation, fleet branding presentation and city scenes."
+ ],
+ "male-figure-in-straitjacket-2291256": [
+  "A figure in a straitjacket at 76,838 polygons, with the crossed sleeves, the rear buckles and the canvas bunching where the arms are pinned. The bunching is the whole read - a straitjacket is defined by restraint, and that shows in the fabric before it shows in the pose.",
+  "The build follows CheckMate specification for topology and real-world scale. Non-overlapping UVs keep the canvas, the straps and the skin as separate areas.",
+  "Three versions share the page: this figure, an African American male build and a female figure with fur. Priced at $169, sold once since 2024, into film and television, games, editorial illustration and theatrical previsualisation."
+ ],
+ "female-reproductive-system-1839182": [
+  "The female reproductive anatomy at 7,368 polygons, built as separate structures - uterus, ovaries, tubes and cervix - rather than as one fused mass. Separation is what makes an anatomical model teachable: each part can be isolated, labelled or made transparent.",
+  "CheckMate Pro certification means correct proportion and clean topology, which in anatomy is the difference between an educational asset and an illustration. Non-overlapping UVs keep each tissue type on its own area.",
+  "A version with kidneys included shares the page, for presentations that cover the urinary tract alongside. Sold nine times since 2022, into medical education, clinical and patient-facing visualisation and research illustration."
+ ],
+ "fim-92-stinger-3d-model-1116326": [
+  "A Stinger MANPADS at 147,041 polygons: the launch tube, the gripstock, the sight assembly, the IFF antenna and the battery coolant unit. The gripstock and sight are what make it a shoulder-fired system rather than a tube, and they are where a camera looks when a figure shoulders it.",
+  "Twelve maps at 4096 x 4096 carry the olive tube, the stencilled markings and the worn handling surfaces. CheckMate Pro certification means real-world scale, so it sits on a shoulder correctly.",
+  "Three versions share the page, including a rigged build and the FIM-92B variant. Sold 13 times since 2017, into defence visualisation, simulation, broadcast graphics and games."
+ ],
+ "fingerprint-door-lock-liliwise-h11b-1922171": [
+  "A smart door lock at 3,722 polygons: the handle, the escutcheon, the fingerprint pad and the keypad. It is a small object that appears at close range in a product or interior shot, and the pad surface is what identifies it as biometric.",
+  "CheckMate Pro certification means real-world scale, which matters for door hardware: the lever height and the plate size set the believability of the whole door. Non-overlapping UVs keep the brushed metal and the touch surfaces separate.",
+  "A generic fingerprint smart lock shares the page, and that is the one for commercial work. Sold once since 2022, into interior and real estate visualisation, smart home presentation and e-commerce imagery."
+ ],
+ "fire-helmet-2-3d-model-965911": [
+  "A firefighter helmet at 47,884 polygons, with the shell, the brim, the visor, the chinstrap hardware and the neck protector built as separate parts. The brim profile is what dates and places a helmet - European and traditional American patterns look nothing alike.",
+  "Sixteen maps at 4096 x 4096 carry the painted shell, the reflective striping and the scorching that a working helmet collects. CheckMate Pro certification means real-world scale, so it fits a head rig.",
+  "Four versions share the page: a traditional helmet with neck protector, a second shell pattern and a modern safety helmet. Sold four times since 2015, into emergency services visualisation, training material, film and games."
+ ],
+ "fire-hose-cabinet-set-1685592": [
+  "A fire hose cabinet at 33,356 polygons: the wall box, the glazed door, the reel, the coiled hose and the nozzle. The coiled hose is the part worth the geometry - a flat spiral texture inside a box gives the whole thing away.",
+  "CheckMate Pro certification means real-world scale, so the cabinet mounts at code height in a corridor. Non-overlapping UVs keep the signage and the painted steel separate, which lets the labelling be localised.",
+  "A stainless steel reel cabinet version shares the page. Sold once since 2021, into architectural and facility visualisation, safety presentation and games. It is one of those details that makes an interior read as a real building rather than a render."
+ ],
+ "multi-jointed-crankbaits-red-lure-1749953": [
+  "A multi-jointed crankbait at 9,394 polygons, built segment by segment with the hinge gaps, the lip, the eyelets and the treble hooks as separate parts. The joints are the product: a jointed lure swims differently, and the segmentation is what identifies it on a tackle shelf.",
+  "CheckMate Pro certification means real-world scale and clean topology, so the lure is the size an angler expects next to a rod or a hand. Non-overlapping UVs mean the paint scheme changes with a texture swap.",
+  "Three versions share the page, including a trout and bass lure. Sold twice since 2021, into fishing tackle visualisation, e-commerce imagery, outdoor advertising and games."
+ ],
+ "athletic-male-figure-in-underwear-2277593": [
+  "An athletic male figure at 21,266 polygons, built in underwear so the body is the asset rather than the clothing. Muscle definition has to be in the mesh at this weight, because a figure this light cannot rely on normal maps to carry the form at silhouette.",
+  "StemCell certification means standardised PBR materials, so the skin reads correctly in a real-time engine as well as in an offline render. Non-overlapping UVs let skin tone be changed without rebuilding the texture set.",
+  "Nine versions share the page: A-poses, standing and posing builds, fur versions for body hair, an anatomy-reference build and rigged variants. Priced at $149, for character work, anatomy reference, fitness and apparel visualisation, games and film."
+ ],
+ "sole-f85-treadmill-3d-model-1375394": [
+  "A treadmill at 147,502 polygons with 35 maps at 4096 x 4096. That texture count is unusual for gym equipment and well spent: the console graphics, the grip textures, the belt surface and the painted frame are all separate materials, and a treadmill is nearly always shot in a bright gym where every surface is visible.",
+  "CheckMate Pro certification means real-world scale, which matters for equipment a figure stands on - deck height and handrail position set the pose of anybody using it.",
+  "Four versions share the page: branded and generic fitness treadmills, with rigged builds so the deck can incline on camera. The branded ones carry editorial terms. Sold five times since 2019, into gym and fitness visualisation, equipment retail imagery and advertising."
+ ],
+ "agricultural-corn-field-2463412": [
+  "A corn field at 82,193,058 polygons. That is the largest asset in the catalogue by a wide margin, and it is honest about what it is: a whole planted field with individual stalks and leaves, not a plane with a texture. It exists for shots that fly over or through the crop, where instanced cards collapse immediately.",
+  "The build follows CheckMate specification for topology and real-world scale. Mixed UVs keep the texture budget manageable across tens of millions of leaf surfaces.",
+  "A dry plantation version shares the page for late-season and drought scenes. Priced at $89, for agricultural presentation, film and television establishing shots, documentary work and simulation. Plan the render budget before you open it."
+ ],
+ "flat-t-shirt-926236": [
+  "A flat-lay t-shirt at 11,303 polygons, folded the way a shirt is photographed for a catalogue: sleeves tucked, shoulders square, a soft crease across the chest. Flat lay is its own discipline, and the fold pattern is the product here - not the garment pattern.",
+  "Four maps at 4096 x 4096 carry the jersey knit and the stitched hems. Non-overlapping UVs mean a print, a logo or a colour change drops straight on, which is exactly what apparel mockups are for.",
+  "Twelve versions share the page: white, black, beige, blue, grey and gradient flat lays. Sold 11 times since 2015, into apparel mockups, e-commerce imagery, print-on-demand presentation and advertising."
+ ],
+ "floating-waterproof-dry-bag-backpack-standing-blue-2513580": [
+  "A roll-top dry bag at 27,453 polygons, standing upright with the closure rolled and clipped. The roll is the mechanism that makes the bag waterproof, and it is the detail that distinguishes a dry bag from an ordinary rucksack.",
+  "StemCell certification means standardised PBR materials, so the coated fabric keeps its slight sheen in a real-time engine as well as in an offline render. Mixed UVs keep the asset economical.",
+  "A worn-on-the-back version shares the page, which saves posing the bag against a figure. Sold once since 2026, into outdoor and watersports advertising, travel retail imagery and games."
+ ],
+ "floor-cleaner-equipment-2250063": [
+  "A walk-behind floor scrubber at 24,675 polygons: the tank body, the squeegee, the brush deck, the handle controls and the castors. The squeegee assembly behind the machine is what makes it a scrubber rather than a vacuum, and it is modelled as its own part.",
+  "The build follows CheckMate specification for topology and real-world scale, so the machine stands at handle height for an operator. Non-overlapping UVs keep the moulded plastic and the warning labels separate.",
+  "Three versions share the page, including a TF-17 build and a generic machine. Sold once since 2024, into facility and cleaning services visualisation, commercial interiors and equipment retail imagery."
+ ],
+ "fluorescent-striplight-bulb-977187": [
+  "A fluorescent tube at 1,936 polygons in quads only: the glass cylinder, the end caps and the bi-pin contacts. A tube is a component, used by the dozen in ceilings and fittings, and anything heavier than this is waste.",
+  "Three maps at 512 x 512 carry the phosphor coating and the end caps - modest resolution, correctly so, because a tube has almost no surface variation. CheckMate Pro certification means real-world scale, which matters when tubes have to fit a fitting from another asset.",
+  "A second light tube version shares the page. Sold 16 times since 2015, into interior and architectural visualisation, industrial scenes and games. At $19 it is a cheap fixture component that gets reused constantly."
+ ],
+ "dragon-mythical-creature-2155427": [
+  "A western dragon at 50,837 polygons: the wing membrane, the horn cluster, the spinal ridge and the clawed limbs. Wings are the hard part of any dragon - the membrane has to stretch between finger bones and catch light as a thin surface, which only works if the anatomy underneath is built.",
+  "StemCell certification means standardised PBR materials, so the scaled hide and the translucent wing read correctly in a real-time engine as well as in an offline render. Non-overlapping UVs keep scales, horn and membrane separate.",
+  "Nine versions share the page: sitting, walking and flying builds, a beast variant, and rigged versions with dedicated Maya and Cinema 4D rigs. Priced at $169, sold once since 2023, into games, film and television, fantasy illustration and themed attractions."
+ ],
+ "auto-folding-umbrella-black-2405897": [
+  "An automatic folding umbrella at 12,017 polygons, open with the canopy tensioned over the ribs. Automatic umbrellas have a distinct shape when open - the canopy is shallower and the ribs double-jointed - and that is what separates this from a classic stick umbrella.",
+  "The build follows CheckMate specification for topology and real-world scale. Non-overlapping UVs mean the canopy print changes with a texture swap, which is where the patterned versions on this page come from.",
+  "Seven versions share the page: printed and floral canopies, a compact waterproof build, a wet used umbrella, a foldable rain version and one with its case. Sold once since 2025, into retail and apparel visualisation, interior scenes and advertising."
+ ],
+ "folded-shirt-1008683": [
+  "A folded dress shirt at 22,300 polygons in quads only. The folds are the asset: collar stand upright, cuffs tucked, the body folded in thirds with the crease lines where retail folding actually puts them. It is a shape that takes longer to get right than to model.",
+  "Four maps at 4096 x 4096 carry the cotton weave, the buttons and the stitching. CheckMate Pro certification means real-world scale, so a stack of them on a shelf reads correctly.",
+  "Six versions share the page: three fold patterns, a dress shirt, a pale blue build and a striped one. Sold 64 times since 2016, which makes it one of the stronger sellers in apparel: it goes into retail interiors, e-commerce imagery and wardrobe scenes."
+ ],
+ "white-napkin-978189": [
+  "A folded fabric napkin at 15,634 polygons, built in triangles only - unusual, and appropriate for cloth that has been draped and creased rather than constructed. The fold holds a soft edge, which is what separates linen from paper.",
+  "Four maps at 4096 x 4096 carry the weave and the hemmed edge. CheckMate Pro certification means real-world scale, so the napkin sits on a plate or under cutlery at the right size - a detail that gives away many restaurant renders.",
+  "Four versions share the page: white and black napkins and two alternative folds. Sold 50 times since 2015, into restaurant and hospitality visualisation, food photography and interior scenes."
+ ],
+ "flame-emoji-1867988": [
+  "A flame emoji at 796 polygons in quads only, built as a dimensional object with the characteristic flat emoji shading rather than as a realistic fire. That stylisation is the point - a volumetric flame in an emoji row looks like a mistake.",
+  "CheckMate Pro certification means clean topology and consistent scale across the set, so several emoji sit together without one dominating. Non-overlapping UVs keep the gradient crisp at any size.",
+  "Sixteen versions share the page, and that is the value: trophy, cactus, doughnut, guitar, halo, alien monster, new moon face and more. A reaction vocabulary from one purchase. Sold 17 times since 2022, into motion graphics, UI animation and social content."
+ ],
+ "camping-chair-1004579": [
+  "A folding camping chair at 39,889 polygons, built open with the fabric tensioned over the frame. Tension is the whole read: a camp chair is a cloth sling on tubes, and the sag of the seat under its own weight is what makes it look sittable.",
+  "Nine maps at 4096 x 4096 and 2048 x 2048 carry the polyester, the powder-coated tubing and the plastic feet. CheckMate Pro certification means real-world scale, so a figure can be seated in it without adjustment.",
+  "Four versions share the page, including a build with a cup holder and two other folding patterns. Sold 10 times since 2016, into camping and outdoor advertising, garden and patio visualisation and games."
+ ],
+ "plastic-bucket-10l-with-lid-and-handle-1637877": [
+  "A 10 litre bucket with lid and wire handle at 7,204 polygons, built with subdivision geometry - the right choice for a tapered cylinder with rolled rims, because the curvature stays clean at any camera distance.",
+  "CheckMate Pro certification means real-world scale, which on a container defined by its capacity is the whole credibility test. Non-overlapping UVs leave the body panel clean for label artwork.",
+  "Six versions share the page: 5, 10 and 20 litre buckets, food-grade variants and lidded builds. That is a full range of sizes from one product, which is what a kitchen, site or retail scene actually needs. Sold 11 times since 2020, into packaging design, industrial and food visualisation."
+ ],
+ "stamford-bridge-stadium-955769": [
+  "A football stadium at 36,423,673 polygons with 51 maps, the largest at 8192 x 5120. Stadium geometry is seat count: every seat in every tier is built, which is the only way an empty bowl reads correctly and the only way a crowd can be scattered across real seating.",
+  "CheckMate Lite certification covers scale and topology through the same review process. Real-world scale is what lets a pitch, players and broadcast camera positions all sit correctly inside the bowl.",
+  "Three versions share the page, including a generic soccer stadium for work that cannot name a club. Priced at $189, sold nine times since 2015, into sports broadcast graphics, stadium presentation, film establishing shots and games. Editorial terms apply to the named build."
+ ],
+ "forklift-toyota-942324": [
+  "A counterbalance forklift at 445,942 polygons: the mast channels, the carriage, the forks, the overhead guard, the counterweight and the solid tyres. The mast is the part that has to be right, because a forklift is bought to lift something and the carriage has to travel the channels convincingly.",
+  "Fifteen maps at 4096 x 4096 and 2048 x 2048 carry the paint, the hydraulic hardware and the scuffing a working truck collects. CheckMate Pro certification means real-world scale, so pallets and racking from other assets line up.",
+  "Eight versions share the page: branded and generic builds, electric variants, and rigged versions with dedicated Maya and Cinema 4D rigs. The branded ones carry editorial terms. Sold 13 times since 2015, into warehouse and logistics visualisation, training content and simulation."
+ ],
+ "military-forklift-loads-cargo-to-the-airbus-a400m-2368283": [
+  "A loading scene rather than a single object: a military forklift placing a pallet into the hold of an A400M, at 540,642 polygons for the set. Buying the scene saves the work that actually costs time - lining up the ramp angle, the fork height and the cargo position so the operation looks real.",
+  "The build follows CheckMate specification for topology and real-world scale. Non-overlapping UVs keep the aircraft paint, the forklift livery and the cargo separate.",
+  "A green rigged version with the Atlas transport shares the page. Priced at $229, for defence logistics visualisation, documentary and broadcast graphics, simulation and games."
+ ],
+ "shark-teeth-carcharodon-angustidens-3d-model-1416249": [
+  "A fossil shark tooth at 1,511 polygons in quads only. Carcharodon angustidens is identified by its serrated edges and the lateral cusplets at the root, and both are in the mesh - they are what separate a scientific specimen from a generic triangle.",
+  "Four maps at 2048 x 2048 and 1024 x 1024 carry the enamel, the root texture and the mineral staining that a fossil picks up over millions of years. StemCell certification means standardised PBR materials.",
+  "A second fossil tooth build shares the page. At $19, sold three times since 2019, into natural history and museum visualisation, education, collector e-commerce and games. Light enough to scatter a whole tray of specimens."
+ ],
+ "french-fry-box-mcdonalds-1139362": [
+  "A fry carton at 72,178 polygons, which is heavy for a folded box and justified by what is in it: the fries are modelled individually inside the carton, standing at the angles they actually fall at. A box with a painted fry texture fails the moment the camera looks down into it.",
+  "CheckMate Pro certification means real-world scale, so the portion is a portion rather than a prop. Mixed UVs keep the texture budget sensible across dozens of separate fry pieces.",
+  "Four versions share the page: a generic fry box, fries in a box and branded builds. The branded ones carry editorial terms; the generic carton is the one for commercial work. Sold eight times since 2017, into fast food advertising, packaging design and restaurant visualisation."
+ ],
+ "type-31-frigate-2265692": [
+  "A Type 31 general purpose frigate at 192,933 polygons: the enclosed mast, the flight deck, the mission bay doors, the gun mount and the boat davits. Modern warship design is about clean, faceted surfaces for radar signature, and that faceting is the silhouette.",
+  "StemCell certification means standardised PBR materials, so the grey paint and the deck non-slip read correctly in a real-time engine as well as in an offline render. Non-overlapping UVs carry the hull numbers and draught marks.",
+  "Four versions share the page: Royal Navy, Polish Navy and Indonesian builds plus a generic guided missile frigate. Priced at $199, sold 10 times since 2024, into defence visualisation, naval presentation, documentary graphics and simulation."
+ ],
+ "usda-organic-corrugated-produce-box-2592635": [
+  "A corrugated produce tray at 12,172 polygons in quads only, with the hand holes, the stacking lugs and the fluted edge showing the corrugation. The exposed flute at the cut edge is the detail that makes cardboard read as cardboard rather than printed board.",
+  "StemCell certification means standardised PBR materials, so the kraft surface and the print read correctly across renderers. Mixed UVs keep it economical for a box that is nearly always seen stacked.",
+  "Three versions share the page, including black and plain produce trays. Priced at $24, for packaging design, grocery and market visualisation and food photography."
+ ],
+ "cofrimell-coldream-drink-dispenser-1670546": [
+  "A chilled drink dispenser at 104,966 polygons, with the transparent bowls, the auger paddles inside them, the tap handles and the base unit. The paddles seen through the bowl are the whole point - they are what make the machine read as a juice dispenser rather than a water cooler.",
+  "CheckMate Pro certification means real-world scale, so the unit stands at counter height. Non-overlapping UVs keep the transparent bowls, the chrome and the painted base as separate areas.",
+  "A fruit juice dispenser version shares the page. Priced at $39, into cafe and hospitality visualisation, retail interiors and beverage advertising."
+ ],
+ "lng-fuel-dispenser-station-2216626": [
+  "An LNG dispenser at 76,962 polygons: the cabinet, the display head, the cryogenic hose, the breakaway coupling and the nozzle holster. Gas dispensers differ from petrol pumps in their hoses and couplings, and those are the parts that make the station read as LNG.",
+  "StemCell certification means standardised PBR materials, so the painted steel and the insulated hose read the same in a real-time engine as in an offline render. Non-overlapping UVs keep the safety signage readable.",
+  "Three versions share the page: LNG and liquid gas dispensers. Priced at $49, sold once since 2024, into energy and transport infrastructure presentation, truck stop scenes and simulation."
+ ],
+ "futuristic-cyclops-shield-sunglasses-1699025": [
+  "A wraparound shield visor at 2,158 polygons. A single-lens shield is one continuous curved surface, which is exactly the sort of shape that needs very little geometry and a great deal of care in the curvature - a flat spot across the bridge ruins it.",
+  "CheckMate Pro certification means real-world scale, so the visor fits a face rig. Non-overlapping UVs mean the tint, the mirror coating and the frame colour are texture choices.",
+  "A cyclops visor version shares the page. Sold 44 times since 2021, which makes it one of the stronger accessory sellers: it goes into character work, sci-fi and sports visualisation, fashion presentation and games."
+ ],
+ "kalashnikov-shotgun-mp-155-ultima-black-2101940": [
+  "An MP-155 Ultima at 186,265 polygons, which is heavy for a shotgun and warranted: this is the model with the integrated electronics shell, the camera mount and the angular polymer chassis, so there is far more surface than on a conventional sporting gun.",
+  "StemCell certification means standardised PBR materials, so the polymer, the anodised rails and the bluing read correctly in both real-time and offline renderers. Non-overlapping UVs keep the panel markings crisp.",
+  "Four versions share the page: black and green Ultima builds and two modern shotgun variants. Editorial terms apply to the marque; the unbranded modern shotgun is the one for commercial work. Sold twice since 2023, into games, film armoury props and sporting visualisation."
+ ],
+ "futuristic-soldier-2381235": [
+  "A near-future infantry figure at 135,006 polygons, with the plate carrier, the helmet with its rail mounts, the knee protection and the boot soles built as separate parts. Modern and near-future soldiers are read through their load-bearing kit, not their faces.",
+  "The build follows CheckMate specification for topology and real-world scale, so the rig deforms properly through the shoulders under the armour. Non-overlapping UVs keep the fabric, the ballistic plate and the skin separate.",
+  "Five versions share the page: the suit on its own and rigged builds with dedicated Maya and Cinema 4D rigs. Priced at $149, sold once since 2025, into games, film and television, defence concept work and previsualisation."
+ ],
+ "sci-fi-storage-crate-locked-2351941": [
+  "A sci-fi supply crate at 22,438 polygons, modelled locked: the clamps engaged, the panel seams tight, the handles stowed. Locked is the more useful state for set dressing, because an open crate commits you to showing what is inside it.",
+  "StemCell certification means standardised PBR materials, so the painted metal and the rubber seals read correctly in a real-time engine as well as in an offline render. Non-overlapping UVs mean the stencils and hazard markings can be changed.",
+  "Six versions share the page: locked and container builds, orange and metal finishes, and a futuristic storage box. Sold three times since 2025, into games, film and television set dressing, sci-fi previsualisation and VR."
+ ],
+ "mens-motocross-boots-1417906": [
+  "Motocross boots at 136,834 polygons with 26 maps at 4096 x 4096 and 2048 x 2048. Both numbers are earned: these boots are built from a dozen materials - leather, plastic armour, metal buckles, rubber sole, textile gaiter - and each needs its own surface.",
+  "CheckMate Pro certification means real-world scale, so they fit a rider figure and a footpeg correctly. Non-overlapping UVs mean a team colourway is texture work.",
+  "Three versions share the page, including Gaerne SG10 builds in black and in black-white-yellow. The branded ones carry editorial terms. Sold 28 times since 2019, into motorsport visualisation, apparel and e-commerce imagery, advertising and games."
+ ],
+ "armored-dwarf-warrior-in-chainmail-with-hammer-2391405": [
+  "An armoured dwarf with a war hammer at 85,995 polygons: chainmail, plate pauldrons, a braided beard and the hammer itself. Chainmail is the expensive surface - it has to read as interlocking rings at close range and as a soft metallic sheen at distance.",
+  "The build follows CheckMate specification for topology and real-world scale. Non-overlapping UVs keep the mail, the plate, the leather and the skin as separate areas, which is what makes a recolour practical.",
+  "Fourteen versions share the page: fighter and game-character builds, with and without hammer, and rigged versions with dedicated Maya and Cinema 4D rigs. Priced at $169, for games, fantasy film and illustration, and previsualisation."
+ ],
+ "ganoderma-reishi-mushroom-2412598": [
+  "A reishi bracket fungus at 1,819 polygons. Reishi grows as a flat kidney-shaped shelf with a lacquered upper surface and a pale rim, and that profile is the identification - it looks nothing like a cap-and-stem mushroom.",
+  "The build follows CheckMate specification for topology and real-world scale. Non-overlapping UVs carry the growth rings and the varnished sheen that gives the species its common name.",
+  "Seven versions share the page: Lingzhi, Steyaertanum and Lucidum species, a red variant, spawn, and a mossy snag trunk with mushrooms growing on it. Sold once since 2025, into supplement and wellness packaging, botanical illustration, nature scenes and games."
+ ],
+ "adze-warwood-tool-2409912": [
+  "An adze at 990 polygons: the curved blade set across the haft, the socket and the wooden handle. The blade orientation is the entire distinction from an axe, and getting it wrong turns a traditional timber tool into a hatchet.",
+  "StemCell certification means standardised PBR materials, so the forged steel and the hickory handle read correctly in a real-time engine as well as in an offline render. Non-overlapping UVs keep the wear at the cutting edge separate from the paint.",
+  "A Garrett Wade adze shares the page. At $19, for woodworking and heritage craft visualisation, tool retail imagery, period scenes and games."
+ ],
+ "gearwrench-flex-flare-wrench-10mm-12mm-1962434": [
+  "A flex-head flare nut wrench at 14,716 polygons, with the split ring end, the pivoting head and the knurled shaft built as separate parts. The split in the ring is what makes it a flare wrench - it slips over a brake line - and it is the detail that distinguishes the tool.",
+  "CheckMate Pro certification means real-world scale, which matters on a hand tool that appears beside a fitting it is supposed to fit. Non-overlapping UVs keep the chrome and the etched size markings separate.",
+  "Three versions share the page covering 9-11, 10-12 and 13-14 mm sizes, including a generic steel ratcheting wrench. At $12, for automotive repair visualisation, tool retail imagery, workshop scenes and games."
+ ],
+ "johnsons-oil-bottle-yellow-2314672": [
+  "A baby oil bottle at 1,692 polygons. Small toiletry packaging needs almost no geometry: the body taper, the cap and the shoulder are the shape, and everything else is label. Keeping it this light means a whole shelf of them costs nothing.",
+  "The build follows CheckMate specification for topology and real-world scale. Non-overlapping UVs leave the label as a single clean area, which is what makes this usable as a packaging mockup.",
+  "Six versions share the page: yellow, purple, blue and green bottles including aloe and gentle variants. Branded builds carry editorial terms; the generic baby oil bottles are the ones for commercial work. Sold once since 2024, into pharmacy and retail visualisation, packaging design and bathroom scenes."
+ ],
+ "hands-wearing-medical-gloves-white-2347129": [
+  "A pair of gloved hands at 2,546 polygons. The gloves are the subject: the slight wrinkle at the knuckles, the cuff roll and the tight fit over the fingers are what make nitrile read as nitrile, and the hands exist to fill them.",
+  "The build follows CheckMate specification for topology and real-world scale, which matters because gloved hands are nearly always shown holding an instrument from another asset. Non-overlapping UVs keep the glove surface clean.",
+  "Sixteen versions share the page: white and black gloves, protective variants, and rigged builds with dedicated Maya and Cinema 4D rigs so the hands can grip on camera. Sold twice since 2025, into medical and laboratory visualisation, patient education and product demonstration."
+ ],
+ "glow-statue-burning-man-with-hands-up-2326903": [
+  "A Burning Man style wooden figure with its arms raised, at 77,058 polygons. The statue is built from stacked timber members, and the gaps between them are the whole character of the thing: light passes through the structure, which is why it works as a glowing sculpture at night.",
+  "StemCell certification means standardised PBR materials, so the timber and the emissive surfaces read correctly in a real-time engine as well as in an offline render. Non-overlapping UVs keep the wood grain and the glow areas separate, which is what makes the lit and unlit versions possible.",
+  "Four versions share the page: wooden art statues and glow builds, with and without the raised arms. Priced at $69, sold twice since 2024, into festival and event visualisation, installation art presentation, games and film."
+ ],
+ "gold-bar-500g-1051875": [
+  "A 500 gram gold bar at 2,736 polygons in quads only, with the draft angle on the sides and the stamped face. Bars are simple shapes whose credibility rests on two things: the taper, which comes from the mould, and the weight stamp.",
+  "Four maps at 4096 x 4096 carry the gold surface and the die-struck lettering. CheckMate Pro certification means real-world scale, which on bullion is the entire point - the viewer judges value by size.",
+  "Ten versions share the page: 1, 2, 10, 20, 100, 500 and 1000 gram bars plus a Swiss ingot. A full weight range from one product, which is what a vault or finance scene needs. Sold six times since 2016, into finance visualisation, editorial graphics and film."
+ ],
+ "gold-bullion-bar-2342513": [
+  "A bullion bar at 772 polygons, which is as economical as this object can be while keeping the mould taper. At $3 it is the cheapest asset in the catalogue, and the reasoning is straightforward: a bar is a box with angled sides, and nobody should pay more for one.",
+  "The build follows CheckMate specification for topology and real-world scale. Non-overlapping UVs leave the face free for whatever refinery stamp a scene needs.",
+  "A 1000 gram version shares the page. Sold once since 2025, into finance and economics graphics, motion design and film set dressing. Light enough to stack a pallet of them without a thought."
+ ],
+ "styrofoam-male-mannequin-head-white-2211529": [
+  "A polystyrene display head at 5,738 polygons. It is deliberately featureless - no eyes, no hair, just the planes of a face - because that is what a retail display head is: a shape to hang a hat, wig or headphones on without competing with the product.",
+  "StemCell certification means standardised PBR materials, so the matte foam surface reads correctly in a real-time engine as well as in an offline render. Non-overlapping UVs mean the finish can go from foam to plastic to gold.",
+  "Eight versions share the page: styrofoam, plastic, black and golden heads, with and without hair. Sold three times since 2024, into retail display visualisation, e-commerce imagery, salon interiors and advertising."
+ ],
+ "golden-herringbone-chain-2243122": [
+  "A herringbone chain at 49,740 polygons. Chain is the one jewellery subject where polygon count is unavoidable: every link is separate geometry, and the flat interlocking weave of a herringbone is what makes it catch light as a continuous ribbon rather than a rope.",
+  "The build follows CheckMate specification for topology and real-world scale. Non-overlapping UVs mean the metal can change from gold to silver to rose without rebuilding the links.",
+  "Eighteen versions share the page, and that is the real value: cable, curb, box, omega, popcorn, Singapore and wheat chains in gold and silver. A jeweller's tray of chain types from one purchase. Sold three times since 2024, into jewellery e-commerce, advertising and product visualisation."
+ ],
+ "golf-bag-4-generic-with-clubs-994317": [
+  "A golf bag loaded with clubs at 61,829 polygons and 51 maps at 2048 x 2048. The map count is what makes it work: a bag has a dozen fabric panels, zips, dividers and grips, and the clubs inside add steel, chrome and rubber on top of that.",
+  "The build follows CheckMate specification for topology and real-world scale, so the bag stands correctly on a trolley or beside a figure. Clubs are separate objects, which means they can be removed or re-posed.",
+  "Four versions share the page, including Nike-badged bags and club sets. The branded ones carry editorial terms; the generic bag is for commercial work. Sold eight times since 2016, into golf and sports visualisation, club-house interiors and advertising."
+ ],
+ "golf-flag-2-917243": [
+  "A pin flag at 5,813 polygons, with the flag cloth hanging off the pole and the cup fitting at the base. The cloth is modelled with a slight fall rather than a flat plane, which is what keeps it from looking like a sign on a stick.",
+  "Four maps at 2048 x 2048 carry the nylon and the pole. CheckMate Pro certification means real-world scale, so the pin height matches a green and a figure beside it.",
+  "Six versions share the page: several flag shapes and nylon colours including red and yellow. Sold 66 times since 2015, which makes it one of the steadiest sellers in sports: it goes into golf course visualisation, broadcast graphics and advertising."
+ ],
+ "google-pixel-phone-quite-black-3d-model-1146128": [
+  "A first-generation Pixel at 10,107 polygons, with the two-tone back panel, the camera cutout and the fingerprint pad built as geometry. The glass shade on the upper back is the detail that dates the model precisely, and it is why this one is bought for period tech scenes.",
+  "Six maps at 4096 x 4096 and 2048 x 2048 carry the aluminium, the glass and the screen. The display is a separate surface, so a UI render drops in as a texture. CheckMate Pro certification means real-world scale.",
+  "Six versions share the page: Pixel and Pixel XL bodies in black, silver and blue. Editorial terms apply to the brand, so this belongs in film, games and design work rather than brand advertising. Sold once since 2017, into UI presentation and product visualisation."
+ ],
+ "wheeled-excavator-generic-1337484": [
+  "A wheeled material handler at 238,055 polygons: the elevating cab, the boom and stick, the outriggers and the grab attachment mounting. The elevating cab is what separates this machine from a tracked excavator - it rises so the operator can see into a scrap pile or a truck bed.",
+  "Seventeen maps at 4096 x 4096 and 2048 x 2048 carry the paint, the hydraulic hardware and the grime. CheckMate Lite certification covers scale and topology through the same review process.",
+  "Three versions share the page, including a Terex Fuchs MHL360 build and a rigged grab loader. The branded ones carry editorial terms; the generic machine is for commercial work. Sold eight times since 2018, into recycling, port and construction visualisation and simulation."
+ ],
+ "sasquatch-rigged-fur-2006667": [
+  "A rigged sasquatch at 19,746 polygons with fur. The weight is low on purpose - the fur does the visual work, and a heavy base mesh under a fur pass is wasted geometry. The proportions are the ape-like stoop and long arms that the folklore describes.",
+  "CheckMate Pro certification means clean topology, which for a furred creature is what keeps the groom from splaying at deformation. Non-overlapping UVs keep skin and hair maps separate.",
+  "Ten versions share the page: aggressive and standing poses, an A-pose, grey monster variants, fur builds, and rigged versions for Maya, Cinema 4D and Modo. Priced at $199, sold five times since 2022, into games, film and television, documentary reconstruction and themed attractions."
+ ],
+ "gua-sha-face-sculpting-tools-rose-quartz-1771795": [
+  "A gua sha tool at 3,987 polygons: the heart-shaped stone with its curved edge and the notch that fits a jawline. The edge profile is the product - gua sha works by contact angle, and a flat slab would be the wrong object.",
+  "CheckMate Lite certification covers scale and topology through the same review process. Non-overlapping UVs let the stone change from rose quartz to jade to obsidian, which is exactly what the variants on this page do.",
+  "Three versions share the page: rose quartz, turquoise and black obsidian. Sold three times since 2021, into beauty and wellness e-commerce, cosmetics advertising and spa interiors."
  ]
 }
