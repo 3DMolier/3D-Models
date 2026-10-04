@@ -20,7 +20,16 @@ const WORK = path.join(ROOT, 'tools', 'night-writer');
 const argv = process.argv.slice(2);
 const COUNT = argv.includes('--count') ? +argv[argv.indexOf('--count') + 1] : 20;
 
-const queue = JSON.parse(fs.readFileSync(path.join(WORK, 'queue.json'), 'utf8'));
+/*
+ * --slugs <файл.json> - справки по ЯВНОМУ списку адресов (массив JSON), вместо
+ * очереди. Нужно для разовых заходов: 04.10.2026 понадобились справки по 440
+ * главным карточкам семей, чьи версии уже описаны руками, - очередь их не
+ * предлагает, потому что сортирует по продажам, а не по этому признаку.
+ */
+const slugFile = argv.includes('--slugs') ? argv[argv.indexOf('--slugs') + 1] : null;
+const queue = slugFile
+  ? JSON.parse(fs.readFileSync(slugFile, 'utf8'))
+  : JSON.parse(fs.readFileSync(path.join(WORK, 'queue.json'), 'utf8'));
 const doneFile = path.join(WORK, 'done.txt');
 const done = new Set(fs.existsSync(doneFile) ? fs.readFileSync(doneFile, 'utf8').split('\n').filter(Boolean) : []);
 /*

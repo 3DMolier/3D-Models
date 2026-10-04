@@ -738,6 +738,39 @@ say('читаю карту свёрнутых...');
           + ', карточки ещё нет: ' + noCard);
       }
     }
+
+    /*
+     * ТРЕТИЙ ИСТОЧНИК: опись самого канала.
+     *
+     * Журналы знают только то, что через них прошло. На канале 834 ролика, и
+     * часть их старше обоих журналов - вращения 2015-2016 годов, названные
+     * вольно. Опись снимается скриптом scan_channel_videos.py, сопоставляется
+     * с карточками по названию (link-channel-videos.mjs, только однозначные
+     * совпадения) и кладётся в data/video-card-links.json уже готовыми парами
+     * «адрес карточки -> ролики». Здесь остаётся их прочитать.
+     */
+    {
+      const lf = path.join(DATA, 'video-card-links.json');
+      if (fs.existsSync(lf)) {
+        const links = JSON.parse(fs.readFileSync(lf, 'utf8'));
+        const idBySlug = new Map();
+        for (const r of byId.values()) idBySlug.set(r.slug, r.id);
+        let added = 0, unknown = 0;
+        for (const [slug, list] of Object.entries(links)) {
+          const id = idBySlug.get(slug);
+          if (!id) { unknown++; continue; }
+          if (!byModel.has(id)) byModel.set(id, []);
+          const have = byModel.get(id);
+          for (const v of list) {
+            if (have.some(x => x.id === v.id)) continue;
+            have.push({ id: v.id, title: v.title, date: v.date });
+            added++;
+          }
+        }
+        say('роликов с описи канала добавлено: ' + added
+          + (unknown ? ', адрес не найден: ' + unknown : ''));
+      }
+    }
     /*
      * Ролик снят по модели, которую потом СВЕРНУЛИ в другую карточку. Номер в
      * журнале остался прежним, страницы по нему больше нет - и связь рвалась
