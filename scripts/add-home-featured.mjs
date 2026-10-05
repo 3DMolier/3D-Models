@@ -78,9 +78,11 @@ const block = BEGIN + `
 <style>
 .hp-feat-lead{color:var(--muted,#6b7280);margin:0 0 18px;max-width:70ch}
 .hp-feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
-.hp-feat-item{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border:1px solid var(--line,#e5e7eb);border-radius:10px;text-decoration:none;min-height:44px;justify-content:center}
+/* color:inherit обязателен: без него браузер красит название своим синим
+   (rgb(0,0,238)), и блок выпадает из оформления сайта - поймано на проде. */
+.hp-feat-item{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border:1px solid var(--line,#e5e7eb);border-radius:10px;text-decoration:none;color:inherit;min-height:44px;justify-content:center}
 .hp-feat-item:hover{border-color:var(--accent,#0ea5e9)}
-.hp-feat-name{font-weight:600;line-height:1.3}
+.hp-feat-name{font-weight:600;line-height:1.3;color:inherit}
 .hp-feat-meta{font-size:13px;color:var(--muted,#6b7280)}
 </style>
 ` + END;
