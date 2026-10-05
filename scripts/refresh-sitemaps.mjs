@@ -268,7 +268,21 @@ for (const f of OBSOLETE) {
  * что изменились все 76 035 адресов. Теперь дата у каждого адреса своя и
  * меняется только вместе с его страницей.
  */
-const touch = ['sitemap-main.xml', 'sitemap-category-hubs.xml', 'sitemap-browse.xml'];
+const touch = ['sitemap-main.xml', 'sitemap-category-hubs.xml'];
+
+/*
+ * ---- 3а. страницы под noindex из карт убираем ----
+ *
+ * Все 77 адресов sitemap-browse.xml закрыты метатегом noindex: мы просили
+ * Google их обойти и тут же запрещали индексировать. В отчёте они оседают в
+ * «не проиндексировано - исключено тегом noindex» и съедают обход. Карту
+ * удаляем целиком; сами страницы остаются на месте и доступны по ссылкам.
+ */
+const browseMap = path.join(SM, 'sitemap-browse.xml');
+if (fs.existsSync(browseMap)) {
+  fs.unlinkSync(browseMap);
+  console.log('  sitemap-browse.xml удалён: все его адреса под noindex');
+}
 for (const f of touch) {
   const p = path.join(SM, f);
   if (!fs.existsSync(p)) continue;
