@@ -15,6 +15,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 
 import { ROOT } from './lib/paths.mjs';
+import { createLastmod } from './lib/lastmod.mjs';
 const SM = path.join(ROOT, 'sitemaps');
 const BASE = 'https://3dmolierstudio.com';
 /*
@@ -45,13 +46,22 @@ try {
   console.log('карты изображений собрать не удалось: ' + e.message);
 }
 
+/*
+ * TODAY - дата этой сборки. Она идёт только туда, где речь о самой сборке;
+ * адресам в картах дата приходит из lib/lastmod.mjs, по содержимому страницы.
+ *
+ * В проверке формата не хватало обратных слешей (`d{4}` вместо `\d{4}`), поэтому
+ * условие не срабатывало никогда, и дата всегда бралась как «сегодня» - даже
+ * когда data/site-updated.json говорил другое.
+ */
 const TODAY = (() => {
   try {
-    const v = JSON.parse(fs.readFileSync(path.join(ROOT, "data", "site-updated.json"), "utf8")).updated;
-    if (/^d{4}-d{2}-d{2}$/.test(v)) return v;
+    const v = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'site-updated.json'), 'utf8')).updated;
+    if (/^\d{4}-\d{2}-\d{2}$/.test(v)) return v;
   } catch (e) { /* файла нет - падать незачем */ }
   return new Date().toISOString().slice(0, 10);
 })();
+const LM = createLastmod(ROOT, TODAY);
 const LIMIT = 50000;
 
 const dirsWithIndex = sub => fs.readdirSync(path.join(ROOT, sub), { withFileTypes: true })
@@ -59,7 +69,7 @@ const dirsWithIndex = sub => fs.readdirSync(path.join(ROOT, sub), { withFileType
   .map(d => d.name).sort();
 
 const urlEntry = (loc, cf, pr) =>
-  `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>${cf}</changefreq>\n    <priority>${pr}</priority>\n  </url>`;
+  `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${LM.lastmodFor(loc)}</lastmod>\n    <changefreq>${cf}</changefreq>\n    <priority>${pr}</priority>\n  </url>`;
 
 const writeUrlset = (file, entries) => {
   fs.writeFileSync(path.join(SM, file),
@@ -243,23 +253,34 @@ for (const f of OBSOLETE) {
       // (redirect-empty-pagination.mjs). Файл на диске есть, но вести на него
       // поисковик нельзя: в сайтмапе должны стоять только конечные адреса.
       if (/http-equiv="refresh"/i.test(fs.readFileSync(path.join(pageDir, String(n), 'index.html'), 'utf8'))) continue;
-      urls.push(`  <url>\n    <loc>${BASE}/categories/${cat}/page/${n}/</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.5</priority>\n  </url>`);
+      urls.push(`  <url>\n    <loc>${BASE}/categories/${cat}/page/${n}/</loc>\n    <lastmod>${LM.lastmodFor(`/categories/${cat}/page/${n}/`)}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.5</priority>\n  </url>`);
     }
   }
   fs.writeFileSync(p, `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`, 'utf8');
   console.log(`  sitemap-category-hubs.xml: пересобран с диска -> ${urls.length} URL`);
 }
 
-// ---- 3. остальным страничным сайтмапам - свежий lastmod ----
-// collections и industries сюда больше не входят: их списки пересобираются с диска
-// в шаге 2а, и дата там уже проставлена.
+/*
+ * ---- 3. даты в уже лежащих картах - по содержимому страниц ----
+ *
+ * Здесь раньше стояла одна строка, из-за которой всё и поехало: каждому адресу
+ * в этих картах проставлялось сегодняшнее число. Сайт ежедневно сообщал Google,
+ * что изменились все 76 035 адресов. Теперь дата у каждого адреса своя и
+ * меняется только вместе с его страницей.
+ */
 const touch = ['sitemap-main.xml', 'sitemap-category-hubs.xml', 'sitemap-browse.xml'];
 for (const f of touch) {
   const p = path.join(SM, f);
   if (!fs.existsSync(p)) continue;
   const s = fs.readFileSync(p, 'utf8');
-  fs.writeFileSync(p, s.replace(/<lastmod>[^<]*<\/lastmod>/g, `<lastmod>${TODAY}</lastmod>`), 'utf8');
-  console.log(`  ${f}: lastmod -> ${TODAY}`);
+  let moved = 0;
+  const out = s.replace(/<loc>([^<]+)<\/loc>(\s*)<lastmod>[^<]*<\/lastmod>/g, (m, loc, gap) => {
+    const d = LM.lastmodFor(loc);
+    moved++;
+    return `<loc>${loc}</loc>${gap}<lastmod>${d}</lastmod>`;
+  });
+  fs.writeFileSync(p, out, 'utf8');
+  console.log(`  ${f}: дата проставлена по странице, адресов ${moved}`);
 }
 
 // ---- 4. чистим пустые сайтмапы ----
@@ -269,7 +290,9 @@ for (const f of fs.readdirSync(SM).filter(f => f.endsWith('.xml'))) {
 }
 
 // ---- 5. индекс ----
-const ORDER = ['sitemap-main.xml', 'sitemap-categories.xml', 'sitemap-subcategories.xml', 'sitemap-category-hubs.xml', 'sitemap-browse.xml',
+// sitemap-priority.xml идёт сразу за главной: это страницы, ради которых
+// обход и нужен (рукописный текст или реальные продажи).
+const ORDER = ['sitemap-main.xml', 'sitemap-priority.xml', 'sitemap-categories.xml', 'sitemap-subcategories.xml', 'sitemap-category-hubs.xml', 'sitemap-browse.xml',
   'sitemap-collections.xml', 'sitemap-industries.xml', ...modelFiles,
   'image-sitemap-1.xml', 'image-sitemap-2.xml'];
 const present = ORDER.filter(f => fs.existsSync(path.join(SM, f)));
@@ -278,9 +301,21 @@ const isImg = f => f.startsWith('image-sitemap');
 const oldIdx = fs.existsSync(path.join(ROOT, 'sitemap-index.xml')) ? fs.readFileSync(path.join(ROOT, 'sitemap-index.xml'), 'utf8') : '';
 const oldLm = f => (oldIdx.match(new RegExp(`${f}</loc>\\s*<lastmod>([^<]+)</lastmod>`)) || [, TODAY])[1];
 
+// Дата карты - самая свежая дата внутри неё, а не дата прогона: если за сутки
+// не изменилась ни одна страница, карта честно остаётся вчерашней.
+const newestIn = f => {
+  try {
+    const dates = (fs.readFileSync(path.join(SM, f), 'utf8').match(/<lastmod>(\d{4}-\d{2}-\d{2})/g) || [])
+      .map(s => s.slice(9));
+    return dates.length ? dates.sort().pop() : TODAY;
+  } catch { return TODAY; }
+};
+
 const idx = `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-  present.map(f => `  <sitemap>\n    <loc>${BASE}/sitemaps/${f}</loc>\n    <lastmod>${isImg(f) ? oldLm(f) : TODAY}</lastmod>\n  </sitemap>`).join('\n') +
+  present.map(f => `  <sitemap>\n    <loc>${BASE}/sitemaps/${f}</loc>\n    <lastmod>${isImg(f) ? oldLm(f) : newestIn(f)}</lastmod>\n  </sitemap>`).join('\n') +
   `\n</sitemapindex>\n`;
 fs.writeFileSync(path.join(ROOT, 'sitemap-index.xml'), idx, 'utf8');
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), idx, 'utf8');
-console.log(`\nsitemap-index.xml + sitemap.xml: ${present.length} сайтмапов, lastmod ${TODAY}`);
+const lmStats = LM.save();
+console.log(`\nдаты страниц: без изменений ${lmStats.unchanged}, обновлено ${lmStats.changed}, впервые ${lmStats.seeded}, файла нет ${lmStats.missing}`);
+console.log(`sitemap-index.xml + sitemap.xml: ${present.length} сайтмапов`);

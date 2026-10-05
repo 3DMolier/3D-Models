@@ -128,7 +128,7 @@ if (!HEADER || !FOOTER) { console.log('СТОП: не разобран обра�
 //             колонки: правый блок становится вдвое ниже и разрыв схлопывается.
 function detailsSection(f, name, catDisp, cat, price, desc, ts, seed) {
   const about = '<div><div class="section-label mp-mb12">About This Model</div><p class="mp-desc-text">' + desc + '</p>'
-    + dateLine(f, UPDATED_ISO, UPDATED_HUMAN) + '</div>';
+    + dateLine(f, UPDATED_ISO, UPDATED_HUMAN, f.published) + '</div>';
   const faq = faqBlock(f, name, catDisp, cat, price, ts, seed);
   const open = '<section class="mp-details-section"><div class="max-w-7xl mx-auto">';
 
@@ -165,6 +165,9 @@ function buildPage(p) {
   const f = {
     cert: p.cert === '#N/A' ? 'no certification' : (p.cert || 'no certification'),
     days,
+    // Настоящая дата листинга из отчёта. Без неё дата публикации не выводится
+    // вовсе: расчёт от «сегодня» убран, он уезжал вперёд на день в сутки.
+    published: p.date || '',
     industries: IND[cat] || IND.other,
     uses: USES[cat] || USES.other,
     // cat2 приходит строчными («tree»), а в чипе и строке Type он читается как

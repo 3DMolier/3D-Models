@@ -75,3 +75,6 @@ data/records/
 # Предпросмотр главной (build-homepage.mjs --preview). Рабочий черновик,
 # в публикацию ему нельзя: это вторая главная страница по чужому адресу.
 preview/
+
+# Местный кеш времени файлов для карты дат изменения (data/page-lastmod.json в git, этот - нет)
+data/.page-lastmod-mtime.json

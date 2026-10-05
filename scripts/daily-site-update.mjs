@@ -115,6 +115,13 @@ run('build-browse-index.mjs');
 // лишние страницы пагинации - сворачиваться в перенаправления ДО сайтмапов.
 run('build-collections.mjs');
 run('sync-counters.mjs');
+/*
+ * Приоритетная карта идёт ДО общих: build-model-sitemaps читает её список и не
+ * дублирует сильные адреса у себя. Блок «Hand-picked» на главной берёт тот же
+ * список, поэтому следом. Зачем это всё - в шапке build-priority-sitemap.mjs.
+ */
+run('build-priority-sitemap.mjs');
+run('add-home-featured.mjs');
 run('build-model-sitemaps.mjs');
 run('refresh-sitemaps.mjs');
 run('redirect-empty-pagination.mjs');

@@ -853,9 +853,19 @@ ${chosen.map(([q, a]) => `          <h3 class="mp-faq-q">${q}</h3>\n          <p
 // дня, и разрыв рос сам собой. Настоящая дата есть в отчёте TurboSquid
 // (колонка Date of publication), и теперь она приходит сюда пятым доводом.
 // Вычисление осталось запасным - для карточек, которых в отчёте нет.
+/*
+ * Запасной расчёт «сегодня минус дни в продаже» УБРАН совсем (05.10.2026).
+ *
+ * Его чинили в апреле, но починка закрыла только карточки, у которых настоящая
+ * дата есть в отчёте TurboSquid. У остальных 68 карточек дата ехала вперёд ровно
+ * на день в сутки - проверено по истории: biathlon-collection показывал
+ * 22 -> 23 -> 24 -> 25 -> 26 -> 29 -> 30 -> 31 октября 2021 за восемь прогонов.
+ * Каждая ежедневная сборка переписывала эти страницы без единого настоящего
+ * изменения, а Google видел товар, у которого дата публикации меняется каждый
+ * день. Нет настоящей даты - не показываем никакой.
+ */
 export function dateLine(f, updatedIso, updatedHuman, publishedIso) {
-  const d = publishedIso ? new Date(publishedIso)
-    : (f.days ? new Date(Date.now() - f.days * 86400000) : null);
+  const d = publishedIso ? new Date(publishedIso) : null;
   const listed = d && !isNaN(d) ? d.toISOString().slice(0, 10) : null;
   const listedHuman = listed ? d.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' }) : null;
   return `        <div class="mp-meta-line">
@@ -868,9 +878,9 @@ export function dateLine(f, updatedIso, updatedHuman, publishedIso) {
 }
 
 export function pageSchema({ name, slug, cat, catSlug, desc, hero, f, site, updatedIso }) {
-  // Дата публикации - настоящая, из отчёта; вычисление лишь запасное.
-  const d = f.published ? new Date(f.published)
-    : (f.days ? new Date(Date.now() - f.days * 86400000) : null);
+  // Дата публикации - только настоящая, из отчёта. Расчёта от «сегодня» здесь
+  // больше нет: см. объяснение над dateLine.
+  const d = f.published ? new Date(f.published) : null;
   const o = {
     '@context': 'https://schema.org', '@type': 'ItemPage',
     '@id': `${site}/models/${slug}/#page`,
