@@ -81,11 +81,34 @@ const card = (m, i) => {
 let h = fs.readFileSync(FILE, 'utf8');
 const before = h;
 
-// Меняем блок скелетов на настоящие карточки.
-const gridRe = /(<div id="model-grid"[^>]*>)([\s\S]*?)(<\/div>\s*<\/div>)/;
-const m = h.match(gridRe);
-if (!m) throw new Error('не найдена сетка #model-grid');
-h = h.replace(gridRe, (x, open, inner, close) => open + '\n' + picked.map(card).join('\n') + '\n' + close);
+/*
+ * Меняем содержимое сетки #model-grid на настоящие карточки.
+ *
+ * Раньше здесь стояла регулярка, которая искала конец сетки по первой паре
+ * закрывающих div. Пока внутри лежали пустые скелеты, это работало. Как только
+ * внутри оказались настоящие карточки, первая такая пара встретилась уже внутри
+ * ПЕРВОЙ карточки, и замена резала блок по ней: остаток прежних карточек
+ * оставался сиротами, а с ним - лишние закрывающие теги. К 06.10.2026 их
+ * накопилось шесть, браузер закрывал сетку досрочно, и полсотни карточек
+ * вываливались прямо в body во всю ширину страницы.
+ *
+ * Поэтому закрывающий тег ищем по счётчику вложенности, а не по образцу.
+ */
+const openIdx = h.indexOf('<div id="model-grid"');
+if (openIdx < 0) throw new Error('не найдена сетка #model-grid');
+const openEnd = h.indexOf('>', openIdx) + 1;
+const closeIdx = (() => {
+  const re = /<\/?div\b[^>]*>/gi;
+  re.lastIndex = openEnd;
+  let depth = 1, mm;
+  while ((mm = re.exec(h))) {
+    depth += mm[0][1] === '/' ? -1 : 1;
+    if (depth === 0) return mm.index;
+  }
+  return -1;
+})();
+if (closeIdx < 0) throw new Error('у сетки #model-grid нет закрывающего тега');
+h = h.slice(0, openEnd) + '\n' + picked.map(card).join('\n') + '\n' + h.slice(closeIdx);
 
 // Ссылка на постраничный обход - путь ко всем карточкам без скрипта.
 if (!h.includes('/browse/1/')) {
