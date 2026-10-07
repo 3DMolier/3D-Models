@@ -1,0 +1,158 @@
+{
+ "aircraft": {
+  "polyMed": 205902,
+  "priceMed": 149,
+  "salesMed": 5,
+  "n": 802
+ },
+ "animals-creatures": {
+  "polyMed": 20352,
+  "priceMed": 119,
+  "salesMed": 3,
+  "n": 1384
+ },
+ "architecture-landmarks": {
+  "polyMed": 51607,
+  "priceMed": 39,
+  "salesMed": 3,
+  "n": 2971
+ },
+ "characters-people": {
+  "polyMed": 45150,
+  "priceMed": 149,
+  "salesMed": 2,
+  "n": 1491
+ },
+ "clothing-accessories": {
+  "polyMed": 13322,
+  "priceMed": 39,
+  "salesMed": 4,
+  "n": 2042
+ },
+ "collections-sets": {
+  "polyMed": 26246,
+  "priceMed": 69,
+  "salesMed": 2,
+  "n": 283
+ },
+ "containers-storage": {
+  "polyMed": 14152,
+  "priceMed": 29,
+  "salesMed": 3,
+  "n": 805
+ },
+ "electronics-gadgets": {
+  "polyMed": 28303,
+  "priceMed": 34,
+  "salesMed": 3,
+  "n": 2082
+ },
+ "food-beverages": {
+  "polyMed": 8604,
+  "priceMed": 29,
+  "salesMed": 3,
+  "n": 1743
+ },
+ "furniture-interior": {
+  "polyMed": 34488,
+  "priceMed": 34,
+  "salesMed": 2,
+  "n": 2265
+ },
+ "industrial-equipment": {
+  "polyMed": 123359,
+  "priceMed": 59,
+  "salesMed": 3,
+  "n": 1460
+ },
+ "kitchen-tableware": {
+  "polyMed": 11328,
+  "priceMed": 24,
+  "salesMed": 2,
+  "n": 1647
+ },
+ "lighting": {
+  "polyMed": 19832,
+  "priceMed": 24,
+  "salesMed": 2,
+  "n": 222
+ },
+ "medical-3d-models": {
+  "polyMed": 16662,
+  "priceMed": 39,
+  "salesMed": 3,
+  "n": 1651
+ },
+ "military-vehicles": {
+  "polyMed": 625548,
+  "priceMed": 139,
+  "salesMed": 3,
+  "n": 117
+ },
+ "musical-instruments": {
+  "polyMed": 25227,
+  "priceMed": 34,
+  "salesMed": 4,
+  "n": 276
+ },
+ "nature-plants": {
+  "polyMed": 38183,
+  "priceMed": 34,
+  "salesMed": 4,
+  "n": 1054
+ },
+ "other": {
+  "polyMed": 7348,
+  "priceMed": 19,
+  "salesMed": 3,
+  "n": 1018
+ },
+ "ships": {
+  "polyMed": 303508,
+  "priceMed": 149,
+  "salesMed": 5,
+  "n": 435
+ },
+ "signage-decor": {
+  "polyMed": 13538,
+  "priceMed": 29,
+  "salesMed": 3,
+  "n": 887
+ },
+ "space-scifi": {
+  "polyMed": 95522,
+  "priceMed": 69,
+  "salesMed": 3,
+  "n": 334
+ },
+ "sports-recreation": {
+  "polyMed": 22351,
+  "priceMed": 39,
+  "salesMed": 4,
+  "n": 1034
+ },
+ "tools": {
+  "polyMed": 18520,
+  "priceMed": 29,
+  "salesMed": 3,
+  "n": 1603
+ },
+ "toys-games": {
+  "polyMed": 12638,
+  "priceMed": 29,
+  "salesMed": 3,
+  "n": 567
+ },
+ "vehicles": {
+  "polyMed": 207360,
+  "priceMed": 99,
+  "salesMed": 4,
+  "n": 2520
+ },
+ "weapons": {
+  "polyMed": 30121,
+  "priceMed": 49,
+  "salesMed": 3,
+  "n": 1222
+ }
+}

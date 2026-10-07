@@ -12789,5 +12789,595 @@
   "A Venus flytrap at 22,588 polygons, with hinged traps, marginal teeth and the low rosette of leaves the plant actually grows in. Each trap is its own object, so one can snap shut while the rest stay open. The 22,314 vertices sit mostly in the leaf edges, where the shape is decided.",
   "Seven maps at 4096 x 4096 and 1024 x 1024 carry the red interior, the green outer leaf and the fine trigger hairs. StemCell delivery holds scale, materials and naming steady between applications, which removes a conversion pass before lighting.",
   "Three more builds sit on the page: a dense phalanx of traps, a green plant and the deep red Red Dragon. Released in 2020 and taken 51 times at $49. The plant is used in botanical and science visuals, horror and fantasy dressing, and product shots for plant shops."
+ ],
+ "9-iron-golf-club-921940": [
+  "A 9 iron at 1,214 polygons: a long shaft, a wrapped grip and the compact, heavily angled head that gives this club its loft. Nothing is spent on detail a camera will not find, so a full bag costs almost nothing in a scene. The 1,257 vertices keep the sole and the hosel clean where the two shapes meet.",
+  "Eight maps at 2048 x 2048 cover the brushed chrome of the head, the rubber of the grip and the painted number on the sole. The unwrap is non-overlapping, which keeps the face free of seams exactly where a reflection would catch them. CheckMate Pro certification means the proportions are real, so the club sits correctly in the hands of a figure.",
+  "The page holds three builds, including a plain iron 9 under a straighter name. Fifty copies have gone out since it was listed in 2015, with the price set at $19. It lands in sports visuals, equipment layouts, driving range scenes and product shots where one club has to read clearly."
+ ],
+ "bic-lighter-1178220": [
+  "A disposable lighter at 31,770 polygons, with the ribbed striker wheel, the flame guard and the fuel adjuster modeled as separate parts. That is a generous budget for an object this small, and it shows the moment the camera comes close enough to read the molding seams. The 33,033 vertices keep the rounded body from faceting under a hard highlight.",
+  "Thirteen maps at 4096 x 4096 carry the translucent plastic, the printed wrap and the scuffed metal of the hood. A map that size keeps the fine print legible even in a macro shot. Because the unwrap never overlaps, swapping the printed label for another design stays a texture change.",
+  "A generic gas lighter shares the page for scenes that need no printing at all. It has been on sale since 2017 and has found fifty buyers at $24. The usual work is tabletop and bar scenes, smoking props in film, convenience store displays and advertising stills."
+ ],
+ "cordless-drill-3d-model-899027": [
+  "A cordless drill at 16,521 polygons: the keyless chuck, the clutch collar, the trigger and the battery pack that clips under the handle. Each of those parts is separate, so the chuck can turn and the battery can come off on camera. With 17,615 vertices the grip keeps the crisp edges of its rubber overmold where it meets the shell.",
+  "Twelve maps at 4096 x 4096 and 2048 x 2048 handle the molded shell, the chuck metal and the worn label on the body. Its UVs do not overlap, so a repaint into another tool color is texture work rather than a second model.",
+  "Two builds sit together here: this one and a version in the livery of a known tool maker. Since 2015 the drill has found fifty buyers at the current price of $39. It goes into workshop and construction scenes, DIY and retail visuals, instruction graphics and games."
+ ],
+ "dental-drill-1286726": [
+  "A dental handpiece at 37,023 polygons, with the angled head, the bur, the water ports and the ribbed grip a dentist actually holds. The 37,619 vertices go into the taper of the body, which is what makes the instrument read as medical rather than industrial.",
+  "Three maps at 4096 x 4096 hold the polished steel, the matte grip and the fine engraving on the collar. The separation between the three keeps that engraving legible when the head fills the frame. Non-overlapping UVs mean sterilization markings or a clinic code can be added later without touching geometry. CheckMate Pro certification covers real-world scale, which matters on a tool shown next to a hand.",
+  "Four builds share the page, and two of them cut the handpiece open to show the internal structure, with a simpler hand drill alongside. It arrived in 2018 and has been sold fifty times at a price of $34. Typical work: dental education, clinical explainers, instrument catalogs and surgery scenes in film."
+ ],
+ "double-slipper-clawfoot-bath-897518": [
+  "A double slipper clawfoot bath at 64,818 polygons, with both ends raised, the rolled rim and the cast feet lifting the tub off the floor. The 72,231 vertices sit mostly in those curves, where a flat facet would be visible across the whole bathroom.",
+  "Eight maps at 4096 x 4096 cover the enamel, the aged metal of the feet and the plumbing. Non-overlapping UVs are the reason the colored builds exist without a second model. They also let you age the exterior while the inside of the tub stays clean.",
+  "Five builds sit here: this one plus bronze, black with matching feet and plumbing, and a blue exterior. A luxury antique version adds a copper mixer shower above the rim. Fifty people have bought it since 2015, and the price today is $39. It belongs in bathroom and hotel visualization, period interiors, product renders for sanitary ware and set dressing."
+ ],
+ "fashion-sneakers-white-1886736": [
+  "A pair of fashion sneakers at 51,240 polygons, with the layered upper, the stitched panels, the laces and the chunky sole unit built as geometry. Nothing about the pair is a flat panel standing in for a stitched seam. The 54,703 vertices keep the eyelets and the sole tread sharp, which is where cheap footwear models fall apart.",
+  "No texture maps ship with the pair, so the leather, the mesh panels and the rubber are yours to set in shaders. UVs do not overlap anywhere, so a print or a stripe lands on the upper without remapping. CheckMate Pro certification puts both shoes at a true foot scale, which matters beside a character.",
+  "Three builds share the address: this white pair, a black one and a branded sports version. It was released in 2022 and has seen fifty sales at $59. It goes into fashion and retail visuals, character dressing, streetwear scenes and product photography."
+ ],
+ "fishing-trawler-1606885": [
+  "A fishing trawler at 179,891 polygons, built as a subdivision surface so the hull keeps its sweep at any render resolution. The gantry, the net drum, the deck winches and the wheelhouse are all modeled. Most of the 185,309 vertices sit where the deck gear meets the superstructure. At that weight the deck reads as a working boat rather than a smooth toy.",
+  "The boat ships without texture maps, which hands the hull paint, the rust and the worn deck planking to your own shaders. The layout keeps UVs apart, so a name on the bow and a port registration can be painted on whenever the shot needs them.",
+  "Three builds share the page, differing in how the boat and its gear are put together. On the market since 2020, it has sold fifty copies at $199. The vessel suits harbor and coastal scenes, fishing industry visuals, documentary graphics and games."
+ ],
+ "house-blueprints-set-1036844": [
+  "A set of rolled and flat house blueprints at 4,236 polygons, quads only, with the paper curl and the sag over a table edge modeled. At that weight you can scatter a dozen across a desk and never think about the cost again. The 4,242 vertices are almost all in that curl, since a flat sheet needs none.",
+  "One map at 4096 x 4096 carries the drawing, which is the whole object: line work, title block and the blue cast of the print. Because no UVs overlap, your own plan can replace the artwork without remapping a thing. Swapping in a floor plan from your own project is a five minute job.",
+  "There are no alternate builds on the page, so what you download is the complete set. It has been available since 2016 and has taken fifty sales at $9. It is used in architect office scenes, construction visuals, real estate graphics and any desk that needs to look like work happens there."
+ ],
+ "mining-drill-bit-1394289": [
+  "A tricone mining bit at 19,529 polygons, with three rolling cones, the carbide buttons across them and the threaded pin that joins the drill string. The 19,862 vertices go into those button rows, where the silhouette of the whole tool is decided. At that budget each button row holds its shape under a close camera.",
+  "Nine maps, the largest at 4096 x 4096, carry the hardened steel, the carbide inserts and the mud baked into the bearings. The smaller ones at 2048 x 2048 take care of the pin and the bearing caps. Delivery follows the StemCell standard, so scale, materials and naming hold steady between applications and nothing has to be rebuilt after import.",
+  "The page carries three builds: a button bit and two tricone variants. It has been on the market since 2019, with fifty sales at $39. The bit goes into mining and drilling presentations, oilfield visuals, engineering explainers and industrial catalogs."
+ ],
+ "professional-dj-media-player-and-mixer-pioneer-1241351": [
+  "A professional DJ setup at 245,578 polygons: two media players flanking a mixer, with every jog wheel, fader, knob and cue button modeled individually. That is why the 258,983 vertices are here, because a DJ booth is read through its controls and a painted panel never survives a close shot.",
+  "The set arrives without texture maps, which leaves the brushed metal, the rubber of the jog wheels and the backlit screens to your own shaders. At this polygon count the faders read as separate parts even in a tight frame. The unwrap keeps every island separate, so panel legends can be printed on when a shot calls for them.",
+  "A second build on the page offers the same double player and mixer arrangement. It went on sale in 2018, and fifty copies have been bought at $79. The rig fits club and festival scenes, music video sets, product visuals for audio gear and games."
+ ],
+ "wooden-spoon-930900": [
+  "A wooden spoon at 280 polygons, quads only, with the shallow bowl and the flattened handle that make the shape obvious from any angle. The 282 vertices are only two more than the faces, which tells you how clean the quad shell is. This is the kind of object that belongs in the background by the dozen, and at this weight nothing stops you.",
+  "Two maps at 4096 x 4096 show the grain, the darker stain inside the bowl and the lighter edge where the wood has worn. A map that large on an object this small means the end grain stays readable in a close shot. With UVs laid out without overlap, moving from pale beech to scorched oak is a texture decision.",
+  "A second spoon build shares the page for a little variety in a drawer or a jar. On sale since 2015, it has been bought fifty times at $9. It turns up in kitchen interiors, food photography, rustic table settings and cooking scenes in games."
+ ],
+ "commercial-lockers-two-row-1423802": [
+  "A two row bank of commercial lockers at 277,248 polygons, with every door, hinge, vent slot, latch and number plate modeled rather than painted. At that scale the doors can be opened one at a time without any of them faceting. The 284,736 vertices pay for the louvers, which is where a cheaper locker gives itself away under raking light.",
+  "Seven maps at 2048 x 2048 carry the painted steel, the scuffs around the handles and the stenciled numbers. Because the UV islands never overlap, a change of color or numbering for a different facility is texture work. A map of that size is enough per section because the paint is flat and the wear stays local.",
+  "A second arrangement of the same bank sits alongside this one on the page. Listed in 2019, it has been taken forty-nine times at $29. The unit belongs in school, gym and factory interiors, changing room scenes, workplace visuals and games."
+ ],
+ "grape-leaves-with-dew-1503492": [
+  "Grape leaves with dew at 3,472 polygons, where the serrated edge and the deep lobes are cut into geometry rather than faked in a texture. The vertex count sits lower than the face count at 3,062, which is normal for leaf cards built as thin panels.",
+  "Fourteen maps at 2048 x 2048 and 1024 x 1024 carry the veining, the translucency and the beaded water across the surface. Water drops are handled in those maps, so the leaf silhouette stays light enough to scatter. The files ship to the StemCell standard, so the leaves keep their scale and materials when the scene moves between applications.",
+  "No alternate builds sit on the page, so the set arrives as it is. On sale since 2020, it has been taken forty-nine times at $19. It is used in food and wine visuals, packaging for vine products, garden and vineyard scenes, and close-up table shots."
+ ],
+ "human-tooth-anatomy-1230174": [
+  "A human tooth in cross section at 23,764 polygons, with the enamel cap, the dentine, the pulp chamber and the root canals as separate parts. The mesh is quads only, and the 23,797 vertices follow the curve of the root rather than cutting it into flats. At that budget the enamel stays smooth where it meets the dentine line.",
+  "Four maps at 4096 x 4096 separate the enamel, the softer dentine tone and the red of the pulp. UV islands are kept apart, so colors can be pushed per layer for a lecture slide. There is enough separation between the three materials that a labeled diagram stays readable.",
+  "The page holds a single build, and nothing else is hidden behind a version list. Listed in 2017, the model has been bought forty-nine times at $49. It serves dental education, patient explainers, clinic displays, textbook illustration and medical animation where a real tooth cannot be filmed."
+ ],
+ "international-lt625-with-semi-trailer-1380938": [
+  "A long haul tractor and its semi trailer at 723,887 polygons, with the grille, the stacks, the fifth wheel and the trailer frame all modeled. The 766,671 vertices go mostly into the cab, where chrome trim and mirror arms decide whether a truck reads as real. This is a full rig for a highway shot rather than a background silhouette parked at the edge of frame.",
+  "Eight maps at 4096 x 4096 and 2048 x 2048 carry the cab paint, the chrome, the tires and the trailer skin. Because the UVs never overlap, a fleet livery can be painted straight onto the trailer. The trailer and the tractor stay separate objects, so the pair can be split for a parked shot.",
+  "A second build pairs the same tractor with a blue box trailer. It has been listed since 2019 and has sold forty-nine times at $169. The pair belongs in highway and logistics scenes, freight visuals, advertising stills and driving games."
+ ],
+ "male-mannequin-dark-grey-1416235": [
+  "A dark grey male mannequin at 4,596 polygons, with the smoothed head, the jointed shoulders and the stand the figure rests on. The 4,578 vertices sit just under the face count, which is what you expect from a shape this smooth. At that weight a shop floor can hold a dozen of them without a thought.",
+  "Two maps at 4096 x 4096 hold the matte grey finish and the slight sheen the material keeps under studio light. Delivery is to the StemCell standard, so scale and materials survive the move into another application.",
+  "The family behind this page is unusually deep: black and grey finishes, running and walking poses, a standing pose, and female versions alongside the male. Several builds arrive rigged, including versions prepared for Maya and for Cinema 4D at $89. Forty-nine sales since 2019 at $49, and the usual work is retail interiors, window displays, fashion visuals and scale figures in architecture."
+ ],
+ "sedan-front-suspension-2-947518": [
+  "A front suspension assembly from a passenger sedan, modeled the way the real thing is built: spring, damper, control arms, hub and brake disc. The steering tie rod and the sway bar link are in place, which is what makes the assembly read as a unit. Nothing here is a single welded lump, so the parts can be pulled apart for an exploded view.",
+  "CheckMate Pro certification is the part that matters on a component like this, because an engineering shot lives or dies on real proportions. The assembly sits where a wheel would, which makes it easy to drop under an existing body. A component model like this is usually placed into a wider chassis scene rather than rendered alone.",
+  "No alternate builds sit beside it, so the page is the whole product. On sale since 2015, it has been bought forty-nine times at $59. It is used in automotive explainers, parts catalogs, service documentation and cutaway renders of a chassis."
+ ],
+ "tennis-ball-919199": [
+  "A tennis ball at 4,824 polygons, quads only, with the seam line pressed into the surface rather than drawn on it. The 4,826 vertices are two more than the faces, the signature of a clean closed quad shell. At that budget you can fill a basket or a court without worrying about the scene weight.",
+  "Two maps at 4096 x 4096 carry the felt color and the grubby wear a used ball picks up. A map that size is generous for a ball, which is why the felt holds up in a macro frame. The unwrap keeps islands apart, so the ball can go from fresh yellow to clay stained in a texture pass.",
+  "Three builds share this page, and one of them adds real fur for a close camera at $12. Listed back in 2015, the ball has been bought forty-nine times at $15. It turns up in sports visuals, equipment stills, locker room scenes and any game that needs a court dressed."
+ ],
+ "thule-car-roofbox-with-wingbar-1317829": [
+  "A car roof box on a wing bar at 96,670 polygons, with the clamshell lid, the latch, the bar feet and their rubber pads. The 97,468 vertices go into the curve of the shell, which is the whole silhouette on a roof line. Bars and box stay separate objects, so either can be used on its own.",
+  "Eleven maps at 4096 x 4096 cover the textured plastic, the anodized bar and the printed warnings near the latch. Non-overlapping UVs let the shell change color without a second mesh, which is how the silver and black bars on this page work.",
+  "Five builds sit here: this box plus silver and black wing bars, a generic bar and a roof box with a trunk. It has been on sale since 2018 and has taken forty-nine sales at $39. The set fits car visuals, travel and outdoor scenes, accessory catalogs and any vehicle that has to look packed for a trip."
+ ],
+ "vintage-e180-vhs-video-tape-1787402": [
+  "An E180 VHS cassette at 43,941 polygons, with the tape window, the spools behind it, the record tab and the molded ribs on the shell. The 43,018 vertices sit below the face count because the shell is cut with triangles where the ribs meet. At that polygon count the spool teeth are real geometry, not a flat decal.",
+  "No texture maps ship with it, so the label artwork and the scuffed black plastic are yours to build. The unwrap does not overlap, which is what makes a custom label possible on a flat spine and face. Leaving the maps out keeps the file honest for anyone who needs their own cover art.",
+  "Nine builds share the page: cassettes with and without a sleeve, branded variants and a movie cassette among them. On sale since 2021, it has been taken forty-nine times at $29. The tape fits retro interiors, period film sets, nostalgia stills and shelf dressing in a games level."
+ ],
+ "alien-ufo-1359073": [
+  "A classic flying saucer at 54,920 polygons, quads only, with the domed cockpit, the ringed hull and the panel seams running around the rim. The 61,212 vertices climb above the face count, which happens when a smooth disc is cut for subdivision. A quad only disc of this size stays clean when the camera orbits under the rim.",
+  "Two maps at 4096 x 4096 take the brushed hull metal and the glow around the underside lights. The light ring is modeled into the hull, so it reads even with the maps switched off. Because no UV island overlaps another, the hull can be repainted or weathered without a remap.",
+  "Six builds share the page, several of them rigged, including a hovering spacecraft and a futuristic disc craft. Available since 2018, the saucer has been bought forty-eight times at $59. It lands in sci-fi scenes, abduction gags, night sky composites and any game that needs something in the air."
+ ],
+ "blimp-goodyear-airship-1329318": [
+  "An airship at 107,315 polygons: the envelope, the gondola, the tail fins and the mooring lines are each built rather than suggested. The 116,816 vertices follow the length of the envelope, where any faceting would show against a flat sky. At that size the fins keep their edges even in a wide establishing frame.",
+  "Twenty-four maps, the largest at 8192 x 8192, carry the fabric sheen, the lettering panel and the glazing of the gondola. That is an unusual texture budget, and it exists because an airship is mostly one enormous surface. CheckMate Lite certification covers the build hygiene: clean geometry, sane naming and no stray objects in the file.",
+  "Seven builds share the page, among them rigged airships and a generic blimp, with payload fairings and a launch vehicle alongside. Listed in 2018, the airship has been taken forty-eight times at $99. It fits stadium and event scenes, aerial shots over a city skyline and period aviation visuals."
+ ],
+ "coral-fishs-collection-2-1139756": [
+  "A second collection of coral reef fish, sold as one set rather than as single species you have to hunt down. A reef without fish looks dead, and buying them one at a time is slower than it looks. Each fish is its own object, so a shoal can be scattered, re-posed and thinned out per shot.",
+  "CheckMate Pro certification across a bundle this size is the real work, because one broken normal in a set ruins the render. The fish are built to the same scale as each other, which is what lets a tank or a reef read correctly. The price of $219 covers the whole set rather than a single swimmer.",
+  "The page has no alternate builds, since the set is already the bundle. On sale since 2017, it has been bought forty-eight times at $219. It is used in aquarium and reef visuals, documentary graphics, diving scenes and underwater games."
+ ],
+ "generic-front-end-loader-919881": [
+  "A front end loader at 465,069 polygons, with the bucket, the lift arms, the hydraulic rams, the cab glazing and the tread on the tires. The 467,011 vertices are spread across the arms and the rams, where a construction shot puts the camera.",
+  "Forty maps at 4096 x 4096 and 2048 x 2048 cover the yellow paint, the chipped edges and the dirt on the tires. A texture set that size is why the machine still reads as used at close range. No island shares space with another, so a hire company livery can be dropped onto the body.",
+  "Four builds share the page: this machine, a rigged version, and two builds of a Hyundai HL730 loader. It has been on the market since 2015, with forty-eight sales at $119. The loader suits construction and mining scenes, equipment catalogs, site plans and heavy machinery games."
+ ],
+ "golden-music-notes-waves-1430094": [
+  "Golden music notes riding a wave of staves at 5,655 polygons, with the note heads, the beams and the ribbon they sit on all modeled. The 5,516 vertices keep the beams crisp where they taper, which is where a flat ribbon gives itself away. This is a decorative piece, which means the silhouette has to carry the whole shot on its own.",
+  "One map at 2048 x 2048 carries the gold, and the shape does the rest of the work. A single map at that size is enough because the surface is one continuous metal. Non-overlapping UVs mean the same geometry takes silver or plain plastic without a second mesh.",
+  "Six builds share the page: silver and plastic versions of the wave, plus a stave and notes in gold, silver and plastic. Available since 2019, the set has been taken forty-eight times at $19. It is used in music graphics, event posters, channel idents, award stills and anything that needs sound made visible."
+ ],
+ "gopro-lanyard-with-plastic-id-card-holder-1255569": [
+  "An ID card holder on a lanyard at 14,908 polygons, with the clear plastic pocket, the clip, the stitched strap and the card inside it. The 15,731 vertices go into the strap folds, which is what stops a lanyard looking like a stiff printed band. The card and the pocket are separate parts, so the insert can be swapped.",
+  "Four maps at 2048 x 2048 carry the woven strap, the scratched plastic and the printed card face. Islands are laid out apart from each other, so a company card design drops straight onto the pocket. This one carries the Editorial Uses Only licence, so it belongs in reporting and documentary work rather than advertising.",
+  "Four builds share the page: a visitor lanyard, a security lanyard and a student card holder beside this one. Listed in 2018, the holder has been taken forty-eight times at $29. It fits office and conference scenes, security visuals, badge mockups and character dressing for staff."
+ ],
+ "mangrove-tree-shrub-1400530": [
+  "A mangrove at 1,759,268 polygons, with the stilt roots arching out of the water, the branching trunk and leaves built as geometry. The 2,415,529 vertices are what a tree costs when every leaf is a real surface rather than a card. At that density the canopy holds up in a close shot and still reads from the shoreline.",
+  "Thirteen maps at 2048 x 2048 and 1400 x 1784 carry the bark, the leaf veining and the translucency at the leaf edge. The odd map size comes from a photographed source, which is usually a good sign on bark. Non-overlapping UVs keep the bark seam out of sight on a trunk that the camera can walk around.",
+  "There are no alternate builds here, so what arrives is the single tree. On sale since 2019, it has been bought forty-eight times at $59. It suits coastal and swamp environments, tropical visuals, nature documentaries and wetland restoration graphics."
+ ],
+ "military-utility-helicopter-bell-uh-1-iroquois-1078938": [
+  "A utility helicopter at 1,001,582 polygons, with the rotor head, the skids, the cabin doors and the exhaust stack built as separate parts. The 1,026,912 vertices go where a camera goes on this airframe: the rotor mast, the nose glazing and the tail boom. At a million polygons the rotor blades keep their twist instead of flattening out.",
+  "Ninety-one maps, the largest at 8192 x 8192, carry the paint, the stencils, the panel wear and the soot behind the exhaust. That is an enormous texture set, and it is the reason the airframe survives a close pass. The UVs stay clear of each other, so a squadron marking can be added without touching the mesh.",
+  "Fifteen builds share the page, among them rigged versions, a camouflage scheme, a MedEvac fit and a navy rescue variant. It has been listed since 2016 and has sold forty-eight times at $149. The aircraft fits military scenes, rescue and news visuals, period film work and flight games."
+ ],
+ "motor-yacht-3d-model-1028709": [
+  "A motor yacht at 94,206 polygons, with the flybridge, the railings, the swim platform and the window frames built as geometry. The 98,111 vertices follow the sheer line of the hull, which is the first thing an eye checks on a boat. At that weight the yacht can sit in a wide marina shot without dragging the frame down.",
+  "Eight maps at 4096 x 4096 and 2048 x 2048 carry the gelcoat, the teak deck, the tinted glass and the chrome fittings. The UVs are laid out without overlap, so a hull name can be placed on the transom. CheckMate Pro certification means the proportions hold when a figure stands on the aft deck.",
+  "Nothing else shares the page, so this hull is the whole purchase. It has been on sale since 2016 and has taken forty-eight sales at $79. The boat suits marina and coastline scenes, charter visuals, aerial establishing shots and sailing games."
+ ],
+ "powered-wheelchair-1001732": [
+  "A powered wheelchair at 243,583 polygons, with the joystick controller, the footplate, the anti-tip wheels and the padded seat and backrest. The 257,479 vertices go into the frame tubing and the tire tread, where a medical shot usually lands. That is a heavy budget for a chair, and it buys a close camera on the control arm.",
+  "Two maps at 4096 x 4096 carry the upholstery weave, the powder coated frame and the rubber of the tires. Two maps that large are enough because the chair is mostly frame and fabric. Non-overlapping UVs let the fabric change color for a different ward without a second model.",
+  "Six builds share the page, most of them rigged, with versions prepared for Maya and for Cinema 4D at $99. On sale since 2016, the chair has been bought forty-eight times at $79. It fits hospital and clinic scenes, accessibility visuals, care home interiors and character work where someone is seated."
+ ],
+ "ring-binder-black-942300": [
+  "A black ring binder at 15,351 polygons, with the metal ring mechanism, the spine label window and the stiff board covers. The 15,710 vertices sit in the rings and the hinge creases, which is where a closed binder usually looks fake. The rings are real geometry, so the binder can be shown open with paper in it.",
+  "Three maps at 4096 x 4096 and 2048 x 2048 carry the grained cover, the printed label and the steel of the rings. A label window at that size stays readable when the spine faces the camera. The unwrap has no overlap, which is how the colored builds on this page reuse one mesh.",
+  "Seven builds share the page: blue, red and green binders, an office binder with metal rings and a heavy duty two ring version. Listed back in 2015, the binder has been taken forty-eight times at $19. It belongs in office interiors, archive scenes, school visuals and any desk that needs paperwork on it."
+ ],
+ "sedan-chassis-2-947520": [
+  "A full sedan chassis: the floor pan, the subframes, the suspension at both ends, the exhaust run and the fuel tank in place. This is the layer under a car body, the part a finished vehicle model usually hides. Because the assembly is split into parts, a wheel, an arm or the exhaust can be isolated.",
+  "CheckMate Pro certification carries the weight here, since an engineering drawing is only as good as its proportions. The chassis is built to sit under a body shell rather than to be rendered on its own. A cutaway of a car is the obvious use, and that only works if the parts line up.",
+  "No alternate builds sit beside it, so the page holds one assembly. On sale since 2015, it has been bought forty-eight times at $99. It is used in automotive explainers, service manuals, crash and safety graphics, and chassis layouts for a new body."
+ ],
+ "tesla-s-key-fob-955800": [
+  "A car key fob shaped like the car itself at 1,164 polygons, with the rounded roof line and the pressure points along the sides. The 1,189 vertices are all the shape needs, because the object is the size of a palm. At that weight it can sit on a table in any scene for nothing.",
+  "Two maps at 2048 x 2048 carry the soft touch finish and the faint wear a pocket leaves. The texture does most of the work here, since the silhouette is simple and smooth. This model carries the Editorial Uses Only licence, which keeps it to reporting, reviews and documentary work.",
+  "A second build of the same fob sits alongside it on the page. It has been listed since 2015 and has sold forty-eight times at $29. The fob fits car interior stills, dealership visuals, product reviews and any desk where someone has just parked."
+ ],
+ "fried-egg-1250236": [
+  "A fried egg at 2,046 polygons, with the raised yolk, the ruffled white edge and the thin spread where it met the pan. The 2,014 vertices sit below the face count, which is what a flat shape with one dome needs. Food this light can be duplicated across a breakfast table without any cost at all.",
+  "Two maps at 4096 x 4096 carry the gloss of the yolk, the translucency of the white and the browned lace at the rim. On food the texture resolution is the whole trick, because an egg is read at close range. A clean unwrap means a runnier or a firmer egg is a shader decision.",
+  "There are no alternate builds here, so the page is a single egg. Available since 2018, the egg has been bought forty-seven times at $29. It turns up in breakfast stills, menu graphics, recipe visuals and kitchen scenes in games."
+ ],
+ "generic-suv-2-950899": [
+  "A full size SUV at 1,014,361 polygons, with the engine bay, the cabin, the door cards, the dash and the undercarriage all built. The 1,008,316 vertices run slightly under the face count, which happens on a body this heavily quad based. A million polygons is what a car costs when the doors open and the interior is real.",
+  "Sixty-one maps at 4096 x 4096 carry the paint, the glass, the trim plastics, the carpet and the tire sidewalls. A texture set that large exists because an interior has more surfaces than the body around it. The UVs never overlap, so a repaint or a taxi livery stays a texture job.",
+  "A second build keeps the same body with a simpler interior at $99. It has been on the market since 2015, with forty-seven sales at $129. The vehicle suits street and highway scenes, driving games, advertising stills and any shot where a door opens."
+ ],
+ "hands-rigged-collection-for-cinema-4d-1515565": [
+  "A collection of rigged hands prepared for Cinema 4D, so the bones and controls are in place before you open the file. Hands are the part of a figure an audience checks first, and they are the part nobody wants to rig twice. A set like this covers several hand types rather than leaving you with one pose.",
+  "The models are built to CheckMate specification, which covers clean geometry, sane naming and no stray objects. The rig matters more than the polygon count here, because a pose is what you are buying. Because the controls are already in place, a gesture can be dialed in rather than sculpted.",
+  "A matching collection prepared for Maya shares the page at the same $199. On sale since 2020, it has been bought forty-seven times at $199. It is used in character work, product hold shots, sign language and gesture animation, and medical or training visuals."
+ ],
+ "hockey-jersey-blue-1509516": [
+  "A hockey jersey at 1,754 polygons, with the loose body, the wide sleeves and the laced collar hanging as cloth should. The 1,776 vertices are enough because the folds are carried by the shape, not by a dense mesh. At that weight a locker room can be hung with a full set of jerseys for almost nothing.",
+  "Four maps at 4096 x 4096 carry the mesh fabric, the stitched numbers and the crest on the chest. That resolution is what lets a team name and a number stay legible across a stretched sleeve. Because no islands overlap, a new team kit is a texture swap rather than a new garment.",
+  "Seven builds share the page: red, blue and crimson jerseys plus several generic kits at $19. Listed in 2020, the jersey has been taken forty-seven times at $39. It fits sports visuals, locker room scenes, merchandise mockups and character dressing for a whole hockey crowd."
+ ],
+ "milk-chocolate-crushed-bar-2072249": [
+  "A crushed milk chocolate bar at 9,919 polygons, with the broken squares, the snapped edges and the crumbs that came off them. The 9,908 vertices sit just under the face count, which is normal for a shape cut into blocks. Every piece is its own body, so a break can be scattered or rearranged per shot.",
+  "No texture maps ship with it, which leaves the cocoa color and the matte snap to your own shaders. Chocolate lives or dies on the subsurface response, and that is a material decision rather than a map. The clean unwrap is still there, so a wrapper print can be added to a piece that needs one.",
+  "Five builds share the page: milk chocolate pieces, dark chocolate pieces, white chocolate squares and a mixed set at $29. It arrived in 2023 and has already sold forty-seven times at $19. The bar fits packaging visuals, confectionery stills, dessert scenes and advertising where something has to look broken open."
+ ],
+ "mri-scanner-philips-ingenia-1216883": [
+  "An MRI scanner at 106,815 polygons, with the bore, the sliding patient table, the control panel and the cable runs behind it. The 109,504 vertices go into the bore mouth and the table rails, which is where a clinical shot looks. The table is a separate part, so it can be shown slid out of the bore.",
+  "Twenty-one maps at 4096 x 4096 carry the molded shell, the display faces and the floor marks around the base. That is a generous set for one machine, and it is why the panel legends stay readable. This model carries the Editorial Uses Only licence, so it suits reporting and teaching rather than advertising.",
+  "Four builds share the page, including a generic full body tomography system and a diagnostic unit with a sliding platform. On sale since 2017, it has been taken forty-seven times at $59. The scanner fits hospital interiors, radiology explainers, medical training graphics and film sets that need a real machine."
+ ],
+ "orchid-3-896457": [
+  "An orchid at 23,628 polygons, with the arching stem, the open blooms and the thick aerial roots over the pot rim. The 23,737 vertices sit mostly in the petals, where a flower either curves or gives itself away. Each bloom is modeled rather than stamped from a card, which is what holds up at close range.",
+  "Six maps at 4096 x 4096 carry the petal veining, the glossy leaves and the mottled bark in the pot. Petals at that map size keep their translucency when a light sits behind them. Delivery is to the StemCell standard, so the plant keeps its scale and materials in any application.",
+  "Nothing else sits on the page, so the plant arrives as one asset. On the market since 2015, it has been bought forty-seven times at $29. It is used in interior visuals, hotel and spa scenes, product stills that need a living prop, and plant catalogs."
+ ],
+ "retro-design-corded-landline-phone-1387633": [
+  "A corded rotary phone at 11,838 polygons, with the finger dial, the handset cradle, the curled cord and the ringer housing. The 12,049 vertices go into the dial holes and the cord coil, the two parts that make the shape read as old. The handset is a separate object, so it can be lifted off the cradle.",
+  "Nine maps at 2048 x 2048 carry the glossy bakelite shell, the printed dial face and the brushed metal of the ring. Nine maps on an object this small means the dial numbers survive a close frame. The layout has no overlapping islands, so the shell can go from black to cream without a second mesh.",
+  "Seven builds share the page, all of them rotary phones: a table phone, a vintage dial phone and several classic variants. Available since 2019, the phone has been taken forty-seven times at $39. It fits period interiors, film sets, hotel and office scenes from another decade, and nostalgia stills."
+ ],
+ "retro-tv-collection-997657": [
+  "A collection of retro televisions, sold together rather than one cabinet at a time. A period room usually needs a set that matches, and a single television rarely covers the decade on screen. Each television is its own object, so a shop window or a repair bench can be filled from one purchase.",
+  "CheckMate Pro certification across a bundle means every cabinet in the set passes the same geometry checks. The sets share a scale, which is what lets them stand next to each other without looking odd. A collection like this is bought for the variety, so the differences between cabinets are the product.",
+  "A second collection shares the page at the same $89, which doubles the choice of cabinets. On sale since 2016, it has been bought forty-seven times at $89. It is used in period interiors, film and television sets, electronics shop scenes and nostalgia visuals."
+ ],
+ "steel-nail-1235674": [
+  "A steel nail at 4,425 polygons, with the ribbed shank, the flat struck head and the point ground at the other end. The 4,423 vertices sit two below the face count, which is what a closed cylinder with two caps gives you. Four thousand polygons on a nail sounds absurd until a macro camera sits over the head.",
+  "Four maps at 4096 x 4096 carry the galvanized sheen, the hammer marks on the head and the rust starting at the tip. That resolution is why a single nail can fill a frame instead of hiding in a pile. The unwrap has no overlapping islands, so a bright nail can be aged without new geometry.",
+  "No alternate builds sit on the page, so this is the whole product. Available since 2017, the nail has been taken forty-seven times at $19. It belongs in workshop and construction scenes, hardware stills, tool catalogs and close-up product renders."
+ ],
+ "swiss-army-classic-pen-knife-1237093": [
+  "A classic pocket knife at 19,968 polygons, with the blade, the scissors, the nail file, the tweezers and the toothpick in their slots. The 20,415 vertices are spent on the tool pivots, which is where a folding knife is read. Each tool is a separate part, so the knife can be shown open, half open or closed.",
+  "Six maps at 2048 x 2048 carry the ribbed red scales, the polished steel and the pin ends on the sides. Smaller maps are enough here because the object is small and its surfaces are plain metal and plastic. Non-overlapping islands mean the scales can take another color without touching the mesh.",
+  "A multipurpose build of the same knife shares the page at the same $49. On sale since 2017, it has been bought forty-seven times at $49. It fits camping and outdoor scenes, carry product stills, survival visuals and close-up hands holding a tool."
+ ],
+ "tuna-fish-1030599": [
+  "A tuna at 7,334 polygons, with the forked tail, the folded dorsal fins and the finlets along the tail stock. The 7,272 vertices follow the taper from head to tail, which is the whole gesture of a fast fish. At that weight a shoal costs almost nothing, which matters when the water needs filling.",
+  "Six maps at 4096 x 4096 carry the metallic flank, the dark back and the wet sheen along the gill plate. Delivery is to the StemCell standard, so the fish holds its scale and materials in any application.",
+  "Nine builds share the page, most of them rigged, including bluefin versions and a second pose at $79. Rigged builds for Maya and for Cinema 4D sit there too, at $99. On the market since 2016, it has been bought forty-seven times at $79. It is used in ocean and reef scenes, fishing industry visuals, seafood stills and documentary graphics."
+ ],
+ "white-envelope-922627": [
+  "A white envelope at 350 polygons, quads only, with the flap folded down and the slight lift where the paper overlaps. The 352 vertices are two more than the faces, which is all a flat paper shape ever needs. Nothing is cheaper to scatter across a desk, a doormat or a mail tray.",
+  "Four maps at 2048 x 2048 carry the paper grain, the faint shadow under the flap and the printed address area. The unwrap has no overlap, so a stamp, a logo or handwriting can be dropped straight on. Paper is read by its edge, and at this weight the edge is still a real line.",
+  "The page holds no other builds, so the envelope arrives on its own. Listed back in 2015, it has been bought forty-seven times at $5. It turns up in office scenes, mail and delivery visuals, stationery mockups and any shot that needs a letter."
+ ],
+ "beverage-napkin-white-1055104": [
+  "A beverage napkin at 2,804 polygons, quads only, with the folded quarters and the soft rise where the layers sit on each other. The 2,806 vertices sit two above the faces, the mark of a clean quad sheet with no loose edges. A napkin is usually a flat card in a scene, and this one has actual thickness.",
+  "Three maps at 4096 x 4096 carry the embossed tissue pattern, the soft edge and the slight translucency of the paper. That map size is what keeps the emboss visible when a glass sits on top of it. Islands never overlap, so the brown version on this page shares the same mesh.",
+  "Four builds sit here: a brown napkin, a realistic paper napkin and a disposable one. Available since 2016, the napkin has been taken forty-six times at $19. It fits bar and cafe scenes, tableware stills, product shots under a glass and restaurant visuals."
+ ],
+ "camera-lense-1350959": [
+  "A camera lens at 5,588 polygons, quads only, with the focus ring, the aperture scale, the mount bayonet and the front glass. The 6,135 vertices run above the face count because a barrel made of stacked rings needs them. Rings are separate parts, so the focus ring can be turned without touching the rest.",
+  "Seven maps at 4096 x 4096 carry the ribbed rubber, the printed scales and the coating color on the glass. Printed numbers are the point of a lens barrel, and at that map size they stay sharp even at the edge. Non-overlapping islands let the markings be swapped for another focal length without a remap.",
+  "The page holds a single build, with nothing else hidden behind it. Listed in 2018, the lens has been taken forty-six times at $19. It fits studio and photography scenes, product stills, camera bags on a desk and gear review visuals."
+ ],
+ "cartoon-strawberry-1583924": [
+  "A cartoon strawberry at 7,020 polygons, with the exaggerated heart shape, the thick stem and the leaves curling back from it. The 7,203 vertices sit above the face count, which a rounded stylized shape usually asks for when the camera comes close. The seeds are dimpled into the surface rather than painted, so the silhouette stays playful at the edge.",
+  "Four maps at 4096 x 4096 carry the flat red, the seed highlights and the slightly waxy leaf surface. A stylized object still needs real map resolution, because a cartoon reads at close range in titles. Delivery is to the StemCell standard, so scale and materials move with the file.",
+  "Nothing else sits on the page, so the fruit arrives as a single build. Available since 2020, the strawberry has been bought forty-six times at $29. It is used in children's graphics, packaging art, juice and dessert visuals, and friendly explainer animation."
+ ],
+ "christmas-hat-and-scarf-1358178": [
+  "A Christmas hat with a matching scarf at 86,500 polygons, with the folded brim, the pompom and the knitted ribs across both pieces. The 92,213 vertices go into the knit, because a woolen surface is geometry before it is a texture. That is a heavy budget for two garments, and it buys a close shot of the pompom.",
+  "Three maps at 4096 x 4096 carry the red wool, the white trim and the soft fiber at the edges. Non-overlapping islands mean the wool can turn green or blue without a second model. Delivery is to the StemCell standard, so the pair keeps its scale and materials between applications.",
+  "A second build pairs the hat with its scarf differently at $49. Listed in 2018, the set has been taken forty-six times at $39. It fits holiday visuals, winter scenes, character dressing and seasonal product stills that need something knitted in frame."
+ ],
+ "dental-mold-995607": [
+  "A dental mold at 22,481 polygons, quads only, with the full upper and lower arches and every crown shaped individually. The 22,549 vertices follow the cusps and the gum line, which is where a teaching model is judged. Each tooth is its own shape, so a single crown can be highlighted or pulled out of the arch.",
+  "Three maps at 4096 x 4096 carry the enamel, the gum tone and the stain between the teeth. Non-overlapping UVs let a tooth be colored for a diagram without touching the mesh. CheckMate Pro certification covers real scale, which matters when the mold is shown in a hand.",
+  "A second build is an educational replica of human teeth anatomy at the same $59. On sale since 2016, it has been bought forty-six times at $59. It serves dental training, patient explainers, orthodontic visuals, clinic displays and medical illustration where a photograph will not do."
+ ],
+ "fire-trucks-collection-953248": [
+  "A collection of fire trucks, bought as a fleet rather than as one engine at a time. A station scene needs more than a single pumper, and the mix is what makes it believable. Each truck is its own object, so a yard can be filled and then thinned down per shot.",
+  "CheckMate Pro certification across a bundle this size is the real work, because one bad mesh spoils the set. The trucks share a scale, which lets them line up on a forecourt without looking wrong. The family runs wide: seven numbered collections, several of them rigged, from $219 up to $599.",
+  "The bigger sets carry more vehicles, so the page scales with how much of a fleet you need. On sale since 2015, this collection has been bought forty-six times at $199. It is used in emergency scenes, city visuals, training graphics, news reconstructions and games with a fire station."
+ ],
+ "fly-rigged-for-maya-1114698": [
+  "A fly rigged for Maya, so the wings, the legs and the body are already set up to move. An insect is small on screen and unforgiving in motion, which is why the rig is the product here. Six legs and two wings mean a lot of controls, and none of them are yours to build.",
+  "The model is built to CheckMate specification, which covers clean geometry, sane naming and no stray objects. On a creature this size the rig and the silhouette matter more than a polygon count. Because the setup is finished, a landing, a crawl or a take-off can be posed straight away.",
+  "A build rigged for Cinema 4D shares the page at the same $99. Available since 2017, the fly has been bought forty-six times at $99. It is used in hygiene and pest control visuals, food safety graphics, horror and comedy shots, and nature explainers."
+ ],
+ "ford-police-interceptor-unit-2016-1112764": [
+  "A police interceptor sedan at 372,771 polygons, with the light bar, the push bumper, the cabin cage and the radio gear inside. The 404,559 vertices go into the light bar and the interior fittings, which is what a patrol car is recognized by. The equipment is separate from the body, so a unit can be stripped back to a plain car.",
+  "Seventeen maps at 4096 x 4096 and 2048 x 2048 carry the livery, the decals, the glass and the worn interior plastics. The build follows CheckMate specification, so geometry, naming and object structure are clean on import. This model carries the Editorial Uses Only licence, which keeps it to news, documentary and editorial work.",
+  "Seven builds share the page, including rigged units, a simplified version, a simple interior at $99 and an exterior only build at $89. Listed in 2017, the unit has been taken forty-six times at $129. It fits street and night city scenes, chase shots, crime reconstructions and games that need a patrol car."
+ ],
+ "glass-louvre-pyramid-1272188": [
+  "A glass pyramid at 2,253,541 polygons, with every frame member, node and glazing panel modeled as its own piece. The 2,316,364 vertices are what a lattice costs when the structure, not a texture, carries the pattern. At that density the frame holds up from a courtyard view and from a close pass along the glass.",
+  "Six maps at 4096 x 4096 carry the glass tint, the metal of the frame and the stone at the base. Most of the look comes from geometry here, so the maps mainly set the materials. Non-overlapping UVs keep the frame clean if the metal has to be darkened or aged.",
+  "There are no alternate builds, so the structure arrives as one model. Available since 2018, the pyramid has been bought forty-six times at $49. It is used in city visuals, architectural studies, travel graphics, museum presentations and establishing shots of a plaza."
+ ],
+ "gravity-feed-paint-gun-1485286": [
+  "A gravity feed spray gun at 15,566 polygons, with the cup on top, the trigger, the fan control and the air fitting at the base. The 15,647 vertices sit in the nozzle and the knurled adjusters, where a tool like this is read. The cup is a separate part, so it can be shown removed or filled.",
+  "Seven maps at 2048 x 2048 carry the anodized body, the brass nozzle and the paint dried around the cup thread. Dried paint is what makes a working tool believable, and it lives entirely in those maps. Islands do not overlap, so the body can be aged further without new geometry.",
+  "The page holds a single build, with no color variants behind it. Listed in 2019, the gun has been taken forty-six times at $29. It fits workshop and body shop scenes, paint and finishing visuals, tool catalogs and product stills."
+ ],
+ "house-blueprints-2-1036846": [
+  "A second sheet of house blueprints at 1,336 polygons, quads only, lying flat with one corner lifting away from the surface. The 1,338 vertices are two above the faces, which is all that a sheet with a raised corner needs. Lighter than a rolled set, this one is meant to lie on a table or across a floor.",
+  "One map at 4096 x 4096 holds the whole drawing: walls, dimensions, the title block and the pale blue ground. Everything here depends on that map, so the resolution is what makes the line work readable. CheckMate Lite certification covers the build: clean quads, sensible naming and nothing stray in the file.",
+  "Four builds share the page: two further blueprint sheets and a set of architectural drawings, each at $4. The unwrap has no overlap, so a plan of your own can sit on the sheet instead. On sale since 2016 at $4, it has been bought forty-six times, mostly for architect desks, construction scenes and real estate graphics."
+ ],
+ "luxembourg-tram-urbos-1307562": [
+  "A city tram at 261,519 polygons, with the articulated sections, the pantograph, the doors and the seats inside the saloon. The 287,658 vertices go into the window band and the roof gear, which is what a tram is seen as. The sections are separate, so the vehicle can be bent through a curve rather than held straight.",
+  "Sixteen maps at 4096 x 4096 and 2048 x 2048 carry the livery, the glazing, the floor and the seat fabric. Operator colors change city to city, and with no overlapping UVs that stays a texture job. CheckMate Pro certification keeps the tram at real scale beside a platform and a crowd.",
+  "Five builds share the page: generic city trams, rigged versions and a plain tram wagon at $49. Listed in 2018, the tram has been taken forty-six times at $149. It fits street and transit scenes, city visuals, transport planning graphics and games set in a European town."
+ ],
+ "opened-cigarettes-pack-marlboro-1026571": [
+  "An opened cigarette pack at 20,256 polygons, quads only, with the torn foil, the raised lid and individual cigarettes inside it. The 20,294 vertices sit just above the faces, which is what a box with a hinged lid costs. Each cigarette is its own object, so one can be taken out and held.",
+  "Eight maps at 4096 x 4096 carry the printed card, the foil sheen and the paper and filter of each cigarette. Print is the whole object here, and at that resolution the small type on the pack stays legible. The unwrap never overlaps, which is how the other brands on this page reuse one mesh.",
+  "Eight builds share the page, covering several cigarette brands and two cheaper packs at $19. On sale since 2016, it has been bought forty-six times at $29. It appears in film and television set dressing, period interiors, still life work and crime scene reconstructions."
+ ],
+ "panoramic-glass-elevator-1341398": [
+  "A panoramic glass elevator at 92,492 polygons, with the curved cab, the door panels, the handrail and the shaft frame behind it. The 95,157 vertices go into the glazing bars, which is the only structure a glass cab really has. Doors and cab are separate, so the lift can be shown standing open on a floor.",
+  "Four maps at 4096 x 4096 carry the glass tint, the brushed steel and the floor plate inside the cab. Most of this object is transparent, so the maps mainly set reflection and tint rather than pattern. Non-overlapping UVs mean a brass or a black steel finish is a material change.",
+  "There are no other builds on the page, so the lift arrives as one unit. Available since 2018, the elevator has been bought forty-six times at $49. It fits mall and hotel atriums, office towers, architectural visuals and any interior that needs vertical movement."
+ ],
+ "raised-fist-emoji-1549635": [
+  "A raised fist emoji at 549 polygons, with the curled fingers, the thumb across them and the flat wrist cut. The 537 vertices sit below the face count, which is all a simplified hand shape ever needs. This is a symbol rather than an anatomy study, so the silhouette does every bit of the work.",
+  "Five maps at 1024 x 1024 carry the flat skin tone and the soft shading between the fingers. Small maps are the right call here, because the object is flat colored and usually seen small. Delivery is to the StemCell standard, so it drops into another application at the same scale.",
+  "Four builds share the page: an approaching fist, an oncoming fist and an emoticon version. Released in 2020, the emoji has been taken forty-six times at $19. It is used in chat and social graphics, motion titles, app icons and explainer animation about messaging."
+ ],
+ "red-ant-rigged-for-maya-1099141": [
+  "A red ant rigged for Maya, with the legs, the antennae and the segmented body already set up to move. An ant is read by its gait, and a gait is rig work rather than modeling work. Six legs on an insect this small is a lot of controls to build from scratch.",
+  "The model is built to CheckMate specification, so the geometry is clean and nothing stray sits in the file. A rigged insect earns its price the first time a crawl has to follow a surface. Because the setup is finished, a column of ants can be posed instead of animated one joint at a time.",
+  "Four builds share the page: a black ant and versions rigged for Cinema 4D, each at $129. On sale since 2016, it has been bought forty-six times at $129. It is used in nature documentaries, pest control visuals, science explainers and close-up shots in advertising."
+ ],
+ "skateboarding-shoe-nike-sb-dunk-high-pro-blue-1381752": [
+  "A high top skate shoe at 73,500 polygons, with the padded collar, the stitched panels, the laces and the vulcanized sole. The 80,208 vertices go into the collar padding and the lace holes, which is where a shoe reads. This is a single shoe built as a real object, not a flat panel with a sole attached.",
+  "Twenty-six maps at 2048 x 2048 and 1024 x 1024 carry the suede, the leather side panel, the stitching and the rubber. A set that large on one shoe exists because every panel is a different material. This model carries the Editorial Uses Only licence, so it belongs in reviews and documentary work.",
+  "Four builds share the page in red, white and black, from $49 up. Listed in 2019, the shoe has been taken forty-six times at $69. It fits streetwear visuals, skate scenes, retail stills and character dressing where footwear is the subject."
+ ],
+ "smartphone-orange-generic-1428190": [
+  "A generic smartphone at 13,015 polygons, with the camera island, the side buttons, the speaker cuts and the curved screen edge. The 13,916 vertices go into those edges, where a phone either looks modern or looks like a brick. The screen is its own surface, so a user interface can be dropped on without touching the body.",
+  "Six maps at 4096 x 4096 and 1024 x 1024 carry the glass back, the metal frame and the camera glass. Phones are shot close, which is why the body gets the large maps and the small parts get the rest. Non-overlapping UVs are how the colored builds on this page reuse one body.",
+  "Five builds share the page in yellow, white, dark blue and coral, each at $39. Available since 2019, the phone has been taken forty-six times at $39. It fits app mockups, product stills, desk and cafe scenes, and any shot where a hand holds a screen."
+ ],
+ "subway-passenger-wagon-1271913": [
+  "A subway car at 223,275 polygons, modeled inside and out: the bench seats, the grab poles, the door leaves and the end gangway. The 244,794 vertices are in the interior, because a passenger wagon is almost always shot from within. Seats and poles are separate objects, so a carriage can be dressed and repopulated per shot.",
+  "Seventeen maps at 4096 x 4096 and 2048 x 2048 carry the floor, the seat fabric, the painted panels and the ad frames. Those ad frames are the reason for the big maps, since a poster has to be legible. The UVs do not overlap anywhere, so a transit authority livery can be applied cleanly.",
+  "Nothing else sits on the page, so the carriage arrives as a single model. On sale since 2018, it has been bought forty-six times at $79. It fits commuter scenes, film and television interiors, transport visuals and games set in a metro system."
+ ],
+ "wheat-collection-1597157": [
+  "A collection of wheat, sold as a set so that a field is not built from one repeated stalk. Grain reads as a crowd, and a crowd needs variation in height, bend and head shape. Each stalk is its own object, which is what lets a scatter look sown rather than stamped.",
+  "CheckMate Pro certification over a plant set means every stalk passes the same geometry checks as the rest. The stalks share a scale, so they can stand together in one field without looking mismatched. Variety is the whole point of a set like this, so the differences between stalks matter more than any single one.",
+  "A second wheat collection shares the page at $59 for anyone who needs more variation. Available since 2020, this set has been bought forty-six times at $29. It is used in farm and field visuals, harvest graphics, food packaging and rural scenes in games."
+ ],
+ "anti-tank-missile-fgm-148-javelin-set-1125497": [
+  "An anti-tank missile system at 199,825 polygons: the launch tube, the command unit, the sight, the tripod and the missile itself. The 205,622 vertices go into the sight block and the tube fittings, which carry all the detail a shoulder weapon shows. Every part of the set is separate, so the launcher can be shown shouldered or on its mount.",
+  "Eighteen maps at 4096 x 4096 carry the olive paint, the stencils, the rubber grips and the scuffs along the tube. Stencil text is the reason for maps that size, because a weapon is recognized by its markings. Non-overlapping UVs let the paint change for another army without a second model.",
+  "A rigged build of the same set shares the page at $69. On sale since 2017, it has been bought forty-five times at $59. It fits military scenes, defense explainers, news graphics and games that need infantry equipment on the ground."
+ ],
+ "beveled-edge-small-aseptic-carton-with-cap-1789852": [
+  "A small aseptic carton at 8,491 polygons, with the beveled top edges, the screw cap and the folded seam up the side. The 8,844 vertices go into the bevels and the cap threads, which is where a carton either folds right or not. The cap is separate, so it can be shown closed, loose or off entirely.",
+  "No texture maps ship with it, so the print, the gloss and the foil are yours to build. That suits packaging work, where the artwork is the whole job and a supplied label is in the way. The unwrap is clean and does not overlap, so a die line can be mapped straight onto the faces.",
+  "CheckMate Lite certification covers the build: clean geometry, sane naming and no stray objects. Listed in 2021, the carton has been taken forty-five times at $19. It fits packaging mockups, dairy and juice visuals, shelf scenes and product stills for a new label."
+ ],
+ "compact-disc-cd-1815148": [
+  "A compact disc at 1,440 polygons, quads only, with the center hub, the clamping ring and the thin edge of the disc. The 1,440 vertices match the face count exactly, which is what a clean ring of quads looks like. Flat, light and round: there is nothing here to spend polygons on beyond the profile.",
+  "No texture maps come with it, which leaves the rainbow sheen and the label print to your shaders. That is the right call on a disc, because the look is an iridescent material rather than a picture. The unwrap does not overlap, so a label design can be placed on the top face alone.",
+  "Eight builds share the page: recordable discs, a DVD, Blu-ray discs and a game disc, each at $9. Available since 2021, the disc has been taken forty-five times at $9. It fits desk and shelf scenes, retro media stills, music and software visuals, and game console shots."
+ ],
+ "dental-tweezer-1297012": [
+  "A pair of dental tweezers at 8,680 polygons, with the angled tips, the ribbed grip area and the sprung joint at the end. The 8,678 vertices sit two below the faces, which a long thin instrument needs no more than. The arms taper to real points, so a close shot of the tips still holds up.",
+  "Two maps at 4096 x 4096 carry the polished steel and the fine knurling across the grip. On an instrument this small the map resolution is what keeps the knurling from turning to mush. Delivery is to the StemCell standard, so the tool keeps its scale and materials on import.",
+  "The page holds a single build, with nothing else listed alongside it. On sale since 2018, the tweezers have been taken forty-five times at $19. It fits dental and clinical scenes, instrument trays, medical stills and training visuals that follow a procedure."
+ ],
+ "fuel-cell-stack-980430": [
+  "A fuel cell stack at 74,208 polygons, with the plate layers, the end flanges, the tie rods and the gas ports on the side. The 75,382 vertices are spent on the repeated plates, which is what makes a stack look like a stack. Every layer is its own piece, so the assembly can be opened up for a diagram.",
+  "Six maps at 4096 x 4096 carry the machined aluminum, the sealing gaskets and the labels on the end plate. Labels and warning marks are the readable part of hardware like this, so the map size matters. Non-overlapping UVs keep the plates clean if the metal has to be anodized another color.",
+  "A ten cell build of the same stack shares the page at $29. On sale since 2015, it has been bought forty-five times at $29. It fits energy and engineering visuals, hydrogen explainers, technical cutaways and trade show graphics for a power system."
+ ],
+ "laparoscopic-instruments-set-1264985": [
+  "A laparoscopic instrument set at 47,060 polygons: graspers, scissors, a trocar and the long shafts that carry them into the body. The 47,768 vertices sit in the jaws and the ratchet handles, the two places a surgical camera looks. Each instrument is a separate object, so a tray can be laid out or a single tool picked up.",
+  "Thirty-six maps at 2048 x 2048 carry the polished steel, the insulated shafts and the colored handle grips at the ends. A map per instrument is why each tool keeps its own markings instead of sharing one look. Non-overlapping UVs mean a hospital code can be printed along a shaft without new geometry.",
+  "A second instrument set sits alongside it on the page at $89. Listed in 2018, the set has been taken forty-five times at $89. It fits operating theater scenes, surgical training visuals, medical device catalogs and patient explainers before a procedure."
+ ],
+ "modern-paramedic-ambulance-with-interior-1463230": [
+  "A paramedic ambulance at 523,506 polygons, with the box body, the stretcher, the cabinets, the monitors and the cab up front. The 595,372 vertices are mostly behind the bulkhead, because the working interior is what this vehicle is for. Doors and equipment are separate parts, so the back can be opened and a stretcher pulled out.",
+  "Twelve maps at 4096 x 4096 and 2048 x 2048 carry the body livery, the reflective stripes, the cabinet faces and the floor. Reflective markings are the signature of an ambulance, and they live entirely in those maps. The UVs never overlap, so a national service livery can be applied without touching the mesh.",
+  "Ten builds share the page, most of them rigged, from generic vans at $99 up to paramedic units at $179. Listed in 2019, the ambulance has been taken forty-five times at $189. It fits emergency scenes, hospital approaches, news and training graphics, and games with a working interior."
+ ],
+ "newspaper-litter-3d-model-1027497": [
+  "Scattered newspaper litter at 20,670 polygons, quads only, with crumpled sheets, half folded pages and single leaves caught flat on the ground. The 20,748 vertices are in the creases, since a crumpled sheet is nothing but its folds. Each sheet is a separate object, so a gutter or a floor can be littered at any density.",
+  "Four maps at 4096 x 4096 carry the printed columns, the photographs and the gray of cheap newsprint. Print has to survive being read at an angle, which is why the pages get maps that large. Delivery is to the StemCell standard, so the sheets keep their scale between applications.",
+  "A smaller litter set shares the page at $29 for a lighter scatter. On sale since 2016, it has been bought forty-five times at $39. It fits alley and street scenes, post-event cleanup shots, dystopian visuals and set dressing for neglect."
+ ],
+ "office-workstation-set-1505891": [
+  "An office workstation set at 255,201 polygons: the monitors, the keyboard, the mouse, the tower and the cables between them. The 270,784 vertices go into the keys and the cable runs, the parts that make a desk look used. Every item is a separate object, so a desk can be built up or stripped back per shot.",
+  "Thirty-one maps at 4096 x 4096 carry the screen bezels, the key legends, the plastics and the braided cables. Key legends are the detail that gives a cheap desk away, so they get real resolution here. Delivery is to the StemCell standard, which keeps scale and materials steady across applications.",
+  "There are no alternate builds, so the whole set comes as one page. Available since 2020, the set has been bought forty-five times at $99. It fits office interiors, work from home scenes, tech product visuals and any shot that needs a desk working."
+ ],
+ "overload-distribution-power-transformer-1306764": [
+  "A distribution transformer at 561,832 polygons, with the radiator fins, the bushings, the conservator tank and the valves on the base. The 575,736 vertices are in the fin stacks, which is where a transformer gets its whole silhouette. Fins modeled as geometry are the reason this reads as equipment rather than as a painted box on a pad.",
+  "Six maps at 4096 x 4096 carry the gray enamel, the rust bleed at the welds and the warning plates. Warning plates are the one place a close camera lands, so they justify the map size. Non-overlapping UVs mean the paint can be aged for a rural substation without new geometry.",
+  "CheckMate Lite certification covers the build: clean geometry, sane naming and nothing stray in the file. On sale since 2018, it has been bought forty-five times at $99. It fits substation and industrial scenes, utility visuals, engineering explainers and infrastructure graphics for a power network."
+ ],
+ "penguin-1052555": [
+  "A penguin at 6,682 polygons, with the upright stance, the flippers held close and the webbed feet flat on the ground. The 6,848 vertices follow the chest curve, which is the line that makes a penguin look like a penguin. At that weight a colony can be filled without the scene slowing down.",
+  "Five maps at 4096 x 4096 carry the black back, the white front and the wet sheen along the flippers. Delivery is to the StemCell standard, so the bird keeps scale and materials when the file moves.",
+  "Nine builds share the page: walking and belly gliding poses, furred versions at $79 and rigged birds at $99. An emperor penguin nesting on an egg sits there too, at $89. On the market since 2016, it has been bought forty-five times at $69. It is used in wildlife documentaries, polar scenes, zoo and aquarium visuals, and children's graphics."
+ ],
+ "skee-ball-arcade-game-1289082": [
+  "A skee ball machine at 26,967 polygons, with the ball ramp, the ring targets, the scoreboard and the return chute. The 28,566 vertices go into the target rings and the cabinet trim, the parts an arcade is read by. The balls and the scoreboard are separate, so a game can be shown mid-play with a ball in the chute.",
+  "Eleven maps at 4000 x 4000 carry the painted cabinet, the printed scoring numbers and the worn lane surface. Wear along the lane is what makes an arcade cabinet look played rather than new out of the crate. Non-overlapping UVs let the cabinet art change for another venue without a second model.",
+  "There are no alternate builds here, so the machine arrives on its own. Listed in 2018, the machine has been taken forty-five times at $39. It fits arcade and bowling alley scenes, retro entertainment visuals, boardwalk shots and period film sets from the arcade era."
+ ],
+ "sydney-opera-house-performing-arts-centre-1492942": [
+  "A performing arts center on a harbor point at 283,370 polygons, with the shell roofs, the podium, the stairs and the glass walls between them. The 339,184 vertices follow the curve of each shell, where a flat facet would be obvious from the water. The shells are the whole building, so they are modeled rather than approximated with a smooth shader.",
+  "Sixty-seven maps at 4096 x 4096 and 2048 x 2048 carry the tiled shells, the concrete, the glass and the paving. Those tiles are the reason for a texture set that size, since the roof is read tile by tile. Non-overlapping UVs keep the shells clean when the light changes from midday to sunset.",
+  "Nothing else sits on the page, so the building arrives as a single model. Available since 2020, the landmark has been bought forty-five times at $179. It fits city visuals, travel graphics, establishing shots, architectural studies and aerial views of the harbor."
+ ],
+ "bull-rigged-for-cinema-4d-1244091": [
+  "A bull rigged for Cinema 4D, with the legs, the neck and the tail already set up for motion. A bull is read through weight, and weight is carried by the rig rather than by the mesh. The hump, the dewlap and the horns are what separate a bull from any other large animal.",
+  "The model is built to CheckMate specification, so geometry, naming and object structure are clean on import. On a rigged animal the controls matter more than the polygon count, because the pose is the shot. Because the setup is finished, a charge or a stand can be posed the hour the file lands.",
+  "A build rigged for Maya shares the page at the same $129. On sale since 2018, it has been bought forty-four times at $129. It is used in farm and ranch visuals, rodeo scenes, advertising with livestock and nature graphics about cattle."
+ ],
+ "chinese-dragon-head-2-1377921": [
+  "A Chinese dragon head at 17,496 polygons, with the mane, the horns, the whiskers and the open jaw full of teeth. The 18,315 vertices go into the mane and the brow ridges, the features that give the face its character. This is a head rather than a whole creature, which is what a gate, a prow or a mask needs.",
+  "Ten maps at 4096 x 4096 carry the scales, the gilded horn, the painted mane and the red of the mouth. Ten maps on a single head is generous, and it is why the scales hold at close range. The UV layout is mixed rather than strictly separated, which is normal on a symmetrical face.",
+  "No alternate builds sit on the page, so the head arrives as one piece. Listed in 2019, the head has been taken forty-four times at $39. It fits festival and temple scenes, lunar new year graphics, boat prows and ornamental architecture."
+ ],
+ "driving-iron-golf-club-1816321": [
+  "A driving iron at 5,041 polygons, a long iron with a thin face, a low profile head and a full length shaft. The 5,266 vertices are in the head, where the face, the sole and the hosel all meet. Four times the detail of a simple iron, and all of it spent where a club is photographed.",
+  "No texture maps ship with it, so the chrome, the grip rubber and the shaft finish are yours to set. On a club that is mostly polished metal, a reflection does more than any map would. The unwrap is clean, so a brand mark or a loft number can be added to the sole.",
+  "There are no other builds on the page, so the club comes on its own. Released in 2021, the club has been bought forty-four times at $24. It fits golf visuals, equipment stills, bag layouts and swing graphics where one club is the subject."
+ ],
+ "fire-ashes-and-embers-1001746": [
+  "A bed of ashes and embers at 78,755 polygons, with broken charcoal, collapsed logs and the fine ash between them. The 79,885 vertices are in the charcoal edges, because a burnt surface is read by how it cracks. Each lump is a separate object, so a fire pit can be arranged rather than dropped in whole.",
+  "Fourteen maps at 4096 x 4096 and 2048 x 2048 carry the ash, the charred bark and the glow inside the cracks. That glow is baked into the maps, which means a still render needs no light inside the pile. Non-overlapping UVs keep the cracks clean if the embers have to burn hotter or cooler.",
+  "A glowing charcoal build sits alongside it on the page at $79. On sale since 2016, it has been bought forty-four times at $79. It fits campfire and fireplace scenes, barbecue visuals, burnt ruins and any shot after the flame is out."
+ ],
+ "flying-dollar-bills-1545760": [
+  "Flying dollar bills at 11,160 polygons, quads only, each note bent and twisted as if it were caught mid-air. The 11,340 vertices are in those bends, since a flat bill would read as a card rather than paper. Every note is a separate object, so a shower of money can be thinned or thickened per frame.",
+  "Five maps at 2048 x 2048 carry the printed faces, the green back and the worn edge of each note. Some UV islands share space, which is normal when both sides of a bill use the same artwork. Delivery is to the StemCell standard, so the notes keep their scale between applications.",
+  "A second build of flying notes shares the page at the same $29. Available since 2020, the set has been taken forty-four times at $29. It is used in finance graphics, advertising, lottery and jackpot visuals, and title sequences about money."
+ ],
+ "garden-trigger-nozzle-1279923": [
+  "A garden trigger nozzle at 7,854 polygons, with the squeeze lever, the adjustable head, the hose collar and the rubber over the body. The 8,213 vertices sit in the lever pivot and the knurled head, the two parts that actually move. The head and the trigger are separate, so the nozzle can be shown squeezed or at rest.",
+  "Two maps at 4096 x 4096 carry the molded plastic, the soft grip and the water stains near the outlet. Water marks are what stop a garden tool looking like it came out of the box this morning. Non-overlapping UVs mean a green or an orange body is a texture change rather than a new mesh.",
+  "The page holds a single build, with no variants listed behind it. Listed in 2018, the nozzle has been taken forty-four times at $19. It fits garden and patio scenes, hardware stills, hose reel layouts and product renders for an outdoor range."
+ ],
+ "hawaiian-lei-3-1011303": [
+  "A flower lei at 176,478 polygons, quads only, with every bloom threaded onto the garland as its own piece of geometry. The 204,705 vertices climb above the face count because a ring of soft petals needs the extra points. This is a garland built flower by flower, which is why it drapes instead of sitting like a tube.",
+  "Three maps at 2048 x 2048 carry the petal color, the darker throat of each bloom and the cord beneath. Modest maps are enough here, since the detail lives in the geometry rather than in the texture. Non-overlapping UVs let the flowers be recolored for another lei without rebuilding the garland.",
+  "Three builds share the page, each a differently strung lei, all at $29. On sale since 2016, it has been bought forty-four times at $29. It fits luau and resort scenes, travel visuals, character dressing and product stills with a tropical theme."
+ ],
+ "heavy-duty-truck-with-trailer-1380931": [
+  "A heavy duty truck with its trailer at 722,879 polygons: chassis rails, air lines, mud flaps and the trailer bogie are all there. The 765,469 vertices are spread between the cab and the running gear, the two things a camera follows. Tractor and trailer are separate objects, so either can be used alone or coupled for a road shot.",
+  "Eight maps at 4096 x 4096 and 2048 x 2048 carry the cab paint, the aluminum tanks, the tires and the trailer panels. Grime along the lower body is in those maps, which is what keeps a working truck from looking showroom fresh. The UVs do not overlap, so a haulier name can go on the door and the trailer side.",
+  "Nothing else sits on the page, so the rig arrives as one purchase. Listed in 2019, the rig has been taken forty-four times at $189. It fits freight and highway scenes, logistics visuals, industrial yards and games with heavy traffic."
+ ],
+ "industrial-power-diesel-generator-generic-1311283": [
+  "A diesel generator at 77,957 polygons, with the canopy, the louvered vents, the control panel and the exhaust at the rear. The 84,726 vertices go into the vent louvers and the lifting frame, where this kind of unit shows its build. Panels are separate, so the canopy can be opened on the engine for a service shot.",
+  "Twenty-three maps at 2048 x 2048 and 1024 x 1024 carry the painted steel, the decals and the diesel staining. Smaller maps spread across many parts suit a machine that is mostly flat panels and labels. Non-overlapping UVs mean a rental company livery can be applied without touching the mesh.",
+  "A second build carries the livery of a known compressor maker at the same $49. On sale since 2018, it has been bought forty-four times at $49. It fits construction site and event power scenes, industrial yards, rental catalogs and engineering visuals about backup power."
+ ],
+ "laurus-nobilis-stem-1685633": [
+  "A bay laurel stem at 11,971 polygons, with the woody shoot and the stiff pointed leaves alternating along it. The 11,827 vertices sit under the face count, which is normal when leaves are modeled as thin solids. Each leaf is real geometry, so the stem holds its shape from any angle a kitchen camera takes.",
+  "No texture maps ship with it, which leaves the leaf gloss and the darker vein pattern to your shaders. On a plant that is mostly one green, a good leaf shader does more than a supplied map. Delivery is to the StemCell standard, so the stem arrives at the right scale in any application.",
+  "Nothing else sits on the page, so a single stem is the product. Released in 2021, the stem has been taken forty-four times at $19. It fits food and recipe visuals, kitchen scenes, herb packaging and still life work with spices."
+ ],
+ "liberty-bell-with-yoke-1423780": [
+  "A bell hung in its wooden yoke at 50,102 polygons, with the crack down the skirt, the clapper inside and the iron straps. The 50,111 vertices are nine more than the faces, a sign of a clean shell with few loose edges. The yoke is a separate piece, so the bell can be shown mounted or standing on its own.",
+  "Thirteen maps at 2048 x 2048 carry the cast bronze, the raised lettering, the wood grain and the iron banding. Lettering is the one thing a visitor photographs, so the map set is built around it. Non-overlapping UVs keep the bronze clean when the patina has to be pushed greener or darker.",
+  "There are no alternate builds, so the bell and its yoke come as one model. Listed in 2019, the bell has been taken forty-four times at $69. It fits museum and monument scenes, history graphics, patriotic visuals and establishing shots of a landmark."
+ ],
+ "morris-column-1469606": [
+  "A Morris column at 35,833 polygons, with the fluted base, the poster drum and the domed cap with its finial. The 38,714 vertices go into the cap and the moldings, where a street fixture like this is read. The poster surface is its own piece, so a playbill can be replaced without touching the ironwork.",
+  "Five maps at 4096 x 4096 carry the dark green paint, the gilded detail, the posters and the pavement grime. Posters are the whole purpose of the column, which is why they get the largest share of the maps. Non-overlapping UVs mean a new bill can be printed onto the drum in a texture pass.",
+  "Nothing else sits on the page, so the column arrives as a single build. Available since 2019, the column has been bought forty-four times at $49. It fits Paris street scenes, period city visuals, advertising graphics and set dressing for a boulevard."
+ ],
+ "oculus-rift-1011319": [
+  "A virtual reality headset at 6,125 polygons, with the fabric faceplate, the foam gasket, the head strap and the cable at the side. The 6,399 vertices sit in the strap joints and the nose cut, which is where a headset shows its shape. The strap is separate, so the headset can be shown worn or set down on a desk.",
+  "Four maps at 4096 x 4096 carry the woven front, the matte plastic and the foam around the eyes. Fabric is the hard part on this object, and at that resolution the weave stays visible. This model carries the Editorial Uses Only licence, which keeps it to reviews and reporting.",
+  "The page holds a single build, and nothing else is listed behind it. On sale since 2016, it has been bought forty-four times at $29. It fits tech review visuals, gaming setups, office and studio desks, and explainer graphics about headsets."
+ ],
+ "pantene-pro-v-shampoo-bottle-1394334": [
+  "A shampoo bottle at 3,887 polygons, with the flattened oval body, the shoulder taper and the flip cap on top. The 3,950 vertices are enough for a smooth plastic bottle, since the shape is one continuous surface. The cap is separate, so it can be shown open on a shelf or a bath edge.",
+  "Six maps at 4096 x 4096 carry the printed label, the translucent plastic and the gloss across the shoulder. Labels are the product on a bottle like this, which is why the maps are sized for close reading. Non-overlapping UVs let a different label be wrapped on without touching the bottle geometry.",
+  "A plain shampoo bottle shares the page at the same $19 for anyone who needs no print. Listed in 2019, the bottle has been taken forty-four times at $19. It fits bathroom scenes, cosmetics stills, retail shelves and packaging mockups for a hair care range."
+ ],
+ "putter-golf-club-921796": [
+  "A putter at 1,979 polygons, quads only, with the blade head, the alignment line on top and the flat sole. The 2,010 vertices are thirty-one more than the faces, which a closed quad head accounts for. A putter is read by its head shape, and this one keeps its edges without any extra weight.",
+  "Six maps at 2048 x 2048 carry the milled face, the painted alignment mark and the rubber of the grip. Six maps on a club this light is generous, and it shows in a close shot over the ball. Non-overlapping UVs mean a steel or a black finish can be set without a second model.",
+  "Three builds share the page, two of them generic putters, each at $19. On the market since 2015, it has been bought forty-four times at $19. It fits golf visuals, putting green shots, clubhouse scenes and equipment stills on a dark surface."
+ ],
+ "samsung-tv-remote-control-3d-model-1362779": [
+  "A television remote at 18,532 polygons, with every button raised, the directional pad in the middle and the battery door behind. The 19,985 vertices go into those buttons, because a remote is nothing but a field of small shapes. Buttons modeled as geometry are what make a close shot work when a thumb comes down on one.",
+  "Four maps at 4096 x 4096 carry the printed legends, the glossy shell and the matte of the keypad. Legends are the detail that dates a remote, and that resolution keeps them readable. Delivery is to the StemCell standard, so the remote keeps its scale in any application.",
+  "This model carries the Editorial Uses Only licence, which keeps it to reviews and reporting. Four builds share the page, including two generic remotes, from $24 to $29. Listed in 2019, it has been taken forty-four times at $24, mostly for living room scenes and tech visuals."
+ ],
+ "street-lamp-2-966885": [
+  "A street lamp at 65,946 polygons, with the fluted post, the scrolled bracket, the glazed lantern and the base plate bolts. The 66,253 vertices are in the scrollwork and the lantern frame, which is all this object really is. Detail that heavy on a lamp pays off when it stands close to camera on a pavement.",
+  "Ten maps at 2048 x 2048 carry the cast iron paint, the rust at the base and the glass of the lantern. Rust where the post meets the ground is what makes street furniture look installed rather than placed. Non-overlapping UVs let the ironwork be repainted black or green without a second model.",
+  "There are no alternate builds, so the lamp comes as one piece. On sale since 2015, it has been bought forty-four times at $19. It fits street and park scenes, period city visuals, promenade shots and any exterior that needs lighting after dark."
+ ],
+ "swim-goggles-907535": [
+  "Swim goggles at 2,948 polygons, with the two lens cups, the nose bridge between them and the split strap at the back. The 2,924 vertices sit just below the faces, which is what a pair of small shells needs. The strap is modeled rather than painted, so the goggles can hang from a hand or a hook.",
+  "Two maps at 4096 x 4096 carry the tinted lens, the silicone seal and the webbing of the strap. A tinted lens is a material more than a texture, so the maps mainly handle the seal and strap. Non-overlapping UVs mean a different strap color is a texture job rather than a new model.",
+  "A second pair of goggles shares the page at the same $29. On the market since 2015, it has been bought forty-four times at $29. It fits pool and competition scenes, sports stills, swimming visuals and character dressing at a poolside."
+ ],
+ "tape-measure-stanley-powerlock-897178": [
+  "A tape measure at 9,124 polygons, with the chromed case, the belt clip, the lock lever and the blade hook at the end. The 9,422 vertices are in the case curves and the hook, which is where this tool is recognized. The blade and the hook are separate, so the tape can be shown pulled out and locked.",
+  "Four maps at 4096 x 4096 carry the printed scale, the yellow blade, the case plating and the scuffs on it. The printed scale is the reason for the big maps, because a measurement has to be legible. Non-overlapping UVs mean the case can be repainted for another tool brand without new geometry.",
+  "CheckMate Lite certification covers the build: clean geometry, sensible naming and no stray objects. A second tape measure sits alongside it on the page at $29. On sale since 2015, it has been bought forty-four times at $29, mostly for workshop scenes and tool stills."
+ ],
+ "trash-truck-1168598": [
+  "A refuse truck at 505,936 polygons, with the packer body, the front loading arms, the hopper and the cab controls. The 535,133 vertices go into the arms and the body ribs, the parts that move and catch the light. The arms are separate, so a lift cycle can be shown with a bin off the ground.",
+  "Twenty-seven maps, the largest at 8192 x 8192, carry the municipal paint, the decals, the grime and the hydraulic steel. Grime is the point of maps that large, because a clean refuse truck looks wrong in any scene. The UVs never overlap, so a city department livery can be applied straight onto the body.",
+  "Four builds share the page, two of them rigged, including front loader versions at $149. Listed in 2017, the truck has been taken forty-four times at $129. It fits street and suburb scenes, municipal visuals, early morning shots and games with working traffic."
+ ],
+ "bathrobe-909691": [
+  "A bathrobe at 114,126 polygons, with the shawl collar, the tie belt, the patch pockets and the folds hanging from the shoulders. The 114,026 vertices sit just below the face count, which is normal for a garment simulated and then cleaned up. A robe is all cloth, so the folds have to be geometry rather than a bump in a map.",
+  "Four maps at 4096 x 4096 carry the toweling loops, the seams and the soft edge where the collar turns. Loop pile at that resolution is what stops a robe reading as flat fabric in a close shot. Non-overlapping UVs mean a white robe can become gray or navy in a texture pass.",
+  "A T-pose build shares the page at the same $29 for fitting onto a figure. On sale since 2015, it has been bought forty-three times at $29. It fits hotel and spa visuals, bathroom scenes, product stills for linens and character dressing at home."
+ ],
+ "bell-motorcycle-helmet-1463076": [
+  "A motorcycle helmet at 38,114 polygons, with the peak, the chin bar, the vent openings and the padded liner inside the shell. The 38,771 vertices go into the vents and the peak edge, the parts that give an off-road lid its profile. The shell and the visor are separate, so the helmet can be shown open or closed.",
+  "Sixteen maps at 4096 x 4096 carry the painted graphics, the matte liner and the mesh behind the vents. Graphics are what sells a helmet, which is why most of the texture budget sits on the shell. Non-overlapping UVs let a new livery be painted on without touching the geometry.",
+  "Seven builds share the page, including blue off-road lids and a motocross helmet with goggles. Listed in 2019, the helmet has been taken forty-three times at $49. It fits motorsport scenes, rider character work, gear stills and product renders for a helmet range."
+ ],
+ "childrens-books-1254082": [
+  "A stack of children's books at 13,640 polygons, with hard covers, rounded spines and pages that sit slightly unevenly. The 14,150 vertices are in the spine curves and the page block edges, where a book either sags or looks fake. Each book is its own object, so a shelf or a floor can be arranged from one purchase.",
+  "Fourteen maps at 4096 x 4096 carry the cover art, the printed spines and the paper edge of the page block. Cover art is the whole character of a stack like this, so each book gets its own map. Non-overlapping UVs mean your own cover can be placed on a book without a remap.",
+  "A stack of classic books shares the page at the same $39. On sale since 2018, it has been bought forty-three times at $39. It fits nursery and classroom scenes, library visuals, reading stills and set dressing for a child's room."
+ ],
+ "cn-tower-toronto-1518220": [
+  "A concrete communications tower at 40,468 polygons, with the tapered shaft, the pod, the observation deck and the antenna mast. The 46,876 vertices sit above the face count because the pod and the mast are rings on rings. The shape is read from kilometers away, so the budget goes into the silhouette rather than surface clutter.",
+  "Thirteen maps at 4096 x 4096 carry the weathered concrete, the glazing of the deck and the lit panels at night. Concrete streaking is what keeps a landmark from looking like a fresh render of a model kit. Delivery is to the StemCell standard, so the tower lands at real scale in any application.",
+  "Nothing else sits on the page, so the tower arrives as one model. Released in 2020, the tower has been bought forty-three times at $149. It fits skyline visuals, travel graphics, establishing shots and city studies that need a known landmark."
+ ],
+ "hockey-net-1232640": [
+  "A hockey goal at 8,580 polygons, with the tubular frame, the mesh bag, the skirt at the base and the pegs. The 8,771 vertices are in the frame bends and the net mouth, which is where a goal is recognized. The net is geometry rather than a cutout plane, so it holds up from behind the goal line in a replay.",
+  "Four maps at 4096 x 4096 and 2048 x 2048 carry the red frame paint, the white mesh and the ice scuffs. Scuffs along the posts are what make a goal look played rather than newly set up. Non-overlapping UVs let the frame color change for another league without a second model.",
+  "There are no alternate builds, so the goal comes as one piece. On sale since 2017, it has been bought forty-three times at $39. It fits rink and arena scenes, sports broadcast graphics, training visuals and games played on ice."
+ ],
+ "old-leather-boxing-glove-3d-model-900289": [
+  "An old leather boxing glove, scuffed and creased the way a glove is after years on a hook. The laced wrist, the padded knuckle and the thumb are each shaped rather than suggested by a texture. This is a single glove, which is what a wall, a locker or a still life usually calls for.",
+  "CheckMate Pro certification covers the proportions, so the glove sits right in a hand or on a peg. Age is the point of this model: the creases are built in rather than added later in a shader. A worn glove reads at close range, and that is where a prop like this earns its place.",
+  "No alternate builds sit on the page, so the glove arrives on its own. On the market since 2015, it has been bought forty-three times at $59. It fits gym and boxing scenes, sports nostalgia stills, period interiors and training visuals."
+ ],
+ "post-office-truck-simple-interior-1050265": [
+  "A post office delivery truck at 229,643 polygons, with the box body, the sliding door, the mirrors and a simple cab interior. The 235,614 vertices are in the cab and the body ribs, which is all a camera sees from the curb. The interior is deliberately simple, so the file stays light for a vehicle shot from outside.",
+  "Twenty-one maps at 4096 x 4096 and 2048 x 2048 carry the white panels, the postal decals, the glass and the tires. Decals are the identity of a mail truck, and they take the largest share of the maps. The UVs never overlap, so another postal service livery can be applied cleanly.",
+  "Three builds share the page: a rigged truck at $129 and a full interior build at $119. On sale since 2016, it has been bought forty-three times at $99. It fits suburban street scenes, delivery visuals, logistics graphics and games that need a delivery round."
+ ],
+ "red-chili-pepper-1312708": [
+  "A red chili pepper at 5,393 polygons, with the curled tip, the shoulder dents and the green calyx and stalk on top. The 5,405 vertices follow the twist of the pod, which is what stops a chili looking like a cone. At that weight a whole bowl of them costs nothing in a kitchen scene.",
+  "Four maps at 2048 x 2048 carry the waxy red skin, the dry calyx and the pale blemishes on the pod. Food is judged on the skin, and a glossy pepper needs the specular detail those maps provide. Non-overlapping UVs mean a green or a yellow pod is a texture swap.",
+  "Four builds share the page: a green chili, a mixed set and a yellow set at $29. Listed in 2018, the pepper has been taken forty-three times at $39. It fits recipe and menu visuals, market stills, packaging for hot sauce and kitchen scenes."
+ ],
+ "stealth-bomber-b-2-spirit-1127231": [
+  "A flying wing bomber at 1,589,064 polygons, with the sawtooth trailing edge, the inlets, the gear bays and the cockpit glazing. The 1,670,356 vertices follow one continuous blended surface, which is the hardest thing to model on this airframe. There are no straight lines to hide behind, so the mesh has to be dense across the whole wing.",
+  "Twenty-five maps at 4096 x 4096 carry the radar absorbent coating, the panel lines and the faint heat staining. That matte coating is the whole look of the aircraft, and it lives entirely in those maps. Non-overlapping UVs keep the surface unbroken, which matters when a single seam would show.",
+  "Nine builds share the page, most of them rigged, with animated takeoff and landing versions at $219. On sale since 2017, it has been bought forty-three times at $169. It fits military aviation scenes, documentary graphics, airshow shots and flight simulation games."
+ ],
+ "steel-rusted-rebar-1030917": [
+  "Rusted reinforcing bar at 69,896 polygons, with the ribbed pattern rolled into every length and the cut ends. The 68,352 vertices sit below the face count, which happens when ribs are built as repeating rings. Ribs as geometry are the reason this reads as rebar and not as a rusty pipe.",
+  "Three maps at 2048 x 2048 carry the orange rust, the darker scale and the concrete dust along the bars. Rust is the entire material here, so a modest map size covers it without waste. Non-overlapping UVs let the corrosion be pushed further for a ruin or pulled back for a site.",
+  "Nine builds share the page, from single pieces at $9 up to a messy pile at $29. CheckMate Lite covers the build: tidy geometry and naming you can actually read. On sale since 2016, it has been bought forty-three times at $19, mostly for construction and ruin scenes."
+ ],
+ "surgeon-dress-12-919939": [
+  "Surgical scrubs at 3,474 polygons, with the V neck, the short sleeves, the chest pocket and the loose drape at the hips. The 3,556 vertices sit above the faces, which a soft garment needs at the shoulders and cuffs. At that weight a theater full of staff can be dressed without any cost to the scene.",
+  "Three maps at 4096 x 4096 carry the cotton weave, the seams and the creases pressed into the fabric. Scrubs are plain by design, so the weave and the folds are all the texture has to sell. Delivery is to the StemCell standard, so the garment arrives at the right scale every time.",
+  "Nothing else sits on the page, so the scrubs come as a single build. On the market since 2015, it has been bought forty-three times at $29. It fits hospital and clinic scenes, medical training visuals, character dressing and documentary graphics."
+ ],
+ "torii-gate-itsukushima-shrine-1344019": [
+  "A torii gate at 79,578 polygons, with the curved upper lintel, the two main pillars, the braces and the base stones. The 80,915 vertices follow the sweep of the lintel, which is the line the whole structure is known for. Joinery and caps are modeled, so the gate holds up when the camera stands under it.",
+  "Twenty-one maps at 4096 x 4096 carry the vermilion paint, the weathered timber, the bronze caps and the waterline. A gate standing in water collects a tide mark, and that mark is what makes the render believable. Non-overlapping UVs let the paint be faded further without any change to the mesh.",
+  "CheckMate Lite certification is on the build, so the file imports without stray objects or odd naming. On sale since 2018, it has been bought forty-three times at $59. It fits shrine and coastal scenes, travel visuals, Japanese period work and establishing shots at sunset."
+ ],
+ "transparent-hospital-bassinet-1236286": [
+  "A hospital bassinet at 12,498 polygons, quads only, with the clear tub, the tilting cradle, the wheeled base and the shelf under it. The 12,996 vertices are in the tub corners and the frame joints, which is where a clinical object is read. The tub lifts out of the frame, so it can be shown separately or tilted on its cradle.",
+  "One map at 2048 x 2048 carries the chrome frame and the labels, because the tub itself is clear. Transparency is a material rather than a texture, so a single modest map is all this needs. Delivery is to the StemCell standard, which keeps the scale right beside a bed or a figure.",
+  "There are no alternate builds, so the bassinet arrives as one model. Listed in 2017, the bassinet has been taken forty-three times at $29. It fits maternity ward scenes, hospital visuals, medical equipment catalogs and film sets in a clinic."
+ ],
+ "vintage-magnifying-glass-1222097": [
+  "A vintage magnifying glass at 1,567 polygons, quads only, with the turned handle, the brass rim and the lens in it. The 1,596 vertices are all a handle and a ring need, which keeps this prop almost free in a scene. The lens is its own object, so a refraction material can be assigned without touching the frame.",
+  "Six maps at 4096 x 4096 carry the aged brass, the dark wood grain and the dust on the glass. Six large maps on a tiny object is deliberate, because this prop is usually held near the camera. Non-overlapping UVs let the brass be polished or tarnished in a texture pass.",
+  "Nothing else sits on the page, so the glass arrives on its own. On sale since 2017, it has been bought forty-three times at $19. It fits detective and library scenes, antique stills, puzzle graphics and any shot about looking closer."
+ ],
+ "yellow-thread-ball-1422370": [
+  "A ball of yellow thread at 40,250 polygons, quads only, with the winding built as real strands over the whole surface. The 40,257 vertices are seven more than the faces, which a closed wound shell accounts for. Strands as geometry are why the ball keeps its fuzz at the silhouette instead of going smooth at the rim.",
+  "Four maps at 4096 x 4096 and 1024 x 1024 carry the dyed fiber, the loose ends and the soft shading between turns. Thread is read at the edge, so the maps mainly add the fuzz the geometry cannot carry. Non-overlapping UVs mean another color of yarn is a texture change rather than a rewind.",
+  "There are no alternate builds, so the ball comes as a single model. Listed in 2019, the ball has been taken forty-three times at $29. It fits craft and knitting scenes, haberdashery stills, cozy interiors and product shots for yarn."
+ ],
+ "baroque-picture-frame-5-992374": [
+  "A baroque picture frame at 9,776 polygons, quads only, with the scrolled corners, the beaded inner lip and the carved outer edge. The vertex count matches the faces exactly at 9,776, which is the mark of a closed quad shell. Ornament this fine is geometry, because carving faked in a map falls apart at a raking angle.",
+  "Four maps at 4096 x 4096 carry the gold leaf, the darker recesses and the rubbed wear on the high points. Gilding is read by its wear, so the maps do the aging that the carving cannot. Non-overlapping UVs let the frame go from gold to painted white without a second model.",
+  "An ornate baroque frame shares the page at $12 for a lighter purchase. On sale since 2016, it has been bought forty-two times at $29. It fits gallery and salon interiors, period rooms, mirror mockups and still life work with a canvas."
+ ],
+ "beetroot-set-1218128": [
+  "A set of beetroot, with whole roots, their tapering tails and the cut stalk tops left on at the crown. Several roots rather than one means a crate or a market stall can be filled from a single file. A beet is read by its rough skin and the flat where it sat in the soil.",
+  "CheckMate Pro certification covers the proportions, which matters when the vegetables sit next to a hand. The roots are separate objects, so they can be piled, scattered or shown singly on a board. A set like this saves the worst part of food work: making the same vegetable look different five times.",
+  "No alternate builds sit on the page, so the whole set is one purchase. On sale since 2017, it has been bought forty-two times at $39. It fits market and kitchen scenes, recipe visuals, packaging for produce and still life photography."
+ ],
+ "black-sleeping-mask-1395877": [
+  "A sleeping mask at 2,487 polygons, quads only, with the contoured eye panels, the nose notch and the elastic strap behind. The 2,594 vertices sit above the faces, which a soft curved shell needs to stay smooth. The strap is modeled, so the mask can be shown worn, pushed up or lying folded on a nightstand.",
+  "Twelve maps at 4096 x 4096 and 2048 x 2048 carry the satin sheen, the stitching and the piping at the edge. Satin is all about the highlight, which is why an object this small still gets twelve maps. Non-overlapping UVs mean an eyelash print can be added without touching the shell.",
+  "Five builds share the page, including folded masks and eyelash patterns at $29. Listed in 2019, the mask has been taken forty-two times at $34. It fits bedroom and travel scenes, spa visuals, airline stills and character dressing for sleep."
+ ],
+ "bobsled-two-person-omega-1119337": [
+  "A two person bobsled at 22,224 polygons, with the cowl, the open cockpit, the push handles and the runners under the frame. The 21,664 vertices sit below the face count, which a smooth shell with few openings allows. The runners and the cowl are separate, so the sled can be shown on ice or on a stand.",
+  "One map at 4096 x 4096 carries the painted shell, the sponsor panels and the scratches along the sides. A single map works here because the sled is one continuous body with almost no small parts. Non-overlapping UVs mean a national livery can be printed on without new geometry.",
+  "Six builds share the page: two and four person sleds, generic and team liveries, each at $33. On sale since 2017, it has been bought forty-two times at $39. It fits winter sport scenes, broadcast graphics, olympic style visuals and games on a bobsled track."
  ]
 }

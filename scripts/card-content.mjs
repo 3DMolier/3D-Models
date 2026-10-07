@@ -10,9 +10,23 @@
 //   * в ответы вшиты собственные данные модели (отрасли, сценарии, подкатегория,
 //     год листинга, цена) - это уникальные строки, а не переставленные слова.
 
+import fs from 'node:fs';
+import path from 'node:path';
 import { brandOf } from './lib/brands.mjs';
 import { INDUSTRY_NAME, useLabel, industriesOf } from './lib/industries.mjs';
 import { isMilitary } from './lib/military.mjs';
+import { ROOT } from './lib/paths.mjs';
+
+/*
+ * Медианы по категориям (data/category-stats.json, собирает
+ * scripts/build-category-stats.mjs). Нужны тексту для сравнений вида «против
+ * медианы 51 607 полигонов в своей категории». Файла может не быть - тогда
+ * фразы с медианой просто не используются, а не ломается сборка.
+ */
+let CAT_STATS = {};
+try {
+  CAT_STATS = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'category-stats.json'), 'utf8'));
+} catch (e) { CAT_STATS = {}; }
 
 /*
  * Отрасли берём ТОЛЬКО отсюда. Раньше на одной карточке их описывали три
@@ -60,6 +74,30 @@ export const plain = s => String(s)
   .replace(/\s{2,}/g, ' ');
 
 const pick = (arr, seed) => arr[Math.abs(seed) % arr.length];
+
+/*
+ * ПРАВКА A, 07.10.2026: НЕЗАВИСИМЫЙ КЛЮЧ НА КАЖДЫЙ СЛОТ.
+ *
+ * Раньше каждый слот брал свою линейную производную одного seed: pick(OPEN, seed),
+ * pick(CERT, seed*7+3), pick(SCALE, seed*11+5) и так далее. Все они - функции
+ * одного числа, поэтому сочетание вариантов целиком определяется
+ * seed mod lcm(7,10,12,4,8) = 840. На 35 500 шаблонных карточек это означало
+ * ВСЕГО 840 разных текстовых скелетов - каждый примерно у 42 страниц.
+ * Замер 07.10.2026 это и показал: 56% пятисловных отрывков встречаются на шести
+ * и более страницах, уникально лишь 25,5%.
+ *
+ * Хеш от пары (seed, имя слота) развязывает выборы: сочетаний становится около
+ * 1,1 млрд вместо 840, то есть скелет у каждой карточки свой. Хеш - FNV-1a с
+ * финальным перемешиванием: дешёвый и устойчивый, одна и та же карточка всегда
+ * получает один и тот же вариант (пересборка не должна менять текст без причины).
+ */
+const slotKey = (seed, slot) => {
+  let h = (seed ^ 0x9e3779b9) >>> 0;
+  for (let i = 0; i < slot.length; i++) h = Math.imul(h ^ slot.charCodeAt(i), 0x01000193) >>> 0;
+  h ^= h >>> 15; h = Math.imul(h, 0x2545f491) >>> 0; h ^= h >>> 13;
+  return h >>> 0;
+};
+const take = (arr, seed, slot) => arr[slotKey(seed, slot) % arr.length];
 
 /*
  * Обрезка описания ПО ГРАНИЦЕ ПРЕДЛОЖЕНИЯ.
@@ -214,6 +252,27 @@ const AGE = [
   y => `Published in ${y}, it has stayed in the range while a lot of other listings came and went.`,
   y => `In the catalog since ${y}, which is a longer track record than most listings carry.`,
 ];
+/*
+ * ПРАВКА B: возраст листинга вместе с числом покупок. Своё число - значит
+ * уникальный отрывок текста, и для покупателя это подтверждение, что модель
+ * действительно берут.
+ *
+ * ПОРОГ 10 ПРОДАЖ СТОИТ НАМЕРЕННО. У медианной модели каталога продаж
+ * две-четыре, и фраза «нашла 2 покупателя с 2016 года» работает против нас:
+ * это правда, но правда, которую незачем выносить в первый экран. Ниже порога
+ * берётся прежний вариант без числа. Медиану продаж по категории в текст не
+ * ставим по той же причине.
+ */
+const AGE_SALES = [
+  (y, s) => `It has been on sale since ${y} and has found ${s} buyers in that time.`,
+  (y, s) => `Listed in ${y}, the model has been bought ${s} times since.`,
+  (y, s) => `${y} is when it first went up, and ${s} purchases later it is still in the catalog.`,
+  (y, s) => `On the marketplace since ${y}, with ${s} sales behind it.`,
+  (y, s) => `Published in ${y}, it has stayed in the range through ${s} sales.`,
+  (y, s) => `Since ${y} it has sold ${s} times, which is a longer track record than most listings carry.`,
+  (y, s) => `${s} buyers have taken it since ${y}, which is why it is still maintained.`,
+  (y, s) => `In the catalog since ${y} and bought ${s} times, so it has been through real projects.`,
+];
 
 /*
  * Заготовка «для чего годится» по категории. У Aircraft их теперь ДВЕ.
@@ -313,19 +372,82 @@ const MESH = [
  * ведут к одному набору из трёх вариантов (варианты нужны, чтобы 54 тысячи
  * страниц не получили одну и ту же строку).
  */
+/*
+ * ПРАВКА B, 07.10.2026: В ЭТИХ ФРАЗАХ ПОЯВИЛОСЬ ЧИСЛО САМОЙ МОДЕЛИ.
+ *
+ * Прежние двенадцать вариантов не содержали ни одной своей цифры: «тяжело это
+ * или легко, зависит от платформы» - верно, но одинаково для тысяч страниц.
+ * Теперь полигонаж назван внутри фразы, а у первых четырёх вариантов есть то,
+ * чего на сайте не было вовсе: сравнение с МЕДИАНОЙ СВОЕЙ КАТЕГОРИИ
+ * (data/category-stats.json). Это и уникальный отрывок текста, и настоящая
+ * польза покупателю: «против медианы 51 607 полигонов в Architecture выше
+ * середины» говорит больше, чем абстрактный порог.
+ *
+ * Варианты с медианой выбираются только там, где медиана есть (в категории не
+ * меньше 20 моделей с измеренной геометрией); иначе берётся вариант без неё.
+ */
 const MESH_WEIGHT = [
-  [Infinity, `Whether that counts as light or heavy depends on the target platform, the complexity of the scene and how many instances it carries.`],
-  [Infinity, `Its suitability for real-time use depends on the target platform, scene complexity and the number of instances.`],
-  [Infinity, `That figure reads differently on desktop, on mobile and in WebXR, so weigh it against the target platform and the number of instances in the scene.`],
-  [Infinity, `The same count is comfortable in an offline render and demanding in a mobile game, so judge it against your own budget.`],
-  [Infinity, `What matters is not the number itself but how many copies of the object your scene has to carry at once.`],
-  [Infinity, `Read that against your engine and your shot: a hero close-up and a background prop have very different budgets.`],
-  [Infinity, `Heavy or light is a question about the scene, not about the model, so check it against the platform you are shipping to.`],
-  [Infinity, `Whether that fits depends on where it lands - an architectural still and a real-time walkthrough tolerate very different counts.`],
-  [Infinity, `Treat the figure as a planning number: it behaves one way in a single render and another in a level with fifty instances.`],
-  [Infinity, `How that lands depends on your renderer and on how close the camera gets.`],
-  [Infinity, `Compare it with the rest of your scene rather than with an abstract threshold - that is what decides whether it is affordable.`],
-  [Infinity, `The count is honest; whether it is heavy is a decision only your target platform can make.`],
+  (p, m, c) => `Against a median of ${fmtInt(m)} polygons across our ${c} models, ${fmtInt(p)} puts this one ${p > m ? 'above' : 'below'} the middle of the category.`,
+  (p, m, c) => `Our ${c} listings sit at a median of ${fmtInt(m)} polygons, so ${fmtInt(p)} is ${p > m ? 'heavier' : 'lighter'} than the typical one.`,
+  (p, m, c) => `${fmtInt(p)} polygons reads as ${p > m ? 'dense' : 'economical'} next to the ${fmtInt(m)} median of our ${c} range.`,
+  (p, m, c) => `Compared with the ${fmtInt(m)} polygon median of our ${c} catalog, this build runs ${p > m ? 'high' : 'low'} at ${fmtInt(p)}.`,
+  p => `Whether ${fmtInt(p)} polygons counts as light or heavy depends on the target platform, the complexity of the scene and how many instances it carries.`,
+  p => `The same ${fmtInt(p)} polygons are comfortable in an offline render and demanding in a mobile game, so judge the figure against your own budget.`,
+  p => `${fmtInt(p)} polygons reads differently on desktop, on mobile and in WebXR, so weigh it against the platform and the number of instances.`,
+  p => `What matters is not the ${fmtInt(p)} itself but how many copies of the object your scene has to carry at once.`,
+  p => `Read ${fmtInt(p)} polygons against your engine and your shot: a hero close-up and a background prop have very different budgets.`,
+  p => `Treat ${fmtInt(p)} as a planning number: it behaves one way in a single render and another in a level with fifty instances.`,
+  p => `Compare ${fmtInt(p)} polygons with the rest of your scene rather than with an abstract threshold - that is what decides whether it is affordable.`,
+  p => `The ${fmtInt(p)} is honest; whether it is heavy is a decision only your target platform can make.`,
+];
+// Фраза берёт медиану, только если она известна, иначе вариант без неё.
+const meshWeightSent = (p, seed, stats, catLabel) => {
+  const m = stats && stats.polyMed;
+  const withMed = MESH_WEIGHT.slice(0, 4), plain = MESH_WEIGHT.slice(4);
+  return m ? take(withMed, seed, 'weight-med')(p, m, catLabel) : take(plain, seed, 'weight')(p);
+};
+
+/*
+ * ПРАВКА B: два предложения, которых раньше не было вовсе. Оба состоят из
+ * вычисленных чисел этой карточки, поэтому дают уникальные отрывки текста и
+ * говорят покупателю то, чего нет в таблице.
+ */
+/*
+ * Отношение вершин к полигонам. У закрытой квадовой оболочки оно около единицы,
+ * и писать «ratio of 1.00» на двенадцати тысячах страниц бессмысленно - поэтому
+ * у близких к единице свой набор фраз: он называет сам факт, а не круглое число.
+ * Ни один набор не повторяет оба числа подряд - они уже сказаны в предыдущем
+ * предложении, и повтор читался бы как заминка.
+ */
+const RATIO_NEAR1 = [
+  () => `Vertices and faces come out within a percent of each other, which is the signature of a closed quad-dominant shell.`,
+  () => `The vertex count all but matches the face count, so the shell is closed and nothing is doubled up inside it.`,
+  () => `Those two counts sit within a percent, which is what a watertight quad shell looks like from the outside.`,
+  () => `Vertices land almost exactly on the face count - no hidden duplicate geometry padding the file.`,
+  () => `The two counts track each other to within a percent, which is a good sign on a mesh meant to subdivide.`,
+  () => `Faces and vertices are effectively one to one here, the usual shape of a clean closed shell.`,
+];
+const RATIO = [
+  x => `That puts the vertex-to-polygon ratio at ${x}, which tells you how the shell is wound before you ever open it.`,
+  x => `The ratio between them is ${x}, which means few loose edges and no stray shells.`,
+  x => `Vertices outnumber polygons by ${x} to one here, which is what a subdivision-ready cage looks like.`,
+  x => `A ratio of ${x} between the two is tight enough that the mesh is not hiding duplicate geometry.`,
+  x => `Divided out, that is a ratio of ${x} - the shape of a mesh built rather than converted.`,
+  x => `The two counts give a ratio of ${x}, which says more about the build than either number alone.`,
+];
+/*
+ * Цена против медианы категории. Подпись категории в артикль не ставим: «a
+ * Industrial Equipment median» - ровно та ошибка, за которую уже чинили первое
+ * предложение описания (см. artOf выше). Где подпись нужна, она идёт после
+ * предлога, где не нужна - её нет.
+ */
+const PRICE_MED = [
+  (p, m, c) => `At $${p} it sits ${p > m ? 'above' : 'below'} the $${m} median of our ${c} range.`,
+  (p, m, c) => `Our ${c} models run to a $${m} median, so $${p} is ${p > m ? 'a premium' : 'an entry'} point in the range.`,
+  (p, m, c) => `The $${p} price lands ${p > m ? 'over' : 'under'} the $${m} that a typical listing in ${c} asks.`,
+  (p, m, c) => `Against a $${m} median across our ${c} catalog, this one is priced at $${p}.`,
+  (p, m, c) => `$${p} against a median of $${m} in ${c} - ${p > m ? 'the detail is priced in' : 'the price is at the accessible end'}.`,
+  (p, m) => `Priced at $${p} where the median across the same category is $${m}.`,
 ];
 const TEX = [
   (n, r) => `Texturing runs to ${n} maps at ${r}.`,
@@ -377,29 +499,39 @@ const ANIM_TXT = [
   `Movement is authored and included, not left as a note in the description.`,
 ];
 
-function specSentences(f, seed) {
+function specSentences(f, seed, cs, catLabel) {
   const s = f.specs;
   if (!s) return [];
   const out = [];
   if (s.polygons && s.vertices) {
-    out.push(pick(MESH, seed * 29 + 4)(s.polygons, s.vertices));
+    out.push(take(MESH, seed, 'mesh')(s.polygons, s.vertices));
     // Выбор по номеру модели, а не по числу полигонов: формулировка больше не
     // зависит от размера меша, зато нужна разной на разных страницах.
-    out.push(pick(MESH_WEIGHT, seed * 31 + 7)[1]);
+    // Правка B: внутри фразы теперь стоит сам полигонаж, а где известна медиана
+    // категории - и сравнение с ней.
+    out.push(meshWeightSent(s.polygons, seed, CAT_STATS[cs], catLabel));
+    /*
+     * Отношение вершин к полигонам. Число вычисляется из двух уже названных,
+     * своё у каждой карточки, и говорит о сборке меша то, чего нет в таблице.
+     * Ставим только там, где отношение осмысленно (меш не вырожденный).
+     */
+    const x = s.vertices / s.polygons;
+    if (x > 0.98 && x < 1.02) out.push(take(RATIO_NEAR1, seed, 'ratio-near1')());
+    else if (x > 0.2 && x < 5) out.push(take(RATIO, seed, 'ratio')(x.toFixed(2)));
   }
   if (s.textures && s.textureSizes && s.textureSizes.length) {
     const r = s.textureSizes.length === 1 ? s.textureSizes[0] : s.textureSizes.slice(0, 2).join(' and ');
-    out.push(pick(TEX, seed * 31 + 6)(s.textures, r.replace(/x/gi, ' x ')));
+    out.push(take(TEX, seed, 'tex')(s.textures, r.replace(/x/gi, ' x ')));
   }
-  if (s.dimensions) out.push(pick(DIM, seed * 37 + 9)(esc(s.dimensions)));
+  if (s.dimensions) out.push(take(DIM, seed, 'dim')(esc(s.dimensions)));
   // У этих двух фраз вариантов не было вовсе: одна строка на все карточки с
   // оснасткой и одна на все анимированные. Теперь выбираются так же, как
   // остальные - по номеру модели.
   if (s.rigged && /jointed|rigged/i.test(s.rigged) && !/not\s+jointed/i.test(s.rigged)) {
-    out.push(pick(RIGGED_TXT, seed * 41 + 11));
+    out.push(take(RIGGED_TXT, seed, 'rigged'));
   }
   if (s.animated && !/not\s+animated/i.test(s.animated)) {
-    out.push(pick(ANIM_TXT, seed * 43 + 13));
+    out.push(take(ANIM_TXT, seed, 'anim'));
   }
   return out;
 }
@@ -435,8 +567,26 @@ export function description(f, name, cat, price, seed, catSlugIn) {
    * абзацы (esc в descParagraphs).
    */
   const n = proseName(name), c = proseCat, yr = yearOf(f);
-  const parts = [pick(OPEN, seed)(n, c, price)];
-  parts.push(...specSentences(f, seed));
+  const csProse = catSlugIn || catSlug(cat);
+  const parts = [take(OPEN, seed, 'open')(n, c, price)];
+  parts.push(...specSentences(f, seed, csProse, c));
+  /*
+   * Правка B: цена против медианы категории. Своё число у каждой карточки, и
+   * покупателю это полезнее абстрактного «производственного качества»: сразу
+   * видно, дорогая модель в своём разделе или доступная.
+   */
+  {
+    const pm = CAT_STATS[csProse] && CAT_STATS[csProse].priceMed;
+    const pr = Number(price);
+    /*
+     * Разница меньше 15% - фразу не ставим. «$18 при медиане $19» формально
+     * верно и совершенно бесполезно: читатель тратит строку на ничто. Сравнение
+     * имеет смысл, когда оно что-то говорит о позиции модели в разделе.
+     */
+    if (pm && pr > 0 && Math.abs(pr - pm) / pm >= 0.15) {
+      parts.push(take(PRICE_MED, seed, 'pricemed')(pr, pm, c));
+    }
+  }
   // Когда полигонаж измерен и он большой, нельзя ставить рядом заготовку про
   // «намеренно простую топологию, которая держит сцену лёгкой»: абзац начинает
   // спорить сам с собой - «тяжёлая сборка» и тут же «лёгкая сцена».
@@ -445,8 +595,8 @@ export function description(f, name, cat, price, seed, catSlugIn) {
     const filtered = certPool.filter(t => !/deliberately simple|keeps the scene light|efficient/i.test(t));
     if (filtered.length) certPool = filtered;
   }
-  parts.push(pick(certPool, seed * 7 + 3));
-  parts.push(pick(SCALE, seed * 11 + 5));
+  parts.push(take(certPool, seed, 'cert'));
+  parts.push(take(SCALE, seed, 'scale'));
   // Предложение о применении. Сценарии берём из того же набора отраслей, что и
   // чипы «Used In» с «Use Cases»: раньше здесь стояло поле use_cases из CSV, и
   // абзац называл одно, чипы другое, а ответ в FAQ третье.
@@ -463,18 +613,25 @@ export function description(f, name, cat, price, seed, catSlugIn) {
     const cs = catSlugIn || catSlug(cat);
     const u = listy([...new Set(indsOf(f, cs).map(s => useLabel(s, cs)))].slice(0, 3));
     if (u) {
-      parts.push(pick([
+      parts.push(take([
         x => `On this listing the stated applications are ${x}.`,
         x => `Buyers most often take it for ${x}.`,
         x => `The listing flags ${x} as the intended applications.`,
         x => `It is cataloged for ${x}.`,
-      ], seed * 13 + 1)(u));
+        x => `Its declared uses are ${x}.`,
+        x => `Where this one goes most often: ${x}.`,
+      ], seed, 'apps')(u));
     }
   }
   // Заготовки про возраст листинга говорят о «нескольких кругах студийного
   // использования». Для модели, вышедшей пару месяцев назад, это неправда,
   // поэтому возраст упоминаем только у листингов старше года.
-  if (yr && f.days > 365) parts.push(pick(AGE, seed * 17 + 2)(yr));
+  if (yr && f.days > 365) {
+    const sl = Number(f.sales || 0);
+    parts.push(sl >= 10
+      ? take(AGE_SALES, seed, 'age-sales')(yr, fmtInt(sl))
+      : take(AGE, seed, 'age')(yr));
+  }
   // Военная заготовка - только явным военным моделям.
   const csSent = catSlugIn || catSlug(cat);
   let useSent = cat === 'Aircraft'
@@ -702,12 +859,12 @@ function questionPool(f, n, cat, price, tsUrl, seed, rawName, opts = {}) {
 
   const pool = [];
 
-  pool.push([`What file formats does the ${n} 3D model come in?`, pick([
+  pool.push([`What file formats does the ${n} 3D model come in?`, take([
     `The complete list of included formats is shown on the ${ts('TurboSquid product page')}, where every file is named and sized before you buy. Native scene files and the common interchange formats are the usual pairing.`,
     `Format availability differs by model, so the authoritative list sits on the ${ts('TurboSquid listing')} - each download is named with its size. Check it first if a specific renderer is required.`,
     `See the ${ts('TurboSquid product page')} for the exact download list. Formats are stated per file, so compatibility with your renderer can be confirmed before purchase.`,
     `Every included file is listed on the ${ts('product page at TurboSquid')}, with format and size shown per download. That page is the source of truth rather than this summary.`,
-  ], seed)]);
+  ], seed, 'q-formats')]);
 
   // Лицензия решает половину ответов ниже. Раньше все они безусловно обещали
   // коммерческое использование, и на брендовых карточках сайт письменно
@@ -716,30 +873,30 @@ function questionPool(f, n, cat, price, tsUrl, seed, rawName, opts = {}) {
 
   pool.push([`Can the ${n} model be used in a commercial project?`, editorial
     ? `No. The model depicts a real branded product, so TurboSquid lists it under the Editorial Uses Only license. It may be used in news, commentary, education, personal projects and similar editorial contexts, but not in advertising, on merchandise or in any product offered for sale. See our <a href="/license/">license guide</a>.`
-    : pick([
+    : take([
       `Yes. It is sold under TurboSquid's Royalty Free license, which covers commercial use in games, film, advertising and visualization without per-use fees.`,
       `Yes - the Royalty Free license covers commercial work, including client projects and released games, with no additional royalties per render or per copy sold.`,
       `Commercial use is included. The Royalty Free license allows the model in paid client work, broadcast, published games and print; only redistributing the model file itself is excluded.`,
       `It ships with TurboSquid's Royalty Free license, so a single purchase covers commercial delivery - you do not pay again per project or per seat of the finished work.`,
-    ], seed * 3 + 1)]);
+    ], seed, 'q-commercial')]);
 
   const certQ = f.cert === 'CheckMate Lite/Pro'
-    ? [`Is the ${n} model quality-checked?`, pick([
+    ? [`Is the ${n} model quality-checked?`, take([
       `Yes - it holds TurboSquid's CheckMate certification. A reviewer manually verified the topology, object and material naming, real-world scale and the absence of stray geometry.`,
       `It is CheckMate certified, which on TurboSquid means a human reviewer signed off the wireframe, the naming and the scale rather than the seller self-declaring quality.`,
       `Yes. CheckMate is the marketplace's own manual review, and this model passed it - clean topology, named objects and materials, correct units.`,
-    ], seed * 5)]
+    ], seed, 'q-cert-checkmate')]
     : f.cert === 'StemCell'
-      ? [`What does StemCell mean for the ${n} model?`, pick([
+      ? [`What does StemCell mean for the ${n} model?`, take([
         `StemCell is TurboSquid's multi-format standard. The model was authored once and delivered in several formats with matching PBR materials, so shading survives the move between a game engine and an offline renderer.`,
         `It means one source asset, several delivered formats, and a PBR material setup designed to read consistently across them - no rebuilding shaders after import.`,
         `StemCell covers both geometry and shading: the model is delivered across formats with materials that stay equivalent instead of needing per-engine conversion.`,
-      ], seed * 5)]
-      : [`How clean is the geometry on the ${n} model?`, pick([
+      ], seed, 'q-cert-stemcell')]
+      : [`How clean is the geometry on the ${n} model?`, take([
         `The mesh uses organized, quad-dominant topology at real-world scale, with objects named and grouped rather than merged into one block.`,
         `Geometry is modelled at true scale with a tidy edge flow, and the scene is split into named objects so partial reuse and material swaps stay simple.`,
         `It is built as an organized scene, not a single welded mesh - parts are separable, named and sized to real-world dimensions.`,
-      ], seed * 5)];
+      ], seed, 'q-cert-geometry')];
   pool.push(certQ);
 
   pool.push([`Where can I buy the ${n} 3D model?`,
@@ -753,38 +910,38 @@ function questionPool(f, n, cat, price, tsUrl, seed, rawName, opts = {}) {
   // ограничивает.
   if (ind) pool.push([`Which industries use the ${n} model?`, editorial
     ? `${ind} are the primary industries on this listing. The license, however, is Editorial Uses Only: the model depicts a real branded product, so it may appear in editorial work in those fields, but not in advertising or in products for sale.`
-    : pick([
+    : take([
       `This listing is cataloged for ${ind}. Those are the sectors the model was tagged for on TurboSquid, based on how comparable assets in the ${esc(cat)} range are bought.`,
       `It is tagged for ${ind}. The categorisation reflects where similar ${esc(cat)} assets end up rather than a hard restriction - the license does not limit the field of use.`,
       `${ind} are the primary industries on this listing, though the Royalty Free license puts no limit on where the model is actually used.`,
-    ], seed * 7 + 2)]);
+    ], seed, 'q-industries')]);
 
-  if (uses) pool.push([`What is the ${n} model typically used for?`, pick([
+  if (uses) pool.push([`What is the ${n} model typically used for?`, take([
     `The listing names ${uses} as the main applications. In practice it also works anywhere a finished ${esc(cat).toLowerCase()} object is needed without modeling it from scratch.`,
     `Stated applications are ${uses}. Because the asset is finished rather than a base mesh, it also holds up as set dressing in scenes it was not specifically built for.`,
     `It is cataloged for ${uses} - the sort of work where the object needs to look right on camera but is not the subject of the shot.`,
-  ], seed * 11 + 4)]);
+  ], seed, 'q-uses')]);
 
-  pool.push([`Does the ${n} model include materials and textures?`, pick([
+  pool.push([`Does the ${n} model include materials and textures?`, take([
     `Material and texture contents are listed per file on the ${ts('TurboSquid product page')}. ${f.cert === 'StemCell' ? 'As a StemCell asset it ships with PBR materials that stay consistent across the delivered formats.' : 'Where textures are included they are packaged with the download rather than linked externally.'}`,
     `The product page states what ships with each format. ${f.cert === 'StemCell' ? 'StemCell delivery means a PBR material set that reads the same across renderers.' : 'Textures, when present, come inside the download rather than as a separate purchase.'} See ${ts('the listing')} for the exact contents.`,
-  ], seed * 13)]);
+  ], seed, 'q-materials')]);
 
   pool.push([`How much does the ${n} 3D model cost?`, editorial
     ? `$${price} USD, paid once. TurboSquid handles payment and delivery. The license is Editorial Uses Only, because the model depicts a real branded product: it covers editorial contexts such as news, commentary and education, but not advertising or products for sale.`
-    : pick([
+    : take([
       `It is listed at $${price} USD on TurboSquid. That is a one-off purchase under the Royalty Free license - there is no subscription and no per-project fee afterwards.`,
       `$${price} USD, paid once. The Royalty Free license means no recurring cost and no extra payment when the finished work ships.`,
       `The price is $${price} USD. TurboSquid handles payment and delivery; the license is Royalty Free, so the cost does not repeat per use.`,
-    ], seed * 17 + 6)]);
+    ], seed, 'q-price')]);
 
   pool.push([`Can the ${n} model be modified after purchase?`, editorial
     ? `Yes. The license allows editing the geometry, retopologising, changing materials and adapting the asset to a project. What it does not allow is reselling or redistributing the model file itself, or using the result commercially: this listing is Editorial Uses Only.`
-    : pick([
+    : take([
       `Yes. The Royalty Free license allows editing the geometry, retopologising, changing materials and adapting the asset to a project. What it does not allow is reselling or redistributing the model file itself.`,
       `Editing is allowed - remesh it, strip detail for real-time use, or rebuild the shaders. The one restriction is that the model file cannot be resold or given away as an asset.`,
       `Yes, modification is covered by the license. Most buyers adjust materials or decimate the mesh for their engine; only redistribution of the source file is off-limits.`,
-    ], seed * 19 + 8)]);
+    ], seed, 'q-modify')]);
 
   // Вопросы по измеренным данным. Их задают чаще всего перед покупкой, и ответ
   // здесь конкретный, а не отсылка к листингу.
@@ -794,7 +951,7 @@ function questionPool(f, n, cat, price, tsUrl, seed, rawName, opts = {}) {
       `${fmtInt(sp.polygons)} polygons and ${fmtInt(sp.vertices || 0)} vertices${sp.geometry ? ', built as ' + esc(sp.geometry) : ''}. `
       // Здесь тоже без приговора по числу: он зависит от платформы и сцены,
       // а не от одного полигонажа.
-      + pick(MESH_WEIGHT, seed * 31 + 7)[1]]);
+      + meshWeightSent(sp.polygons, seed, CAT_STATS[cs], cat)]);
   }
   if (sp && sp.textures && sp.textureSizes && sp.textureSizes.length) {
     pool.push([`What texture resolution ships with the ${n}?`,

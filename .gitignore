@@ -78,3 +78,10 @@ preview/
 
 # Местный кеш времени файлов для карты дат изменения (data/page-lastmod.json в git, этот - нет)
 data/.page-lastmod-mtime.json
+
+# Рабочие файлы пакетной генерации описаний: состояние партии, брак, лог.
+# Это следы прогона, а не источник правды - в публикацию им незачем.
+tools/batch-writer/state.json
+tools/batch-writer/rejects.json
+tools/batch-writer/night-log.txt
+tools/batch-writer/sample-request.json
