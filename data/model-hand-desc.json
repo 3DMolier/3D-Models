@@ -12739,5 +12739,55 @@
   "A tandem rotor heavy transport helicopter, 601,751 polygons and 624,485 vertices. The build covers what makes this airframe unmistakable: both rotor heads with their linkages, the engine pylons, the long fuselage with its sponsons, the rear ramp, the landing gear and the cockpit with its instrument panel and seats.",
   "Thirty-three maps at 4096 resolution carry the olive paint, the stencilled markings, the rotor blade wear, the exhaust staining and the glass. Non-overlapping UVs mean a different unit's markings are a texture pass. CheckMate Pro certification means real-world scale and clean naming, which you need when the rotors have to turn and the ramp has to open on a rig.",
   "Eleven versions share the page: rigged builds including ones prepared for Maya and for Cinema 4D, an animated build, heavy helicopter and transport helicopter titles, and a Heavy Helicopter Cockpit build for interior shots. As a branded aircraft it carries an Editorial Uses Only licence, so plan it for editorial and visualization work: military and aviation visuals, news and documentary graphics, film and television, and games."
+ ],
+ "airport-area-1476865": [
+  "An airport apron and terminal frontage in one piece: 33,791 polygons cover the stands, taxiway markings, jet bridges and the service road behind them. Detail sits where an aerial shot needs it, so the layout reads from above without the cost of modeling a whole airport. The 43,918 vertices go into the kerbs, the ground furniture and the glazing that catches light along the terminal face.",
+  "Twenty-one maps at 8192 x 8192 and 4096 x 4096 carry the concrete, the painted lines and the rubber worn into the touchdown zone. Those resolutions earn their keep, because a camera moving low crosses a lot of ground in a single shot. The unwrap does not overlap, so repainting the markings for a different airport stays a texture job.",
+  "CheckMate Pro certification means real-world scale, and parked aircraft come out the right size against the stands. Available since 2019 and bought 51 times at $89. The piece suits aviation visuals, airport planning decks, simulation backdrops and establishing shots that need a believable airfield in the distance."
+ ],
+ "boeing-p-8-poseidon-military-aircraft-1518209": [
+  "A maritime patrol jet at 585,441 polygons, with the radome under the nose and the sensor fairings that separate it from the airliner it grew out of. The 604,299 vertices go into panel lines and the antenna farm along the spine rather than into structure nobody sees. Wing hardpoints and the weapons bay door are modeled, so a loaded configuration does not need extra parts.",
+  "Thirty-three maps at 4096 x 4096 carry the grey naval paint, the stencils and the exhaust staining behind the engines. Certification is CheckMate Lite, covering naming and organization rather than the full Pro checklist, so look through the file before committing it to a hero render.",
+  "The page holds two builds: the static airframe and a rigged one for gear, flaps and control surfaces. As a branded aircraft it ships under an Editorial Uses Only license, which keeps it to editorial and visualization work. Listed in 2020, sold 51 times at $179, mostly into defense visuals, documentary graphics and simulation."
+ ],
+ "civil-helicopter-eurocopter-ec-135-1157601": [
+  "A light twin helicopter at 272,214 polygons, built around the shrouded tail rotor, the skid gear and the clamshell rear doors. Inside, 305,005 vertices give the cabin glazing and the rotor head enough definition to survive a close pass of the camera. The doors read as separate panels, which matters when a shot needs them open on the ground.",
+  "The texture set runs to twelve maps at 4096 x 4096 and 2048 x 2048, covering the painted shell, the windows and the scorched metal around the engine deck. Because the unwrap never overlaps, the police and medical liveries on this page work from a single layout.",
+  "Six builds share the address: the civil machine, a rigged version, and police and medical variants in both static and rigged form. The brand on the airframe puts the whole family under an Editorial Uses Only license, so plan it for editorial and visualization work. On sale since 2017, with 51 copies sold at $149."
+ ],
+ "colorful-soap-bubbles-1255530": [
+  "Soap bubbles built as real spheres rather than sprites: 16,158 polygons, quads only, so the film stays smooth when a refractive shader bends light. With 16,212 vertices sitting almost one to one against the faces, the surface is welded and clean, and a subdivision pass adds nothing it has to fight.",
+  "Three maps at 2048 x 2048 carry the iridescent sheen that turns a clear sphere into something worth looking at. Delivery follows the StemCell standard, which holds scale, materials and naming steady wherever the file opens, so the look survives a move between applications.",
+  "A single bubble sits on the same page beside this cluster, for shots that need one highlight instead of a drift. Listed in 2018 and taken 51 times at $19. Typical work includes detergent and cosmetics packaging, bath and kitchen scenes, title sequences, and any frame that wants floating colour up front."
+ ],
+ "devil-emoji-1530698": [
+  "A devil emoji at 1,268 polygons, where the horns, the curled mouth and the heavy brow are modeled instead of painted. Face and vertex counts match exactly, which tells you nothing extra is hiding inside the shell. The silhouette holds in profile, so the icon still reads when it tumbles through a motion graphic.",
+  "Five maps at 1024 x 1024 do the job at this size: flat purple skin, darker horns and the soft shade under the brow. CheckMate Pro certification covers naming and real-world scale, so the piece drops into a layout without a resize pass first.",
+  "An angry variant with a harder expression sits beside it on the page, which gives a set rather than a single face. Released in 2020 and taken 51 times at $9. It turns up in motion graphics, chat and interface mockups, social campaigns and game menus."
+ ],
+ "football-boots-2-3d-model-1020555": [
+  "A pair of football boots at 85,768 polygons, with the stud pattern, the stitched upper and the laces built as geometry. That budget pays for itself in close-ups, where a flat printed sole gives itself away immediately. The 92,624 vertices keep the heel counter and the tongue crisp enough for a product shot.",
+  "Ten maps at 4096 x 4096 and 2048 x 2048 carry the synthetic upper, the sole plate and the areas where branding usually sits. The unwrap does not overlap, so recoloring the left boot never drags the right one along with it.",
+  "Four more builds sit on the page beside this pair: blue, green and red versions, plus a separate set of cleats. Taken 51 times since 2016 at $49. The usual destinations are sports visuals, character dressing, retail product shots and game assets."
+ ],
+ "ice-cream-pint-container-1072817": [
+  "An ice cream pint at 1,374 polygons, quads only, with the rolled lid rim and the slight taper that keeps a stack from looking machined. At that weight a whole freezer shelf of them costs nothing to render, and the lid lifts off as its own object.",
+  "Two maps at 4096 x 4096 carry the carton stock and the label area, and the unwrap is non-overlapping, so artwork drops onto the body without remapping anything. For a blank tub that is the entire point, because on this product the packaging is the product.",
+  "A red tub shares the page for scenes that need a second flavour on the shelf. Released in 2016, with 51 sales at $19. The container goes into packaging mockups, food photography, supermarket and freezer scenes, and advertising stills."
+ ],
+ "sack-2-990677": [
+  "A canvas sack at 16,902 polygons, quads only, slumped the way a half-filled sack really sits, with the mouth gathered and tied off. The folds are modeled rather than bumped, so the silhouette holds when a low light rakes across the cloth. Its 17,134 vertices keep the rope and the gathered neck readable at close range.",
+  "Four maps at 4096 x 4096 carry the weave, the dirt worked into the base and the fibre of the tie. Non-overlapping UVs mean coarse hessian and clean white sacking come out of one model with different maps.",
+  "A tied canvas version shares the page, which covers the moment before and after loading. Listed in 2015 and taken 51 times at $29. The sack earns a place in farm and market scenes, warehouse interiors, period sets and game environments."
+ ],
+ "two-post-car-lift-1031914": [
+  "A two post car lift at 86,916 polygons: the columns, the carriages, the swing arms and the rubber pads that take the sills. Those arms are separate objects, so they rotate out to match whatever vehicle parks between them. The 92,526 vertices hold the lock ladders and the hydraulic lines that give the frame its scale.",
+  "Five maps at 4096 x 4096 carry the painted steel, the warning labels and the grease worked into the carriages. CheckMate Pro certification puts the frame at true garage height, which decides whether a standing figure fits beneath a raised car.",
+  "A rigged version shares the page for raising and lowering on camera, while this build stays static. Taken 51 times since 2016 at $49. It goes into workshop and dealership visuals, automotive presentations, training material and games."
+ ],
+ "venus-flytrap-dionaea-muscipula-plant-1603274": [
+  "A Venus flytrap at 22,588 polygons, with hinged traps, marginal teeth and the low rosette of leaves the plant actually grows in. Each trap is its own object, so one can snap shut while the rest stay open. The 22,314 vertices sit mostly in the leaf edges, where the shape is decided.",
+  "Seven maps at 4096 x 4096 and 1024 x 1024 carry the red interior, the green outer leaf and the fine trigger hairs. StemCell delivery holds scale, materials and naming steady between applications, which removes a conversion pass before lighting.",
+  "Three more builds sit on the page: a dense phalanx of traps, a green plant and the deep red Red Dragon. Released in 2020 and taken 51 times at $49. The plant is used in botanical and science visuals, horror and fantasy dressing, and product shots for plant shops."
  ]
 }
