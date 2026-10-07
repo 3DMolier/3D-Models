@@ -39,6 +39,17 @@ const MODELS = {
 const MK = MODELS[arg('--model') || 'sonnet'];
 if (!MK) { console.error('модель: sonnet, haiku или opus'); process.exit(1); }
 
+/*
+ * ПРЕДОХРАНИТЕЛЬ ОТ СЛУЧАЙНОЙ ТРАТЫ. Решение основателя 07.10.2026: платить за
+ * API сверх подписки он не будет, описания пишутся ночными сменами. Эта линия
+ * остаётся готовой, но спящей, и включается только двумя сознательными
+ * действиями: ключ в окружении И флаг --confirm-cost в команде. Без флага скрипт
+ * печатает оценку и выходит, даже если ключ есть.
+ *
+ * Так сделано потому, что любой автоматический прогон (ночная задача, чужой
+ * скрипт, повтор команды из истории) не может потратить деньги молча.
+ */
+const CONFIRMED = process.argv.includes('--confirm-cost');
 const KEY = process.env.ANTHROPIC_API_KEY;
 if (!KEY && !DRY) {
   console.error('нет переменной ANTHROPIC_API_KEY - без неё партию не отправить');
@@ -79,6 +90,13 @@ console.log('оценка стоимости партии: $' + cost.toFixed(2) 
 if (DRY) {
   fs.writeFileSync(path.join(HERE, 'sample-request.json'), JSON.stringify(requests[0], null, 1));
   console.log('(--dry) партия не отправлена; пример запроса: tools/batch-writer/sample-request.json');
+  process.exit(0);
+}
+if (!CONFIRMED) {
+  console.log('');
+  console.log('ПАРТИЯ НЕ ОТПРАВЛЕНА: нет флага --confirm-cost.');
+  console.log('Это платный путь. Основатель решил 07.10.2026 не платить за API сверх подписки,');
+  console.log('описания пишутся ночными сменами. Если решение изменится - добавить --confirm-cost.');
   process.exit(0);
 }
 
