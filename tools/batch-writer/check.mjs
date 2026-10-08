@@ -137,7 +137,13 @@ export function checkCard(card, brief) {
 export function crossCardRepeats(cards, REPEAT_MAX = 2) {
   const seen = new Map();
   const kill = new Map();
-  const tech = /\d+ x \d+/;
+  /*
+   * Технические строки ТЗ прямо разрешает повторять: «maps at 4096 x 4096»,
+   * «x 4096 and 2048 x» - их не перепишешь, не исказив факт. 08.10.2026 узкий
+   * шаблон \d+ x \d+ ловил только середину такой строки, а её края («come from
+   * 6 maps at», «x 8192 and 4096 x») засчитывал как повтор - ложные отказы.
+   */
+  const tech = /\b(?:512|1024|1500|2048|4000|4096|8192)\b|\bmaps? at\b/;
   for (const c of cards) {
     const w = words((c.paragraphs || []).join(' ')).map(x => x.toLowerCase().replace(/[^a-z0-9]/g, ''));
     const mine = new Set();

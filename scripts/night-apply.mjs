@@ -64,6 +64,14 @@ function checkNumbers(slug, paragraphs) {
 }
 const stat = { ok: 0, skip: 0, badNum: 0, noDesc: 0, noKw: 0, schema: 0, meta: 0 };
 const doneAdd = [];
+/*
+ * Новые карточки отдельно от перезаписанных. 08.10.2026 понадобилось переписать
+ * 39 уже поставленных текстов (длинные предложения после ночной смены), и
+ * --force дописал бы их в done.txt и progress.json второй раз: счётчик «всего
+ * написано» вырос бы на 39 карточек, которых не прибавилось. Перезапись текста -
+ * не новая карточка, поэтому в счётчики идут только те, у кого метки не было.
+ */
+const doneNew = [];
 const problems = [];
 
 for (const it of items) {
@@ -71,7 +79,8 @@ for (const it of items) {
   const file = path.join(ROOT, 'models', slug, 'index.html');
   if (!fs.existsSync(file)) { problems.push(slug + ': нет файла'); stat.skip++; continue; }
   let html = fs.readFileSync(file, 'utf8');
-  if (!FORCE && html.includes(MARK)) { problems.push(slug + ': уже написано, пропускаю'); stat.skip++; continue; }
+  const wasWritten = html.includes(MARK);
+  if (!FORCE && wasWritten) { problems.push(slug + ': уже написано, пропускаю'); stat.skip++; continue; }
   if (!Array.isArray(paragraphs) || paragraphs.length < 2) { problems.push(slug + ': меньше двух абзацев'); stat.skip++; continue; }
   const numErr = checkNumbers(slug, paragraphs);
   if (numErr.length) { problems.push(slug + ': ' + numErr.join('; ')); stat.badNum++; continue; }
@@ -140,6 +149,7 @@ for (const it of items) {
 
   if (!DRY) fs.writeFileSync(file, html);
   doneAdd.push(slug);
+  if (!wasWritten) doneNew.push(slug);
   stat.ok++;
 }
 
@@ -175,12 +185,12 @@ if (!DRY && doneAdd.length) {
     + ', всего в файле: ' + Object.keys(hand).length);
 }
 
-if (!DRY && doneAdd.length) {
-  fs.appendFileSync(path.join(WORK, 'done.txt'), doneAdd.join('\n') + '\n');
+if (!DRY && doneNew.length) {
+  fs.appendFileSync(path.join(WORK, 'done.txt'), doneNew.join('\n') + '\n');
   const pf = path.join(WORK, 'progress.json');
   const p = fs.existsSync(pf) ? JSON.parse(fs.readFileSync(pf, 'utf8')) : { total: 0, nights: [] };
-  p.total += doneAdd.length;
-  p.nights.push({ at: new Date().toISOString(), written: doneAdd.length });
+  p.total += doneNew.length;
+  p.nights.push({ at: new Date().toISOString(), written: doneNew.length });
   if (p.nights.length > 60) p.nights = p.nights.slice(-60);
   fs.writeFileSync(pf, JSON.stringify(p, null, 1));
 }
