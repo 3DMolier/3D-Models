@@ -27,9 +27,26 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { POLICY } from './index-policy.mjs';
 
 const DAY = s => new Date(s).toISOString().slice(0, 10);
 const HASH_LEN = 12;
+
+/*
+ * Даты внутри страницы при сравнении не учитываем (с page_dates, см.
+ * lib/index-policy.mjs). Карточка сама несёт свою дату изменения - если бы она
+ * входила в хеш, страница считала бы себя изменённой из-за собственной даты.
+ */
+const DATE_MOD = /("dateModified"\s*:\s*")[^"]*(")/g;
+const DATE_UPD = /(Updated <time datetime=")[^"]*(">)[^<]*(<\/time>)/g;
+export const maskDates = s => s.replace(DATE_MOD, '$1$2').replace(DATE_UPD, '$1$2$3');
+export const hashBody = (body, masked = POLICY.page_dates) => crypto.createHash('sha1')
+  .update(masked ? maskDates(body.toString('utf8')) : body).digest('hex').slice(0, HASH_LEN);
+const humanDate = iso => new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+/* Вписать дату изменения в карточку - ту же, что уходит в <lastmod>. */
+function stampDate(s, iso) {
+  return s.replace(DATE_MOD, '$1' + iso + '$2').replace(DATE_UPD, '$1' + iso + '$2' + humanDate(iso) + '$3');
+}
 
 export function createLastmod(root, buildDate) {
   const store = path.join(root, 'data', 'page-lastmod.json');
@@ -77,22 +94,36 @@ export function createLastmod(root, buildDate) {
 
     let body;
     try { body = fs.readFileSync(file); } catch { stats.missing++; return today; }
-    const hash = crypto.createHash('sha1').update(body).digest('hex').slice(0, HASH_LEN);
+    const hash = hashBody(body);
     mtimes[key] = st.mtimeMs;
 
     if (prev && prev.hash === hash) {                 // перезаписали тем же содержимым
       stats.unchanged++;
-      return prev.date;
+      return stamp(file, key, body, prev.date);
     }
     if (!prev) {                                      // первая встреча - не врём «сегодня»
       const seed = fromMarkup(file) || DAY(st.mtime);
       map[key] = [seed, hash];
       stats.seeded++;
-      return seed;
+      return stamp(file, key, body, seed);
     }
     map[key] = [today, hash];                         // содержимое правда изменилось
     stats.changed++;
-    return today;
+    return stamp(file, key, body, today);
+  }
+
+  // Карточка показывает ту же дату, что карта сайта. Только при page_dates и
+  // только для /models/: у остальных страниц даты ставят свои генераторы.
+  function stamp(file, key, body, date) {
+    if (!POLICY.page_dates || !key.startsWith('models/')) return date;
+    const s = body.toString('utf8');
+    const t = stampDate(s, date);
+    if (t !== s) {
+      fs.writeFileSync(file, t);
+      mtimes[key] = fs.statSync(file).mtimeMs;
+      stats.stamped = (stats.stamped || 0) + 1;
+    }
+    return date;
   }
 
   /*

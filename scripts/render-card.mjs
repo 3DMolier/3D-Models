@@ -29,6 +29,7 @@ import {
 import { INDUSTRY_NAME, useLabel } from './lib/industries.mjs';
 
 import { ROOT } from './lib/paths.mjs';
+import { isIndexable, pageDate, NOINDEX_META } from './lib/index-policy.mjs';
 const SITE = 'https://3dmolierstudio.com';
 
 // ── обвязка: шапка и подвал из единственного источника ──────────────────────
@@ -56,6 +57,10 @@ const SITE_UPDATED = (() => {
 })();
 const SITE_UPDATED_HUMAN = new Date(SITE_UPDATED)
   .toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const humanDate = iso => new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+// Дата изменения конкретной страницы: из журнала lastmod, если включено
+// page_dates (см. lib/index-policy.mjs), иначе прежняя общая.
+const updatedOf = r => pageDate(r.slug) || SITE_UPDATED;
 
 /**
  * Запись -> объект `f`, который понимает card-content.mjs.
@@ -277,7 +282,7 @@ export function head(r, desc, schema) {
   const short = desc.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 155);
   return `<head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+${isIndexable(r) ? '' : NOINDEX_META + '\n'}<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(short)}">
 <meta property="og:type" content="product">
@@ -520,7 +525,7 @@ export function details(r, f, seed, faqHtml) {
      * страница теряла и указание автора, и даты - то, по чему поисковик судит
      * о свежести материала.
      */
-    + dateLine(f, SITE_UPDATED, SITE_UPDATED_HUMAN, r.date)
+    + dateLine(f, updatedOf(r), humanDate(updatedOf(r)), r.date)
     // Ролик стоит перед вопросами - как на живых страницах.
     + videoBlock(r)
     + faqHtml
@@ -788,7 +793,7 @@ export function renderCard(r) {
   const schema = [
     pageSchema({
       name: r.name, slug: r.slug, cat: r.category_name, catSlug: cs,
-      desc, hero: heroImg(r), f, site: SITE, updatedIso: SITE_UPDATED,
+      desc, hero: heroImg(r), f, site: SITE, updatedIso: updatedOf(r),
     }),
     productSchema({
       name: r.name, slug: r.slug, id: r.id, hero: heroImg(r), tsUrl: r.ts_url,

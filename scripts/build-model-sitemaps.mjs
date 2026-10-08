@@ -12,6 +12,7 @@ import path from 'node:path';
 
 import { ROOT } from './lib/paths.mjs';
 import { createLastmod } from './lib/lastmod.mjs';
+import { isNoindexHead } from './lib/index-policy.mjs';
 const M = path.join(ROOT, 'models');
 const SITE = 'https://3dmolierstudio.com';
 // По 10 000 - столько в картах на сайте, и именно эти шесть адресов отправлены
@@ -21,14 +22,19 @@ const PER_FILE = 10000;
 const HEAD = 400;
 const buf = Buffer.alloc(HEAD);
 
+// Заглушка-перенаправление или карточка под noindex (lib/index-policy.mjs):
+// карта сайта не должна звать на обход то, что сама страница просит не индексировать.
 function isStub(dir) {
   let fd;
   try { fd = fs.openSync(path.join(M, dir, 'index.html'), 'r'); } catch (e) { return true; }
   try {
     const n = fs.readSync(fd, buf, 0, HEAD, 0);
-    return /http-equiv="refresh"/.test(buf.slice(0, n).toString('utf8'));
+    const h = buf.slice(0, n).toString('utf8');
+    if (isNoindexHead(h)) { noindexed++; return 'noindex'; }
+    return /http-equiv="refresh"/.test(h);
   } finally { fs.closeSync(fd); }
 }
+let noindexed = 0;
 
 // lastmod - настоящая дата изменения страницы, а не дата сборки. Подробности и
 // причина - в scripts/lib/lastmod.mjs.
@@ -44,13 +50,18 @@ const priority = (() => {
 const slugs = [];
 let stubs = 0, inPriority = 0;
 for (const d of fs.readdirSync(M)) {
-  if (isStub(d)) { stubs++; continue; }
+  const stub = isStub(d);
+  // Карточку под noindex в карту не зовём, но дату изменения ей ведём: журнал
+  // вписывает её в саму страницу (dateModified, «Updated»). Без этого вызова
+  // 08.10.2026 у 23 812 таких карточек застряла чужая дата 2026-09-04.
+  if (stub === 'noindex') lm.lastmodFor('/models/' + d + '/');
+  if (stub) { stubs++; continue; }
   if (priority.has(d)) { inPriority++; continue; }
   slugs.push(d);
 }
 console.log('настоящих карточек: ' + (slugs.length + inPriority)
   + ', из них в приоритетной карте: ' + inPriority
-  + ', здесь: ' + slugs.length + ', перенаправлений пропущено: ' + stubs);
+  + ', здесь: ' + slugs.length + ', перенаправлений и noindex пропущено: ' + stubs + ' (noindex ' + noindexed + ')');
 
 const written = [];
 for (let i = 0; i < slugs.length; i += PER_FILE) {

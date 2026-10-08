@@ -1,0 +1,6 @@
+{
+ "enabled": true,
+ "min_sales": 3,
+ "page_dates": true,
+ "why": "noindex шаблонных карточек без спроса и дата изменения из журнала lastmod; включать только после одобрения примеров основателем, см. scripts/lib/index-policy.mjs"
+}

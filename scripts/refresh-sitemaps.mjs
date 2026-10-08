@@ -61,7 +61,14 @@ const TODAY = (() => {
   } catch (e) { /* файла нет - падать незачем */ }
   return new Date().toISOString().slice(0, 10);
 })();
-const LM = createLastmod(ROOT, TODAY);
+/*
+ * Журналу дат TODAY НЕ передаём. 08.10.2026: страница, изменившаяся в этом
+ * прогоне, получала дату из site-updated.json (2026-09-04) - то есть ложную
+ * дату в прошлом. Незаметно было, пока изменённые карточки до этого скрипта
+ * успевал отметить build-model-sitemaps.mjs; карточки под noindex он
+ * пропускает, и 23 812 страниц получили 4 сентября. Изменилась - значит сегодня.
+ */
+const LM = createLastmod(ROOT);
 const LIMIT = 50000;
 
 const dirsWithIndex = sub => fs.readdirSync(path.join(ROOT, sub), { withFileTypes: true })
@@ -101,7 +108,11 @@ const isNoindex = p => {
 // держались в выдаче именно поэтому, при том что на самой странице стоит canonical
 // на главную карточку. В сайтмапе должны быть только живые карточки.
 const allModelDirs = dirsWithIndex('models');
-const models = allModelDirs.filter(s => !isRedirectStub(path.join(ROOT, 'models', s, 'index.html')));
+// Карточки под noindex (scripts/lib/index-policy.mjs) в карту не зовём, как и заглушки.
+const models = allModelDirs.filter(s => {
+  const p = path.join(ROOT, 'models', s, 'index.html');
+  return !isRedirectStub(p) && !isNoindex(p);
+});
 const mEntries = models.map(s => urlEntry(`${BASE}/models/${s}/`, 'monthly', '0.7'));
 console.log(`Модели на диске: ${allModelDirs.length}, из них живых: ${models.length}`
   + `, заглушек не включено: ${allModelDirs.length - models.length}`);

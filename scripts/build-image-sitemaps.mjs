@@ -9,6 +9,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { ROOT } from './lib/paths.mjs';
+import { isNoindexHead } from './lib/index-policy.mjs';
 const M = path.join(ROOT, 'models');
 const SITE = 'https://3dmolierstudio.com';
 const HEAD = 32 * 1024;
@@ -33,6 +34,7 @@ for (const slug of fs.readdirSync(M)) {
   const h = head(slug);
   if (!h) continue;
   if (h.includes('http-equiv="refresh"')) { stubs++; continue; }   // заглушка
+  if (isNoindexHead(h)) { stubs++; continue; }                      // карточка под noindex
   const img = (h.match(/property="og:image" content="([^"]+)"/) || [])[1];
   if (!img) continue;
   const t = (h.match(/<title>([^<]*)</) || [])[1] || '';
