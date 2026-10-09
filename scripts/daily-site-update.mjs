@@ -125,11 +125,11 @@ run('build-collections.mjs');
 run('sync-counters.mjs');
 /*
  * Приоритетная карта идёт ДО общих: build-model-sitemaps читает её список и не
- * дублирует сильные адреса у себя. Блок «Hand-picked» на главной берёт тот же
- * список, поэтому следом. Зачем это всё - в шапке build-priority-sitemap.mjs.
+ * дублирует сильные адреса у себя. Зачем это всё - в шапке build-priority-sitemap.mjs.
+ * Блок «Hand-picked models» на главной (add-home-featured.mjs) снят 09.10.2026 по
+ * решению основателя: текстовый список ссылок, пользы от него не измерено.
  */
 run('build-priority-sitemap.mjs');
-run('add-home-featured.mjs');
 run('build-model-sitemaps.mjs');
 run('refresh-sitemaps.mjs');
 run('redirect-empty-pagination.mjs');
