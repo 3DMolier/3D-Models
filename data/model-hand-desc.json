@@ -18774,5 +18774,1005 @@
   "An open flip-top cigarette pack with the lid pulled back and several filters sticking up, ready to be offered. Opened Cigarettes Pack 2 is an all-quad build of 12,192 polygons over 12,194 vertices, with the hinged lid and individual cigarettes modeled. The tilted cigarettes at different heights look natural, the way a half-used pack sits on a bar counter.",
   "Cardboard print, filters and tobacco ends are covered by 8 maps at 4096 x 4096. It carries a CheckMate Lite rating, so check materials and naming before a macro shot.",
   "All four versions sell for $19: this unbranded pack plus Winston, Camel and the fictional Morley designs. The Winston and Camel packs show real brands, so they belong in editorial work like health documentaries. Period films, noir games and anti-smoking educators have bought the pack 21 times since 2016. Beside an overflowing ashtray in a smoky office, it sets the tone of a hardboiled detective story."
+ ],
+ "paper-plane-3-994303": [
+  "A folded paper dart with a sharp nose and creased wings, ready to glide across a classroom, an office or a child's bedroom. Paper Plane 3 spends only 492 quad polygons over 494 vertices, because flat sheets need crisp folds rather than dense curves. Thin wing edges catch a line of light along every crease, which is what sells the sheet as real paper.",
+  "Paper grain and soft shading along each fold live on 4 maps at 4096 x 4096, enough for a tight close-up. The dart's UV layout is mixed, so some islands share space, and TurboSquid graded the folded sheet at CheckMate Pro.",
+  "Two versions share the page at $19 each: this dart and a separate Paper Airplane folded to its own pattern. Teachers, office comedies and children's book illustrators make up most of the 21 buyers since the dart appeared in 2016. Caught mid-flight above a desk, the little plane hints at boredom in a meeting or at a new idea taking off."
+ ],
+ "pilatus-pc-12-ngx-business-plane-1681582": [
+  "A single-engine turboprop with a long slender fuselage, a T-tail and a wide cargo door, the classic Swiss business plane. The Pilatus PC-12 NGX Business Plane carries 254,888 polygons over 278,798 vertices, spent on the propeller, cowling and cabin windows. Landing gear legs and wheel fairings are built as real parts, so the aircraft holds up when parked close to camera.",
+  "Every UV island on the fuselage sits apart, leaving clean room for a fleet livery or a registration painted along the side. An inspector opened the turboprop file and certified it at CheckMate Pro after checking topology, naming and real-world scale.",
+  "The page carries 4 builds: this plane at $239, a rigged copy at $169, and an unbranded turboprop at $149. That unbranded Turboprop Business Aircraft also comes rigged at $199 for shots where control surfaces need to move. Since 2021 the turboprop has gone to 21 buyers in charter brochures and flight training, and its branding suits editorial work."
+ ],
+ "plastic-pallet-3d-model-921023": [
+  "A molded plastic pallet with a ribbed deck and hollow feet, the kind forklifts carry through warehouses, dairies and food plants. Plastic Pallet 3D Model puts 94,044 quad polygons over 92,296 vertices into the grid of ribs and the open runners underneath. Fork openings stay clear on every side, so a lift truck in your scene can slide in from any direction.",
+  "A slight sheen and faint molding marks on the plastic come from 3 maps at 4096 x 4096 painted for this deck. Non-overlapping UVs leave space to stencil a logo onto the pallet, and marketplace reviewers signed it off at CheckMate Pro.",
+  "Color choice is wide here, with blue, green, red and black non-slip decks plus an industry pallet, all at $19. A plainer pallet costs $9, which brings the page to 7 versions for anyone stocking a large loading bay. Logistics renders and factory games account for most of its 21 sales since 2015, usually stacked by the dozen near a dock door."
+ ],
+ "plastic-stadium-seat-open-1944779": [
+  "A molded plastic stadium seat with its flip-up bottom folded down, ready to fill the long rows of a grandstand. Plastic Stadium Seat Open uses 19,156 polygons over 9,737 vertices, a ratio showing faces triangulated across the curved shell. A contoured backrest and a rounded front lip are the details a crowd shot needs when hundreds of these repeat along a curved tier.",
+  "No texture maps ship with the seat, so club colors are a quick shader change rather than a repaint. Its unwrap keeps every island separate for a printed seat number, and TurboSquid gave the chair a CheckMate Pro grade.",
+  "All 4 versions cost $29: the open and the closed seat, each either freestanding or on a wall mount for terraces. Since its release in 2022, 21 buyers have used the seat to fill arenas, football grounds and concert venues. Instanced into the thousands, these chairs turn a bare concrete tier into a finished stand waiting for kickoff."
+ ],
+ "rat-977195": [
+  "A realistic brown rodent with a long scaly tail, rounded ears and fine whiskers, crouched low as if sniffing along a wall. The body follows the common city species, with a heavy rear and a pointed muzzle that reads well in silhouette. Small pink paws grip the ground with spread toes, so the creature sits naturally on a pipe, a ledge or a floor.",
+  "Fur, the bare skin on ears and feet, and the ringed tail carry most of the realism once lit. TurboSquid certified the rodent at CheckMate Pro, which means its topology and file structure passed a manual review by staff.",
+  "Buyers choose between 2 versions: the static Rat at $129 or a rigged rodent at $149 that can scurry and turn. Since 2015 horror games, plague dramas and pest control trainers have made up most of its 21 buyers. Placed beside a dropped crust in a subway tunnel, the rat tells a viewer exactly how clean the place really is."
+ ],
+ "red-carpet-fence-1472424": [
+  "A red rope barrier with polished posts and heavy round bases, used to hold back crowds at premieres and gala entrances. Red Carpet Fence keeps the build to 7,824 polygons over 7,977 vertices, so a long line of stanchions costs very little. Between the posts the velvet rope sags in a soft curve, which makes it look hung by hand rather than drawn straight.",
+  "Brass, plush fabric and the base finish rely on 5 maps at 4096 x 4096, sharp enough for a photographer's close frame. UV shells on each stanchion are flattened with no overlap, and the barrier carries TurboSquid's CheckMate Pro mark.",
+  "Just one version exists, priced at $19, and it is simple to duplicate along both sides of a long carpet. Since 2019 award show designers, museum planners and hotel lobby stagers have bought the barrier 21 times. Lined up under camera flashes, the posts mark the border between the celebrity path and the waiting fans behind them."
+ ],
+ "retail-store-display-shelving-1413058": [
+  "An empty supermarket gondola with adjustable shelves on a slotted back panel, waiting to be stocked with cereal, cans and bottles. Retail Store Display Shelving is light at 13,884 polygons over 14,075 vertices, so whole aisles can be built from repeats. Shelf lips and price rails along the front edges give the unit the look of real fixtures in a chain store.",
+  "Painted metal and the shelf finish are covered by 3 maps at 4096 x 4096, with scuffs where carts bump the base. Separate UV islands let price labels go onto each rail, and the gondola passed marketplace inspection at CheckMate Pro level.",
+  "The shelving comes in 2 versions: this $19 gondola and a simpler Shelves Store unit at $9 for background aisles. Retail planners, packaging designers and game level artists account for the 21 sales this shelving has made since 2019. Filled with boxes and jars, the unit becomes the backdrop for any shopping scene, from a corner shop to a hypermarket."
+ ],
+ "rose-3-yellow-3d-model-1031872": [
+  "A long-stemmed rose with layered petals, sharp thorns and serrated leaves, cut as if for a vase or a bridal bouquet. Rose 3 3D Model spends 28,745 polygons over 28,746 vertices, most of them on the curled petals of the open bloom. Each petal has real thickness at the edge, so strong backlight never exposes paper-thin shells inside the flower head.",
+  "Petal veining, leaf gloss and the deep color of the bloom sit on 10 maps at 4096 x 4096 for macro shots. As a StemCell flower it ships in files tuned to render alike across major engines, with petals and leaves unwrapped apart.",
+  "The page groups 7 versions, with Rose 3 in default and white at $39 and Rose 2 in yellow or white at $29. Single stems with leaves, plain or white, also cost $39 and suit tall slim vases on a dinner table. Florists, wedding stationers and Valentine animators make up the 21 buyers who picked this bloom since 2016."
+ ],
+ "sa-10-grumble-or-s-300-russian-missile-system-1251981": [
+  "A truck-mounted surface-to-air launcher with tall missile canisters raised on a hydraulic arm, the core of a long-range air defense battery. The SA-10 Grumble or S-300 Russian Missile System is heavy at 565,717 polygons over 624,486 vertices across wheels, cab and launcher. Hatches, ladders and hydraulic rams are modeled in full, so the vehicle survives a slow walkaround by the camera.",
+  "Camouflage paint, dust and stenciled markings are spread over 21 maps at 4096 x 4096 and 2048 x 2048. The launcher's unwrap is free of overlaps, and TurboSquid granted it a CheckMate Pro certificate after manual inspection.",
+  "Static builds of this launcher and of the S-300 Russian SAM System cost $149 each on the page. Rigged copies run $169 and $179, letting the canisters rise from travel position to launch angle in animation. Since 2018 it has reached 21 buyers in defense simulators and documentaries, often parked on a forest edge before an alert."
+ ],
+ "safety-glasses-2-pyramex-957042": [
+  "Wraparound safety glasses with a curved lens, soft nose pads and thin temples, the standard eye protection on a workshop floor. Safety Glasses 2 Pyramex comes in at 6,438 polygons over 6,448 vertices, enough for the lens curve and the hinge joints. The lens wraps past the brow line, so side protection stays visible even when a character is seen in profile.",
+  "Lens tint, frame plastic and the printed logo are handled by 6 maps at 2048 x 2048 in this pair. Each UV shell of the eyewear has its own space, and the glasses passed TurboSquid's CheckMate Pro review.",
+  "An open pair costs $29, while a folded pair at $19 suits desk tops, lockers and tool bags. Since 2015 safety trainers, construction crews and lab scene builders have bought these goggles 21 times. Because the frame copies a real Pyramex product, keep it to editorial and training material such as manuals and articles. Hung on a pegboard next to ear defenders, they tell a viewer the shop takes its rules seriously."
+ ],
+ "sailing-yacht-1048268": [
+  "A cruising sailboat with a tall mast, furled sails and a teak deck, built for marina shots and open water passages alike. Sailing Yacht is dense at 774,423 polygons over 794,356 vertices, much of the budget going into winches, rigging and deck hardware. Cleats, stanchions and the cockpit wheel are real objects, and fenders hang over the topsides ready for a berth.",
+  "Hull paint, wood and sail cloth draw on 25 maps at 4096 x 4096 and 4000 x 4000 in total. The boat's UVs are spread without overlap, and its CheckMate Pro rating comes from a reviewer who opened every part.",
+  "The yacht family holds 3 versions at $79 each: this boat, a second hull named Sailing Yacht 2 and a two-masted ketch. Marine brochure designers, holiday filmmakers and coastal real estate artists account for its 21 sales since 2016. Moored at a pontoon at sunset with the sails tied down, it gives a waterfront its sense of quiet wealth."
+ ],
+ "samsung-soundbar-1232871": [
+  "A slim home theater soundbar with a perforated grille and a low cabinet that sits under a wall-mounted television. The Samsung Soundbar uses 34,729 polygons over 36,183 vertices, with much of that spent on the grille holes and rounded ends. Its narrow front edge catches a thin line of light, the cue that makes the bar read as premium audio gear.",
+  "Grille fabric, satin plastic and the small status display come from 5 maps at 4096 x 4096 and 1024 x 1024. UV islands on the speaker bar are separated cleanly, and TurboSquid granted the file its CheckMate Pro rating.",
+  "Only one soundbar version is offered, at $29, and 21 buyers have picked it up since 2017. Interior designers place it on media consoles, while electronics reviewers drop it into comparison graphics and setup guides. Since it is a branded product, keep the bar to editorial uses such as reviews, news pieces and buying guides. Set below a big screen in a living room render, it completes the movie night setup without extra props."
+ ],
+ "school-lockers-1423769": [
+  "A bank of tall metal school lockers with vented doors, latch handles and number plates, lined up along a hallway wall. School Lockers runs to 186,370 polygons over 192,240 vertices, spent on the louvers, hinges and recessed handles. Each door sits in its own frame, so swinging one open for a scene is a simple pivot rather than a rebuild.",
+  "Painted steel, scuffs and small labels come through 7 maps at 2048 x 2048 across the whole row. Clean UVs let stickers or graffiti be added door by door, and the row is certified to CheckMate Pro by TurboSquid.",
+  "The row is sold as one version at $29 and has been bought 21 times since its 2019 release. Teen dramas, campus games and gym changing rooms are where these steel cabinets end up most often. A hallway lined with them says high school before a single student walks into the shot. Dented and tagged, the same row also fits an abandoned school in a horror game."
+ ],
+ "silicone-sealant-tube-1290134": [
+  "A cartridge of silicone sealant with a cut nozzle and a plunger end, ready to load into a caulking gun. Silicone Sealant Tube is light at 4,209 polygons over 4,258 vertices, enough for the threaded nozzle collar and ribbed base. The tapered tip is cut at an angle, just as a builder trims it before running a bead along a bathtub.",
+  "Label print and the plastic finish of the cartridge sit on 2 maps at 4096 x 4096 for close shots. UVs on the cartridge do not overlap, so a hardware store brand can replace the wrap, and it meets the CheckMate Pro bar.",
+  "Both cartridge versions cost $29: this sealant tube and a Silicone Caulk Tube with different label art for variety. Since 2018 DIY tutorial makers, packaging designers and home improvement retailers have bought the tube 21 times. Left on a windowsill beside a fresh white seam, it explains a renovation in a single still frame."
+ ],
+ "silver-apple-ipad-pro-2019-with-smart-keyboard-1362778": [
+  "A tablet docked into its folding keyboard cover, propped at a typing angle like a small laptop on a desk. The Apple iPad Pro 2019 with Smart Keyboard spends 84,241 polygons over 84,662 vertices on rounded corners, camera bump and keys. Thin bezels and flat aluminum edges match the slab design of that tablet generation, which dates a scene precisely.",
+  "Screen glass, aluminum and the fabric keyboard surface use 9 maps at 8192 x 8192 and 4096 x 4096. Its UVs lie flat with nothing stacked, and the device holds a CheckMate Pro certificate from TurboSquid's review team.",
+  "Both versions are $59: the static device and a rigged one whose keyboard cover folds and opens for animation. Since 2019 the tablet has found 21 buyers who stage home offices, tech reviews and classroom scenes. Being a branded product, it fits editorial uses like reviews and news, often placed on a cafe table beside a latte."
+ ],
+ "sniper-target-symbol-922460": [
+  "A crosshair reticle built as solid geometry, with a ring, cross lines and range ticks for titles and game interface graphics. The Sniper Target Symbol uses 3,632 quad polygons over 3,626 vertices, enough to keep the circle round once it is extruded. Because it is real geometry, the reticle can be beveled, lit and spun in motion graphics instead of acting as a decal.",
+  "No texture set comes with the symbol, so it takes any shader from glowing red to brushed metal in seconds. Its UV shells lie flat without overlap, and it carries the entry CheckMate Lite grade that covers a clean file.",
+  "At $4 it is a single version, and 21 buyers have downloaded the crosshair since it appeared in 2015. Game menus, shooting range signs and thriller title cards are its typical homes on screen. Zoomed over a target in a film trailer, the sight says precision and danger at the same time."
+ ],
+ "snowboard-generic-1348032": [
+  "An all-mountain snowboard with a twin tip shape, binding mounts and a printed top sheet, ready for slopes or a shop wall. Snowboard Generic stays light at 8,550 polygons over 9,054 vertices, spent on the raised nose and tail and the binding hardware. A gentle camber lets the board rest on its contact points rather than lying dead flat on the snow.",
+  "Top sheet graphics and the base finish of the board are painted onto 4 maps at 4096 x 4096. Separate UV islands make it easy to swap in your own artwork, and the deck is graded CheckMate Pro by the marketplace.",
+  "A pair of versions costs $19 each: this unbranded board and a Snowboard Jones carrying that brand's graphics for editorial work. Since 2018, 21 buyers have used the boards in winter sports games, ski resort renders and rental shop scenes. Propped against a chalet wall in fresh powder, a board sets up a holiday shot before anyone appears."
+ ],
+ "speaker-system-generic-1357166": [
+  "A pair of PA speakers with a horn tweeter, a big woofer and a rugged cabinet for a small stage. Speaker System Generic carries 66,843 polygons over 75,672 vertices, spent on the grille mesh, corner protectors and pole mount sockets. Carry handles are recessed into the sides of each cabinet, just as on real touring gear loaded into a van.",
+  "Cabinet coating, grille and cone materials draw from 5 maps at 4096 x 4096 and 512 x 512 for this pair. The speakers' UV map keeps every shell apart, and TurboSquid awarded the set CheckMate Pro after inspection.",
+  "Two versions cost $79 each: this generic system and a JBL JRX Speaker System with real branding for editorial use. Club interior designers, wedding venue planners and concert stage builders make up its 21 buyers since 2018. Stacked on stands at the edge of a dance floor, the cabinets make a room feel loud before any music plays."
+ ],
+ "stadium-lighting-pole-1369371": [
+  "A tall floodlight mast topped with a rack of stadium lamps, the kind that turns a night match into daylight. Stadium Lighting Pole is heavy at 825,123 polygons over 932,552 vertices, because every lamp housing, bracket and ladder rung is modeled. The lamp head angles down toward the pitch, so the mast reads correctly from the stands and from the air.",
+  "A single map at 2048 x 2048 covers the painted steel, which keeps the mast's materials simple to tune. With such dense geometry, keep the tower for mid and close shots, and note it passed a CheckMate Pro review.",
+  "Two masts share the page: this pole at $34 and an Arena Lighting Pole at $39 with a different lamp layout. Football grounds, racetracks and sports broadcasts explain most of the 21 purchases made since 2019. Placed at the corners of a ground, the masts throw the hard shadows that mark a televised night game."
+ ],
+ "stadium-scoreboard-1369374": [
+  "A large stadium scoreboard with a wide display panel on a steel frame, made to tower over the end of a ground. Stadium Scoreboard keeps a lean 9,827 polygons over 10,044 vertices, since most of its detail lives on the flat screen. Support beams and an access walkway behind the panel give it depth when the camera swings around to the back.",
+  "Frame paint and the screen surface rely on 3 maps at 2048 x 2048, leaving the display ready for your content. The display face has its own UV island for live scores or a team crest, and the board holds a CheckMate Pro rating.",
+  "One version is sold, priced at $29, and the board has found 21 buyers since it went on sale in 2019. Sports games, broadcast graphics and stadium design pitches are where the big screen gets used most. Showing a final score above an empty stand, it tells the story of a match that has just ended."
+ ],
+ "tdk-cassette-box-empty-1748209": [
+  "A clear plastic audio cassette case standing empty, with its hinged lid and the spindle slots that once held a tape. TDK Cassette Box Empty takes only 2,574 polygons over 2,620 vertices, all that a thin transparent shell needs. Ridges along the spine and the snap catch on the lid are what make it read as a real cassette box.",
+  "No texture set comes with the case, so the clear plastic becomes a pure shader job in your renderer. UVs leave room for an inlay card without overlap, and the case carries the basic CheckMate Lite grade from TurboSquid.",
+  "Among the 3 versions, the branded case costs $14, while a Blank Cassette Box and a Blank Cassette Case cost $19 each. Since 2021 the cases have gone to 21 buyers dressing retro bedrooms, music history pieces and eighties sets. Because TDK is a real brand, keep that particular case to editorial uses such as articles and documentaries."
+ ],
+ "tie-8-946794": [
+  "A knotted silk necktie laid flat, with a neat knot at the top and a pointed blade, ready for a wardrobe flatlay. Tie 8 is light at 2,817 polygons over 2,802 vertices, spending its budget on the knot folds and the curve of the blade. The narrow tail peeks out behind the wide end, just as it does on a tie worn to a real office.",
+  "Fabric weave and pattern come in 3 maps at 2024 x 2024, fine enough to show the silk sheen. Separate UV islands let the pattern be swapped for a club stripe, and the necktie is CheckMate Pro certified.",
+  "The page groups 8 versions: six numbered tie designs at $19 or $9, plus a Polka Dot Necktie and a Striped Necktie at $19. Since 2015, 21 buyers among menswear stores, office drama crews and wedding planners have chosen these ties. Draped over a shirt collar on a hotel bed, the tie hints at a big meeting or a wedding morning."
+ ],
+ "timpani-yamaha-3d-model-1370767": [
+  "An orchestral kettledrum with a hammered copper bowl, a tensioned head and a pedal that changes pitch during a performance. Timpani Yamaha 3D Model spends 117,656 polygons over 118,198 vertices on tuning rods, the counter hoop and the wheeled base. Bowl dents are modeled into the surface, so highlights break up the way they do on real hammered copper.",
+  "Copper, chrome and drum head materials use just 2 maps at 4096 x 4096 across the whole instrument. Flat, separate UV islands cover every part of the drum, which bears TurboSquid's CheckMate Pro mark after review.",
+  "The page lists 6 versions, and four of them cost $29, including a copper timpani and a copper kettledrum. A Yamaha concert drum and a generic drum cost $39, and the Yamaha builds suit editorial and teaching use. Since 2019 concert hall designers and music educators have bought it 21 times to place at the back of an orchestra. With mallets resting on the head, it gives a stage its deepest voice."
+ ],
+ "toyota-cars-simple-interior-collection-1463951": [
+  "A set of Toyota cars with simplified interiors, meant for traffic, parking and street scenes where cabins are seen through glass. Each vehicle keeps full body detail outside, while seats and dashboards are reduced to clean, light shapes inside. Headrests and steering wheels still show as forms behind the windshield, so the cars never look hollow from a sidewalk.",
+  "That balance makes the bundle practical for scenes where dozens of sedans and hatchbacks are in view at once. The cars carry TurboSquid's CheckMate Lite grade, which covers the basic checks for clean geometry and naming. Wheels and tires keep their full tread, which matters when the camera sits low at street level.",
+  "There are 2 versions: this first collection at $299 and a second Simple Interior pack at $189 with other body styles. Since 2019, 21 buyers in urban planning, dealership design and driving games have chosen the fleet. Toyota is a real brand, so keep the cars in editorial work, lined along a curb to make a believable block."
+ ],
+ "transparent-plastic-ballpoint-pen-1209409": [
+  "A clear plastic ballpoint pen with a visible ink tube, a cap with a pocket clip and a vented end plug. Transparent Plastic Ballpoint Pen uses 4,346 quad polygons over 4,352 vertices, so the hexagonal barrel stays crisp under refraction. The ink cartridge is modeled inside the barrel, which is what makes the transparency believable in close shots.",
+  "Plastic, ink and the metal tip are textured with 6 maps at 2048 x 2048 and 2000 x 2000. In a modern renderer the ink level shows through the barrel, and the pen's UV shells sit apart for labels. TurboSquid certified the writing instrument at CheckMate Pro after checking its naming, scale and topology.",
+  "A Transparent Pen Red Ink version sits beside this one, both at $19, for teachers marking exam papers. Since 2017, 21 buyers have used it to furnish desks, classrooms and office stationery shots. Lying across an open notebook, the pen makes a study scene feel caught mid-thought."
+ ],
+ "vintage-80s-brick-mobile-phone-1794522": [
+  "A chunky early mobile phone with a long antenna, a rubber keypad and a tiny display, the status symbol of eighties executives. Vintage 80s Brick Mobile Phone uses 8,304 polygons over 8,816 vertices on the key grid, the earpiece holes and the antenna joint. Its heavy brick body dates a scene to the decade of shoulder pads and big hair the moment it appears.",
+  "No textures ship with the handset, so plastic color and key labels come down to your shading choices. The unwrap leaves clean room for a keypad print, and the handset carries CheckMate Pro status from TurboSquid's review.",
+  "All 4 versions cost $34: this phone, a Vintage 1G Brick Cell Phone, and analogue mobile and cell phone variants. Retro films, tech history features and period games are where its 21 buyers since 2021 have taken the brick. Held to the ear on a busy city street, the handset turns a character into a yuppie from another era."
+ ],
+ "vintage-wheelchair-995923": [
+  "An old hospital wheelchair with a padded seat, large spoked wheels and a tubular steel frame, straight out of a mid-century ward. Vintage Wheelchair is dense at 215,831 polygons over 220,108 vertices, with much detail in the spokes, push rims and folding cross brace. Small caster wheels at the front swivel on their own forks, as they do on the real chair rolling down a corridor.",
+  "Worn paint, chrome and upholstery are mapped with 22 maps at 4096 x 4096 and 2048 x 2048, rust spots included. UVs on the frame never overlap, and the chair holds the basic CheckMate Lite grade for clean, usable files.",
+  "The page lists 5 versions: this static chair at $59 and rigged builds at $79, including dedicated rigs for Maya and Cinema 4D. Since 2016 the chair has gone to 21 buyers in period dramas, asylum horror games and medical history exhibits. Left alone in a dim corridor, it does more for a haunted hospital than any ghost could."
+ ],
+ "wall-mount-mailbox-2-924279": [
+  "A metal wall-mounted mailbox with a hinged lid, a letter slot and a small name plate, fixed beside a front door. Wall Mount Mailbox 2 is light at 6,896 polygons over 6,901 vertices, with the budget going into the lid hinge and rolled edges. The lid overhangs the box so that rain runs off, a shape that reads as a real product on a porch.",
+  "Painted steel and the name tag are covered by 2 maps at 2048 x 2048 on this little box. Clean UVs allow a house number or a family name on the plate, and the mailbox earned CheckMate Pro in review.",
+  "It is the only version on offer, priced at $9, and it has found 21 buyers since 2015. Architects place it on house facades, while game artists use it to dress suburban streets in quiet neighborhoods. With a letter sticking out of the lid, it suggests news waiting for whoever comes home that evening."
+ ],
+ "watering-can-generic-922582": [
+  "A garden can with a long spout, a perforated rose head and a curved handle arching over the rounded body. Watering Can uses 6,222 quad polygons over 6,172 vertices, so the rounded tank and spout stay smooth when subdivided. The rose head is pierced with small holes, the detail that makes a close shot of watering flowers believable.",
+  "Body finish with scratches and water spots is carried by 2 maps at 4096 x 4096 on the tank. UV islands on the can do not overlap, and a TurboSquid reviewer passed the garden tool at CheckMate Pro.",
+  "There are 7 versions in the family: this can at $29, and kids cans at $19 in red, green or yellow. A blue kids can and a 1 gallon blue metal can cost $29, while a plain metal can sells for $19. Garden centers, children's books and farm games account for its 21 buyers since 2015, usually beside a flower bed."
+ ],
+ "white-oak-tree-winter-942302": [
+  "A bare white oak in winter, with a thick trunk, spreading crooked limbs and no leaves to hide its branching. White Oak Tree Winter spends 99,602 polygons over 104,858 vertices on twig tips and the gnarled bark of the lower trunk. The wide crown spreads sideways rather than up, the habit that marks an old oak that grew alone in a field.",
+  "Bark color and the gray tones of fine branches sit on 3 maps at 2048 x 2048 for this tree. Its UVs are spread flat without overlap, and the oak holds CheckMate Pro status after a manual check of the file.",
+  "There are 2 versions at $29 each: this oak and a Swamp White Oak Winter with a different branch structure. Snowy landscape renders, Christmas cards and horror game forests bring its total to 21 buyers since 2015. Against a gray sky with fresh snow on the limbs, the tree brings the cold quiet of a January field."
+ ],
+ "wooden-chess-figures-1345746": [
+  "A full set of turned wooden chess pieces, from rounded pawns to a crowned king, carved in light and dark wood. Wooden Chess Figures spends 36,286 polygons over 36,668 vertices on the knights' manes, the rook battlements and the bishop slits. Each piece stands on a flat felted foot, so it sits on a board without floating or sinking into the squares.",
+  "Wood grain and lacquer gloss are spread across 48 maps at 4096 x 4096, giving each figure its own grain. The unwrap is clean with no overlaps, and the set holds TurboSquid's CheckMate Pro grade for topology and naming.",
+  "Each of the 2 versions costs $39: these wooden pieces and a Plastic Chess Figures set for a tournament look. Board game apps, study scenes and spy thriller sets have drawn 21 buyers to the figures since 2018. Mid-game on a board beside a cooling cup of tea, the pieces suggest a long evening match between old friends."
+ ],
+ "wool-classic-beret-hat-1067404": [
+  "A soft round wool beret with a small stalk on top and a gently drooping crown, the classic French artist hat. Wool Classic Beret Hat is a tiny 984 quad polygons over 988 vertices, as a smooth felted shape needs only clean subdivision. The crown slumps to one side, which is how a beret looks when it is worn rather than stuffed with paper.",
+  "Wool fibers and the knit band are painted into 6 maps at 4096 x 4096, so fuzz reads in a close portrait. Its UV shells are kept apart for easy recoloring, and the hat is graded CheckMate Pro by TurboSquid's team.",
+  "Two versions are offered: this classic beret at $29 and a Wool Blue Beret at $19, which also suits a soldier. Since 2016 fashion stylists, character artists and Paris street scene builders have bought it 21 times. Tilted over a painter's brow in a Montmartre studio, the beret finishes a costume in seconds."
+ ],
+ "zero-dsrp-electric-police-motorcycle-1495753": [
+  "A police motorcycle with an electric drivetrain, a tall windscreen, light bars and side panniers for patrol gear. Electric Police Motorcycle is built from 226,043 polygons over 232,943 vertices, with detail in the battery block, belt drive and emergency lights. With no exhaust pipes or fuel tank, the bike shows its electric nature to anyone who looks at it twice.",
+  "Livery, plastics and metal parts take up 17 maps at 4096 x 4096 on the patrol bike. UVs do not overlap, so a local department's markings can be applied, and the bike passed TurboSquid's CheckMate Pro inspection.",
+  "The page lists 4 versions: static builds at $99 and rigged ones at $119, including the Zero DSRP with real badging. Branded Zero builds belong in editorial work, such as news about electric fleets and green transport policy. Since 2020 the motorcycle has reached 21 buyers in urban patrol scenes and police training, parked at a square with lights flashing."
+ ],
+ "agm-ugm-rgm-84-harpoon-anti-ship-missile-1393901": [
+  "An anti-ship cruise missile with a slim body, cruciform wings and tail fins, plus the booster used for ship launches. The AGM UGM RGM 84 Harpoon Anti Ship Missile is lean at 34,462 polygons over 36,217 vertices, spent on fin roots and intake. A small air scoop under the body reveals the turbojet that carries it skimming low over the waves.",
+  "Gray paint, stencils and warning stripes are laid out on 15 maps at 4096 x 4096 for the airframe. Islands in the missile's UV layout never collide, and TurboSquid rated the weapon CheckMate Pro after a manual check.",
+  "There is one version, sold at $59, and 20 buyers have taken it since its 2019 release. Naval simulators, defense documentaries and strategy games use it most, often hung under a patrol aircraft wing. Racked on a destroyer deck or mounted on a museum cradle, it shows the reach of a modern navy."
+ ],
+ "alpinist-worker-suit-1761845": [
+  "An industrial climber outfit with a padded harness, a helmet and work overalls, worn by crews who work on ropes at height. Alpinist Worker Suit spends 80,687 polygons over 82,413 vertices on harness straps, buckles and the folds of the fabric. Carabiners hang from the waist loops, right where a rope access worker clips them before stepping off a ledge.",
+  "No texture maps are included, so fabrics and metal fittings are shaded in your own renderer to match a crew. Knee pads and gloves complete the look for crews on bridges, towers and wind turbines. Separate UV shells leave room for a company logo or reflective stripe, and the outfit carries the CheckMate Lite grade.",
+  "Offered alone at $89, the suit has gone to 20 buyers since 2021. Safety training videos, construction films and skyscraper maintenance scenes are where it goes most often. Hung against a glass facade on its ropes, the climber tells a story of height and steady nerves."
+ ],
+ "antique-pocket-watch-movement-1396089": [
+  "The exposed movement of an antique pocket watch, with gear trains, a balance wheel and jeweled bearings laid bare. Antique Pocket Watch Movement uses 98,910 polygons over 109,480 vertices, enough for gear teeth, screws and the hairspring coil. Bridges sit at different heights, so the depth of the mechanism shows clearly when the camera tilts across it. Tiny screw heads carry slots for a screwdriver, a detail collectors look for at once.",
+  "Brass, steel and ruby jewels get their look from 8 maps at 4096 x 4096 and 3072 x 3072. As a StemCell asset the movement renders alike across the major engines, and its UVs do not overlap anywhere.",
+  "It comes in one version at $69, with 20 buyers since 2019 among watchmakers and steampunk artists. Animators often turn the gears to show how the escapement releases energy one tick at a time. Spinning slowly under a macro lens, the mechanism turns time itself into the subject of a shot."
+ ],
+ "asus-rog-strix-z370-g-motherboard-1429277": [
+  "A gaming motherboard with chunky heatsinks, RAM slots, a CPU socket and an armored rear panel for ports. ASUS ROG Strix Z370-G Motherboard is dense at 1,153,602 polygons over 1,270,659 vertices, with every capacitor, pin and slot latch modeled. Even the tiny solder points around the socket hold up when the lens moves in for a macro shot.",
+  "Circuit printing and metal finishes rest on 30 maps at 8192 x 8192 and 4096 x 4096 across the board. The UVs are cleanly separated, and the circuit board got through TurboSquid's CheckMate Pro inspection without issues. Memory slots and expansion slots have open latches, ready for modules to click in during an animation.",
+  "Both board versions cost $79: this branded one and an unbranded Gaming Motherboard for general use. Since 2019, 20 buyers have used it in PC building guides, tech reviews and hardware explainers. As a real ASUS product, the branded board belongs in editorial work, glowing inside a glass case with colored LEDs."
+ ],
+ "attack-aircraft-a-10-thunderbolt-ii-1112752": [
+  "A ground attack jet with straight wings, a huge nose cannon and engines mounted high on the rear fuselage. Attack Aircraft A-10 Thunderbolt II uses 115,269 polygons over 120,945 vertices, which buys a detailed gun barrel, pylons and canopy frame. Twin tail fins shield the engine exhaust, the shape pilots fondly call the Warthog over any battlefield.",
+  "Camouflage, panel lines and weathering occupy 25 maps at 8192 x 8192 and 4096 x 4096 on the jet. The unwrap holds no overlapping shells, and the aircraft is rated CheckMate Pro after TurboSquid's manual inspection.",
+  "Buyers pick from 4 versions: the standard scheme at $149 or rigged at $219, and a green Fairchild Republic scheme at the same prices. Since 2017 the Warthog has drawn 20 buyers in flight simulators, military documentaries and air show graphics. Low over a desert range with smoke trailing from the gun, the jet shows close air support at work."
+ ],
+ "autumn-trees-collection-965943": [
+  "A set of deciduous trees in full autumn color, with orange, red and yellow crowns for parks and country roads. The trees differ in height and crown shape, so a row of them never looks cloned along a path. Trunks lean slightly and branch at different heights, giving each tree its own silhouette against the sky. Fallen leaves gather near the roots in a real autumn, and these crowns look ready to shed them.",
+  "TurboSquid graded the set CheckMate Pro, so every tree arrives clean, named and at a believable real scale. Foliage colors can be shifted toward early green or late brown in the shader to match the week.",
+  "Three versions exist: this Autumn Trees Collection at $79, a second pack at $149 and a third at $159. Pairing the packs gives a whole hillside of varied species for landscape architects and real estate brochures. Since 2015, 20 buyers have planted these trees along park paths to set a calm October afternoon."
+ ],
+ "baguette-960882": [
+  "A long French loaf with a crackled golden crust and diagonal slashes along its top, fresh from a bakery oven. Baguette uses 5,886 polygons over 5,886 vertices, enough for the raised ridges where the scores burst open in baking. A slightly flattened underside lets the bread rest on a board or in a paper bag without floating.",
+  "Crust color, flour dust and bake marks are captured in 3 maps at 4096 x 4096 for food close-ups. Golden ridges fade into paler lines between the cuts, exactly like a hand-shaped bake. The UV shells do not overlap, and the loaf was rated CheckMate Lite, the entry tier of TurboSquid's review.",
+  "There are 2 versions here: this loaf at $29 and a French Baguette Bread at $18. Food magazines, bakery menus and Paris street scenes have brought it 20 buyers since 2015. Poking out of a basket on a bicycle, the bread says France faster than any flag could."
+ ],
+ "ballistic-missile-9m723-iskander-955260": [
+  "A short-range ballistic missile with a stubby body, a pointed warhead and small tail fins, launched from a mobile carrier. The Ballistic Missile 9M723 Iskander follows the real weapon's proportions, with a smooth body and fins clustered near the base. Panel seams and lifting points are part of the shell rather than painted on, so they catch light properly. The nose cone tapers smoothly to a point, a profile that reads clearly even in a distant shot.",
+  "Its CheckMate Pro grade means TurboSquid reviewed the topology, naming and scale of the rocket by hand. Military paint and stencils suit both clean museum displays and dusty field scenes at a forward base.",
+  "It sells as one version at $39, and 20 buyers have chosen it since its debut in 2015. Defense news graphics, war films and strategy titles use the missile most, often raised on its launcher at dawn. Lying on a transport trolley in a hangar, the same rocket also works for logistics or training scenes."
+ ],
+ "bank-building-3d-model-1027690": [
+  "A neoclassical bank with stone columns, a pediment over the entrance and tall windows along the facade. Bank Building 3D Model uses 175,689 polygons over 202,218 vertices for the column fluting, cornices and stepped entrance. Heavy doors sit deep behind the colonnade, so the front throws strong shadows across the steps in sunlight. The broad steps rise toward the doors, giving a crowd or a getaway car a natural stage.",
+  "Stone, glass and metal surfaces draw on 60 maps at 2048 x 2048, with weathered stains on the masonry. Its UVs are tidy and unstacked, and the building earned CheckMate Pro status from TurboSquid staff.",
+  "Both versions cost $59: this bank and a Classic Bank Building with a different facade for variety on a street. Since 2016 the bank has drawn 20 buyers for city scenes, finance news graphics and heist games. Framed from the street at a low angle, it looks as solid as the money it guards inside."
+ ],
+ "base-station-5g-mobile-network-antenna-on-post-1633889": [
+  "A cellular base station with flat panel antennas clamped to a steel post, the hardware behind 5G coverage in cities. Base Station 5G Mobile Network Antenna on Post spends 94,110 polygons over 95,189 vertices on brackets, cable runs and radio units. Cables loop down from each panel to the equipment box, as they do on real masts beside highways.",
+  "Galvanized steel and plastic radome finishes come out of 10 maps at 4096 x 4096 for the mast. The StemCell standard means the antenna looks the same across major engines, and its UV islands stay apart. Engineers can tilt each panel toward the area it serves, since the clamps are separate parts.",
+  "There is just one version at $29, and the station has 20 buyers since its 2020 release. Telecom presentations, smart city renders and tech news stories use it to explain how coverage reaches a street. Placed on a rooftop over busy traffic, the station turns invisible signal into a single readable image."
+ ],
+ "basketball-player-uniform-1195700": [
+  "A basketball jersey and shorts in loose mesh fabric, with a sleeveless top, wide armholes and a broad waistband. Basketball Player Uniform is very light at 1,933 polygons over 2,010 vertices, built to sit over a character body. Long baggy shorts fall past the knee, the cut players have worn on court since the nineties.",
+  "Colors, the number and trims are painted on 3 maps at 2048 x 4096, so a team's own design fits. Side panels run down the seams where team colors usually change, and the outfit is CheckMate Pro certified. The UV layout is mixed, with some shared areas, which matters only for unique decals on each side.",
+  "One version is available at $49, and the kit has 20 buyers since 2017. Sports games, team kit mockups and basketball animations use it most, dressed on a player at the free throw line. Under arena lights with sweat on the fabric, the kit turns a gym scene into a real game."
+ ],
+ "beach-towel-3-1019830": [
+  "A beach towel spread out on the sand, with softly rumpled edges and a hemmed border along each side. Beach Towel 3 spends 17,723 polygons over 17,725 vertices on the gentle wrinkles that keep it from looking like a plane. A corner flips up as if caught by the wind, which adds life to an otherwise still seaside scene.",
+  "Cotton weave and print are held in 3 maps at 4096 x 4096 for this cloth. Its UV layout has no overlaps, so any pattern can be laid across the towel, which holds CheckMate Pro status.",
+  "Every one of the towel versions costs $29, spread across three designs called Beach Towel, Beach Towel 2 and Beach Towel 3. Each design comes in a base print plus red, green, yellow, pink and white colorways for a full beach. Since 2016, 20 buyers in resort brochures, summer games and travel imagery have laid it beside sunglasses and a paperback."
+ ],
+ "biplane-torpedo-bomber-fairey-swordfish-1185824": [
+  "A fabric-covered biplane torpedo bomber with an open cockpit, fixed landing gear and a torpedo slung under the fuselage. Biplane Torpedo Bomber Fairey Swordfish carries 609,663 polygons over 628,415 vertices across struts, bracing wires and the radial engine. Bracing wires cross between the wings in neat X patterns, the signature of an interwar biplane. Its wings could fold back along the fuselage, a feature the real aircraft used on crowded carrier decks.",
+  "Fabric skin, roundels and wear sit on 43 maps at 4096 x 4096, and the linen sags slightly between ribs. Its UVs are unwrapped without collisions, and the biplane holds TurboSquid's CheckMate Pro grade after a manual check.",
+  "Buyers can pick the static plane at $149 or a rigged one at $199, so 2 versions share the page. Since 2017, 20 buyers in naval history documentaries, flight simulators and war films have chosen the Swordfish. Lumbering low over gray waves toward a battleship, the old biplane recalls the hunt for the Bismarck."
+ ],
+ "brandenburg-gate-1704201": [
+  "The Berlin landmark with its row of Doric columns, a heavy attic and the Quadriga chariot riding on top. Brandenburg Gate is heavy at 870,469 polygons over 905,817 vertices, spent on column fluting, reliefs and the horses of the chariot. Side wings and passages are modeled too, so the monument stands complete rather than as a flat facade.",
+  "No textures are included, so stone color and weathering are set up in your own materials and lighting. Shading the stone warm in late light brings out the depth of every carved relief. The StemCell standard keeps it consistent across major engines, and the UVs on the sandstone do not overlap.",
+  "There are 2 versions on the page: this gate at $209 and an Iconic Neoclassical Monument build at $219. Since 2021, 20 buyers have placed it in travel films, history documentaries and Berlin city scenes. Lit at night during a celebration, the gate becomes the symbol of a reunited Germany."
+ ],
+ "british-officers-sword-1195692": [
+  "A ceremonial British army officer's sword with a slim blade, a pierced steel basket hilt and a wire-wrapped grip that fits a gloved hand. British Officers Sword uses 6,513 polygons over 6,592 vertices for the basket guard, the grip wire and the blade. Etching along the blade and the royal cipher on the guard catch light nicely in a close shot.",
+  "Steel polish, etched decoration and grip wrapping fill 6 maps at 4096 x 4096 for the weapon. The blade curves only slightly, built more for parades than battle, and its UV shells sit flat and separate. TurboSquid's reviewers gave the sword a CheckMate Pro pass once naming, scale and topology were confirmed.",
+  "It comes as a single version at $39, and 20 buyers have bought it since 2017. Period dramas, military museums and historical games use it most, raised in salute at a parade. Hung on a wall above a fireplace, it also furnishes the study of a retired colonel."
+ ],
+ "building-construction-with-equipment-1235069": [
+  "A building under construction with scaffolding, a tower crane, concrete floors and site machinery working around it. Building Construction with Equipment is huge at 3,794,781 polygons over 3,888,274 vertices, enough for rebar, formwork and every scaffold clamp. Excavators and trucks stand where they would work, so the site reads as active rather than abandoned.",
+  "Concrete, steel, safety netting and machine paint use 324 maps at 8192 x 8192 and 4096 x 4096. The density pays off in close shots, though distant views may need lighter stand-ins to keep scenes fast. UVs are flattened cleanly, and the site cleared a CheckMate Pro inspection despite its size.",
+  "There is just one build of the site, priced at $199, and it has sold 20 times since 2017. Developers, architects and construction firms use it for progress renders and tender presentations to investors. Shot from above with the crane arm across the frame, it shows a city growing floor by floor."
+ ],
+ "carousel-galloping-horses-set-1602769": [
+  "A set of carved carousel horses frozen mid-gallop, each on a twisted pole with ornate saddles and bridles. Carousel Galloping Horses Set holds 30,072 polygons over 29,572 vertices as subdivision geometry, so it smooths cleanly at render time. Manes flow back and hooves curl up, the pose that gives a merry-go-round motion even when it stands still.",
+  "The horses arrive untextured, so painted colors and gold leaf are left to your own shader work. Gilded trim on the saddles benefits from a metallic shader and soft warm light from above. The UV layout lets you paint each horse separately, and the set holds CheckMate Pro status with TurboSquid.",
+  "The set comes as one version at $89 and has found 20 buyers since 2020. Fairground scenes, children's book art and vintage amusement park games use it most, with poles rising in turn. Lit by warm bulbs at dusk, the horses carry the nostalgia of a summer fair."
+ ],
+ "cash-roll-of-one-hundred-dollar-bills-1230772": [
+  "A tight roll of hundred-dollar notes held by a rubber band, the classic prop for cash deals, bribes and lottery dreams. Roll Of Dollar Bills puts 313,568 quad polygons over 313,666 vertices into the curled edge of every note in the spiral. The outer bill wraps a little loose, its corner lifting away from the bundle the way worn currency does.",
+  "Portraits, serial numbers and the green tint of the paper sit on 4 maps at 4096 x 4096 for macro work. The rubber band has its own material, so it can turn red, black or tan without touching the paper. Nothing in the cash roll's unwrap overlaps, and a marketplace reviewer approved the bundle at CheckMate Pro.",
+  "Two money versions share the page: this worn roll at $39 and a roll of crisp new hundred-dollar bills at $29. Since 2017 crime dramas, finance explainers and casino games have accounted for its 20 sales. Tossed onto a poker table under a single lamp, the bundle raises the stakes of any scene."
+ ],
+ "castle-entrance-1439030": [
+  "A fortified castle gateway with a stone arch, crenellated towers on each side and a heavy wooden gate set deep in the wall. Castle Entrance spends 316,980 polygons over 318,341 vertices on individual stones, arrow slits and the iron fittings of the doors. The towers step forward from the curtain wall, so attackers at the gate would face fire from three directions.",
+  "Weathered masonry, moss in the joints and timber planks are painted into 31 maps at 4096 x 4096. Some UV islands on the gateway share space, which only matters if every stone needs its own stain. TurboSquid inspected the fortification and passed it at CheckMate Pro for clean topology and naming.",
+  "Only one castle version is offered, priced at $69, and since 2019 it has sold to 20 buyers. Fantasy games, medieval films and history lessons are the places this gate lands most often. Shot from below at dusk with torches on the walls, the entrance turns any approach into a siege."
+ ],
+ "central-heating-radiator-1637611": [
+  "A white panel radiator with vertical convector fins, a thermostatic valve and a bleed screw, mounted low under a window. Central Heating Radiator stays lean at 12,742 polygons over 12,752 vertices, enough for the pressed ribs and wall brackets. Pipe stubs leave the bottom at each end, ready to meet the floor or a run of copper tubing. A slim gap behind the panel shows the wall, which keeps the unit from looking glued flat.",
+  "Enamel paint, chrome valve parts and a faint sheen on the panel are baked into 5 maps at 4096 x 4096. This heater ships to the StemCell standard, tuned to look the same in every major renderer, with islands kept apart.",
+  "There is one radiator version at $29, and 20 buyers have fitted it into scenes since 2020. Interior designers put it into flats and offices, while heating firms use it in installation guides for customers. Under a tall window in a period room, with a towel drying on top, the heater anchors the wall quietly."
+ ],
+ "chick-895429": [
+  "A fluffy newborn bird with a stubby beak, round dark eyes and thin orange legs, standing as if about to peep. Chick uses 6,934 polygons over 6,955 vertices, most of them shaping the plump body and the tiny wing stubs. Its toes spread wide for balance, which keeps the bird upright on straw, on hay or on a kitchen table.",
+  "Yellow down, beak color and the soft gradient on the belly come from 6 maps at 4096 x 4096. Down that fine often wants a fur system, and the clean unwrap makes grooming easier, with a CheckMate Pro grade behind it.",
+  "Two versions of the hatchling are offered: the static bird at $49 and a rigged one at $149 that can peck, hop and flap. Since 2015 Easter campaigns, farm games and children's animation have brought the little bird 20 buyers. Peeking out of a cracked egg on a bed of hay, it becomes the opening shot of spring."
+ ],
+ "circular-saw-table-generic-1293752": [
+  "A benchtop table saw with a toothed blade rising through a flat steel table, a rip fence and a blade guard. Circular Saw carries 219,282 polygons over 221,181 vertices, with the blade teeth, motor housing and height crank all modeled. A push stick hangs on the side of the base, as it does on saws in real carpentry shops.",
+  "Metal table, painted body and warning stickers draw on 9 maps at 4096 x 4096 for this saw. Each surface has its own space in the unwrap, and the tool was certified CheckMate Pro by TurboSquid reviewers.",
+  "The saw comes in 2 versions at $49: this unbranded unit and a Makita build with real badging. The Makita version fits editorial pieces such as tool reviews and buyer guides for woodworkers. Since 2018, 20 buyers have shown it in woodworking tutorials, workshop interiors and safety training clips. Sawdust piled around the base and a plank halfway through the blade make the scene feel mid-cut."
+ ],
+ "closed-ps5-game-empty-box-2022404": [
+  "A closed game case for the PS5 console, with its blue spine, rounded corners and a clear sleeve over the cover. PS5 Game Empty Box keeps to 38,690 polygons over 19,337 vertices, a ratio that points to triangulated faces. The case stands on its own edge, ready to line a shelf of games behind a gamer's chair.",
+  "The case comes without texture maps, so the cover art is yours to design and apply. Separate UV islands for front, spine and back hold your own title, and the box carries a CheckMate Pro certificate.",
+  "Two versions cost $9 each: this closed box and an Open PS5 Game Empty Box showing the inside tray. Since 2023, 20 buyers have used the cases to mock up covers, stage gamer bedrooms and build store displays. Since it copies Sony packaging, keep the case to editorial work such as reviews or news. Stacked beside a controller on a coffee table, a pile of these says weekend gaming session."
+ ],
+ "college-football-national-championship-playoff-trophy-1982356": [
+  "A gleaming championship trophy topped with a football, shaped as a slim tapering column on a dark base. The College Football National Championship Playoff Trophy is light at 3,400 polygons over 1,756 vertices, so faces are triangulated. Its narrow profile and the ball at the top make the award recognizable in silhouette against stadium lights.",
+  "The trophy has no texture maps, so gold, bronze or chrome finishes depend on the shader you build. Clean, separate UV islands let a team name be engraved on the base, and TurboSquid granted it CheckMate Pro.",
+  "It comes as one trophy version at $19, and 20 fans of the sport have bought it since 2022. Sports broadcasts, college game intros and fan art are where the award shows up most. Because it depicts a real prize, editorial uses like news and sports graphics fit best. Raised over the heads of a winning team in confetti, it is the last frame of a season."
+ ],
+ "coral-fish-collection-1042720": [
+  "A school of tropical reef fish in bright colors, from striped clownfish to flat angelfish, ready to fill an aquarium. Coral Fish Collection mixes body shapes, so a shoal of them reads as a real ecosystem rather than copies. Fins are thin and translucent at the edges, which is exactly what light passing through water needs.",
+  "Every fish in the school passed CheckMate Pro review, so topology and scale are consistent across species. Bold patterns on the bodies give each species a distinct look even at a distance in murky water. Eyes and gills are modeled rather than painted, which holds up when a fish swims close to the lens.",
+  "Buyers choose among 5 versions: this static school at $199, or rigged packs at $239, $269, $279 and $299. The rigged packs include dedicated Cinema 4D and Maya setups, so fish can swim and turn without extra work. Aquarium designers, diving films and nature documentaries account for 20 buyers since 2016, often placing the fish around coral heads."
+ ],
+ "cosmetics-collection-946782": [
+  "A set of beauty products, with lipsticks, cream jars, pump bottles and compact cases arranged for a vanity table. Cosmetics Collection mixes glossy tubes and frosted glass, so one scene can show a whole skincare routine. Caps and lids are separate objects that can be opened, revealing the product waiting inside each container. Pump heads sit at slight angles, the way bottles look after real use rather than in a factory.",
+  "A TurboSquid reviewer checked geometry and naming by hand, granting the beauty set a CheckMate Pro grade. Plain labels make room for your own brand, and glass bottles take refraction well in a modern renderer.",
+  "The range spans 5 versions: this set at $39, then larger packs at $49, $89, $129 and $149. Each bigger pack adds more bottles and packaging styles for brands that need a full product line. Since 2015 the cosmetics have drawn 20 buyers, often spread across a marble bathroom shelf for a morning shot."
+ ],
+ "crushed-soda-can-1050058": [
+  "An aluminum drink can crumpled in the middle, its wall buckled into sharp folds while the lid and base stay round. Crushed Soda Can uses 5,956 polygons over 5,684 vertices, and most of that geometry sits in the creases of the dented body. The pull tab is still in place, telling the viewer the drink was finished before the can was squashed.",
+  "Metal shine, paint and the highlights along every dent are drawn from 2 maps at 4096 x 4096. Separate UV islands let a different label wrap around the crumpled shell, and the can passed CheckMate Pro.",
+  "There are 2 can versions at $19: this generic one and a Crushed Soda Can Coca Cola with red branding. Keep the Coca Cola version to editorial work, since it carries a real trademark. Since 2016, 20 buyers have dropped the cans into recycling campaigns, street scenes and messy party aftermaths. Kicked into a gutter beside a cigarette butt, a single can makes a street feel neglected."
+ ],
+ "dialysis-machine-generic-3d-model-1416196": [
+  "A hemodialysis machine on wheels, with a touch screen, blood pumps on the front panel and hooks for filter cartridges. Dialysis Machine 3D Model uses 87,035 polygons over 89,350 vertices for pump rotors, line clamps and the control buttons. A rack on the side carries bags of fluid, just as it does in a clinic treatment bay.",
+  "Hospital plastic, the screen and metal parts are covered by 6 maps at 4096 x 4096 here. The unwrap leaves every island alone, and TurboSquid passed the medical unit at CheckMate Pro after review.",
+  "Both machine versions cost $59: the static unit and a rigged one with moving parts for medical animation. Since 2019 the machine has served 20 buyers in hospital interiors, nursing training and kidney health explainers. Device makers use it to walk patients through a session step by step, from setup to the final rinse. Beside a reclining chair with a patient reading, the machine turns a ward render into a treatment story."
+ ],
+ "diamond-necklace-897356": [
+  "A fine necklace with a sparkling diamond pendant hanging from a delicate chain of tiny links. Diamond Necklace spends 66,125 polygons over 66,094 vertices on the chain and the faceted stone, the parts that catch light. The clasp at the back is modeled too, so the piece can lie fully open on a velvet tray.",
+  "No textures are needed, since metal and gem shading do the work in a good renderer. A refractive shader brings out the facets, while small prongs hold the stone firmly in its setting. UV islands on the jewelry stay separate, and the pendant earned a CheckMate Pro certificate.",
+  "3 necklace versions sit on the page at $29 each: this one, a Silver Necklace with Gem and a Golden Necklace with Diamond. The pendant has won over 20 buyers since 2015, among them jewelers, fashion stylists and romance films. Draped around a neck under soft light, it becomes the focus of a portrait."
+ ],
+ "digital-clock-radio-magnasonic-black-1410225": [
+  "A bedside clock radio with a glowing digital display, tuning buttons on top and a speaker grille on the side. Digital Clock Radio packs 35,150 polygons over 36,643 vertices into the rounded case, the buttons and the grille holes. A slight tilt of the front face makes the numbers easy to read from a pillow at night.",
+  "Matte plastic, the glowing screen and the grille are carried by 7 maps at 4096 x 4096 and 2048 x 2048. Nothing overlaps in the alarm clock's unwrap, and it received TurboSquid's CheckMate Pro grade.",
+  "3 radio versions cost $39 each: this black unit, a Magnasonic Digital Clock Radio White and an unbranded generic radio. The Magnasonic build suits editorial work, while the generic one fits any bedroom without a visible brand. Bedrooms, hotel rooms and morning routine scenes explain why 20 buyers have picked the radio since 2019. Blinking midnight on a nightstand in the dark, it sets up the sleepless hero of a thriller."
+ ],
+ "disposable-syringe-set-1010315": [
+  "A set of disposable syringes in several sizes, with clear barrels, printed scales, rubber plungers and capped needles. Disposable Syringe Set uses 57,038 polygons over 57,410 vertices to keep the barrels round and the needle tips sharp. The finger flanges at the back are flat, so each syringe can rest on a tray without rolling away.",
+  "Graduation marks, plastic and the rubber stopper are painted across 31 maps at 2048 x 2048. Fluid inside a barrel can be added as a separate shape, since the plunger shows where the dose ends. The set was built to CheckMate specification, and every UV island on the syringes sits apart.",
+  "There is a single syringe version, priced at $79, and medical clients have bought it 20 times since 2016. Vaccine campaigns, pharmacy training and hospital dramas use the set most often. Lined up on a steel tray next to vials, the syringes tell a viewer that treatment is about to begin."
+ ],
+ "emergency-roadside-chemical-red-flare-1784775": [
+  "A red roadside flare stick with a striker cap and a pointed spike, carried in car kits to warn traffic. Emergency Roadside Chemical Red Flare is tiny at 2,896 polygons over 2,948 vertices, all a slim paper tube needs. The wire stand folds out at the side, so the flare can sit tilted on wet asphalt.",
+  "The flare ships without texture maps, so the red paper wrap and warning print come from your own shader. A glow effect at the tip is easy to add, since the burning end is a separate part. Its UVs are clean, and TurboSquid rated the flare CheckMate Pro after looking through the file.",
+  "There are 2 flare versions: this generic one at $11 and an Orion Safety road flare at $13 for editorial use. Since 2021, 20 buyers have used them in accident scenes, driver education and highway safety campaigns. Burning red on a dark highway, the flare tells drivers to slow down long before they see the wreck."
+ ],
+ "flour-white-paper-bag-2lb-1719749": [
+  "A white paper sack of flour with a folded top and squared base, the kind lined up on supermarket baking shelves. This white flour sack holds 4,036 polygons over 3,864 vertices, spent on the creased fold and the soft bulge of the sides. The paper wrinkles where the bag is half empty, which keeps it from looking like a solid block.",
+  "There are no texture maps, so the label and the paper look are yours to design for a brand. The front panel has a clean UV island for brand art, and the sack is certified CheckMate Pro.",
+  "All 4 flour versions cost $29: this white bag, a wheat flour sack, a brown paper bag and a boxed package. Since 2021, 20 buyers among packaging designers, recipe blogs and grocery games have stocked their shelves with it. Set beside eggs and a mixing bowl on a floury counter, the bag starts a baking scene."
+ ],
+ "futuristic-control-panel-1652221": [
+  "A sci-fi control console with glowing screens, banks of switches and angled panels, the heart of a spaceship bridge. Futuristic Control Panel uses 78,935 polygons over 80,909 vertices for the knobs, the vents and the curved armrest. Screens tilt toward the operator, so a seated character can reach every control without stretching.",
+  "Metal plates, emissive displays and wear are stored in 32 maps at 4096 x 4096. Emissive screens can glow in any color without changing the rest of the shading on the console. Built to the StemCell standard, the panel renders consistently across engines, and its unwrap never overlaps.",
+  "The console has 3 versions: this one at $89, a simpler build at $69 and a black finish at $69. Sci-fi games, film sets and tech product reveals account for the 20 sales it has made since 2020. With alarms flashing red across its screens, the console marks the moment a mission goes wrong."
+ ],
+ "garbage-bags-collection-1036849": [
+  "A pile of tied plastic trash bags slumped against each other, bulging with lumpy contents waiting for collection. Garbage Bags Collection gives each bag its own shape, so a heap of them looks like real waste rather than clones. Knotted tops stick up at odd angles, the detail that sells a bag as stuffed and tied by hand. Black plastic catches thin highlights along every fold, which reads well even in a dim alley.",
+  "TurboSquid checked the geometry and scale of every sack, giving the pile a CheckMate Pro grade. The plastic shine shows creases and wrinkles that shift with every light you place near them.",
+  "The heap is offered as a single set at $49, picked by 20 buyers since 2016. Alley scenes, strike-hit cities and cleanup campaigns use the bags most, along with game levels behind diners. Piled at the curb on collection day, the sacks give a neighborhood a lived-in look."
+ ],
+ "gas-tank-lng-trailer-1381731": [
+  "A cryogenic semi-trailer with a long cylindrical tank, a rear valve cabinet and tandem axles for hauling liquefied gas. Gas Tank LNG Trailer is heavy at 271,496 polygons over 269,800 vertices, mostly in pipework, ladders and wheel hubs. A catwalk runs along the top, giving crews a path to the filling points high above the road.",
+  "Polished steel, warning labels and grime sit on 14 maps at 4096 x 4096 and 2048 x 2048. Hazard diamonds on the rear can be swapped for local codes without touching the rest of the tank. UV shells on the tanker are laid out without overlap, and the trailer meets CheckMate Pro standards.",
+  "One trailer version is sold, at $49, and it has gone out to 20 buyers since 2019. Energy companies, logistics firms and highway scene builders use the tanker more than anyone else. Hooked to a tractor unit on a refinery road, the tank shows how fuel reaches the city."
+ ],
+ "german-euro-coins-3d-models-collection-946329": [
+  "A set of German euro coins showing the oak twig, the Brandenburg Gate and the federal eagle on the national sides. German Euro Coins Collection reproduces milled rims and raised lettering, so the coins hold up in a close shot. The bimetallic coins show a clear ring and core, the feature that tells them apart in a pile.",
+  "TurboSquid certified the coin set at CheckMate Pro after reviewing its geometry by hand. Brass, copper and nickel finishes give each denomination its own color under a desk lamp.",
+  "There are 2 coin versions: this set at $29 and a second collection at $49 with more coins. The coins have reached 20 buyers since 2015, mostly in finance graphics, banking apps and economics lessons. Because it shows real currency, the set belongs in editorial and teaching work rather than anything else. Scattered across a receipt on a cafe table, the coins pay for an afternoon coffee."
+ ],
+ "glasses-5-folded-926569": [
+  "A pair of square optical glasses with temples folded behind the lenses, ready to rest on a desk or in a pocket. Glasses 5 Folded uses 5,308 polygons over 5,464 vertices for the thick acetate rim, hinges and nose pads. The folded arms cross neatly, so the frame sits flat instead of tipping over on a table.",
+  "Acetate color, lens tint and metal hinge pins are packed into 11 maps at 2048 x 2048. The unwrap keeps the rims apart, and TurboSquid granted the eyewear a CheckMate Pro rating after review.",
+  "All 8 frame versions are priced at $29, covering open and folded pairs in several finishes. Colors include white, black and brown retro frames, plus a folded pair with a white frame. Eyewear shops, office scenes and character artists make up the 20 buyers of these frames since 2015. Left on an open book by a reading lamp, they hint at a reader who just stepped away."
+ ],
+ "glasses-6-929589": [
+  "Slim rectangular glasses with a thin frame and narrow lenses, the everyday style of office workers and students. Glasses 6 keeps to 3,062 quad polygons over 3,110 vertices, so the frame stays light enough for crowds of characters. Hinges are sized to swing the temples realistically when a rig folds them shut.",
+  "Frame finish and lens tint use 2 maps at 2048 x 2048, and the lens material accepts any tint. Every frame part has its own UV shell, and the pair carries a CheckMate Pro mark.",
+  "Ten versions sell at $19 each, with open and folded pairs in clear, dark or anti UV lenses. Reading and computer glasses in black frames round out the family for office and study scenes. Optical shops and character modelers have taken this rectangular frame 20 times since 2015. A character pushing these up the nose instantly reads as the clever one in the room."
+ ],
+ "gold-chain-897730": [
+  "A heavy gold chain made of interlocking oval links, the kind of jewelry worn over a shirt or laid in a case. Gold Chain uses 65,022 quad polygons over 65,028 vertices, with every link shaped as a separate loop. The links are hooked into each other, so the chain can drape or swing once a rig drives it.",
+  "No texture maps are needed, as metal shading comes from the material alone in most renderers. Soft bevels on each link catch thin highlights that make the metal look polished, and UVs never overlap. TurboSquid's review placed the necklace at CheckMate Pro, confirming naming and real scale.",
+  "5 chain versions are on offer: this static one at $12 and rigged ones at $19 for Cinema 4D, Maya and white gold. Jewelry stores, music video crews and character artists bring the chain's sales to 20 since 2015. Glinting on a rapper's chest in a club scene, it becomes part of the character's story."
+ ],
+ "google-cardboard-vr-headset-1140128": [
+  "A folded cardboard viewer for virtual reality, with two round lenses, a slot for a smartphone and a velcro flap. Google Cardboard VR Headset spends 134,014 polygons over 133,574 vertices on corrugated edges, lens rings and the side tab. The die-cut flaps fold together just as they do on a real flat-pack viewer pulled from its sleeve.",
+  "Corrugated board, printed graphics and lens plastic are covered in 6 maps at 4096 x 4096. Brown fibers show at the cut edges, which keeps the card from looking like plastic. Clean UV islands keep the printed panels sharp, and the viewer carries CheckMate Pro status.",
+  "The headset is sold in one version at $49 and has reached 20 buyers in tech education and gadget reviews since 2017. As a real Google product, the headset fits editorial work like reviews and articles. Held up to a student's face in a classroom, the viewer shows virtual reality made cheap and simple."
+ ],
+ "hanging-bathroom-towel-white-977267": [
+  "A soft terry towel hanging over a bathroom rail, with heavy folds at the bottom and a woven border near the hem. Hanging Bathroom Towel spends 13,002 quad polygons over 13,004 vertices on the drape and the thick edges of the cloth. The fabric bunches slightly where it meets the rail, so it looks hung by hand after a shower.",
+  "The cotton pile comes from 5 maps at 4096 x 4096, sharp enough to show the loops of the weave. UV islands on the terry cloth sit apart, and the towel was graded CheckMate Pro by TurboSquid.",
+  "Seven versions hang on the page: white at $19, yellow and green at $15, and purple, brown and blue at $9. A furry Hanging Hand Towel Fur at $15 rounds out the family for spa scenes. Bathroom designers, hotel renderers and real estate stagers have chosen it 20 times since 2015, usually beside a sink. Hung neatly by the mirror, it makes a showroom feel ready for guests."
+ ],
+ "heavy-duty-ratchet-strap-1777322": [
+  "A yellow cargo strap with a steel ratchet buckle and S-hooks at the ends, used to lash loads onto trucks. Heavy Duty Ratchet Strap uses 14,750 polygons over 14,360 vertices, with the ratchet handle, spool and pawl spring built as working parts. The webbing coils loosely around itself, as a strap looks when tossed into a truck bed after a delivery.",
+  "The strap arrives without textures, so webbing weave and painted metal are defined in your own materials. Stitching or a printed rating label is easy to add, as the webbing sits on a separate UV island. TurboSquid rated the tie-down CheckMate Pro after confirming its scale and object naming.",
+  "A single strap version sells at $39, with 20 buyers since 2021 in logistics guides and truck simulators. Moving companies and freight trainers also use it to show how a load should be secured. Cinched tight over crates on a flatbed, the strap shows a load that will not shift on the highway."
+ ],
+ "high-striker-strength-tester-game-with-mallet-1736732": [
+  "A fairground strength tester with a tall tower, a sliding puck and a bell at the top, waiting for a mallet swing. High Striker Strength Tester Game with Mallet carries 49,546 polygons over 50,478 vertices on the rail, the striking pad and the scale. The wooden mallet leans against the base, sized for a two-handed swing by a show-off at the fair.",
+  "Bright carnival paint and lights come down to your materials, since the tower arrives without texture maps. Numbers and jokes like weakling or champion fit onto the scale board's own clean UV island. Its file holds a CheckMate Pro rating, so naming and scale were checked by TurboSquid.",
+  "Priced at $39 as a lone version, the tester has found its way to 20 buyers since 2021. Carnival scenes, county fair games and summer festival animations use it, with the puck sliding up the rail toward the bell. When the bell rings in front of a cheering crowd, the tower gives a fair its loudest moment."
+ ],
+ "holiday-christmas-tree-1466609": [
+  "A full Christmas tree decorated with baubles, garlands and lights, topped with a star and set on a tree skirt. Holiday Christmas Tree is massive at 1,456,356 polygons over 5,021,287 vertices, with every needle cluster and ornament modeled. The branches droop under the decorations, just as a real fir does after a week of trimming.",
+  "Needles, glass ornaments and ribbons are rendered from 50 maps at 4096 x 4096 and 2048 x 2048. With so much geometry, a single tree is best as the hero of a room rather than one of many. Its UVs are clean, and the fir passed a CheckMate Pro inspection without trouble.",
+  "Only one tree version exists, at $79, and it has drawn 20 buyers since 2019. Seasonal greetings, holiday interiors and festive store windows use it most during the winter rush. Glowing in a dark living room with gifts underneath, the tree sets the scene for Christmas morning."
+ ],
+ "horse-racing-jockey-helmet-3d-model-1288590": [
+  "A jockey skull cap with a colored silk cover, a pom-pom on top and a short peak shading the eyes. Horse Racing Jockey Helmet 3D Model holds 3,998 quad polygons over 4,096 vertices, enough for the rounded shell and chin strap. The silk cover is a separate layer pulled over the hard shell, as riders wear it on race day.",
+  "Silks, strap webbing and the peak use 3 maps at 4096 x 4096, so racing colors can change per stable. The helmet's UV layout keeps every piece apart, and it carries a CheckMate Pro grade from TurboSquid.",
+  "There is one helmet version at $39, bought 20 times since 2018 by racing game teams and betting graphics studios. Equestrian films use it too, often in slow motion as horses burst out of the starting gate. Crouched low over a horse in the final furlong, a rider in this cap brings the thunder of the track into frame."
+ ],
+ "japanese-shinkansen-e5-high-speed-train-3d-model-1272098": [
+  "A Japanese bullet train with a very long pointed nose, green and white livery and a pink stripe along the body. Japanese Shinkansen E5 High Speed Train 3D Model is dense at 1,049,166 polygons over 1,142,749 vertices, spent on bogies and pantographs. The extended nose cuts the boom a train makes when it rushes into a tunnel at speed.",
+  "Livery, glass and the underside gear are textured with 16 maps at 4096 x 4096 and 2048 x 2048. Clean UVs leave room for custom liveries, and the train carries TurboSquid's CheckMate Pro grade.",
+  "Train buyers get 4 versions: this full set at $149, the locomotive alone at $79 and a passenger wagon at $79. A white and blue train at $149 completes the family for lines that use a different color scheme. Since 2018, 20 buyers in rail simulators, travel films and transport planning renders have used it racing past Mount Fuji."
+ ],
+ "jesus-tomb-1875617": [
+  "A rock-cut tomb in a hillside with a low doorway and a large round stone rolled beside the entrance. Jesus Tomb spends 68,398 polygons over 68,402 vertices on the rough rock face, the chiseled doorway and the stone disk. The groove in front of the door shows how the stone was rolled to seal the chamber.",
+  "Without bundled textures, limestone color and moss are built in your own shaders to suit the scene. Warm sunlight across the rough rock brings out every chisel mark, and the tomb's UVs never overlap. TurboSquid reviewers rated the sepulcher CheckMate Pro after confirming its scale and naming.",
+  "One version of the tomb is available at $99, and it has sold 20 copies since 2022. Easter services, Bible films and Sunday school lessons use it to tell the Resurrection story clearly. With the stone rolled aside and dawn light inside, the empty tomb sets the scene for Easter morning."
+ ],
+ "jet-ski-generic-1060645": [
+  "A sit-down personal watercraft with a sleek hull, a handlebar and a padded seat for two riders in wetsuits. Jet Ski Generic is light at 6,653 polygons over 7,203 vertices, so several can race in one scene. A small rear platform lets a rider climb back aboard from the water after a fall.",
+  "Hull paint, decals and seat vinyl are covered by 12 maps at 2048 x 2048 and 1024 x 1024. The craft's UVs stay separate for new decals, and TurboSquid graded it CheckMate Pro.",
+  "All 5 watercraft versions cost $49: this generic craft, a rigged generic, a Sea-Doo static and rigged, and a Personal Watercraft Jet Ski. The Sea-Doo builds carry real branding, so keep them to editorial work. The watercraft has found favor with 20 buyers since 2016, from resort renders to beach games and summer films. Skimming across a bay with spray behind it, the craft brings speed to a holiday shot."
+ ],
+ "junkers-ju-87-german-dive-bomber-1159551": [
+  "A German dive bomber with inverted gull wings, fixed spatted landing gear and a long glazed canopy for two crew. Junkers Ju 87 German Dive Bomber uses 50,407 polygons over 52,378 vertices, light enough for a squadron in one frame. Dive brakes hang under the wings, the slats that let it fall nearly straight at a target. A rear gunner's position faces backward under the canopy, ready for a figure to man the gun.",
+  "Camouflage, insignia and panel wear are stored in 15 maps at 8192 x 8192 and 4096 x 4096. Its UVs have no stacked shells, and reviewers certified the warplane at CheckMate Pro.",
+  "There are 2 bomber versions: the static plane at $149 and a rigged build at $199 with moving surfaces. War documentaries, flight sims and history games explain the bomber's 20 sales since 2017. Rolling over into a dive above a convoy, it recalls the early war years in Europe."
+ ],
+ "kettlebell-2-940935": [
+  "A cast iron kettlebell with a round body, a flat base and a thick handle for two-hand swings. Kettlebell 2 is tiny at 368 quad polygons over 368 vertices, since a smooth ball and handle subdivide cleanly. The flat bottom lets it sit steady on a gym floor without rolling into the next station.",
+  "Paint and grip texture are held in 2 maps at 4096 x 4096 for the weight. The UV layout leaves room for a printed weight on the side, and the bell is rated CheckMate Pro.",
+  "The page offers 5 color versions at $19 each: the default plus green, red, blue and orange. A rack of colors helps a gym look stocked from light weights to heavy ones. Fitness apps, gym designers and workout videos count among its 20 buyers since 2015. Gripped mid-swing by an athlete in a garage gym, it captures home training in a single frame."
+ ],
+ "lamb-rigged-for-maya-1091902": [
+  "A young sheep with curly white wool, long legs and floppy ears, built to walk, graze and bleat in animation. Lamb is set up with a skeleton for Maya, so the legs, neck and ears can be posed freely. Knobby knees and slender legs give it the shaky stance of a newborn taking its first steps.",
+  "The fleece reads soft and woolly, and the rig deforms the body without stretching the coat. Its pink nose and inner ears add warmth that shows up well in close shots. It meets the CheckMate specification, which covers clean topology and consistent naming.",
+  "Each of its 2 versions costs $99: this Maya build and a Lamb Rigged for Cinema 4D. Farm animators, Easter campaigns and nativity scenes have adopted the animal, which counts 20 buyers since 2016. Following its mother across a green spring meadow, it gives a farm scene its youngest character."
+ ],
+ "leonardo-da-vinci-glider-1423789": [
+  "A reconstruction of the glider Leonardo sketched, with bat-like fabric wings over a wooden frame and a harness for the pilot. Leonardo da Vinci Glider uses 12,743 polygons over 13,028 vertices for the ribs, the lashings and the wing hinges. The wing tips fold downward, as in his drawings, giving a strong silhouette against the sky.",
+  "Wood grain, canvas and rope are textured with 12 maps at 2048 x 2048. The UVs leave each part separate, and the flying machine holds a CheckMate Pro grade.",
+  "The page offers 6 versions: the static glider and Flying Machine at $59, and rigged builds of each at $79. Each rigged build also comes with a Cinema 4D setup, so wings can beat or fold for animation. Since 2019, 20 buyers in museums, history lessons and invention documentaries have taken the glider. Hung from a gallery ceiling, it shows how far ahead of his time the artist was."
+ ],
+ "lol-doll-dressed-1417901": [
+  "A small fashion doll with an oversized head, huge eyes and a dressed-up outfit, shaped after popular collectible dolls. LOL Doll Dressed is light at 4,874 polygons over 4,901 vertices, which keeps the round head and tiny body smooth. Stubby arms and a big bow on the hair make the character read instantly on a crowded shelf.",
+  "Face paint, clothes and hair color are painted into 13 maps at 2048 x 2048. Glossy eyes take a bright catchlight, which gives the face its wide-awake expression. Clean UVs let the outfit be changed for another style, and the toy carries CheckMate Pro status.",
+  "A single doll version is sold at $49, and 20 buyers have picked it since 2019 for unboxing videos and toy reviews. It copies a real toy line, so the doll belongs in editorial pieces, for example toy reviews. Sitting on a shelf among plush toys, it shows what children collect today."
+ ],
+ "m142-himars-multiple-rocket-launcher-desert-1848575": [
+  "A wheeled rocket artillery system with an armored cab and a launcher pod on the rear bed of a tactical truck. M142 HIMARS Multiple Rocket Launcher Desert is dense at 466,074 polygons over 496,491 vertices, spent on wheels, armor and the launcher frame. The pod can swing to the side, so the vehicle aims without turning around on the road.",
+  "Desert tan paint and dust need your own shader setup, since the launcher comes without texture maps. Wheel hubs and tire treads are modeled sharply enough for a low camera beside the truck. The launcher's UV layout is clean, and TurboSquid gave it a CheckMate Pro certificate.",
+  "The family holds ten versions: this desert launcher at $169, plus green launchers at $219 and rigged ones from $199 to $229. Bare FMTV truck chassis builds at $119 or $139 serve as transport trucks without the rocket pod. Since 2022, 20 buyers in defense news, strategy games and military documentaries have used the launcher firing at dusk."
+ ],
+ "male-body-anatomy-collection-1575425": [
+  "A set of male anatomy models covering the skeleton, muscles and organs, built for medical teaching and visualization. Male Body Anatomy Collection splits the body into systems, so each layer can be shown or hidden on its own. Muscles follow their real attachment points, which keeps the anatomy accurate for students and doctors. Bones carry ridges and notches where tendons attach, the details an anatomy exam asks about.",
+  "A CheckMate Pro rating covers the whole anatomy set, so every part was reviewed for topology and naming. Organs sit in their true positions inside the rib cage, so a cutaway shows real spatial relations.",
+  "The anatomy set is a single purchase at $249, and since its release in 2020 it has found 20 buyers. Medical schools, physiotherapy apps and health explainers use it most, staging labeled diagrams and cross sections. Rotating slowly with the skin peeled away, the body becomes a lesson in how people are built."
+ ],
+ "mandarin-with-leaf-1862025": [
+  "A ripe mandarin with dimpled orange peel and a single glossy leaf attached at the short stem. Mandarin with Leaf is tiny at 3,367 polygons over 1,975 vertices, which points to triangulated faces on the round fruit. The slightly flattened shape tells it apart from an orange at a glance in a fruit bowl. The leaf curls slightly at its tip, which adds a fresh, just-picked look to the fruit.",
+  "No texture maps are bundled, so peel pores and leaf veins depend on your own shading. Its unwrap keeps the peel and leaf apart, and the StemCell standard keeps renders consistent across engines.",
+  "One version is on sale at $29, and the fruit has 20 buyers since 2022. Recipe sites and winter holiday scenes use it most, and piles of these set Lunar New Year tables. Placed on a breakfast plate next to tea, the mandarin adds a warm spot of color to a cold morning."
+ ],
+ "manual-aneroid-sphygmomanometer-inflated-1624484": [
+  "A manual blood pressure monitor with an inflated arm cuff, a rubber bulb and a round dial gauge on a coiled tube. Manual Aneroid Sphygmomanometer Inflated uses 6,145 polygons over 6,426 vertices for the gauge face, the valve and the puffed cuff. The cuff swells as if wrapped around an arm, which sets it apart from a flat one lying on a desk.",
+  "Fabric cuff, rubber and gauge markings are mapped with 7 maps at 4096 x 4096. The needle on the dial is a separate object, so it can sweep as the cuff deflates. Delivered to the StemCell standard, it renders the same across engines, and its UVs are clean.",
+  "Two monitor versions cost $49 each: this generic one and a BPL model carrying its maker's name, meant for editorial use. Since 2020, 20 buyers in clinics, nursing courses and health explainers have used the device. Wrapped around a patient's arm with a doctor reading the dial, it turns a checkup into a calm scene."
+ ],
+ "medieval-siege-weapons-collection-1183995": [
+  "A set of medieval war machines, with a trebuchet, a catapult and a battering ram built from rough timbers and rope. Medieval Siege Weapons Collection gives each machine its own frame, so an army camp looks varied and believable. The trebuchet's throwing arm and sling are separate pieces, ready to swing in an animated assault. Wheels on the ram and the catapult carry iron rims, so the machines can roll across a muddy field.",
+  "A CheckMate Pro review covered every engine of war in the set. Wood grain and iron fittings give each machine the look of a weapon used through a long campaign.",
+  "The siege set is sold as one version at $99, with 20 sales made since 2017. Fantasy games, historical documentaries and battle animations use it most, and teachers explain castle sieges with it. Rolled up to a castle wall in the smoke of battle, the machines bring the noise of an old war to the screen."
+ ],
+ "metal-key-clip-1781155": [
+  "A small metal carabiner clip with a spring gate, used to hang keys from a belt loop or a backpack strap. Metal Key Clip is very light at 1,396 polygons over 1,400 vertices, which keeps the curved body and gate crisp. The gate opens inward on a pivot, just like the clip on a climber's harness but smaller.",
+  "Brushed aluminum or anodized color is set in your material, since the clip has no textures. A key ring threaded through the clip makes the scale obvious, and the UVs stay clean for engraving. TurboSquid placed the clip at CheckMate Pro once it was checked by hand.",
+  "One clip version is offered at $19, and it has 20 buyers since 2021. Outdoor gear catalogs, everyday carry photos and product mockups are where it ends up most. Clipped to a hiker's pack with a bundle of keys, it adds a touch of adventure to a trail scene."
+ ],
+ "metal-lighter-1187144": [
+  "A classic flip-top windproof lighter with a hinged lid, a chimney guard and a thumb wheel over the wick. Metal Lighter uses 12,902 polygons over 13,069 vertices for the hinge, the chimney holes and the knurled wheel. The lid snaps back on its hinge with the click smokers know by heart.",
+  "Brushed chrome, engravings and the flame-worn wick come from 30 maps at 4096 x 4096 and 2048 x 2048. Clean UVs let a custom engraving be laid on the case, and the lighter earned its CheckMate Pro mark in review.",
+  "The page offers 6 lighter versions: this one at $39 or rigged at $49, plus Classic and Jack Daniels Zippo builds. Those Zippo builds cost $29 static or $39 rigged and are meant for editorial use only. Film noir scenes, bar props and character close-ups account for 20 sales of the range since 2017. Flicked open in a dark alley to light a cigarette, it frames a face in orange glow."
+ ],
+ "millitary-missiles-and-rockets-3d-models-collection-1409751": [
+  "A collection of military missiles and rockets from different nations, with air-to-air, surface-to-air and cruise designs side by side. Millitary Missiles and Rockets Collection gives each weapon its own body shape, fins and nose cone, so a display never repeats. Each missile is laid out horizontally, ready to load onto a rack, a wing pylon or a museum stand.",
+  "Reviewers gave the arsenal a CheckMate Pro rating, confirming topology and scale on every model. Gray, olive and white paint schemes help tell the weapon families apart at a glance. Fins and nose cones are sharp enough for close shots of a single round on a trolley.",
+  "There are 7 collection versions: this one at $119, the second and third at $159, and the fourth at $179. The fifth costs $199, the sixth $219 and the seventh $229, each adding more weapons to the shelf. Military museums, war games and news graphics have drawn 20 buyers to the set since 2019."
+ ],
+ "modern-shell-chair-1272089": [
+  "A molded plastic seat with a curved shell and back in one piece, set on slim wooden legs with metal braces. Shell Chair uses 11,864 quad polygons over 12,522 vertices, which keeps the curves smooth and the edges clean. The seat flows up into raised arms, so the whole piece reads as one sculptural form. Rubber caps on the feet keep the legs from scratching a wooden floor.",
+  "Plastic color and wood grain are taken from 8 maps at 2048 x 2048. The UV islands are kept separate for recoloring, and the seat holds CheckMate Pro status from TurboSquid.",
+  "All 4 chair versions cost $39: this one, a Pascal black plastic chair, a molded arm chair and an Eames style chair. Since 2018, 20 buyers among interior designers, cafe planners and real estate stagers have chosen the design. Placed around a white dining table, the chairs bring a touch of mid-century design into a modern flat."
+ ],
+ "motor-yacht-2-1030526": [
+  "A sleek motor yacht with a sharp bow, a flybridge and a swim platform at the stern for diving into the sea. Motor Yacht 2 carries 57,077 polygons over 60,040 vertices for the hull lines, railings and tinted cabin windows. The raised flybridge gives the boat a strong silhouette when seen from the side across open water. Tinted windows wrap around the saloon, hiding the interior and keeping the exterior clean.",
+  "Gelcoat, teak decking and chrome are drawn from 9 maps at 4096 x 4096 and 2048 x 2048. The hull's UV islands never collide, and the motorboat was graded CheckMate Pro.",
+  "Two yacht versions are offered at $79 each: this boat and a Luxury Yacht with a different hull. Since 2016, 20 buyers among marine brochures, luxury real estate renders and music videos have used it. Anchored in a turquoise bay with guests on deck, the yacht shows a summer life of ease."
+ ],
+ "mountain-bike-gt-fury-1046962": [
+  "A downhill mountain bike with long-travel suspension, a burly frame and knobby tires built for steep rocky descents. Mountain Bike GT Fury carries 391,427 polygons over 407,404 vertices for the drivetrain, disc brakes and shock linkage. The rear shock sits low in the frame, the layout that keeps a downhill bike stable at speed.",
+  "Frame paint, decals and rubber are spread over 75 maps at 4096 x 4096. Clean UVs allow your own frame colors, and the bicycle passed TurboSquid review at CheckMate Pro.",
+  "Fourteen versions fill the page, led by this bike at $149, with rigged GT Fury builds at $129. Those rigs include Cinema 4D and Maya setups, while static blue, white and green frames cost $119. A generic rigged bike costs $119 and a generic static one $99, and the GT branding fits editorial work. Sports films and bike shop renders have bought the GT range 20 times since 2016."
+ ],
+ "nasa-ocss-helmet-1565716": [
+  "The pressure helmet of the orange launch and entry suit, with a wide visor, a neck ring and a bulky rounded shell. NASA OCSS Helmet uses 28,086 polygons over 29,057 vertices as subdivision geometry, which keeps the dome smooth at render time. The visor lifts on side pivots, as astronauts raise it before the hatch closes. The neck ring is broad and flat, sized to lock onto the collar of the pressure suit.",
+  "White shell paint and visor tint are your call, since the helmet comes without texture maps. Its StemCell files are tuned so the helmet looks alike in every major engine, with tidy UVs.",
+  "A single helmet version sells at $49 and has appealed to 20 buyers since 2020, mostly space films and science museums. Since it depicts real NASA gear, it suits editorial and educational work. Sitting on a bench in a suit-up room, the helmet tells of a crew about to leave Earth."
+ ],
+ "nautilus-shell-slice-1872915": [
+  "A nautilus shell cut in half to reveal its spiral chambers, each divided by curved walls growing outward. Nautilus Shell Slice uses 17,418 polygons over 8,711 vertices, a ratio that shows triangulated faces across the thin chamber walls. The cut face is perfectly flat, which lets the shell stand on its edge on a display stand.",
+  "Nacre shine and the outer stripes are built in your shaders, as no texture maps come with it. Iridescent shading on the inner walls gives the slice its pearly glow under side light. The shell's UVs do not overlap, and it holds the CheckMate Pro grade from TurboSquid.",
+  "One version is offered at $49, and 20 collectors and teachers have bought the slice since 2022. Science lessons, decor renders and math explainers about the golden spiral use the slice more than anything else. Lit from the side on a dark shelf, the shell shows how nature builds with geometry."
+ ],
+ "nike-hoops-large-elite-max-air-duffle-bag-1394311": [
+  "A roomy basketball duffle with a padded shoulder strap, zip compartments and a separate end pocket that keeps sneakers away from clean clothes. The Nike Hoops Large Elite Max Air Duffle Bag spends 38,815 polygons over 39,108 vertices on soft panels, piping and webbing. Fabric bulges gently between the seams, so the bag looks packed rather than hollow when it rests on a locker room bench.",
+  "Woven nylon, rubber logo patches and zipper teeth are painted onto 5 maps at 4096 x 4096 and 2048 x 2048. Its UV islands never overlap, and the StemCell standard means the same PBR look loads in a game engine or an offline renderer.",
+  "The page offers 2 versions at $49 each: this branded duffle and an unbranded Gym Bag for shots that cannot show a logo. Since 2019 the bag has gone to 20 buyers working on sports retail renders, school hallways and gym interiors. Because of the swoosh the branded bag is licensed for editorial use, which suits sports magazines and news graphics."
+ ],
+ "nikon-z7-with-nikon-z-24-70mm-f4-s-lens-1550806": [
+  "A full-frame mirrorless camera body paired with its compact standard zoom, built down to the mode dial and the deep textured grip. This Nikon body and lens hold 74,589 polygons over 82,734 vertices, largely in the barrel rings and top plate controls. The bayonet, hot shoe and strap lugs are modeled as separate shapes, so a macro shot of the body stays crisp.",
+  "Rubberized grip texture, engraved markings and the coated front element come from 12 maps at 4096 x 4096. Each UV island has its own space, and as a StemCell model the camera keeps identical PBR materials across major renderers.",
+  "Released in 2020, this camera has been bought 20 times by photography bloggers, electronics reviewers and app designers who need a believable device on screen. Set on a desk beside a laptop or held in a character's hand, it marks someone as a working photographer at a glance. Since it carries the maker's branding, it is sold for editorial work such as gear reviews and tech news."
+ ],
+ "oil-derrick-2-943844": [
+  "A tall steel lattice derrick with a crown block on top and a drilling floor below, the classic onshore oil well. Oil Derrick 2 uses 123,786 polygons over 129,573 vertices, mostly on the criss-crossed girders and ladder rungs. Because every strut is real geometry, the tower throws a proper web of shadows across the ground at sunset.",
+  "Rust, flaking paint and grimy deck planks are carried by 10 maps at 4096 x 4096. The mesh is built from quads only with clean unwrapped shells, and TurboSquid inspectors certified the derrick at CheckMate Pro. Close shots of the bolted joints hold up, because texture density stays high along the full height of the tower.",
+  "On sale since 2015, the rig counts 20 purchases from makers of energy company explainers, documentary reconstructions and oil boom westerns. Set several towers across a flat prairie and the frame instantly reads as a working oil field. A single derrick also serves well as a hero landmark in an industrial game level."
+ ],
+ "open-air-tour-bus-simple-interior-yellow-2061260": [
+  "A double-decker sightseeing bus with an open top deck, rows of seats under the sky and a bright yellow body for city tours. Open Air Tour Bus Simple Interior Yellow has 271,930 polygons over 156,548 vertices, a ratio that points to a triangulated mesh. The lower saloon carries a simplified interior, enough to see seats through the windows without loading a full cabin.",
+  "No texture maps are included, so the yellow paint and dark trim come from shader colors that are easy to swap for a local operator. UVs overlap in places, which suits flat colors but needs a fresh unwrap before painting decals. The StemCell standard keeps those materials consistent from one renderer to the next.",
+  "Twenty sales have come in since its 2023 debut, mostly for tourism promos, city traffic in games and urban street visualization. Parked beside a famous landmark with tourists on the upper deck, it tells viewers at once that this is a holiday city."
+ ],
+ "open-pizza-box-1398843": [
+  "A corrugated takeaway box with its lid flipped back, showing the clean inner base where a pie would sit. Open Pizza Box spends 11,986 polygons over 12,312 vertices on folded flaps, rounded corners and the visible cardboard edge. The lid rests at an easy angle, so the box looks natural on a kitchen counter or a sofa cushion.",
+  "Brown kraft fibers on the cardboard come from 4 maps at 4096 x 4096. All UV islands stay separate, leaving room for a pizzeria logo, and the StemCell build carries the cardboard shader between packages unchanged.",
+  "The page holds 5 versions in total, with this open carton and a paper carton box both at $19. A gray open box, one with a cartoon design and a closed box cost $29 each. Food delivery apps, movie night scenes and restaurant ads account for its 20 sales since 2019. Stacked by the door of a student flat, a few of these boxes tell a whole story about the weekend."
+ ],
+ "phone-booth-963219": [
+  "A glass-paneled street phone booth with a metal frame, a coin telephone inside and a lit sign across the top. Phone Booth puts 92,187 polygons over 93,497 vertices into the door hinges, frame profiles and the coiled handset cord. Clear panels let the camera see straight through to the phone, so the booth works as both background dressing and a small set.",
+  "Painted metal, scuffed glass and the dial plate are textured with 7 maps at 2048 x 2048 and 1024 x 1024. The unwrap keeps every shell apart, and the booth passed CheckMate Pro review of its topology and scale.",
+  "City street dressing, period drama and plaza visualization explain most of the 20 copies sold since 2015. It belongs on a rainy corner at night, glowing under a streetlamp while a character makes one last call. Such booths have become rare on real streets, which makes them quick shorthand for an earlier decade."
+ ],
+ "popped-corn-1096671": [
+  "A single popped kernel with puffy white lobes and a toasted yellow hull clinging to its base. Popped Corn needs only 382 quad polygons over 384 vertices, so hundreds of pieces can fill a bucket without slowing the scene. The lumpy outline is irregular enough that rotated copies never look like clones. Under a soft key light the bumpy surface throws small shadows that read as real crunch.",
+  "Fluffy starch texture and a few browned spots come from 6 maps at 4096 x 4096. No two UV shells share space, and the kernel holds a CheckMate Pro certificate.",
+  "Buyers have picked it up 20 times since 2016 to scatter on cinema floors, fill striped tubs and drop into slow-motion food shots. Physics simulations welcome the low count, since thousands of kernels can bounce out of a popper in one take. A handful spilled across a sofa also tells the viewer that movie night is underway."
+ ],
+ "railroad-amtrak-passenger-car-2-930528": [
+  "A long stainless steel passenger coach with ribbed sides, a row of tinted windows and full trucks under each end. Railroad Amtrak Passenger Car 2 runs to 1,016,052 polygons over 1,029,434 vertices, much of it in the bogies, brake rigging and end diaphragms. That density lets the camera ride along the platform at eye level without the undercarriage turning into a gray blur.",
+  "Brushed metal, the striped livery and grimy wheels are painted onto 13 maps at 4096 x 4096. Every island in the unwrap is separate, and the coach earned CheckMate Pro status for clean topology and true proportions.",
+  "All 5 versions cost $79: a pair of Amtrak coaches, an Amtrak train car, a generic car and a plain carriage. Rail documentaries, station scenes and train simulators make up the 20 orders placed since 2015. The Amtrak livery keeps the branded coaches under editorial terms, while the generic carriage covers unbranded projects. Coupled into a long consist, the cars stretch across a whole frame of countryside."
+ ],
+ "red-oak-tree-summer-973818": [
+  "A broad mature oak in full summer leaf, with a thick trunk, spreading limbs and a dense rounded crown. Red Oak Tree Summer carries 600,423 polygons over 1,149,415 vertices, since each leaf is a separate card hanging from real branches. Sunlight breaks through gaps in the canopy and leaves dappled shade on the lawn that flat billboard trees never produce.",
+  "Bark ridges and the glossy lobed leaves use 11 maps at 2048 x 2048 and 1024 x 1024. The UV layout is mixed, with repeated leaves sharing texture space, and TurboSquid graded the tree at CheckMate Pro.",
+  "The page groups 4 versions, starting with this green summer oak and a red autumn oak for $29. An autumn oak and a realistic red oak sell at $39 each. Landscape architects, park visualizers and filmmakers needing a seasonal backdrop explain its 20 sales since 2015. Swapping between summer and autumn builds shows the same garden changing through the year."
+ ],
+ "rolling-on-the-floor-laughing-emoji-1533412": [
+  "A round yellow face tipped on its side, eyes squeezed shut, tears flying and a wide open mouth mid laugh. Rolling on the Floor Laughing Emoji uses 1,376 polygons over 1,376 vertices, enough for a smooth sphere and crisp features. The tilted pose is the whole joke, so the face reads clearly even as a tiny sticker in the corner of a frame.",
+  "Glossy yellow skin, the blue teardrops and the dark mouth come from 5 maps at 1024 x 1024. The modest map size keeps the file tiny, which suits mobile apps and messaging interfaces. UV shells sit apart, and reviewers gave the emoji a CheckMate Pro rating.",
+  "At $9 it has found its way into 20 projects since 2020, mostly from motion designers, social media teams and children's game developers. Spun on a turntable or bounced across a chat window, it brings instant comedy to an explainer video. It also lines up well beside other emoji faces in a reaction row."
+ ],
+ "round-dining-served-table-1388241": [
+  "A round wooden dining table fully laid for a meal, with plates, glasses, cutlery and serving dishes arranged around its edge. Round Dining Served Table puts 93,952 polygons over 94,042 vertices into the tableware, so each fork and glass rim holds its shape. The setting is already balanced around the circle, which saves hours of placing small props by hand.",
+  "Wood grain, ceramic glaze, linen and glass are covered by 19 maps at 4096 x 4096 and 2048 x 2048. UV shells never collide, and the dinner set carries a CheckMate Pro seal from marketplace staff. Reflections in the glasses and on polished plates sell the scene under warm evening light.",
+  "Apartment interiors, restaurant mockups and family dinners in animation account for the 20 licenses sold since 2019. Placed under a pendant lamp in a dining room render, the table makes an empty space feel lived in. Shot from above, the circle of plates also makes a clean overhead composition for food blogs."
+ ],
+ "saint-basils-cathedral-932387": [
+  "The famous cathedral on Red Square in Moscow, with its cluster of onion domes twisted, striped and faceted in bright colors. Saint Basils Cathedral rebuilds the tent-roofed central tower, the smaller chapels around it and the arched galleries joining them. Each dome has its own pattern, so the building stays recognizable from any side and at any distance.",
+  "Painted brick, white stone trim and gilded crosses give the church its fairground look under daylight. Close shots of the domes reveal crisp edges on the scales and spiral ribs. Inspectors certified the landmark at CheckMate Pro, which covers clean topology, proper naming and real-world scale.",
+  "At $199 the cathedral has drawn 20 buyers since 2015, among them travel channels, history documentaries and strategy game makers. Dropped into a winter scene with snow on the domes, it tells viewers instantly that the story has moved to Russia. It also anchors a believable Moscow skyline when placed beside the red Kremlin walls."
+ ],
+ "scott-regular-roll-toilet-tissue-4-rolls-1605963": [
+  "A plastic-wrapped pack of toilet paper rolls standing upright, the kind stacked on supermarket shelves and in bathroom cupboards. Toilet Tissue 4 Rolls uses 5,926 polygons over 5,928 vertices, mostly on the soft rounded edges and the folds of the wrapper. The film pulls tight over the rolls and puckers at the ends, which makes the package read as real from across a room.",
+  "Printed packaging, the quilted paper surface and the clear plastic shine come from 6 maps at 4096 x 4096. Shells in the unwrap are kept apart, and the pack meets the CheckMate Lite standard.",
+  "The page has 5 versions, beginning with a pair of identical packs at $39 and a single bare roll at $19. Individually wrapped rolls cost $29 and come in both branded and plain form. Store shelves, bathroom interiors and news graphics about panic buying account for 20 sales since 2020. The branded packaging keeps those items under editorial use rather than commercial work."
+ ],
+ "scuba-diving-equipment-1020819": [
+  "A complete diver's kit laid out together: air tank, buoyancy vest, regulator hoses, mask, fins and a weight belt. Scuba Diving Equipment carries 42,730 polygons over 43,472 vertices, shared across the gear so that every piece stays detailed. Hoses curve naturally from the first stage on the tank, ready for a diver standing on a boat deck before the plunge.",
+  "Neoprene, painted steel and rubber are textured with 6 maps at 4096 x 4096. Rubber fins keep a slight matte finish, while the tank valve catches a bright metal highlight. The unwrap has no overlapping shells, and the kit sits at the CheckMate Lite tier.",
+  "Buyers choose among 3 versions: this full kit at $119, Diving Equipment at $99 and Diving Equipment 2 at $79. Dive shop promos, underwater adventure games and marine biology lessons lie behind its 20 sales since 2016. Laid on a wooden pier at dawn, the gear sets up a story before anyone is in the water."
+ ],
+ "seabob-electric-jet-f5-sr-white-and-red-1848595": [
+  "A sleek electric water sled with side handles and a shaped hull that pulls a swimmer along the surface or below it. The Seabob Electric Jet F5 SR has 19,919 polygons over 20,074 vertices, spent on the grips, intake grilles and smooth body curves. Its white and red shell stands out against blue water, which helps in wide shots taken from a yacht deck.",
+  "No texture maps are included, so the glossy colors come from simple shaders that change in seconds. UVs are laid out without overlaps for anyone adding decals, and the sled passed inspection at CheckMate Pro level.",
+  "The page holds 4 versions at $69 each: a pair of Seabob builds plus an orange handheld underwater scooter and a yellow electric sea scooter. Yacht charter sites, luxury travel films and water sports games have ordered it 20 times since 2022. Paired with a superyacht, the scooter suggests a lavish summer holiday at once. The Seabob builds carry the maker's name, so they fall under editorial terms."
+ ],
+ "seattle-great-ferris-wheel-at-night-1312005": [
+  "The giant observation wheel on Seattle's waterfront, with enclosed gondolas hanging from a white steel rim and spoke frame. Seattle Great Ferris Wheel holds 2,249,004 polygons over 2,464,592 vertices, concentrated in the lattice spokes and gondola doors. The hub and support legs are fully built, so a camera can sweep past the axle without revealing shortcuts.",
+  "Paint, glass and lighting details come from 17 maps at 8192 x 8192 and 4096 x 4096. Shells never overlap in the unwrap, and the attraction rates CheckMate Pro for topology and scale.",
+  "The page offers 6 versions, including the wheel alone in a pair of builds at $139 and a rigged wheel at $149. On its pier the wheel costs $169 as static, rigged and rigged night variants. Travel films, skyline renders and city builder games explain its 20 purchases since 2018. Lit against a dusk sky over Elliott Bay, it becomes the center of any waterfront shot."
+ ],
+ "six-egg-package-closed-1329159": [
+  "A molded pulp egg carton with its lid shut, showing the bumpy domes that cradle each egg underneath. Six Egg Package Closed uses 12,968 polygons over 12,892 vertices on the rounded cups, the locking tab and the soft fibrous edges. The closed form makes it an easy grocery item to stack in fridge doors or on supermarket shelves.",
+  "The gray recycled fiber look comes from 3 maps at 4096 x 4096, sharp enough for a macro shot of the pressed paper. Its unwrap is tidy with separate shells, and the StemCell material carries over between engines without rebuilding.",
+  "The page has 2 versions at $29: this closed carton and an opened cardboard carton with the eggs on view. Kitchen interiors, grocery delivery apps and breakfast campaigns drove 20 sales after its 2018 launch. Next to a whisk and a mixing bowl, the carton sets up a baking scene before a single shell is cracked. Its muted gray tones also suit packaging mockups about recycling and sustainable materials."
+ ],
+ "soyuz-2-orbital-launch-vehicle-1770169": [
+  "A tall Russian launch vehicle standing ready, with a slim core stage, a ring of flared strap-on boosters and a pointed payload fairing. Orbital Launch spends 348,668 polygons over 382,790 vertices on engine nozzles, booster cones and the fittings near the base. The silhouette is unmistakably Soyuz, a shape space fans recognize from decades of crewed flights.",
+  "No texture maps ship with the rocket, so its gray paint and orange insulation come from clean shaders that are quick to tune. Unwrapped shells never overlap on the long body, and the launcher holds CheckMate Pro certification.",
+  "Buyers choose among 4 versions: this assembly at $129 and an orbital launch vehicle at $139. Main parts sets cost $179 and $189, the first labeled Soyuz 2. The parts sets let a camera follow stage separation piece by piece. Space documentaries, science lessons and launch simulators lie behind the 20 orders since 2021."
+ ],
+ "speech-stand-united-states-president-1434824": [
+  "A heavy wooden lectern with a sloped reading top and a front panel carrying the presidential seal, the stand seen at White House briefings. Speech Stand United States President uses 6,219 polygons over 6,620 vertices, so it stays light in a crowded press room. Its broad front faces the camera squarely, which is exactly how news footage frames a speaker.",
+  "Polished wood grain and the seal artwork come from 5 maps at 4096 x 4096 and 2048 x 2048. The edges of the reading top are softly rounded and catch a clean highlight under studio lights. UV shells stay separate, and the lectern was approved at CheckMate Pro.",
+  "Political satire channels, news graphics teams and makers of election films have bought it 20 times since 2019. Placed before a row of flags in a briefing room, it turns any character into a head of state. The same podium works for campaign rallies when raised on a stage under bright lights."
+ ],
+ "sport-glasses-2-black-921027": [
+  "Wraparound sports sunglasses with a curved black frame, rubber nose pads and lenses that hug the face for running or cycling. Sport Glasses 2 Black spends 11,962 quad polygons over 12,295 vertices on the hinges, temple arms and sweeping lens shape. The curved lenses mirror their surroundings, so they look convincing on an athlete's face in bright daylight.",
+  "Matte plastic, rubber grips and tinted lens reflections come from 7 maps at 4096 x 4096. Temple arms are separate parts, so they can be folded for a product shot on a table. The layout keeps UV shells apart, and the eyewear is certified CheckMate Pro.",
+  "The page lists 10 versions, all at $29, so color is the main choice. Frames come in black, blue, red, green and white, with lenses in orange, green or rainbow tints alongside plain dark shades. Sports apparel shops, cycling games and fitness app designers placed 20 orders since 2015."
+ ],
+ "star-wars-tie-fighter-987275": [
+  "The Imperial starfighter with a ball cockpit hung between a pair of flat hexagonal wing panels, instantly familiar to any fan of the saga. Star Wars Tie Fighter puts 261,473 polygons over 289,765 vertices into the wing struts, the round viewport frame and the twin cannons. Radial ribs across each solar panel are modeled in relief, so they catch light as the fighter screams past the camera.",
+  "Gray hull paint, panel seams and the dark solar collectors come from 5 maps at 4096 x 4096. The unwrap is free of overlaps, and this fighter earned its CheckMate Pro mark from TurboSquid reviewers.",
+  "Two versions share the page at $89 each: this Star Wars fighter and a second Imperial TIE Fighter build. Fan films, space battle renders and tabletop game art explain the 20 buyers it has had since 2015. Flown in a tight formation of several fighters, it fills a frame with menace against a star field. Because the design belongs to a famous franchise, the craft is licensed for editorial use only."
+ ],
+ "suit-11-940409": [
+  "A tailored men's business suit with a fitted jacket, sharp lapels and pressed trousers falling cleanly to the shoe. Suit 11 keeps the count at 7,957 polygons over 8,159 vertices, light enough to dress crowds of office workers in a game. Soft folds at the elbows and knees suggest real cloth, so the outfit never looks like a stiff shell.",
+  "Wool weave, stitching along the seams and the buttons come from 3 maps at 4096 x 4096. The dark fabric holds a subtle sheen under office lighting without looking plastic. Shells are unwrapped without overlaps, and the suit passed a CheckMate Pro review of topology and naming.",
+  "Corporate explainers, wedding scenes and character dressing for games have brought 20 orders since 2015. At $99 it saves a long tailoring session when a background figure needs a convincing office look. Worn by a figure beside a glass meeting room, it reads instantly as finance or law."
+ ],
+ "tall-throne-chair-black-1348740": [
+  "A dramatic high-backed chair in black, its tall upholstered back rising far above a seated head like a royal throne. Tall Throne Chair Black uses 33,365 polygons over 36,485 vertices on the carved frame, the tufted padding and the curved arms. Deep buttons pull the upholstery into a quilted pattern that throws small shadows under a spotlight.",
+  "Black lacquer, velvet and metal trim are covered by 6 maps at 4096 x 4096. Under low light the glossy frame picks out sharp highlights along every carved edge. The UV layout is mixed, with some repeated details sharing space, and the chair meets the CheckMate Lite grade.",
+  "Since 2018 it has been bought 20 times for luxury lounges, photo studios, gothic interiors and fantasy villain lairs. Placed alone at the end of a long hall, the chair makes whoever sits there look in charge. Event planners also use it to preview a royal setting for weddings and birthday parties."
+ ],
+ "towel-white-987736": [
+  "A thick white bath towel folded into a neat stack, its soft edges and looped pile ready for a hotel bathroom. Towel White spends 17,849 quad polygons over 17,851 vertices on rounded folds and slightly puffy corners. The plush layers sag a little under their own weight, which keeps the stack from looking like a carved block.",
+  "Terry cloth loops and a woven border stripe come from 4 maps at 4096 x 4096. Draped over a chrome rail or rolled beside a sink, the towel adds instant comfort to tiled rooms. Each shell in the layout has its own space, and the towel holds a CheckMate Pro grade.",
+  "The page lists 6 versions, with this white towel at $19 and furry towels in blue, yellow, green and brown at the same price. The red furry towel is the cheapest pick of the set at $9 for budget scenes. Hotel brochures, spa visualizations and bathroom interiors account for the 20 purchases made since 2015."
+ ],
+ "tropical-helmet-dirty-3d-model-1359937": [
+  "A worn pith-style tropical helmet with a broad brim, a domed crown and a chin strap, caked in mud and dust. Tropical Helmet Dirty 3D Model uses 7,359 quad polygons over 8,074 vertices, keeping it light enough for a whole squad of soldiers. The stained shell and scuffed brim tell a story of long marches through jungle and rain.",
+  "Grime, faded green fabric and dried mud come from 4 maps at 4096 x 4096. A dusty matte finish keeps the helmet from shining under harsh tropical sun. Shells sit apart in the unwrap, and the StemCell build keeps its PBR materials intact across engines and renderers.",
+  "Both versions on the page cost $29: this dirty helmet and a North Vietnamese Tropical Helmet for period accuracy. War films, history documentaries and jungle shooters have accounted for 20 buyers since 2018. Set on a sandbag wall or hanging from a rifle, it places the scene in the Vietnam War era at once."
+ ],
+ "turbojet-engine-general-electric-j85-1002485": [
+  "A compact military turbojet laid bare, with its intake, compressor stages, combustor section and afterburner nozzle all built in metal detail. Turbojet Engine General Electric J85 holds 1,271,647 polygons over 1,346,612 vertices, spent on fuel lines, brackets and rows of blades. Every pipe and clamp around the casing is separate geometry, so a cutaway or exploded view works without rebuilding parts.",
+  "Bare titanium, heat-tinted steel and painted housings come from 17 maps at 4096 x 4096. UV islands sit apart, and inspectors approved the engine at CheckMate Pro after reviewing its topology. Mounted on a display stand under bright hangar lights, the engine becomes a teaching piece on its own.",
+  "Two versions appear on the page: this branded engine at $219 and an unbranded Turbojet Engine at $149. Aviation schools, technical museums and engineering explainers have licensed the engine 20 times since 2016. The branded build carries the maker's name and is sold for editorial and educational use."
+ ],
+ "uav-ground-control-station-thrustmaster-joysticks-1742039": [
+  "A rugged drone control station in a hard case, with screens in the lid and flight sticks mounted in front of the operator. UAV Ground Control Station Thrustmaster Joysticks uses 49,573 polygons over 50,916 vertices on the throttle levers, switches and case latches. The layout puts both hands on the controls, so a seated pilot figure slots naturally behind the case in a command tent.",
+  "No texture maps are supplied, so the black plastic and metal surfaces rely on simple shaders that render cleanly. The unwrap has no overlapping islands for adding labels, and reviewers rated the station CheckMate Pro.",
+  "The page holds 5 versions, with this full station and the dual throttles at $59 each. A Thrustmaster flight stick, an unbranded stick and the empty station case each cost $39. Military explainers, drone training material and techno thrillers brought 20 orders in after its 2021 release. The Thrustmaster parts carry a brand name and stay under editorial terms."
+ ],
+ "underwater-robot-powerray-1190125": [
+  "A torpedo-shaped consumer underwater drone with a camera in its nose and thrusters along the hull, built for filming fish and fishing. Underwater Robot PowerRay spends 25,838 polygons over 27,277 vertices on the thruster housings, the front lens and the tether port. Its smooth white body reads well against dark water, so it stands out in murky lake or reef shots.",
+  "A single map at 2048 x 2048 carries the white plastic, the trim and the small markings. The light texture budget keeps the drone fast to load in mobile apps and web viewers. Shells sit apart in the unwrap, and TurboSquid reviewers marked the drone CheckMate Pro.",
+  "The page offers 2 versions: this robot at $39 and its Drone Remote Control at $29, handy for an operator scene on a boat. Marine tech reviews, fishing videos and ocean science explainers made up 20 sales since 2017. The PowerRay name ties the device to its maker, so it is sold for editorial use."
+ ],
+ "warehouse-collection-950328": [
+  "A bundle of warehouse props for stocking a storage hall, the kind of racks, pallets and boxes that fill a loading floor. Warehouse Collection saves the slow job of building each item, since the pieces share a consistent scale and style. Pieces can be repeated down long aisles, so a modest set quickly turns into a busy distribution center.",
+  "Worn cardboard, painted steel and wooden slats keep the props believable under harsh overhead lighting. Stacking several items at slightly different angles avoids the tidy look of a showroom. TurboSquid checked the bundle at CheckMate Lite, confirming that the files open cleanly and the formats are as described.",
+  "Since 2015 the pack has brought 20 sales at $59, mostly from logistics firms, factory game levels and training videos. Arranged around a forklift with a dock door in the background, it sets up a supply chain story at once. It also fills the background behind characters in heist films and action game shootouts."
+ ],
+ "whole-and-a-half-red-dragon-fruits-1168593": [
+  "A whole pink dragon fruit with green-tipped scales beside a cut half that reveals deep red flesh speckled with tiny black seeds. Whole and a Half Red Dragon Fruits needs just 4,427 polygons over 4,407 vertices for the curling scale tips and the flat cut face. The contrast of bright skin and dark seeds makes the pair an eye-catching subject on a white plate.",
+  "Juicy flesh, seed detail and the waxy skin come from 11 maps at 4096 x 4096. Close macro shots stay sharp, because the seeds and fibers are painted at full resolution. Each shell stays separate in the layout, and the fruit carries a CheckMate Pro mark.",
+  "All 3 versions cost $39: these red-fleshed fruits, a yellow-skinned dragon fruit and a further whole and half pair. Smoothie bars, tropical food ads and healthy eating blogs have brought 20 sales since 2017. Scattered on a beach table beside coconuts, the halves add a vivid splash of color to any summer scene."
+ ],
+ "woman-fashionable-bag-2101352": [
+  "A structured ladies' handbag with a top handle, a flap closure and stitched leather panels, styled to finish an elegant outfit. Woman Fashionable Bag carries 33,567 polygons over 17,615 vertices, a ratio showing a triangulated mesh around the curved sides. Metal hardware at the clasp and handle mounts is modeled in relief, so it glints under boutique lighting. Its compact body sits neatly in the crook of an arm on a walking character.",
+  "No texture maps are bundled, so leather tone and stitching color are set in shaders that switch to any season's palette. All UV islands are separated, leaving room for a monogram, and the handbag was passed at CheckMate Pro.",
+  "The page has 3 versions: this bag at $39 plus alligator skin and beige ostrich skin bags at $49 each. Fashion e-commerce, styling apps and character dressing have brought it 20 orders since 2023. Set on a cafe table beside a coffee cup, it gives a lifestyle shot a polished, urban feel."
+ ],
+ "wooden-match-sticks-1384191": [
+  "Wooden kitchen matches with red phosphorus heads, the kind that strike against the rough side of a small box. Wooden Match Sticks needs only 675 polygons over 675 vertices, so a whole pile costs almost nothing in a scene. The squared wooden shafts and rounded tips read clearly even in a tight macro shot beside a candle. Each stick can be duplicated and rotated freely, so a spilled heap never looks repetitive.",
+  "Pale wood grain and the rough match heads come from 2 maps at 4096 x 4096. A charred variant is easy to make by darkening the head material in a shader. Shells in the unwrap never overlap, and the StemCell format lets the materials travel between engines unchanged.",
+  "Since 2019 the matches have been purchased 20 times for campfire scenes, survival games and moody still lifes. A single burnt stick beside a cold fireplace hints that someone has just left the room."
+ ],
+ "african-american-male-head-905072": [
+  "A realistic adult male head with short hair, natural skin tone and calm features, suitable for medical and character work. African American Male Head keeps a lean 1,831 polygons over 1,853 vertices, letting detail live in the maps rather than the mesh. Its neutral expression and straight gaze make it a good base for facial studies, hairstyles and portrait lighting tests.",
+  "Skin pores, lips and eyes come from 9 maps at 4096 x 4096 and 2048 x 2048. Low geometry paired with high resolution textures keeps the head fast in real-time viewers. The unwrap keeps every island separate, and TurboSquid staff awarded the head a CheckMate Pro grade.",
+  "The page offers 3 versions: this head at $39, a rigged head with fur hair at $49 and a second head at $19. Medical education, barber visualizations and game character pipelines account for 19 sales since 2015. Placed on a mannequin stand, it previews glasses, hats or new hairstyles for retail and fitting apps."
+ ],
+ "airport-tower-1474061": [
+  "An air traffic control tower with a slim concrete shaft rising to a glazed cab that looks out over the runways. Airport Tower uses 55,573 polygons over 57,441 vertices on the angled cab windows, the roof antennas and the base building. The sloped glass of the cab catches reflections of the sky, a detail that sells the building from far across an apron.",
+  "Concrete, tinted glass and metal railings come from 8 maps at 4096 x 4096. Railings and antennas stay crisp in a close shot from a helicopter approaching the field. Islands in the unwrap never overlap, and the tower bears a CheckMate Pro certificate from marketplace reviewers.",
+  "Released in 2019, the tower has 19 sales to airport planners, flight simulator makers and aviation film crews. Placed at the edge of a runway with jets taxiing past, it completes an airfield in a single object. At night, with lights in the cab glowing, it becomes a landmark that guides the eye across the scene."
+ ],
+ "aluminum-frying-pan-3d-model-899752": [
+  "A plain aluminum frying pan with a flat base, flared sides and a long handle, the everyday workhorse of any stove. Aluminum Frying Pan 3D Model keeps the shape honest, with a slightly rolled rim and a handle that stays straight and practical. Brushed metal on the inside catches circular highlights, which is what makes cookware read as real in a render.",
+  "The bare metal surface suits close shots of sizzling food, eggs or pancakes in the pan. TurboSquid staff certified the pan at CheckMate Pro, confirming clean topology, sensible naming and real-world scale.",
+  "Since 2015 it has gone to 19 buyers stocking kitchen interiors, cooking shows and restaurant scenes. Hung from a rail above a stove or left on a burner, it makes a kitchen feel used. Lined up with other pans on a shelf, it fills a professional kitchen quickly and convincingly. At $19 it is an easy addition to any collection of kitchen utensils and pots."
+ ],
+ "amazon-kiva-warehouse-robot-1553072": [
+  "A squat orange warehouse robot that slides under a shelving pod, lifts it and carries it to a human picker. Amazon Kiva Warehouse Robot spends 13,386 polygons over 13,926 vertices on the low body, the lifting disk and the bumpers. The flat round top is the part that matters, since it is what docks beneath a rack in a fulfillment center.",
+  "Orange paint, black rubber and scuffed panels come from 7 maps at 4096 x 4096. Shells are laid out without overlaps for adding fleet numbers, and the robot holds a CheckMate Pro grade. Low geometry makes it easy to run a large fleet in a real-time simulation.",
+  "Since 2020 the robot has been chosen 19 times by logistics explainers, automation news and supply chain lessons. Dozens of copies gliding across a gridded floor show the scale of modern fulfillment at once. Bearing the Amazon name, the model is sold for editorial use such as news and documentaries."
+ ],
+ "analog-electricity-meter-980701": [
+  "An old-style house electricity meter with a glass dome over spinning dials and a rotating aluminum disc. Analog Electricity Meter puts 60,039 polygons over 59,168 vertices into the dome, the dial faces and the sealed socket base. Dials sit behind the glass at real depth, so reflections layer over them naturally. Mounted on a brick wall beside a gas pipe, it instantly sets a scene at the back of a house.",
+  "Weathered glass, printed dials and the gray casing come from 8 maps at 4096 x 4096. The layout gives each island room of its own, and the meter was marked CheckMate Pro by TurboSquid reviewers.",
+  "Both versions cost $29: this analog meter and an Electric Utility Meter for a second wall style. Utility company explainers, home inspection training and suburban street scenes brought 19 sales since 2015. Lit by a flashlight in a dark basement, the meter becomes a small but telling detail of a thriller."
+ ],
+ "arab-bedouin-sword-1126256": [
+  "A curved Arab sword with a single-edged blade, a simple crossguard and a grip wrapped for desert riders. Arab Bedouin Sword needs only 3,824 polygons over 3,883 vertices, so it hangs easily from many belts in a crowd. The gentle curve of the blade catches a long highlight, which shows off its shape in slow camera moves.",
+  "Steel, leather wrapping and engraved brass come from 6 maps at 4096 x 4096 and 1024 x 1024. Close-ups reveal fine wear along the edge, which keeps the steel from looking freshly made. Each shell has its own UV space, and the weapon passed TurboSquid review at CheckMate Pro.",
+  "Since 2017 the sword has found 19 buyers among makers of historical dramas, desert adventure games and cultural museum displays. Laid across a woven rug in a tent, it adds a clear sense of place to a Bedouin camp. It also works as a ceremonial blade for dance scenes and festival renders."
+ ],
+ "aseptic-carton-package-with-screw-cap-1789849": [
+  "A rectangular juice or milk carton with a slanted top and a plastic screw cap, the classic aseptic package from grocery shelves. Aseptic Carton Package with Screw Cap uses 4,717 polygons over 4,710 vertices on the folded seams and the threaded cap. Sealed flaps along the top and bottom are modeled, so the box looks properly folded rather than a plain block.",
+  "The carton ships without image maps, which makes it a blank canvas for any brand label or nutrition panel. Designers wrap their own artwork around the panels and preview it in a store setting within minutes. The non-overlapping UV layout accepts artwork cleanly, and the package meets CheckMate Lite.",
+  "Packaging designers, dairy brands and supermarket scenes account for 19 orders since 2021. Lined up in a fridge door, the cartons give a kitchen render a lived-in breakfast feel. At $19 it is a quick way to mock up a new drink label before printing."
+ ],
+ "atm-machine-1203640": [
+  "A freestanding cash machine with a screen, a keypad, a card slot and a dispenser, the kind found in banks and malls. ATM Machine uses 52,308 polygons over 53,743 vertices on the angled fascia, the buttons and the privacy hood. The keypad keys are separate shapes, so a finger can press them convincingly in a close insert shot.",
+  "Brushed steel, screen glass and printed labels come from 10 maps at 4096 x 4096. Fingerprints and light wear on the keypad suggest a machine that sees daily use. UV islands have space of their own, and reviewers gave the machine a CheckMate Pro certificate.",
+  "Two versions share the page: this standalone unit at $39 and an ATM Machine Kiosk at $59. Banking apps, shopping mall interiors and heist films have driven 19 sales of the machine since 2017. Placed beside a convenience store door at night, the glowing screen draws the eye in a street scene."
+ ],
+ "axon-body-3-body-camera-with-magnet-mount-1726449": [
+  "A police body camera clipped to a magnetic mount, worn at chest height on a uniform to record patrol encounters. Axon Body 3 Body Camera with Magnet Mount spends 37,090 polygons over 39,973 vertices on the lens bezel, buttons and the mount plate. The rugged rectangular housing has rounded corners and a front lens, so it reads clearly on an officer from across a street.",
+  "Without bundled image maps, the black housing and status light rely on shaders that are quick to adjust. Every UV island has room of its own for decals, and the camera passed the CheckMate Pro review.",
+  "The page carries 2 versions at $39 each: this Axon camera and an unbranded body camera with the same magnet mount. Police training videos, news graphics on accountability and crime dramas explain its 19 sales since 2021. Pinned to a uniform figure, the device tells viewers that every word is being recorded. Because it bears the Axon name, the branded build is meant for editorial work."
+ ],
+ "balloon-dog-1016635": [
+  "A twisted balloon dog with bulbous legs, a long snout and a curled tail, the party favorite blown up to sculpture size. Balloon Dog needs 4,280 quad polygons over 4,291 vertices to keep every inflated segment smooth and round. The pinched joints between segments are what sell the effect, and they stay crisp even in a close orbit. Its playful shape reads at once to children and to art collectors alike.",
+  "A glossy coat on the balloon surfaces comes from 2 maps at 4096 x 4096, giving the dog a mirror-like shine. Clean UV shells keep color swaps simple, and TurboSquid rated the sculpture CheckMate Lite.",
+  "Each of the 3 versions costs $19: this dog, a balloon animal version and a golden variant after Jeff Koons. Gallery visualizations, birthday party scenes and pop art posters have taken 19 copies since 2016. Placed on a white plinth in an empty hall, the dog turns any render into a contemporary art show."
+ ],
+ "bathing-suit-1011708": [
+  "A women's swimsuit fitted to the curves of the body, ready for beach, pool and resort scenes. Bathing Suit uses 18,183 polygons over 18,167 vertices on gentle fabric folds, strap edges and stitched hems. Fabric stretches smoothly over the form, so the garment reads as worn rather than laid flat.",
+  "Lycra weave, seams and a soft sheen come from 5 maps at 4096 x 4096 and 512 x 512. A wet look is easy to add by raising gloss in the fabric shader. Each UV shell stays separate, so prints and patterns can be painted on, and the swimwear rates CheckMate Pro.",
+  "All 4 versions on the page cost $49: this suit, a red bathing suit, a red triangle bikini and a black triangle bikini. Swimwear shops, resort brochures and summer fashion lookbooks have brought 19 sales since 2016. Dressed on a figure lounging by a pool, it sets a holiday mood in a single frame."
+ ],
+ "bicycle-playing-cards-pack-1495279": [
+  "A sealed deck of playing cards in its classic tuck box, the familiar pack found on poker tables and in magicians' pockets. Bicycle Playing Cards Pack needs only 990 quad polygons over 992 vertices, since a crisp box shape relies on texture rather than geometry. Its flap and rounded corners are modeled, so the deck sits flat and believable beside poker chips.",
+  "The ornate back design and printed sides come from 5 maps at 4096 x 4096, sharp enough for a close shot of the logo. Each shell has clear space in the layout, while the StemCell format carries these materials across engines without rework.",
+  "Pick from 3 versions: this blue deck and a red deck at $19 each, or a vintage style closed card pack for $15. Casino scenes, magic tutorials and game night renders have kept it selling, with 19 copies since 2020. The Bicycle branding means the deck belongs in editorial and documentary work."
+ ],
+ "billiard-balls-970027": [
+  "A full rack of pool balls, solids and stripes with the white cue ball, ready to scatter across green baize. Billiard Balls uses 5,760 quad polygons over 5,790 vertices, so every sphere stays perfectly round under a hanging lamp. Glossy surfaces reflect the table light, which is exactly what makes pool balls look real on screen.",
+  "Numbers, stripes and colors come from 15 maps at 4096 x 4096, giving each ball its own sharp texture. The shells never overlap in the layout, which keeps the numbers clean, and the set holds a CheckMate Lite grade.",
+  "Two versions are offered: these balls at $14 and a Billiard Balls Set at $15. Bar interiors, sports games and physics demos have produced 19 sales since 2015. Racked in a triangle before the break, they set up the tense opening of a pool hall scene. Low geometry also lets a physics engine handle a full break without slowing down."
+ ],
+ "blooming-flower-camelia-1284745": [
+  "A single camellia in full bloom, its layered petals opening around a golden center on a short leafy stem. Blooming Flower Camelia spends 9,096 polygons over 9,206 vertices on the curved petals and glossy dark leaves. Each petal curls slightly at its edge, so light passes through and gives the bloom a soft glow.",
+  "Petal veins, leaf sheen and the pollen-tipped stamens come from 3 maps at 4096 x 4096. UV shells are unwrapped cleanly without overlap, and the StemCell build keeps the flower looking the same in every renderer.",
+  "Both versions sell for $39: this blooming flower and a second Blooming Camelia Flower build. Florists, wedding invitation designers and botanical illustrators have licensed 19 copies since 2018. Floating in a shallow bowl of water, the blossom adds a calm touch to spa and tea scenes. Repeated along a branch, it also builds a full camellia shrub for gardens."
+ ],
+ "blue-human-eye-1241269": [
+  "A realistic human eyeball with a blue iris, a dark pupil and fine red veins across the white sclera. Blue Human Eye uses only 1,116 quad polygons over 1,120 vertices, since a smooth sphere needs little geometry. A clear cornea bulges over the iris, so reflections sit on the surface just as they do on a real eye.",
+  "Iris fibers, veins and the wet surface come from 3 maps at 4096 x 4096. Shells stay separate in the layout for easy iris recoloring, and the eye earned approval at CheckMate Pro level.",
+  "The page offers 6 versions at $29 each, with blue and green irises and both eye and eyeball builds. Ophthalmology clinics, horror films and character artists have bought it 19 times since 2018. Placed in a medical diagram or a monster's socket, it delivers detail right where the viewer looks. Swapping the green builds into a character gives instant variety across a cast."
+ ],
+ "boeing-757-200-generic-1233437": [
+  "A narrow-body twin-engine airliner with a long slender fuselage and tall landing gear, finished in a plain generic livery. Boeing 757-200 Generic holds 93,541 polygons over 99,713 vertices, a modest budget for a full airliner with flaps and gear. Its pointed nose and long body give the jet a stance that aviation fans spot from across a terminal.",
+  "Paint, window rows and metal panels come from 13 maps at 8192 x 8192 and 4096 x 4096. The huge maps keep fuselage panel lines sharp when a chase camera flies close alongside. Islands are spread without overlap, and the airliner is rated CheckMate Pro.",
+  "The page holds 12 versions: this generic jet at $149 and static liveries of UPS, Ethiopian, Delta, American and United at $129. Each of those airline liveries also comes rigged at $149, and a rigged generic jet costs $199. Airline liveries are sold under editorial terms, while the generic jet suits any project, and 19 buyers have chosen the type since 2017."
+ ],
+ "boeing-mq-28-ghost-bat-1956052": [
+  "An uncrewed loyal wingman jet with a chined stealth nose, a top-mounted intake and canted twin tails. Boeing MQ-28 Ghost Bat carries 157,864 polygons over 83,518 vertices, a triangulated mesh that keeps its angular panels razor sharp. Without a cockpit canopy, the smooth nose looks alien beside crewed fighters on a flight line.",
+  "No image maps are supplied, so the gray stealth coating comes from shaders you can retune for any lighting in seconds. UV islands sit apart for anyone painting markings, and the drone earned a CheckMate Pro mark.",
+  "The page offers 7 versions, including this static drone and an unbranded stealth multirole UAV at $99 each. Rigged builds for general use, Cinema 4D and Maya cost $119, and a second Maya rig costs $179. Flying beside a crewed fighter, it shows how future air combat teams might look. Defense news, aerospace explainers and military games generated 19 sales since 2022, and the Boeing builds stay under editorial terms."
+ ],
+ "bow-with-arrow-1372847": [
+  "A wooden bow with a wrapped grip and a taut string, paired with a fletched arrow ready to be nocked. Bow with Arrow uses 14,686 polygons over 15,643 vertices on the curved limbs, the feathers and the sharp arrowhead. The arrow is a separate piece, so it can be drawn, loosed or lodged in a target without editing the bow.",
+  "Wood grain, leather and feather barbs come from 16 maps at 4096 x 4096 and 2048 x 4096. Feathers keep their soft edges in close-ups because the fletching is painted at high resolution. Shells are unwrapped with no overlap, and the weapon passed CheckMate Pro inspection.",
+  "Since 2019 the bow has gone out to 19 buyers making archery games, medieval films and hunting scenes. Hung on a cabin wall above a fireplace, it hints at a hunter who lives off the land. In a fantasy game it becomes the signature weapon of a forest ranger or elven scout."
+ ],
+ "broken-glass-heap-1448730": [
+  "A pile of shattered glass shards with jagged edges, the debris left after a window or bottle breaks. Broken Glass Heap spends 95,743 polygons over 96,075 vertices on many thin fragments lying at random angles. Every shard has real thickness, so light refracts through the edges and sparkles in a close shot.",
+  "No texture maps come with the debris, since clear glass is best handled with a refractive shader. The unwrap keeps shells apart for anyone adding dirt, and the heap was certified CheckMate Pro.",
+  "Two versions sit on the page at $19 each: this heap and a Broken Glass Pile with a different spread. Crime scenes, break-in reenactments and disaster games keep it in demand, with 19 orders since 2019. Scattered under a broken window, it tells viewers at once that someone forced their way in. A few shards can also be placed on a bar floor after a fight scene."
+ ],
+ "business-jet-bombardier-challenger-604-generic-1128883": [
+  "A twin-engine business jet with rear-mounted engines, a T-tail and winglets, finished in a clean generic white. Business Jet Bombardier Challenger 604 Generic uses 49,958 polygons over 53,365 vertices, a lean count for a complete aircraft. Oval cabin windows line the fuselage, and the low stance on its gear looks right on a private terminal apron.",
+  "Paint, glass and metal panels come from 14 maps at 8192 x 8192 and 4096 x 4096. Shells never overlap across the long fuselage, and the jet carries CheckMate Pro status.",
+  "The page holds 14 versions in all, mixing this Challenger with several builds of the Dassault Falcon 7X trijet. Challenger options include a second generic jet and a Swiss air ambulance, priced between $129 and $149. Falcon 7X builds, static or rigged, run from $149 to $179, and branded aircraft stay under editorial terms. Charter brokers, aviation renders and travel films account for 19 sales since 2017."
+ ],
+ "caboose-918562": [
+  "A classic railroad crew car with a raised cupola, end platforms with railings and steps for the crew. Caboose spends 648,736 polygons over 659,452 vertices on the trucks, ladders, brake wheel and planked sides. The cupola windows sit high above the roof, which gives the car its instantly recognizable profile at the end of a train.",
+  "Weathered paint, rusty steel and wooden boards come from 14 maps at 4096 x 4096. Islands never overlap in the layout, which leaves room for road numbers, and the car earned a CheckMate Pro certificate.",
+  "The page has 5 versions, including this car and a Historic Wabash Caboose at $99 each. Three wheel sets, Train Wheels 2, Railway Wheels and Old Railway Wheels, cost $49 apiece. Model railroad fans, western films and rail museums have chosen it 19 times since 2015. Coupled at the tail of a freight train rolling into sunset, it closes the frame perfectly."
+ ],
+ "cairns-xf1-fire-helmet-silver-1685542": [
+  "A modern firefighter's helmet with a smooth composite shell, a flip-down face shield and a reflective trim band. Cairns XF1 Fire Helmet uses 18,734 polygons over 19,573 vertices on the visor hinge, the ear flaps and the rear brim. Its sleek domed shape differs from traditional leather helmets, which marks the wearer as part of a modern crew.",
+  "No image maps ship with the helmet, so its silver, black or red finish comes from simple shaders. The layout leaves each island separate for adding station numbers, and the helmet was graded CheckMate Pro.",
+  "All 3 versions cost $49: this silver helmet, a black Cairns XF1 and an unbranded red fire helmet. Fire service training, rescue dramas and safety posters have brought it 19 buyers since 2021. Hung on a hook beside turnout gear in a station, it sets the scene in one glance. Because the Cairns name appears on the branded helmets, they suit editorial work best."
+ ],
+ "camping-equipment-3d-models-collection-1065229": [
+  "A bundle of outdoor gear for building a campsite, from shelter and seating to cooking kit and lighting. Camping Equipment Collection gathers the items a scene needs around a tent, all sharing one scale and style. Arranged on grass beside a lake, the pieces turn an empty clearing into a lived-in weekend camp.",
+  "Nylon, canvas, aluminum and plastic surfaces keep each item believable under daylight or a lantern's glow. Folding pieces sit open as if just unpacked, which saves time in staging a scene. TurboSquid inspectors certified the bundle at CheckMate Pro, so topology and naming follow one clean standard.",
+  "The page offers 4 versions: this one at $199, Collection 2 at $209, Collection 3 at $169 and Collection 4 at $549. Outdoor retailers, adventure games and travel ads have produced 19 sales since 2016. Spread across a forest floor at dusk, the gear sets up a quiet evening before the story begins."
+ ],
+ "canned-sardine-fish-1808632": [
+  "An open tin of sardines with the lid peeled back and small silver fish packed tightly side by side in oil. Canned Sardine Fish needs just 600 quad polygons over 635 vertices for the rounded tin and the curled lid. The rolled-back key lid gives the can its familiar look, so it reads instantly on a kitchen table.",
+  "No texture maps are provided, leaving the tin and fish to simple metal and skin shaders. A light oily sheen in the shader makes the fish glisten under a warm lamp. UV shells are separated cleanly, and the tin passed a CheckMate Pro inspection of its geometry.",
+  "The page holds 2 versions, pairing this open tin at $19 with a Fresh Sardine Fish at $29. Food packaging mockups, Mediterranean kitchen scenes and still life studies have brought 19 sales since 2021. Next to a slice of rye bread and a lemon wedge, the tin makes a simple, appetizing lunch scene."
+ ],
+ "cardboard-boxes-collection-936155": [
+  "A set of brown shipping boxes in several sizes, some sealed with tape and some with flaps loosely open. Cardboard Boxes Collection supplies ready packaging for moving day, storage rooms and delivery scenes in one purchase. Mixed sizes stack naturally into uneven towers, which keeps a pile from looking copied and pasted.",
+  "Corrugated edges, packing tape and printed shipping marks give each box a believable used look. TurboSquid reviewers certified the set at CheckMate Pro, so every piece shares clean topology and real-world scale.",
+  "Buyers can pick among 3 versions: this one at $39, Collection 2 at $59 and Collection 3 at $89. Moving companies, e-commerce explainers and warehouse games have ordered the boxes 19 times since 2015. Stacked in a new apartment beside a mattress on the floor, the boxes tell a story of a fresh start. A few open boxes spilling packing paper also suit unboxing scenes in product videos."
+ ],
+ "cargo-aircraft-airbus-a310-300f-generic-1230769": [
+  "A wide-body freighter with a windowless main deck, a large side cargo door and twin engines slung under the wings. Cargo Aircraft Airbus A310-300F Generic spends 240,637 polygons over 250,467 vertices on the gear, flaps and the cargo door frame. Its high tail and rounded nose give it the solid look of a working freight plane at a night apron.",
+  "Generic white paint, panel lines and metal details come from 18 maps at 4096 x 4096. Shells in the layout never overlap, and the freighter holds a CheckMate Pro rating. Under floodlights at a cargo terminal, the open door becomes the center of a loading scene.",
+  "Static Turkish Cargo, FedEx and Luftwaffe tanker liveries cost $129, while their rigged builds sit at $149. This generic freighter costs $149, and the generic rigged build is $199, bringing the page to 8 versions. Airline liveries stay under editorial terms, and air freight explainers and logistics films make up its 19 sales since 2017."
+ ],
+ "chainway-wireless-barcode-reader-2058160": [
+  "A handheld rugged scanner with a grip handle, a touchscreen and a scan window, the device warehouse staff carry all shift. Chainway Wireless Barcode Reader carries 48,934 polygons over 24,901 vertices, a triangulated mesh for the grip and keypad. The trigger sits under a finger and the screen faces the user, so the pose reads naturally in a worker's hand.",
+  "Without bundled image maps, the dark plastic and rubber bumpers rely on adjustable shaders. A glowing screen texture can be dropped onto the display to show a live inventory app. Every shell in the unwrap is separate, and the reader passed CheckMate Pro review.",
+  "Three versions cost $29 each: this barcode reader, a wireless RFID scanner with barcode reader and a Chainway Android RFID scanner. Logistics software demos, retail inventory scenes and training videos have drawn 19 buyers since 2023. Chainway branding keeps those builds under editorial use, while the unbranded scanner suits any project."
+ ],
+ "classic-speaker-stand-910238": [
+  "A tripod speaker stand with a telescoping pole and folding legs, the kind that lifts a PA speaker above a crowd. Classic Speaker Stand uses 8,323 polygons over 8,313 vertices on the leg braces, the height clamp and the top mount. Its spread legs keep a wide footprint, so it looks stable even with a heavy cabinet perched on top.",
+  "Without image maps, the matte black metal comes from a simple shader that renders consistently. Clamps and knobs are modeled as separate shapes, which keeps close shots believable. The layout keeps every island apart, and the stand was certified CheckMate Pro by TurboSquid staff.",
+  "Since 2015 the stand has been ordered 19 times for concert stages, conference rooms and wedding venues. Set in pairs on either side of a DJ booth, it frames the dance floor of any party scene. At $19 it is a cheap way to make a small live music setup look complete."
+ ],
+ "collapsible-metal-tube-1812041": [
+  "A squeezable aluminum tube with a crimped tail and a screw cap, the packaging used for creams, ointments and paints. Collapsible Metal Tube uses 4,089 polygons over 3,773 vertices on the shoulder threads, the cap ribs and the folded end. Its smooth body is a perfect blank for printed labels, which makes it a favorite for cosmetic mockups.",
+  "No maps come bundled, so the brushed silver body and plastic cap rely on adjustable shaders. Non-overlapping UVs wrap neatly around the cylinder, and the tube is certified CheckMate Pro by marketplace staff. Artwork placed on the body follows the curve without stretching, even near the crimped tail.",
+  "Since 2021 the tube has gone into 19 projects, mostly skincare branding, art supply shops and pharmacy displays. Laid beside a toothbrush on a bathroom shelf, it reads as an everyday product at a glance. Lined up in a row with different labels, a set of tubes becomes a ready product family."
+ ],
+ "condom-durex-package-1867978": [
+  "A small retail box of condoms, the slim printed carton sold at pharmacy checkouts and convenience store counters. Condom Durex Package carries 17,696 polygons over 8,852 vertices, a triangulated mesh around the crisp folded edges. Its compact rectangular shape stays recognizable in a close shot on a nightstand or a shop shelf.",
+  "No image maps are bundled, so the printed artwork must be supplied or recolored in a shader. The tidy unwrap leaves each panel its own island, and the box earned a CheckMate Pro certificate. That clean layout makes it easy to test packaging design changes before they go to print.",
+  "Sexual health campaigns, pharmacy interiors and public health explainers placed 19 orders after its 2022 release. Because the Durex name is printed on the box, the model is licensed for editorial and educational work only. Placed among other personal care products on a retail shelf, it adds a realistic detail to a store render."
+ ],
+ "cookie-g4-skydiving-helmet-white-1724452": [
+  "A full-face skydiving helmet with a smooth shell and a wide visor, worn by jumpers leaving an aircraft at altitude. Cookie G4 Skydiving Helmet uses 13,650 polygons over 14,103 vertices on the visor edge, vents and the chin area. The rounded shell is streamlined for freefall, so it looks right on a figure stretched out in a belly-to-earth position.",
+  "Without packaged texture maps, the white, blue or red finish comes from glossy shaders that are easy to edit. UV islands stay separate for adding camera mounts or decals, and the helmet passed CheckMate Lite.",
+  "The page offers 3 versions at $39 each, finished in white, blue and bright red. Since 2021 drop zones, extreme sports films and skydiving simulators have ordered 19 copies. The Cookie name appears on the shell, so the helmet is offered for editorial use. A camera mounted on top turns it into the classic gear of freefall filmers."
+ ],
+ "corn-seed-1097301": [
+  "A single dried corn kernel with a rounded crown, a pointed tip and the pale germ visible on one face. Corn Seed needs only 480 quad polygons over 482 vertices, so thousands can pour from a sack in a simulation. The flattened wedge shape lets kernels pack tightly when scattered, which looks right in a heap or a hopper.",
+  "Glossy golden skin and the starchy germ come from 6 maps at 4096 x 4096. Macro shots hold up because each surface detail is painted at full resolution. No two islands share texture space, and the seed rates CheckMate Pro.",
+  "Both versions cost $19: this seed and a Corn Seed Kernel Food Single for close product shots. Agricultural explainers, seed company visuals and farm games bought it 19 times after its 2016 release. Poured over a farmer's open palm, the golden kernels show the very start of a harvest story."
+ ],
+ "desk-calendar-2018-1306548": [
+  "A flip-over calendar on a wire binding, with a sturdy triangular stand that holds the pages at a readable angle. Desk Calendar uses 40,386 polygons over 39,958 vertices, with the spiral rings and stacked page edges taking most of the budget. Curled page corners and a slight gap between sheets make the calendar look handled rather than new.",
+  "Printed months, the cardboard base and metal rings come from 6 maps at 4096 x 4096. Shells sit in a clean non-overlapping layout, so custom dates or a company logo slot in easily. The calendar holds a CheckMate Pro rating from TurboSquid for clean topology and scale.",
+  "The page lists 2 versions, each called Desk Calendar and priced at $19. Office desks, reception areas and corporate gift mockups explain the 19 sales recorded since 2018. Set beside a keyboard and a coffee mug, it fixes the date in a scene without any words."
+ ],
+ "diesel-electric-submarine-kilo-class-russian-1172219": [
+  "A Russian diesel-electric attack submarine with a teardrop hull, a tall sail and a large single propeller at the stern. Diesel Electric Submarine Kilo Class Russian keeps 78,043 polygons over 86,971 vertices, spent on the sail, hydroplanes and the cruciform tail. Its rounded bow and smooth hull make the boat look quiet and dangerous, even while it rests at a pier.",
+  "Black anechoic tiles, hull markings and rust streaks come from 23 maps at 8192 x 8192 and 4096 x 4096. Close passes along the hull reveal individual tiles, which keeps the scale believable. UV islands sit apart in the layout, and the sub was certified CheckMate Pro.",
+  "Two versions cost $99 each: this static submarine and a rigged build for animated dives. Naval documentaries, war games and defense news have accounted for 19 purchases since 2017. Surfacing through gray Arctic water, the hull makes a tense opening shot for a cold war thriller."
+ ],
+ "disposable-tableware-collection-1139758": [
+  "A bundle of single-use party tableware, with plastic cups, paper plates and cutlery for picnics and quick meals. Disposable Tableware Collection fills a table for a backyard party or office lunch without modeling each piece. The light, thin shapes stack and scatter naturally, so a messy buffet comes together in minutes.",
+  "Matte paper, glossy plastic and crisp molded rims keep the items believable at close range. Cups can be crushed or tipped over with simple deformers to show the end of a celebration. The set carries CheckMate Pro status, confirming clean topology and real-world proportions across every piece.",
+  "The page lists 3 versions: this set at $49, Collection 2 at $59 and Collection 3 at $69. Catering companies, picnic scenes and environmental campaigns on plastic waste have made up 19 sales since 2017. Left on a park bench after a birthday, the scattered cups tell the story of a party just ended."
+ ],
+ "dodge-charger-2015-police-car-907955": [
+  "An American police pursuit sedan with a roof light bar, a steel push bumper on the nose and a muscular body. Dodge Charger 2015 Police spends 306,312 polygons over 322,126 vertices on the body lines, the wheels and the emergency lights. Its aggressive grille and wide stance give the car the menacing look viewers expect behind a speeding suspect.",
+  "Paint, decals and light lenses come from 8 maps at 8192 x 8192 and 4096 x 4096. Every island has its own room, while the cruiser holds CheckMate Pro status.",
+  "Six versions appear on the page: this police car, a pursuit police car and a civilian Charger at $129. Rigged police and civilian builds cost $149, and a simple interior sedan sells for $99. Crime dramas, police games and news graphics have drawn 19 buyers since 2015, and the Dodge branding keeps it under editorial terms. Parked across a road at night with lights flashing, the cruiser sets up a roadblock scene at once."
+ ],
+ "dojo-room-1394114": [
+  "A traditional Japanese martial arts hall with tatami mats, wooden walls, sliding paper screens and a raised altar alcove. Dojo Room holds 295,181 polygons over 327,572 vertices across the ceiling beams, mats, weapon racks and hanging scrolls. Soft daylight through the paper screens falls across the floor, giving the hall a calm, disciplined mood.",
+  "Wood grain, woven straw and calligraphy come from 74 maps at 4096 x 4096 and 2048 x 2048. The large texture set lets every wall panel and mat keep its own character. UVs avoid overlaps across the whole interior, and the room was checked at CheckMate Lite.",
+  "Since 2019 the hall has drawn 19 buyers from martial arts games, anime-style films and karate school promotions. A pair of fighters bowing on the mats makes an instant opening shot for a training montage. Empty and quiet in the morning, the same room also suits meditation and tea ceremony scenes."
+ ],
+ "double-drop-lowboy-tri-axle-trailer-957086": [
+  "A heavy haul lowboy trailer with a dropped center deck between a raised gooseneck and a rear axle group. Double Drop Lowboy Tri Axle Trailer uses 302,944 polygons over 308,688 vertices on the axles, tires, frame rails and deck planks. The low well sits close to the road, which is exactly how tall excavators and transformers travel under bridges.",
+  "Painted steel, rubber and wooden decking come from 15 maps at 4096 x 4096 and 2048 x 2048. The unwrap keeps every shell distinct, and the trailer is certified CheckMate Pro.",
+  "The trailer page counts 6 versions, including this trailer at $69 and a second lowboy trailer at $59. Three tractor and trailer combinations cost $149 each, and a rigged flatbed with ramps is $69. Construction logistics firms, heavy equipment dealers and trucking games make up the 19 buyers since 2015. Loaded with a bulldozer and chained down, it sets up a convincing oversize load scene on a highway."
+ ],
+ "electric-delivery-van-1870759": [
+  "A modern battery-powered delivery van with a tall cargo box, a short sloping nose and sliding side doors for quick drops. Electric Delivery Van uses 133,141 polygons over 147,939 vertices on the headlights, wheel arches and the cargo door frames. The tall boxy body leaves plenty of flat side panel, which is ideal space for a courier brand.",
+  "No texture maps are part of the package, so paint and glass come from shaders that adapt to any fleet color. Each island in the unwrap leaves space for logos, and the van carries a CheckMate Lite grade.",
+  "Two versions are available: this full van at $129 and a simple interior van at $99. Last-mile logistics firms, city planning renders and sustainability ads added up to 19 sales from 2022 onward. Parked at a curb with its door open beside a stack of parcels, it tells an e-commerce story instantly. A row of vans charging in a depot also shows a fleet going electric."
+ ],
+ "electric-service-panel-3d-model-1284696": [
+  "A gray residential breaker panel with its door open, revealing rows of circuit breakers and a main switch at the top. Electric Service Panel 3D Model uses 12,549 quad polygons over 16,003 vertices on the breaker toggles, the hinged door and the knockouts. Each breaker handle is modeled separately, so an electrician's hand can flip one in a close training shot.",
+  "Painted steel and printed circuit labels come from 2 maps at 4096 x 4096. Labels inside the door stay readable in a close shot of the circuit directory. Shells never crowd one another, while the panel passed CheckMate Pro checks for topology and scale.",
+  "Since 2018 the panel has been bought 19 times for home inspection courses, basement scenes and electrician training. Mounted on a garage wall beside a water heater, it completes a realistic utility corner. In a horror film, a flashlight beam on the open breakers signals that the power is about to fail."
+ ],
+ "empty-glass-bottle-with-cork-1112754": [
+  "A clear glass bottle with a slender neck and a natural cork stopper, empty and ready for any liquid or message. Empty Glass Bottle With Cork uses 3,022 polygons over 2,995 vertices, enough for a smooth body and a slightly tapered cork. The glass has real wall thickness, so refraction bends the background through it just as a real bottle would.",
+  "Cork grain and faint surface marks come from 4 maps at 2048 x 2048. The unwrap gives each part its own space, and the bottle was graded CheckMate Pro by TurboSquid reviewers.",
+  "Since 2017 it has been picked by 19 buyers for apothecary shelves, pirate scenes and kitchen still lifes. Filled with a rolled paper note and washed onto a beach, the bottle becomes a story on its own. Lined up on a potion shelf, a few copies with colored liquid turn a room into a wizard's workshop."
+ ],
+ "eurocopter-ec145-medical-helicopter-1197639": [
+  "A twin-engine air ambulance helicopter with a medical livery, rear clamshell doors and skids built for rooftop helipads. Eurocopter EC145 Medical Helicopter carries 1,357,719 polygons over 1,390,959 vertices, including the rotor head, cockpit and cabin. The rear doors open wide for a stretcher, which is the moment most rescue scenes want to capture.",
+  "Paint, glass and interior fabrics come from 19 maps at 4096 x 4096. All UV shells keep clear of one another, and the StemCell format holds the materials steady across renderers.",
+  "Six versions are offered here: this medical helicopter, a German police helicopter and a light utility helicopter at $149 each. Rigged builds cost $169 for the medical version, $189 for the police version and $199 for the utility version. Emergency service films, hospital promos and rescue games have carried it to 19 sales since 2017. Because Eurocopter is a registered name, the helicopter is offered for editorial use."
+ ],
+ "excavator-bucket-924535": [
+  "A heavy digging bucket for a tracked excavator, with steel teeth along the lip and mounting lugs at the back. Excavator Bucket uses 14,070 polygons over 12,049 vertices on the curved shell, the replaceable teeth and the pin bosses. Welded wear plates along the bottom show where the bucket scrapes rock, which gives the steel a worked look.",
+  "Yellow paint, chipped edges and rust come from 4 maps at 4096 x 4096 and 2048 x 2048. Dirt caked in the corners can be added with a simple mask on the existing maps. The layout keeps every UV island free of overlap, and the attachment is rated CheckMate Pro.",
+  "Equipment dealers, construction games and engineering students have taken the bucket into 19 projects since 2015. Resting on a gravel pile beside a site fence, it suggests heavy work without showing the whole machine. Mounted on an arm, it also replaces a worn bucket on any excavator rig in a scene."
+ ],
+ "female-torso-skeleton-1025031": [
+  "An anatomical female torso skeleton showing the rib cage, sternum, spine and shoulder girdle in accurate proportion. Female Torso Skeleton uses 42,637 polygons over 42,182 vertices, so each rib and vertebra keeps its true shape. The ribs curve outward from the spine with real gaps between them, which teaching close-ups depend on. The shoulder blades sit at their natural angle, so the back view is just as useful.",
+  "Bone color, porous texture and cartilage come from 13 maps at 4096 x 4096 and 2048 x 2048. Shells are laid apart in the unwrap, letting individual bones be highlighted, and the skeleton rates CheckMate Pro.",
+  "All 4 versions cost $79: female and male torsos, plus female and male torsos with the pelvis attached. Medical schools, chiropractic clinics and anatomy apps turned to it 19 times since 2016. Placed beside the male torso, it lets students compare rib cage width and shape directly."
+ ],
+ "ford-f150-raptor-police-interceptor-unit-1241988": [
+  "A lifted police pickup with off-road tires, a roof light bar and a push bumper, built for rural and desert patrols. Ford F150 Raptor Police Interceptor Unit spends 321,139 polygons over 366,137 vertices on the suspension, the wheels and the cab. Its tall stance and flared fenders set it apart from sedan cruisers, signaling rough country rather than city streets.",
+  "Police livery, lights and tire rubber come from 9 maps at 4096 x 4096 and 2048 x 2048. Shells sit in their own space across the layout, and the truck earned CheckMate Pro.",
+  "Buyers can choose 3 versions: this truck at $129, a simple interior build at $99 and a rigged truck at $149. Border patrol dramas, police games and law enforcement news have chosen the truck 19 times since 2018. The Ford branding keeps it under editorial terms for reports and documentaries. Kicking up dust on a desert road, it sets up a chase sequence without a single line of dialogue."
+ ],
+ "gazebo-covered-with-pink-rose-1636759": [
+  "A garden gazebo smothered in climbing roses, with blooms spilling over the roof and down the posts. Gazebo Covered with Rose carries 2,581,751 polygons over 4,195,353 vertices, almost all of it in leaves, petals and twisting stems. The heavy foliage leaves only glimpses of the structure, so the shelter reads as part of the garden itself.",
+  "The roses come without image maps, which keeps petal and leaf colors easy to shift in shaders. Each UV island stays distinct for anyone painting their own maps, and the gazebo earned a CheckMate Pro grade.",
+  "Four versions hang together here: this rose gazebo at $79 and a red rose gazebo at $59. Wooden gazebos with red roses at $79 or pink roses at $59 complete the set. Wedding venues, landscape designers and romantic film sets have bought it for 19 projects since 2020. Lit by string lights at dusk, it becomes the obvious spot for a proposal scene."
+ ],
+ "goliath-birdeater-1258128": [
+  "The largest tarantula on Earth, with a hairy brown body, thick legs and curved fangs tucked beneath its head. Goliath Birdeater spends 10,404 polygons over 10,516 vertices on the jointed legs, the abdomen and the chelicerae. Each leg segment bends at a real joint, so the spider can be posed creeping across a rainforest log.",
+  "Bristly hair, banded legs and glossy eyes come from 2 maps at 4096 x 4096. The unwrap leaves room around every shell, and the StemCell build delivers matching PBR materials in each major renderer.",
+  "This spider comes in 6 versions, with the standard, dead and walking poses at $79 each. Rigged builds cost $99 for general use or Cinema 4D and $129 for Maya. Nature documentaries, horror films and insect museums have licensed it 19 times since 2018. Crawling slowly toward a sleeping character, it delivers the shiver that arachnophobia scenes need."
+ ],
+ "goodyear-wrangler-off-road-tire-1775930": [
+  "An aggressive all-terrain tire with chunky tread blocks, deep side lugs and raised lettering on the sidewall. Goodyear Wrangler Off Road Tire uses 19,343 polygons over 22,457 vertices, so the tread pattern is real geometry rather than a bump map. Deep grooves between the blocks catch mud and shadow, which makes the tire look ready for a rocky trail.",
+  "Without image maps, the black rubber relies on a shader that can turn dusty or wet in seconds. UV islands are kept separate for adding sidewall decals, and the StemCell format keeps the material consistent everywhere.",
+  "Three versions are on offer: this branded tire at $39, a plain off road tire at $24 and a black rim combo at $39. Off-road vehicle builders, tire shops and racing games rang up 19 sales since 2021. The Goodyear name on the sidewall places the branded tire under editorial terms. Stacked in a garage beside a lifted truck, a set of these tells viewers an expedition is coming."
+ ],
+ "green-growing-hops-plantation-1442835": [
+  "Rows of hop vines climbing tall wires in a summer plantation, heavy with pale green cones ready for brewing. Green Growing Hops Plantation holds 1,991,471 polygons over 2,901,201 vertices, mostly in leaves, cones and twisting bines. The vertical rows create long corridors of green, which make a striking perspective for a camera walking between them.",
+  "Leaves, cones and the support poles come from 26 maps at 4096 x 4096 and 2997 x 3523. Close shots of a single cone show its papery overlapping bracts in sharp detail. Every UV shell is laid out separately, and the plantation passed CheckMate Pro.",
+  "Two versions cost $79 each: this plantation and a second Growing Green Hops on the Plantation build. Craft breweries, beer label designers and agricultural documentaries lead the 19 purchases made since 2019. Shot at golden hour with a brewer inspecting a cone, it sets up the origin story of a pint."
+ ],
+ "hand-fan-1821597": [
+  "An open folding fan with thin ribs spread in a half circle and pleated paper stretched between them. Hand Fan uses 6,492 polygons over 6,573 vertices on the fine pleats, the pivot rivet and the guard sticks. The pleats alternate light and shadow across the leaf, which gives the fan depth even when shot flat. Held open beside a face, it frames a coy glance in period dramas.",
+  "No image maps come with the fan, so the paper leaf works as a blank surface for any painted design. Separate UV islands accept a printed pattern without stretching, and reviewers approved the fan at CheckMate Pro.",
+  "Six versions sit on the page at $24 each: this fan, Chinese and Japanese traditional fans and a black sensu with a red circle. Two printed fans complete the set, one with cherry blossoms and one with the Great Wave. Asian restaurant decor, dance performances and summer fashion shoots keep the fan selling, with 19 copies gone since 2021."
+ ],
+ "happy-emoji-1530479": [
+  "A cheerful round yellow face with smiling eyes and a broad grin, the friendliest reaction in any chat. Happy Emoji uses 1,258 polygons over 1,257 vertices to shape a smooth sphere with clean, raised features. Its simple expression reads at any size, from a large hero graphic to a small icon floating over a phone.",
+  "The bright yellow skin and dark facial details are painted on 5 maps at 1024 x 1024. Small maps keep the file compact for apps, and the unwrap gives every island clear room. Marketplace reviewers checked the face and gave it a CheckMate Pro mark.",
+  "Two versions cost $9 each: this happy face and a Very Happy Emoji with an even wider smile. Social media animations, kids' apps and greeting cards drew 19 buyers to the face since 2020. Bouncing beside a thumbs-up in a promo video, it adds warmth without a single word."
+ ],
+ "helping-hands-with-magnifier-and-clips-1606769": [
+  "A workbench helping hands tool with a heavy base, a round magnifying glass and alligator clips on jointed arms. Helping Hands with Magnifier and Clips uses 46,880 polygons over 46,908 vertices, built as subdivision geometry for smooth curves. The arms bend at ball joints, so the clips can hold a circuit board and a wire at any angle under the lens.",
+  "Without packaged maps, the cast base, chrome rods and glass lens rely on shaders tuned in moments. Subdivision lets the base and lens rim stay perfectly round at any render resolution. Each UV island has space of its own, and the tool earned its CheckMate Pro rating.",
+  "Electronics tutorials, maker space scenes and repair shop interiors brought the tool 19 sales since 2020. Lit by a desk lamp with a soldering iron nearby, it sets up a late night repair session. The magnifier also gives a dramatic lens distortion in close shots of tiny components."
+ ],
+ "hot-dog-truck-1266104": [
+  "A street food truck selling hot dogs, with a serving hatch on the side, a fold-out awning and bright menu boards. Hot Dog Truck uses 307,323 polygons over 316,644 vertices on the kitchen equipment, the serving counter and the chassis. The open hatch shows grills and steel counters inside, so the truck works in a close scene with customers.",
+  "Paint, menu graphics and stainless steel come from 25 maps at 8192 x 8192 and 4096 x 4096. The layout leaves no shared UV space, and inspectors gave the truck a CheckMate Pro rating. Strings of lights along the awning make it just as convincing in a night market.",
+  "Two versions are listed: this static truck at $139 and a rigged truck at $149. Food festivals, city street scenes and franchise pitch decks have generated 19 sales since 2018. Parked at a busy park entrance with a line of customers, it brings instant life to a summer street."
+ ],
+ "ionic-architrave-and-frieze-greco-roman-1043705": [
+  "A classical entablature section with a stepped architrave below and a carved frieze above, the band that rests on Ionic columns. Ionic Architrave and Frieze Greco Roman uses 39,052 polygons over 40,453 vertices on the fasciae, moldings and ornamental relief. Repeated along a facade, the piece forms a continuous beam that ties a row of columns into one temple front.",
+  "Weathered marble and fine carving shadows come from 3 maps at 4096 x 4096. Crisp edges on the moldings catch raking light, which shows off the classical profile. UV shells are laid out without crowding, leaving room for custom stone, and the section rates CheckMate Pro.",
+  "Museum reconstructions, bank facades and fantasy temples have used the frieze in 19 projects since 2016. Paired with matching Ionic columns, it completes a classical portico without any custom modeling. Set at eye level in a museum render, the carving invites a slow camera dolly along its length."
+ ],
+ "ionic-column-greco-roman-set-1052264": [
+  "A set of classical Ionic columns with fluted shafts, scrolled volute capitals and molded bases in the Greco Roman style. Ionic Column Greco Roman Set uses 237,468 polygons over 244,512 vertices, most of it spent on the deep flutes and spiraling volutes. The rounded flutes cast long vertical shadows, which give a colonnade rhythm under low sun.",
+  "Pale marble and subtle weathering come from 3 maps at 2048 x 2048. Each shell in the unwrap has clean space, and the columns carry CheckMate Pro certification.",
+  "Both versions sell at $39: this set and an ancient Ionic column set in light gray. Architectural visualizers, history teachers and game level designers have taken it into 19 scenes since 2016. Lined up along a portico, the columns turn a plain building into a courthouse or a museum. They also pair naturally with the matching architrave and frieze from the same series."
+ ],
+ "iphone-6-silver-and-case-942293": [
+  "A silver smartphone with rounded aluminum edges and a slim body, shown alongside a protective case that fits it snugly. iPhone 6 Silver and Case captures the antenna lines on the back, the camera ring and the home button below the screen. With the case as a separate piece, the phone can be shown bare, sliding in or fully protected.",
+  "Brushed aluminum, glass and the soft case material keep their character under bright product lighting. The glossy screen reflects its surroundings, so a wallpaper or app mockup can be dropped on top. TurboSquid inspectors certified the phone and case together at CheckMate Pro level.",
+  "App designers, mobile accessory shops and tech bloggers have chosen the phone 19 times since 2015. Because it carries Apple branding, the model is sold for editorial uses such as reviews. Placed face down beside a coffee cup, the phone adds a casual everyday touch to a desk scene."
+ ],
+ "japanese-short-sword-wakizashi-1117539": [
+  "A samurai's short companion sword with a gently curved blade, a wrapped hilt and a lacquered scabbard. Japanese Short Sword Wakizashi uses 10,364 polygons over 10,459 vertices on the guard, the braided grip and the blade's ridge line. Drawn halfway from its scabbard, the blade shows the wavy temper line that sword collectors look for first. The small round guard is pierced with a simple pattern, a detail that rewards a macro shot.",
+  "Polished steel, silk wrapping and black lacquer come from 22 maps at 4096 x 4096 and 2048 x 2048. Shells in the unwrap keep their distance, and the short sword was graded CheckMate Pro.",
+  "Samurai films, martial arts games and Japanese history lessons have driven 19 orders since 2017. Resting on a wooden stand beneath a longer katana, it completes the traditional daisho pair. In a dojo or a tea house, the sword hints at a warrior's quiet presence."
+ ],
+ "kratos-xq-58-valkyrie-2104112": [
+  "A long-range stealth combat drone with a sharp chined nose, a V-tail and a dorsal intake behind the nose. Kratos XQ-58 Valkyrie uses 37,104 polygons over 19,512 vertices, a triangulated mesh that holds its faceted panels crisp. Without a cockpit, the slim fuselage looks purely mechanical, which suits scenes about autonomous warfare.",
+  "This drone ships without image maps, so its gray coating comes from shaders that change with a click. Shells are unwrapped separately for stenciled markings, and the StemCell format keeps materials matched in every renderer.",
+  "Nine versions fill the page, from a game ready drone at $59 to a rigged tactical UAV at $99. Static Valkyrie and stealth combat drones cost $69, and rigged builds for general use, Cinema 4D and Maya are $89. A generic combat military drone also sells for $59 for unbranded projects. Defense analysts and military game studios bought 19 copies since 2023, and branded builds stay editorial."
+ ],
+ "kylo-ren-lightsaber-used-3d-models-set-982389": [
+  "The cross-guard lightsaber hilt from the sequel films, with a rough-forged body and short vented quillons at the emitter. Kylo Ren Lightsaber 3D Models Set uses 44,740 polygons over 47,362 vertices on the grip ridges, the vents and the activation switch. The weathered, unfinished look of the hilt matches the unstable character who carries it.",
+  "Scratched metal, worn grip and glowing blade elements come from 16 maps at 4096 x 4096 and 1024 x 1024. UV islands never collide on the hilt or blade, and the props carry CheckMate Pro certification.",
+  "On the page sit 2 versions with this same name, each at $29, so buyers pick the file set they prefer. Fan films, cosplay prop makers and collectible displays generated 19 orders from 2015 onward. As the design belongs to the franchise, the hilt falls under editorial licensing only. Lit with a red glow on a dark set, it delivers the menace of the character in one shot."
+ ],
+ "large-vintage-ship-wheel-1329631": [
+  "A big wooden ship's wheel with turned spokes and handles, a brass hub and a banded rim from the age of sail. Large Vintage Ship Wheel uses 24,818 polygons over 24,969 vertices on the lathe-turned grips and the joinery of the rim. Each spoke extends past the rim into a handle, so a captain's hands find a natural grip in a close shot.",
+  "Dark varnished wood and polished brass come from 7 maps at 4096 x 4096. Wear on the handles shows where generations of sailors gripped the wheel in storms. The unwrap spreads its islands without overlaps, and the StemCell build carries identical materials to any engine.",
+  "The page also carries an Old Wooden Helm Wheel at $39 beside this one at $49, making 2 versions. Pirate games, nautical restaurants and seafaring films brought 19 sales since 2018. Mounted on a wall above a fireplace, it turns a living room into a captain's retreat."
+ ],
+ "longboard-generic-1163438": [
+  "A long cruising skateboard with a flexible wooden deck, wide soft wheels and sturdy trucks for downhill carving. Longboard Generic uses 20,114 quad polygons over 20,744 vertices on the trucks, bushings, bearings and the deck's drop shape. Griptape covers the top while the underside carries artwork, so the board looks good flipped or ridden. Wheels spin freely on their axles, so the board can roll in a simple animation.",
+  "Wood grain, griptape grit and graphics come from 20 maps at 4096 x 4096 and 4000 x 4000. Shells are laid out cleanly, and the board is certified CheckMate Pro.",
+  "Each of the 4 versions costs $29: this generic board, a plain longboard, a cartoon design skateboard and a classic skateboard. Surf shops, skate park scenes and youth lifestyle ads have bought the board 19 times since 2017. Leaning against a beach bar wall at sunset, it sets a laid-back coastal mood without any effort."
+ ],
+ "luxor-obelisks-paris-france-1872768": [
+  "The ancient Egyptian obelisk standing in the Place de la Concorde, with hieroglyphs carved down its granite faces and a gilded tip. Luxor Obelisks Paris France uses 587,985 polygons over 616,355 vertices, carving the hieroglyphs as real relief rather than painted lines. The tall plinth below lifts the obelisk above street level, which is how visitors see it framed against the Paris sky.",
+  "Image maps are not included, so the pink granite and gilding are set through shaders. The carved symbols catch raking light at sunrise, which shows off the relief without any normal maps. Every UV island has clean room, and inspectors cleared the monument at CheckMate Pro.",
+  "Travel films, Paris city renders and Egyptology lessons generated 19 sales of the monument since 2022. Placed in a square with traffic circling around it, the obelisk anchors a busy Concorde scene. At night, under warm floodlights, the gilded tip glows above the fountains of the square."
+ ],
+ "madison-square-garden-with-banners-1605302": [
+  "The famous New York arena above Penn Station, with its round drum facade, glass entrance and event banners hung outside. Madison Square Garden with Banners uses 187,680 polygons over 292,177 vertices on the curved facade, entrance canopies and street level details. The banners are what bring the building alive, signaling a big game or concert night at a glance.",
+  "Concrete, glass and banner graphics come from 20 maps at 4096 x 4096 and 2048 x 2048. Banners can be swapped for any team or tour by replacing their artwork. UV islands do not overlap, and the arena is built to CheckMate specification rather than formally certified.",
+  "Since 2021 the arena has been licensed 19 times for sports broadcasts, New York travel films and city games. Because the venue is a famous name, the model suits editorial work such as news and documentaries. Surrounded by yellow taxis on Seventh Avenue at dusk, it captures Manhattan energy in a single frame."
+ ],
+ "manta-ray-1063549": [
+  "A giant oceanic manta ray with broad triangular wings, curled cephalic fins and a short whip-like tail. Manta Ray captures the dark back, the pale belly with its spot pattern and the wide filter mouth at the front. Its flat wingspan glides through open water, so a slow camera beneath it makes a majestic silhouette against the light.",
+  "Smooth skin with subtle sheen keeps the animal believable in clear tropical water or murky depths. Gill slits on the underside are modeled as real openings for close shots from below. Inspectors approved the ray at CheckMate Pro, verifying clean topology, logical naming and true proportions.",
+  "Four versions are available, with this static ray at $79 and rigged builds at $99 each for general use, Maya and Cinema 4D. Diving resorts, ocean documentaries and aquarium displays explain why the ray has found 19 buyers since 2016. Swimming past a diver above a coral reef, the manta gives any underwater scene a sense of scale."
+ ],
+ "medical-xray-light-box-995771": [
+  "A wall-mounted X-ray viewing box with a glowing white panel and clips along the top for holding radiograph films. Medical XRay Light Box keeps a light 3,157 polygons over 3,197 vertices, enough for the frame, clips and switch. When lit with an emissive material, the panel throws a cold glow across a doctor's face in a dim clinic.",
+  "A single map at 4096 x 4096 covers the metal frame and the diffuser panel. Films can be swapped for any chest, hand or skull X-ray simply by changing the image. The unwrap gives each island a clear area, while StemCell certification keeps the shader consistent across renderers.",
+  "Two versions are on the page: this light box at $19 and an XRay Light Box at $29. Hospital dramas, medical training videos and radiology clinic promos have brought it 19 orders since 2016. Clipped with a chest film, the box sets up the moment a doctor delivers news to a patient."
+ ],
+ "oil-field-worker-uniform-1792900": [
+  "A rugged oil field work outfit with heavy coveralls, reflective stripes and sturdy boots for long rig shifts. Oil Field Worker Uniform uses 37,924 polygons over 39,058 vertices on pockets, zippers, cuffs and the creases of thick fabric. Loose folds at the knees and elbows suggest heavy cloth, so the uniform reads as practical workwear.",
+  "Without packaged image maps, the fabric color and stripes are defined in shaders that switch to any company scheme. Thick seams and double stitching are visible in close shots of the chest pockets. UV shells stay separate for adding grime or patches, and the outfit has CheckMate Lite status.",
+  "Energy companies, safety trainers and drilling documentaries have ordered the uniform 19 times since 2021. Dressed on a figure beside a derrick at dawn, it signals a long shift on an oil rig. Covered in oil stains from a few added maps, it becomes ready for a gritty action scene."
+ ],
+ "old-wooden-oil-derrick-1987008": [
+  "A timber oil derrick from the early boom years, its tall wooden frame braced with crossed beams and ladders. Old Wooden Oil Derrick has 165,872 polygons over 84,304 vertices, enough triangles to capture every plank and brace. Weathered timber beams stacked into a narrowing tower set it firmly in a historic oil town. Ladders running up the side let a worker figure climb toward the crown for a dramatic angle.",
+  "No image maps are bundled, so the wood tone and age come from shaders that can be pushed toward fresh or rotting timber. Separate UV islands allow custom wood textures, and the StemCell build travels between renderers without rework.",
+  "Western films, oil heritage museums and period games have licensed the old rig 19 times since 2022. A row of these towers on a dusty hill recreates the gusher era in a single wide shot. Splashed with dark crude across the lower beams, the rig turns into the centerpiece of a strike scene."
+ ],
+ "oneweb-satellite-2051160": [
+  "A compact low Earth orbit communications satellite with a boxy bus, deployed solar wings and antennas facing the ground. OneWeb Satellite carries 59,098 polygons over 31,010 vertices, triangulated along the panel edges and the thermal blanket folds. Its small size suits constellation shots, where dozens of copies circle the planet in tidy orbital planes. Set against the curve of the Earth at dawn, a single satellite makes a clean hero image.",
+  "With no image maps included, the gold foil and dark solar cells come from shaders that respond well to harsh sunlight. Islands in the unwrap stay apart, and the spacecraft cleared CheckMate Pro review.",
+  "Buyers get 3 versions here: this satellite and a OneWeb Communications Satellite at $39, plus an unbranded model with solar arrays at $49. Space agencies, telecom explainers and science channels have ordered 19 copies since 2023. The OneWeb name places the branded builds under editorial terms for news and documentaries."
  ]
 }
