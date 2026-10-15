@@ -40,8 +40,18 @@ const HASH_LEN = 12;
 const DATE_MOD = /("dateModified"\s*:\s*")[^"]*(")/g;
 const DATE_UPD = /(Updated <time datetime=")[^"]*(">)[^<]*(<\/time>)/g;
 export const maskDates = s => s.replace(DATE_MOD, '$1$2').replace(DATE_UPD, '$1$2$3');
-export const hashBody = (body, masked = POLICY.page_dates) => crypto.createHash('sha1')
-  .update(masked ? maskDates(body.toString('utf8')) : body).digest('hex').slice(0, HASH_LEN);
+/*
+ * Счётчик Google Analytics у карточек тоже не содержимое. 15.10.2026 его вернули
+ * на все 37 683 карточки разом (потерян 02.09); войди он в хеш - у всех карточек
+ * встала бы одна дата изменения, та самая ошибка, что чинили 05.10. Только для
+ * /models/: у остальных страниц он стоит давно, их хеши считаны вместе с ним.
+ */
+const GA_BLOCK = /\n?<!-- Google tag \(gtag\.js\) --><script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=[^"]+"><\/script><script>[\s\S]*?<\/script>/;
+export const hashBody = (body, masked = POLICY.page_dates, isModel = false) => {
+  let s = masked ? maskDates(body.toString('utf8')) : null;
+  if (s !== null && isModel) s = s.replace(GA_BLOCK, '');
+  return crypto.createHash('sha1').update(s !== null ? s : body).digest('hex').slice(0, HASH_LEN);
+};
 const humanDate = iso => new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 /* Вписать дату изменения в карточку - ту же, что уходит в <lastmod>. */
 function stampDate(s, iso) {
@@ -94,7 +104,7 @@ export function createLastmod(root, buildDate) {
 
     let body;
     try { body = fs.readFileSync(file); } catch { stats.missing++; return today; }
-    const hash = hashBody(body);
+    const hash = hashBody(body, undefined, key.startsWith('models/'));
     mtimes[key] = st.mtimeMs;
 
     if (prev && prev.hash === hash) {                 // перезаписали тем же содержимым

@@ -57,6 +57,21 @@ const SITE_UPDATED = (() => {
 })();
 const SITE_UPDATED_HUMAN = new Date(SITE_UPDATED)
   .toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+/*
+ * Счётчик Google Analytics - тот же, что на главной, в каталоге и в категориях.
+ * 02.09.2026 пересборка карточек из единой записи (коммит 381884873a86) его
+ * потеряла: старые карточки несли его в разметке, а новый генератор не вписывал.
+ * Шесть недель визиты на карточки (с Pinterest, из Google, откуда угодно) не
+ * считались вовсе - нашлось 14.10.2026 при разборе Pinterest. Вписывается здесь,
+ * в генераторе, иначе следующая пересборка снова его сотрёт.
+ * В сравнение содержимого для lastmod он не входит (lib/lastmod.mjs).
+ */
+export const GA_TAG = `<!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-GDY5KTLBP1"></script><script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-GDY5KTLBP1');
+</script>`;
 const humanDate = iso => new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 // Дата изменения конкретной страницы: из журнала lastmod, если включено
 // page_dates (см. lib/index-policy.mjs), иначе прежняя общая.
@@ -308,6 +323,7 @@ ${isIndexable(r) ? '' : NOINDEX_META + '\n'}<meta name="viewport" content="width
 <link rel="stylesheet" href="/assets/css/fonts.css?v=${ASSET_V}" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/assets/css/fonts.css?v=${ASSET_V}"></noscript>
 ${schema}
+${GA_TAG}
 </head>`;
 }
 
