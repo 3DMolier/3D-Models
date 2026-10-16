@@ -208,18 +208,22 @@ export const studioSize = (url, tag) => {
  *      все до единого.
  *
  *   2. 3dmolier-studio.com/uploads/files/<число>_<Имя>_NNN.jpg - 42 644 кадра.
- *      Отдаёт 502 и по http, и по https. Восстановить нельзя: в адресе нет
- *      папки ассета, а вычислить её неоткуда - студийный API отвечает 500.
- *      Такие кадры выбрасываем: пустая рамка хуже, чем её отсутствие.
+ *      До октября отдавал 502 и по http, и по https, и такие кадры
+ *      выбрасывались. 16.10.2026 студия их вернула: из 150 случайных адресов
+ *      146 отдали картинку (97%, как у /assets/), 145 разных - не заглушка.
+ *      Показываем, переводя на https (страница https, http-картинку браузер
+ *      заблокирует). У 2 282 карточек это вся галерея - до сих пор была пустой.
+ *      Вернуть отсев: UPLOADS_LIVE = false.
  *
  * Возвращает пустую строку, если кадр показывать нельзя.
  */
+const UPLOADS_LIVE = true;
 export const liveShot = (url) => {
   const u = String(url || '');
   if (!u) return '';
   const s3 = u.match(/^https?:\/\/s3\.3dmolier\.com\/assets\d*\/(.+?)(\?|$)/);
   if (s3) return STUDIO + s3[1];
-  if (u.includes('/uploads/files/')) return '';
+  if (u.includes('/uploads/files/')) return UPLOADS_LIVE ? u.replace(/^http:\/\//, 'https://') : '';
   return u;
 };
 
