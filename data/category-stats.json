@@ -57,7 +57,7 @@
   "polyMed": 34488,
   "priceMed": 34,
   "salesMed": 2,
-  "n": 2265
+  "n": 2264
  },
  "industrial-equipment": {
   "polyMed": 123359,
@@ -105,7 +105,7 @@
   "polyMed": 7348,
   "priceMed": 19,
   "salesMed": 3,
-  "n": 1018
+  "n": 1017
  },
  "ships": {
   "polyMed": 303508,
@@ -114,10 +114,10 @@
   "n": 435
  },
  "signage-decor": {
-  "polyMed": 13538,
+  "polyMed": 13606,
   "priceMed": 29,
   "salesMed": 3,
-  "n": 887
+  "n": 885
  },
  "space-scifi": {
   "polyMed": 95522,
@@ -138,10 +138,10 @@
   "n": 1603
  },
  "toys-games": {
-  "polyMed": 12638,
+  "polyMed": 12846,
   "priceMed": 29,
   "salesMed": 3,
-  "n": 567
+  "n": 566
  },
  "vehicles": {
   "polyMed": 207360,

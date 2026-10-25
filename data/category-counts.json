@@ -1,11 +1,11 @@
 {
- "total": 37683,
+ "total": 37678,
  "counts": {
   "space-scifi": 373,
   "electronics-gadgets": 2182,
   "weapons": 1247,
-  "furniture-interior": 2318,
-  "other": 1056,
+  "furniture-interior": 2317,
+  "other": 1055,
   "architecture-landmarks": 3050,
   "military-vehicles": 119,
   "animals-creatures": 1732,
@@ -13,7 +13,7 @@
   "nature-plants": 1112,
   "musical-instruments": 283,
   "kitchen-tableware": 1685,
-  "signage-decor": 952,
+  "signage-decor": 950,
   "industrial-equipment": 1503,
   "vehicles": 2607,
   "tools": 1646,
@@ -23,7 +23,7 @@
   "ships": 461,
   "medical-3d-models": 1736,
   "characters-people": 1587,
-  "toys-games": 603,
+  "toys-games": 602,
   "lighting": 229,
   "collections-sets": 4535,
   "aircraft": 841
