@@ -106,6 +106,9 @@ run('build-category-stats.mjs');
 const recOut = run('build-model-records.mjs');
 const vid = (recOut.match(/карточек с роликом: ([\d\s,]+)/) || [])[1];
 if (vid) say('карточек с роликом: ' + vid.trim());
+// ролики снятых моделей, у которых карточки ещё нет: ждут обновления каталога из студии
+const noCard = (recOut.match(/карточки ещё нет: (\d+)/) || [])[1];
+if (noCard) say('ежедневных роликов без карточки: ' + noCard);
 const pagesOut = run('apply-rebuild.mjs');
 say((pagesOut.match(/переписано карточек: [\d\s,]+/) || ['страницы пересобраны'])[0]);
 

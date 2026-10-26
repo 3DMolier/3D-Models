@@ -24,7 +24,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {
-  esc, catSlug, description, specTable, faqBlock, dateLine, pageSchema, productSchema,
+  esc, catSlug, description, specTable, faqBlock, dateLine, pageSchema, productSchema, nativeOf,
 } from './card-content.mjs';
 import { INDUSTRY_NAME, useLabel } from './lib/industries.mjs';
 
@@ -286,6 +286,53 @@ export const seedOf = s => {
   return h;
 };
 
+/*
+ * Форматы в заголовке и описании для поисковика - решение основателя 26.10.2026,
+ * по образцу free3d («Couch Sofa 3D Model - .obj .max»): люди ищут «... 3d model fbx».
+ * Набор тот же, что в строке Formats характеристик (nativeOf от того же имени): у
+ * «Rigged for Maya» - только Maya, у многоформатной - короткие имена по спросу.
+ *
+ * Выключатель data/title-formats.json. Правка задевает заголовок КАЖДОЙ карточки,
+ * а ежедневная сборка останавливается на 5 000 изменённых, поэтому включается он
+ * только вместе с публикацией большой правки (publish-big-change.mjs).
+ */
+let TITLE_FMT = false;
+try {
+  TITLE_FMT = !!JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'title-formats.json'), 'utf8')).enabled;
+} catch (e) { TITLE_FMT = false; }
+const TITLE_FMT_ORDER = ['FBX', 'OBJ', '3ds Max', 'Blender', 'C4D', 'Maya', 'glTF', 'USDz'];
+const NATIVE_SHORT = [[/^3ds Max/, '3ds Max'], [/^Maya/, 'Maya'], [/^Blender/, 'Blender'], [/^Cinema 4D/, 'Cinema 4D']];
+const TITLE_MAX = 70;
+
+export function titleFormats(name) {
+  const nat = nativeOf(name);
+  if (nat.formats) return { multi: true, list: TITLE_FMT_ORDER };
+  const hit = NATIVE_SHORT.find(([re]) => re.test(nat.native));
+  return { multi: false, list: [hit ? hit[1] : nat.native] };
+}
+
+/** Заголовок с форматами: берём их по порядку, пока строка не длиннее TITLE_MAX; минимум два (или один родной). */
+export function formatTitle(base, price, name) {
+  const tail = (price ? ' - $' + price : '') + ' | 3D Molier';
+  const { multi, list } = titleFormats(name);
+  const min = multi ? 2 : 1;
+  let n = min;
+  while (n < list.length && (base + ' - ' + list.slice(0, n + 1).join(', ') + tail).length <= TITLE_MAX) n++;
+  return base + ' - ' + list.slice(0, n).join(', ') + tail;
+}
+
+/*
+ * Описание для выдачи: первое предложение рукописного текста задумано как сниппет
+ * (до 158 знаков), его не режем. Фраза про форматы дописывается, только если
+ * влезает следом целиком; иначе описание прежнее.
+ */
+export function formatDescription(text, name) {
+  const { multi, list } = titleFormats(name);
+  const sfx = multi ? ' Available in ' + list.slice(0, 5).join(', ') + ' and more.' : ' Native ' + list[0] + ' file.';
+  const first = (text.match(/^.*?[.!?](?=\s|$)/) || [text])[0];
+  return (first + sfx).length <= 160 ? (first + sfx).trim() : text.slice(0, 155);
+}
+
 /** Голова страницы: заголовок, соцразметка, стили, разметка schema.org. */
 export function head(r, desc, schema) {
   const url = SITE + '/models/' + r.slug + '/';
@@ -296,9 +343,10 @@ export function head(r, desc, schema) {
    */
   const base0 = nm(r);
   const base = /3d\s+models?\s*$/i.test(base0) ? base0 : base0 + ' 3D Model';
-  const title = base + (r.price ? ' - $' + r.price : '') + ' | 3D Molier';
+  const title = TITLE_FMT ? formatTitle(base, r.price, nm(r)) : base + (r.price ? ' - $' + r.price : '') + ' | 3D Molier';
   const social = base + ' | 3D Molier';
-  const short = desc.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 155);
+  const plain = desc.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  const short = TITLE_FMT ? formatDescription(plain, nm(r)) : plain.slice(0, 155);
   return `<head>
 <meta charset="UTF-8">
 ${isIndexable(r) ? '' : NOINDEX_META + '\n'}<meta name="viewport" content="width=device-width, initial-scale=1.0">
