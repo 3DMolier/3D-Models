@@ -34,7 +34,8 @@ const MIL = /\b(fighter|bomber|military|combat|warplane|warship|battleship|destr
 // вторым списком в другом файле: вопрос «военная ли модель» один, и ответ на
 // него должен быть один. Ничего из перечисленного военным не перестаёт быть,
 // поэтому дополнение только расширяет, ничего не отменяя.
-const MIL_MORE = /\b(aircraft carrier|cvn-?\d\d|a400m|aw101|m-346|l-39|bushmaster|stryker|main battle tank|nighthawk|fighter jet|attack jet|combat trainer|nato|c-5m?\b|oh-6|mh-6|il-76|tu-(?:16|22|95|141|143|160)\b|ka-(?:27|50|52)\b|t-(?:55|62|64|72|80|90)(?![0-9])|b(?:mp|tr|rdm)-\d)/i;
+// 27.10.2026: HMMWV M998 из категории Vehicles не узнавался военным (Humvee - армейский).
+const MIL_MORE = /\b(aircraft carrier|cvn-?\d\d|a400m|aw101|m-346|l-39|bushmaster|stryker|main battle tank|hmmwv|humvee|nighthawk|fighter jet|attack jet|combat trainer|nato|c-5m?\b|oh-6|mh-6|il-76|tu-(?:16|22|95|141|143|160)\b|ka-(?:27|50|52)\b|t-(?:55|62|64|72|80|90)(?![0-9])|b(?:mp|tr|rdm)-\d)/i;
 
 // Гражданские признаки. Нужны не для решения, а для отчётности: решение
 // принимает MIL, всё остальное - гражданское.

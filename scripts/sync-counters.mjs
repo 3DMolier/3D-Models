@@ -182,4 +182,61 @@ let dlStat = 0;
   }
 }
 console.log('числа страниц на /data-licensing/: ' + (dlStat ? 'поправлено' : 'уже верно'));
+
+/*
+ * ── 6. остальные вписанные руками счётчики ──────────────────────────────────
+ *
+ * 26.10.2026 основатель нашёл, что цифры не сходятся. После нового отчёта
+ * каталог стал 37 678 страниц, а на главной, в каталоге и в таблице категорий
+ * на /data-licensing/ осталось 37 683: эти места никто не синхронизировал,
+ * числа были вписаны при сборке страниц. Шаблоны ловят число ПО СОСЕДНИМ
+ * СЛОВАМ, а не по значению: одно и то же число на странице бывает в разных ролях.
+ * Каждое правило - [регулярка с двумя группами вокруг числа, новое число].
+ */
+const T = fmt(TOTAL);
+const HOME_RULES = [
+  [/(Searchable catalog of )[\d,]+( professional 3D models)/g, T],
+  [/("description":")[\d,]+( unique model pages)/g, T],
+];
+const SPOTS = [
+  ['index.html', HOME_RULES],
+  ['preview/home/index.html', HOME_RULES],
+  ['catalog/index.html', [
+    [/(3D Model Catalog - )[\d,]+( Models)/g, T],
+    [/(Browse all )[\d,]+( professional 3D models)/g, T],
+    [/(Complete catalog of )[\d,]+( professional 3D models)/g, T],
+    [/("numberOfItems":)\d+(,)/g, String(TOTAL)],
+    [/(Loading catalog\.\.\.(?:\s*<[^>]+>)*\s*)[\d,]+( models)/g, T],
+    [/(Browse all )[\d,]+( models page by page)/g, T],
+    [/(<h1>Catalog <span class="text-accent">-<\/span> )[\d,]+( 3D Models<\/h1>)/g, T],
+  ]],
+  // Прозой «around 37,500» писали, когда число прыгало каждый день; теперь оно
+  // синхронизируется, и «около» рядом с точным числом не нужно.
+  ['about/index.html', [[/(shows )around (<strong>)[\d,]+( product pages)/g, null]]],
+  ['custom-order/index.html', [
+    [/(studio behind a )[\d,]+(-model catalog)/g, T],
+    [/(browse here - )around [\d,]+( model pages across)/g, T],
+  ]],
+  ['categories/weapons-tools/index.html', [
+    [/(Weapons 3D Models<\/div>\s*<div class="split-count">)[\d,]+( models)/g, fmt(counts.counts.weapons)],
+    [/(Tools 3D Models<\/div>\s*<div class="split-count">)[\d,]+( models)/g, fmt(counts.counts.tools)],
+  ]],
+  // таблица «Category / Models» на /data-licensing/: строка находится по ссылке на раздел
+  ['data-licensing/index.html', Object.entries(counts.counts).map(([slug, n]) => [
+    new RegExp('(<a href="/categories/' + slug + '/">[^<]*</a></td><td[^>]*>)[\\d,]+(</td>)', 'g'), fmt(n)])
+    .concat([[/(Total product pages<\/strong><\/td><td[^>]*><strong>)[\d,]+(<\/strong>)/g, T]])],
+];
+let spots = 0;
+for (const [rel, rules] of SPOTS) {
+  const file = path.join(ROOT, rel);
+  if (!fs.existsSync(file)) continue;
+  const before = fs.readFileSync(file, 'utf8');
+  let h = before;
+  for (const [re, val] of rules) {
+    // null - правило с тремя группами: «shows around <strong>N» -> «shows <strong>ВСЕГО»
+    h = h.replace(re, (m, a, b, c) => val === null ? a + b + T + c : a + val + b);
+  }
+  if (h !== before) { spots++; if (!DRY) fs.writeFileSync(file, h); }
+}
+console.log('страниц с прочими счётчиками поправлено: ' + spots);
 if (DRY) console.log('(--dry, ничего не записано)');

@@ -59,6 +59,8 @@ const FILTER_BOX = `<div class="browse-filter-box"><input id="browse-filter" typ
     <p class="browse-search-hint">Looking for something specific across the whole catalog? Use the <a href="/catalog/">catalog</a> instead - it searches and filters every model, while this index is a flat link list meant for browsing page by page.</p>`;
 
 const pages = Math.ceil(slugs.length / PER);
+// Число с разделителем, как во всех остальных счётчиках сайта («37,678», не «37678»).
+const N_FMT = slugs.length.toLocaleString('en-US');
 fs.mkdirSync(OUT, { recursive: true });
 
 // Страницы browse уходили в соцсети и мессенджеры без заголовка и картинки:
@@ -155,7 +157,7 @@ for (let i = 0; i < pages; i++) {
   <div class="max-w-7xl mx-auto">
     <nav aria-label="Breadcrumb"><a href="/">Home</a> &#8250; <a href="/browse/">All Models</a> &#8250; Page ${n}</nav>
     <h1>All 3D Models - Page ${n} of ${pages}</h1>
-    <p>Models ${i * PER + 1}-${i * PER + part.length} of ${slugs.length} in the 3D Molier catalog.</p>
+    <p>Models ${i * PER + 1}-${i * PER + part.length} of ${N_FMT} in the 3D Molier catalog.</p>
     ${FILTER_BOX}
     <ul class="browse-list">
 ${links}
@@ -185,7 +187,7 @@ const idxBody = `<section class="page-section">
   <div class="max-w-7xl mx-auto">
     <nav aria-label="Breadcrumb"><a href="/">Home</a> &#8250; All Models</nav>
     <h1>Complete 3D Model Index</h1>
-    <p>Direct links to all ${slugs.length} models in the 3D Molier catalog, split into ${pages} pages of ${PER}.
+    <p>Direct links to all ${N_FMT} models in the 3D Molier catalog, split into ${pages} pages of ${PER}.
        Looking for a category instead? See <a href="/">all categories</a> or the <a href="/catalog/">top 1000</a>.</p>
     ${FILTER_BOX}
     <ul class="browse-list browse-toc">
@@ -195,8 +197,8 @@ ${toc}
 </section>
 ${FILTER_JS}`;
 fs.writeFileSync(path.join(OUT, 'index.html'),
-  shell(`Complete 3D Model Index - ${slugs.length} Models | 3D Molier`,
-    `Full index of all ${slugs.length} 3D models by 3D Molier. Direct links to every model page.`,
+  shell(`Complete 3D Model Index - ${N_FMT} Models | 3D Molier`,
+    `Full index of all ${N_FMT} 3D models by 3D Molier. Direct links to every model page.`,
     `${BASE}/browse/`, idxBody, crumbs(0)), 'utf8');
 
 // ── сайтмап для этих страниц ──

@@ -103,6 +103,9 @@ for (const slug of queue) {
     sales: +(bySlug.get(slug) || {}).sales || 0,
     price: cell(h, 'Price'),
     quality: cell(h, 'Quality standard') || cell(h, 'Certification'),
+    // Лицензия - из строки характеристик. Без неё смена угадывала Editorial по
+    // названию и ошибалась в обе стороны (26.10.2026: Samsonite, Apple Card).
+    license: cell(h, 'License'),
     polygons: cell(h, 'Polygons'),
     vertices: cell(h, 'Vertices'),
     geometry: cell(h, 'Geometry'),
