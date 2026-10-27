@@ -90,7 +90,7 @@ export function toContentFields(r) {
      * запасной. Раньше текст жил только в файле страницы и был затёрт при
      * переходе на сборку из записи; теперь он в записи и переживёт пересборку.
      */
-    handDesc: (r.hand_desc && r.hand_desc.length) ? r.hand_desc : null,
+    handDesc: (r.hand_desc && r.hand_desc.length) ? selfPrice(r.hand_desc, r.price) : null,
     cert: r.cert || '',
     /*
      * Марка нужна тексту, а не только строке лицензии: у брендовой модели
@@ -116,7 +116,14 @@ export function toContentFields(r) {
     // выводит card-content через industriesOf; переводить их здесь значило бы
     // завести второе место, где решается, как называется отрасль.
     industries: r.industries || [],
-    keywords: r.keywords && r.keywords.length ? r.keywords : (r.seo_keywords || []),
+    /*
+     * У брендовой модели лицензия Editorial Uses Only, а в ключевых фразах из
+     * листинга встречалось «apple tv for advertising» - чип прямо советовал то,
+     * что лицензия запрещает. Найдено основателем 26.10.2026 на Airbus A320
+     * (там - в рукописном тексте); в ключах таких карточек было 19.
+     */
+    keywords: (r.keywords && r.keywords.length ? r.keywords : (r.seo_keywords || []))
+      .filter(k => !(r.brand && /advertis/i.test(k))),
     sub: r.subcategory || '',
     // Назначения выводятся из отраслей и категории, а не из колонки Excel:
     // на карточке это «film & TV VFX», «game assets», а в Excel лежат
@@ -273,6 +280,22 @@ export function handParagraphs(paras) {
   return (paras || [])
     .map(p => '<p class="mp-desc-text">' + esc(String(p)) + '</p>')
     .join('');
+}
+
+/*
+ * Цена карточки в рукописном тексте. Ночная смена пишет цену из справки, а
+ * следующий отчёт TurboSquid её меняет: 26.10.2026 на Danaus Plexippus Butterfly
+ * в тексте стояло $79, в характеристиках и FAQ - $89, и так у 16 карточек.
+ * Фраза, которая НАЧИНАЕТ предложение словами «At $X» или «Priced at $X», говорит
+ * о самой карточке - ставим туда текущую цену. «The static model at $119» и
+ * «from $79 to $179» - цены версий, их не трогаем.
+ */
+export function selfPrice(paras, price) {
+  if (!price) return paras;
+  // «At $199 the rigged build ...», «At $29 each» - про версию или штуку, не трогаем
+  return paras.map(p => String(p).replace(
+    /(^|[.!?] )(At|Priced at) \$\d[\d,]*(?![\d,])(?!,? (?:the (?:rigged|static|animated|fur|textured|low|version|build|variant)|each|apiece|per\b|for the))/g,
+    (m, a, b) => a + b + ' $' + price));
 }
 
 /** Показываемое имя: у склеенной карточки - имя семьи, у обычной - своё. */
