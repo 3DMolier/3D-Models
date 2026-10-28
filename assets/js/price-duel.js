@@ -3,13 +3,14 @@
  * Данные - /play/price-duel/models.json (собирает scripts/build-price-duel.mjs).
  * Игра начинается сразу при открытии страницы. Лучшая серия - в localStorage.
  * События GA4: game_start, game_guess, game_over, game_open_model.
+ * Финальная карточка - общий модуль game-finale.js.
  */
 (function () {
   var $ = function (id) { return document.getElementById(id); };
   var root = $('pd-game');
   if (!root) return;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var M = [], a, b, streak = 0, best = 0, busy = false, used = {}, usedN = 0, rounds = 0;
+  var M = [], a, b, streak = 0, best = 0, bestBefore = 0, busy = false, used = {}, usedN = 0, rounds = 0;
 
   function track(name, params) {
     try { if (typeof gtag === 'function') gtag('event', name, params || {}); } catch (e) {}
@@ -92,14 +93,34 @@
         $('pd-over').hidden = false;
         $('pd-controls').hidden = true;
         track('game_over', { game_name: 'price_duel', score: streak, rounds: rounds });
-        $('pd-again').focus();
         busy = false;
+        finale();
       }
     });
   }
 
+  // Финал как в жанре: звёзды за серию, рекорд, конфетти за хороший результат
+  function finale() {
+    if (!window.GameFinale) { $('pd-again').focus(); return; }
+    var stars = streak >= 10 ? 3 : streak >= 5 ? 2 : streak >= 1 ? 1 : 0;
+    var rec = streak > 0 && streak > bestBefore;
+    GameFinale.show({
+      label: 'Price Duel',
+      title: ['Missed the first one', 'Run over', 'Great run!', 'Price expert!'][stars],
+      stars: stars,
+      big: String(streak),
+      sub: streak === 1 ? 'correct guess in a row' : 'correct guesses in a row',
+      best: rec ? { text: bestBefore ? 'New best streak! Previous: ' + bestBefore : 'New best streak!', record: true } : { text: 'Your best streak: ' + best },
+      chips: [b.n + ' costs $' + b.p],
+      confetti: rec || streak >= 5,
+      primary: { text: 'Play again', onClick: start },
+      secondary: { text: 'Try Photo or Render?', href: '/play/photo-or-render/', onClick: function () { track('game_next', { game_name: 'price_duel', to: 'photo_render' }); } },
+      link: { text: 'See the models of the last round', onClick: function () { $('pd-over').scrollIntoView({ behavior: 'smooth', block: 'center' }); } }
+    });
+  }
+
   function start() {
-    used = {}; usedN = 0; streak = 0; rounds = 0;
+    used = {}; usedN = 0; streak = 0; rounds = 0; bestBefore = best;
     a = pick(); b = pick(a);
     render($('pd-a'), a, false); render($('pd-b'), b, true);
     $('pd-loading').hidden = true;

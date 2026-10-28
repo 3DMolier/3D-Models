@@ -67,6 +67,24 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://3dmolierstudio.com/play/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://3dmolierstudio.com/play/seek-and-find/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://3dmolierstudio.com/play/photo-or-render/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://3dmolierstudio.com/privacy/</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>yearly</changefreq>

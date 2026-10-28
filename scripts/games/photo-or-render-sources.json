@@ -1,0 +1,624 @@
+{
+ "note": "Отбор 28.10.2026: рендеры - признаки кадра (окружение/крупный план) + просмотр глазами; фото - Wikimedia Commons, EXIF камеры, свободная лицензия, просмотр глазами.",
+ "renders": [
+  "1378319",
+  "1486519",
+  "1548384",
+  "1611300",
+  "1496640",
+  "1505557",
+  "1511387",
+  "1439283",
+  "1442847",
+  "1283181",
+  "1503545",
+  "1505885",
+  "1505554",
+  "1496386",
+  "1485059",
+  "1609744",
+  "1554980",
+  "1456332",
+  "1521644",
+  "1486695",
+  "1549888",
+  "1521633",
+  "946235",
+  "1488357",
+  "1498077",
+  "1375398",
+  "1500027",
+  "1524569",
+  "1565720",
+  "1234832",
+  "1230798",
+  "949986",
+  "1486866",
+  "1451810",
+  "1498108",
+  "1451142",
+  "1487407",
+  "1488219",
+  "1486455",
+  "1486493",
+  "1500044",
+  "970216",
+  "1678176",
+  "1464110",
+  "1477089",
+  "2107602",
+  "1500007",
+  "1439629",
+  "1200596",
+  "1486366",
+  "1458558",
+  "1472260",
+  "1191530",
+  "1471761",
+  "1456320",
+  "919872",
+  "2258994",
+  "1974330",
+  "1450992",
+  "910216",
+  "1286804",
+  "1469189",
+  "1509543",
+  "1513276",
+  "1508614",
+  "1495622",
+  "1476868",
+  "920138",
+  "1458560",
+  "1496500",
+  "1210057",
+  "1465266",
+  "926209",
+  "961255",
+  "1328101",
+  "969805",
+  "1329004"
+ ],
+ "photos": [
+  {
+   "title": "File:LG G Watch R (15060749630).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/LG_G_Watch_R_%2815060749630%29.jpg/1280px-LG_G_Watch_R_%2815060749630%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:LG_G_Watch_R_(15060749630).jpg",
+   "author": "Maurizio Pesce from Milan, Italia",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+   "camera": "Canon Canon EOS Kiss X6i"
+  },
+  {
+   "title": "File:Dessertvork met het helmteken Clifford, BK-1960-101-S.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Dessertvork_met_het_helmteken_Clifford%2C_BK-1960-101-S.jpg/1280px-Dessertvork_met_het_helmteken_Clifford%2C_BK-1960-101-S.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Dessertvork_met_het_helmteken_Clifford,_BK-1960-101-S.jpg",
+   "author": "Rijksmuseum",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "camera": "Hasselblad Hasselblad H5D-50c MS"
+  },
+  {
+   "title": "File:Pomegranate (fruit).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Pomegranate_%28fruit%29.jpg/1280px-Pomegranate_%28fruit%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Pomegranate_(fruit).jpg",
+   "author": "Augustus Binu : flickr",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "camera": "NIKON CORPORATION NIKON D7000"
+  },
+  {
+   "title": "File:Metropolitan Police peaked cap side.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Metropolitan_Police_peaked_cap_side.jpg/1280px-Metropolitan_Police_peaked_cap_side.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Metropolitan_Police_peaked_cap_side.jpg",
+   "author": "Canley",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "camera": "NIKON CORPORATION NIKON D40X"
+  },
+  {
+   "title": "File:Pomegranate (opened).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Pomegranate_%28opened%29.jpg/1280px-Pomegranate_%28opened%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Pomegranate_(opened).jpg",
+   "author": "Ivar Leidus",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "NIKON CORPORATION NIKON D5200"
+  },
+  {
+   "title": "File:2023 Chłodzenie procesora Endorfy Fera 5 ARGB.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/2023_Ch%C5%82odzenie_procesora_Endorfy_Fera_5_ARGB.jpg/1280px-2023_Ch%C5%82odzenie_procesora_Endorfy_Fera_5_ARGB.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:2023_Ch%C5%82odzenie_procesora_Endorfy_Fera_5_ARGB.jpg",
+   "author": "Jacek Halicki",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "NIKON CORPORATION NIKON D5300"
+  },
+  {
+   "title": "File:1950s Wicker Woven Musical Sewing Basket - ivorybird (12398155865).jpg",
+   "thumb": "https://upload.wikimedia.org/wikipedia/commons/5/5d/1950s_Wicker_Woven_Musical_Sewing_Basket_-_ivorybird_%2812398155865%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "page": "https://commons.wikimedia.org/wiki/File:1950s_Wicker_Woven_Musical_Sewing_Basket_-_ivorybird_(12398155865).jpg",
+   "author": "Wicker Paradise from New Rochelle, United States",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+   "camera": "Canon Canon EOS DIGITAL REBEL XT"
+  },
+  {
+   "title": "File:0001. Кошелёк для монет.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/0001._%D0%9A%D0%BE%D1%88%D0%B5%D0%BB%D1%91%D0%BA_%D0%B4%D0%BB%D1%8F_%D0%BC%D0%BE%D0%BD%D0%B5%D1%82.jpg/1280px-0001._%D0%9A%D0%BE%D1%88%D0%B5%D0%BB%D1%91%D0%BA_%D0%B4%D0%BB%D1%8F_%D0%BC%D0%BE%D0%BD%D0%B5%D1%82.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:0001._%D0%9A%D0%BE%D1%88%D0%B5%D0%BB%D1%91%D0%BA_%D0%B4%D0%BB%D1%8F_%D0%BC%D0%BE%D0%BD%D0%B5%D1%82.jpg",
+   "author": "GAlexandrova",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "samsung SM-A520F"
+  },
+  {
+   "title": "File:CASIO XW-J1 DJ Controller (2015) powered by Vestax - 2015 NAMM Show.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/CASIO_XW-J1_DJ_Controller_%282015%29_powered_by_Vestax_-_2015_NAMM_Show.jpg/1280px-CASIO_XW-J1_DJ_Controller_%282015%29_powered_by_Vestax_-_2015_NAMM_Show.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:CASIO_XW-J1_DJ_Controller_(2015)_powered_by_Vestax_-_2015_NAMM_Show.jpg",
+   "author": "Pete Brown from Gambrills, MD, USA",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+   "camera": "SONY DSC-RX100"
+  },
+  {
+   "title": "File:World Dryer Model RA with E nozzle.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/World_Dryer_Model_RA_with_E_nozzle.jpg/1280px-World_Dryer_Model_RA_with_E_nozzle.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:World_Dryer_Model_RA_with_E_nozzle.jpg",
+   "author": "Baron Maddock",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+   "camera": "samsung Galaxy S24"
+  },
+  {
+   "title": "File:Sprite Zero.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Sprite_Zero.jpg/1280px-Sprite_Zero.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Sprite_Zero.jpg",
+   "author": "Squibman",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "Apple iPhone 6"
+  },
+  {
+   "title": "File:ActiveSound wireless earbuds by Hykker (POJM200483).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/90/ActiveSound_wireless_earbuds_by_Hykker_%28POJM200483%29.jpg/1280px-ActiveSound_wireless_earbuds_by_Hykker_%28POJM200483%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:ActiveSound_wireless_earbuds_by_Hykker_(POJM200483).jpg",
+   "author": "Warszawska róg Szerokiej w Tomaszowie Mazowieckim, w województwie łódzkim, PL, E",
+   "license": "Public domain",
+   "licenseUrl": "",
+   "camera": "SAMSUNG SM-G360F"
+  },
+  {
+   "title": "File:Spielzeugfeder (Slinky).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Spielzeugfeder_%28Slinky%29.jpg/1280px-Spielzeugfeder_%28Slinky%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Spielzeugfeder_(Slinky).jpg",
+   "author": "Ramona Trusheim",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "camera": "Canon Canon EOS 350D DIGITAL"
+  },
+  {
+   "title": "File:15-09-26-RalfR-WLC-0098 - Coca-Cola glass bottle (Germany).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/15-09-26-RalfR-WLC-0098_-_Coca-Cola_glass_bottle_%28Germany%29.jpg/1280px-15-09-26-RalfR-WLC-0098_-_Coca-Cola_glass_bottle_%28Germany%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:15-09-26-RalfR-WLC-0098_-_Coca-Cola_glass_bottle_(Germany).jpg",
+   "author": "Ralf Roletschek",
+   "license": "Public domain",
+   "licenseUrl": "",
+   "camera": "NIKON CORPORATION NIKON D300S"
+  },
+  {
+   "title": "File:IPhone 4S unboxing 17-10-11.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/IPhone_4S_unboxing_17-10-11.jpg/1280px-IPhone_4S_unboxing_17-10-11.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:IPhone_4S_unboxing_17-10-11.jpg",
+   "author": "Brett Jordan",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+   "camera": "Panasonic DMC-G1"
+  },
+  {
+   "title": "File:Pomegranate Juice (2019).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Pomegranate_Juice_%282019%29.jpg/1280px-Pomegranate_Juice_%282019%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Pomegranate_Juice_(2019).jpg",
+   "author": "Augustus Binu : flickr",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "camera": "NIKON CORPORATION NIKON D7000"
+  },
+  {
+   "title": "File:Thinning shears from Japanese company Mizutani.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Thinning_shears_from_Japanese_company_Mizutani.jpg/1280px-Thinning_shears_from_Japanese_company_Mizutani.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Thinning_shears_from_Japanese_company_Mizutani.jpg",
+   "author": "Pittigrilli",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "Apple iPhone 6s"
+  },
+  {
+   "title": "File:Hard disk drive platter, Samsung MP0402H.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Hard_disk_drive_platter%2C_Samsung_MP0402H.jpg/1280px-Hard_disk_drive_platter%2C_Samsung_MP0402H.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Hard_disk_drive_platter,_Samsung_MP0402H.jpg",
+   "author": "Mk2010",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+   "camera": "vivo X80"
+  },
+  {
+   "title": "File:OK Foundry Kettlebells (13890140131).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/OK_Foundry_Kettlebells_%2813890140131%29.jpg/1280px-OK_Foundry_Kettlebells_%2813890140131%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:OK_Foundry_Kettlebells_(13890140131).jpg",
+   "author": "OKFoundryCompany from Richmond, USA",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+   "camera": "Canon Canon EOS 20D"
+  },
+  {
+   "title": "File:Silver bracelet and cherries by ASQ.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Silver_bracelet_and_cherries_by_ASQ.jpg/1280px-Silver_bracelet_and_cherries_by_ASQ.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Silver_bracelet_and_cherries_by_ASQ.jpg",
+   "author": "W.carter",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+   "camera": "FUJIFILM FinePix S7000"
+  },
+  {
+   "title": "File:Merged strawberries - 02.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Merged_strawberries_-_02.jpg/1280px-Merged_strawberries_-_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Merged_strawberries_-_02.jpg",
+   "author": "Almanta",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "Ulefone Armor_2"
+  },
+  {
+   "title": "File:HDMI Cable 1.JPG",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e2/HDMI_Cable_1.JPG/1280px-HDMI_Cable_1.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:HDMI_Cable_1.JPG",
+   "author": "Kannan shanmugam,shanmugam studio, Kollam",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "NIKON CORPORATION NIKON D90"
+  },
+  {
+   "title": "File:Sharp, IFA 2018, Berlin (P1070232).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Sharp%2C_IFA_2018%2C_Berlin_%28P1070232%29.jpg/1280px-Sharp%2C_IFA_2018%2C_Berlin_%28P1070232%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Sharp,_IFA_2018,_Berlin_(P1070232).jpg",
+   "author": "Matti Blume",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "Panasonic DMC-GH1"
+  },
+  {
+   "title": "File:Dyson V6 Trigger HH08MH (2015-09-22).JPG",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Dyson_V6_Trigger_HH08MH_%282015-09-22%29.JPG/1280px-Dyson_V6_Trigger_HH08MH_%282015-09-22%29.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Dyson_V6_Trigger_HH08MH_(2015-09-22).JPG",
+   "author": "Lombroso",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "Sony 401SO"
+  },
+  {
+   "title": "File:Garden strawberry (Fragaria × ananassa) single2.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/Garden_strawberry_%28Fragaria_%C3%97_ananassa%29_single2.jpg/1280px-Garden_strawberry_%28Fragaria_%C3%97_ananassa%29_single2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Garden_strawberry_(Fragaria_%C3%97_ananassa)_single2.jpg",
+   "author": "Ivar Leidus",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "NIKON CORPORATION NIKON D850"
+  },
+  {
+   "title": "File:Eggs in carton.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Eggs_in_carton.jpg/1280px-Eggs_in_carton.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Eggs_in_carton.jpg",
+   "author": "Schnee (User:Schneelocke)",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+   "camera": "Samsung Techwin <Digimax S700 / Kenox S700 / Digimax Cyber 730>"
+  },
+  {
+   "title": "File:Wicker basket - Slovakia (3).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Wicker_basket_-_Slovakia_%283%29.jpg/1280px-Wicker_basket_-_Slovakia_%283%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Wicker_basket_-_Slovakia_(3).jpg",
+   "author": "Ladislav Luppa",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "NIKON CORPORATION NIKON D3100"
+  },
+  {
+   "title": "File:Coca-Cola peach 280ml bottle-front PNr°0880.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Coca-Cola_peach_280ml_bottle-front_PNr%C2%B00880.jpg/1280px-Coca-Cola_peach_280ml_bottle-front_PNr%C2%B00880.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Coca-Cola_peach_280ml_bottle-front_PNr%C2%B00880.jpg",
+   "author": "D-Kuru",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "Canon Canon EOS 40D"
+  },
+  {
+   "title": "File:Garden strawberry (Fragaria × ananassa) single.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Garden_strawberry_%28Fragaria_%C3%97_ananassa%29_single.jpg/1280px-Garden_strawberry_%28Fragaria_%C3%97_ananassa%29_single.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Garden_strawberry_(Fragaria_%C3%97_ananassa)_single.jpg",
+   "author": "Ivar Leidus",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "NIKON CORPORATION NIKON D5200"
+  },
+  {
+   "title": "File:Roasted Peanuts with shell.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/Roasted_Peanuts_with_shell.jpg/1280px-Roasted_Peanuts_with_shell.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Roasted_Peanuts_with_shell.jpg",
+   "author": "Sanjay Acharya",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "Canon Canon EOS R8"
+  },
+  {
+   "title": "File:Macbook air.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Macbook_air.jpg/1280px-Macbook_air.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Macbook_air.jpg",
+   "author": "Tomlechat",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "camera": "EASTMAN KODAK COMPANY KODAK EASYSHARE M530 Digital Camera"
+  },
+  {
+   "title": "File:Wicker basket - Slovakia (1).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Wicker_basket_-_Slovakia_%281%29.jpg/1280px-Wicker_basket_-_Slovakia_%281%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Wicker_basket_-_Slovakia_(1).jpg",
+   "author": "Ladislav Luppa",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "NIKON CORPORATION NIKON D3100"
+  },
+  {
+   "title": "File:LG G Watch R (15060671579).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/LG_G_Watch_R_%2815060671579%29.jpg/1280px-LG_G_Watch_R_%2815060671579%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:LG_G_Watch_R_(15060671579).jpg",
+   "author": "Maurizio Pesce from Milan, Italia",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+   "camera": "Canon Canon EOS Kiss X6i"
+  },
+  {
+   "title": "File:Apple TV 4K (3rd Generation, 2022) with Siri Remote.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Apple_TV_4K_%283rd_Generation%2C_2022%29_with_Siri_Remote.jpg/1280px-Apple_TV_4K_%283rd_Generation%2C_2022%29_with_Siri_Remote.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Apple_TV_4K_(3rd_Generation,_2022)_with_Siri_Remote.jpg",
+   "author": "Dillan Payne",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "Canon Canon EOS 80D"
+  },
+  {
+   "title": "File:Bluetooth Speakers (41561673055).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Bluetooth_Speakers_%2841561673055%29.jpg/1280px-Bluetooth_Speakers_%2841561673055%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Bluetooth_Speakers_(41561673055).jpg",
+   "author": "unmatched value",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+   "camera": "samsung SM-N950U"
+  },
+  {
+   "title": "File:Pomegranate fruit - whole and piece with arils.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Pomegranate_fruit_-_whole_and_piece_with_arils.jpg/1280px-Pomegranate_fruit_-_whole_and_piece_with_arils.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Pomegranate_fruit_-_whole_and_piece_with_arils.jpg",
+   "author": "Ivar Leidus",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "NIKON CORPORATION NIKON D5200"
+  },
+  {
+   "title": "File:Mini-pelle verte - trois-quart dessous.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Mini-pelle_verte_-_trois-quart_dessous.jpg/1280px-Mini-pelle_verte_-_trois-quart_dessous.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Mini-pelle_verte_-_trois-quart_dessous.jpg",
+   "author": "Clément Bucco-Lechat",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "camera": "PENTAX              PENTAX K-5 II"
+  },
+  {
+   "title": "File:Honey dipper.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Honey_dipper.jpg/1280px-Honey_dipper.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Honey_dipper.jpg",
+   "author": "Matankic",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "camera": "samsung SM-J730F"
+  },
+  {
+   "title": "File:Susan Ford's wooden clogs.JPG",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Susan_Ford%27s_wooden_clogs.JPG/1280px-Susan_Ford%27s_wooden_clogs.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Susan_Ford%27s_wooden_clogs.JPG",
+   "author": "Unknown authorUnknown author",
+   "license": "Public domain",
+   "licenseUrl": "",
+   "camera": "Canon Canon PowerShot G1 X"
+  },
+  {
+   "title": "File:Hazelnuts (Corylus avellana).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Hazelnuts_%28Corylus_avellana%29.jpg/1280px-Hazelnuts_%28Corylus_avellana%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Hazelnuts_(Corylus_avellana).jpg",
+   "author": "Ivar Leidus",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "NIKON CORPORATION NIKON D5200"
+  },
+  {
+   "title": "File:Cable HDMI 1.4, rizado 0775.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/Cable_HDMI_1.4%2C_rizado_0775.jpg/1280px-Cable_HDMI_1.4%2C_rizado_0775.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Cable_HDMI_1.4,_rizado_0775.jpg",
+   "author": "Electronicgrup",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "camera": "NIKON COOLPIX P80"
+  },
+  {
+   "title": "File:Sony DSLR A300-1.JPG",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Sony_DSLR_A300-1.JPG/1280px-Sony_DSLR_A300-1.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Sony_DSLR_A300-1.JPG",
+   "author": "B C Otto",
+   "license": "Public domain",
+   "licenseUrl": "",
+   "camera": "SONY DSC-W100"
+  },
+  {
+   "title": "File:Silver ring with chalcedony and peaches by ASQ.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Silver_ring_with_chalcedony_and_peaches_by_ASQ.jpg/1280px-Silver_ring_with_chalcedony_and_peaches_by_ASQ.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Silver_ring_with_chalcedony_and_peaches_by_ASQ.jpg",
+   "author": "W.carter",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+   "camera": "FUJIFILM FinePix S7000"
+  },
+  {
+   "title": "File:Eierkarton 10 (fcm).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Eierkarton_10_%28fcm%29.jpg/1280px-Eierkarton_10_%28fcm%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Eierkarton_10_(fcm).jpg",
+   "author": "Photograph: Frank C. Müller, Frankfurt am Main",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "Canon Canon EOS 600D"
+  },
+  {
+   "title": "File:Babyflasche.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/Babyflasche.jpg/1280px-Babyflasche.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Babyflasche.jpg",
+   "author": "Arquus",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "NIKON CORPORATION NIKON D5200"
+  },
+  {
+   "title": "File:Gebarsten bolster van een paardenkastanje (Aesculus) 20-09-2020 (d.j.b.) 01.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Gebarsten_bolster_van_een_paardenkastanje_%28Aesculus%29_20-09-2020_%28d.j.b.%29_01.jpg/1280px-Gebarsten_bolster_van_een_paardenkastanje_%28Aesculus%29_20-09-2020_%28d.j.b.%29_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Gebarsten_bolster_van_een_paardenkastanje_(Aesculus)_20-09-2020_(d.j.b.)_01.jpg",
+   "author": "Dominicus Johannes Bergsma",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "Canon Canon EOS M"
+  },
+  {
+   "title": "File:Computer HDMI cable (2026).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Computer_HDMI_cable_%282026%29.jpg/1280px-Computer_HDMI_cable_%282026%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Computer_HDMI_cable_(2026).jpg",
+   "author": "Gpkp",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "motorola moto g62 5G"
+  },
+  {
+   "title": "File:Canon EOS 100D - 3.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Canon_EOS_100D_-_3.jpg/1280px-Canon_EOS_100D_-_3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Canon_EOS_100D_-_3.jpg",
+   "author": "1Veertje",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "camera": "OnePlus ONEPLUS A3003"
+  },
+  {
+   "title": "File:GandM Flare DXM bat-Purist 156g ball.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/GandM_Flare_DXM_bat-Purist_156g_ball.jpg/1280px-GandM_Flare_DXM_bat-Purist_156g_ball.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:GandM_Flare_DXM_bat-Purist_156g_ball.jpg",
+   "author": "Marie-Lan Nguyen",
+   "license": "CC BY 2.5",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+   "camera": "NIKON CORPORATION NIKON D800E"
+  },
+  {
+   "title": "File:Ryobi Cordless Paint Sprayer (5073760320).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Ryobi_Cordless_Paint_Sprayer_%285073760320%29.jpg/1280px-Ryobi_Cordless_Paint_Sprayer_%285073760320%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Ryobi_Cordless_Paint_Sprayer_(5073760320).jpg",
+   "author": "Charles &amp; Hudson",
+   "license": "CC BY-SA 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+   "camera": "NIKON CORPORATION NIKON D40X"
+  },
+  {
+   "title": "File:IPhone 2G box.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/IPhone_2G_box.jpg/1280px-IPhone_2G_box.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:IPhone_2G_box.jpg",
+   "author": "zacaltman",
+   "license": "CC BY-SA 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+   "camera": "Canon Canon PowerShot SD600"
+  },
+  {
+   "title": "File:Louis Vuitton Driving Shoes (11091754246).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fb/Louis_Vuitton_Driving_Shoes_%2811091754246%29.jpg/1280px-Louis_Vuitton_Driving_Shoes_%2811091754246%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Louis_Vuitton_Driving_Shoes_(11091754246).jpg",
+   "author": "Menswear Market, Robert Sheie from Minneapolis, USA",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+   "camera": "Canon Canon EOS REBEL T3"
+  },
+  {
+   "title": "File:Mojito 006.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/Mojito_006.jpg/1280px-Mojito_006.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Mojito_006.jpg",
+   "author": "Arnaud 25",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "Canon Canon IXUS 185"
+  },
+  {
+   "title": "File:Canon printer.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Canon_printer.jpg/1280px-Canon_printer.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Canon_printer.jpg",
+   "author": "Iyan Adeendren Ayyan",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+   "camera": "Canon Canon EOS 1100D"
+  },
+  {
+   "title": "File:35-Desktop-Hard-Drive.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/35-Desktop-Hard-Drive.jpg/1280px-35-Desktop-Hard-Drive.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:35-Desktop-Hard-Drive.jpg",
+   "author": "Evan-Amos",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "camera": "NIKON CORPORATION NIKON D7100"
+  },
+  {
+   "title": "File:Garden strawberry (Fragaria × ananassa) halved.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Garden_strawberry_%28Fragaria_%C3%97_ananassa%29_halved.jpg/1280px-Garden_strawberry_%28Fragaria_%C3%97_ananassa%29_halved.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Garden_strawberry_(Fragaria_%C3%97_ananassa)_halved.jpg",
+   "author": "Ivar Leidus",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "NIKON CORPORATION NIKON D850"
+  },
+  {
+   "title": "File:Sprite in a bottle! (26822632386).jpg",
+   "thumb": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Sprite_in_a_bottle%21_%2826822632386%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "page": "https://commons.wikimedia.org/wiki/File:Sprite_in_a_bottle!_(26822632386).jpg",
+   "author": "Willis Lam",
+   "license": "CC BY-SA 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+   "camera": "Canon Canon PowerShot SX130 IS"
+  },
+  {
+   "title": "File:Western Digital WD2500BB Hard Disk A.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/Western_Digital_WD2500BB_Hard_Disk_A.jpg/1280px-Western_Digital_WD2500BB_Hard_Disk_A.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Western_Digital_WD2500BB_Hard_Disk_A.jpg",
+   "author": "Christian Jansky",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "camera": "PENTAX Corporation  PENTAX K10D"
+  },
+  {
+   "title": "File:Hair-cutting shears from Japanese company Mizutani - made from hand-forged Damascus steel.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Hair-cutting_shears_from_Japanese_company_Mizutani_-_made_from_hand-forged_Damascus_steel.jpg/1280px-Hair-cutting_shears_from_Japanese_company_Mizutani_-_made_from_hand-forged_Damascus_steel.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Hair-cutting_shears_from_Japanese_company_Mizutani_-_made_from_hand-forged_Damascus_steel.jpg",
+   "author": "Pittigrilli",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "camera": "Apple iPhone 6s"
+  },
+  {
+   "title": "File:Cricket Ball (3144741313).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/Cricket_Ball_%283144741313%29.jpg/1280px-Cricket_Ball_%283144741313%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "page": "https://commons.wikimedia.org/wiki/File:Cricket_Ball_(3144741313).jpg",
+   "author": "Liji Jinaraj from San Francisco, USA",
+   "license": "CC BY-SA 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+   "camera": "NIKON CORPORATION NIKON D90"
+  }
+ ]
+}
