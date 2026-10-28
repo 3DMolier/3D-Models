@@ -136,6 +136,8 @@ run('build-priority-sitemap.mjs');
 run('build-model-sitemaps.mjs');
 run('refresh-sitemaps.mjs');
 run('redirect-empty-pagination.mjs');
+// счётчик Ahrefs Web Analytics во все страницы, после всех генераторов (28.10.2026)
+run('inject-ahrefs.mjs');
 run('refresh-sitemaps.mjs');
 say('списки, счётчики и сайтмапы пересобраны');
 

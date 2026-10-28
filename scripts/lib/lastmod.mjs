@@ -28,6 +28,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { POLICY } from './index-policy.mjs';
+import { AHREFS_RE } from './ahrefs.mjs';
 
 const DAY = s => new Date(s).toISOString().slice(0, 10);
 const HASH_LEN = 12;
@@ -50,6 +51,8 @@ const GA_BLOCK = /\n?<!-- Google tag \(gtag\.js\) --><script async src="https:\/
 export const hashBody = (body, masked = POLICY.page_dates, isModel = false) => {
   let s = masked ? maskDates(body.toString('utf8')) : null;
   if (s !== null && isModel) s = s.replace(GA_BLOCK, '');
+  // Счётчик Ahrefs (28.10.2026) тоже не содержимое, и для всех страниц: см. lib/ahrefs.mjs
+  if (s !== null) s = s.replace(AHREFS_RE, '');
   return crypto.createHash('sha1').update(s !== null ? s : body).digest('hex').slice(0, HASH_LEN);
 };
 const humanDate = iso => new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
