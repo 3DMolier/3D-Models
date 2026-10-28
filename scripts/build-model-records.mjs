@@ -195,12 +195,14 @@ let csvRows = 0;
  * Свёрнутые варианты страницы не имеют, но остаются товарами на TurboSquid, и
  * галерея на странице-семье показывает именно их.
  */
-const memberName = new Map(), memberPrice = new Map(), memberImg = new Map();
+const memberName = new Map(), memberPrice = new Map(), memberImg = new Map(), memberSales = new Map();
 readCsv(fs.readFileSync(path.join(DATA, 'models_master.csv'), 'utf8'), row => {
   csvRows++;
   if (row.product_id) {
     if (row.product_name) memberName.set(row.product_id, row.product_name);
     if (row.price) memberPrice.set(row.product_id, Number(row.price) || 0);
+    // продажи варианта - чтобы при снятой главной выбрать живого лидера семьи
+    memberSales.set(row.product_id, Number(row.sales_qty) || 0);
   }
   const r = byId.get(row.product_id);
   if (!r) return;
@@ -232,6 +234,14 @@ say('строк в Excel: ' + csvRows.toLocaleString('ru-RU'));
 say('читаю product-report.json...');
 {
   const rep = JSON.parse(fs.readFileSync(path.join(DATA, 'product-report.json'), 'utf8'));
+  // Модели новее отчёта: их строки в new-products.json - из более свежего
+  // отчёта, с теми же полями. Без них у новой карточки нет даты, корня и
+  // сертификата (27.10.2026: «Updated» вставал заглушкой сайта).
+  {
+    const inRep = new Set(rep.map(p => String(p.pid)));
+    const np = path.join(DATA, 'new-products.json');
+    if (fs.existsSync(np)) for (const p of JSON.parse(fs.readFileSync(np, 'utf8'))) if (!inRep.has(String(p.pid))) rep.push(p);
+  }
   for (const p of rep) {
     if (p.pid) {
       if (p.name && !memberName.has(p.pid)) memberName.set(p.pid, p.name);
@@ -617,6 +627,40 @@ say('читаю карту свёрнутых...');
      */
     r.display_name = String(r.display_name).replace(/\s+/g, ' ').trim();
   }
+}
+
+// ── снятые с продажи на TurboSquid ──────────────────────────────────────────
+/*
+ * data/delisted.json - решения основателя по товарам, которых больше нет на
+ * TurboSquid (FullPreview перенаправляет на поиск). 23.10.2026 таких 18: Bearbrick,
+ * водолазные костюмы, Skype Icon и др.
+ *
+ *  - снятый ВАРИАНТ из списка версий убираем: ссылка вела бы в никуда;
+ *  - снята ГЛАВНАЯ, а живые варианты есть - адрес карточки остаётся (на него
+ *    ведут ссылки), цена и кнопка покупки берутся у живого лидера продаж семьи,
+ *    сам лидер из списка версий уходит, он теперь «своя» модель карточки;
+ *  - живых нет совсем - карточку заменяет перенаправление (build-redirect-stubs.mjs,
+ *    цель в delisted.json), здесь запись просто не строим.
+ */
+{
+  const f = path.join(DATA, 'delisted.json');
+  const DELISTED = fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : {};
+  let hidden = 0, swapped = 0, dropped = 0;
+  for (const r of [...byId.values()]) {
+    if (!r.family) continue;
+    const before = r.family.length;
+    r.family = r.family.filter(v => !DELISTED[v.id]);
+    hidden += before - r.family.length;
+    if (!DELISTED[r.id]) continue;
+    if (!r.family.length) { byId.delete(r.id); dropped++; continue; }
+    const lead = r.family.reduce((a, v) => ((memberSales.get(v.id) || 0) > (memberSales.get(a.id) || 0) ? v : a));
+    r.delisted_main = r.id;
+    r.price = lead.price || r.price;
+    r.ts_url = lead.ts_url;
+    r.family = r.family.filter(v => v !== lead);
+    swapped++;
+  }
+  if (hidden || swapped || dropped) say('снятые с продажи: вариантов скрыто ' + hidden + ', главная заменена живой у ' + swapped + ', карточек без живых товаров ' + dropped);
 }
 
 // ── галерея собственных снимков модели ──

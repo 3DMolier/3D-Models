@@ -72,6 +72,10 @@ export const BRANDS = [
   'PlayStation', 'Xbox', 'Nintendo', 'Switch Console', 'Oculus', 'Meta Quest',
   'GoPro', 'DJI', 'Canon', 'Nikon', 'Sony', 'Fujifilm', 'Leica', 'Panasonic',
   'Hasselblad', 'Polaroid', 'Sennheiser', 'Bose', 'JBL', 'Beats by Dre', 'Marshall Amp',
+  // Музыкальные марки (27.10.2026: шесть новых Gibson шли бы как Royalty Free).
+  // «Fender» один не годится: так называют и кранец у лодки.
+  'Gibson', 'Les Paul', 'Epiphone', 'Ibanez', 'Gretsch', 'Rickenbacker', 'Steinway',
+  'Stratocaster', 'Telecaster', 'Fender Guitar', 'Fender Stratocaster', 'Korg', 'Roland',
   'LG Electronics', 'Philips', 'Siemens', 'Bosch', 'Whirlpool', 'Electrolux',
   'Dyson', 'Roomba', 'iRobot', 'Nespresso', 'Keurig', 'DeLonghi', 'SodaStream',
   'Intel', 'AMD Ryzen', 'Nvidia', 'GeForce', 'Radeon', 'Raspberry Pi', 'Arduino',

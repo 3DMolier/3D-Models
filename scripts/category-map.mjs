@@ -21,6 +21,14 @@ import { ROOT } from './lib/paths.mjs';
 const REPORT = JSON.parse(fs.readFileSync(ROOT + '/data/product-report.json', 'utf8'));
 const byPid = new Map();
 for (const r of REPORT) byPid.set(String(r.pid), r);
+// Модели новее отчёта: строки new-products.json несут те же cat1/cat2 из более
+// свежего отчёта. Без них 568 новых моделей 27.10.2026 уходили в «Other».
+{
+  const NEW = ROOT + '/data/new-products.json';
+  if (fs.existsSync(NEW)) for (const r of JSON.parse(fs.readFileSync(NEW, 'utf8'))) {
+    if (!byPid.has(String(r.pid)) && r.cat1 && r.cat1 !== '#Н/Д') byPid.set(String(r.pid), r);
+  }
+}
 
 // cat1 -> slug по умолчанию (используется, если cat2 не даёт более точного правила)
 const CAT1_DEFAULT = {

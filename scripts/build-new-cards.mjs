@@ -115,7 +115,7 @@ const USES = {
 // ── обвязка из образца ───────────────────────────────────────────────────────
 const tpl = fs.readFileSync(TEMPLATE, 'utf8');
 const HEADER = (tpl.match(/<header id="site-header">[\s\S]*?<\/header>/) || [''])[0];
-const FOOTER = (tpl.match(/<footer class="mp-footer">[\s\S]*?<\/footer>/) || [''])[0];
+const FOOTER = (tpl.match(/<footer class="(?:mp|site)-footer">[\s\S]*?<\/footer>/) || [''])[0];
 const TAIL = tpl.slice(tpl.indexOf('</footer>') + 9);          // скрипты и </body></html>
 const HEAD_CSS = (tpl.match(/<link rel="stylesheet"[\s\S]*?(?=<script|<\/head>)/) || [''])[0];
 const GTAG = (tpl.match(/<!-- Google tag[\s\S]*?<\/script>\s*<script>[\s\S]*?<\/script>/) || [''])[0];
