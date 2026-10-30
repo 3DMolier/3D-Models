@@ -77,7 +77,7 @@
   function onKey(e) { if (e.key === 'Escape') close(); }
 
   /* o: { label, title, stars (0-3), big, sub, best: {text, record}, chips: [], confetti,
-          primary: {text, onClick}, secondary: {text, href, onClick}, link: {text, onClick} } */
+          primary: {text, onClick}, secondary: {text, href, newTab, onClick}, link: {text, onClick} } */
   function show(o) {
     style(); close();
     lastFocus = document.activeElement;
@@ -91,7 +91,7 @@
       }).join('') + '</div>';
     }
     var sec = o.secondary ? (o.secondary.href
-      ? '<a class="btn-ghost" href="' + esc(o.secondary.href) + '" data-gf="sec">' + esc(o.secondary.text) + '</a>'
+      ? '<a class="btn-ghost" href="' + esc(o.secondary.href) + '" data-gf="sec"' + (o.secondary.newTab ? ' target="_blank" rel="noopener"' : '') + '>' + esc(o.secondary.text) + (o.secondary.newTab ? ' &#8599;' : '') + '</a>'
       : '<button type="button" class="btn-ghost" data-gf="sec">' + esc(o.secondary.text) + '</button>') : '';
     back.innerHTML = '<div class="gf-card">' +
       '<button type="button" class="gf-x" data-gf="x" aria-label="Close">&times;</button>' +
