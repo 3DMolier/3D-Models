@@ -48,11 +48,30 @@ export const maskDates = s => s.replace(DATE_MOD, '$1$2').replace(DATE_UPD, '$1$
  * /models/: у остальных страниц он стоит давно, их хеши считаны вместе с ним.
  */
 const GA_BLOCK = /\n?<!-- Google tag \(gtag\.js\) --><script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=[^"]+"><\/script><script>[\s\S]*?<\/script>/;
+/*
+ * Оболочка страницы - не содержимое (29.10.2026). Шапка, подвал и номер версии стилей
+ * одинаковы на всех страницах; войди они в хеш - любая правка меню или сброс кеша
+ * стилей ставит сегодняшнюю дату на все 38 тысяч карточек. Так и случилось 29.10:
+ * версия стилей v51 -> v52 сдвинула даты у 38 669 страниц, настоящих правок было 7 тысяч.
+ * Миграция хешей на это правило - scripts/rehash-lastmod-chrome.mjs (разовая).
+ */
+const CHROME_HEADER = /<header id="site-header">[\s\S]*?<\/header>/;
+const CHROME_FOOTER = /<footer[\s>][\s\S]*?<\/footer>/;
+const ASSET_VER = /(\.(?:css|js))\?v=\d+/g;
+// Медиана по категории («Against a median of 7,661 polygons across our Other models», «median
+// across the same category is $49») пересчитывается каждый день и плавает на единицы - это
+// справка о разделе, а не правка модели. 29.10.2026 одна она сдвигала даты у ~13 тысяч карточек.
+const CAT_MEDIAN = /(median (?:of |across the same category is )\$?)[\d,]+/g;
+// «next to the 7,661 median of our range», «the 28,670 polygon median of our Electronics»
+const CAT_MEDIAN_BEFORE = /\$?[\d,]+((?: [a-z]+)? median (?:of|across) )/g;
+export const stripChrome = s => s.replace(CHROME_HEADER, '').replace(CHROME_FOOTER, '').replace(ASSET_VER, '$1')
+  .replace(CAT_MEDIAN, '$1').replace(CAT_MEDIAN_BEFORE, '$1');
 export const hashBody = (body, masked = POLICY.page_dates, isModel = false) => {
   let s = masked ? maskDates(body.toString('utf8')) : null;
   if (s !== null && isModel) s = s.replace(GA_BLOCK, '');
   // Счётчик Ahrefs (28.10.2026) тоже не содержимое, и для всех страниц: см. lib/ahrefs.mjs
   if (s !== null) s = s.replace(AHREFS_RE, '');
+  if (s !== null) s = stripChrome(s);
   return crypto.createHash('sha1').update(s !== null ? s : body).digest('hex').slice(0, HASH_LEN);
 };
 const humanDate = iso => new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });

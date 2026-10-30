@@ -136,6 +136,20 @@ run('build-priority-sitemap.mjs');
 run('build-model-sitemaps.mjs');
 run('refresh-sitemaps.mjs');
 run('redirect-empty-pagination.mjs');
+/*
+ * Страница «ссылка в профиле» Instagram (/instagram/, 28.10.2026): новые посты
+ * попадают на неё сами. Сборка живёт в tools/meta и ходит в Meta API - если API
+ * недоступен, остаётся вчерашняя страница, а сайт публикуется как обычно.
+ */
+try {
+  execFileSync(node, ['D:/Clode_Work_Folder/tools/meta/ig-page-daily.js'],
+    { cwd: 'D:/Clode_Work_Folder/tools/meta', encoding: 'utf8', maxBuffer: 1 << 26, timeout: 15 * 60 * 1000 });
+  say('страница Instagram пересобрана');
+} catch (e) {
+  // причина - из вывода самого скрипта, а не «Command failed» (29.10.2026 по нему ничего не понять)
+  const why = String((e.stderr || '') + (e.stdout || '') || e.message).trim().split('\n').slice(-3).join(' | ');
+  say('страница Instagram не пересобрана (оставлена вчерашняя): ' + why);
+}
 // счётчик Ahrefs Web Analytics во все страницы, после всех генераторов (28.10.2026)
 run('inject-ahrefs.mjs');
 run('refresh-sitemaps.mjs');
@@ -183,7 +197,7 @@ if (DRY) finish(0, 'ПРОБНЫЙ ПРОГОН: собрано и провер�
  */
 const AREAS = ['data', 'sitemaps', 'sitemap.xml', 'sitemap-index.xml', 'index.html',
   'catalog/index.html', 'browse', 'categories', 'collections', 'about/index.html',
-  'custom-order/index.html', 'data-licensing/index.html', 'full-catalog/index.html'];
+  'custom-order/index.html', 'data-licensing/index.html', 'full-catalog/index.html', 'instagram', 'ig', 'tt'];
 for (const a of AREAS) {
   if (!fs.existsSync(path.join(ROOT, a))) continue;
   try { git('add', a); } catch (e) { /* в этой области менять нечего */ }
@@ -198,7 +212,7 @@ const date = new Date().toISOString().slice(0, 10);
 const msg = 'content: ежедневное обновление карточек ' + date + '\n\n'
   + 'Ролики канала, дописанные описания и всё, что изменилось в данных.\n'
   + 'Файлов: ' + staged + ', из них карточек: ' + models + '.\n\n'
-  + 'Проверки: validate-data 17 из 17, audit-site 0 ошибок,\n'
+  + 'Проверки: validate-data 18 из 18, audit-site 0 ошибок,\n'
   + 'check-internal-links 0 адресов в никуда.\n\n'
   + 'Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>\n';
 git('commit', '-q', '-m', msg);

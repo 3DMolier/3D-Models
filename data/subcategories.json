@@ -3,7 +3,7 @@
   "cat": "aircraft",
   "sub": "helicopters",
   "title": "Helicopter",
-  "n": 99,
+  "n": 98,
   "pages": 1
  },
  {
@@ -31,28 +31,28 @@
   "cat": "vehicles",
   "sub": "trucks",
   "title": "Truck",
-  "n": 288,
+  "n": 273,
   "pages": 3
  },
  {
   "cat": "vehicles",
   "sub": "trailers",
   "title": "Trailer",
-  "n": 152,
+  "n": 147,
   "pages": 2
  },
  {
   "cat": "vehicles",
   "sub": "suvs",
   "title": "SUV",
-  "n": 91,
+  "n": 89,
   "pages": 1
  },
  {
   "cat": "vehicles",
   "sub": "buses",
   "title": "Bus",
-  "n": 82,
+  "n": 75,
   "pages": 1
  },
  {
@@ -122,21 +122,21 @@
   "cat": "electronics-gadgets",
   "sub": "smartphones",
   "title": "Smartphone",
-  "n": 139,
+  "n": 135,
   "pages": 2
  },
  {
   "cat": "electronics-gadgets",
   "sub": "cameras",
   "title": "Camera",
-  "n": 146,
+  "n": 142,
   "pages": 2
  },
  {
   "cat": "electronics-gadgets",
   "sub": "laptops-computers",
   "title": "Laptop & Computer",
-  "n": 144,
+  "n": 142,
   "pages": 2
  },
  {
@@ -164,7 +164,7 @@
   "cat": "weapons",
   "sub": "missiles-rockets",
   "title": "Missile & Rocket",
-  "n": 141,
+  "n": 138,
   "pages": 2
  },
  {
@@ -185,14 +185,14 @@
   "cat": "furniture-interior",
   "sub": "tables",
   "title": "Table",
-  "n": 162,
+  "n": 161,
   "pages": 2
  },
  {
   "cat": "furniture-interior",
   "sub": "beds",
   "title": "Bed",
-  "n": 50,
+  "n": 46,
   "pages": 1
  },
  {
@@ -213,14 +213,14 @@
   "cat": "nature-plants",
   "sub": "flowers",
   "title": "Flower",
-  "n": 113,
+  "n": 112,
   "pages": 2
  },
  {
   "cat": "nature-plants",
   "sub": "rocks-terrain",
   "title": "Rock & Terrain",
-  "n": 43,
+  "n": 41,
   "pages": 1
  },
  {
@@ -255,7 +255,7 @@
   "cat": "ships",
   "sub": "boats-yachts",
   "title": "Boat & Yacht",
-  "n": 90,
+  "n": 91,
   "pages": 1
  },
  {
@@ -318,21 +318,21 @@
   "cat": "food-beverages",
   "sub": "fruit-vegetables",
   "title": "Fruit & Vegetable",
-  "n": 172,
+  "n": 171,
   "pages": 2
  },
  {
   "cat": "food-beverages",
   "sub": "desserts-sweets",
   "title": "Dessert & Sweets",
-  "n": 178,
+  "n": 172,
   "pages": 2
  },
  {
   "cat": "food-beverages",
   "sub": "drinks",
   "title": "Drink",
-  "n": 119,
+  "n": 116,
   "pages": 2
  },
  {
@@ -360,14 +360,14 @@
   "cat": "other",
   "sub": "coins-currency",
   "title": "Coin & Currency",
-  "n": 90,
+  "n": 89,
   "pages": 1
  },
  {
   "cat": "other",
   "sub": "stationery-office",
   "title": "Stationery & Office",
-  "n": 79,
+  "n": 78,
   "pages": 1
  }
 ]

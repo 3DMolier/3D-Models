@@ -1,151 +1,443 @@
 [
-{"slug":"cb-radio-1605291","paragraphs":[
-"This CB Radio gives a truck cab or a dispatch desk the boxy transceiver that long-haul drivers keep bolted under the dashboard. The mesh runs to 51,222 polygons and 52,306 vertices, most of them spent on the knobs, the channel display and the vented casing. A coiled cord leads to a handheld microphone, the detail that makes the unit read instantly in a close shot.",
-"Its unwrap is non-overlapping, so a painter can bake wear onto the faceplate without fighting stacked islands. The build carries CheckMate Lite certification, which confirms clean geometry and a sensible file structure on import. Rubbed paint around the volume dial is easy to add, since each control sits on its own clear patch of the map.",
-"Buyers pick between two versions at $69 each, a plain unbranded unit and a Cobra variant with its familiar front panel. On sale from 2020, the radio fits trucking films, roadside diner scenes and retro electronics renders. Game artists drop it into cab interiors where a glowing channel number adds life to an otherwise static dashboard."],
-"keywords":["cb radio 3d model","citizens band transceiver","truck cab radio","cobra cb radio","two-way radio with microphone","trucker radio prop","vintage car radio","dashboard transceiver"]},
-
-{"slug":"compact-assault-rifle-2170542","paragraphs":[
-"Compact Assault Rifle suits close-quarters scenes where a short barrel, a folding stock and a curved magazine must read clearly in a hand. Most of the 83,910 polygons go into the receiver, the cocking handle and the ribbed handguard, so the silhouette holds at close range. The 44,603 vertices point to a triangulated, game-friendly cage rather than a dense subdivision mesh.",
-"Unwrapping stays non-overlapping across the whole weapon, which leaves room to bake scratches where a gloved hand would wear the finish. CheckMate Pro certification on this gun means its topology, naming and scale passed the strictest inspection TurboSquid runs. Sights and sling mounts are separated cleanly enough to accept their own material without any extra cutting.",
-"The page offers two versions, the main rifle at $69 and an MP5 Semi Automatic at $39 for tighter budgets. Released in 2023, the weapon goes into tactical shooters, police procedural footage and training material on firearm handling. A SWAT officer carrying it through a narrow corridor is exactly the kind of shot it was built to serve."],
-"keywords":["compact assault rifle 3d model","mp5 semi automatic","submachine gun model","swat weapon prop","tactical rifle game asset","police firearm model","short barrel carbine","military gun 3d"]},
-
-{"slug":"covered-cadaver-carrier-2015786","paragraphs":[
-"Covered Cadaver puts a draped body on a steel morgue tray, the quiet centerpiece of an autopsy room or a crime drama. The 133,460 polygons go mostly into the sheet, whose folds settle over the head, shoulders and feet in a believable way. With 67,222 vertices the mesh is triangulated, which keeps the cloth shape locked and stable in any renderer.",
-"Its UV islands never overlap, so a stain or a toe tag can be painted onto the fabric without repeating. The asset holds CheckMate Pro certification, the top TurboSquid grade for clean topology and consistent scale. Polished metal on the tray contrasts with the matte sheet, and the two surfaces take separate shaders without fuss.",
-"A pair of versions costs $69 apiece, the plain tray and a CSI Jevett gurney variant on a mobile cart. Out since 2023, the scene piece works for forensic series, medical training on postmortem procedure and horror game levels. Placed under a cold overhead lamp, the shrouded form tells the story of the room before any character speaks."],
-"keywords":["covered cadaver 3d model","morgue tray with body","autopsy room prop","body under sheet","forensic morgue gurney","csi jevett gurney","crime scene body model","mortuary equipment"]},
-
-{"slug":"dance-studio-interior-classic-2434032","paragraphs":[
-"Dance Studio Interior gives you a complete rehearsal room with a wooden floor, a mirrored wall and a barre for ballet scenes. The hall is modeled at real-world scale, so dancers and cameras fit inside without a rescaling pass before the shoot. The 401,181 polygons and 403,552 vertices cover window frames, ceiling fixtures and the long handrail running along the mirrors.",
-"Every surface is unwrapped without overlap, letting you bake daylight from the tall windows straight onto the floorboards. The room is built to CheckMate specification, which keeps its topology clean and its objects grouped in a sensible order. Reflections in the mirror wall double the space visually, a handy trick for a wide establishing frame.",
-"There are two versions at $69 each, this classic room and a Professional Ballet Studio with Mirrors. Introduced in 2025, the interior suits architectural walkthroughs, music videos and character animation of a dance lesson. A single figure stretching at the barre is enough to turn the empty hall into a finished picture."],
-"keywords":["dance studio interior 3d model","ballet studio with mirrors","rehearsal room scene","ballet barre interior","wooden floor dance hall","dance class environment","mirrored studio room","ballet practice space"]},
-
-{"slug":"disposable-protective-clothing-2470579","paragraphs":[
-"Disposable Protective Clothing gives a lab, a factory floor or a quarantine scene the white hooded coverall a worker steps into. At 126.78 x 39.9 x H188.44 cm, the suit matches an adult figure and keeps its sleeves held away from the body. The 37,830 polygons trace the zipper, the elastic cuffs and the loose creases that thin fabric forms at the knees.",
-"UV mapping is mixed, so some parts share texture space while others get islands of their own. The garment conforms to CheckMate specification, meaning tidy topology and a scale that holds on import. Its 39,519 vertices give enough density for a cloth simulation pass if the coverall needs to move.",
-"You get two versions priced at $69, this coverall and a Full-Body Disposable Suit with Hood and Gloves. A 2025 release, it suits pandemic footage, cleanroom visualization and safety training for chemical or industrial sites. Hung on a hook beside a decontamination door, the empty outfit also works as quiet set dressing."],
-"keywords":["disposable protective suit 3d model","hazmat coverall","cleanroom suit","full body protective clothing","quarantine suit with hood","tyvek style coverall","industrial workwear model","biohazard suit prop"]},
-
-{"slug":"food-containers-collection-1069258","paragraphs":[
-"Food Containers Collection fills a kitchen shelf, a deli counter or a packaging render with an assortment of tubs, trays and lidded boxes. Grouping the pieces in one purchase saves hunting for matching packaging across separate files and keeps the style consistent. Each container has a clean, simple shape, so it reads at once on a pantry shelf or inside an open fridge.",
-"The set carries CheckMate Pro certification, the strictest TurboSquid check for topology, naming and scale. Simple forms like these suit label work, since a flat side takes a printed sticker without stretching the artwork. Translucent plastic is the usual look here, and a glossy shader with a light tint sells it quickly.",
-"Two versions are on offer, this first set at $69 and a second Food Containers 3D Models Collection 2 at $39. Available since 2016, the bundle belongs to the older core of the catalog and still turns up in product shots. Meal delivery apps, grocery store scenes and food storage tutorials are typical homes for these little boxes."],
-"keywords":["food containers 3d models","plastic food tubs","takeout container set","kitchen storage boxes","deli packaging models","lidded food boxes","meal prep containers","grocery packaging set"]},
-
-{"slug":"gaming-vr-headset-on-blonde-woman-2491715","paragraphs":[
-"Gaming VR Headset shows a woman wearing a coral virtual reality visor, ready for immersive tech scenes and simulator promos without extra posing. The figure and device total 47,923 polygons and 58,303 vertices, with the strap, face cushion and sensor panel modeled as real parts. At 26.95 x 29.22 x H36.5 cm, the head and headset sit at true scale for close portraits.",
-"Its UVs overlap, so some mirrored pieces share texture space, which keeps the maps compact but limits unique painting. The model follows CheckMate specification, giving clean topology and sensible object names when it opens in a new scene. Blonde hair frames the visor, and the contrast between soft strands and hard plastic reads well under studio light.",
-"Shoppers choose between two versions, this one and a Gaming VR Headset with Dual Strap on Head, both priced at $69. Launched in 2025, it serves game trailers, medical simulation interfaces and articles on virtual reality hardware. A soft rim light along the visor edge is all it takes to make the device glow in a dark frame."],
-"keywords":["vr headset on woman 3d model","virtual reality headset","woman wearing vr visor","gaming headset model","vr simulator character","immersive tech render","female head with headset","dual strap vr headset"]},
-
-{"slug":"hand-wearing-whoop-4-tracker-white-2116181","paragraphs":[
-"Hand Wearing Whoop 4 Tracker White places a slim fitness band on a relaxed wrist, ideal for wearable tech close-ups and health app scenes. The mesh holds 30,572 polygons over 15,630 vertices, a triangulated build that keeps the knuckles, nails and strap clasp crisp. Because the band has no screen, the knit strap and the sensor pod carry the whole look of the device.",
-"UV layout is non-overlapping, so skin pores and the fabric weave of the strap can each get unique detail. The asset passed CheckMate Pro inspection, which confirms quad discipline, correct scale and tidy naming. Pale strap material sits against warm skin tones, and that contrast helps the tracker stand out in a crop.",
-"The page bundles two versions at $69, this white edition and an Activity Tracker Whoop 4 Blue on Hand Blue. Published in 2023, the hand suits sports science explainers, product renders for fitness startups and training app onboarding screens. Framed against a gym bench or a running track, the wrist becomes a convincing still for a health story."],
-"keywords":["whoop 4 tracker 3d model","hand wearing fitness band","activity tracker on wrist","wearable tech hand model","white sports band","fitness tracker render","health wearable prop","whoop strap model"]},
-
-{"slug":"hoversurf-s3-compact-aircraft-2046433","paragraphs":[
-"Hoversurf S3 Compact Aircraft models a single-seat electric hoverbike, the kind of personal flying machine that shows up in near-future city scenes. Its 203,468 polygons and 105,141 vertices go into ducted rotors, a sculpted seat and the handlebar controls between them. Exposed propellers inside each duct give the craft its distinctive look and invite a spinning animation pass.",
-"The unwrap is non-overlapping, so carbon fiber patterns and warning decals can be laid out without collisions. StemCell certification means the file opens consistently across major renderers with matching materials and scale. Bright body panels contrast with dark rotor housings, and that split makes the silhouette easy to read from below.",
-"Two versions sit on the page at $69 each, this branded craft and a generic Compact Aircraft without the maker name. On the market since 2023, the drone bike fits mobility concept films, sci-fi games and pieces on urban air transport. Hovering above a rooftop at dusk, the machine sells the idea of tomorrow's commute in a single image."],
-"keywords":["hoversurf s3 3d model","hoverbike model","personal flying vehicle","electric hover drone","compact aircraft 3d","sci-fi flying bike","urban air mobility model","single seat drone craft"]},
-
-{"slug":"man-hand-middle-finger-sign-2195762","paragraphs":[
-"Man Hand Middle Finger Sign captures the rude gesture in a clean, posed male hand, handy for comedy scenes, memes and character close-ups. With only 6,512 polygons and 3,268 vertices, the hand stays light enough to attach to a figure or repeat across a crowd. Folded fingers press into the palm while the raised digit stands straight, so the gesture reads at any distance.",
-"Its UVs are laid out without overlap, giving room to paint wrinkles over the knuckles and a realistic nail bed. The mesh holds CheckMate Pro certification, so topology and scale already meet the top TurboSquid standard. Skin tone is easy to shift with a single shader, which helps match the hand to any character it joins.",
-"The page lists two versions, this gesture at $69 and a Man Hand OK Pose at $39 for a friendlier sign. Made available in 2024, the hand serves animated shorts, social media clips and game cutscenes where an insult needs no words. Shot against a plain backdrop, the pose works as a bold graphic element for a poster or a sticker."],
-"keywords":["middle finger hand 3d model","rude hand gesture","male hand pose","hand sign model","ok hand pose","low poly human hand","gesture hand prop","flipping off hand"]},
-
-{"slug":"meade-lx200-16-inch-telescope-with-tripod-1822506","paragraphs":[
-"16 Inch Telescope with Tripod recreates a large observatory-grade instrument on a fork mount, perfect for backyard astronomy and planetarium scenes. The 75,954 polygons cover the wide tube, the fork arms, the drive base and the heavy tripod legs. A finder scope and an eyepiece holder sit on the tube, small details that sell the instrument up close.",
-"UV islands do not overlap, so scratches on the black tube and labels on the base can be painted with unique detail. CheckMate Pro certification confirms clean topology over the 78,172 vertices and a scale that behaves on import. The broad aperture faces the sky in a way a camera can frame from low angles for drama.",
-"Two versions appear at $69 each, this model and a Telescope 16 Inch with Tripod that mirrors it under another title. Released in 2021, the scope fits science education, hobby store renders and night-sky films about amateur stargazers. Placed on a dark lawn under a star field, the instrument immediately sets the mood of a quiet observing night."],
-"keywords":["16 inch telescope 3d model","telescope with tripod","fork mount telescope","schmidt cassegrain telescope","amateur astronomy prop","observatory telescope model","large reflector telescope","stargazing equipment"]},
-
-{"slug":"meade-lx200-8-inch-telescope-with-field-tripod-1826010","paragraphs":[
-"8 Inch Telescope with Tripod offers a compact fork-mounted scope for hobby astronomers, sized for a balcony, a campsite or a classroom. Its 68,969 polygons and 71,162 vertices define the short tube, the hand controller cable and the folding field tripod. The fork cradles the tube from both sides, a recognizable shape that tells viewers this is a serious amateur tool.",
-"The unwrap stays free of overlap, which lets you add dust on the dew shield and worn labels near the focus knob. This build passed CheckMate Pro inspection, so its topology and naming meet the top TurboSquid bar. Matte black parts sit against a lighter tube finish, giving lighting artists clear separation for rim highlights.",
-"There are two versions at $69, this one and a Telescope 8 Inch with Tripod sharing the same geometry under a different name. Introduced in 2021, the scope suits educational animations, outdoor gear catalogs and short films about a first night under the stars. Pair it with a red flashlight and a folding chair for a believable field observing setup."],
-"keywords":["8 inch telescope 3d model","field tripod telescope","portable telescope model","fork mounted scope","backyard astronomy telescope","amateur telescope prop","compact reflector model","star gazing tripod"]},
-
-{"slug":"military-transport-aircraft-scale-model-with-stand-1771805","paragraphs":[
-"Military Transport Aircraft Scale Model with Stand shows a heavy airlifter as a desktop collectible, mounted on a display pedestal. The 15,847 polygons and 16,467 vertices keep the high wing, the T-tail and the engine pods light and readable. Because it is a model kit rather than a full aircraft, it belongs on an office desk or a museum shelf.",
-"UVs are non-overlapping, so tail markings and a grey camouflage can be painted at full resolution across the airframe. CheckMate Pro certification guarantees the topology, scale and file layout pass the strictest TurboSquid checks. A slim metal rod lifts the plane off its base, letting light pass underneath for an elegant studio shot.",
-"Buyers can choose either of two versions, the generic airlifter or a Globemaster III Scale Model with Stand, each costing $69. On sale since 2021, the piece suits office interiors, military museum scenes and aviation gift renders. Set beside a framed photo and a coffee mug, the replica gives a commander's desk an instant sense of rank."],
-"keywords":["military transport aircraft scale model","airlifter desk model","globemaster iii scale model","aircraft model with stand","desktop airplane collectible","cargo plane replica","military office decor","aviation display model"]},
-
-{"slug":"milk-bottles-collection-2516207","paragraphs":[
-"Milk Bottles Collection brings a row of glass and plastic dairy bottles to a breakfast table, a farm shop or a fridge shelf scene. Having the shapes in one bundle keeps caps, labels and proportions consistent across a whole kitchen layout. Wide shoulders and narrow necks on the bottles make the silhouettes familiar even in a quick background pass.",
-"The pack meets CheckMate specification, so every piece arrives with clean topology and the same sense of scale. White liquid behind clear glass needs only a simple layered shader, and the thick bottle walls help refraction look right. Flat label bands around the middle accept branding art without distortion, which suits packaging comps.",
-"Two versions are offered, this first set at $69 and a Milk Bottles Collection 2 at $49 with other shapes. New in 2026, the bundle fits grocery visualization, dairy farm animations and food styling mockups. Lined up on a windowsill with morning light behind them, the bottles create a calm still life almost by themselves."],
-"keywords":["milk bottles 3d models","glass milk bottle set","dairy packaging models","plastic milk jug","breakfast table props","grocery dairy bottles","farm shop bottles","milk bottle collection"]},
-
-{"slug":"mining-locomotive-on-railway-section-rusted-1511205","paragraphs":[
-"Mining Locomotive on Railway Section shows a rusted underground loco on a short stretch of narrow-gauge track, built for tunnel and quarry scenes. The 82,931 polygons and 82,821 vertices cover the cab, the battery box, the couplers and the wheel sets resting on the rails. Peeling paint and corroded panels make it read as a machine that hauled ore for decades.",
-"There are 11 texture maps at 4096 x 4096, enough resolution for close shots of rust streaks and flaking enamel. UVs never overlap, so each patch of grime is unique rather than tiled from one area. StemCell certification means the materials behave consistently across the main renderers without manual rewiring.",
-"The page holds two versions with the same title at $69 each, giving a choice of file setup for different pipelines. Around since 2020, the loco fits abandoned mine environments, industrial history documentaries and survival game levels. A single headlamp beam cutting through tunnel dust is all the scene needs to feel cold and deep underground."],
-"keywords":["mining locomotive 3d model","rusted mine train","underground loco","narrow gauge locomotive","railway section model","abandoned mine prop","ore hauling engine","mine tunnel vehicle"]},
-
-{"slug":"modular-gantry-crane-with-electric-hoist-2483010","paragraphs":[
-"Gantry with Hoist provides a portable steel frame with a chain hoist, the workhorse of garages, workshops and small factory bays. It stands at 335.35 x 203.38 x H280.9 cm, close to the size of a real shop crane on caster wheels. The 154,600 polygons describe the I-beam, the A-frame legs, the trolley and the hanging hook block.",
-"UV mapping is mixed, combining shared and unique islands, so repeated bolts reuse texture space efficiently. StemCell certification ensures the materials translate cleanly between renderers, which saves setup time in mixed pipelines. With 152,667 vertices the frame keeps sharp bevels on its welded joints, and those edges catch light nicely.",
-"Two versions come at $69 each, this one and an Adjustable Steel Gantry with Powered Chain Hoist Blue. A 2025 addition, the crane serves workshop interiors, engine lifting animations and safety training on overhead loads. Hang an engine block from the hook and the frame instantly explains what it is for."],
-"keywords":["gantry crane 3d model","portable gantry with hoist","electric chain hoist","workshop lifting frame","steel a-frame gantry","garage crane model","overhead lifting equipment","mobile gantry crane"]},
-
-{"slug":"oil-refinery-control-station-building-2300074","paragraphs":[
-"Oil Refinery Control Station Building gives a petrochemical plant its operations hub, a blocky structure with pipes, ladders and service doors. The 102,802 polygons and 110,291 vertices go into the walls, rooftop units, handrails and the cabling that links the building to the site. Industrial cladding and external stairs make it fit naturally beside tanks and distillation columns.",
-"Its UVs overlap, which means some repeated panels share texture space and keep the maps economical. StemCell certification supports consistent material behavior across major renderers, which matters when the station joins a large plant scene. Strong vertical lines on the facade give the camera a clear rhythm from a drone fly-over angle.",
-"For $69 apiece there are two versions, this structure or an Operations Station Red with a bolder color scheme. Released in 2024, the building suits energy sector visualization, industrial game maps and safety briefing animations. Surrounded by pipe racks and floodlights at night, the station becomes the obvious focal point of a refinery shot."],
-"keywords":["oil refinery control building","refinery control station 3d","petrochemical plant building","industrial operations station","oil and gas facility model","plant control room exterior","refinery structure prop","energy industry building"]},
-
-{"slug":"padded-cell-interior-2410859","paragraphs":[
-"Padded Cell Interior builds a soft-walled isolation room, the classic setting for psychiatric dramas, thrillers and horror sequences. The room spans 657.6 x 666.16 x H504.25 cm, giving a camera crew space to circle a character inside. Quilted panels cover every wall, and their repeated tufts create the oppressive pattern the setting is known for.",
-"UVs are non-overlapping, so stains, scuffs and tears can be painted onto the padding without visible repeats. Built to CheckMate specification, the 141,099 polygons follow clean topology that subdivides predictably. The 143,860 vertices keep the puffed cushions rounded, which matters when light rakes across them from a single fixture.",
-"Two versions can be bought, the cell itself or a Mental Hospital Padded Room, and either one costs $69. Out from 2025, the interior serves film previsualization, escape room game levels and asylum horror trailers. A lone figure in a straitjacket under a flickering ceiling lamp turns the empty room into a frightening frame."],
-"keywords":["padded cell 3d model","asylum padded room","psychiatric isolation room","mental hospital interior","horror asylum set","quilted wall room","straitjacket cell scene","padded room environment"]},
-
-{"slug":"pholcus-phalangioides-2220167","paragraphs":[
-"Pholcus Phalangioides recreates the cellar spider, a tiny body hung on long, thread-thin legs that cast spindly shadows on a wall. The model uses 27,708 polygons over 13,968 vertices, enough for the jointed legs, the oval abdomen and the small cephalothorax. Leg segments bend at natural angles, so the creature looks as if it is resting in its web.",
-"The UV layout has no overlap, letting you paint banding on the legs and translucent patches on the abdomen. StemCell certification keeps shading consistent across renderers, which helps macro shots match between tools. Its pale, semi-transparent body responds beautifully to subsurface scattering under a side light.",
-"Two versions sit at $69 each, this spider and a Pholcidae Fur variant with fine hair for close macro work. Available since 2024, it suits nature documentaries, entomology lessons and creepy corners of a horror game. Dangling from a dusty ceiling beam, the spider adds instant atmosphere to any abandoned house interior."],
-"keywords":["cellar spider 3d model","pholcus phalangioides","daddy long legs spider","pholcidae model","realistic spider 3d","macro insect model","horror spider prop","arachnid anatomy model"]},
-
-{"slug":"photography-light-collection-1968251","paragraphs":[
-"Photography Light Collection equips a virtual studio with softboxes, stands and reflectors for behind-the-scenes renders and set planning. Having the gear in one pack keeps stand heights, clamps and cable details consistent across a whole shoot layout. Folding legs and tall telescoping poles give each fixture the recognizable look of a working photo kit.",
-"The set holds CheckMate Pro certification, confirming clean topology, correct scale and logical naming on every item. Diffuser fabric and metal hardware take separate materials, so a glowing panel can sit on a matte black stand. Lights can double as real emitters in a scene, turning the props into practical sources for the frame.",
-"There are two versions, this kit at $69 and a Photography Light Collection 2 at $89 with additional fixtures. Released in 2022, the collection serves studio interior visualization, filmmaking tutorials and product shoot planning. Arranged around an empty stool, the lights tell viewers a portrait session is about to begin."],
-"keywords":["photography lights 3d models","studio lighting kit","softbox on stand","photo studio equipment","light stand set","film set lighting props","reflector and softbox","studio gear collection"]},
-
-{"slug":"photography-studio-interior-2269958","paragraphs":[
-"Photography Studio Interior lays out a ready shooting space with a cyclorama backdrop, light stands and a working floor plan for set renders. The 218,217 polygons and 223,594 vertices cover the curved backdrop, fixtures, cables and furniture around the edges. The seamless cyc wall removes the floor line, which is exactly what a product or portrait shot needs.",
-"UVs are non-overlapping across the scene, so footprints and tape marks on the floor can be painted uniquely. Conforming to CheckMate specification, the room keeps clean topology and sensible object groups for quick edits. Dark walls around the bright backdrop help control bounce light and give the space a professional mood.",
-"Two variants are sold for $69 apiece, this room and a Black Interior Photo Studio Black for darker sets. A 2024 piece, the interior suits photography courses, fashion shoot previsualization and creative agency scenes. Drop in a model on a stool and a camera on a tripod, and the frame is complete."],
-"keywords":["photography studio interior 3d","photo studio room","cyclorama backdrop studio","black photo studio","studio set environment","portrait studio interior","fashion shoot set","film studio room model"]},
-
-{"slug":"pinatas-3d-models-collection-1206450","paragraphs":[
-"Pinatas Collection brings colorful paper party figures to birthday scenes, fiesta decor and festive product shots in one ready group. Each figure carries the layered paper fringe that gives a pinata its fluffy, ruffled outline. Bright, saturated colors make the set a cheerful anchor for any celebration render.",
-"The bundle passed CheckMate Pro inspection, so every shape meets the top TurboSquid standard for topology and scale. Fringe strips catch rim light along their edges, and a slight sheen on the paper adds depth without fuss. Hanging loops at the top make it easy to suspend the figures from a rope or a tree branch.",
-"Two versions are available: the original pack costs $69, while a Pinatas Collection 2 with a wider range runs $129. Around since 2017, the bundle suits party planning apps, children's animation and Mexican fiesta scenes. Hung above a table of sweets with paper streamers, the figures turn a plain backyard into a celebration."],
-"keywords":["pinatas 3d models","party pinata set","mexican fiesta decor","birthday pinata model","paper party figures","fiesta celebration props","colorful pinata collection","kids party decoration"]},
-
-{"slug":"plastic-models-of-stents-with-artery-2239722","paragraphs":[
-"Stents with Artery shows mesh tubes placed inside a cut-open blood vessel, a clear teaching aid for cardiology and vascular surgery. The 20,640 polygons and 20,328 vertices define the lattice of the stents and the curved wall of the artery around them. The open section reveals how the metal scaffold presses against the vessel lining.",
-"UVs are non-overlapping, so vessel tissue and metal lattice can each get their own detailed textures. Made to CheckMate specification, the model keeps clean geometry suited to medical animation and close inspection. Translucent artery walls let viewers see the implant inside, which a soft backlight makes even clearer.",
-"You will find two versions under one title at $69 each, so you can choose the file setup that fits your pipeline. Out since 2024, the piece fits patient education, medical device explainers and hospital training videos. Rotating slowly on a white background, the cutaway gives a clear picture of the procedure in seconds."],
-"keywords":["stent in artery 3d model","coronary stent model","vascular stent cutaway","artery with stent","medical implant model","cardiology teaching aid","angioplasty stent","blood vessel cross section"]},
-
-{"slug":"portable-pressure-washer-for-patio-and-car-use-gray-2504208","paragraphs":[
-"Pressure Washer models a portable electric cleaner with a hose reel, a spray wand and a wheeled body for patio and car scenes. At 35.67 x 39.72 x H54.77 cm, the unit fits naturally beside a person, a garden path or a parked vehicle. The 113,072 polygons describe the handle, the cable hook, the nozzle and the vented motor housing.",
-"UVs overlap in places, so mirrored parts share texture space, which keeps the material set compact. StemCell certification ensures the gray plastic and black rubber look the same across major renderers. With 121,141 vertices the rounded housing stays smooth, and its soft curves pick up a clean specular sweep.",
-"Two versions are available at $69, this gray unit and a Ryobi Electric Pressure Washer 2000 PSI Green. Introduced in 2025, the cleaner suits home improvement content, garden tool renders and car detailing animations. Show it next to a wet driveway with a fine mist from the nozzle, and the scene explains itself."],
-"keywords":["pressure washer 3d model","electric pressure washer","portable power washer","ryobi pressure washer","patio cleaning tool","car wash equipment","garden cleaning machine","high pressure cleaner"]},
-
-{"slug":"production-center-building-2422405","paragraphs":[
-"Production Center gives an industrial site a long factory hall with loading gates and a front office block, sized for city and plant scenes. Everything sits at true scale, so trucks and workers sit at true scale around it. With just 20,651 polygons the building stays light enough to repeat across a large industrial district.",
-"UVs are non-overlapping, letting you paint dirt runs and company signage across the facade without repeats. Following CheckMate specification, the structure keeps tidy topology over its 24,665 vertices and simple grouping. Ribbed wall panels and a low pitched roof match the look of modern prefabricated plants.",
-"Two versions cost $69 each here, this hall and a Production Center UralSpetsTrans tied to a real manufacturer. A 2025 release, the building fits urban planning renders, logistics games and corporate presentations about manufacturing. Add a few semi trailers at the docks and the site immediately reads as a working facility."],
-"keywords":["production center building 3d","factory hall model","industrial building exterior","manufacturing plant model","warehouse with offices","prefab industrial building","logistics facility model","factory 3d asset"]}
+  {
+    "slug": "homeless-woman-with-a-cardboard-sign-2258148",
+    "paragraphs": [
+      "A woman in layered worn clothing holds a handwritten cardboard sign, a figure that adds quiet humanity to a sidewalk or subway scene. The 67,087 polygons and 80,781 vertices cover her face, hair, the folds of coat and scarf, and the creased cardboard. Her posture is tired but steady, which keeps the scene respectful rather than melodramatic.",
+      "Non-overlapping UVs leave the sign surface clear, so you can letter your own message on it in any language. Her StemCell status means the coat, scarf and skin shaders were checked to match in every supported renderer. Muted browns and grays suit the outfit, and the cardboard can show water stains for a rainy street.",
+      "Two versions are priced at $69: this figure and a Seated Homeless Woman Holding Sign for wall or bench spots. The seated version suits a doorway or a station corner, the kind of place such people often choose. A 2024 release, she fits social awareness films, city crowd scenes, news illustration and narrative adventure games."
+    ],
+    "keywords": ["homeless woman 3d model", "woman holding cardboard sign", "street beggar character", "homeless person figure", "urban crowd character", "cardboard sign prop", "social documentary character", "poor woman 3d"]
+  },
+  {
+    "slug": "horizontal-steam-boiler-with-chimney-stack-2556758",
+    "paragraphs": [
+      "A horizontal fire-tube steam boiler with a tall chimney stack anchors a power plant hall, factory yard or historic mill scene. Its 1,322,919 polygons and 1,348,277 vertices are spent on riveted shell plates, valves, gauges, walkways and the long flue. The stack rises well above the boiler body, so the unit reads as industrial even from far away.",
+      "Mixed UVs split the painted shell, the brass fittings and the sooty chimney so each can weather on its own. StemCell certification covers even this heavy asset, so the painted steel looks the same whichever supported renderer you use. Rust streaks below the rivet lines and heat discoloration near the firebox make the boiler feel decades old.",
+      "The standalone version costs $69, while a Steam Boiler Plant with Pipeline System version is offered at $129. The plant version adds piping that ties the boiler into a larger process layout across the hall. Dating from 2026, it serves energy industry presentations, engineering training, steampunk worlds and industrial heritage documentaries."
+    ],
+    "keywords": ["steam boiler 3d model", "horizontal boiler", "industrial boiler chimney", "fire tube boiler", "boiler house equipment", "power plant boiler", "steampunk boiler", "chimney stack model"]
+  },
+  {
+    "slug": "house-construction-3d-printer-icon-rigged-2204031",
+    "paragraphs": [
+      "A gantry-style construction printer extrudes concrete layer by layer, building house walls on site the way new building technology promises. Its 1,152,900 polygons against 596,240 vertices are spent on the frame rails, print head, hoses and the ribbed wall pattern. The frame spans the building footprint, so the print head reaches every wall without moving the machine.",
+      "Non-overlapping UVs keep the steel frame, the nozzle carriage and the printed concrete separate for texturing. Ribbed concrete layers are the visual hook, showing exactly how printed walls differ from cast or brick ones. A pale gray mortar shader with fine layer lines sells the material instantly in daylight renders.",
+      "Both versions are $69: the standard printer and a black rigged version ready for movement along its rails. The rigged version helps when a timelapse must show walls rising layer after layer on an empty plot. Out since 2024, the printer suits construction technology explainers, architecture presentations, futuristic city scenes and engineering education."
+    ],
+    "keywords": ["construction 3d printer", "concrete house printer", "3d printed house", "gantry concrete printer", "additive construction machine", "building printer model", "printed concrete walls", "construction technology 3d"]
+  },
+  {
+    "slug": "industrial-safety-helmet-on-head-with-face-shield-2507277",
+    "paragraphs": [
+      "A hard hat fitted with a hinged face shield sits on a head, the protective setup for grinding, chemical work and electrical maintenance. The 67,777 polygons and 66,439 vertices cover the ribbed shell, the clear visor, the bracket hinges and the head underneath. The shield covers the whole face, showing viewers the level of protection a demanding task requires.",
+      "Mixed UVs separate the shell, the transparent shield and the head, so a scratched visor or company decal can be added. As a StemCell item, it comes with shaders checked for every supported package. At 33.93 x 31.25 x H43.53 cm, the hat and head fit a standard adult figure without any scaling.",
+      "This version costs $69, and a Power Utility Worker Protective Uniform with Safety Helmet version dresses a full figure for $129. The uniform version suits a complete lineman or substation worker when a whole body is needed in frame. Introduced in 2025, the hat fits workplace training, industrial visualization, utility company videos and factory games."
+    ],
+    "keywords": ["hard hat with face shield", "industrial helmet 3d", "face shield visor", "ppe head protection", "construction hard hat", "helmet on head model", "worker protective gear", "grinding face shield"]
+  },
+  {
+    "slug": "kongsberg-nsm-anti-ship-weapon-2562523",
+    "paragraphs": [
+      "A stealthy anti-ship cruise missile with faceted body panels and folding wings skims low over waves in naval strike scenes. Just 13,331 polygons and 13,442 vertices carry the angular nose, wings, tail fins and the rear section. Its faceted shape is meant to scatter radar, and that geometry reads clearly even at a distance.",
+      "Mixed UVs let the gray radar-absorbing finish and the warning markings be painted separately. The missile is a StemCell asset, meaning its prepared materials give matching results across the supported packages. At 397.4 x 140.0 x H50.95 cm, it fits on deck launchers and coastal truck racks alike.",
+      "Two versions are offered: the Kongsberg NSM Anti Ship Weapon at $69 and a Naval Strike Anti Ship Missile Guided Weapon at $89. Mixing both versions gives a salvo some visual variety in long tracking shots over open water. Since 2026 the missile has served naval documentaries, defense analysis visuals, war games and simulator content."
+    ],
+    "keywords": ["naval strike missile 3d", "anti ship missile", "kongsberg nsm", "stealth cruise missile", "sea skimming missile", "naval weapon model", "coastal defense missile", "military missile 3d"]
+  },
+  {
+    "slug": "leather-strap-moonphase-watch-steel-grey-2419954",
+    "paragraphs": [
+      "A steel grey wristwatch with a moonphase window and leather strap brings refined detail to a desk flat lay or a close wrist shot. The 58,610 polygons and 65,117 vertices go into the case, crown, hands, sub-dials and the stitched curve of the strap. The strap curves as if wrapped around a wrist, so the piece looks worn rather than lying flat.",
+      "Non-overlapping UVs keep the dial printing, leather grain and brushed steel apart for sharp close-up texturing. Made to CheckMate specification, it measures 4.68 x 6.98 x H7.36 cm, true to a real watch on a wrist. The moon disc is the hero detail, so a soft top light that reveals its color works best.",
+      "Each of the two versions costs $69: this Leather Strap Moonphase Watch Steel Grey and a Patek Philippe Nautilus moonphase calendar version on leather. Pick the steel grey version for neutral styling and the named calendar watch for collector scenes. The watch arrived in 2025 and suits luxury e-commerce, jewelry store displays, gentleman's study interiors and character accessories."
+    ],
+    "keywords": ["moonphase watch 3d model", "leather strap wristwatch", "luxury watch model", "steel grey watch", "men's dress watch", "analog watch 3d", "moon phase dial", "watch close-up render"]
+  },
+  {
+    "slug": "luch-neptune-anti-ship-missile-r360l-2564489",
+    "paragraphs": [
+      "A coastal anti-ship cruise missile with a booster stage and folding fins shows the weapon in launch-ready form. The 78,484 polygons and 77,804 vertices go into the cylindrical body, cruciform wings, air intake and tail fins. Its long body and rear booster make it unmistakable in side views over open water.",
+      "Mixed UVs split the camouflage body, stencil markings and the booster so each part can weather differently. Because it went through StemCell, the camouflage and metal shaders arrive tuned for each supported render engine. At 216.92 x 852.55 x H215.06 cm, the missile is long enough to fill a launcher tube on a truck.",
+      "At $69 you get either version: this Ukrainian-designed Neptune missile or a Naval Strike Guided Missile with Folding Fins. Coastal battery scenes often need several missiles, and the light mesh of either version allows that. New in 2026, it fits defense news graphics, military history documentaries, coastal battle scenes and war games."
+    ],
+    "keywords": ["neptune missile 3d", "ukrainian anti ship missile", "cruise missile model", "coastal missile system", "anti ship weapon", "missile with booster", "naval strike missile", "military missile model"]
+  },
+  {
+    "slug": "market-stall-with-striped-awning-and-wooden-crates-2221467",
+    "paragraphs": [
+      "A wooden market stall under a striped canvas awning, stacked with crates, sets up a street market, harbor bazaar or village fair. Only 22,468 polygons and 23,604 vertices build the timber frame, awning folds and crates, so many stalls can line one street. Slanted awnings throw shade on the counter, inviting a merchant figure to stand underneath.",
+      "Non-overlapping UVs let the awning stripes change color, red and white for a seaside market or green for a farm stand. Being StemCell certified, the stall shows the same timber and fabric look in every supported renderer. Crates sit at the front edge, where produce, fish or pottery can be added to tell what the vendor offers.",
+      "The stall has two versions at $69: this striped one and a Medieval Market Stand with Barrels for fantasy towns. Mixing both versions along one lane makes a market that feels assembled over years by different traders. Available since 2024, the stall fits historical games, film set extensions, festival scenes and travel illustration."
+    ],
+    "keywords": ["market stall 3d model", "striped awning stand", "wooden market booth", "street market props", "vendor stall crates", "medieval market stand", "farmers market stall", "bazaar stall model"]
+  },
+  {
+    "slug": "modern-chairs-collection-1924304",
+    "paragraphs": [
+      "Contemporary chairs with clean lines, molded seats and slim legs furnish a dining room, cafe or office lounge from a single purchase. Mixing shapes around one table is a current design habit, and the varied silhouettes here make that easy. Upholstered pieces sit beside hard plastic and wood forms, giving an interior a curated rather than catalog look.",
+      "Each chair cleared TurboSquid's CheckMate Pro review, so topology and file structure hold up in close renders. Fabric, leather and lacquer shaders all suit these pieces, and color swaps take minutes with clean material groups. Soft shadows under the seats ground each chair on wood, concrete or tiled floors in daylight scenes.",
+      "Two versions are available: this first collection at $69 and Modern Chairs Collection 2 at $79 with further designs. Designers often test several chair styles around one table before committing, and both versions speed that up. Listed since 2022, the chairs serve interior design renders, furniture showrooms, real estate staging and architectural animations."
+    ],
+    "keywords": ["modern chairs 3d models", "contemporary dining chairs", "designer chair set", "cafe chairs collection", "furniture pack 3d", "interior design chairs", "lounge chair models", "modern seating set"]
+  },
+  {
+    "slug": "motorcycle-atv-lift-table-1713278",
+    "paragraphs": [
+      "A hydraulic lift table raises a motorcycle or quad to working height, the centerpiece of any powersports repair shop. The 85,002 polygons and 88,597 vertices go into the steel deck, scissor frame, wheel chock, ramp and lifting mechanism. Workshop owners know this tool as the thing that saves backs during long engine jobs.",
+      "Non-overlapping UVs keep the painted deck, rubber pads and chrome hydraulics on separate map areas. TurboSquid rated the lift table CheckMate Pro, its top certification for geometry, scale and file organization. Oil stains and scuffs on the deck suggest a busy shop rather than a polished showroom floor.",
+      "Two versions exist: the static table at $69 and a rigged version at $79 that can be raised in animation. A bike clamped on top of either version makes a convincing service scene in a few seconds. Released in 2021, it fits garage interiors, motorcycle repair tutorials, dealership service bays and mechanic games."
+    ],
+    "keywords": ["motorcycle lift table 3d", "atv lift", "hydraulic bike lift", "motorcycle repair stand", "garage lift table", "workshop equipment 3d", "quad bike lift", "powersports service tool"]
+  },
+  {
+    "slug": "nike-air-720-anthracite-black-in-box-2316245",
+    "paragraphs": [
+      "A pair of anthracite black sneakers with a tall visible air sole rests in an open shoebox, the unboxing moment sneaker fans know well. The 55,079 polygons and 56,075 vertices cover the knit uppers, the full-length air units, laces and the box with its lid. The open lid frames the shoes, giving the shot the feel of a fresh delivery.",
+      "Non-overlapping UVs keep mesh, sole and cardboard on separate maps, so the box print stays crisp. The clear sole rewards a refractive shader, which lets light pass through and glow on the floor below. Its clean geometry follows CheckMate specification, holding up in macro shots of the transparent air bubble.",
+      "Editorial Uses Only terms apply here, so the shoes suit sneaker news, collector articles, reviews and fashion history content. There are two versions, each at $69: the black Nike Air 720 in Box and a white version in the same packaging, both from 2024. The white version suits bright, clean scenes, while the black pair sits better on dark shelves."
+    ],
+    "keywords": ["nike air 720 3d model", "sneakers in box", "air max sole sneaker", "shoebox with shoes", "black running shoes", "sneaker unboxing", "athletic shoes model", "sneaker collector render"]
+  },
+  {
+    "slug": "office-equipment-collection-1778473",
+    "paragraphs": [
+      "Everyday office machines and desk gadgets stock a workspace from the reception counter to the copy room in a single go. Boxy machines and slim desk devices are exactly what makes an empty office render look like people work there. Every piece sits at real desk height, so it lines up with chairs and monitors from other packs.",
+      "Every device in the bundle reached CheckMate Pro, the strictest certification TurboSquid hands out for geometry and files. Matte gray plastics with small status lights suit these devices, and a light dusting hints at long use. Cables can run along desk edges for realism, or be skipped for a tidy showroom look.",
+      "The bundle comes in two versions: this one at $69 and Office Equipment Collection 2 at a higher $119. Facility planners use either version to preview how equipment fits into a new floor layout before moving in. Part of the catalog since 2021, it supports workplace interiors, corporate training videos, office simulation games and architectural visualization."
+    ],
+    "keywords": ["office equipment 3d models", "office machines set", "printer and copier models", "office interior props", "desk gadgets collection", "workplace equipment 3d", "office supplies pack", "corporate office assets"]
+  },
+  {
+    "slug": "open-frame-curtain-trailer-white-2402564",
+    "paragraphs": [
+      "A white curtain-sided semi-trailer with sliding side canvases lets forklifts load pallets from the side at busy distribution yards. The 103,150 polygons and 105,692 vertices cover the frame posts, tensioning straps, rear doors, landing gear and axle group. Strap buckles along the lower edge are the giveaway of this trailer type in road scenes.",
+      "Non-overlapping UVs give the canvas panels their own space, so a fleet design or a plain color is easy to apply. TurboSquid's StemCell program prepared its materials, so the white body renders alike in several applications. Built at full road size, the trailer lines up with loading docks and tractor units from other packs.",
+      "Two versions share a $69 price: this covered model and a black Curtain Trailer Without Canvas that shows the bare structure. The open frame version is handy for loading scenes where pallets and cargo straps must stay visible. Published in 2025, it fits logistics videos, highway traffic, port and warehouse renders, and truck driving games."
+    ],
+    "keywords": ["curtainsider trailer 3d", "curtain side semi trailer", "tautliner trailer", "white semi trailer", "freight trailer model", "logistics truck trailer", "side loading trailer", "road haulage 3d"]
+  },
+  {
+    "slug": "oriental-wooden-tables-collection-2498883",
+    "paragraphs": [
+      "Carved tables in dark lacquered wood bring the calm of an Asian tea room, a temple hall or a traditional restaurant into a scene. Curved legs, inlaid tops and ornamental aprons give each table its own character, so a room never looks repetitive. Placed with cushions or chairs around them, the tables set up dining or tea ceremony scenes easily.",
+      "StemCell preparation means the lacquered wood and carved details render with matching shaders in each supported package. A warm red-brown finish with soft highlights suits these pieces, especially under paper lantern light. Fine wear on the corners and tops suggests furniture handed down through generations of the same household.",
+      "You can choose between two versions: this collection at $69 and Oriental Wooden Tables Collection 2 at $79. Together the two versions furnish a whole restaurant floor with tables of different shapes and sizes. Added in 2025, the set serves interior visualization, period drama sets, martial arts films and historical games."
+    ],
+    "keywords": ["oriental wooden tables 3d", "asian carved table", "chinese tea table", "lacquered wood furniture", "traditional asian furniture", "tea room table", "antique oriental table", "asian interior props"]
+  },
+  {
+    "slug": "outdoor-autumn-clothes-for-girl-2351823",
+    "paragraphs": [
+      "A warm autumn outfit for a young girl dresses a character for chilly park walks, school mornings and leaf-strewn countryside scenes. Most of the 162,378 polygons and 194,480 vertices go into soft folds, seams, cuffs and the layered collar of the outer garment. Loose sleeves and a slightly oversized fit read as real children's clothing rather than a scaled-down adult outfit.",
+      "Non-overlapping UVs let you swap plaid, corduroy or knit textures across the pieces without stretching. Made in line with CheckMate specification, the garments open cleanly and fit a child-sized figure. Earthy mustard, rust and olive tones suit the season, matching falling leaves in an October scene.",
+      "Two versions cost $69 apiece: this clothing set and the Outdoor Autumn Clothes for Girl Fur version with fluffy trims. The fur version adds soft volume, which suits colder late-autumn shots with frost on the grass. Since its 2025 debut, the outfit has suited children's fashion visuals, animated films, picture book art and family games."
+    ],
+    "keywords": ["girl autumn clothes 3d", "kids fall outfit", "children's jacket model", "girl outdoor clothing", "autumn fashion 3d", "child character outfit", "fall coat for girl", "kids clothing set"]
+  },
+  {
+    "slug": "pharaoh-heads-collection-2094985",
+    "paragraphs": [
+      "Sculpted pharaoh heads with striped nemes headdresses and ceremonial beards bring ancient royalty into a museum or tomb scene. Each face carries its own features and crown details, so a row of busts reads as different rulers rather than copies. Placed on plinths under spotlights or half-buried in sand, the heads suit both exhibition and adventure framing.",
+      "The heads carry CheckMate Pro certification, which means TurboSquid inspected their topology and scene setup closely. Gold leaf, painted limestone or weathered granite all suit the sculpts, depending on whether a scene needs glory or ruin. Deep carved stripes on the headdress catch raking light beautifully, adding drama to torch-lit tomb interiors.",
+      "Two versions are listed: the Pharaoh Heads Collection at $69 and Pharaoh Heads Collection 2 at $129 with further rulers. Pairing both versions lets a museum hall present a whole dynasty instead of a single king. From 2023 onward the heads have appeared in history documentaries, museum displays, adventure games and educational animations."
+    ],
+    "keywords": ["pharaoh head 3d model", "egyptian pharaoh bust", "ancient egypt sculpture", "nemes headdress", "egyptian king statue", "tomb props egypt", "pharaoh statue head", "egyptology museum assets"]
+  },
+  {
+    "slug": "picnic-snack-on-wooden-skewer-collection-2430312",
+    "paragraphs": [
+      "Bite-sized picnic snacks threaded on wooden skewers fill a buffet table, garden party platter or summer barbecue spread. Colorful layers on each stick make the food read clearly from above, the angle most party scenes use. Arranged in rows on a board or stuck into a melon, the skewers give a table instant festive variety.",
+      "Built to CheckMate specification, the snacks keep clean shapes that stay light even when dozens sit on one plate. Glossy shaders on fruit and matte ones on bread and cheese add appetizing contrast under warm light. Natural wood grain on the skewers ties the food to rustic boards, baskets and checkered tablecloths.",
+      "Both versions of the set cost $69: this collection and Picnic Snack on Wooden Skewer Collection 2 with other combinations. Caterers and food bloggers mix the two versions to plan a varied appetizer table before an event. Introduced in 2025, the snacks suit food photography mockups, catering menus, picnic animations and cooking games."
+    ],
+    "keywords": ["food skewers 3d model", "picnic snacks", "appetizer skewers", "canape on skewer", "party food platter", "buffet food props", "wooden skewer snacks", "finger food 3d"]
+  },
+  {
+    "slug": "portable-karaoke-speaker-system-on-tripod-2381607",
+    "paragraphs": [
+      "A portable karaoke speaker raised on a tripod stand brings instant party energy to a backyard, bar or living room. The 51,129 polygons and 53,649 vertices go into the speaker grille, control panel, handle and the telescoping tripod legs. Raising the speaker to head height helps sound carry over a crowd, a detail event hosts appreciate.",
+      "Non-overlapping UVs keep the grille, buttons and plastic housing separate, so colored lights or logos can be added. At 79.24 x 91.37 x H137.47 cm, the speaker and stand reach a believable chest height beside a singer. Glowing accent rings around the woofer set a party mood, especially in dim evening scenes.",
+      "This version and a PRONEXT Karaoke Machine on Tripod version are both priced at $69. The named version suits scenes that need a specific machine, while this one stays neutral for any setting. Launched in 2025, the speaker fits event planning visuals, music videos, home party scenes and karaoke bar interiors."
+    ],
+    "keywords": ["karaoke speaker 3d model", "portable pa speaker", "speaker on tripod", "party speaker system", "karaoke machine", "bluetooth party speaker", "event sound system", "dj speaker stand"]
+  },
+  {
+    "slug": "prison-space-collection-1714619",
+    "paragraphs": [
+      "Grim fixtures and furnishings of a detention block gather in one set, ready to build a prison corridor or holding cell. Cold steel, worn concrete and barred openings give the pieces a harsh, institutional mood that reads at once. Lined along a corridor, the elements create the long repetitive perspective typical of prison films.",
+      "Under CheckMate Pro, the highest TurboSquid tier, the prison pieces were checked for clean topology and real proportions. Scratched paint, rust at the joints and graffiti on walls make the space look lived in by inmates. Harsh fluorescent light from above or a single window beam sets the tone for drama or horror.",
+      "Two versions exist for the bundle: Prison Space Collection at $69 and Prison Space Collection 2 at $99. Combining the versions gives enough parts for a full cell block, from intake area to solitary confinement. Since 2021 the set has been a staple of crime dramas, escape games, true crime reconstructions and film previsualization."
+    ],
+    "keywords": ["prison cell 3d models", "jail interior props", "prison space collection", "detention block assets", "jail cell furniture", "prison corridor scene", "penitentiary interior", "holding cell 3d"]
+  },
+  {
+    "slug": "professional-safety-welding-helmet-positioned-on-head-2536618",
+    "paragraphs": [
+      "A welding helmet with a dark viewing lens sits on a head, the face protection every fabrication shop requires for arc work. The 36,766 polygons and 36,843 vertices define the curved shell, the lens window, the headgear ratchet and the head beneath. The helmet sits lowered over the face, the moment just before an arc strikes and sparks fly.",
+      "Mixed UVs split shell, lens and head into their own materials, so stickers, scorch marks or a custom paint job are easy. The helmet and head measure 20.85 x 25.37 x H33.06 cm, matching a full-size adult wearer. Following its CheckMate specification, the geometry stays tidy enough for close shots with sparks reflecting in the glass.",
+      "Two versions are on the page at $69: this Welding Helmet and a Speedglas branded version shown on a mannequin. The mannequin version suits product shots, while this one fits a working figure in a garage or shipyard. Brought out in 2026, the helmet suits welding training, metal fabrication videos, industrial safety material and workshop games."
+    ],
+    "keywords": ["welding helmet 3d model", "welding mask on head", "welder face protection", "auto darkening helmet", "metal fabrication gear", "welding ppe", "welder character head", "industrial safety helmet"]
+  },
+  {
+    "slug": "rail-adjustment-tool-2411198",
+    "paragraphs": [
+      "A heavy rail adjustment tool clamps onto track and pulls rails into alignment, the kind of gear maintenance crews haul along the line. The 77,941 polygons and 80,806 vertices cover the steel frame, clamping jaws, hydraulic cylinder and carrying handles. Its long, low body sits across the rails, explaining at a glance how the machine grips and moves them.",
+      "Non-overlapping UVs allow chipped orange paint, grease and rail dust to be layered without stretching. Measuring 240.4 x 109.89 x H58.8 cm, it spans the track with room for crew hands at both ends. Weathered steel and faded safety paint make it look like gear that has spent years outdoors.",
+      "Alongside this version at $69 sits a Track Alignment Puller Orange variant at the same price. Rail safety films often show several tools in one shot, and the two versions fill that need. From 2025 the tool has served railway maintenance training, infrastructure explainers, rail yard scenes and engineering presentations."
+    ],
+    "keywords": ["rail adjustment tool 3d", "track alignment puller", "railway maintenance equipment", "rail track tool", "hydraulic rail puller", "railroad tools model", "track maintenance gear", "railway infrastructure 3d"]
+  },
+  {
+    "slug": "retro-gas-pumps-collection-2202088",
+    "paragraphs": [
+      "Vintage gas pumps with rounded tops, glass globes and mechanical dials bring the feel of a mid-century roadside station into a scene. Bright enamel colors and chrome trim make each pump a strong silhouette against desert highways or small-town streets. Lined up under a canopy with a parked classic car, the pumps set an era in one frame.",
+      "Each pump holds CheckMate Pro status, so the meshes open cleanly and match real proportions. Faded paint, rust around the nozzles and cracked hoses suit abandoned stations, while glossy finishes suit restored ones. The glass globes on top can glow softly at dusk, a classic image for nostalgic poster art.",
+      "The collection has two versions: this one at $69 and Retro Gas Pumps Collection 2 at $89. Mixing pumps from both versions keeps a station forecourt from looking like copies on a grid. Listed in 2024, the pumps serve road movie scenes, diner exteriors, classic car renders and retro games."
+    ],
+    "keywords": ["retro gas pump 3d", "vintage fuel pump", "old gas station props", "classic petrol pump", "route gas station", "antique gas pumps", "roadside station assets", "1950s gas pump model"]
+  },
+  {
+    "slug": "robotics-giant-mechanical-hand-2508968",
+    "paragraphs": [
+      "A giant mechanical hand on a tall robotic arm towers over a workshop floor, built for heavy industry or sci-fi factory scenes. The 245,900 polygons and 253,059 vertices go into finger joints, hydraulic pistons, cable runs and the segmented arm column. Each finger is built from separate segments, which shows how the hand could grip a crate or a car body.",
+      "Mixed UVs separate the painted steel, chrome pistons and rubber parts so wear can be placed where hands touch. As part of the StemCell range, the arm comes with materials checked against several render engines. At 161.23 x 156.16 x H562.54 cm, the machine rises far above a worker, making the scale dramatic.",
+      "Each version costs $69: this clean build and the Robotics Mechanical Arm Module Yellow Old with worn yellow paint. The worn yellow version suits a scrapyard or abandoned plant, while this one fits a busy assembly hall. Industrial and sci-fi artists have drawn on it since 2025 for factory renders, robot films, mech games and engineering explainers."
+    ],
+    "keywords": ["giant robotic hand 3d", "mechanical hand model", "industrial robot arm", "sci-fi robot hand", "hydraulic robot arm", "mech arm 3d", "factory robot model", "robotic gripper giant"]
+  },
+  {
+    "slug": "rowboats-collection-2536359",
+    "paragraphs": [
+      "Wooden and painted rowboats with oars, benches and weathered hulls fill a lake shore, fishing harbor or quiet river bend. Each hull has its own shape and color, so boats moored together look like a real working waterfront. Drawn up on sand or floating at a jetty, the boats suit both calm daytime and misty dawn scenes.",
+      "The set follows TurboSquid's CheckMate specification, so each boat opens with clean geometry and sensible naming. Peeling paint, wet wood and algae near the waterline make the boats look used rather than freshly built. Oars can rest inside or lean on the gunwale, small touches that tell whether anyone is nearby.",
+      "This first version costs $69, and Rowboats Collection 2 is offered at $79 with other hulls. Pairing both versions crowds a harbor with enough variety to avoid obvious copies along the pier. The boats date from 2026 and serve lake house renders, fishing games, period films and landscape paintings."
+    ],
+    "keywords": ["rowboat 3d model", "wooden rowing boat", "small fishing boat", "rowboats collection", "lake boat with oars", "harbor boats set", "dinghy 3d model", "old wooden boat"]
+  },
+  {
+    "slug": "scaffold-collection-2524843",
+    "paragraphs": [
+      "Steel scaffold frames, planks, braces and ladders assemble the temporary structures that wrap buildings under construction or renovation. Modular pieces stack and join like the real system, so a scaffold can climb one floor or a whole facade. Wrapped around a house or bridge pier, the frames instantly say work in progress to any viewer.",
+      "The kit meets CheckMate specification, keeping geometry clean when hundreds of tubes repeat across a facade. Galvanized steel with paint splatters and muddy footplates suits building sites, while clean metal fits a fresh setup. Safety netting or debris sheeting can be draped over the frames for a fully dressed site.",
+      "Two versions are available for $69 and $99: this Scaffold Collection and Scaffold Collection 2 with further parts. Combining both versions gives enough components to dress a multi-story site without repeats. New in 2026, the scaffolding suits construction visualizations, renovation explainers, urban scenes and building games."
+    ],
+    "keywords": ["scaffolding 3d model", "construction scaffold", "scaffold frames set", "building site props", "steel scaffolding", "scaffold with planks", "renovation scaffolding", "construction site assets"]
+  },
+  {
+    "slug": "self-propelled-howitzer-weapon-system-camouflage-2453720",
+    "paragraphs": [
+      "A tracked self-propelled howitzer in camouflage paint carries a long-barreled artillery gun on an armored hull, ready for battlefield scenes. The 146,895 polygons and 159,437 vertices go into the turret, barrel, muzzle brake, track links and road wheels. The long barrel overhangs the front hull, a silhouette that reads instantly as artillery rather than a tank.",
+      "Overlapping UVs keep the repeated track links and wheels efficient, sharing texture space across the hull. StemCell work on this vehicle means the camouflage paint renders identically across the supported applications. At 201.77 x 997.14 x H258.46 cm, the vehicle dwarfs crew figures standing beside the tracks.",
+      "The page holds two versions at $69: this Self-Propelled Howitzer Weapon System and a Military Artillery Gun Mount Desert. The desert version suits sandy terrain, while the camouflage one blends into forest and field maps. First listed in 2025, it supports military documentaries, war games, defense presentations and simulation training."
+    ],
+    "keywords": ["self propelled howitzer 3d", "artillery vehicle model", "tracked howitzer", "military artillery gun", "camouflage howitzer", "armored artillery 3d", "army vehicle model", "spg tank model"]
+  },
+  {
+    "slug": "space-vacuum-toilet-with-leg-braces-white-2448268",
+    "paragraphs": [
+      "A white zero-gravity toilet with leg braces and suction hoses shows how astronauts manage a basic need aboard a space station. The 21,734 polygons and 23,152 vertices cover the seat, the foot restraints, the vacuum funnel and the hose connections. Leg braces hold the user in place without gravity, a detail that always sparks curiosity in museum visitors.",
+      "Non-overlapping UVs keep the white panels, metal fittings and rubber hoses apart for clean texturing. The unit spans 254.74 x 254.74 x H79.07 cm, sized for a compact module compartment. Its CheckMate specification build gives tidy geometry, useful for cutaway views of station interiors.",
+      "There is this version at $69 and a NASA Space Vacuum Toilet Module White version at the same price. The NASA version fits documentaries that need a recognizable agency look, while this one stays generic. Released in 2025, it serves space education, science museum exhibits, sci-fi films and space station games."
+    ],
+    "keywords": ["space toilet 3d model", "zero gravity toilet", "astronaut toilet", "space station interior", "vacuum toilet model", "iss toilet module", "spacecraft hygiene unit", "sci-fi station props"]
+  },
+  {
+    "slug": "squirrel-with-pine-cone-fur-2342402",
+    "paragraphs": [
+      "A red squirrel sits upright with a pine cone in its paws, fluffy tail curled behind, ready for forest and park scenes. The 23,653 polygons and 23,722 vertices form a light base, since the fur system carries most of the visual detail. Tufted ears and a bushy tail are what make a squirrel read at a glance, and both are prominent here.",
+      "Non-overlapping UVs give the fur a clean map for color, from russet on the back to cream on the belly. Made under CheckMate specification, the animal keeps a natural pose that sits well on a branch or a log. Soft backlight through the tail fur brings out its volume, a classic look in wildlife photography.",
+      "Two versions are priced the same at $69: the standard build and the Squirrel with Pine Cone Fur for Maya version. The Maya version saves setup time for artists who groom and render inside that software. Since 2025 the animal has served nature documentaries, children's animation, forest games and seasonal greeting cards."
+    ],
+    "keywords": ["squirrel 3d model", "red squirrel fur", "squirrel with pine cone", "forest animal model", "realistic squirrel", "woodland creature 3d", "furry squirrel", "rodent 3d model"]
+  },
+  {
+    "slug": "suit-for-duck-hunting-grass-camo-1958273",
+    "paragraphs": [
+      "A grass camouflage hunting suit covers a figure in leafy fabric, blending into marsh reeds for duck hunting and wildlife observation scenes. The 30,142 polygons over 19,406 vertices go into the jacket, trousers, hood and the textured grass-pattern layers. Loose cut and padded shoulders leave room for layers underneath, as hunters wear on cold mornings.",
+      "Non-overlapping UVs let the grass pattern be swapped for forest, snow or desert camouflage without remapping. This camo suit reached CheckMate Pro level, TurboSquid's mark for clean meshes and orderly files. Muted green and straw tones melt into reed beds, especially under the flat light of an overcast dawn.",
+      "Both versions cost $69: this grass suit and a Hunting Suit Forest Camo version for woodland settings. Switching between the versions lets one figure move from marsh to forest without new modeling. Out since 2022, the suit serves hunting gear visuals, outdoor films, survival games and nature documentaries."
+    ],
+    "keywords": ["hunting suit 3d model", "grass camouflage suit", "duck hunting clothes", "camo hunting outfit", "ghillie style suit", "hunter clothing model", "marsh camouflage", "outdoor hunting gear"]
+  },
+  {
+    "slug": "suit-jackets-collection-963483",
+    "paragraphs": [
+      "Tailored suit jackets in several cuts and fabrics hang ready to dress business characters, wedding guests or a menswear boutique rack. Notched lapels, buttoned fronts and structured shoulders give each jacket a sharp silhouette even in background shots. Mixing colors and patterns across a group keeps an office crowd from looking like clones in matching uniforms.",
+      "Made to TurboSquid's CheckMate specification, the jackets bring tidy geometry suited to fitting on different body types. Wool, tweed and linen shaders all suit these pieces, with subtle sheen on the lapels for formal looks. Pocket flaps and breast pockets give space for handkerchiefs or name badges in event scenes.",
+      "Suit Jackets Collection is the first of two versions at $69, and Suit Jackets Collection 2 costs $109. Tailors and fashion students use both versions to compare cuts before building a full outfit. First listed in 2016, the jackets remain a reliable pick for business scenes, fashion visualization and character design."
+    ],
+    "keywords": ["suit jacket 3d model", "men's blazer", "business suit jackets", "tailored jacket set", "formal wear 3d", "menswear collection", "blazer models pack", "office clothing 3d"]
+  },
+  {
+    "slug": "swim-fins-collection-2528171",
+    "paragraphs": [
+      "Swim fins in several sizes and blade styles equip divers, snorkelers and lifeguards for pool, reef or beach scenes. Long blades, open heels and adjustable straps give each pair its own outline, easy to tell apart on a dock. Laid on wet sand or hung on a dive shop wall, the fins set a water sports mood instantly.",
+      "These fins were modeled to CheckMate specification, keeping clean shapes that suit both close-ups and background props. Bright rubber colors and matte black blades suit the set, with a wet sheen for poolside shots. Water droplets and sand on the blades help the fins belong to a scene rather than a catalog.",
+      "Two versions are listed at $69 and $79: Swim Fins Collection and Swim Fins Collection 2. Dive centers and swimming coaches use both versions in training graphics and equipment guides. The fins came out in 2026 and fit diving animations, beach resort renders, sports product visuals and underwater games."
+    ],
+    "keywords": ["swim fins 3d model", "diving flippers", "snorkeling fins", "scuba fins set", "swimming flippers", "dive gear 3d", "water sports equipment", "beach props fins"]
+  },
+  {
+    "slug": "teenage-boy-heads-collection-2001204",
+    "paragraphs": [
+      "Teenage boy heads with different hairstyles, face shapes and expressions give character artists a fast start on young male casts. Varied haircuts, from short crops to longer messy styles, keep a classroom or sports team from looking cloned. Each head ends at the neck, ready to join a body or sit on a bust for portrait renders.",
+      "CheckMate Pro sits behind every head in the set, covering topology, scale and naming checks. Skin shaders with light freckles or acne marks suit the age group and add realism in close-ups. Soft key light from the side brings out jawlines that are still forming at this age.",
+      "Teenage Boy Heads Collection 2 extends the range at $99, while this original version is $69. Using both versions gives a school scene enough faces for a full class without visible repeats. Since 2022 the heads have served games, animated series, educational apps and avatar platforms for younger audiences."
+    ],
+    "keywords": ["teenage boy head 3d", "teen character heads", "young male head model", "boy face 3d", "teenager character pack", "realistic teen heads", "school character assets", "adolescent head model"]
+  },
+  {
+    "slug": "toilets-and-bidets-3d-models-collection-1300549",
+    "paragraphs": [
+      "Modern toilets and bidets in wall-hung and floor-standing designs furnish a bathroom from a compact apartment to a luxury hotel suite. Smooth ceramic curves and concealed flush plates give each fixture a clean contemporary look in any layout. Paired as matching sets, the fixtures help a designer show how a bathroom works in real proportions.",
+      "The fixtures earned CheckMate Pro from TurboSquid, a grade that covers geometry quality and accurate size. Glossy white ceramic with soft reflections suits these pieces best, and chrome fittings add a little sparkle. Tile floors and walls around them benefit from matching grout lines, which ground the fixtures in the room.",
+      "Two versions of these fixtures are offered, at $69 for this set and $79 for Toilets and Bidets Collection 2. Mixing both versions lets an interior designer test different styles in the same bathroom plan. Listed since 2018, the fixtures serve bathroom design renders, real estate visuals, hotel interiors and plumbing catalogs."
+    ],
+    "keywords": ["toilet 3d model", "bidet 3d model", "bathroom fixtures set", "wall hung toilet", "sanitary ware models", "modern bathroom toilet", "ceramic toilet bidet", "bathroom interior assets"]
+  },
+  {
+    "slug": "training-obstacles-collection-2248802",
+    "paragraphs": [
+      "Obstacle course elements such as walls, hurdles and climbing frames set up a military boot camp or a fitness challenge scene. Rough timber, ropes and worn rubber give the pieces a tough, used look that suits mud and sweat. Spread across a field, the obstacles create a course that characters can run, climb and crawl through.",
+      "CheckMate specification guided the build, so the obstacles open cleanly with sensible scale and naming. Mud splashes on lower beams and frayed ropes suggest heavy use, while fresh paint suits a new training ground. Low camera angles make the walls and frames tower over runners, adding drama to a race.",
+      "There are two versions: this collection at $69 and Training Obstacles Collection 2 at a lower $46. The cheaper version works as background filler, while this one anchors the main course layout. Since its 2024 release, the set has suited fitness videos, military training scenes, adventure games and sports event graphics."
+    ],
+    "keywords": ["obstacle course 3d models", "military training obstacles", "boot camp course", "fitness obstacle set", "climbing wall obstacle", "assault course props", "training ground assets", "obstacle race 3d"]
+  },
+  {
+    "slug": "turkish-string-instruments-collection-2226603",
+    "paragraphs": [
+      "Traditional Turkish string instruments with long necks, carved bowls and fretted fingerboards bring Anatolian music into a scene. Each instrument keeps its own body shape, from pear-shaped bowls to slender lutes, so the group reads as a real ensemble. Hung on a music shop wall or held by seated players, the instruments set a cultural tone immediately.",
+      "Their geometry meets CheckMate specification, holding fine details like tuning pegs and strings without clutter. Warm walnut and mulberry wood tones suit the bodies, with inlay patterns painted into the textures. A soft key light reveals the curve of each bowl and the glint of the strings.",
+      "This collection at $69 has a second version, Turkish String Instruments Collection 2, priced at $79. Musicians and museums use both versions to illustrate how the instrument family varies in size and shape. Dating from 2024, the instruments suit music education, cultural exhibitions, historical films and folk-themed games."
+    ],
+    "keywords": ["turkish instruments 3d", "baglama saz model", "oud 3d model", "string instruments set", "anatolian folk instruments", "traditional lute model", "middle eastern instruments", "musical instruments collection"]
+  },
+  {
+    "slug": "twin-wheel-aircraft-nose-landing-gear-2587877",
+    "paragraphs": [
+      "A twin-wheel nose landing gear with shock strut, steering actuator and drag brace shows the hardware an airliner rolls on. Its 711,076 polygons and 720,514 vertices in clean quads detail the tires, hubs, torque links, hydraulic lines and bolts. The strut stands extended as if bearing weight on a runway apron.",
+      "Mixed UVs separate rubber, polished chrome and painted steel so each surface gets its own material. StemCell testing confirmed that its metals and rubber look consistent in each supported program. At 127.43 x 115.94 x H212.26 cm, the assembly matches full size beside a maintenance technician.",
+      "This version costs $69, while a Commercial Aircraft Landing Gear Set version gathers more gear for $129. The set version suits hangar scenes where main and nose gear must appear together. Aviation schools have used it since 2026 in maintenance training, engineering explainers, airport renders and flight simulators."
+    ],
+    "keywords": ["nose landing gear 3d", "aircraft landing gear model", "airliner nose gear", "twin wheel landing gear", "aircraft undercarriage", "aviation maintenance model", "landing gear strut", "aircraft parts 3d"]
+  },
+  {
+    "slug": "ukrainian-bayraktar-tb2-tactical-drone-2578864",
+    "paragraphs": [
+      "A medium-altitude combat drone with long slender wings, an inverted V-tail and a pusher propeller patrols skies in modern conflict scenes. The 82,514 polygons and 85,234 vertices cover the fuselage, the sensor turret, the wing hardpoints and the landing gear. Its long wings and slim body give it a glider-like profile that reads clearly against a bright sky.",
+      "Mixed UVs split the gray airframe, markings and sensor glass so national insignia can be painted cleanly. Its build follows CheckMate specification, so the airframe lands in a scene with clean geometry and real proportions. A low sun across the wings shows off the length of the span in dramatic flyover shots.",
+      "Two versions are available, the static drone at $69 and a Ukrainian Bayraktar TB2 UAV Rigged version at $89. Animators pick the rigged version when the drone must bank and climb in flight. Launched in 2026, it supports war news graphics, defense documentaries, simulators and strategy games."
+    ],
+    "keywords": ["bayraktar drone 3d", "combat drone model", "ukrainian uav", "tactical drone 3d", "male drone aircraft", "military uav model", "armed drone", "reconnaissance strike drone"]
+  },
+  {
+    "slug": "vetter-industrial-jib-crane-with-electric-hoist-2545805",
+    "paragraphs": [
+      "A pillar-mounted jib crane swings an electric hoist over a workstation, lifting heavy parts within a circular reach on the shop floor. The 151,792 polygons and 151,552 vertices go into the column, the slewing boom, the trolley and the hoist with its hook. Its circular reach covers one work cell, which is why such cranes sit beside machine tools and loading bays.",
+      "Mixed UVs separate painted steel, warning stripes and the hoist housing so each can carry its own wear. At 725.08 x 725.08 x H548.25 cm, the boom sweep fills a large bay above workers and forklifts. A CheckMate specification build keeps the frame tidy for animation of the boom turning.",
+      "At the same $69, a Column Mounted Jib Crane with Electric Hoist version is offered alongside this one. The column version suits workshops without a wall to anchor to, standing free on its own base. Since 2026 the crane has supported layout studies, safety training, industrial renders and simulation games."
+    ],
+    "keywords": ["jib crane 3d model", "pillar jib crane", "electric hoist crane", "workshop crane", "slewing jib crane", "industrial lifting crane", "factory crane model", "column mounted crane"]
+  },
+  {
+    "slug": "vintage-coca-cola-bottles-collection-3-2509434",
+    "paragraphs": [
+      "Classic glass soda bottles with contoured shapes and embossed lettering capture decades of a famous drink's design history. Each bottle reflects a different era of the design, so a row of them tells a visual timeline at a glance. Lined up on a diner counter or a museum shelf, the bottles evoke nostalgia instantly.",
+      "Clear and green-tinted glass shaders bring out the ridges and lettering, best with strong backlight. Condensation droplets and caps can be added for a cold, just-opened look in close-ups. The set meets CheckMate specification, so the contoured glass keeps clean, smooth geometry.",
+      "An Editorial Uses Only license covers these bottles, suited to history articles, collector features and educational content. Vintage Coca Cola Bottles Collection 2 is the cheaper version at $39, while this collection, from 2025, costs $69. Collectors' guides often show both versions side by side to compare bottle generations."
+    ],
+    "keywords": ["vintage coca cola bottle 3d", "classic soda bottle", "glass cola bottles", "retro soda bottles", "contour bottle model", "old coke bottles", "vintage glass bottle set", "diner soda bottles"]
+  },
+  {
+    "slug": "white-british-army-pith-helmet-on-head-2422244",
+    "paragraphs": [
+      "A white British army pith helmet rests on a male head, the domed cork sun helmet of colonial-era campaigns and parade grounds. The 17,443 polygons and 17,454 vertices cover the dome, the brim curving down at the back, the band and the head. The deep rear brim shields the neck from tropical sun, a practical shape that defines the silhouette.",
+      "Non-overlapping UVs keep the cloth cover, the band and the skin apart for weathering or a crisp whitewash. Helmet and head measure 23.55 x 27.49 x H39.77 cm, so the piece fits a full figure without rescaling. Subtle seams on the fabric cover catch light at an angle, adding realism in portrait close-ups.",
+      "Next to this white version, a Beige Pith Helmet on Male Head version is offered at the same $69. The beige version suits field campaigns, while the white one belongs at a ceremony or a period parade. A 2025 model, the helmet fits historical films, colonial-era documentaries, museum displays and period games."
+    ],
+    "keywords": ["pith helmet 3d model", "white pith helmet", "colonial sun helmet", "british army helmet", "safari helmet on head", "victorian military helmet", "cork sun helmet", "historical headwear 3d"]
+  },
+  {
+    "slug": "white-lethal-injection-table-2430751",
+    "paragraphs": [
+      "A white execution table with padded surface, arm boards and restraint straps depicts the bleak room of a lethal injection procedure. The 73,762 polygons and 74,602 vertices go into the cushioning, buckles, arm supports and the steel pedestal. Arm boards extended to the sides form a cross shape that viewers recognize from documentaries and news coverage.",
+      "Non-overlapping UVs allow white vinyl, worn straps and brushed steel to be shaded separately. It measures 221.98 x 157.09 x H100.5 cm, true to the equipment of a real execution chamber. Under cold clinical light, the clean white surface makes the scene even more unsettling.",
+      "Both this version and a Lethal Injection Execution Table variant are offered for an identical $69 price. Legal history programs use such props to explain capital punishment without graphic imagery. Brought into the catalog in 2025, it serves prison dramas, true crime reconstructions, documentaries and serious games."
+    ],
+    "keywords": ["lethal injection table 3d", "execution table", "death penalty gurney", "execution chamber props", "prison medical table", "restraint gurney white", "capital punishment scene", "death row interior"]
+  },
+  {
+    "slug": "white-parade-british-army-pith-helmet-on-man-head-2422303",
+    "paragraphs": [
+      "A white parade pith helmet worn by a man shows the ceremonial headgear of British infantry in dress uniform. The 25,840 polygons and 26,085 vertices define the tall dome, the top ventilator, the chin strap and the man's head. Worn level on the brow, the helmet gives the figure the upright bearing of a parade guard.",
+      "Non-overlapping UVs hold the white cover, metal fittings and skin on separate islands for crisp ceremonial finishes. With helmet and head at 23.0 x 27.49 x H36.39 cm, the piece slots onto a full-size figure. Bright whitewash with slight age yellowing suits museum reconstructions of old regiments.",
+      "A second version, the British Army Pith Helmet with Regimental Badge on Man Head, costs $79 against $69 for this one. The badge version adds unit insignia at the front, useful when a specific regiment must be shown. The helmet joined the catalog in 2025 and fits period films, military history displays, reenactment visuals and strategy games."
+    ],
+    "keywords": ["parade pith helmet 3d", "british infantry helmet", "ceremonial helmet model", "colonial army headgear", "pith helmet on man", "victorian soldier helmet", "dress uniform helmet", "military history headwear"]
+  },
+  {
+    "slug": "womens-industrial-work-coverall-black-2535607",
+    "paragraphs": [
+      "A black one-piece work coverall for women outfits a factory technician, mechanic or warehouse worker in practical, rugged clothing. The 29,729 polygons and 36,972 vertices cover the collar, zip front, pockets, cuffs and soft folds at the knees and elbows. A slightly loose cut leaves room for movement, the way real overalls fit on a working shift.",
+      "Mixed UVs separate fabric panels and hardware so reflective tape, logos or grease stains can be added. StemCell preparation keeps the fabric shader stable across supported renderers, so the black cloth never turns gray. At 101.12 x 29.43 x H149.46 cm, the garment fits an adult female figure in a natural pose.",
+      "The garment alone costs $69, while the Woman in Industrial Work Coverall Black Fur Black version adds a full figure with hair for $99. The figure version saves time when a scene needs a ready worker rather than empty clothing. A 2026 addition, the coverall suits factory renders, safety training, workwear catalogs and industrial games."
+    ],
+    "keywords": ["work coverall 3d model", "women's overalls", "black boiler suit", "industrial workwear", "mechanic coverall", "factory worker clothing", "one piece work suit", "female workwear 3d"]
+  },
+  {
+    "slug": "low-poly-characters-collection-4-rigged-for-cinema-4d-2513461",
+    "paragraphs": [
+      "A group of stylized low poly characters gives indie games, mobile apps and explainer animations a ready cast of simple, readable people. Flat-shaded faces and blocky proportions keep the style consistent, so the figures mix well with low poly environments. Varied clothing and body types let a crowd look diverse even at the tiny size of a mobile screen.",
+      "Light meshes like these run smoothly in real-time engines, even with many characters on screen at once. The cast meets CheckMate specification with tidy topology, so retargeting animation is straightforward. Flat colors from simple materials keep the look clean and make palette swaps quick.",
+      "Both versions cost $64: the main build and the Low Poly Characters Collection 4 Rigged for Maya version. Choosing the version that matches your software saves setup time before animating the cast. Since 2026 the characters have populated casual games, educational videos, infographics and social media animations."
+    ],
+    "keywords": ["low poly characters 3d", "stylized people pack", "low poly human models", "game character pack", "mobile game characters", "flat shaded characters", "low poly crowd", "indie game people"]
+  },
+  {
+    "slug": "active-radar-air-missile-2556722",
+    "paragraphs": [
+      "A long radar-guided air-to-air missile with mid-body wings and tail fins arms a fighter for beyond-visual-range combat scenes. The 40,591 polygons and 40,167 vertices go into the slender body, the radome nose, the control fins and the wing roots. Its narrow profile lets fighters carry several under the wings or inside weapon bays.",
+      "Mixed UVs separate the white body, the colored bands and the stencils, so markings can be changed easily. With StemCell materials in place, the missile renders without shader rebuilding in any supported package. At 730.22 x 75.04 x H75.04 cm, it fits the wing rails of a modern fighter aircraft.",
+      "Two versions cost $59 each: this Active Radar Air Missile and a Raytheon AIM-120 Air To Air Missile. Pick the Raytheon version for a specific weapon and this generic one for fictional air forces. This 2026 missile fits air combat games, defense graphics, flight simulators and military documentaries."
+    ],
+    "keywords": ["radar guided missile 3d", "bvr missile model", "aim-120 amraam", "fighter jet missile", "air to air weapon", "aircraft missile 3d", "military missile model", "air combat munition"]
+  },
+  {
+    "slug": "adjustable-manual-gantry-crane-tool-silver-rigged-2505189",
+    "paragraphs": [
+      "A silver adjustable gantry frame with a manual hoist lifts engines, molds and heavy parts in garages and small workshops. The 97,215 polygons and 103,343 vertices go into the telescoping legs, the cross beam, the trolley, the chain hoist and casters. Adjustable legs let the frame change height, so it clears a car bonnet or a low workbench.",
+      "Overlapping UVs let legs and wheels share texture space, keeping the file efficient without visible loss. Built at 384.8 x 172.88 x H265.11 cm, the frame stands above a worker and spans a small vehicle. Brushed silver paint with scuffs along the legs suits a busy garage better than a showroom finish.",
+      "This version is $59, and an Industrial Manual Gantry Crane Equipment Used Rigged version costs $44. The used rigged version suits a worn workshop and can be animated lifting a load. Garage and factory scenes have relied on it since 2025, along with maintenance training and engineering visuals."
+    ],
+    "keywords": ["portable gantry crane 3d", "adjustable gantry frame", "manual chain hoist", "workshop lifting gantry", "engine hoist gantry", "garage crane model", "silver gantry crane", "lifting equipment 3d"]
+  },
+  {
+    "slug": "aged-long-vikings-house-simple-interior-2152192",
+    "paragraphs": [
+      "A long Viking house with a steep roof and weathered timber walls recreates the communal hall of a Norse farmstead. The 15,383 polygons and 17,294 vertices keep the building light, with a simple interior of posts and open floor space. Its aged surfaces show centuries of weather, perfect for a village that has stood since the sagas.",
+      "Overlapping UVs let timber planks share texture space, keeping memory low when several houses form a village. Its StemCell certification means the timber and roof materials were tuned for every supported renderer. Smoke drifting from the roof and warm firelight inside bring the hall to life at dusk.",
+      "This aged version costs $59, and a cleaner Long Vikings House Simple Interior version is priced the same. Using both versions shows the same village when new and after generations of wear. Since 2023 the house has appeared in Viking films, history documentaries, survival games and museum reconstructions."
+    ],
+    "keywords": ["viking longhouse 3d", "norse house model", "viking hall interior", "medieval longhouse", "viking village building", "old wooden longhouse", "scandinavian longhouse", "viking settlement assets"]
+  },
+  {
+    "slug": "aim9-sidewinder-air-to-air-missile-2526995",
+    "paragraphs": [
+      "A short-range infrared-guided missile with canard fins at the nose and rollerons at the tail arms fighters for close dogfights. The 76,366 polygons and 76,570 vertices go into the seeker dome, the forward canards, the tail wings and their small rollerons. Its compact length lets it hang from wingtip rails, the classic position on many fighter jets.",
+      "Mixed UVs separate the gray body, the yellow warhead band and the seeker glass so each takes its own material. StemCell status ensures the body, fins and seeker glass render consistently in each supported tool. At 48.01 x 303.48 x H48.01 cm, it is far shorter than long-range radar-guided weapons.",
+      "This missile and an Infrared Air to Air Weapon Missile version are both priced at $59. Swapping versions adds variety when a fighter carries several missiles under its wings. Out in 2026, the missile serves air combat games, aviation documentaries, flight simulators and defense explainers."
+    ],
+    "keywords": ["sidewinder missile 3d", "infrared guided missile", "short range missile", "dogfight missile model", "heat seeking missile", "fighter wingtip missile", "aim-9 model", "air combat missile 3d"]
+  },
+  {
+    "slug": "airbus-aircraft-rudder-pedals-control-unit-2515747",
+    "paragraphs": [
+      "A cockpit rudder pedal assembly with adjustable footrests and linkage arms shows how pilots steer an airliner on the ground and in flight. The 92,148 polygons and 92,657 vertices go into the pedals, springs, pivot shafts, rails and the housing. Pedal surfaces with grip texture and toe brakes reveal the dual role of steering and braking.",
+      "Mixed UVs separate painted metal, rubber pads and fasteners so cockpit grime can be added where feet rest. A StemCell check means the pedals, springs and housing come with materials tuned for multiple renderers. At 75.75 x 55.32 x H44.83 cm, the unit fits beneath a cockpit seat in a flight deck scene.",
+      "Under its Editorial Uses Only terms, the unit suits aviation journalism, training articles and technical education. Two versions are offered: this Airbus Aircraft Rudder Pedals Control Unit at $59 and a simplified version at $49. Both arrived in 2026, and the lighter simplified version suits background cockpit fills."
+    ],
+    "keywords": ["rudder pedals 3d model", "airbus cockpit pedals", "aircraft rudder control", "flight deck controls", "cockpit pedal unit", "aircraft control parts", "airliner cockpit 3d", "pilot foot pedals"]
+  }
 ]
