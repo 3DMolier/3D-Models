@@ -1,5 +1,7 @@
 /* Photo or Render: 10 кадров, игрок решает, фото это или наш рендер.
-   После ответа у рендера - ссылка на модель, у фото - автор и лицензия. */
+   После ответа у рендера - ссылка на модель, у фото - автор и лицензия.
+   Если рендер приняли за фото - отдельный блок «проверь сам» со ссылкой на модель.
+   Ссылки на модели открываются в новой вкладке, чтобы партия не прерывалась. */
 (function () {
   'use strict';
   var BASE = '/play/photo-or-render/';
@@ -13,6 +15,11 @@
 
   function ga(name, params) { try { if (window.gtag) window.gtag('event', name, params || {}); } catch (e) {} }
   function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  // Карточка на нашем сайте (s) или, для самых свежих моделей, страница TurboSquid (u)
+  function modelLink(x, cls, inner) {
+    var href = x.s ? '/models/' + x.s + '/' : x.u;
+    return '<a' + (cls ? ' class="' + cls + '"' : '') + ' href="' + esc(href) + '" target="_blank" rel="noopener" data-slug="' + esc(x.s || x.id) + '">' + inner + '</a>';
+  }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
   // В партии фото и рендеров поровну плюс-минус один: иначе выгодно жать одну кнопку
@@ -48,7 +55,11 @@
     shot.className = 'pr-shot ' + (ok ? 'pr-ok' : 'pr-bad');
     var head = '<strong class="' + (ok ? 'pr-yes' : 'pr-no') + '">' + (ok ? 'Correct!' : 'Not quite.') + '</strong> ';
     if (cur.t === 'r') {
-      reveal.innerHTML = head + 'This is a 3D render: <a href="/models/' + cur.s + '/" data-slug="' + cur.s + '">' + esc(cur.n) + '</a>, $' + cur.p + ' in our catalog.';
+      reveal.innerHTML = ok
+        ? head + 'This is a 3D render: ' + modelLink(cur, '', esc(cur.n)) + ', $' + cur.p + ' in our catalog.'
+        : head + 'It looks like a photo, but this is a 3D render of a real 3D model: <strong>' + esc(cur.n) + '</strong>, $' + cur.p + '.' +
+          '<span class="pr-proof">' + modelLink(cur, 'pr-proof-btn', 'Check the 3D model &#8599;') +
+          '<span class="pr-proof-note">Opens in a new tab: see all renders, formats and polygon count.</span></span>';
     } else {
       reveal.innerHTML = head + 'This is a real photo by ' + esc(cur.a || 'unknown author') + ', <a href="' + esc(cur.src) + '" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="' + esc(cur.lu || cur.src) + '" target="_blank" rel="noopener">' + esc(cur.l) + '</a>.';
     }
@@ -66,7 +77,7 @@
       : score >= 7 ? 'Good eye, but some of our renders fooled you.'
       : 'Our renders fooled you more often than not. That is the point of a photoreal model.';
     $('pr-over-grid').innerHTML = renders.map(function (x) {
-      return '<a class="pr-model" href="/models/' + x.s + '/" data-slug="' + x.s + '"><img src="' + BASE + 'img/' + x.f + '" alt="" loading="lazy"><span class="pr-model-name">' + esc(x.n) + '</span><span class="pr-model-price">$' + x.p + '</span></a>';
+      return modelLink(x, 'pr-model', '<img src="' + BASE + 'img/' + x.f + '" alt="" loading="lazy"><span class="pr-model-name">' + esc(x.n) + '</span><span class="pr-model-price">$' + x.p + '</span>');
     }).join('');
     overEl.hidden = false;
     $('pr-play').hidden = true;

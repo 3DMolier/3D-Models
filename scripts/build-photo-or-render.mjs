@@ -75,14 +75,30 @@ async function frame(file, isRender) {
 fs.mkdirSync(IMG_DIR, { recursive: true });
 fs.mkdirSync(CACHE, { recursive: true });
 const items = [], keep = new Set();
-for (const id of src.renders) {
-  const a = rec.get(String(id)), dir = DIR_BY_ID.get(String(id)), f = fc.get(String(id));
-  if (!a || !dir || !f || delisted.has(String(id))) { console.error('рендер пропущен', id); continue; }
-  const file = await fetchTo(a.image, path.join(CACHE, id + '.img'));
-  const fn = name('r' + id);
+// Рендер - номер модели (берётся главный кадр карточки) или {id, img} - кадр, выбранный основателем.
+// Модели, которой ещё нет на сайте, нужен ts: {n, p, url} - ссылка тогда ведёт на TurboSquid.
+// Вариант, склеенный с другой карточкой (его страница - перенаправление): card - папка общей карточки, n и p - самого варианта.
+const REF = '?referral=3d_molier-international';
+for (const r of src.renders) {
+  const id = String(typeof r === 'object' ? r.id : r);
+  const a = rec.get(id), dir = DIR_BY_ID.get(id), f = fc.get(id), ts = r.ts;
+  if (r.card) {
+    if (!fs.existsSync(path.join(ROOT, 'models', r.card, 'index.html'))) { console.error('нет общей карточки', r.card); continue; }
+    const file = await fetchTo(r.img, path.join(CACHE, 'r-' + crypto.createHash('sha1').update(r.img).digest('hex').slice(0, 16) + '.img'));
+    const fn = name('r' + id + r.img);
+    fs.writeFileSync(path.join(IMG_DIR, fn), await frame(file, true));
+    keep.add(fn);
+    items.push({ f: fn, t: 'r', s: r.card, n: r.n, p: r.p });
+    continue;
+  }
+  if (delisted.has(id) || (!(a && dir && f) && !ts)) { console.error('рендер пропущен', id); continue; }
+  const img = r.img || (a && a.image);
+  const file = await fetchTo(img, path.join(CACHE, (r.img ? 'r-' + crypto.createHash('sha1').update(img).digest('hex').slice(0, 16) : id) + '.img'));
+  const fn = name('r' + id + (r.img || ''));
   fs.writeFileSync(path.join(IMG_DIR, fn), await frame(file, true));
   keep.add(fn);
-  items.push({ f: fn, t: 'r', s: dir, n: (a.display_name || f.n).replace(/\s+3D Model$/i, ''), p: f.p });
+  if (dir && f) items.push({ f: fn, t: 'r', s: dir, n: r.n || ((a && a.display_name) || f.n).replace(/\s+3D Model$/i, '').replace(/\s*\(\d+\)$/, ''), p: f.p });
+  else items.push({ f: fn, t: 'r', id, u: ts.url + REF, n: ts.n, p: ts.p });
 }
 for (const ph of src.photos) {
   const file = await fetchTo(ph.thumb, path.join(CACHE, 'c-' + crypto.createHash('sha1').update(ph.title).digest('hex').slice(0, 16) + '.img'), { 'User-Agent': UA });
