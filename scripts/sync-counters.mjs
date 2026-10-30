@@ -212,11 +212,16 @@ const SPOTS = [
   ]],
   // Прозой «around 37,500» писали, когда число прыгало каждый день; теперь оно
   // синхронизируется, и «около» рядом с точным числом не нужно.
-  ['about/index.html', [[/(shows )around (<strong>)[\d,]+( product pages)/g, null]]],
+  // 29.10.2026: правило ловило только «shows around <strong>N» - после того как «around»
+  // убрали, оно больше не совпадало, и About три дня показывал 37 678 при 38 077 в каталоге.
+  // Теперь «around» необязателен (и убирается), число всегда из того же источника, что и каталог.
+  ['about/index.html', [[/(shows )(?:around )?(<strong>)[\d,]+( product pages)/g, null]]],
   ['custom-order/index.html', [
     [/(studio behind a )[\d,]+(-model catalog)/g, T],
-    [/(browse here - )around [\d,]+( model pages across)/g, T],
+    [/(browse here - )(?:around )?[\d,]+( model pages across)/g, T],   // «around» убрали - правило должно жить и без него
   ]],
+  // заглушка старого адреса /full-catalog/ - число в описании тоже живое (29.10.2026)
+  ['full-catalog/index.html', [[/(Browse all )[\d,]+( 3D models by 3D Molier)/g, T]]],
   ['categories/weapons-tools/index.html', [
     [/(Weapons 3D Models<\/div>\s*<div class="split-count">)[\d,]+( models)/g, fmt(counts.counts.weapons)],
     [/(Tools 3D Models<\/div>\s*<div class="split-count">)[\d,]+( models)/g, fmt(counts.counts.tools)],

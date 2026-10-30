@@ -35,7 +35,14 @@ const MIL = /\b(fighter|bomber|military|combat|warplane|warship|battleship|destr
 // него должен быть один. Ничего из перечисленного военным не перестаёт быть,
 // поэтому дополнение только расширяет, ничего не отменяя.
 // 27.10.2026: HMMWV M998 из категории Vehicles не узнавался военным (Humvee - армейский).
-const MIL_MORE = /\b(aircraft carrier|cvn-?\d\d|a400m|aw101|m-346|l-39|bushmaster|stryker|main battle tank|hmmwv|humvee|nighthawk|fighter jet|attack jet|combat trainer|nato|c-5m?\b|oh-6|mh-6|il-76|tu-(?:16|22|95|141|143|160)\b|ka-(?:27|50|52)\b|t-(?:55|62|64|72|80|90)(?![0-9])|b(?:mp|tr|rdm)-\d)/i;
+// 28.10.2026: десантные катера (LCAC, LCVP, LCU, Zubr) в Ships считались гражданскими,
+// и проверка 5 ругалась на правдивое «defense training» у Landing Craft Hovercraft Used.
+// Там же: солдаты (Soldier in Grey Camo) и армейский грузовик Oshkosh FMTV M1082.
+// 29.10.2026: проверка 5 остановила публикацию три дня подряд на правдивом «defense training»
+// у American Tanks Collection («tank\b» не ловил «tanks»), Oshkosh L-ATV, Patrol Car with
+// Protected Gun Mount, Chemical Agent Detector, Schopf Shipboard Tow Tractor (палубный тягач
+// авианосца) и Tactical Support Helicopter Camo.
+const MIL_MORE = /\b(tanks\b|l-?atv|jltv|gun mount|chemical agent|cbrn|shipboard|tactical support|infantry|tactical radar|landing craft|lcac\d*|lcvp|lcu\b|soldiers?\b|fmtv|aircraft carrier|cvn-?\d\d|a400m|aw101|m-346|l-39|bushmaster|stryker|main battle tank|hmmwv|humvee|nighthawk|fighter jet|attack jet|combat trainer|nato|c-5m?\b|oh-6|mh-6|il-76|tu-(?:16|22|95|141|143|160)\b|ka-(?:27|50|52)\b|t-(?:55|62|64|72|80|90)(?![0-9])|b(?:mp|tr|rdm)-\d)/i;
 
 // Гражданские признаки. Нужны не для решения, а для отчётности: решение
 // принимает MIL, всё остальное - гражданское.

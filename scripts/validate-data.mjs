@@ -531,10 +531,38 @@ if (bad9.length) fail(9, 'отрасль модели не существует 
   }
 }
 
+/*
+ * [18] ОБЩЕЕ ЧИСЛО СТРАНИЦ ОДНО НА ВСЕХ СТРАНИЦАХ.
+ *
+ * 26.10 и 29.10.2026 основатель дважды находил на About и в каталоге старое число
+ * (37 683, потом 37 678 при 38 077). Каждый раз виновато место, которое sync-counters
+ * не знал или перестал узнавать после правки текста. Проверка [1] смотрит только
+ * плитки главной, а это сторож шире: на служебных страницах любое число в пределах
+ * ±3 000 от общего числа обязано с ним совпадать. Устаревший счётчик всегда близок
+ * к настоящему, поэтому так ловится и место, о котором правила ещё не знают.
+ */
+{
+  const T = counts.total;
+  const PAGES = ['index.html', 'catalog/index.html', 'about/index.html', 'custom-order/index.html',
+    'data-licensing/index.html', 'full-catalog/index.html', 'categories/index.html'];
+  const bad = [];
+  for (const rel of PAGES) {
+    const p = path.join(ROOT, rel);
+    if (!fs.existsSync(p)) continue;
+    const h = fs.readFileSync(p, 'utf8');
+    for (const m of h.matchAll(/(?<![\w.,\/-])(\d{2},\d{3}|\d{5})(?![\w]|,\d)/g)) {
+      const n = Number(m[1].replace(/,/g, ''));
+      if (n !== T && Math.abs(n - T) <= 3000) bad.push(rel + ': ' + m[1] + ' вместо ' + fmt(T));
+    }
+  }
+  console.log('  [18] общее число страниц на служебных страницах: ' + (bad.length ? bad.length + ' расхождений' : 'везде ' + fmt(T)));
+  if (bad.length) fail(18, 'устаревшее общее число страниц (поправить правило в sync-counters.mjs)', bad);
+}
+
 // ── отчёт ──
 console.log('\nпроверено карточек: ' + live + (SAMPLE ? '  (выборка, шаг ' + step + ')' : ''));
 if (!problems.length) {
-  console.log('\nВСЕ 17 ПРОВЕРОК ПРОЙДЕНЫ');
+  console.log('\nВСЕ 18 ПРОВЕРОК ПРОЙДЕНЫ');
   process.exit(0);
 }
 console.log('\nНАРУШЕНИЙ: ' + problems.length);

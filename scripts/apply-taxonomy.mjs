@@ -56,6 +56,13 @@ for (let k = 0; k < idx.chunks; k++) {
   const c = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'fc-chunk-' + k + '.json'), 'utf8'));
   for (let j = 0; j < c.i.length; j++) slugOfId.set(String(c.i[j]), slugify(c.n[j]) + '-' + c.i[j]);
 }
+// Папку карточки берём существующую, по номеру в конце имени. Вычисленный из
+// названия адрес расходится с папкой, когда название в каталоге короче
+// (28.10.2026: грузовик ...-old-rigged-2497456 не нашёлся и остался в Furniture).
+for (const d of fs.readdirSync(path.join(ROOT, 'models'))) {
+  const m = d.match(/-(\d+)$/);
+  if (m && slugOfId.has(m[1])) slugOfId.set(m[1], d);
+}
 
 for (const [id, cat] of Object.entries(modelCat)) {
   const dir = slugOfId.get(id);
@@ -100,10 +107,19 @@ for (const [id, cat] of Object.entries(modelCat)) {
   // Название категории в тексте описания и в вопросах. Здесь оно не ссылка, а
   // просто слово, и рассинхрон читается особенно грубо: «is one of the Vehicles
   // models» на странице светильника.
-  h = h.replace(/(is one of the )([A-Za-z][A-Za-z&; ]{1,40}?)( models in the 3D Molier catalogue)/,
-    (x, a, cur, b) => { if (cur.trim() !== nm) textFix++; return a + nm + b; });
-  h = h.replace(/(Browsing the )([A-Za-z][A-Za-z&; ]{1,40}?)( category shows)/,
-    (x, a, cur, b) => { if (cur.trim() !== nm) textFix++; return a + nm + b; });
+  // Эти фразы стоят и в видимом тексте, и в ответах FAQ внутри JSON-LD. В JSON-LD
+  // имя пишется как есть («&»): «&amp;» там поисковик покажет буквально. 28.10.2026
+  // правило брало только первое вхождение - ответ в JSON-LD - и вписывало туда
+  // HTML-имя: 9 287 карточек получили «Furniture &amp; Interior» в разметке.
+  const inLd = (off, s) => s.lastIndexOf('<script type="application/ld+json">', off) > s.lastIndexOf('</script>', off);
+  const rawNm = nameOf(cat);
+  const textRule = (x, a, cur, b, off, s) => {
+    const want = inLd(off, s) ? rawNm : nm;
+    if (cur.trim() !== want) textFix++;
+    return a + want + b;
+  };
+  h = h.replace(/(is one of the )([A-Za-z][A-Za-z&; ]{1,40}?)( models in the 3D Molier catalogue)/g, textRule);
+  h = h.replace(/(Browsing the )([A-Za-z][A-Za-z&; ]{1,40}?)( category shows)/g, textRule);
   /*
    * Тот же абзац, но когда название категории в нём - ссылка. Правило выше
    * меняет только подпись и до ссылки не дотягивается: в её адресе оставалась

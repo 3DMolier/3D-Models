@@ -256,7 +256,7 @@
 .mega-item{display:flex!important;flex-direction:column;gap:2px;padding:9px 16px!important}
 .mega-name{color:#111;font-size:13px;font-weight:600}
 .mega-item:hover .mega-name{color:var(--accent)}
-.mega-desc{color:#6b7280;font-size:11px;font-weight:400}
+.mega-desc{color:#6b7280;font-size:11px;font-weight:400}.mega-sep{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .nav-cta{background:#111;color:#fff!important;font-weight:700;font-size:12px;padding:7px 14px;border-radius:4px;text-decoration:none;white-space:nowrap;transition:opacity .2s;flex-shrink:0;margin-left:12px}
 .nav-cta:hover{opacity:.8}
 .nav-burger{display:none;background:none;border:none;cursor:pointer;padding:6px;flex-direction:column;gap:5px;flex-shrink:0;margin-left:8px}
