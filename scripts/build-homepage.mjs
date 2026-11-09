@@ -277,7 +277,7 @@ const SECTION_TOP = `<!-- ══════════════════
 <section class="page-section page-section--gray" id="best-sellers">
 <div class="max-w-7xl mx-auto">
 <div class="sec-head">
-<h2 class="section-h2">Best sellers on TurboSquid</h2>
+<h2 class="section-h2">Popular on TurboSquid</h2>
 <a href="/catalog/" class="sec-more">Top 1000 &rarr;</a>
 </div>
 <div class="mosaic">
@@ -550,7 +550,7 @@ for (const [re, block, what] of swap) {
     const k = graph.findIndex(n => n['@type'] === 'ItemList');
     const node = {
       '@type': 'ItemList',
-      name: 'Best Selling 3D Models by 3D Molier',
+      name: 'Popular 3D Models by 3D Molier',
       url: 'https://3dmolierstudio.com/',
       numberOfItems: items.length,
       itemListElement: items,
