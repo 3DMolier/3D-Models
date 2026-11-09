@@ -74,13 +74,33 @@ function mergeChunk(chunk) {
   }
 }
 
+/*
+ * «Loading catalog…» - только пока человек ждёт данных: искал, отфильтровал, открыл страницу
+ * дальше загруженного (09.11.2026). В разметке сервера надписи больше нет: первые 48 моделей,
+ * фильтры и категории уже отрисованы, и читать поисковику, что каталог «ещё грузится», незачем.
+ * Фоновая подгрузка в простое (scheduleIdlePreload) надпись не включает - её никто не ждёт.
+ */
+var waitChunks={}, loadedChunkSet={};
+function setLoading(on){
+  var spinner=statusMsg?statusMsg.querySelector('.bar-spinner'):null;
+  if(spinner){spinner.hidden=!on;spinner.style.display=on?'':'none';}
+  if(statusText)statusText.textContent=on?'Loading catalog…':'';
+}
+function waitFor(i){ if(!loadedChunkSet[i])waitChunks[i]=true; }
+function updateLoading(){
+  var any=false;
+  for(var k in waitChunks)if(waitChunks.hasOwnProperty(k)&&!loadedChunkSet[k])any=true;
+  if(!any)waitChunks={};
+  setLoading(any);
+}
+
 function onFirstChunk() {
   fcReady=true;
+  // Старая разметка (до 09.11.2026) несла блок fc-loading и надпись в строке состояния -
+  // страница могла остаться в кеше браузера, поэтому убираем их и здесь.
   var loadingEl=document.getElementById('fc-loading');
   if(loadingEl)loadingEl.style.display='none';
-  var spinner=statusMsg?statusMsg.querySelector('.bar-spinner'):null;
-  if(spinner)spinner.style.display='none';
-  if(statusText)statusText.textContent='';
+  setLoading(false);
   if(sortSel)sortSel.disabled=false;
   // Подсказку в поле НЕ переписываем числом: 54 077 и без того стоит в
   // заголовке и в счётчике выдачи, третий раз - перебор.
@@ -135,7 +155,8 @@ function ensureChunkForPage(p){
   var rows = CHUNK_ROWS || 0;
   if(!rows){ ensureRemainingChunks(); return; }
   var need = Math.floor((p * PAGE_SIZE) / rows);
-  for(var i=0;i<=need && i<totalChunks;i++) loadChunk(i);
+  for(var i=0;i<=need && i<totalChunks;i++){ waitFor(i); loadChunk(i); }
+  updateLoading();
 }
 
 function scheduleIdlePreload(){
@@ -155,7 +176,8 @@ function scheduleIdlePreload(){
 // число менялось по мере догрузки - отсюда и разные счётчики у Aircraft.
 // Все шесть чанков весят 2,9 МБ и грузятся в простое, так что это дёшево.
 function ensureRemainingChunks(){
-  for(var i=loadedChunks;i<totalChunks;i++)loadChunk(i);
+  for(var i=loadedChunks;i<totalChunks;i++){ waitFor(i); loadChunk(i); }
+  updateLoading();
 }
 
 // Один чанк запрашивается один раз. Без этого фоновая подгрузка и догрузка по
@@ -171,6 +193,7 @@ function loadChunk(i) {
       if(!CHUNK_ROWS&&i===0&&chunk.i)CHUNK_ROWS=chunk.i.length;
       mergeChunk(chunk);
       loadedChunks++;
+      loadedChunkSet[i]=true;
       if(loadedChunks===1) onFirstChunk();
       // Пришедший кусок пересобирает выдачу, но НЕ отматывает её в начало.
       // Раньше applyFilters сбрасывал page в ноль, и после «Load more» сетка
@@ -178,13 +201,16 @@ function loadChunk(i) {
       // очередной кусок: досмотреть каталог было нельзя.
       else if(fcReady) applyFilters(true);
       // scheduleIdlePreload handles further auto-loading; no serial chain here
+      updateLoading();
     })
     .catch(function(err){
       console.error('Chunk '+i+' failed:',err);
       delete requestedChunks[i];
-      if(loadedChunks===0){
-        var loadingEl=document.getElementById('fc-loading');
-        if(loadingEl)loadingEl.innerHTML='Failed to load. <a href="javascript:location.reload()">Retry</a>';
+      var waited=!!waitChunks[i];
+      delete waitChunks[i];
+      if(loadedChunks===0||waited){
+        updateLoading();
+        if(statusText)statusText.textContent='Failed to load catalog. Please refresh.';
       }
     });
 }
@@ -483,7 +509,8 @@ function updateStatus(){
       ? '<strong>'+filtered.length.toLocaleString('en-US')+'</strong> of '+total.toLocaleString('en-US')+' models'
       : '<strong>'+total.toLocaleString('en-US')+'</strong> models';
   }
-  if(statusText)statusText.textContent='';
+  // строку состояния ведёт только setLoading/updateLoading: здесь её не чистим,
+  // иначе надпись пропадала бы на каждой перерисовке, пока куски ещё грузятся
 }
 
 if(qEl){

@@ -206,7 +206,6 @@ const SPOTS = [
     [/(Browse all )[\d,]+( professional 3D models)/g, T],
     [/(Complete catalog of )[\d,]+( professional 3D models)/g, T],
     [/("numberOfItems":)\d+(,)/g, String(TOTAL)],
-    [/(Loading catalog\.\.\.(?:\s*<[^>]+>)*\s*)[\d,]+( models)/g, T],
     [/(Browse all )[\d,]+( models page by page)/g, T],
     [/(<h1>Catalog <span class="text-accent">-<\/span> )[\d,]+( 3D Models<\/h1>)/g, T],
   ]],
