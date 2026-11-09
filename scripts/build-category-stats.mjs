@@ -53,7 +53,8 @@ const med = a => { if (a.length < MIN_N) return null; const b = a.slice().sort((
 const out = {};
 for (const [cs, a] of [...acc.entries()].sort()) {
   out[cs] = {
-    polyMed: med(a.poly), priceMed: med(a.price), salesMed: med(a.sales),
+    // salesMed убран 09.11.2026: файл лежит в открытом доступе, а продажи не публикуются
+    polyMed: med(a.poly), priceMed: med(a.price),
     n: a.poly.length,
   };
 }

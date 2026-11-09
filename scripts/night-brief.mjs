@@ -14,6 +14,8 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { salesSentences } from './lib/sales-guard.mjs';
+import { salesFixQueue, DAILY } from './lib/sales-fix-queue.mjs';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname).replace(/^\/([A-Za-z]:)/, '$1'), '..');
 const WORK = path.join(ROOT, 'tools', 'night-writer');
@@ -27,7 +29,15 @@ const COUNT = argv.includes('--count') ? +argv[argv.indexOf('--count') + 1] : 20
  * предлагает, потому что сортирует по продажам, а не по этому признаку.
  */
 const slugFile = argv.includes('--slugs') ? argv[argv.indexOf('--slugs') + 1] : null;
-const queue = slugFile
+/*
+ * --sales-fix N - справки по следующим N уже опубликованным текстам, где названы
+ * продажи (очередь и дневной потолок - lib/sales-fix-queue.mjs). Включает --rewrite.
+ */
+const SALES_FIX = argv.includes('--sales-fix') ? Math.max(0, +argv[argv.indexOf('--sales-fix') + 1] || 0) : null;
+let salesFixInfo = null;
+if (SALES_FIX !== null) salesFixInfo = salesFixQueue(SALES_FIX);
+const queue = salesFixInfo ? salesFixInfo.slugs
+  : slugFile
   ? JSON.parse(fs.readFileSync(slugFile, 'utf8'))
   : JSON.parse(fs.readFileSync(path.join(WORK, 'queue.json'), 'utf8'));
 const doneFile = path.join(WORK, 'done.txt');
@@ -38,26 +48,25 @@ const done = new Set(fs.existsSync(doneFile) ? fs.readFileSync(doneFile, 'utf8')
  * собирается из записи, и пометка в ней пропала бы при первой же пересборке
  * вместе с самим текстом, как это уже случилось с 1 762 карточками.
  */
-{
+/*
+ * --rewrite - справки по УЖЕ написанным карточкам (не пропускать готовые). Нужно для
+ * правки продаж (09.11.2026): night-sales-fix.mjs выдаёт список, справка несёт
+ * нынешний текст (descriptionNow) и отдельно предложения с продажами (salesSentences).
+ * --out <файл> - писать справку не в brief.json (для проверок в стороне от ночной смены).
+ */
+const REWRITE = argv.includes('--rewrite') || SALES_FIX !== null;
+const OUT = argv.includes('--out') ? path.resolve(argv[argv.indexOf('--out') + 1]) : path.join(WORK, 'brief.json');
+if (!REWRITE) {
   const f = path.join(ROOT, 'data', 'model-hand-desc.json');
   if (fs.existsSync(f)) for (const k of Object.keys(JSON.parse(fs.readFileSync(f, 'utf8')))) done.add(k);
-}
+} else done.clear();
 
 /*
- * Записи нужны ради ПРОДАЖ: на странице их нет, а в тексте это самый весомый
- * факт - «продана 439 раз» говорит покупателю больше любого прилагательного.
- * На плитке каталога число и так показано, так что тайны из него не делаем.
- * Пока его не было в справке, проверка чисел честно отклоняла такой текст:
- * сверять было не с чем.
+ * ПРОДАЖ В СПРАВКЕ НЕТ (решение основателя 09.11.2026: «не публиковать количество
+ * продаж в общий доступ»). До этого справка несла sales, и около 3,5 тыс. текстов
+ * вышли с фразами «sold 228 times». Без поля проверка чисел в night-apply.mjs
+ * сама отклонит такое число, а checkSales там же ловит его словами.
  */
-const bySlug = new Map();
-{
-  const RECS = path.join(ROOT, 'data', 'records');
-  if (fs.existsSync(RECS)) {
-    for (const f of fs.readdirSync(RECS).filter(x => /^records-\d+\.json$/.test(x)))
-      for (const r of JSON.parse(fs.readFileSync(path.join(RECS, f), 'utf8'))) bySlug.set(r.slug, r);
-  }
-}
 
 const plain = s => String(s).replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/&#39;|&#x27;/g, "'")
   .replace(/&quot;/g, '"').replace(/\s+/g, ' ').trim();
@@ -100,7 +109,6 @@ for (const slug of queue) {
     slug,
     name: plain((h.match(/<h1[^>]*>([\s\S]*?)<\/h1>/) || [])[1] || slug),
     category: cell(h, 'Category'),
-    sales: +(bySlug.get(slug) || {}).sales || 0,
     price: cell(h, 'Price'),
     quality: cell(h, 'Quality standard') || cell(h, 'Certification'),
     // Лицензия - из строки характеристик. Без неё смена угадывала Editorial по
@@ -121,11 +129,19 @@ for (const slug of queue) {
     keywordsNow: kw,
     descriptionNow: desc,
     wordsNow: desc.join(' ').split(/\s+/).filter(Boolean).length,
+    ...(REWRITE ? { salesSentences: salesSentences(desc) } : {}),
   });
 }
 
-fs.writeFileSync(path.join(WORK, 'brief.json'), JSON.stringify(out, null, 1));
-console.log('справок собрано: ' + out.length + ' -> tools/night-writer/brief.json');
+if (salesFixInfo) {
+  const q = salesFixInfo;
+  console.log(`правка продаж: осталось ${q.remaining}, сегодня переписано ${q.doneToday} из ${DAILY}`
+    + (q.slugs.length ? '' : q.room ? ' - выдавать нечего' : ' - дневной потолок исчерпан, сегодня правку продаж больше не делать'));
+  // пустая выдача не трогает brief.json: в нём может лежать справка обычного прогона
+  if (!out.length) process.exit(0);
+}
+fs.writeFileSync(OUT, JSON.stringify(out, null, 1));
+console.log('справок собрано: ' + out.length + ' -> ' + path.relative(ROOT, OUT).split(path.sep).join('/'));
 console.log('пройдено всего:  ' + done.size + ' из ' + queue.length);
 out.forEach((x, i) => console.log('  ' + (i + 1) + '. ' + x.name.slice(0, 46).padEnd(48)
   + x.price.padEnd(10) + (x.versions.length ? 'версий: ' + x.versions.length + '  ' : '')

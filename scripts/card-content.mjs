@@ -253,26 +253,11 @@ const AGE = [
   y => `In the catalog since ${y}, which is a longer track record than most listings carry.`,
 ];
 /*
- * ПРАВКА B: возраст листинга вместе с числом покупок. Своё число - значит
- * уникальный отрывок текста, и для покупателя это подтверждение, что модель
- * действительно берут.
- *
- * ПОРОГ 10 ПРОДАЖ СТОИТ НАМЕРЕННО. У медианной модели каталога продаж
- * две-четыре, и фраза «нашла 2 покупателя с 2016 года» работает против нас:
- * это правда, но правда, которую незачем выносить в первый экран. Ниже порога
- * берётся прежний вариант без числа. Медиану продаж по категории в текст не
- * ставим по той же причине.
+ * Число продаж в текст карточки НЕ ставится (основатель 09.11.2026: «не
+ * публиковать количество продаж в общий доступ»). Здесь была заготовка
+ * AGE_SALES - «с 2016 года нашла 41 покупателя» для моделей от 10 продаж;
+ * она убрана, возраст листинга теперь всегда идёт заготовкой AGE без числа.
  */
-const AGE_SALES = [
-  (y, s) => `It has been on sale since ${y} and has found ${s} buyers in that time.`,
-  (y, s) => `Listed in ${y}, the model has been bought ${s} times since.`,
-  (y, s) => `${y} is when it first went up, and ${s} purchases later it is still in the catalog.`,
-  (y, s) => `On the marketplace since ${y}, with ${s} sales behind it.`,
-  (y, s) => `Published in ${y}, it has stayed in the range through ${s} sales.`,
-  (y, s) => `Since ${y} it has sold ${s} times, which is a longer track record than most listings carry.`,
-  (y, s) => `${s} buyers have taken it since ${y}, which is why it is still maintained.`,
-  (y, s) => `In the catalog since ${y} and bought ${s} times, so it has been through real projects.`,
-];
 
 /*
  * Заготовка «для чего годится» по категории. У Aircraft их теперь ДВЕ.
@@ -626,12 +611,7 @@ export function description(f, name, cat, price, seed, catSlugIn) {
   // Заготовки про возраст листинга говорят о «нескольких кругах студийного
   // использования». Для модели, вышедшей пару месяцев назад, это неправда,
   // поэтому возраст упоминаем только у листингов старше года.
-  if (yr && f.days > 365) {
-    const sl = Number(f.sales || 0);
-    parts.push(sl >= 10
-      ? take(AGE_SALES, seed, 'age-sales')(yr, fmtInt(sl))
-      : take(AGE, seed, 'age')(yr));
-  }
+  if (yr && f.days > 365) parts.push(take(AGE, seed, 'age')(yr));
   // Военная заготовка - только явным военным моделям.
   const csSent = catSlugIn || catSlug(cat);
   let useSent = cat === 'Aircraft'

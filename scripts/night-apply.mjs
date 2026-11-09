@@ -19,6 +19,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { checkSales } from './lib/sales-guard.mjs';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname).replace(/^\/([A-Za-z]:)/, '$1'), '..');
 const WORK = path.join(ROOT, 'tools', 'night-writer');
@@ -31,14 +32,17 @@ const MARK = '<!-- written:v1 -->';
 const esc = s => String(s).replace(/&(?!(amp|lt|gt|quot|#\d+);)/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const jsonEsc = s => String(s).replace(/\\/g, '\\\\').replace(/"/g, '\\"');
 
-const items = JSON.parse(fs.readFileSync(path.join(WORK, 'written.json'), 'utf8'));
+// --written / --brief <файл> - другие входные файлы. Нужны для проверки (--dry) в
+// стороне от ночной смены: она пишет те же written.json и brief.json каждые 10 минут.
+const argPath = (k, dflt) => { const i = process.argv.indexOf(k); return i > 0 ? path.resolve(process.argv[i + 1]) : dflt; };
+const items = JSON.parse(fs.readFileSync(argPath('--written', path.join(WORK, 'written.json')), 'utf8'));
 
 // ── Проверка чисел ───────────────────────────────────────────────────────────
 // Любое число в тексте должно быть взято из справки. Написать «1 033 880
 // полигонов» там, где их 668 834, - значит соврать покупателю в проверяемой
 // мелочи, а такую ложь он заметит на странице TurboSquid за десять секунд.
 // Поэтому карточка с несходящимся числом не ставится вовсе.
-const briefFile = path.join(WORK, 'brief.json');
+const briefFile = argPath('--brief', path.join(WORK, 'brief.json'));
 const briefs = fs.existsSync(briefFile)
   ? new Map(JSON.parse(fs.readFileSync(briefFile, 'utf8')).map(b => [b.slug, b])) : new Map();
 
@@ -62,6 +66,7 @@ function checkNumbers(slug, paragraphs) {
   }
   return bad.length ? ['числа не из справки: ' + [...new Set(bad)].join(', ')] : [];
 }
+// Продажи не публикуются (основатель 09.11.2026) - проверка в lib/sales-guard.mjs.
 const stat = { ok: 0, skip: 0, badNum: 0, noDesc: 0, noKw: 0, schema: 0, meta: 0 };
 const doneAdd = [];
 /*
@@ -73,16 +78,20 @@ const doneAdd = [];
  */
 const doneNew = [];
 const problems = [];
+// Уже написанные - по data/model-hand-desc.json, а не только по метке: метка теряется
+// при пересборке страницы. Иначе переписанный текст (--force, правка продаж 09.11.2026)
+// попадал бы в счётчик «всего написано» как новая карточка.
+const HAND_NOW = new Set(Object.keys((() => { try { return JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'model-hand-desc.json'), 'utf8')); } catch { return {}; } })()));
 
 for (const it of items) {
   const { slug, paragraphs, keywords } = it;
   const file = path.join(ROOT, 'models', slug, 'index.html');
   if (!fs.existsSync(file)) { problems.push(slug + ': нет файла'); stat.skip++; continue; }
   let html = fs.readFileSync(file, 'utf8');
-  const wasWritten = html.includes(MARK);
+  const wasWritten = html.includes(MARK) || HAND_NOW.has(slug);
   if (!FORCE && wasWritten) { problems.push(slug + ': уже написано, пропускаю'); stat.skip++; continue; }
   if (!Array.isArray(paragraphs) || paragraphs.length < 2) { problems.push(slug + ': меньше двух абзацев'); stat.skip++; continue; }
-  const numErr = checkNumbers(slug, paragraphs);
+  const numErr = [...checkNumbers(slug, paragraphs), ...checkSales(paragraphs)];
   if (numErr.length) { problems.push(slug + ': ' + numErr.join('; ')); stat.badNum++; continue; }
 
   // ── 1. Видимое описание ───────────────────────────────────────────────────

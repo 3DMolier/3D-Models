@@ -446,7 +446,9 @@ function makeSlug(name,id){
 }
 
 function modelCard(idx){
-  var id=FC.i[idx],name=FC.n[idx],price=FC.p[idx],cert=FC.c[idx],sales=FC.s[idx];
+  // Число продаж на плитке не печатаем (основатель 09.11.2026: продажи не публикуются).
+  // Колонка s теперь балл популярности 0..1000, она нужна только для сортировки.
+  var id=FC.i[idx],name=FC.n[idx],price=FC.p[idx],cert=FC.c[idx];
   // Адрес - из данных, а не из названия. Правило записано кровью: имя меняется
   // (склейка дала «License Plate - 8 US States»), папка остаётся. makeSlug
   // остаётся запасным ходом для старых выгрузок, где колонки u ещё нет.
@@ -456,11 +458,10 @@ function modelCard(idx){
     :'<div class="mc-ph" data-img-pid="'+id+'">&#128246;</div>';
   var certBadge=cert===2?'<span class="mc-cert cert-cm">CheckMate</span>'
     :cert===1?'<span class="mc-cert cert-sc">StemCell</span>':'';
-  var salesHtml=sales?'<span class="mc-sold">'+sales+' sold</span>':'';
   return '<a href="/models/'+slug+'/" class="mc" role="listitem">'
     +'<div class="mc-img">'+imgHtml+'<div class="mc-ov"></div>'+certBadge+'<div class="mc-qv">View Model</div></div>'
     +'<div class="mc-body"><div class="mc-name">'+name+'</div>'
-    +'<div class="mc-foot"><span class="mc-price">$'+price+'</span>'+salesHtml+'</div>'
+    +'<div class="mc-foot"><span class="mc-price">$'+price+'</span></div>'
     +'</div></a>';
 }
 
