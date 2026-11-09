@@ -29,10 +29,13 @@ function pretty(slug) {
     .map(w => w ? w[0].toUpperCase() + w.slice(1) : '').join(' ').trim() || slug;
 }
 
-// header/footer берём из готовой страницы, чтобы шапка и меню совпадали с сайтом
-const ref = fs.readFileSync(path.join(ROOT, 'categories', 'vehicles', 'index.html'), 'utf8');
-const HEADER = (ref.match(/<header id="site-header">[\s\S]*?<\/header>/) || [''])[0];
-const FOOTER = (ref.match(/<footer class="cat-footer">[\s\S]*?<\/footer>/) || [''])[0];
+// Шапка и подвал - из единого источника partials/ (как у sync-chrome.mjs). До 09.11.2026 их вырезали
+// из categories/vehicles, а подвал искали по классу cat-footer, которого на сайте давно нет: все
+// страницы /browse/ выходили без подвала, а шапка несла свою «Skip to main content».
+// Шапка в образце уже со ссылкой «Skip to content»; метка ссылки «назад» в подвале здесь пустая.
+const HEADER = fs.readFileSync(path.join(ROOT, 'partials', 'header.html'), 'utf8').trim();
+const FOOTER = fs.readFileSync(path.join(ROOT, 'partials', 'footer.html'), 'utf8').trim().replace('<!--MP_FOOTER_BACK-->', () => '');
+if (!HEADER.includes('id="site-header"') || !FOOTER.includes('class="site-footer"')) throw new Error('partials: нет шапки или подвала');
 
 // Только живые карточки. Раньше сюда попадали и страницы-перенаправления
 // (объединённые варианты) - список раздувался почти вдвое ссылками, которые
@@ -123,7 +126,6 @@ ${social(title, desc, canonical)}
 ${extraHead}
 </head>
 <body>
-<a href="#main-content" class="skip-link">Skip to main content</a>
 ${HEADER}
 <main id="main-content">
 ${body}
