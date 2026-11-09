@@ -64,8 +64,14 @@ const ASSET_VER = /(\.(?:css|js))\?v=\d+/g;
 const CAT_MEDIAN = /(median (?:of |across the same category is )\$?)[\d,]+/g;
 // «next to the 7,661 median of our range», «the 28,670 polygon median of our Electronics»
 const CAT_MEDIAN_BEFORE = /\$?[\d,]+((?: [a-z]+)? median (?:of|across) )/g;
+/*
+ * Ссылки ключевых слов (09.11.2026): /catalog/?q=... и /search/?q=... переведены на #q= - 594 тыс. ссылок с карточек
+ * плодили ~91 тыс. адресов-копий каталога для поисковика. Смена адреса ссылки - не правка модели: в хеше
+ * приводим #q= к прежнему ?q=, тогда даты у 36 тыс. карточек не сдвигаются и миграция хешей не нужна.
+ */
+const KW_FRAGMENT = /href="\/(catalog|search)\/#q=/g;
 export const stripChrome = s => s.replace(CHROME_HEADER, '').replace(CHROME_FOOTER, '').replace(ASSET_VER, '$1')
-  .replace(CAT_MEDIAN, '$1').replace(CAT_MEDIAN_BEFORE, '$1');
+  .replace(CAT_MEDIAN, '$1').replace(CAT_MEDIAN_BEFORE, '$1').replace(KW_FRAGMENT, 'href="/$1/?q=');
 export const hashBody = (body, masked = POLICY.page_dates, isModel = false) => {
   let s = masked ? maskDates(body.toString('utf8')) : null;
   if (s !== null && isModel) s = s.replace(GA_BLOCK, '');

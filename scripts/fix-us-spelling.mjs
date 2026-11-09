@@ -116,13 +116,13 @@ function convert(h) {
       // поисковый запрос, и он обязан совпадать с подписью чипа. Если оставить
       // «?q=coloured» под подписью «colored», чип ищет одно, а показывает
       // другое. Такие адреса переводим вместе с текстом.
-      if (attr === 'href' && val.startsWith('/search/?q=')) return x;
+      if (attr === 'href' && /^\/(search|catalog)\/[?#]q=/.test(val)) return x;
       return attr + '="' + keep(val) + '"';
     });
   //    и относительные пути в кавычках - те же поля JSON-LD.
   //    Ссылки поиска и здесь исключение: без этого маска перехватывала их
   //    после предыдущего правила, и чип показывал «color», а искал «colour».
-  t = t.replace(/"(\/[^"]*)"/g, (x, v) => v.startsWith('/search/?q=') ? x : '"' + keep(v) + '"');
+  t = t.replace(/"(\/[^"]*)"/g, (x, v) => /^\/(search|catalog)\/[?#]q=/.test(v) ? x : '"' + keep(v) + '"');
 
   // 2. названия моделей
   for (const nm of PROTECTED) {

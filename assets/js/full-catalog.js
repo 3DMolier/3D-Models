@@ -94,6 +94,16 @@ function updateLoading(){
   setLoading(any);
 }
 
+// запрос после # - ссылки ключевых слов с карточек (/catalog/#q=...)
+function hashQ(){ return new URLSearchParams(location.hash.replace(/^#/,'')).get('q'); }
+// чип нажат, когда каталог уже открыт: меняется только часть после #, страница не перезагружается
+window.addEventListener('hashchange',function(){
+  var h=hashQ();
+  if(h===null||!qEl)return;
+  qEl.value=h;searchQ=h.toLowerCase();
+  if(fcReady){applyFilters();ensureRemainingChunks();}
+});
+
 function onFirstChunk() {
   fcReady=true;
   // Старая разметка (до 09.11.2026) несла блок fc-loading и надпись в строке состояния -
@@ -111,8 +121,10 @@ function onFirstChunk() {
   var urlPage=parseInt(new URLSearchParams(location.search).get('page')||'1',10);
   if(!isNaN(urlPage)&&urlPage>1)wantedPage=urlPage-1;
   applyFilters(wantedPage>0);
-  var urlQ=new URLSearchParams(location.search).get('q');
-  // Запрос из адреса приходит с чипа ключевого слова на карточке. Искать
+  var urlQ=hashQ()||new URLSearchParams(location.search).get('q');
+  // Запрос из адреса приходит с чипа ключевого слова на карточке. С 09.11.2026 -
+  // после # (/catalog/#q=...): ?q= давал поисковику ~91 тыс. копий каталога.
+  // ?q= читаем по-прежнему: старые ссылки и адреса из выдачи должны работать. Искать
   // надо по всему каталогу, а не по первому загруженному куску: иначе
   // «tesla model 3» находит десяток моделей вместо всех.
   if(urlQ&&qEl){qEl.value=urlQ;searchQ=urlQ.toLowerCase();applyFilters();ensureRemainingChunks();}

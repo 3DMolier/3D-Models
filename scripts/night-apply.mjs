@@ -104,7 +104,7 @@ for (const it of items) {
   // ── 2. Ключевые слова ─────────────────────────────────────────────────────
   if (Array.isArray(keywords) && keywords.length) {
     const row = '<div class="mp-chip-row">' + keywords.map(k =>
-      '<a href="/search/?q=' + encodeURIComponent(k) + '" class="chip chip--kw">' + esc(k) + '</a>').join('') + '</div>';
+      '<a href="/catalog/#q=' + encodeURIComponent(k) + '" class="chip chip--kw">' + esc(k) + '</a>').join('') + '</div>';
     const before = html;
     html = html.replace(/(<div class="mp-kw-block">[\s\S]*?)<div class="mp-chip-row">[\s\S]*?<\/div>/,
       (all, head) => head + row);

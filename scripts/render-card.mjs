@@ -630,7 +630,7 @@ export function details(r, f, seed, faqHtml) {
   const kw = f.keywords && f.keywords.length
     ? `<div class="mp-kw-block"><div class="section-label mp-mb12">Keywords</div><div class="mp-chip-row">`
       + f.keywords.slice(0, 24).map(k =>
-        `<a href="/catalog/?q=${encodeURIComponent(k)}" class="chip chip--kw">${esc(k)}</a>`).join('')
+        `<a href="/catalog/#q=${encodeURIComponent(k)}" class="chip chip--kw">${esc(k)}</a>`).join('')
       + `</div></div>`
     : '';
 
