@@ -90,7 +90,7 @@ export function toContentFields(r) {
      * запасной. Раньше текст жил только в файле страницы и был затёрт при
      * переходе на сборку из записи; теперь он в записи и переживёт пересборку.
      */
-    handDesc: (r.hand_desc && r.hand_desc.length) ? selfPrice(r.hand_desc, r.price) : null,
+    handDesc: (r.hand_desc && r.hand_desc.length) ? selfLicence(selfPrice(r.hand_desc, r.price), r.brand) : null,
     cert: r.cert || '',
     /*
      * Марка нужна тексту, а не только строке лицензии: у брендовой модели
@@ -296,6 +296,33 @@ export function selfPrice(paras, price) {
   return paras.map(p => String(p).replace(
     /(^|[.!?] )(At|Priced at) \$\d[\d,]*(?![\d,])(?!,? (?:the (?:rigged|static|animated|fur|textured|low|version|build|variant)|each|apiece|per\b|for the))/g,
     (m, a, b) => a + b + ' $' + price));
+}
+
+/*
+ * Лицензия в рукописном тексте брендовой карточки. Ночная смена берёт лицензию
+ * со страницы, а страница меняется только при пересборке. Когда список марок
+ * растёт, тексты, написанные раньше, обещают Royalty Free модели, которая уже
+ * Editorial: 09.11.2026 после расширения brands.mjs таких описаний нашлось 104
+ * («carries a Royalty Free license», «buyers can use it royalty free»).
+ * В данных они вычищены; здесь - чтобы новые не доходили до страницы.
+ *
+ * Убираем предложение целиком: лицензию писатель ставит отдельной фразой, рядом
+ * обычно год и цена, которые и так есть в характеристиках. Предложение, которое
+ * само говорит Editorial («Editorial Uses Only rather than royalty free»),
+ * оставляем. Первое предложение первого абзаца не трогаем: по его первым словам
+ * проверка [17] в validate-data находит рукопись на странице.
+ */
+export function selfLicence(paras, brand) {
+  if (!brand) return paras;
+  const out = [];
+  paras.forEach((p, pi) => {
+    const ss = String(p).split(/(?<=[.!?])\s+(?=[A-Z0-9"$])/);
+    const keep = ss.filter((s, si) => (pi === 0 && si === 0)
+      || !(/royalty[\s-]*free/i.test(s) && !/Editorial/i.test(s)));
+    if (keep.length === ss.length) out.push(p);
+    else if (keep.length) out.push(keep.join(' '));
+  });
+  return out;
 }
 
 /** Показываемое имя: у склеенной карточки - имя семьи, у обычной - своё. */
