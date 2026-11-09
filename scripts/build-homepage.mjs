@@ -336,7 +336,7 @@ const SECTION_STUDIO = `<!-- ═════════════════
 <div class="studio-eyebrow">The studio</div>
 <h2 class="studio-h2">Every model here came off one desk</h2>
 <p class="studio-text">3D Molier is Andrey Simonenko. Since 2003 more than 100,000 models have left this studio, built to one standard rather than assembled from many hands - real-world scale, clean topology, materials attached, objects named.</p>
-<p class="studio-rating"><span class="studio-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.8 out of 5 from 126 buyers on CGTrader</p>
+<p class="studio-rating"><span class="studio-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.8 out of 5 from 126 reviews on CGTrader</p>
 <a href="/about/" class="studio-link">About the studio &rarr;</a>
 </div>
 </section>
