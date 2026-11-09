@@ -46,14 +46,28 @@ const TAIL = [
  */
 const NOISE = /\b(by\s+)?3d[\s_]*molier(\s+international)?\b|\b3dmolier(\s*studio)?\b|\b3d\s*model(s)?\s*(of|by)?\b|\bhd\b|\b4k\b/gi;
 const MARKS = /\b(showcase|split|turntable|turn\s*table|rotation|flyaround|fly\s*around|animated|animation|rigged|rig|idle|loop|preview|render|demo|for\s+(maya|blender|cinema\s*4d|c4d|3ds\s*max|max|unreal|unity|houdini|modo|lightwave|sketchup))\b/gi;
+/*
+ * Технические слова варианта (решение основателя 22.10.2026, «один ролик на семью»):
+ * Simple / Simplified, with Interior, Low Poly, рендер (Redshift, V-Ray, Corona), PBR,
+ * Game Ready - облёт тот же, что у основной модели. Правило общее с
+ * D:/Clode_Work_Folder/tools/video/video-families.mjs.
+ *
+ * Только вторым заходом: у части вариантов своя карточка (Aston Martin V12 Vantage и
+ * его Simple Interior, Low Poly Pigeon), и широкий ключ сводит их в одно имя на две
+ * карточки - привязка терялась. Сначала строгий ключ, широкий - когда строгий пуст.
+ */
+const VARIANT = /\b(simplified|simple|(with|without|no)\s+interior|interior|low\s*-?\s*poly|lowpoly|redshift|v-?ray|corona|arnold|octane|pbr|game\s*ready)\b/gi;
 
-const norm = s => String(s)
-  .replace(TAIL[0], ' ').replace(TAIL[1], ' ')
-  .toLowerCase()
-  .replace(NOISE, ' ')
-  .replace(MARKS, ' ')
-  .replace(/[^a-z0-9]+/g, ' ')
-  .trim();
+const normWith = wide => s => {
+  let x = String(s)
+    .replace(TAIL[0], ' ').replace(TAIL[1], ' ')
+    .toLowerCase()
+    .replace(NOISE, ' ')
+    .replace(MARKS, ' ');
+  if (wide) x = x.replace(VARIANT, ' ');
+  return x.replace(/[^a-z0-9]+/g, ' ').trim();
+};
+const norm = normWith(false), normWide = normWith(true);
 
 /*
  * Второй заход: обрезаем название справа по словам.
@@ -85,38 +99,65 @@ const ri = JSON.parse(fs.readFileSync(path.join(RECS, 'index.json'), 'utf8'));
  * Набор, а не адрес: одноимённых моделей в каталоге хватает, и такие названия
  * мы потом просто не берём.
  */
-const byName = new Map();
-const add = (name, slug) => {
-  const k = norm(name);
+const byName = new Map(), byNameWide = new Map();
+const put = (map, k, slug) => {
   if (!k || k.length < 4) return;
-  if (!byName.has(k)) byName.set(k, new Set());
-  byName.get(k).add(slug);
+  if (!map.has(k)) map.set(k, new Set());
+  map.get(k).add(slug);
 };
+const add = (name, slug) => { put(byName, norm(name), slug); put(byNameWide, normWide(name), slug); };
 let records = 0;
+// номер модели -> адрес живой карточки (свёрнутая версия -> главная карточка семьи); для ручных привязок
+const slugById = new Map();
 for (let k = 0; k < ri.chunks; k++) {
   for (const r of JSON.parse(fs.readFileSync(path.join(RECS, 'records-' + k + '.json'), 'utf8'))) {
     if (r.status === 'new') continue;
     records++;
     add(r.name, r.slug);
     if (r.display_name) add(r.display_name, r.slug);
-    for (const v of (r.family || [])) add(v.name, r.slug);
+    slugById.set(String(r.id), r.slug);
+    for (const v of (r.family || [])) { add(v.name, r.slug); if (v.id && !slugById.has(String(v.id))) slugById.set(String(v.id), r.slug); }
   }
 }
 console.log('карточек в индексе: ' + fmt(records) + ', имён: ' + fmt(byName.size));
+
+/*
+ * РУЧНЫЕ ПРИВЯЗКИ - data/video-manual-links.json { "<id ролика>": { model: "<номер TurboSquid>", ... } } (09.11.2026).
+ * Для роликов, которые по названию не сходятся: облёт студии назван иначе, чем товар («Swivel Office Chair
+ * with Armrests» = Office Chair, совпали полигоны и цена), опечатки (Moos, Dymond), лишнее VDB у товара,
+ * вольные названия 2015 года. Пары проверены руками; номер, а не адрес - адрес ищем здесь каждый день.
+ * Карточка ещё не собрана (status new) - ролик ждёт и встанет сам, когда она появится.
+ * Ручная привязка сильнее автоматической: её смотрел человек.
+ */
+const MANUAL_FILE = path.join(DATA, 'video-manual-links.json');
+const manual = fs.existsSync(MANUAL_FILE) ? JSON.parse(fs.readFileSync(MANUAL_FILE, 'utf8')) : {};
+let manualHit = 0, manualWait = 0;
 
 const links = {};
 let hit = 0, ambiguous = 0, nohit = 0, dated = 0;
 const exAmb = [], exNo = [];
 for (const v of inv) {
-  const k = norm(v.title);
-  const set = byName.get(k);
+  const mv = manual[v.id];
+  if (mv && mv.model) {
+    const ms = slugById.get(String(mv.model));
+    if (!ms) { manualWait++; continue; }
+    if (!links[ms]) links[ms] = [];
+    links[ms].push({ id: v.id, title: v.title, date: v.published });
+    manualHit++; hit++;
+    if (v.published) dated++;
+    continue;
+  }
+  const k = norm(v.title), kw = normWide(v.title);
+  // строгий ключ; пусто - широкий (технические слова варианта сняты)
+  let set = byName.get(k);
+  if (!set) set = byNameWide.get(kw);
   let slug = null;
   if (set && set.size === 1) slug = [...set][0];
   else if (set && set.size > 1) {
     ambiguous++;
     if (exAmb.length < 6) exAmb.push(v.title.slice(0, 60) + '  -> ' + set.size + ' карточек');
     continue;
-  } else slug = byPrefix(k, byName);
+  } else slug = byPrefix(k, byName) || byPrefix(kw, byNameWide);
   if (!slug) { nohit++; if (exNo.length < 12) exNo.push(v.published + '  ' + v.title.slice(0, 64)); continue; }
   if (!links[slug]) links[slug] = [];
   links[slug].push({ id: v.id, title: v.title, date: v.published });
@@ -124,7 +165,8 @@ for (const v of inv) {
   if (v.published) dated++;
 }
 console.log('роликов на канале: ' + fmt(inv.length));
-console.log('  привязано к карточке: ' + fmt(hit) + ' (карточек ' + fmt(Object.keys(links).length) + ')');
+console.log('  привязано к карточке: ' + fmt(hit) + ' (карточек ' + fmt(Object.keys(links).length) + ')'
+  + (manualHit || manualWait ? ', из них вручную ' + fmt(manualHit) + '; ручных ждут карточку: ' + fmt(manualWait) : ''));
 console.log('  имя совпало с несколькими карточками, не беру: ' + fmt(ambiguous));
 console.log('  модель по названию не нашлась: ' + fmt(nohit));
 if (exAmb.length) { console.log('\n--- неоднозначные ---'); exAmb.forEach(x => console.log('  ' + x)); }

@@ -1,0 +1,321 @@
+{
+ "_about": "Ролики канала, привязанные вручную или по описанию облёта (09.11.2026). Ключ - id ролика YouTube, model - номер модели TurboSquid. Читает scripts/link-channel-videos.mjs: адрес карточки ищется по номеру каждый день, поэтому привязка переживает переименование, а ролик к ещё не собранной карточке встанет сам, когда она появится. Брать сюда только проверенные пары: лучше без ролика, чем облёт чужой модели.",
+ "06bOcFfEb4o": {
+  "model": "2597298",
+  "card": "Metallic Blow Fly Cleaning Fur Animated Rigged For Blender",
+  "video": "Metallic Blow Fly Cleaning Fur Animated Rigged For Blender",
+  "how": "название совпало, карточка ещё не собрана"
+ },
+ "1VHcDZAoyas": {
+  "model": "2597296",
+  "card": "Calliphoridae Fly Eating Fur Animated Rigged For Blender",
+  "video": "Calliphoridae Fly Eating Fur Animated Rigged For Blender ###",
+  "how": "название совпало, карточка ещё не собрана"
+ },
+ "1z_L7UPOeiE": {
+  "model": "2620086",
+  "card": "Ghost Crab Side Walk Fur Animated Rigged For Maya",
+  "video": "Ghost Crab Side Walk Fur Animated Rigged For Maya",
+  "how": "название совпало, карточка ещё не собрана"
+ },
+ "2LdIbmgD5P0": {
+  "model": "2618236",
+  "card": "Sardine School Swimming Animated Rigged For Blender",
+  "video": "Sardine School Swimming Animated",
+  "how": "имя файлов облёта = адрес карточки"
+ },
+ "659WGAsMIzc": {
+  "model": "2621302",
+  "card": "Bull Moose Graze Fur Animated Rigged For Maya",
+  "video": "Bull Moos Graze Fur Animated Rigged For Maya",
+  "how": "опечатка Moos -> Moose"
+ },
+ "6UMh2lLmekQ": {
+  "model": "2618226",
+  "card": "Marine Sardine School Animated Rigged For Blender",
+  "video": "Marine Sardine SchoolAnimated Rigged For Blender",
+  "how": "опечатка SchoolAnimated, иначе название совпало"
+ },
+ "73ldHPGt9HY": {
+  "model": "2605049",
+  "card": "Procedural Rock Generator for Blender",
+  "video": "Procedural Rock Generator for Blender",
+  "how": "название совпало, карточка ещё не собрана"
+ },
+ "C2YzlpgRr8Q": {
+  "model": "2618230",
+  "card": "Atlantic Sardine Rigged For Blender",
+  "video": "Atlantic Sardine",
+  "how": "имя файлов облёта = адрес карточки"
+ },
+ "EE-CK8LInv4": {
+  "model": "2619443",
+  "card": "Seahorse Idle Hover Animated Rigged For Maya",
+  "video": "Seahorse Idle Hover Animated Rigged For Maya",
+  "how": "название совпало, карточка ещё не собрана"
+ },
+ "Gnf_EQP3qgQ": {
+  "model": "2613885",
+  "card": "Snail Walking Animated Rigged For Blender",
+  "video": "Snail Walking Animated Rigged For Blender",
+  "how": "название совпало, карточка ещё не собрана"
+ },
+ "IY1_Md9HpPc": {
+  "model": "2598563",
+  "card": "EXTRA Flint Gas Lighter with Fire Animated VDB For Blender",
+  "video": "EXTRA Flint Gas Lighter with Fire Animated For Blender",
+  "how": "название совпало, у карточки лишнее слово VDB"
+ },
+ "Iu76CtBjut8": {
+  "model": "2621914",
+  "card": "Monarch Butterfly Collects Nectar Fur Animated Rigged",
+  "video": "Monarch Butterfly Collects Nectar Fur Animated Rigged",
+  "how": "название совпало дословно"
+ },
+ "JK7_Al9LqUs": {
+  "model": "2619442",
+  "card": "Seahorse Swim Animated Rigged For Maya",
+  "video": "Seahorse Swim Animated Rigged For Maya",
+  "how": "название совпало, карточка ещё не собрана"
+ },
+ "LUVLiSlFVuE": {
+  "model": "2624560",
+  "card": "Black House Spider Fur Rigged For Maya",
+  "video": "Black House Spider Fur",
+  "how": "имя файлов облёта = адрес карточки"
+ },
+ "MBWmh8_W6Vk": {
+  "model": "2611488",
+  "card": "Baby Elephant Trunk Play Idle Fur Animated Rigged For Maya",
+  "video": "Baby Elephant Trunk Play Idle Fur Animated Rigged For Maya",
+  "how": "название совпало, карточка ещё не собрана"
+ },
+ "O3k0uw5prHg": {
+  "model": "2624568",
+  "card": "Giant Panda Eating Bamboo Animated Fur Rigged For Blender",
+  "video": "Giant Panda Eating Bamboo Animated Fur Rigged For Blender",
+  "how": "название совпало, карточка ещё не собрана"
+ },
+ "PDcgYBn2aC8": {
+  "model": "1503705",
+  "card": "Office Chair",
+  "video": "Swivel Office Chair with Armrests",
+  "how": "полигоны, вершины и цена $39 совпали - модель переименована в студии"
+ },
+ "PZwQPIKwAKg": {
+  "model": "2624549",
+  "card": "Black House Spider Walk Fur Animated Rigged For Maya",
+  "video": "Black House Spider Walk Fur Animated",
+  "how": "имя файлов облёта = адрес карточки"
+ },
+ "Px5wRuuJqEI": {
+  "model": "2618238",
+  "card": "Sardine Swimming Animated Rigged For Blender",
+  "video": "Sardine Swimming Animated Rigged For Blender",
+  "how": "название совпало, карточка ещё не собрана"
+ },
+ "RAAsO4EjK-s": {
+  "model": "2599381",
+  "card": "Handheld Safety Flare Animated Volumetric For Blender",
+  "video": "Handheld Safety Flare Animated Volumetric For Blender",
+  "how": "название совпало, карточка ещё не собрана"
+ },
+ "RnzUmbBj1Bw": {
+  "model": "2618226",
+  "card": "Marine Sardine School Animated Rigged For Blender",
+  "video": "Marine Sardine School Animated",
+  "how": "имя файлов облёта = адрес карточки"
+ },
+ "SijwOaCaMNQ": {
+  "model": "2616415",
+  "card": "Boiling Stockpot with Lobster Animated VDB For Blender",
+  "video": "Boiling Stockpot with Lobster Animated For Blender",
+  "how": "название совпало, у карточки лишнее слово VDB"
+ },
+ "T7sESfW6vSA": {
+  "model": "2598936",
+  "card": "Rotten Beef Steak with Green Flies Fur Animated Rigged For Blender",
+  "video": "Rotten Beef Steak with Green Flies Fur Animated Rigged For Blender",
+  "how": "название совпало, карточка ещё не собрана"
+ },
+ "WNdMF88Fack": {
+  "model": "2596436",
+  "card": "Dense Fire Smoke Cloud Animated VDB For Blender",
+  "video": "Dense Fire Smoke Cloud Animated For Blender",
+  "how": "название совпало, у карточки лишнее слово VDB"
+ },
+ "WoC0vtJdglM": {
+  "model": "943187",
+  "card": "Bobcat Compact Tracked Front Loader 2 3D Model",
+  "video": "Bobcat Compact Tracked Front Loader Rigged 3d model by 3d_molier International",
+  "how": "ролик 2015-07 «Rigged», в семье карточки 2015-07 есть Bobcat ... Rigged"
+ },
+ "WpodVfaafvw": {
+  "model": "2600785",
+  "card": "Bee Smoker with Smoke Animated VDB Rigged For Blender",
+  "video": "Bee Smoker with Smoke Animated Rigged For Blender",
+  "how": "название совпало, у карточки лишнее слово VDB"
+ },
+ "X58dRQi3gmo": {
+  "model": "2618224",
+  "card": "Sardine Fish School Rigged For Blender",
+  "video": "Sardine Fish School",
+  "how": "имя файлов облёта = адрес карточки"
+ },
+ "XVVwUqsBgUo": {
+  "model": "2597294",
+  "card": "Carrion Fly Walking Fur Animated Rigged For Blender",
+  "video": "Carrion Fly Walking Fur Animated Rigged For Blender",
+  "how": "название совпало, карточка ещё не собрана"
+ },
+ "XYnY-dDWLaQ": {
+  "model": "2596441",
+  "card": "Power Plant Chimney with Steam Animated VDB For Blender",
+  "video": "Power Plant Chimney with Steam Animated For Blender",
+  "how": "название совпало, у карточки лишнее слово VDB"
+ },
+ "YF772SHZUvM": {
+  "model": "2624564",
+  "card": "Giant Panda Climbing Tree Animated Fur Rigged For Blender",
+  "video": "Giant Panda Climbing Tree Animated Fur Rigged For Blender",
+  "how": "название совпало, карточка ещё не собрана"
+ },
+ "Z8N6Zf5iT-U": {
+  "model": "2617055",
+  "card": "Campfire Pot with Boiling Soup Animated VDB For Blender",
+  "video": "Campfire Pot with Boiling Soup Animated For Blender",
+  "how": "название совпало, у карточки лишнее слово VDB"
+ },
+ "_4wYCLvz688": {
+  "model": "2619449",
+  "card": "Seahorse Set Animated Rigged For Maya",
+  "video": "Seahorse Set Animated",
+  "how": "имя файлов облёта = адрес карточки"
+ },
+ "fvgYyIUROSY": {
+  "model": "2624551",
+  "card": "Black House Spider Idle Grooming Fur Animated Rigged For Maya",
+  "video": "Black House Spider Idle Grooming Fur Animated Rigged For Maya",
+  "how": "название совпало, карточка ещё не собрана"
+ },
+ "heBLpalffIw": {
+  "model": "2621932",
+  "card": "Monarch Butterfly Landing on Flower Fur Animated Rigged",
+  "video": "Monarch Butterfly Landing on Flower Fur Animated Rigged",
+  "how": "название совпало дословно"
+ },
+ "iKtehrfTIKs": {
+  "model": "2624551",
+  "card": "Black House Spider Idle Grooming Fur Animated Rigged For Maya",
+  "video": "Black House Spider Idle Grooming Fur Animated",
+  "how": "имя файлов облёта = адрес карточки"
+ },
+ "jLhEKLqN3YA": {
+  "model": "2621309",
+  "card": "Bull Moose Fight Fur Animated Rigged For Maya",
+  "video": "Bull Moos Fight Fur Animated Rigged For Maya",
+  "how": "опечатка Moos -> Moose"
+ },
+ "kP93ezVWVNA": {
+  "model": "2624568",
+  "card": "Giant Panda Eating Bamboo Animated Fur Rigged For Blender",
+  "video": "Giant Panda Eating Bamboo Animated Fur",
+  "how": "имя файлов облёта = адрес карточки"
+ },
+ "mT8XpzWPtHE": {
+  "model": "2624549",
+  "card": "Black House Spider Walk Fur Animated Rigged For Maya",
+  "video": "Black House Spider Walk Fur Animated Rigged For Maya",
+  "how": "название совпало, карточка ещё не собрана"
+ },
+ "nYqTdL8-Qbk": {
+  "model": "2597297",
+  "card": "Flying Blowfly Insect Fur Animated Rigged For Blender",
+  "video": "Flying Blowfly Insect Fur Animated Rigged For Blender",
+  "how": "название совпало, карточка ещё не собрана"
+ },
+ "os2_18ipuyg": {
+  "model": "2617055",
+  "card": "Campfire Pot with Boiling Soup Animated VDB For Blender",
+  "video": "Campfire Pot with Boiling Soup Animated For Blender",
+  "how": "название совпало, у карточки лишнее слово VDB"
+ },
+ "oy1q9113U-Q": {
+  "model": "2611487",
+  "card": "Baby Elephant Run Fur Animated Rigged For Maya",
+  "video": "Baby Elephant Run Fur Animated Rigged For Maya",
+  "how": "название совпало, карточка ещё не собрана"
+ },
+ "qdKzqgv03Ug": {
+  "model": "2596132",
+  "card": "Smoke Grenade Cloud Animated VDB For Blender",
+  "video": "Smoke Grenade Cloud Animated For Blender",
+  "how": "название совпало, у карточки лишнее слово VDB"
+ },
+ "qtYIsj85hEc": {
+  "model": "2621293",
+  "card": "Bull Moose Walk Fur Animated Rigged For Maya",
+  "video": "Bull Moos Walk Fur Animated Rigged For Maya",
+  "how": "опечатка Moos -> Moose"
+ },
+ "rPK_nUAYK6w": {
+  "model": "2623430",
+  "card": "Diamond Heart Pendant Necklace Gold",
+  "video": "Dymond Heart Pendant Necklace Gold",
+  "how": "геометрия совпала, в названии ролика опечатка Dymond"
+ },
+ "ryAVJcy9eAo": {
+  "model": "1242736",
+  "card": "All in One PC Microsoft Surface Studio",
+  "video": "All in One Microsoft Surface Studio PC",
+  "how": "геометрия и название совпали (порядок слов другой)"
+ },
+ "uPKz634SVzo": {
+  "model": "914959",
+  "card": "Hawker Hurricane WWII Fighter",
+  "video": "British Fighter Aircraft Hawker Hurricane Rigged",
+  "how": "ролик 2015-06 «Rigged», в семье карточки 2015-04 есть Rigged-версия"
+ },
+ "vr-4EnXMo54": {
+  "model": "2625190",
+  "card": "Walking Panda Bear Animated Fur Rigged For Blender",
+  "video": "Walking Panda Bear Animated Fur Rigged For Blender",
+  "how": "название совпало, карточка ещё не собрана"
+ },
+ "w1a1TvZHH6Y": {
+  "model": "2624564",
+  "card": "Giant Panda Climbing Tree Animated Fur Rigged For Blender",
+  "video": "Giant Panda Climbing Tree Animated Fur",
+  "how": "имя файлов облёта = адрес карточки"
+ },
+ "wpSq_iYsGRA": {
+  "model": "2618236",
+  "card": "Sardine School Swimming Animated Rigged For Blender",
+  "video": "Sardine School Swimming Animated Rigged For Blender",
+  "how": "название совпало, карточка ещё не собрана"
+ },
+ "x3zxRS2JCGk": {
+  "model": "2625169",
+  "card": "Giant Deep Sea Crab Side Walk Animated Rigged For Maya",
+  "video": "Giant Deep Sea Crab Side Walk Animated Rigged For Maya",
+  "how": "название совпало, карточка ещё не собрана"
+ },
+ "z0_ThwyTPl8": {
+  "model": "930398",
+  "card": "Baseball Ball",
+  "video": "3d model of Baseball Ball by 3d_molier International",
+  "how": "ролик 2015-07, единственная карточка Baseball Ball того времени (вторая - 2023)"
+ },
+ "z4TkQyA9nRs": {
+  "model": "2618246",
+  "card": "Sardine Rigged For Blender Animated Set",
+  "video": "Sardine",
+  "how": "имя файлов облёта = адрес карточки"
+ },
+ "zENZSkGRv4Q": {
+  "model": "2602485",
+  "card": "Signal Flare Shot Animated VDB For Blender",
+  "video": "Signal Flare Shot Animated For Blender",
+  "how": "название совпало, у карточки лишнее слово VDB"
+ }
+}
