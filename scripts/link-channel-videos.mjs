@@ -133,6 +133,36 @@ const MANUAL_FILE = path.join(DATA, 'video-manual-links.json');
 const manual = fs.existsSync(MANUAL_FILE) ? JSON.parse(fs.readFileSync(MANUAL_FILE, 'utf8')) : {};
 let manualHit = 0, manualWait = 0;
 
+/*
+ * ОБЛЁТЫ СТУДИИ: имя файлов кадров = адрес карточки (09.11.2026).
+ * upload_daily.py пишет в upload-log.csv пустой tsid почти у всех облётов, а slug облёта короче адреса
+ * карточки: «sardine-school-swimming-animated» против sardine-school-swimming-animated-rigged-for-blender-2618236.
+ * Зато в описании облёта (tools/video/manifests/<slug>.json) есть filenamePrefix - имя файлов модели в студии,
+ * «Sardine_School_Swimming_Animated_Rigged_For_Blender_», и оно дословно совпадает с адресом карточки без номера.
+ * Берём только единственное совпадение среди живых карточек.
+ */
+const UPLOAD_LOG = 'D:/Clode_Work_Folder/tools/youtube/upload-log.csv', MANIFESTS = 'D:/Clode_Work_Folder/tools/video/manifests/';
+const prefixByVideo = new Map();
+if (fs.existsSync(UPLOAD_LOG)) {
+  const slugify = s => String(s).toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  for (const line of fs.readFileSync(UPLOAD_LOG, 'utf8').split(/\r?\n/).slice(1)) {
+    const [, vid, slug] = line.split(',');
+    if (!vid || !slug) continue;
+    try {
+      const m = JSON.parse(fs.readFileSync(MANIFESTS + slug + '.json', 'utf8'));
+      const p = slugify(String(m.filenamePrefix || '').replace(/_+$/, ''));
+      if (p) prefixByVideo.set(vid, p);
+    } catch { /* описания облёта нет */ }
+  }
+}
+const liveByBase = new Map();
+for (const s of new Set(slugById.values())) {
+  const b = s.replace(/-\d+$/, '');
+  if (!liveByBase.has(b)) liveByBase.set(b, new Set());
+  liveByBase.get(b).add(s);
+}
+let prefixHit = 0;
+
 const links = {};
 let hit = 0, ambiguous = 0, nohit = 0, dated = 0;
 const exAmb = [], exNo = [];
@@ -144,6 +174,15 @@ for (const v of inv) {
     if (!links[ms]) links[ms] = [];
     links[ms].push({ id: v.id, title: v.title, date: v.published });
     manualHit++; hit++;
+    if (v.published) dated++;
+    continue;
+  }
+  const pset = prefixByVideo.has(v.id) ? liveByBase.get(prefixByVideo.get(v.id)) : null;
+  if (pset && pset.size === 1) {
+    const ps = [...pset][0];
+    if (!links[ps]) links[ps] = [];
+    links[ps].push({ id: v.id, title: v.title, date: v.published });
+    prefixHit++; hit++;
     if (v.published) dated++;
     continue;
   }
@@ -166,7 +205,8 @@ for (const v of inv) {
 }
 console.log('роликов на канале: ' + fmt(inv.length));
 console.log('  привязано к карточке: ' + fmt(hit) + ' (карточек ' + fmt(Object.keys(links).length) + ')'
-  + (manualHit || manualWait ? ', из них вручную ' + fmt(manualHit) + '; ручных ждут карточку: ' + fmt(manualWait) : ''));
+  + (manualHit || manualWait ? ', из них вручную ' + fmt(manualHit) + '; ручных ждут карточку: ' + fmt(manualWait) : '')
+  + ', по имени файлов облёта: ' + fmt(prefixHit));
 console.log('  имя совпало с несколькими карточками, не беру: ' + fmt(ambiguous));
 console.log('  модель по названию не нашлась: ' + fmt(nohit));
 if (exAmb.length) { console.log('\n--- неоднозначные ---'); exAmb.forEach(x => console.log('  ' + x)); }
