@@ -142,6 +142,8 @@ export function toContentFields(r) {
       textures: s.textures, textureSizes: s.textureSizes || [],
       unwrappedUVs: s.unwrappedUVs || '', dimensions: s.dimensions || '',
     } : null,
+    // Размер оригинала из Википедии (фаза 3) - отдельно от specs: это не замер модели
+    realSize: r.real_size || null,
   };
 }
 

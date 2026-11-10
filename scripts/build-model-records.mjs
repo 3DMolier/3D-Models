@@ -498,6 +498,20 @@ say('читаю выгрузку студии...');
     }
   }
   if (extra || filled) say('характеристик из model-specs.json: ' + extra + (filled ? ', дополнено пустых у студийных: ' + filled : ''));
+  /*
+   * Размер НАСТОЯЩЕГО предмета из Википедии (фаза 3, 10.11.2026): только карточкам без замера студии и только
+   * проверенные записи data/model-real-size.json. Это не specs.dimensions: замер модели держит фразы шаблона
+   * про масштаб при импорте, а размер оригинала - нет. Вывод - scripts/lib/real-size.mjs.
+   */
+  const rsFile = path.join(DATA, 'model-real-size.json');
+  if (fs.existsSync(rsFile)) {
+    let k = 0;
+    for (const [id, rs] of Object.entries(JSON.parse(fs.readFileSync(rsFile, 'utf8')))) {
+      const r = byId.get(id);
+      if (r && !(r.specs && r.specs.dimensions)) { r.real_size = rs; k++; }
+    }
+    say('размер оригинала из Википедии: ' + k);
+  }
 }
 
 // Ключевые слова, снятые со страниц: они написаны фразами, а в выгрузке студии

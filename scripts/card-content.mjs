@@ -16,6 +16,7 @@ import { brandOf } from './lib/brands.mjs';
 import { INDUSTRY_NAME, useLabel, industriesOf } from './lib/industries.mjs';
 import { isMilitary } from './lib/military.mjs';
 import { ROOT } from './lib/paths.mjs';
+import { realSizeCell } from './lib/real-size.mjs';
 
 /*
  * Медианы по категориям (data/category-stats.json, собирает
@@ -701,6 +702,15 @@ export function specRows(f, name, cat, catSlug, price, opts = {}) {
     if (s.dimensions) rows.push(['Dimensions', esc(s.dimensions)]);
     if (s.rigged) rows.push(['Rigging', esc(s.rigged)]);
     if (s.animated) rows.push(['Animation', esc(s.animated)]);
+  }
+  /*
+   * Размер ОРИГИНАЛА из Википедии (фаза 3, 10.11.2026) - только где замера модели нет. Своя строка, а не
+   * Dimensions: под значением стоит, чей это размер, и ссылка на статью. Решение основателя: только явные
+   * реальные модели (Boeing 777X, Peterbilt 579), обобщённым предметам размеры не выдумываем.
+   */
+  if (f.realSize && !(s && s.dimensions)) {
+    const cell = realSizeCell(f.realSize);
+    if (cell) rows.push(['Real-world size', cell]);
   }
   const nat = nativeOf(name);
   rows.push(['Native', esc(nat.native)]);
