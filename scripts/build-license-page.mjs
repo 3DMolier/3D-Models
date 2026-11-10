@@ -111,6 +111,7 @@ const MAIN = `<main id="main-content" class="legal-wrap">
 
 <h2>How to tell which one you are looking at</h2>
 <p>Open any model page and find the <strong>Licence</strong> row in the Specifications table on the right. It says either <em>Royalty Free (TurboSquid)</em> or <em>Editorial Uses Only (TurboSquid)</em>. The questions section further down the page repeats the same answer in plain words.</p>
+<p>Some pages group several versions of one model, and only part of them show a real brand - a plain cap next to caps with a team logo, for example. There the row lists both: <em>Plain version: Royalty Free</em> and <em>Branded variants: Editorial Uses Only</em>. Each version keeps its own licence on TurboSquid, so check the one you are about to buy.</p>
 <p>The listing on <a href="${TS}" target="_blank" rel="noopener">TurboSquid</a> is the authoritative source. If our page and the listing ever disagree, the listing is right - tell us and we will fix the page.</p>
 
 <h2>Common cases</h2>

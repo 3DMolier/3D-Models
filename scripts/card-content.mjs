@@ -773,8 +773,19 @@ export function specRows(f, name, cat, catSlug, price, opts = {}) {
   // Раньше здесь стояло безусловное «Royalty Free» - и на брендовых карточках
   // сайт письменно разрешал то, что лицензией запрещено.
   const brand = opts.brand !== undefined ? opts.brand : brandOf(name);
-  const license = brand ? 'Editorial Uses Only (TurboSquid)' : 'Royalty Free (TurboSquid)';
-  rows.push(['License', `<a href="/license/">${license}</a>`]);
+  /*
+   * Семья с версиями под маркой и без неё (10.11.2026, замечание основателя на Baseball Hat 3): текст
+   * объяснял «branded ones carry editorial terms; the plain cap does not», а таблица говорила одно
+   * «Royalty Free». Тогда в строке обе лицензии. «version» - группа, куда входит открытая модель,
+   * «variant» - остальные версии семьи. Таких карточек около 3,2 тыс.
+   */
+  const vb = f.variantBrands || [];
+  const nBr = vb.filter(Boolean).length + (brand ? 1 : 0), nPl = vb.length + 1 - nBr;
+  const grp = (self, n) => (self ? 'version' : 'variant') + (n > 1 ? 's' : '');
+  const license = nBr && nPl
+    ? `Plain ${grp(!brand, nPl)}: <a href="/license/">Royalty Free</a><br>Branded ${grp(!!brand, nBr)}: <a href="/license/">Editorial Uses Only</a>`
+    : `<a href="/license/">${brand ? 'Editorial Uses Only (TurboSquid)' : 'Royalty Free (TurboSquid)'}</a>`;
+  rows.push(['License', license]);
   rows.push(['Price', `$${price} USD`]);
   // Отрасли - из единого набора, а не из сырых тегов CSV: там встречается
   // «Graphics Multimedia and Web Design», страницы которой на сайте нет.

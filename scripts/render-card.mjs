@@ -27,6 +27,7 @@ import {
   esc, catSlug, description, specTable, faqBlock, dateLine, pageSchema, productSchema, nativeOf,
 } from './card-content.mjs';
 import { INDUSTRY_NAME, useLabel } from './lib/industries.mjs';
+import { brandOf, brandById } from './lib/brands.mjs';
 
 import { ROOT } from './lib/paths.mjs';
 import { isIndexable, pageDate, NOINDEX_META } from './lib/index-policy.mjs';
@@ -132,6 +133,10 @@ export function toContentFields(r) {
     // card-content ищет среди вариантов слово rigged, значит ждёт СПИСОК имён,
     // а не их количество. Отдаём имена членов семьи.
     variants: (r.family || []).map(v => v.name),
+    // Есть ли марка у каждой версии семьи - тем же правилом, что ставит лицензию у собственной записи версии
+    // (build-model-records: brandOf(имя) || brandById(номер)). Нужно строке License: у склеенной карточки
+    // бывают версии с маркой (Editorial) и без неё (Royalty Free) - замечание основателя 10.11.2026.
+    variantBrands: (r.family || []).map(v => !!(brandOf(v.name || '') || brandById(v.id))),
     specs: s ? {
       polygons: s.polygons, vertices: s.vertices, geometry: s.geometry,
       textures: s.textures, textureSizes: s.textureSizes || [],
