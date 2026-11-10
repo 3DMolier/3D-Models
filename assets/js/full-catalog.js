@@ -79,12 +79,16 @@ function mergeChunk(chunk) {
  * дальше загруженного (09.11.2026). В разметке сервера надписи больше нет: первые 48 моделей,
  * фильтры и категории уже отрисованы, и читать поисковику, что каталог «ещё грузится», незачем.
  * Фоновая подгрузка в простое (scheduleIdlePreload) надпись не включает - её никто не ждёт.
+ * 10.11.2026: слов нет совсем, только значок. Основатель снова увидел «Loading catalog…»: надпись
+ * стояла, пока поиск по адресу догружал весь каталог, и попадала в снимок страницы у обходчика.
+ * Для чтения с экрана - aria-busy на строке состояния.
  */
 var waitChunks={}, loadedChunkSet={};
 function setLoading(on){
   var spinner=statusMsg?statusMsg.querySelector('.bar-spinner'):null;
   if(spinner){spinner.hidden=!on;spinner.style.display=on?'':'none';}
-  if(statusText)statusText.textContent=on?'Loading catalog…':'';
+  if(statusMsg)statusMsg.setAttribute('aria-busy',on?'true':'false');
+  if(statusText&&statusText.textContent==='Loading catalog…')statusText.textContent='';
 }
 function waitFor(i){ if(!loadedChunkSet[i])waitChunks[i]=true; }
 function updateLoading(){
