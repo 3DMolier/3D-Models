@@ -58,7 +58,10 @@ const MODELS = path.join(ROOT, 'models');
 const DATA = path.join(ROOT, 'data');
 const OUT = path.join(DATA, 'records');
 const DRY = process.argv.includes('--dry');
-const DL = 'C:/Users/MSI-PC/Downloads/';
+// Выгрузка студии (studio-inventory-part-*.json). С 05.11.2026 постоянная папка, входит в
+// еженедельную копию на D; в Downloads файлы удалили при чистке, и сборка потеряла характеристики.
+// Вторая копия - IndexedDB inv_collect в Chrome на www.3dmolier-studio.com (скрипт studio-inventory-collect.js).
+const DL = 'D:/Clode_Work_Folder/archive/studio-inventory/';
 const CHUNK = 5000;
 const REFERRAL = 'referral=3d_molier-international';
 
@@ -458,22 +461,42 @@ say('читаю выгрузку студии...');
     }
   }
   say('записей выгрузки сопоставлено: ' + n.toLocaleString('ru-RU'));
-  // Запасные характеристики для новых моделей.
+  /*
+   * СТОП, если выгрузка студии потеряна. 05.11.2026 на новом компьютере в Downloads
+   * осталось 3 части из 17: сборка молча собрала 30 184 карточки без полигонов, вершин
+   * и галереи, а публикацию спас только потолок в 5 000 изменённых карточек. Выход
+   * здесь - ДО записи записей и до пересборки страниц: всё остаётся как было.
+   */
+  if (n < byId.size * 0.5) {
+    console.error('ОСТАНОВКА: выгрузка студии сопоставлена только с ' + n + ' записями из ' + byId.size
+      + '. Проверьте файлы studio-inventory-part-*.json в ' + DL);
+    process.exit(1);
+  }
+  // Запасные характеристики: новые модели и (с 10.11.2026) кабинет TurboSquid для тех, кого нет в студии.
   const ms = JSON.parse(fs.readFileSync(path.join(DATA, 'model-specs.json'), 'utf8'));
-  let extra = 0;
+  const blank = v => v === null || v === undefined || v === '' || (Array.isArray(v) && !v.length);
+  let extra = 0, filled = 0;
   for (const [id, s] of Object.entries(ms)) {
     const r = byId.get(id);
-    if (!r || r.specs) continue;
-    extra++;
-    r.specs = {
+    if (!r) continue;
+    const alt = {
       polygons: num(s.polygons), vertices: num(s.vertices),
       geometry: s.geometry || '', rigged: s.rigged || '', animated: s.animated || '',
       textures: num(s.textures), unwrappedUVs: s.unwrappedUVs || '',
       textureSizes: s.textureSizes || [], dimensions: s.dimensions || null,
       formats: s.formats || [], formatCount: s.formatCount || null,
     };
+    if (!r.specs) { r.specs = alt; extra++; continue; }
+    /*
+     * Студия знает модель, но без полигонов (10.11.2026: 67 записей, в основном коллекции 2015-2018):
+     * дополняем только ПУСТЫЕ поля. Что студия заполнила, остаётся её.
+     */
+    if (!r.specs.polygons && alt.polygons) {
+      for (const [k, v] of Object.entries(alt)) if (blank(r.specs[k]) && !blank(v)) r.specs[k] = v;
+      filled++;
+    }
   }
-  if (extra) say('характеристик из model-specs.json: ' + extra);
+  if (extra || filled) say('характеристик из model-specs.json: ' + extra + (filled ? ', дополнено пустых у студийных: ' + filled : ''));
 }
 
 // Ключевые слова, снятые со страниц: они написаны фразами, а в выгрузке студии
