@@ -70,8 +70,14 @@ const CAT_MEDIAN_BEFORE = /\$?[\d,]+((?: [a-z]+)? median (?:of|across) )/g;
  * приводим #q= к прежнему ?q=, тогда даты у 36 тыс. карточек не сдвигаются и миграция хешей не нужна.
  */
 const KW_FRAGMENT = /href="\/(catalog|search)\/#q=/g;
+/*
+ * Блок Keywords целиком (10.11.2026): теги сокращены до 5-6 (render-card.mjs, realTags). Набор тегов -
+ * навигация, а не правка модели; войди он в хеш - сокращение сдвинуло бы даты у 38 тыс. карточек разом.
+ * Журнал дат перенесён на это правило разово (38 027 записей, даты прежние) до пересборки карточек.
+ */
+const KW_BLOCK = /<div class="mp-kw-block">[\s\S]*?<div class="mp-chip-row">[\s\S]*?<\/div><\/div>/;
 export const stripChrome = s => s.replace(CHROME_HEADER, '').replace(CHROME_FOOTER, '').replace(ASSET_VER, '$1')
-  .replace(CAT_MEDIAN, '$1').replace(CAT_MEDIAN_BEFORE, '$1').replace(KW_FRAGMENT, 'href="/$1/?q=');
+  .replace(CAT_MEDIAN, '$1').replace(CAT_MEDIAN_BEFORE, '$1').replace(KW_BLOCK, '').replace(KW_FRAGMENT, 'href="/$1/?q=');
 export const hashBody = (body, masked = POLICY.page_dates, isModel = false) => {
   let s = masked ? maskDates(body.toString('utf8')) : null;
   if (s !== null && isModel) s = s.replace(GA_BLOCK, '');

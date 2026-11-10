@@ -619,6 +619,50 @@ export function hero(r) {
   * разойдутся - а разметка, обещающая поисковику вопрос, которого на странице
   * нет, нарушает его правила.
   */
+/*
+ * Блок Keywords - 5-6 настоящих тегов (решение основателя 10.11.2026). Было до 24 фраз вида
+ * «baseball hat 3 for advertising», «#generic», «download», «… turbosquid»: для поисковика это
+ * набивка ключей. Отбираем по порядку источника и выкидываем:
+ *   - служебное: форматы, рендер, «3d model», «new», «generic», «download», «turbosquid», реклама;
+ *   - имя самой модели и её версий («baseball hat 3») - оно в заголовке и в блоке версий
+ *     (имена версий в ключах по решению 11.09.2026 больше не нужны: блок версий их и так показывает);
+ *   - фразы длиннее трёх слов, повторы, обрывки уже взятого («mid» при «mid-size»), однокоренные
+ *     одиночные слова («spherical» при «sphere»), сочетания из уже взятых слов.
+ * Меньше пяти - добираем подкатегорией, категорией и словами названия. Не хватает и их - тегов
+ * меньше: выдумывать нельзя. Отладка и выборки: 10.11.2026, ~27 тыс. карточек получают 6 тегов.
+ */
+const KW_MIN = 5, KW_MAX = 6;
+const KW_SKIP = new Set(['3d', '3d model', '3d models', 'model', 'models', 'new', 'generic', 'other', 'object', 'objects', 'free', 'download', 'max',
+  '3ds max', '3dsmax', 'obj', 'fbx', 'c4d', 'cinema 4d', 'blend', 'blender', 'maya', 'lwo', 'stl', 'usd', 'usdz', 'gltf', 'glb', 'unity', 'unreal',
+  'vray', 'v-ray', 'corona', 'redshift', 'arnold', 'octane', 'render', 'rendering', 'lowpoly', 'low poly', 'low-poly', 'highpoly', 'high poly',
+  'game ready', 'game-ready', 'realistic', 'photorealistic', 'pbr', 'textured', 'textures', 'rigged', 'rig', 'animated', 'animation', 'collection',
+  'set', 'pack', 'bundle', 'kit', 'design', 'modern', 'style', 'quality', 'high quality', 'detailed', 'product', 'item', 'with', 'and', 'the', 'for',
+  'simple', 'simplified', 'interior', 'fur', 'version', 'standard', 'your', 'brand', 'logo', 'your brand', 'your logo']);
+const kwNorm = s => String(s || '').toLowerCase().replace(/[_]+/g, ' ').replace(/\s+/g, ' ').trim();
+const kwKey = s => s.split(' ').map(w => w.replace(/ies$/, 'y').replace(/(?<!s)s$/, '')).join(' ');
+export function realTags(list, r) {
+  const names = [r.name, r.display_name, ...(r.family || []).map(v => v.name)].filter(Boolean).map(kwNorm)
+    .map(n => n.replace(/\b3d models?\b/g, '').replace(/\s+\d+$/, '').replace(/\s+/g, ' ').trim());
+  const out = [], seen = new Set();
+  const add = k => {
+    if (!k || k.length < 3 || k.length > 32 || k.startsWith('#') || /^\d+$/.test(k)) return;
+    if (k.split(' ').length > 3 || KW_SKIP.has(k) || /turbosquid|download|advertis|your (brand|logo)/.test(k)) return;
+    if (k.includes(' ') && names.some(n => n.includes(k) || k.includes(n))) return;
+    const key = kwKey(k);
+    if (seen.has(key)) return;
+    if (!k.includes(' ') && out.some(t => t !== k && (t.includes(k) || (!t.includes(' ') && k.length >= 5 && t.length >= 5 && t.slice(0, 5) === k.slice(0, 5))))) return;
+    if (k.includes(' ') && k.split(' ').filter(w => w !== 'and').every(w => seen.has(kwKey(w)))) return;
+    seen.add(key); out.push(k);
+  };
+  for (const raw of list || []) { if (out.length >= KW_MAX) break; add(kwNorm(raw)); }
+  if (out.length < KW_MIN) {
+    const cat = kwNorm(r.category_name).replace(/\s*&\s*/g, ' and ');
+    for (const p of [kwNorm(r.subcategory), /bundles|sets|other/.test(cat) ? '' : cat]) { if (out.length >= KW_MIN) break; if (p) add(p); }
+    for (const w of kwNorm(r.name).split(/[^a-z0-9-]+/)) { if (out.length >= KW_MIN) break; if (w.length >= 3 && !/^\d/.test(w)) add(w); }
+  }
+  return out;
+}
+
 export function details(r, f, seed, faqHtml) {
   /*
     * Слаг категории берём ИЗ ЗАПИСИ. Выводить его из подписи нельзя: у
@@ -627,9 +671,10 @@ export function details(r, f, seed, faqHtml) {
     */
    const cs = r.category;
   const desc = description(f, nm(r), r.category_name, r.price, seed, cs);
-  const kw = f.keywords && f.keywords.length
+  const tags = realTags(f.keywords, r);
+  const kw = tags.length
     ? `<div class="mp-kw-block"><div class="section-label mp-mb12">Keywords</div><div class="mp-chip-row">`
-      + f.keywords.slice(0, 24).map(k =>
+      + tags.map(k =>
         `<a href="/catalog/#q=${encodeURIComponent(k)}" class="chip chip--kw">${esc(k)}</a>`).join('')
       + `</div></div>`
     : '';
