@@ -149,16 +149,20 @@ for (let k = 0; k < dirs.length; k += step) {
     if (/^\s*no\s*$/i.test(pbr) && /PBR materials as standard|complete UV unwraps and PBR/i.test(h) && bad6.length < 6) bad6.push(d);
   }
 
-  // 7. лицензия только двух видов
+  // 7. лицензия только двух видов - или обе сразу у семьи с версиями под маркой и без неё
+  // (10.11.2026: «Plain version: Royalty Free / Branded variants: Editorial Uses Only», card-content.mjs).
+  // Ячейку читаем целиком до </td>: в смешанной строке две ссылки и <br>.
+  const licCell = dec(((h.match(/<th[^>]*>Licen[cs]e<\/th><td[^>]*>([\s\S]*?)<\/td>/) || [, ''])[1])
+    .replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim());
   {
-    const lic = (h.match(/<th[^>]*>Licen[cs]e<\/th><td[^>]*>(?:<a[^>]*>)?([^<]*)</) || [, ''])[1];
-    if (lic && !/^(Royalty Free|Editorial Uses Only) \(TurboSquid\)$/.test(dec(lic)) && bad7.length < 6) bad7.push(d + ': «' + dec(lic) + '»');
+    const ok = /^(Royalty Free|Editorial Uses Only) \(TurboSquid\)$/.test(licCell)
+      || /^Plain (?:version|variant)s?: Royalty Free Branded (?:version|variant)s?: Editorial Uses Only$/.test(licCell);
+    if (licCell && !ok && bad7.length < 6) bad7.push(d + ': «' + licCell + '»');
   }
 
-  // 8. брендовая модель -> Editorial Uses Only
+  // 8. брендовая модель -> Editorial Uses Only (в смешанной строке - у версий с маркой)
   {
-    const lic = (h.match(/<th[^>]*>Licen[cs]e<\/th><td[^>]*>(?:<a[^>]*>)?([^<]*)</) || [, ''])[1];
-    if (brandOf(h1) && lic && !/Editorial Uses Only/.test(lic) && bad8.length < 6) bad8.push(d + ' (' + brandOf(h1) + '): «' + dec(lic) + '»');
+    if (brandOf(h1) && licCell && !/Editorial Uses Only/.test(licCell) && bad8.length < 6) bad8.push(d + ' (' + brandOf(h1) + '): «' + licCell + '»');
   }
 
   // 9. отрасли существуют среди разделов сайта
