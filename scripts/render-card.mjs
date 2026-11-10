@@ -469,10 +469,15 @@ export function hero(r) {
    * У вариантов семьи всё наоборот: «Standard», «Rigged», «Red» различают
    * товары с разной ценой, и они на живых страницах есть. Их не трогаем.
    */
+  /*
+   * tag - метка технического кадра (Wireframe, UV layout, Viewport...), thumb - готовая миниатюра (10.11.2026,
+   * галереи из превью TurboSquid: у CDN TurboSquid у каждого размера своя подпись в адресе, уменьшить полный
+   * кадр по адресу нельзя). У кадров без метки и без миниатюры всё как раньше.
+   */
   const ownShots = (r.gallery || [])
     .map(g => ({
       image: liveShot(g.url), short: g.cap || '', label: g.cap || '',
-      price: r.price, ts_url: r.ts_url, kind: 'own',
+      price: r.price, ts_url: r.ts_url, kind: 'own', tag: g.tag || '', thumb: g.thumb || '',
     }))
     .filter(s => s.image);
 
@@ -506,7 +511,16 @@ export function hero(r) {
    * миниатюра это ещё одна картинка. Полный список вариантов остаётся ниже,
    * в блоке версий, так что ничего не теряется.
    */
-  const shown = shots.slice(0, 12);
+  /*
+   * Технические кадры (сетка, развёртка, окно программы) - в конце полосы и с меткой (решение основателя
+   * 10.11.2026). Им оставляем до четырёх мест из двенадцати, иначе у карточки с длинной серией рендеров
+   * они бы не попадали в полосу никогда. Нет технических кадров - полоса как раньше.
+   */
+  const techShots = shots.filter(s => s.kind === 'own' && s.tag);
+  const nTech = Math.min(techShots.length, 4);
+  const shown = nTech
+    ? shots.filter(s => !(s.kind === 'own' && s.tag)).slice(0, 12 - nTech).concat(techShots.slice(0, nTech))
+    : shots.slice(0, 12);
 
   /*
    * Подпись выводим только настоящую. У кадров самой модели её нет, и
@@ -530,7 +544,7 @@ export function hero(r) {
   const thumbs = shown.length > 1 ? shown.map((v, i) => {
     const cap = capOf(v, i);
     const named = cap ? esc(cap) : esc(nm(r)) + ', view ' + (i + 1);
-    return `<button type="button" class="mp-gal-thumb${i ? '' : ' is-on'}" data-kind="${v.kind}" data-full="${esc(v.image)}"`
+    return `<button type="button" class="mp-gal-thumb${i ? '' : ' is-on'}${v.tag ? ' mp-gal-thumb--tech' : ''}" data-kind="${v.kind}" data-full="${esc(v.image)}"`
     + ` data-cap="${esc(cap || nm(r))}"`
     + ` data-price="${esc('$' + (v.price || r.price))}"`
     + ` data-link="${esc(v.ts_url)}" title="${named}" aria-label="${named}">`
@@ -544,10 +558,11 @@ export function hero(r) {
      * одной и той же картинки. Это хуже пустого места: галерея обещает разные
      * ракурсы и не показывает ни одного. Пусть лучше кадра не будет.
      */
-    + `<img src="${esc(studioSize(v.image, 'h200'))}" alt="${named}" width="200" height="113"`
+    + `<img src="${esc(v.thumb || studioSize(v.image, 'h200'))}" alt="${named}" width="200" height="113"`
     + (String(v.image || '').includes('3dmolier-studio')
       ? ` data-drop-on-fail="1" onerror="galThumbFail(this)"` : '')
     + ` loading="lazy" decoding="async">`
+    + (v.tag ? `<span class="mp-gal-tag">${esc(v.tag)}</span>` : '')
     + `</button>`;
   }).join('') : '';
 
