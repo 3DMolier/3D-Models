@@ -42,7 +42,9 @@ const MIL = /\b(fighter|bomber|military|combat|warplane|warship|battleship|destr
 // у American Tanks Collection («tank\b» не ловил «tanks»), Oshkosh L-ATV, Patrol Car with
 // Protected Gun Mount, Chemical Agent Detector, Schopf Shipboard Tow Tractor (палубный тягач
 // авианосца) и Tactical Support Helicopter Camo.
-const MIL_MORE = /\b(tanks\b|l-?atv|jltv|gun mount|chemical agent|cbrn|shipboard|tactical support|infantry|tactical radar|landing craft|lcac\d*|lcvp|lcu\b|soldiers?\b|fmtv|aircraft carrier|cvn-?\d\d|a400m|aw101|m-346|l-39|bushmaster|stryker|main battle tank|hmmwv|humvee|nighthawk|fighter jet|attack jet|combat trainer|nato|c-5m?\b|oh-6|mh-6|il-76|tu-(?:16|22|95|141|143|160)\b|ka-(?:27|50|52)\b|t-(?:55|62|64|72|80|90)(?![0-9])|b(?:mp|tr|rdm)-\d)/i;
+// 10.11.2026: то же на Tactical Command Vehicle with Operations Module Camouflage (командно-штабная
+// машина) и Yuan Wang 6 Tracking Ship (корабль слежения ВМС Китая).
+const MIL_MORE = /\b(tanks\b|l-?atv|jltv|gun mount|chemical agent|cbrn|shipboard|tactical support|tactical command|yuan wang|infantry|tactical radar|landing craft|lcac\d*|lcvp|lcu\b|soldiers?\b|fmtv|aircraft carrier|cvn-?\d\d|a400m|aw101|m-346|l-39|bushmaster|stryker|main battle tank|hmmwv|humvee|nighthawk|fighter jet|attack jet|combat trainer|nato|c-5m?\b|oh-6|mh-6|il-76|tu-(?:16|22|95|141|143|160)\b|ka-(?:27|50|52)\b|t-(?:55|62|64|72|80|90)(?![0-9])|b(?:mp|tr|rdm)-\d)/i;
 
 // Гражданские признаки. Нужны не для решения, а для отчётности: решение
 // принимает MIL, всё остальное - гражданское.
