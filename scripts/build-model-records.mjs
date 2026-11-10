@@ -363,6 +363,20 @@ say('читаю превью...');
 }
 
 // ── 6. измеренные характеристики и ключевые слова ───────────────────────────
+/*
+ * Характеристики КАЖДОЙ модели выгрузки, а не только тех, у кого своя карточка (фаза 5, 10.11.2026): свёрнутым
+ * версиям семьи их больше негде взять, а блоку версий нужно сказать, чем версия отличается от главной - риг,
+ * полигоны, мех, текстуры. Поле studio «animated» почти всегда «model is not animated» (по-настоящему - 351
+ * модель), риг - «model is jointed».
+ */
+const memberSpec = new Map();
+const specOf = s => {
+  const rig = /jointed/i.test(s.rigged || '') ? !/not jointed/i.test(s.rigged) : /^yes$/i.test(String(s.rigged || ''));
+  // «1 полигон» у старых коллекций - заглушка TurboSquid, а не число
+  const big = v => { const n = num(v); return n > 1 ? n : null; };
+  return { poly: big(s.polygons), vert: big(s.vertices), rig: rig || s.has_rig === true, fur: s.has_fur === true,
+    tex: num(s.ntextures ?? s.textures) };
+};
 say('читаю выгрузку студии...');
 {
   let n = 0;
@@ -370,6 +384,7 @@ say('читаю выгрузку студии...');
     if (!/^studio-inventory-part-\d+\.json$/.test(f)) continue;
     const j = JSON.parse(fs.readFileSync(DL + f, 'utf8'));
     for (const [id, s] of Object.entries(j.result || {})) {
+      memberSpec.set(id, specOf(s));
       const r = byId.get(id);
       if (!r) continue;
       n++;
@@ -478,6 +493,8 @@ say('читаю выгрузку студии...');
   const blank = v => v === null || v === undefined || v === '' || (Array.isArray(v) && !v.length);
   let extra = 0, filled = 0;
   for (const [id, s] of Object.entries(ms)) {
+    // Версии, которых нет у студии: характеристики из кабинета TurboSquid
+    if (!memberSpec.has(id) || !memberSpec.get(id).poly) memberSpec.set(id, specOf(s));
     const r = byId.get(id);
     if (!r) continue;
     const alt = {
@@ -599,8 +616,11 @@ say('читаю карту свёрнутых...');
         price: memberPrice.get(fid) || 0,
         image: memberImg.get(fid) || '',
         ts_url: 'https://www.turbosquid.com/3d-models/' + sl + '?' + REFERRAL,
+        // Чем версия отличается от главной - из данных (фаза 5); у главной то же - в self_spec
+        spec: memberSpec.get(fid) || null,
       };
     });
+    r.self_spec = memberSpec.get(r.id) || null;
     /*
      * Заголовок склеенной карточки - имя СЕМЬИ, а не имя главной модели.
      * Решение основателя: страница показывает всю группу, и обещать в

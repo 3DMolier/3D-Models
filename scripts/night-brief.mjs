@@ -16,6 +16,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { salesSentences } from './lib/sales-guard.mjs';
 import { salesFixQueue, DAILY } from './lib/sales-fix-queue.mjs';
+import { versionFacts, mainFacts } from './lib/version-facts.mjs';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname).replace(/^\/([A-Za-z]:)/, '$1'), '..');
 const WORK = path.join(ROOT, 'tools', 'night-writer');
@@ -75,6 +76,18 @@ const cell = (h, k) => {
   return m ? plain(m[1]) : '';
 };
 
+// Записи карточек по адресу - читаются один раз и только если справке нужны версии
+let REC = null;
+const recordBySlug = () => {
+  if (!REC) {
+    REC = new Map();
+    const dir = path.join(ROOT, 'data', 'records');
+    if (fs.existsSync(dir)) for (const f of fs.readdirSync(dir)) if (/^records-\d+\.json$/.test(f))
+      for (const r of JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'))) REC.set(r.slug, r);
+  }
+  return REC;
+};
+
 const out = [];
 for (const slug of queue) {
   if (out.length >= COUNT) break;
@@ -93,10 +106,26 @@ for (const slug of queue) {
   if (verBlock) {
     const cards = verBlock.split('<a href=').slice(1);
     for (const c of cards) {
-      const name = plain((c.match(/class="mp-rc-title"[^>]*>([\s\S]*?)<\/div>/) || [])[1] || '');
+      // Название - без метки («main», «Red») и без подписи из данных (data-vf): иначе они приклеиваются к имени
+      const titleHtml = ((c.match(/class="mp-rc-title"[^>]*>([\s\S]*?)<\/div>/) || [])[1] || '')
+        .replace(/<span class="mp-var-badge">[\s\S]*?<\/span>/g, '').replace(/<span data-vf[\s\S]*?<\/span>/g, '');
+      const name = plain(titleHtml);
       const price = plain((c.match(/class="mp-rc-price"[^>]*>([^<]*)/) || [])[1] || '');
       const isMain = /mp-var-badge[^>]*>\s*main/i.test(c);
-      if (name) versions.push({ name: name.replace(/\s*main\s*$/i, '').trim(), price, main: isMain });
+      if (name) versions.push({ name, price, main: isMain });
+    }
+    /*
+     * Чем версия отличается от главной - из данных (фаза 5, основатель 10.11.2026 согласился): полигоны, риг, мех,
+     * текстуры. Берётся из записей, а не со страницы - подписи выпускаются на страницы частями, а факты нужны
+     * тексту сразу. Поле facts есть только там, где данные есть; различия без него не придумываются.
+     */
+    const rec = recordBySlug().get(slug);
+    if (rec) {
+      const fam = new Map((rec.family || []).map(v => [plain(v.name).toLowerCase(), v]));
+      for (const v of versions) {
+        const t = v.main ? mainFacts(rec.self_spec) : (fam.has(v.name.toLowerCase()) ? versionFacts(fam.get(v.name.toLowerCase()).spec, rec.self_spec) : '');
+        if (t) v.facts = t;
+      }
     }
   }
   const verNames = versions.map(v => v.name);

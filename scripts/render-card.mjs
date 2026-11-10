@@ -31,7 +31,22 @@ import { brandOf, brandById } from './lib/brands.mjs';
 
 import { ROOT } from './lib/paths.mjs';
 import { isIndexable, pageDate, NOINDEX_META } from './lib/index-policy.mjs';
+import { versionFacts, mainFacts, factsHtml } from './lib/version-facts.mjs';
 const SITE = 'https://3dmolierstudio.com';
+
+/*
+ * Подписи версий из данных (фаза 5, ОК основателя 10.11.2026) выпускаются частями: включение сразу меняет ~17 тыс.
+ * карточек, а потолок ежедневной публикации 5 000. Список выпущенных - data/version-facts-released.json
+ * ({ all, ids }), пополняет scripts/release-version-facts.mjs из ежедневной публикации. all: true - для всех.
+ */
+let VF = null;
+export const versionFactsOn = id => {
+  if (!VF) {
+    const f = path.join(ROOT, 'data', 'version-facts-released.json');
+    VF = fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : { all: false, ids: {} };
+  }
+  return !!(VF.all || (VF.ids && VF.ids[String(id)]));
+};
 
 // ── обвязка: шапка и подвал из единственного источника ──────────────────────
 // Правило репо: хедер и футер правятся только в partials/. Читаем их оттуда,
@@ -144,6 +159,13 @@ export function toContentFields(r) {
     } : null,
     // Размер оригинала из Википедии (фаза 3) - отдельно от specs: это не замер модели
     realSize: r.real_size || null,
+    /*
+     * Риг по данным студии или кабинета TurboSquid (фаза 5). Строки «Current version» и «Rigged versions» смотрели
+     * только на слово Rigged в названии, а плитка версии с подписью «rigged» говорила бы обратное. Только у
+     * выпущенных карточек - вместе с подписями, иначе таблица сменится сразу на тысячах страниц.
+     */
+    selfRig: versionFactsOn(r.id) && !!(r.self_spec && r.self_spec.rig),
+    variantRig: versionFactsOn(r.id) && (r.family || []).some(v => v.spec && v.spec.rig),
   };
 }
 
@@ -781,7 +803,7 @@ export const scripts = () => `<script src="/assets/js/site.min.js?v=${ASSET_V}" 
 
 
 /** Карточка внутри блоков «версии» и «похожие». */
-function relatedCard({ href, image, title, badge, chip, price, external }) {
+function relatedCard({ href, image, title, badge, chip, price, external, facts = '' }) {
   const tail = external ? ' target="_blank" rel="noopener"' : '';
   return `<a href="${esc(href)}"${tail} class="model-card card-glow mp-rc-link">`
     + `<div class="img-wrap mp-rc-img-wrap">`
@@ -792,6 +814,7 @@ function relatedCard({ href, image, title, badge, chip, price, external }) {
     + `<div class="img-placeholder" aria-hidden="true"><span class="mp-rc-placeholder-icon">&#128247;</span></div>`
     + `</div><div class="mp-rc-body"><div class="mp-rc-head"><div class="mp-rc-title">${esc(title)}`
     + (badge ? ` <span class="mp-var-badge">${esc(badge)}</span>` : '')
+    + factsHtml(facts)
     + `</div></div><div class="mp-rc-foot">`
     + `<span class="chip chip-teal mp-rc-chip mp-ver-chip">${esc(chip)}</span>`
     + `<span class="mp-rc-price">$${price}</span></div></div></a>`;
@@ -804,13 +827,17 @@ function relatedCard({ href, image, title, badge, chip, price, external }) {
  */
 export function versionsBlock(r) {
   if (!(r.family || []).length) return '';
+  // Подпись из данных: чем версия отличается от главной (lib/version-facts.mjs), у выпущенных карточек
+  const on = versionFactsOn(r.id);
   const cards = [relatedCard({
     href: r.ts_url, image: heroImg(r), title: nm(r), badge: 'main',
     chip: 'View on TurboSquid', price: r.price, external: true,
+    facts: on ? mainFacts(r.self_spec) : '',
   })].concat(r.family.map(v => relatedCard({
     href: v.ts_url, image: v.image || r.image, title: v.name,
     badge: v.short === 'Standard' ? '' : v.short,
     chip: 'View on TurboSquid', price: v.price || r.price, external: true,
+    facts: on ? versionFacts(v.spec, r.self_spec) : '',
   })));
   return `<section class="mp-related-section mp-versions-section"><div class="max-w-7xl mx-auto">`
     + `<div class="section-label mp-mb8">Same model, other versions</div>`

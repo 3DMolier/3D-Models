@@ -140,7 +140,8 @@ for (let k = 0; k < dirs.length; k += step) {
     // названия, и дальномер Makita ловился на соседе «Battlefield Laser
     // Rangefinder» - см. lib/page-text.mjs.
     // «self-defense training» у манекена для единоборств - не военный оборот (27.10.2026, Century Bob)
-    if (/combat simulation|war-?game environment|battlefield (?:simulation|visuali[sz]ation)|(?<!self-)defen[cs]e training/i.test(proseOf(h)) && bad5.length < 6) bad5.push(d);
+    // «civil defense training» у противогаза МФ-14 - гражданская оборона, тоже не военный (10.11.2026)
+    if (/combat simulation|war-?game environment|battlefield (?:simulation|visuali[sz]ation)|(?<!self-)(?<!civil )defen[cs]e training/i.test(proseOf(h)) && bad5.length < 6) bad5.push(d);
   }
 
   // 6. PBR: No -> страница не наследует утверждение «PBR как стандарт»

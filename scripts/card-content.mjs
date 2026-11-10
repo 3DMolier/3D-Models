@@ -766,9 +766,10 @@ export function specRows(f, name, cat, catSlug, price, opts = {}) {
    * быть верной.
    */
   const ownName = opts.selfName || name;
+  // + риг по данным студии/кабинета TurboSquid у выпущенных карточек фазы 5 (selfRig, variantRig из render-card)
   const selfRigged = /\brigged/i.test(ownName) || /\brigged/i.test(name)
-    || !!(s && s.rigged && !/^\s*(static|none|no)\s*$/i.test(s.rigged));
-  const anyRigged = selfRigged || (f.variants || []).some(v => /\brigged/i.test(String(v)));
+    || !!(s && s.rigged && !/^\s*(static|none|no)\s*$/i.test(s.rigged)) || !!f.selfRig;
+  const anyRigged = selfRigged || (f.variants || []).some(v => /\brigged/i.test(String(v))) || !!f.variantRig;
   rows.push(['Current version', selfRigged ? 'Rigged' : 'Static']);
   rows.push(['Rigged versions', anyRigged ? 'Available' : 'Not available']);
   /*
