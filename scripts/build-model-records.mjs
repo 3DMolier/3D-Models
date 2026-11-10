@@ -44,6 +44,7 @@ import { brandOf, brandById } from './lib/brands.mjs';
 import { isMilitary } from './lib/military.mjs';
 import { classifyByReport } from './category-map.mjs';
 import { parseDetails, num } from './lib/specs.mjs';
+import { readReleased, readTsGalleries } from './lib/ts-gallery.mjs';
 import { variantLabel, variantShortLabel } from './lib/variant-label.mjs';
 import { familyName, brokenTitle, colorEaten } from './lib/model-name.mjs';
 import { variantAxis } from './lib/variant-axis.mjs';
@@ -996,6 +997,30 @@ say('читаю карту свёрнутых...');
   }
   say('превью из выгрузки студии: ' + heroed.toLocaleString('ru-RU')
     + ', галерей: ' + galleried.toLocaleString('ru-RU'));
+}
+
+/*
+ * ГАЛЕРЕЯ ИЗ ПРЕВЬЮ TURBOSQUID (решение основателя 10.11.2026, образец одобрен).
+ * Кадры студии с ~08.11 не отдаются; превью TurboSquid - те же рендеры на работающем CDN, и в конце - технические
+ * кадры с меткой (Wireframe, Mesh & UV, Textures & UV, Viewport). Только для номеров из data/ts-gallery-released.json:
+ * выпуск частями, scripts/release-ts-gallery.mjs. Главный снимок со студии (1 542 карточки, сейчас не грузится)
+ * меняем на первый рендер TurboSquid. Нет файла выпуска или галереи - всё как раньше.
+ */
+{
+  const released = new Set(readReleased(ROOT));
+  if (released.size) {
+    const tsg = readTsGalleries(released);
+    let swapped = 0, heroFixed = 0;
+    for (const r of byId.values()) {
+      const g = tsg.get(String(r.id));
+      if (!g) continue;
+      r.gallery = g;
+      if (/3dmolier-studio\.com|s3\.3dmolier\.com/.test(String(r.image || ''))) { r.image = g[0].url; heroFixed++; }
+      swapped++;
+    }
+    say('галерей из превью TurboSquid: ' + swapped.toLocaleString('ru-RU') + ' (выпущено ' + released.size.toLocaleString('ru-RU')
+      + '), главный снимок со студии заменён: ' + heroFixed);
+  }
 }
 
 /*
