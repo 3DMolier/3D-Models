@@ -126,7 +126,7 @@ button{cursor:pointer;width:auto;font-weight:700;letter-spacing:.06em}
 #mus button{border:0;background:transparent;color:var(--gold);padding:6px 4px;width:auto}
 #mus input{width:90px;padding:0;border:0;background:transparent;accent-color:var(--gold)}
 </style></head><body><canvas id="space" aria-hidden="true"></canvas>
-<audio id="bgm" src="assets/theme.mp4" loop preload="auto"></audio>
+<audio id="bgm" src="./assets/theme.mp4" loop preload="auto"></audio>
 <div id="mus"><button id="mBtn" type="button" aria-pressed="false">♪ Музыка: выкл</button><input id="mVol" type="range" min="0" max="100" value="80" aria-label="Громкость музыки"></div><div class="wrap">
 <h1>Галактическая инспекция качества</h1>
 <p class="sub">ЭСКАДРИЛЬИ ИНЖЕНЕРОВ АЛЬЯНСА · <span id="day">ФОРМИРОВАНИЕ ЭСКАДРИЛЬИ</span></p>
@@ -164,7 +164,7 @@ button{cursor:pointer;width:auto;font-weight:700;letter-spacing:.06em}
 </div>
 </div>
 <script>window.GQA_API="https://script.google.com/macros/s/AKfycbw0kLXo8VxSz4ZGvb6GA1YmR3NL4JoOW-vM-Qzipo8hCkWuCtkf1gRqQwG0N8BHdNzX/exec";</script>
-<script src="storage.js?v=2"></script>
+<script src="./storage.js?v=2"></script>
 <script>
 var TEAMS=[{id:"a",n:"Red Squadron",s:"Эскадрилья 1",c:"#ff4040"},{id:"b",n:"Blue Squadron",s:"Эскадрилья 2",c:"#4bb8ff"},{id:"c",n:"Gold Squadron",s:"Эскадрилья 3",c:"#ffe81f"}];
 var GOAL=1000,HPT=1800;
@@ -193,7 +193,7 @@ S.items.forEach(function(i){if(!tn(i.t))return;if(i.st=="ok"){tot[i.t]+=pts(i);d
 var goal=HPT,left=Math.max(0,100-Math.round(dmg/goal*100));
 $("goal").textContent=goal;fx(Math.min(1,dmg/goal));$("dmg").textContent=dmg;$("hp").style.width=left+"%";$("hpn").textContent=left+"%";
 $("sFound").textContent=ok;$("sQ").textContent=q;$("sEgg").textContent=eg+" / 10";
-var d=days();$("day").textContent=d==0?"ФОРМИРОВАНИЕ ЭСКАДРИЛЬИ":"ДЕНЬ "+d+" ИЗ 10";Array.prototype.forEach.call(document.querySelectorAll(".focus"),function(el){el.style.display=d==0?"none":""});$("sDays").textContent=10-d;if(d>0){var D=DAYS[d-1];$("focus").textContent=D.f;$("coord").innerHTML='<a href="'+esc(D.u)+'" target="_blank" rel="noopener">'+esc(D.s)+' ↗</a><br>'+esc(D.c)}
+var d=days();$("day").textContent=d==0?"ФОРМИРОВАНИЕ ЭСКАДРИЛЬИ":"ДЕНЬ "+d+" ИЗ 10";Array.prototype.forEach.call(document.querySelectorAll(".focus"),function(el){el.style.display=d==0?"none":""});$("sDays").textContent=10-d;if(d>0){var D=DAYS[d-1];$("focus").textContent=D.f;$("coord").innerHTML='<a href='+'"'+esc(D.u)+'" target="_blank" rel="noopener">'+esc(D.s)+' ↗</a><br>'+esc(D.c)}
 var L=$("lanes");
 TEAMS.slice().sort(function(a,b){return tot[b.id]-tot[a.id]}).forEach(function(t,ix){var p=Math.min(100,tot[t.id]/GOAL*100),e=LN[t.id];
 if(!e){L.insertAdjacentHTML("beforeend",'<div class="lane" id="ln-'+t.id+'" style="--c:'+t.c+'"><div class="tname">'+t.n+'<small>'+t.s+'</small></div><div class="track"><div class="fill"></div><div class="ship">'+shipSvg(t.c)+'</div><div class="tgt"></div></div><div class="pts" style="color:'+t.c+'"></div></div>');e=LN[t.id]=$("ln-"+t.id)}
@@ -202,7 +202,7 @@ if(PS&&tot[t.id]>(PT[t.id]||0)){e.classList.add("boost");setTimeout(function(){e
 if(ready)PS=true;
 var h="";
 S.items.filter(function(i){return i.st=="new"&&tn(i.t)}).forEach(function(i){var t=tn(i.t);
-h+='<div class="item"><b style="color:'+t.c+'">'+t.n+'</b> · '+(i.l?'<span class="chip l'+(i.l=="egg"?3:i.l)+'">'+(i.l=="egg"?"Пасхалка":"Level "+i.l)+'</span> ('+pts(i)+')':'<span class="chip">Уровень не присвоен</span>')+'<div>'+esc(i.x)+'</div>'+shot(i)+(i.link?'<a href="'+esc(i.link)+'" target="_blank" rel="noopener">'+esc(i.link)+'</a>':'')+(mod?'<div class="row">'+lvSel(i)+'<button class="ok" data-a="ok" data-i="'+esc(i.id)+'">Принять</button><button class="no" data-a="no" data-i="'+esc(i.id)+'">Отклонить</button></div>':'')+'</div>'});
+h+='<div class="item"><b style="color:'+t.c+'">'+t.n+'</b> · '+(i.l?'<span class="chip l'+(i.l=="egg"?3:i.l)+'">'+(i.l=="egg"?"Пасхалка":"Level "+i.l)+'</span> ('+pts(i)+')':'<span class="chip">Уровень не присвоен</span>')+'<div>'+esc(i.x)+'</div>'+shot(i)+(i.link?'<a href='+'"'+esc(i.link)+'" target="_blank" rel="noopener">'+esc(i.link)+'</a>':'')+(mod?'<div class="row">'+lvSel(i)+'<button class="ok" data-a="ok" data-i="'+esc(i.id)+'">Принять</button><button class="no" data-a="no" data-i="'+esc(i.id)+'">Отклонить</button></div>':'')+'</div>'});
 $("queue").innerHTML=h||'<div class="empty">Очередь пуста. Новые донесения появятся здесь.</div>';
 var lg=S.items.filter(function(i){return i.st=="ok"&&tn(i.t)}).reverse().slice(0,6).map(function(i){var t=tn(i.t);return '<div class="item"><b style="color:'+t.c+'">'+t.n+'</b> +'+pts(i)+': '+esc(i.x)+shot(i)+when(i)+'</div>'}).join("");
 $("log").innerHTML=lg||'<div class="empty">Пока нет подтверждённых побед.</div>'}
@@ -240,7 +240,7 @@ var sel={};
 function lvSel(i){var o=[["","Выберите уровень"],["1","Level 1 · +10"],["2","Level 2 · +20"],["3","Level 3 · +30"],["4","Level 4 · +40"],["egg","Пасхалка · +100"]],cur=String(sel[i.id]||i.l||"");return '<select class="lv" data-s="'+esc(i.id)+'" aria-label="Уровень диверсии">'+o.map(function(a){return '<option value="'+a[0]+'"'+(cur==a[0]?" selected":"")+'>'+a[1]+'</option>'}).join("")+'</select>'}
 function when(i){if(!i.ts)return "";var s=new Date(i.ts).toLocaleString("ru-RU",{timeZone:"Europe/Moscow",day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"});return '<div class="when">Отправлено: '+s+' (МСК)</div>'}
 function bu(s){return /^(data:|uploads\/|https?:)/.test(s)?s:"/_blob/"+s}
-function shot(i){return i.img?'<a href="'+esc(bu(i.img))+'" target="_blank" rel="noopener"><img class="shot" alt="Скриншот" src="'+esc(bu(i.img))+'"></a>':""}
+function shot(i){return i.img?'<a href='+'"'+esc(bu(i.img))+'" target="_blank" rel="noopener"><img class="shot" alt="Скриншот" src='+'"'+esc(bu(i.img))+'"></a>':""}
 $("send").onclick=function(){var x=$("fText").value.trim(),m=$("msg"),btn=$("send"),f=$("fFile").files[0];
 if(!db){m.textContent="База недоступна: донесение не отправлено.";return}
 if(!x){m.textContent="Опишите, что найдено.";return}
