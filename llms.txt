@@ -1,7 +1,7 @@
 # 3D Molier Models
 
 ## What this site provides
-Production-ready 3D models for simulation, technical visualization, animation, VFX, training scenes, games, advertising, architecture, medical visualization and real-time engines (Unreal, Unity). 90,000+ models, 20+ years of production.
+Production-ready 3D models for simulation, technical visualization, animation, VFX, training scenes, games, advertising, architecture, medical visualization and real-time engines (Unreal, Unity). 90,000+ models, 20+ years of production. Every model is built by hand by the 3D Molier studio - no generative AI in the geometry, textures or renders - and licensed by the studio that owns it. Real products, real scale. Accurate 3D replicas of real-world goods and machinery, modelled at true size - ready to become 3D product pages, configurators and VR showrooms.
 
 ## Full AI context
 Detailed catalog, FAQ and citable model links: https://3dmolierstudio.com/llms-full.txt

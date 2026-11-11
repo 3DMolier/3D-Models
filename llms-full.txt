@@ -1,7 +1,7 @@
 # 3D Molier — Full Site Context for AI/LLM Agents
 
 ## About 3D Molier
-3D Molier is a professional 3D modeling studio operated by Andrey Simonenko. The studio has been producing 3D assets for 20+ years and has published over 90,000 models on TurboSquid. The catalog spans vehicles, aircraft, military hardware, medical anatomy, architecture, industrial equipment, ships, characters, nature assets, electronics, clothing, furniture and more.
+3D Molier is a professional 3D modeling studio operated by Andrey Simonenko. The studio has been producing 3D assets for 20+ years and has published over 90,000 models on TurboSquid. Every model is built by hand by the studio's artists - no generative AI in the geometry, textures or renders - and licensed by the studio that owns it. Real products, real scale. Accurate 3D replicas of real-world goods and machinery, modelled at true size - ready to become 3D product pages, configurators and VR showrooms. The catalog spans vehicles, aircraft, military hardware, medical anatomy, architecture, industrial equipment, ships, characters, nature assets, electronics, clothing, furniture and more.
 
 ## Business Model
 - All models are sold exclusively through TurboSquid

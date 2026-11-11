@@ -55,6 +55,14 @@ const FAQ = [
    + 'materials that survive the conversion, consistent naming, predictable scale. A StemCell model is '
    + 'therefore also CheckMate. The full requirements are on our '
    + '<a href="/model-standards/">model quality standards</a> page.'],
+  // «Human-made / No AI» - решение основателя 11.11.2026 (план 2026-11-10-human-made-positioning).
+  // Говорим только про модели: тексты сайта пишутся с помощью ИИ, обещать «без ИИ вообще» нельзя.
+  ['Are the models made with generative AI?',
+   'No. Every model is built by hand by artists in the 3D Molier studio - no generative AI in the '
+   + 'geometry, the textures or the renders. The studio owns the copyright on what it builds, so the '
+   + 'licence you buy comes from the people who made the model. Models of real branded products are '
+   + 'the exception on one point only: the trademarks belong to their owners, which is why those are '
+   + 'sold for editorial use.'],
   ['Can I use these models in commercial work?',
    'Most of them, yes - they are sold Royalty Free, and one purchase covers commercial use for as long '
    + 'as the work is shown. But not all: models of real branded products carry an Editorial Uses Only '

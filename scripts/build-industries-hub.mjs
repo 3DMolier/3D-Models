@@ -37,6 +37,15 @@ const header = headerMatch[1];
 const footer = donor.slice(donor.indexOf('</main>') + '</main>'.length);
 const bodyClass = (donor.match(/<body([^>]*)>/) || [, ''])[1];
 
+// Стили и аналитику в <head> тоже берём у донора. До 11.11.2026 они были вписаны
+// в шаблон руками (?v=33/38, без Ahrefs): каждый запуск откатывал версию стилей
+// и терял счётчик, хотя шапка и подвал были свежими.
+const donorHead = (donor.match(/<head>([\s\S]*?)<\/head>/) || [, ''])[1];
+const headCss = donorHead.match(/<link rel="stylesheet" href="\/assets\/css\/[^"]+"[^>]*>(?:<noscript>[\s\S]*?<\/noscript>)?/g) || [];
+const headAnalytics = donorHead.match(/<script src="https:\/\/analytics\.[^"]+"[^>]*><\/script>/g) || [];
+if (!headCss.some(l => l.includes('styles.min.css'))) { console.error('не нашёл styles.min.css в <head> ' + SRC); process.exit(1); }
+if (!headAnalytics.length) { console.error('не нашёл скрипт аналитики в <head> ' + SRC); process.exit(1); }
+
 // Отрасли читаем из меню шапки: имя, адрес и подпись уже есть там.
 const items = [];
 const menu = (header.match(/id="nav-industries-menu"[\s\S]*?<\/div>/) || [''])[0];
@@ -152,9 +161,7 @@ const html = `<!DOCTYPE html>
 <meta property="og:image" content="${BASE}/assets/og/3d-molier-og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/css/critical-fonts.css?v=33">
-<link rel="stylesheet" href="/assets/css/styles.min.css?v=38">
-<link rel="stylesheet" href="/assets/css/fonts.css?v=33">
+${headCss.join('\n')}
 <style>
 .ind-hub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin:28px 0}
 .ind-hub-card{display:block;border:1px solid rgba(0,0,0,.12);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit}
@@ -171,6 +178,7 @@ const html = `<!DOCTYPE html>
 </style>
 <script type="application/ld+json">${JSON.stringify(itemList)}</script>
 <script type="application/ld+json">${JSON.stringify(breadcrumb)}</script>
+${headAnalytics.join('\n')}
 </head>
 <body${bodyClass}>
 ${header}
