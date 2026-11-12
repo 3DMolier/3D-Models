@@ -373,10 +373,10 @@ const MESH = [
  * меньше 20 моделей с измеренной геометрией); иначе берётся вариант без неё.
  */
 const MESH_WEIGHT = [
-  (p, m, c) => `Against a median of ${fmtInt(m)} polygons across our ${c} models, ${fmtInt(p)} puts this one ${p > m ? 'above' : 'below'} the middle of the category.`,
-  (p, m, c) => `Our ${c} listings sit at a median of ${fmtInt(m)} polygons, so ${fmtInt(p)} is ${p > m ? 'heavier' : 'lighter'} than the typical one.`,
-  (p, m, c) => `${fmtInt(p)} polygons reads as ${p > m ? 'dense' : 'economical'} next to the ${fmtInt(m)} median of our ${c} range.`,
-  (p, m, c) => `Compared with the ${fmtInt(m)} polygon median of our ${c} catalog, this build runs ${p > m ? 'high' : 'low'} at ${fmtInt(p)}.`,
+  (p, m, c) => `Against a median of about ${fmtInt(m)} polygons across our ${c} models, ${fmtInt(p)} puts this one ${p > m ? 'above' : 'below'} the middle of the category.`,
+  (p, m, c) => `Our ${c} listings sit at a median of about ${fmtInt(m)} polygons, so ${fmtInt(p)} is ${p > m ? 'heavier' : 'lighter'} than the typical one.`,
+  (p, m, c) => `${fmtInt(p)} polygons reads as ${p > m ? 'dense' : 'economical'} next to the roughly ${fmtInt(m)} median of our ${c} range.`,
+  (p, m, c) => `Compared with the roughly ${fmtInt(m)} polygon median of our ${c} catalog, this build runs ${p > m ? 'high' : 'low'} at ${fmtInt(p)}.`,
   p => `Whether ${fmtInt(p)} polygons counts as light or heavy depends on the target platform, the complexity of the scene and how many instances it carries.`,
   p => `The same ${fmtInt(p)} polygons are comfortable in an offline render and demanding in a mobile game, so judge the figure against your own budget.`,
   p => `${fmtInt(p)} polygons reads differently on desktop, on mobile and in WebXR, so weigh it against the platform and the number of instances.`,
@@ -386,11 +386,25 @@ const MESH_WEIGHT = [
   p => `Compare ${fmtInt(p)} polygons with the rest of your scene rather than with an abstract threshold - that is what decides whether it is affordable.`,
   p => `The ${fmtInt(p)} is honest; whether it is heavy is a decision only your target platform can make.`,
 ];
+/*
+ * Медиана в тексте - ОКРУГЛЁННАЯ до двух значащих цифр (решение основателя 12.11.2026): 28 144 -> «about 28,000».
+ * Точная медиана пересчитывается при каждой сборке, а пока идёт импорт характеристик из кабинета TurboSquid,
+ * плавает каждый день: 11.11 одна она изменила ~10 тыс. карточек и упёрла публикацию в потолок 5 000, а между
+ * двумя прогонами с разницей 17 минут 28 150 стало 28 144. Округлённая меняется, только когда точная пересекает
+ * круглую границу. Сравнение «выше/ниже» - тоже с округлённой: иначе «28,100 ... median of about 28,000 ... below».
+ * Совпала с округлённой ровно - сравнивать не с чем, берём вариант без медианы.
+ * Даты страниц эта смена не двигает: lib/lastmod.mjs вырезает медиану вместе с «about »/«roughly ».
+ */
+const roundMedian = m => {
+  if (m < 100) return Math.round(m);
+  const k = 10 ** (Math.floor(Math.log10(m)) - 1);
+  return Math.round(m / k) * k;
+};
 // Фраза берёт медиану, только если она известна, иначе вариант без неё.
 const meshWeightSent = (p, seed, stats, catLabel) => {
-  const m = stats && stats.polyMed;
+  const m = stats && stats.polyMed ? roundMedian(stats.polyMed) : 0;
   const withMed = MESH_WEIGHT.slice(0, 4), plain = MESH_WEIGHT.slice(4);
-  return m ? take(withMed, seed, 'weight-med')(p, m, catLabel) : take(plain, seed, 'weight')(p);
+  return m && p !== m ? take(withMed, seed, 'weight-med')(p, m, catLabel) : take(plain, seed, 'weight')(p);
 };
 
 /*

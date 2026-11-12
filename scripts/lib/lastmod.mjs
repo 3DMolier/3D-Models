@@ -61,9 +61,12 @@ const ASSET_VER = /(\.(?:css|js))\?v=\d+/g;
 // Медиана по категории («Against a median of 7,661 polygons across our Other models», «median
 // across the same category is $49») пересчитывается каждый день и плавает на единицы - это
 // справка о разделе, а не правка модели. 29.10.2026 одна она сдвигала даты у ~13 тысяч карточек.
-const CAT_MEDIAN = /(median (?:of |across the same category is )\$?)[\d,]+/g;
+// 12.11.2026 медиана полигонов в тексте округлена: «median of about 28,000», «the roughly 28,000 polygon median».
+// «about »/«roughly » вырезаются вместе с числом - старый и новый вид дают один хеш, и разовая смена текста
+// на ~30 тыс. карточек даты не сдвигает.
+const CAT_MEDIAN = /(median (?:of |across the same category is ))(?:about )?(\$?)[\d,]+/g;
 // «next to the 7,661 median of our range», «the 28,670 polygon median of our Electronics»
-const CAT_MEDIAN_BEFORE = /\$?[\d,]+((?: [a-z]+)? median (?:of|across) )/g;
+const CAT_MEDIAN_BEFORE = /(?:roughly )?\$?[\d,]+((?: [a-z]+)? median (?:of|across) )/g;
 /*
  * Ссылки ключевых слов (09.11.2026): /catalog/?q=... и /search/?q=... переведены на #q= - 594 тыс. ссылок с карточек
  * плодили ~91 тыс. адресов-копий каталога для поисковика. Смена адреса ссылки - не правка модели: в хеше
@@ -83,7 +86,7 @@ const SA_FRAGMENT = /\/catalog\/#q=\{search_term_string\}/g;
  */
 const KW_BLOCK = /<div class="mp-kw-block">[\s\S]*?<div class="mp-chip-row">[\s\S]*?<\/div><\/div>/;
 export const stripChrome = s => s.replace(CHROME_HEADER, '').replace(CHROME_FOOTER, '').replace(ASSET_VER, '$1')
-  .replace(CAT_MEDIAN, '$1').replace(CAT_MEDIAN_BEFORE, '$1').replace(KW_BLOCK, '').replace(KW_FRAGMENT, 'href="/$1/?q=')
+  .replace(CAT_MEDIAN, '$1$2').replace(CAT_MEDIAN_BEFORE, '$1').replace(KW_BLOCK, '').replace(KW_FRAGMENT, 'href="/$1/?q=')
   .replace(SA_FRAGMENT, '/catalog/?q={search_term_string}');
 export const hashBody = (body, masked = POLICY.page_dates, isModel = false) => {
   let s = masked ? maskDates(body.toString('utf8')) : null;
