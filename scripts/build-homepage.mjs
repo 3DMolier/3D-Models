@@ -186,6 +186,14 @@ const CAT_COUNTS = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'category-
  * Единственный надёжный ключ - номер модели в конце slug-а; по нему и находим
  * настоящую папку. Не нашли - падаем на сборке, а не в проде.
  */
+/*
+ * Папка по номеру бывает заглушкой склейки (meta refresh на главную карточку семьи). 13.11.2026 так на
+ * главной стояли две плитки (Airbus A400M Rigged, Monarch Butterfly Rigged): Google видел ссылку на
+ * переадресацию. Ссылку на сайт ведём сразу на главную карточку; slug плитки (картинка, имя, адрес
+ * TurboSquid в разметке) не трогаем - это тот самый вариант, который показан.
+ */
+const MERGED = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'merged-variants.json'), 'utf8'));
+const cardHref = slug => { let s = slug; for (let i = 0; i < 5 && MERGED[s]; i++) s = MERGED[s]; return '/models/' + s + '/'; };
 const DIR_BY_ID = new Map();
 for (const d of fs.readdirSync(path.join(ROOT, 'models'))) {
   const id = d.slice(d.lastIndexOf('-') + 1);
@@ -267,7 +275,7 @@ const REF = '?referral=3d_molier-international';
  * перелинковка с главной на карточки пропадала совсем. Кнопка покупки стоит на
  * самой карточке - там, где человек уже решил.
  */
-const topTiles = TOP.map(t => `<a href="/models/${t.slug}/" class="tile tile--${t.cols}x${t.rows} tile--buy">
+const topTiles = TOP.map(t => `<a href="${cardHref(t.slug)}" class="tile tile--${t.cols}x${t.rows} tile--buy">
 <img src="${t.img}" alt="${esc(t.modelName)}" loading="lazy" decoding="async" width="800" height="450" data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)">
 <span class="tile-tag">${esc(t.cat)}</span>
 <span class="tile-cap"><span class="tile-name">${esc(t.name)}</span><span class="tile-price">${t.price}</span></span>
