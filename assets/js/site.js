@@ -80,7 +80,9 @@ window.galThumbFail = galThumbFail;
       var img = e.target;
       io.unobserve(img);
       var drop = img.getAttribute('data-drop-on-fail');
-      var alt = img.getAttribute('data-fallback');
+      // 13.11.2026: data-orig - исходный кадр TurboSquid у картинок через прокси wsrv.nl (lib/thumbs.mjs).
+      // Прокси, который не отвечает вовсе, onerror не вызывает - его ловит этот сторож.
+      var alt = img.getAttribute('data-orig') || img.getAttribute('data-fallback');
       if (!drop && !alt) return;
       // Адрес запоминаем сейчас: в галерее крупный кадр успевает смениться, и
       // отложенная проверка иначе тронула бы уже другой снимок.
@@ -92,13 +94,14 @@ window.galThumbFail = galThumbFail;
         // снимок на всю полосу - см. galThumbFail.
         if (drop) { galThumbFail(img); return; }
         if (img.src === alt) return;                        // уже подменена
+        img.removeAttribute('srcset');                      // иначе браузер держится за кандидата из srcset
         img.src = alt;
       }, WAIT);
     });
   }, { rootMargin: '200px' });
 
   var arm = function () {
-    document.querySelectorAll('img[data-fallback],img[data-drop-on-fail]')
+    document.querySelectorAll('img[data-fallback],img[data-drop-on-fail],img[data-orig]')
       .forEach(function (i) { io.observe(i); });
   };
   // Крупный кадр меняется по клику уже после загрузки страницы, поэтому его
@@ -305,13 +308,15 @@ window.imgErr=function(img){gaEvent('image_fallback_triggered',{src:img&&img.src
     // Иначе наверху открытого кадра было бы пусто.
     var h1 = document.querySelector('.mp-h1') || document.querySelector('h1');
     var own = h1 ? h1.textContent.trim() : '';
-    if(!gal) return [{ src: hero.getAttribute('src'), cap: own }];
+    // 13.11.2026: в рамке стоит уменьшенная копия через прокси (wsrv.nl, 800 px), полный кадр - в data-orig.
+    var heroFull = hero.getAttribute('data-orig') || hero.getAttribute('src');
+    if(!gal) return [{ src: heroFull, cap: own }];
     var list = [];
     gal.querySelectorAll('.mp-gal-thumb:not([hidden])').forEach(function(b){
       var f = b.getAttribute('data-full');
       if(f) list.push({ src: f, cap: b.getAttribute('data-cap') || own });
     });
-    return list.length ? list : [{ src: hero.getAttribute('src'), cap: own }];
+    return list.length ? list : [{ src: heroFull, cap: own }];
   }
   var items = [], idx = 0;
 

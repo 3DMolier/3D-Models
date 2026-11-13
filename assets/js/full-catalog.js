@@ -139,7 +139,9 @@ function onFirstChunk() {
   if(selCat)ensureRemainingChunks();
   // Кусок под запрошенную страницу - остальные не трогаем, см. chunkForPage.
   ensureChunkForPage(wantedPage);
-  scheduleIdlePreload();
+  // 13.11.2026: фоновой подгрузки в простое больше нет (scheduleIdlePreload тянул ещё два куска, ~1,3 МБ,
+  // каждому, кто просто листает). Остальные куски грузятся, когда человек собрался искать: первый фокус,
+  // касание или клавиша в поле поиска (warmSearch ниже), а фильтры и сортировка догружают их сами.
 }
 
 /*
@@ -248,12 +250,12 @@ function injectLoadedImages(){
   document.querySelectorAll('[data-img-pid]').forEach(function(el){
     var pid=el.dataset.imgPid;
     if(IMGS[pid]){
-      var img=document.createElement('img');
-      img.src=IMGS[pid];
-      img.loading='lazy';
-      img.setAttribute('width','800');
-      img.setAttribute('height','450');
-      img.decoding='async';
+      // та же разметка, что у плитки из modelCard: прокси wsrv.nl с запасным оригиналом (13.11.2026)
+      var a=el.closest?el.closest('a[href]'):null;
+      var tmp=document.createElement('div');
+      tmp.innerHTML=tileImg(IMGS[pid],'',a?a.getAttribute('href'):'');
+      var alt=a?(a.querySelector('.mc-name')||{}).textContent||'':'';
+      var img=tmp.firstChild;img.setAttribute('alt',alt?alt+' 3D model preview':'');
       el.parentNode.replaceChild(img,el);
     }
   });
@@ -482,6 +484,31 @@ window.addEventListener('popstate',function(){
   renderGrid();
 });
 
+/*
+ * МИНИАТЮРЫ (13.11.2026). Плитка показывается 240-370 px, а грузился оригинал TurboSquid 1920x1080 по
+ * 86-325 КБ - каталог весил 6-9 МБ. Теперь кадр TurboSquid идёт через прокси wsrv.nl (WebP 400/800,
+ * 4-18 КБ), исходный адрес - в data-orig: при отказе прокси onerror снимает srcset и ставит оригинал.
+ * Первые плитки страница приносит сама, со своими WebP (assets/img/t/) - перерисовка сетки их не
+ * подменяет на прокси, иначе браузер скачал бы те же кадры второй раз.
+ */
+var TS_IMG=/^https:\/\/p\.turbosquid\.com\//;
+var SERVER_IMG={};
+(function(){
+  if(!grid)return;
+  grid.querySelectorAll('a[href^="/models/"] img').forEach(function(im){
+    var a=im.closest('a');if(a&&/^\/assets\/img\/t\//.test(im.getAttribute('src')||''))SERVER_IMG[a.getAttribute('href')]=im.getAttribute('src');
+  });
+})();
+function wsrvUrl(u,w){return 'https://wsrv.nl/?url='+u.replace(/^https?:\/\//,'').replace(/[^A-Za-z0-9_.\/~-]/g,function(c){return encodeURIComponent(c);})+'&w='+w+'&output=webp&q=75';}
+var IMG_ERR="var o=this.getAttribute('data-orig');if(o&&this.src!=o){this.removeAttribute('srcset');this.src=o}else if(window.imgErr)imgErr(this)";
+function tileImg(src,alt,href){
+  var a=' alt="'+alt+'" loading="lazy" width="800" height="450" decoding="async"';
+  if(href&&SERVER_IMG[href])return '<img src="'+SERVER_IMG[href]+'" data-orig="'+src+'" onerror="'+IMG_ERR+'"'+a+'>';
+  if(!TS_IMG.test(src))return '<img src="'+src+'"'+a+'>';
+  var w4=wsrvUrl(src,400).replace(/&/g,'&amp;'),w8=wsrvUrl(src,800).replace(/&/g,'&amp;');
+  return '<img src="'+w4+'" srcset="'+w4+' 400w, '+w8+' 800w" sizes="(max-width: 640px) 90vw, 400px" data-orig="'+src+'" onerror="'+IMG_ERR+'"'+a+'>';
+}
+
 function makeSlug(name,id){
   var s=name.toLowerCase().trim().replace(/[^\w\s-]/g,'').replace(/[\s_]+/g,'-').replace(/-+/g,'-').replace(/^-+|-+$/g,'');
   return s+'-'+id;
@@ -496,7 +523,7 @@ function modelCard(idx){
   // остаётся запасным ходом для старых выгрузок, где колонки u ещё нет.
   var slug=(FC.u&&FC.u[idx])||makeSlug(name,id);
   var imgHtml=IMGS[id]
-    ?'<img src="'+IMGS[id]+'" alt="'+name.replace(/"/g,'&quot;')+'" loading="lazy" width="800" height="450" decoding="async">'
+    ?tileImg(IMGS[id],name.replace(/"/g,'&quot;'),'/models/'+slug+'/')
     :'<div class="mc-ph" data-img-pid="'+id+'">&#128246;</div>';
   var certBadge=cert===2?'<span class="mc-cert cert-cm">CheckMate</span>'
     :cert===1?'<span class="mc-cert cert-sc">StemCell</span>':'';
@@ -539,6 +566,14 @@ if(qEl){
       if(val.length>1){ensureRemainingChunks();}
     },220);
   });
+  // Прогрев поиска: остальные куски тянем молча (без значка загрузки) при первом намерении искать.
+  // Пока не пришёл fc-index.json, число кусков неизвестно - тогда ждём следующего события.
+  var warmSearch=function(){
+    if(!totalChunks)return;
+    for(var i=0;i<totalChunks;i++)loadChunk(i);
+    ['focus','pointerdown','keydown'].forEach(function(ev){qEl.removeEventListener(ev,warmSearch);});
+  };
+  ['focus','pointerdown','keydown'].forEach(function(ev){qEl.addEventListener(ev,warmSearch);});
 }
 if(sortSel)sortSel.addEventListener('change',function(){sortMode=this.value;ensureRemainingChunks();applyFilters();});
 if(clearAll)clearAll.addEventListener('click',function(){
