@@ -1,6 +1,6 @@
 /*
  * version-facts.mjs - чем версия модели отличается от главной, ИЗ ДАННЫХ (фаза 5 плана
- * D:\Clode_Work_Folder\plans\2026-11-09-card-value-after-quality-drop.md, 10.11.2026).
+ * C:\Copy\Clode_Work_Folder\plans\2026-11-09-card-value-after-quality-drop.md, 10.11.2026).
  *
  * Сейчас плитка версии в блоке «All Versions of This Model» знает только метку из названия («Rigged», «Black»,
  * «Simple Interior»). Метка - слово из названия, а не факт: «Simple Interior» не говорит, насколько легче сетка,

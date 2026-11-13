@@ -17,8 +17,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname).replace(/^\/([A-Za-z]:)/, '$1'), '..');
-const LOG = 'D:/Clode_Work_Folder/tools/youtube/publish-log.csv';
-const OUT = 'D:/Clode_Work_Folder/tools/youtube/video-card-map.json';
+const LOG = 'C:/Clode_Work_Folder/tools/youtube/publish-log.csv';
+const OUT = 'C:/Clode_Work_Folder/tools/youtube/video-card-map.json';
 const SITE = 'https://3dmolierstudio.com';
 const UTM = '?utm_source=youtube&utm_medium=referral&utm_campaign=video';
 
@@ -72,7 +72,7 @@ fs.writeFileSync(OUT, JSON.stringify(map, null, 1));
 // Вторая карта: идентификатор модели -> карточка. Нужна build_description.py,
 // который строит описание ДО загрузки ролика - идентификатора ролика тогда
 // ещё нет, а идентификатор модели уже известен из сопоставителя.
-const OUT2 = 'D:/Clode_Work_Folder/tools/youtube/model-card-map.json';
+const OUT2 = 'C:/Clode_Work_Folder/tools/youtube/model-card-map.json';
 const byModel = {};
 for (const [id, slug] of byId) {
   const file = path.join(ROOT, 'models', slug, 'index.html');

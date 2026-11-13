@@ -18,7 +18,7 @@
 import fs from 'node:fs';
 import { execFileSync } from 'node:child_process';
 
-const ROOT = 'D:/3d/документы/Blogger/Clode_and_Gpt_Website';
+const ROOT = 'C:/3dmolier/Clode_and_Gpt_Website';
 const git = (...a) => execFileSync('git', a, { cwd: ROOT, encoding: 'utf8', maxBuffer: 1 << 28 });
 const say = s => process.stdout.write(new Date().toISOString().slice(11, 19) + '  ' + s + '\n');
 

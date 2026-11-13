@@ -111,7 +111,7 @@ export const BRANDS = [
  * Список выше ловил половину брендовых моделей: в отчёте TurboSquid от 02.10
  * нашлось ещё ~9 000 моделей с чужой маркой (Kuka, Oshkosh, JLG, Makita,
  * DeWalt, Thule, Humvee...), и на сайте они стояли как Royalty Free.
- * Источник - D:/Clode_Work_Folder/reports/fab-ip/flags-*.tsv, взяты только
+ * Источник - C:/Copy/Clode_Work_Folder/reports/fab-ip/flags-*.tsv, взяты только
  * отметки «марка» и «изделие под маркой». Франшизы, люди и организации сюда
  * не входят: на TurboSquid они не всегда Editorial, решение за основателем.
  *

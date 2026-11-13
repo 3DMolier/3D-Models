@@ -142,8 +142,8 @@ run('redirect-empty-pagination.mjs');
  * недоступен, остаётся вчерашняя страница, а сайт публикуется как обычно.
  */
 try {
-  execFileSync(node, ['D:/Clode_Work_Folder/tools/meta/ig-page-daily.js'],
-    { cwd: 'D:/Clode_Work_Folder/tools/meta', encoding: 'utf8', maxBuffer: 1 << 26, timeout: 15 * 60 * 1000 });
+  execFileSync(node, ['C:/Clode_Work_Folder/tools/meta/ig-page-daily.js'],
+    { cwd: 'C:/Clode_Work_Folder/tools/meta', encoding: 'utf8', maxBuffer: 1 << 26, timeout: 15 * 60 * 1000 });
   say('страница Instagram пересобрана');
 } catch (e) {
   // причина - из вывода самого скрипта, а не «Command failed» (29.10.2026 по нему ничего не понять)

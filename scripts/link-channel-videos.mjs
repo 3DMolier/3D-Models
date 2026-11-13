@@ -26,7 +26,7 @@ import path from 'node:path';
 import { ROOT } from './lib/paths.mjs';
 const DATA = path.join(ROOT, 'data');
 const RECS = path.join(DATA, 'records');
-const INV = 'D:/Clode_Work_Folder/tools/youtube/channel-videos.json';
+const INV = 'C:/Clode_Work_Folder/tools/youtube/channel-videos.json';
 const OUT = path.join(DATA, 'video-card-links.json');
 const DRY = process.argv.includes('--dry');
 const fmt = n => Number(n).toLocaleString('ru-RU');
@@ -50,7 +50,7 @@ const MARKS = /\b(showcase|split|turntable|turn\s*table|rotation|flyaround|fly\s
  * Технические слова варианта (решение основателя 22.10.2026, «один ролик на семью»):
  * Simple / Simplified, with Interior, Low Poly, рендер (Redshift, V-Ray, Corona), PBR,
  * Game Ready - облёт тот же, что у основной модели. Правило общее с
- * D:/Clode_Work_Folder/tools/video/video-families.mjs.
+ * C:/Clode_Work_Folder/tools/video/video-families.mjs.
  *
  * Только вторым заходом: у части вариантов своя карточка (Aston Martin V12 Vantage и
  * его Simple Interior, Low Poly Pigeon), и широкий ключ сводит их в одно имя на две
@@ -141,7 +141,7 @@ let manualHit = 0, manualWait = 0;
  * «Sardine_School_Swimming_Animated_Rigged_For_Blender_», и оно дословно совпадает с адресом карточки без номера.
  * Берём только единственное совпадение среди живых карточек.
  */
-const UPLOAD_LOG = 'D:/Clode_Work_Folder/tools/youtube/upload-log.csv', MANIFESTS = 'D:/Clode_Work_Folder/tools/video/manifests/';
+const UPLOAD_LOG = 'C:/Clode_Work_Folder/tools/youtube/upload-log.csv', MANIFESTS = 'C:/Clode_Work_Folder/tools/video/manifests/';
 const prefixByVideo = new Map();
 if (fs.existsSync(UPLOAD_LOG)) {
   const slugify = s => String(s).toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');

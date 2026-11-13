@@ -1,6 +1,6 @@
 /*
  * import-ts-specs.mjs - характеристики из кабинета TurboSquid -> data/model-specs.json (10.11.2026, фаза 1
- * плана D:\Clode_Work_Folder\plans\2026-11-09-card-value-after-quality-drop.md).
+ * плана C:\Copy\Clode_Work_Folder\plans\2026-11-09-card-value-after-quality-drop.md).
  *
  * Источник - C:\Clode_Work_Folder\tools\turbosquid\ts-specs.json (собирает ts-specs-collect.mjs из gon.product
  * страницы редактора товара). Это карточки, которых нет в выгрузке студии: коллекции и версии (Rigged, Simple,

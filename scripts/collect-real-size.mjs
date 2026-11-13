@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /*
  * collect-real-size.mjs - размеры НАСТОЯЩЕГО предмета из Википедии (фаза 3 плана
- * D:\Clode_Work_Folder\plans\2026-11-09-card-value-after-quality-drop.md, 10.11.2026).
+ * C:\Copy\Clode_Work_Folder\plans\2026-11-09-card-value-after-quality-drop.md, 10.11.2026).
  *
  * ЧТО ЭТО И ЧЕГО ЭТО НЕ ЕСТЬ. Строка Dimensions на карточке - замер самой модели из выгрузки студии, и на нём
  * держатся фразы шаблона («built at true scale, no unit fix on import»). Размер из Википедии - это размер

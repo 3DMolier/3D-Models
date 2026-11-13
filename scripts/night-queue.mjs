@@ -18,7 +18,7 @@ import path from 'node:path';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname).replace(/^\/([A-Za-z]:)/, '$1'), '..');
 const WORK = path.join(ROOT, 'tools', 'night-writer');
-const GSC = 'D:/Clode_Work_Folder/tools/ga-analytics/gsc-top-pages.json';
+const GSC = 'C:/Clode_Work_Folder/tools/ga-analytics/gsc-top-pages.json';
 /*
  * ИСТОЧНИК ПРАВДЫ О НАПИСАННОМ - data/model-hand-desc.json, а не метка в файле
  * страницы.

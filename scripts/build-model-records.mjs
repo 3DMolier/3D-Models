@@ -62,7 +62,7 @@ const DRY = process.argv.includes('--dry');
 // Выгрузка студии (studio-inventory-part-*.json). С 05.11.2026 постоянная папка, входит в
 // еженедельную копию на D; в Downloads файлы удалили при чистке, и сборка потеряла характеристики.
 // Вторая копия - IndexedDB inv_collect в Chrome на www.3dmolier-studio.com (скрипт studio-inventory-collect.js).
-const DL = 'D:/Clode_Work_Folder/archive/studio-inventory/';
+const DL = 'C:/Copy/Clode_Work_Folder/archive/studio-inventory/';
 const CHUNK = 5000;
 const REFERRAL = 'referral=3d_molier-international';
 
@@ -776,7 +776,7 @@ say('читаю карту свёрнутых...');
  * заголовков и галерей.
  */
 {
-  const f = 'D:/Clode_Work_Folder/tools/youtube/publish-log.csv';
+  const f = 'C:/Clode_Work_Folder/tools/youtube/publish-log.csv';
   let n = 0;
   if (fs.existsSync(f)) {
     const byModel = new Map();
@@ -806,7 +806,7 @@ say('читаю карту свёрнутых...');
      * ролика, чем облёт чужой модели на карточке.
      */
     {
-      const uf = 'D:/Clode_Work_Folder/tools/youtube/upload-log.csv';
+      const uf = 'C:/Clode_Work_Folder/tools/youtube/upload-log.csv';
       if (fs.existsSync(uf)) {
         const baseOf = x => String(x).replace(/-\d+$/, '');
         const idByBase = new Map();     // адрес без номера -> id живой карточки
@@ -935,7 +935,7 @@ say('читаю карту свёрнутых...');
    * страницы. До 14.09.2026 этой пометки в записи не было вовсе, и 95 карточек
    * из 287 показывали посетителю запрет вместо ролика.
    */
-  const NO_EMBED_FILE = 'D:/Clode_Work_Folder/tools/youtube/no-embed-ids.json';
+  const NO_EMBED_FILE = 'C:/Clode_Work_Folder/tools/youtube/no-embed-ids.json';
   let blocked = 0;
   if (fs.existsSync(NO_EMBED_FILE)) {
     const raw = JSON.parse(fs.readFileSync(NO_EMBED_FILE, 'utf8'));

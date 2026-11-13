@@ -15,7 +15,7 @@
 # Всегда запускать в фоне: коммит в этом репозитории идёт около 10 минут.
 
 set -u
-cd "D:/3d/документы/Blogger/Clode_and_Gpt_Website" || exit 1
+cd "C:/3dmolier/Clode_and_Gpt_Website" || exit 1
 MSG_FILE="${1:-}"
 
 say () { echo "[$(date +%H:%M:%S)] $*"; }
