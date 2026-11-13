@@ -1,132 +1,132 @@
 {
  "aircraft": {
-  "polyMed": 203850,
+  "polyMed": 202802,
   "priceMed": 149,
-  "n": 840
+  "n": 848
  },
  "animals-creatures": {
-  "polyMed": 19275,
+  "polyMed": 19486,
   "priceMed": 129,
-  "n": 1650
+  "n": 1730
  },
  "architecture-landmarks": {
-  "polyMed": 52658,
+  "polyMed": 52624,
   "priceMed": 39,
-  "n": 3058
+  "n": 3088
  },
  "characters-people": {
-  "polyMed": 45399,
+  "polyMed": 45804,
   "priceMed": 149,
-  "n": 1563
+  "n": 1586
  },
  "clothing-accessories": {
-  "polyMed": 13592,
+  "polyMed": 13573,
   "priceMed": 39,
-  "n": 2119
+  "n": 2141
  },
  "collections-sets": {
-  "polyMed": 32250,
+  "polyMed": 27900,
   "priceMed": 69,
-  "n": 1798
+  "n": 2774
  },
  "containers-storage": {
-  "polyMed": 14105,
+  "polyMed": 13856,
   "priceMed": 29,
-  "n": 823
+  "n": 830
  },
  "electronics-gadgets": {
-  "polyMed": 28144,
+  "polyMed": 27809,
   "priceMed": 39,
-  "n": 2176
+  "n": 2205
  },
  "food-beverages": {
-  "polyMed": 8534,
+  "polyMed": 8347,
   "priceMed": 29,
-  "n": 1791
+  "n": 1825
  },
  "furniture-interior": {
-  "polyMed": 34408,
+  "polyMed": 33676,
   "priceMed": 34,
-  "n": 2299
+  "n": 2326
  },
  "industrial-equipment": {
-  "polyMed": 122519,
+  "polyMed": 122648,
   "priceMed": 59,
-  "n": 1500
+  "n": 1509
  },
  "kitchen-tableware": {
-  "polyMed": 11356,
+  "polyMed": 11319,
   "priceMed": 24,
-  "n": 1704
+  "n": 1717
  },
  "lighting": {
-  "polyMed": 19588,
+  "polyMed": 19470,
   "priceMed": 24,
-  "n": 223
+  "n": 228
  },
  "medical-3d-models": {
-  "polyMed": 16916,
+  "polyMed": 16794,
   "priceMed": 39,
-  "n": 1728
+  "n": 1752
  },
  "military-vehicles": {
   "polyMed": 622930,
   "priceMed": 139,
-  "n": 119
+  "n": 120
  },
  "musical-instruments": {
   "polyMed": 25786,
   "priceMed": 34,
-  "n": 291
+  "n": 292
  },
  "nature-plants": {
-  "polyMed": 37099,
+  "polyMed": 36624,
   "priceMed": 34,
-  "n": 1087
+  "n": 1101
  },
  "other": {
-  "polyMed": 7776,
+  "polyMed": 7792,
   "priceMed": 19,
-  "n": 1052
+  "n": 1073
  },
  "ships": {
-  "polyMed": 303508,
+  "polyMed": 320519,
   "priceMed": 149,
-  "n": 450
+  "n": 470
  },
  "signage-decor": {
-  "polyMed": 14062,
+  "polyMed": 13538,
   "priceMed": 29,
-  "n": 930
+  "n": 965
  },
  "space-scifi": {
-  "polyMed": 93835,
+  "polyMed": 76724,
   "priceMed": 69,
-  "n": 341
+  "n": 368
  },
  "sports-recreation": {
-  "polyMed": 22224,
+  "polyMed": 21954,
   "priceMed": 39,
-  "n": 1070
+  "n": 1085
  },
  "tools": {
-  "polyMed": 18484,
+  "polyMed": 18336,
   "priceMed": 29,
-  "n": 1640
+  "n": 1655
  },
  "toys-games": {
-  "polyMed": 12638,
+  "polyMed": 12568,
   "priceMed": 29,
-  "n": 591
+  "n": 601
  },
  "vehicles": {
   "polyMed": 206695,
   "priceMed": 99,
-  "n": 2649
+  "n": 2668
  },
  "weapons": {
-  "polyMed": 30810,
+  "polyMed": 30889,
   "priceMed": 49,
-  "n": 1267
+  "n": 1273
  }
 }
