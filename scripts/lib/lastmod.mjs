@@ -85,15 +85,35 @@ const SA_FRAGMENT = /\/catalog\/#q=\{search_term_string\}/g;
  * Журнал дат перенесён на это правило разово (38 027 записей, даты прежние) до пересборки карточек.
  */
 const KW_BLOCK = /<div class="mp-kw-block">[\s\S]*?<div class="mp-chip-row">[\s\S]*?<\/div><\/div>/;
-export const stripChrome = s => s.replace(CHROME_HEADER, '').replace(CHROME_FOOTER, '').replace(ASSET_VER, '$1')
-  .replace(CAT_MEDIAN, '$1$2').replace(CAT_MEDIAN_BEFORE, '$1').replace(KW_BLOCK, '').replace(KW_FRAGMENT, 'href="/$1/?q=')
-  .replace(SA_FRAGMENT, '/catalog/?q={search_term_string}');
-export const hashBody = (body, masked = POLICY.page_dates, isModel = false) => {
+/*
+ * Картинки и их доставка (13.11.2026): миниатюры переведены на прокси wsrv.nl и свои WebP (lib/thumbs.mjs), у
+ * главного снимка появилась предзагрузка, у ссылок TurboSquid - rel="sponsored". Это доставка и разметка, а не
+ * правка модели; войди они в хеш - даты сдвинулись бы у всех 38 тыс. карточек и всех разделов разом.
+ * Каждая <img> в хеше - просто «<img>» (адрес, srcset, размеры, обработчики не считаются), предзагрузка и
+ * preconnect/dns-prefetch выпадают, «rel="sponsored ...» приводится к прежнему «rel="...».
+ * Журнал дат перенесён на это правило разово: scripts/rehash-lastmod-images.mjs (даты прежние).
+ */
+const IMG_TAG = /<img\b[^>]*>/g;
+const PRELOAD_IMG = /<link rel="preload" as="image"[^>]*>\n?/g;
+const PRECONNECT = /<link rel="(?:preconnect|dns-prefetch)"[^>]*>\n?/g;
+const REL_SPONSORED = /\brel="sponsored /g;
+// Асинхронная загрузка шрифтов (13.11.2026, разделы и подборки) приводится к прежнему синхронному виду.
+const FONTS_ASYNC = /<link rel="stylesheet" href="\/assets\/css\/fonts\.css" media="print" onload="this\.media='all'">\s*<noscript>(<link rel="stylesheet" href="\/assets\/css\/fonts\.css">)<\/noscript>/g;
+export const stripChrome = (s, images = true) => {
+  s = s.replace(CHROME_HEADER, '').replace(CHROME_FOOTER, '').replace(ASSET_VER, '$1')
+    .replace(CAT_MEDIAN, '$1$2').replace(CAT_MEDIAN_BEFORE, '$1').replace(KW_BLOCK, '').replace(KW_FRAGMENT, 'href="/$1/?q=')
+    .replace(SA_FRAGMENT, '/catalog/?q={search_term_string}');
+  return images
+    ? s.replace(IMG_TAG, '<img>').replace(PRELOAD_IMG, '').replace(PRECONNECT, '').replace(REL_SPONSORED, 'rel="').replace(FONTS_ASYNC, '$1')
+    : s;
+};
+/* images=false - правило до 13.11.2026, нужно только разовому переносу журнала (rehash-lastmod-images.mjs). */
+export const hashBody = (body, masked = POLICY.page_dates, isModel = false, images = true) => {
   let s = masked ? maskDates(body.toString('utf8')) : null;
   if (s !== null && isModel) s = s.replace(GA_BLOCK, '');
   // Счётчик Ahrefs (28.10.2026) тоже не содержимое, и для всех страниц: см. lib/ahrefs.mjs
   if (s !== null) s = s.replace(AHREFS_RE, '');
-  if (s !== null) s = stripChrome(s);
+  if (s !== null) s = stripChrome(s, images);
   return crypto.createHash('sha1').update(s !== null ? s : body).digest('hex').slice(0, HASH_LEN);
 };
 const humanDate = iso => new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });

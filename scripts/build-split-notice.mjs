@@ -48,7 +48,7 @@ const html = `<!DOCTYPE html>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/css/critical-fonts.css?v=${ASSET_V}">
 <link rel="stylesheet" href="/assets/css/styles.min.css?v=${ASSET_V}">
-<link rel="stylesheet" href="/assets/css/fonts.css?v=${ASSET_V}">
+<link rel="stylesheet" href="/assets/css/fonts.css?v=${ASSET_V}" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/css/fonts.css?v=${ASSET_V}"></noscript>
 <style>.split-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin:32px 0}.split-card{display:block;padding:28px;border:1px solid rgba(0,0,0,.12);border-radius:12px;text-decoration:none;color:inherit}.split-card:hover{border-color:rgba(0,0,0,.35)}.split-icon{font-size:34px;display:block;margin-bottom:12px}.split-name{font-size:20px;font-weight:700;margin-bottom:6px}.split-count{font-size:14px;opacity:.65}@media(prefers-color-scheme:dark){.split-card{border-color:rgba(255,255,255,.18)}.split-card:hover{border-color:rgba(255,255,255,.45)}}</style>
 </head>
 <body class="relative min-h-screen">

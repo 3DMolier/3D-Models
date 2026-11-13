@@ -32,7 +32,14 @@ import { brandOf, brandById } from './lib/brands.mjs';
 import { ROOT } from './lib/paths.mjs';
 import { isIndexable, pageDate, NOINDEX_META } from './lib/index-policy.mjs';
 import { versionFacts, mainFacts, factsHtml } from './lib/version-facts.mjs';
+import { imgAttrs, preloadHref, isTs, sponsorLinks } from './lib/thumbs.mjs';
 const SITE = 'https://3dmolierstudio.com';
+/*
+ * Главный снимок через прокси шириной 800 (13.11.2026): в рамке он 311 px на телефоне (плотность 2) и 744 px
+ * на компьютере. Без srcset: галерея (site.js) меняет кадр через src, а srcset бы его перебивал.
+ * Полный кадр 1920 остаётся в data-orig - его берёт просмотр во весь экран.
+ */
+const HERO_W = 800;
 
 /*
  * Подписи версий из данных (фаза 5, ОК основателя 10.11.2026) выпускаются частями: включение сразу меняет ~17 тыс.
@@ -441,8 +448,9 @@ ${isIndexable(r) ? '' : NOINDEX_META + '\n'}<meta name="viewport" content="width
 <meta name="twitter:title" content="${esc(social)}">
 <meta name="twitter:description" content="${esc(short)}">
 <meta name="twitter:image" content="${esc(heroImg(r))}">
-<link rel="preconnect" href="https://p.turbosquid.com" crossorigin>
-<link rel="dns-prefetch" href="https://p.turbosquid.com">
+${isTs(heroImg(r)) ? `<link rel="preconnect" href="https://wsrv.nl">
+<link rel="preload" as="image" href="${preloadHref(heroImg(r), { w: HERO_W })}" fetchpriority="high">
+` : ''}<link rel="dns-prefetch" href="https://p.turbosquid.com">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="${url}">
 <link rel="alternate" hreflang="en" href="${url}">
@@ -587,7 +595,9 @@ export function hero(r) {
      * одной и той же картинки. Это хуже пустого места: галерея обещает разные
      * ракурсы и не показывает ни одного. Пусть лучше кадра не будет.
      */
-    + `<img src="${esc(v.thumb || studioSize(v.image, 'h200'))}" alt="${named}" width="200" height="113"`
+    // Кадр TurboSquid - через прокси шириной 240 (миниатюра 106 px, плотность до 2), 13.11.2026.
+    + `<img ${(t => isTs(t) ? imgAttrs(t, { w: 240, set: null, fn: '' }) : `src="${esc(t)}"`)(v.thumb || studioSize(v.image, 'h200'))}`
+    + ` alt="${named}" width="200" height="113"`
     + (String(v.image || '').includes('3dmolier-studio')
       ? ` data-drop-on-fail="1" onerror="galThumbFail(this)"` : '')
     + ` loading="lazy" decoding="async">`
@@ -621,9 +631,9 @@ export function hero(r) {
 
   return `<section class="mp-hero-section"><div class="max-w-7xl mx-auto"><div class="mp-hero-grid">`
     + `<div class="hero-img-frame mp-hero-frame">`
-    + `<img src="${esc(heroImg(r))}" alt="${alt}" width="1200" height="675" decoding="async"`
+    + `<img ${imgAttrs(heroImg(r), { w: HERO_W, set: null, fn: 'imgErr' })} alt="${alt}" width="1200" height="675" decoding="async"`
     + ` loading="eager" fetchpriority="high" class="mp-hero-img"`
-    + ` data-placeholder="${PLACEHOLDER}" onerror="imgErr(this)">`
+    + ` data-placeholder="${PLACEHOLDER}">`
     + `<div class="img-placeholder mp-placeholder"><span class="mp-placeholder-icon">&#128247;</span>`
     + `<span class="mp-placeholder-cat">${esc(r.category_name)}</span></div></div>`
     + gallery
@@ -809,8 +819,9 @@ function relatedCard({ href, image, title, badge, chip, price, external, facts =
     + `<div class="img-wrap mp-rc-img-wrap">`
     // Плитка показывается около 220x150 - берём копию h400, она и на экране
     // с двойной плотностью резкая, а весит 12 КБ вместо 303 КБ.
-    + `<img src="${esc(studioSize(image, 'h400'))}" alt="${esc(title)}" width="800" height="450" decoding="async"`
-    + ` loading="lazy" data-placeholder="${PLACEHOLDER}" onerror="imgErr(this)">`
+    // 13.11.2026: кадр TurboSquid - через прокси 400/800 (плитка 309-371 px), см. lib/thumbs.mjs.
+    + `<img ${imgAttrs(studioSize(image, 'h400'), { fn: 'imgErr' })} alt="${esc(title)}" width="800" height="450" decoding="async"`
+    + ` loading="lazy" data-placeholder="${PLACEHOLDER}">`
     + `<div class="img-placeholder" aria-hidden="true"><span class="mp-rc-placeholder-icon">&#128247;</span></div>`
     + `</div><div class="mp-rc-body"><div class="mp-rc-head"><div class="mp-rc-title">${esc(title)}`
     + (badge ? ` <span class="mp-var-badge">${esc(badge)}</span>` : '')
@@ -1016,7 +1027,8 @@ export function renderCard(r) {
     faqSchema(r, faqHtml),
   ].filter(Boolean).join('');
   const NL = '\n';
-  return '<!DOCTYPE html>' + NL + '<html lang="en">' + NL
+  // sponsorLinks - партнёрские ссылки TurboSquid с rel="sponsored noopener" (13.11.2026, lib/thumbs.mjs)
+  return sponsorLinks('<!DOCTYPE html>' + NL + '<html lang="en">' + NL
     + head(r, desc, schema) + NL + '<body>' + NL
     /*
      * Ссылку «пропустить к содержимому» ставит ШАПКА, и только она.
@@ -1036,7 +1048,7 @@ export function renderCard(r) {
     + relatedBlock(r)
     + ctaSection() + NL
     + FOOTER + NL
-    + scripts() + NL + '</body>' + NL + '</html>';
+    + scripts() + NL + '</body>' + NL + '</html>');
 }
 
 export { SITE, HEADER, FOOTER, ASSET_V };

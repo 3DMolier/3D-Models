@@ -16,6 +16,8 @@ import { ROOT } from './lib/paths.mjs';
 // папке /categories.
 import { CATEGORIES as TAXONOMY } from './lib/taxonomy.mjs';
 import { CATS } from './lib/cat-keywords.mjs';
+import { imgAttrs, preloadTag, sponsorLinks } from './lib/thumbs.mjs';
+import { sectionLead, sectionAbout, SECTION_TEXT_CSS } from './lib/section-texts.mjs';
 const DATA = path.join(ROOT, 'data');
 const CATEGORIES = path.join(ROOT, 'categories');
 const MODELS = path.join(ROOT, 'models');
@@ -160,12 +162,20 @@ function heroFor(cat, catDisp, count) {
     // в нём захардкожен разметкой прошлой сборки. Число под сеткой пересчитывалось
     // каждый раз, а в шапке нет: у Weapons висело 2005 при реальных 1901, у
     // Architecture 1165 при 4450. Обновляем при переиспользовании.
+    // 13.11.2026: строка под заголовком - первый абзац рукописного текста раздела (data/category-texts.json),
+    // каждый раз заново, чтобы число {count} в нём было сегодняшним. Текста нет - строка прежняя.
+    const leadNow = sectionLead(cat, count);
     if (h) return h.replace(/(<div class="cat-stat-num">)[^<]*(<\/div>)/,
-      (m, a, b) => a + count.toLocaleString('en-US') + b);
+      (m, a, b) => a + count.toLocaleString('en-US') + b)
+      .replace(/<p class="cat-desc">[\s\S]*?<\/p>/, m => leadNow ? `<p class="cat-desc">${leadNow}</p>` : m);
   }
   // новая категория - генерируем
-  const [icon, desc] = HERO[cat] || ['🧩', `${catDisp} 3D models by 3D Molier. Real-world scale, clean topology, PBR materials, all popular formats.`];
-  return `<section class="page-section page-section--border-bottom"><div class="max-w-7xl mx-auto"><div class="cat-hero"><div class="cat-hero-left"><div class="cat-hero-top"><div class="cat-hero-icon">${icon}</div><div><div class="section-label">3D Model Category</div><h1 class="cat-page-h1">${esc(catDisp)} 3D Models</h1></div></div><p class="cat-desc">${esc(desc)}</p><div class="cat-actions"><a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-international" target="_blank" rel="noopener" class="btn-primary">Browse on TurboSquid</a> <a href="/" class="btn-ghost">&#8592; All Categories</a></div></div><div class="cat-stats"><div class="cat-stat-cell"><div class="cat-stat-num">${count.toLocaleString('en-US')}</div><div class="cat-stat-label">Total Models</div></div></div></div></div></section>`;
+  const [icon, desc0] = HERO[cat] || ['🧩', `${catDisp} 3D models by 3D Molier. Real-world scale, clean topology, PBR materials, all popular formats.`];
+  // 13.11.2026: первый абзац рукописного текста раздела (data/category-texts.json) вместо шаблонной строки.
+  // Он уже экранирован, поэтому ниже esc() к нему не применяется.
+  const lead = sectionLead(cat, count);
+  const desc = lead ? null : desc0;
+  return `<section class="page-section page-section--border-bottom"><div class="max-w-7xl mx-auto"><div class="cat-hero"><div class="cat-hero-left"><div class="cat-hero-top"><div class="cat-hero-icon">${icon}</div><div><div class="section-label">3D Model Category</div><h1 class="cat-page-h1">${esc(catDisp)} 3D Models</h1></div></div><p class="cat-desc">${lead || esc(desc)}</p><div class="cat-actions"><a href="https://www.turbosquid.com/Search/Artists/3d_molier-International?referral=3d_molier-international" target="_blank" rel="noopener" class="btn-primary">Browse on TurboSquid</a> <a href="/" class="btn-ghost">&#8592; All Categories</a></div></div><div class="cat-stats"><div class="cat-stat-cell"><div class="cat-stat-num">${count.toLocaleString('en-US')}</div><div class="cat-stat-label">Total Models</div></div></div></div></div></section>`;
 }
 
 /*
@@ -263,7 +273,7 @@ const small = (u, tag) => (RESIZER_WORKS && String(u || '').startsWith(STUDIO)
   ? 'https://www.3dmolier-studio.com/images/' + tag + '/assets/' + String(u).slice(STUDIO.length)
   : u);
 
-function card(m, catDisp, i = 99) {
+function card(m, catDisp, i = 99, page = 1) {
   const slug = DIR_BY_ID.get(String(m.id)) || (slugify(m.name) + '-' + m.id);
   /*
    * Высокий приоритет - ТОЛЬКО первой карточке.
@@ -277,7 +287,7 @@ function card(m, catDisp, i = 99) {
   const loadAttrs = i === 0 ? 'loading="eager" fetchpriority="high"'
     : (eager ? 'loading="eager"' : 'loading="lazy"');
   return `      <a href="/models/${slug}/" class="model-card card-glow">
-        <div class="img-wrap mc-img"><img src="${small(m.img, 'h400')}" alt="${esc(m.name)} 3D model preview" width="800" height="450" decoding="async" ${loadAttrs} data-fallback="${m.img}" data-placeholder="${PLACEHOLDER}" onerror="imgErr(this)"><div class="img-placeholder"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">${esc(catDisp)}</span></div></div>
+        <div class="img-wrap mc-img"><img ${imgAttrs(small(m.img, 'h400'), { showcase: page === 1, fn: 'imgErr' })} alt="${esc(m.name)} 3D model preview" width="800" height="450" decoding="async" ${loadAttrs} data-fallback="${m.img}" data-placeholder="${PLACEHOLDER}"><div class="img-placeholder"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">${esc(catDisp)}</span></div></div>
         <div class="mc-body">
           <div class="mc-meta"><h3 class="mc-title">${esc(m.name)}</h3></div>
           <div class="mc-foot"><span class="chip mc-chip">${esc(catDisp)}</span><span class="mc-price">$${m.price}</span></div>
@@ -317,12 +327,13 @@ function renderPage(cat, catDisp, page, total, models, heroHtml, totalCount) {
     page < total ? `<link rel="next" href="${base}/categories/${cat}/page/${page + 1}/">` : '',
   ].filter(Boolean).join('\n');
   const bcCurrent = page === 1 ? esc(catDisp) : `<a href="/categories/${cat}/" class="bc-link">${esc(catDisp)}</a> <span class="bc-sep">&#8250;</span> Page ${page}`;
-  const cards = models.map((m, i) => card(m, catDisp, i)).join('\n');
+  const cards = models.map((m, i) => card(m, catDisp, i, page)).join('\n');
   // Предзагрузка самой верхней картинки сетки: браузер начинает качать её из
   // <head>, не дожидаясь разбора разметки и раскладки. Вместе с eager это и
   // лечит LCP - он упирался именно в первую карточку.
+  // 13.11.2026: тот же адрес, что у самой плитки (свой WebP на первой странице, прокси на остальных).
   const preload = models.length
-    ? `<link rel="preload" as="image" href="${small(models[0].img, 'h400')}" fetchpriority="high">`
+    ? preloadTag(small(models[0].img, 'h400'), { showcase: page === 1 })
     : '';
   // Хабы категорий уходили в соцсети и мессенджеры голыми: ни заголовка, ни
   // картинки в развороте ссылки. Тысяча с лишним страниц - и ни одной с
@@ -372,8 +383,8 @@ ${relLinks}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/css/critical-fonts.css?v=33">
 <link rel="stylesheet" href="/assets/css/styles.min.css?v=33">
-<link rel="stylesheet" href="/assets/css/fonts.css?v=33">
-<style>.cat-pagination{margin:40px 0 8px}.cat-pagination>div{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}.cat-pg-link,.cat-pg-num{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:40px;padding:0 12px;border:1px solid rgba(0,0,0,.12);border-radius:8px;font-size:14px;font-weight:600;color:inherit;text-decoration:none}.cat-pg-num:hover,.cat-pg-link:hover{border-color:rgba(0,0,0,.35)}.cat-pg-current{background:#111;color:#fff;border-color:#111}.cat-pg-disabled{opacity:.4}.cat-pg-ellipsis{padding:0 4px;opacity:.5}.cat-pg-total{font-size:13px;opacity:.6}@media(prefers-color-scheme:dark){.cat-pg-link,.cat-pg-num{border-color:rgba(255,255,255,.18)}.cat-pg-current{background:#fff;color:#111;border-color:#fff}}</style>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=33" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/css/fonts.css?v=33"></noscript>
+<style>.cat-pagination{margin:40px 0 8px}.cat-pagination>div{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}.cat-pg-link,.cat-pg-num{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:40px;padding:0 12px;border:1px solid rgba(0,0,0,.12);border-radius:8px;font-size:14px;font-weight:600;color:inherit;text-decoration:none}.cat-pg-num:hover,.cat-pg-link:hover{border-color:rgba(0,0,0,.35)}.cat-pg-current{background:#111;color:#fff;border-color:#111}.cat-pg-disabled{opacity:.4}.cat-pg-ellipsis{padding:0 4px;opacity:.5}.cat-pg-total{font-size:13px;opacity:.6}@media(prefers-color-scheme:dark){.cat-pg-link,.cat-pg-num{border-color:rgba(255,255,255,.18)}.cat-pg-current{background:#fff;color:#111;border-color:#fff}}${page === 1 ? SECTION_TEXT_CSS : ''}</style>
 ${itemListSchema(cat, catDisp, page, models)}
 ${bcSchema}
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDY5KTLBP1"></script>
@@ -401,7 +412,7 @@ ${cards}
     </div>
     ${pagination(cat, page, total)}
   </div>
-</section>
+</section>${page === 1 ? '\n' + sectionAbout(cat, totalCount) : ''}
 </main>
 ${FOOTER}
 <script src="/assets/js/site.min.js?v=${ASSET_V}" defer></script>
@@ -442,7 +453,7 @@ function buildCategory(cat, all, img, catOf) {
     const html = renderPage(cat, catDisp, page, total, models, heroHtml, list.length);
     const dir = page === 1 ? path.join(CATEGORIES, cat) : path.join(CATEGORIES, cat, 'page', String(page));
     fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(path.join(dir, 'index.html'), html);
+    fs.writeFileSync(path.join(dir, 'index.html'), sponsorLinks(html));
   }
   return { cat, models: list.length, pages: total };
 }

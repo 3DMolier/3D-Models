@@ -18,6 +18,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { imgAttrs, sponsorLinks } from './lib/thumbs.mjs';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname).replace(/^\/([A-Za-z]:)/, '$1'), '..');
 const SRC = path.join(ROOT, 'collections', 'index.html');
@@ -139,7 +140,8 @@ const cards = live.map((i, n) => {
   // лениво. Иначе браузер потянет двадцать шесть снимков ради четырёх видимых.
   const load = n < 4 ? 'decoding="async"' : 'loading="lazy" decoding="async"';
   const cover = c
-    ? `<div class="cat-hub-cover"><img src="${esc(c.img)}" alt="${esc(c.name)} - example of a ${esc(i.h1.replace(/ 3D Models?$/i, ''))} 3D model" width="800" height="450" ${load} data-placeholder="/assets/og/3d-molier-og.jpg" onerror="imgErr(this)"></div>`
+    // 13.11.2026: хаб категорий - витрина, обложка своим WebP (lib/thumbs.mjs)
+    ? `<div class="cat-hub-cover"><img ${imgAttrs(c.img, { showcase: true, fn: 'imgErr' })} alt="${esc(c.name)} - example of a ${esc(i.h1.replace(/ 3D Models?$/i, ''))} 3D model" width="800" height="450" ${load} data-placeholder="/assets/og/3d-molier-og.jpg"></div>`
     : '';
   return `<a class="cat-hub-card" href="/categories/${i.slug}/">`
     + cover
@@ -201,7 +203,7 @@ const html = `<!DOCTYPE html>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/css/critical-fonts.css?v=33">
 <link rel="stylesheet" href="/assets/css/styles.min.css?v=38">
-<link rel="stylesheet" href="/assets/css/fonts.css?v=33">
+<link rel="stylesheet" href="/assets/css/fonts.css?v=33" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/css/fonts.css?v=33"></noscript>
 <style>
 .cat-hub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin:28px 0}
 .cat-hub-card{display:block;border:1px solid rgba(0,0,0,.12);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit}
@@ -237,7 +239,7 @@ ${header}
 ${footer}`;
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
-fs.writeFileSync(OUT, html);
+fs.writeFileSync(OUT, sponsorLinks(html));
 console.log('готово: /categories/ собрана из ' + live.length + ' категорий, ' + Math.round(html.length / 1024) + ' КБ');
 console.log('  моделей в сумме по счётчикам: ' + nf(total));
 console.log('  длина title: ' + title.replace(/&amp;/g, '&').length + ', description: ' + desc.length);

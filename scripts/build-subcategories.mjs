@@ -28,6 +28,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { SUBCATS, MIN_MODELS } from './subcategories.mjs';
 import { nameOf } from './lib/taxonomy.mjs';
+import { imgAttrs, preloadTag, sponsorLinks } from './lib/thumbs.mjs';
+import { sectionLead, sectionAbout, SECTION_TEXT_CSS } from './lib/section-texts.mjs';
 
 import { ROOT } from './lib/paths.mjs';
 const DATA = path.join(ROOT, 'data');
@@ -101,12 +103,13 @@ function makeMatcher(terms, not) {
 // - это название самой страницы, и повторять его на каждой из ста карточек
 // незачем; категория добавляет то, чего на странице ещё нет. Плюс так чип
 // приходит из единого источника, как и везде.
-function card(m, chip, i) {
+function card(m, chip, i, page = 1) {
   const loadAttrs = i < 4 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
   const url = '/models/' + slugify(m.name) + '-' + m.id + '/';
   const img = m.img || PLACEHOLDER;
+  // 13.11.2026: свой WebP на первой странице (витрина), прокси wsrv.nl на остальных - lib/thumbs.mjs
   return `      <a href="${url}" class="model-card card-glow">
-        <div class="img-wrap mc-img"><img src="${img}" alt="${esc(m.name)} 3D model preview" width="800" height="450" decoding="async" ${loadAttrs} data-fallback="${img}" data-placeholder="${PLACEHOLDER}" onerror="imgErr(this)"><div class="img-placeholder"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">${esc(chip)}</span></div></div>
+        <div class="img-wrap mc-img"><img ${imgAttrs(img, { showcase: page === 1, fn: 'imgErr' })} alt="${esc(m.name)} 3D model preview" width="800" height="450" decoding="async" ${loadAttrs} data-fallback="${img}" data-placeholder="${PLACEHOLDER}"><div class="img-placeholder"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">${esc(chip)}</span></div></div>
         <div class="mc-body">
           <div class="mc-meta"><h3 class="mc-title">${esc(m.name)}</h3></div>
           <div class="mc-foot"><span class="chip mc-chip">${esc(chip)}</span><span class="mc-price">$${m.price}</span></div>
@@ -134,6 +137,8 @@ function pagination(cat, sub, page, total) {
 }
 
 const PG_CSS = '<style>.cat-pagination{margin:40px 0 8px}.cat-pagination>div{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}.cat-pg-link,.cat-pg-num{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:40px;padding:0 12px;border:1px solid rgba(0,0,0,.12);border-radius:8px;font-size:14px;font-weight:600;color:inherit;text-decoration:none}.cat-pg-num:hover,.cat-pg-link:hover{border-color:rgba(0,0,0,.35)}.cat-pg-current{background:#111;color:#fff;border-color:#111}.cat-pg-disabled{opacity:.4}.cat-pg-ellipsis{padding:0 4px;opacity:.5}.cat-pg-total{font-size:13px;opacity:.6}.sub-links{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}.sub-link{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid rgba(0,0,0,.12);border-radius:999px;font-size:14px;text-decoration:none;color:inherit}.sub-link:hover{border-color:rgba(0,0,0,.4)}.sub-link .sub-n{opacity:.55;font-size:12px}@media(prefers-color-scheme:dark){.cat-pg-link,.cat-pg-num,.sub-link{border-color:rgba(255,255,255,.18)}.cat-pg-current{background:#fff;color:#111;border-color:#fff}}</style>';
+// Стиль блока текста раздела - только на первой странице (13.11.2026): на остальных блока нет, и их разметка не меняется.
+const PG_CSS_1 = PG_CSS.replace('</style>', SECTION_TEXT_CSS + '</style>');
 
 function renderPage(o) {
   const { cat, catDisp, sub, subDisp, page, totalPages, models, totalCount, siblings } = o;
@@ -218,13 +223,13 @@ function renderPage(o) {
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${canonical}">
 ${social}
-${models.length ? `<link rel="preload" as="image" href="${esc(models[0].img || PLACEHOLDER)}" fetchpriority="high">` : ''}
+${models.length ? preloadTag(models[0].img || PLACEHOLDER, { showcase: page === 1 }) : ''}
 ${rel}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/css/critical-fonts.css?v=${V_CRIT}">
 <link rel="stylesheet" href="/assets/css/styles.min.css?v=${V_STYLES}">
-<link rel="stylesheet" href="/assets/css/fonts.css?v=${V_FONTS}">
-${PG_CSS}
+<link rel="stylesheet" href="/assets/css/fonts.css?v=${V_FONTS}" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/css/fonts.css?v=${V_FONTS}"></noscript>
+${page === 1 ? PG_CSS_1 : PG_CSS}
 ${listSchema}
 ${bcSchema}
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDY5KTLBP1"></script>
@@ -237,14 +242,14 @@ ${header}
 <section class="page-section">
   <div class="max-w-7xl mx-auto">
     <div class="section-header"><div><div class="section-label">${esc(catDisp)}</div><h1 class="section-h2">${esc(page === 1 ? name : name + ' - Page ' + page)}</h1></div><span class="cat-pg-total">${rangeFrom}-${rangeTo} of ${totalCount.toLocaleString('en-US')}</span></div>
-    ${page === 1 ? `<p class="cat-desc">${esc(desc)}</p>` : ''}
+    ${page === 1 ? `<p class="cat-desc">${sectionLead(cat + '/' + sub, totalCount) || esc(desc)}</p>` : ''}
     ${sibHtml}
     <div id="model-grid" class="model-grid">
-${models.map((m, i) => card(m, catDisp, i)).join('\n')}
+${models.map((m, i) => card(m, catDisp, i, page)).join('\n')}
     </div>
     ${pagination(cat, sub, page, totalPages)}
   </div>
-</section>
+</section>${page === 1 ? '\n' + sectionAbout(cat + '/' + sub, totalCount) : ''}
 </main>
 ${footer}
 <script src="/assets/js/site.min.js?v=${V_SITE}" defer></script>
@@ -287,7 +292,7 @@ for (const [cat, subs] of Object.entries(SUBCATS)) {
       const dir = page === 1
         ? path.join(CATEGORIES, cat, s.slug)
         : path.join(CATEGORIES, cat, s.slug, 'page', String(page));
-      if (!DRY) { fs.mkdirSync(dir, { recursive: true }); fs.writeFileSync(path.join(dir, 'index.html'), html); }
+      if (!DRY) { fs.mkdirSync(dir, { recursive: true }); fs.writeFileSync(path.join(dir, 'index.html'), sponsorLinks(html)); }
     }
     built.push({ cat, sub: s.slug, title: s.title, n: s.list.length, pages: totalPages });
     console.log('  ' + cat + '/' + s.slug + ': ' + s.list.length + ' моделей, ' + totalPages + ' стр.');

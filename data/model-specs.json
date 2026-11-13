@@ -3813,6 +3813,32 @@
   "source": "turbosquid",
   "at": "2026-11-11"
  },
+ "927237": {
+  "title": "Lilac",
+  "polygons": 389796,
+  "vertices": 378019,
+  "geometry": "polygonal quads/tris",
+  "rigged": "model is not jointed",
+  "animated": "model is not animated",
+  "unwrappedUVs": "Yes, non-overlapping",
+  "textures": null,
+  "textureSizes": [],
+  "dimensions": null,
+  "formats": [
+   "Cinema 4D",
+   "3DS",
+   "OBJ",
+   "3ds Max + Scanline",
+   "Maya",
+   "3ds Max + V-Ray",
+   "glTF",
+   "3ds Max",
+   "USDZ"
+  ],
+  "formatCount": 12,
+  "source": "turbosquid",
+  "at": "2026-11-13"
+ },
  "929586": {
   "title": "Male Head 3 3D Model",
   "polygons": 7316,
@@ -25700,6 +25726,30 @@
   "source": "turbosquid",
   "at": "2026-11-10"
  },
+ "1183988": {
+  "title": "Lime Collection",
+  "polygons": 5543,
+  "vertices": 5545,
+  "geometry": "polygonal quads/tris",
+  "rigged": "model is not jointed",
+  "animated": "model is not animated",
+  "unwrappedUVs": "Yes, non-overlapping",
+  "textures": null,
+  "textureSizes": [],
+  "dimensions": null,
+  "formats": [
+   "3DS",
+   "Cinema 4D",
+   "FBX",
+   "Maya",
+   "OBJ",
+   "3ds Max + Scanline",
+   "3ds Max + V-Ray"
+  ],
+  "formatCount": 7,
+  "source": "turbosquid",
+  "at": "2026-11-13"
+ },
  "1183993": {
   "title": "Oil Production Equipment Collection",
   "polygons": null,
@@ -29651,6 +29701,30 @@
   "formatCount": 7,
   "source": "turbosquid",
   "at": "2026-11-10"
+ },
+ "1227506": {
+  "title": "Lighters 3D Models Collection",
+  "polygons": null,
+  "vertices": null,
+  "geometry": "polygonal quads/tris",
+  "rigged": "model is not jointed",
+  "animated": "model is not animated",
+  "unwrappedUVs": "Yes, overlapping",
+  "textures": null,
+  "textureSizes": [],
+  "dimensions": null,
+  "formats": [
+   "3DS",
+   "Cinema 4D",
+   "FBX",
+   "Maya",
+   "OBJ",
+   "3ds Max + Scanline",
+   "3ds Max + V-Ray"
+  ],
+  "formatCount": 7,
+  "source": "turbosquid",
+  "at": "2026-11-13"
  },
  "1228528": {
   "title": "Portable Power Banks 3D Models Collection",
@@ -34868,6 +34942,29 @@
   "formatCount": 6,
   "source": "turbosquid",
   "at": "2026-11-11"
+ },
+ "1327294": {
+  "title": "Chicken Evolution 3D Models Collection",
+  "polygons": null,
+  "vertices": null,
+  "geometry": "polygonal quads/tris",
+  "rigged": "model is not jointed",
+  "animated": "model is not animated",
+  "unwrappedUVs": "Yes, non-overlapping",
+  "textures": null,
+  "textureSizes": [],
+  "dimensions": null,
+  "formats": [
+   "3DS",
+   "Cinema 4D",
+   "3ds Max + Scanline",
+   "3ds Max + V-Ray",
+   "Maya",
+   "OBJ"
+  ],
+  "formatCount": 6,
+  "source": "turbosquid",
+  "at": "2026-11-13"
  },
  "1329008": {
   "title": "Blank Jumbotron",
@@ -51562,6 +51659,31 @@
   "source": "turbosquid",
   "at": "2026-11-10"
  },
+ "1595802": {
+  "title": "Lighting Masts Collection",
+  "polygons": null,
+  "vertices": null,
+  "geometry": "polygonal quads/tris",
+  "rigged": "model is not jointed",
+  "animated": "model is not animated",
+  "unwrappedUVs": "Yes, non-overlapping",
+  "textures": null,
+  "textureSizes": [],
+  "dimensions": null,
+  "formats": [
+   "3DS",
+   "Blender",
+   "FBX",
+   "OBJ",
+   "3ds Max + Scanline",
+   "Cinema 4D",
+   "Maya",
+   "3ds Max + V-Ray"
+  ],
+  "formatCount": 8,
+  "source": "turbosquid",
+  "at": "2026-11-13"
+ },
  "1596700": {
   "title": "Pizza Prepearing Collection",
   "polygons": null,
@@ -58844,6 +58966,24 @@
   "source": "turbosquid",
   "at": "2026-11-10"
  },
+ "1765243": {
+  "title": "Light Skin Young Man Basketball Player Rigged for Maya",
+  "polygons": 9576,
+  "vertices": 10160,
+  "geometry": "polygonal quads/tris",
+  "rigged": "model is jointed",
+  "animated": "model is not animated",
+  "unwrappedUVs": "Yes, non-overlapping",
+  "textures": null,
+  "textureSizes": [],
+  "dimensions": null,
+  "formats": [
+   "Maya"
+  ],
+  "formatCount": 1,
+  "source": "turbosquid",
+  "at": "2026-11-13"
+ },
  "1765287": {
   "title": "Young Man Light Skin Street Outfit Rigged for Cinema 4D",
   "polygons": 10331,
@@ -59562,6 +59702,32 @@
   "formatCount": 9,
   "source": "turbosquid",
   "at": "2026-11-11"
+ },
+ "1782116": {
+  "title": "Lighthouses Collection",
+  "polygons": 92103954,
+  "vertices": 103954,
+  "geometry": "polygonal quads/tris",
+  "rigged": "model is not jointed",
+  "animated": "model is not animated",
+  "unwrappedUVs": "Yes, non-overlapping",
+  "textures": null,
+  "textureSizes": [],
+  "dimensions": null,
+  "formats": [
+   "3DS",
+   "FBX",
+   "OBJ",
+   "Maya + Redshift",
+   "3ds Max + Scanline",
+   "Cinema 4D",
+   "Maya",
+   "3ds Max + V-Ray",
+   "Maya + V-Ray"
+  ],
+  "formatCount": 9,
+  "source": "turbosquid",
+  "at": "2026-11-13"
  },
  "1783643": {
   "title": "Vintage Boy with Amusement Park Fun Collection",
@@ -64523,6 +64689,30 @@
   "source": "turbosquid",
   "at": "2026-11-12"
  },
+ "1891832": {
+  "title": "Chicken Egg Incubator",
+  "polygons": 13756,
+  "vertices": 13333,
+  "geometry": "polygonal quads/tris",
+  "rigged": "model is not jointed",
+  "animated": "model is not animated",
+  "unwrappedUVs": "Yes, non-overlapping",
+  "textures": null,
+  "textureSizes": [],
+  "dimensions": null,
+  "formats": [
+   "Cinema 4D + V-Ray",
+   "3ds Max + Corona",
+   "3ds Max + Mental Ray",
+   "3ds Max + Scanline",
+   "3ds Max + V-Ray",
+   "Maya + Redshift",
+   "Maya + V-Ray"
+  ],
+  "formatCount": 7,
+  "source": "turbosquid",
+  "at": "2026-11-13"
+ },
  "1892630": {
   "title": "Dancing Child Girl",
   "polygons": 12935,
@@ -64764,6 +64954,42 @@
   "formatCount": 1,
   "source": "turbosquid",
   "at": "2026-11-10"
+ },
+ "1899879": {
+  "title": "Light Skin Black Workers Rigged Collection for Cinema 4D",
+  "polygons": 46238,
+  "vertices": 45169,
+  "geometry": "polygonal quads/tris",
+  "rigged": "model is jointed",
+  "animated": "model is not animated",
+  "unwrappedUVs": "Yes, non-overlapping",
+  "textures": null,
+  "textureSizes": [],
+  "dimensions": null,
+  "formats": [
+   "Cinema 4D"
+  ],
+  "formatCount": 1,
+  "source": "turbosquid",
+  "at": "2026-11-13"
+ },
+ "1899906": {
+  "title": "Light Skin Teenage Boys  Rigged Collection for Cinema 4D",
+  "polygons": 10148,
+  "vertices": 10984,
+  "geometry": "polygonal quads/tris",
+  "rigged": "model is jointed",
+  "animated": "model is not animated",
+  "unwrappedUVs": "Yes, non-overlapping",
+  "textures": null,
+  "textureSizes": [],
+  "dimensions": null,
+  "formats": [
+   "Cinema 4D"
+  ],
+  "formatCount": 1,
+  "source": "turbosquid",
+  "at": "2026-11-13"
  },
  "1901913": {
   "title": "Safes with Cash Collection",
@@ -71958,6 +72184,33 @@
   "formatCount": 10,
   "source": "turbosquid",
   "at": "2026-11-10"
+ },
+ "1975511": {
+  "title": "Chickens with Wheat Grain Collection",
+  "polygons": 328410,
+  "vertices": 363557,
+  "geometry": "polygonal quads/tris",
+  "rigged": "model is not jointed",
+  "animated": "model is not animated",
+  "unwrappedUVs": "Yes, non-overlapping",
+  "textures": null,
+  "textureSizes": [],
+  "dimensions": null,
+  "formats": [
+   "3DS",
+   "FBX",
+   "OBJ",
+   "Maya + Redshift",
+   "3ds Max + Scanline",
+   "Cinema 4D",
+   "Maya",
+   "Cinema 4D + V-Ray",
+   "3ds Max + V-Ray",
+   "Maya + V-Ray"
+  ],
+  "formatCount": 10,
+  "source": "turbosquid",
+  "at": "2026-11-13"
  },
  "1978368": {
   "title": "Hard Surface Tire Michelin X Tweel Dirty",
@@ -79924,6 +80177,33 @@
   "source": "turbosquid",
   "at": "2026-11-11"
  },
+ "2079757": {
+  "title": "Market Stalls Collection",
+  "polygons": 44824,
+  "vertices": 45275,
+  "geometry": "polygonal quads/tris",
+  "rigged": "model is not jointed",
+  "animated": "model is not animated",
+  "unwrappedUVs": "Yes, non-overlapping",
+  "textures": null,
+  "textureSizes": [],
+  "dimensions": null,
+  "formats": [
+   "3DS",
+   "FBX",
+   "OBJ",
+   "Maya + Redshift",
+   "3ds Max + Scanline",
+   "Cinema 4D",
+   "Maya",
+   "Cinema 4D + V-Ray",
+   "3ds Max + V-Ray",
+   "Maya + V-Ray"
+  ],
+  "formatCount": 10,
+  "source": "turbosquid",
+  "at": "2026-11-13"
+ },
  "2079762": {
   "title": "XRay Freight Scanners Collection",
   "polygons": 268300,
@@ -80802,6 +81082,33 @@
   "source": "turbosquid",
   "at": "2026-11-10"
  },
+ "2093628": {
+  "title": "Chicken Nesting Boxes Collection",
+  "polygons": 158188,
+  "vertices": 132828,
+  "geometry": "polygonal quads/tris",
+  "rigged": "model is not jointed",
+  "animated": "model is not animated",
+  "unwrappedUVs": "Yes, non-overlapping",
+  "textures": null,
+  "textureSizes": [],
+  "dimensions": null,
+  "formats": [
+   "3DS",
+   "FBX",
+   "OBJ",
+   "Maya + Redshift",
+   "3ds Max + Scanline",
+   "Cinema 4D",
+   "Maya",
+   "Cinema 4D + V-Ray",
+   "3ds Max + V-Ray",
+   "Maya + V-Ray"
+  ],
+  "formatCount": 10,
+  "source": "turbosquid",
+  "at": "2026-11-13"
+ },
  "2094450": {
   "title": "Black Girl Child Everyday Style Standing",
   "polygons": 74473,
@@ -81484,6 +81791,33 @@
   "formatCount": 10,
   "source": "turbosquid",
   "at": "2026-11-10"
+ },
+ "2100917": {
+  "title": "Lighting Bags Collection",
+  "polygons": 45820,
+  "vertices": 23232,
+  "geometry": "polygonal quads/tris",
+  "rigged": "model is not jointed",
+  "animated": "model is not animated",
+  "unwrappedUVs": "Yes, non-overlapping",
+  "textures": null,
+  "textureSizes": [],
+  "dimensions": null,
+  "formats": [
+   "3DS",
+   "FBX",
+   "OBJ",
+   "Maya + Redshift",
+   "3ds Max + Scanline",
+   "Cinema 4D",
+   "Maya",
+   "Cinema 4D + V-Ray",
+   "3ds Max + V-Ray",
+   "Maya + V-Ray"
+  ],
+  "formatCount": 10,
+  "source": "turbosquid",
+  "at": "2026-11-13"
  },
  "2100939": {
   "title": "Epson Technologies Collection",
@@ -83802,6 +84136,33 @@
   "formatCount": 10,
   "source": "turbosquid",
   "at": "2026-11-10"
+ },
+ "2123690": {
+  "title": "Child Boy with Play Center Collection",
+  "polygons": 18288,
+  "vertices": 15420,
+  "geometry": "polygonal quads/tris",
+  "rigged": "model is not jointed",
+  "animated": "model is not animated",
+  "unwrappedUVs": "Yes, non-overlapping",
+  "textures": null,
+  "textureSizes": [],
+  "dimensions": null,
+  "formats": [
+   "3DS",
+   "FBX",
+   "OBJ",
+   "Maya + Redshift",
+   "3ds Max + Scanline",
+   "Cinema 4D",
+   "Maya",
+   "Cinema 4D + V-Ray",
+   "3ds Max + V-Ray",
+   "Maya + V-Ray"
+  ],
+  "formatCount": 10,
+  "source": "turbosquid",
+  "at": "2026-11-13"
  },
  "2123692": {
   "title": "Casino Card Game Tables Collection",
@@ -103995,6 +104356,24 @@
   "source": "turbosquid",
   "at": "2026-11-11"
  },
+ "2352623": {
+  "title": "Marble Bronze Lion Cub Sculpture for 3D Print",
+  "polygons": 21172,
+  "vertices": 21291,
+  "geometry": "polygonal quads/tris",
+  "rigged": "model is not jointed",
+  "animated": "model is not animated",
+  "unwrappedUVs": "Mixed",
+  "textures": null,
+  "textureSizes": [],
+  "dimensions": null,
+  "formats": [
+   "STL"
+  ],
+  "formatCount": 1,
+  "source": "turbosquid",
+  "at": "2026-11-13"
+ },
  "2353121": {
   "title": "Chef A-Pose for 3D Print",
   "polygons": 10401,
@@ -104457,6 +104836,28 @@
   "formatCount": 1,
   "source": "turbosquid",
   "at": "2026-11-11"
+ },
+ "2356977": {
+  "title": "Marshall Audio Devices Collection",
+  "polygons": 40095,
+  "vertices": 39314,
+  "geometry": "polygonal quads/tris",
+  "rigged": "model is not jointed",
+  "animated": "model is not animated",
+  "unwrappedUVs": "Yes, non-overlapping",
+  "textures": null,
+  "textureSizes": [],
+  "dimensions": null,
+  "formats": [
+   "Blender",
+   "OBJ",
+   "3DS",
+   "Maya",
+   "FBX"
+  ],
+  "formatCount": 5,
+  "source": "turbosquid",
+  "at": "2026-11-13"
  },
  "2356978": {
   "title": "Golf Trophies Collection",
@@ -107807,6 +108208,37 @@
   "formatCount": 24,
   "source": "turbosquid",
   "at": "2026-11-11"
+ },
+ "2390027": {
+  "title": "Marble Busts of Presidents on Pedestal Collection",
+  "polygons": 8520,
+  "vertices": 8433,
+  "geometry": "polygonal quads/tris",
+  "rigged": "model is not jointed",
+  "animated": "model is not animated",
+  "unwrappedUVs": "Yes, non-overlapping",
+  "textures": null,
+  "textureSizes": [],
+  "dimensions": null,
+  "formats": [
+   "Cinema 4D + Arnold",
+   "Cinema 4D + V-Ray",
+   "3ds Max + Arnold",
+   "3ds Max + Corona",
+   "3ds Max + V-Ray",
+   "Maya + Arnold",
+   "Maya + Redshift",
+   "Maya + V-Ray",
+   "Blender + Cycles",
+   "FBX",
+   "glTF",
+   "Unreal Engine",
+   "Unity",
+   "USDZ"
+  ],
+  "formatCount": 46,
+  "source": "turbosquid",
+  "at": "2026-11-13"
  },
  "2390052": {
   "title": "Chainsaw with Logs Collection",
@@ -113944,6 +114376,40 @@
   "formatCount": 17,
   "source": "turbosquid",
   "at": "2026-11-11"
+ },
+ "2444283": {
+  "title": "Lion King Animals Collection",
+  "polygons": 18580,
+  "vertices": 18152,
+  "geometry": "polygonal quads/tris",
+  "rigged": "model is not jointed",
+  "animated": "model is not animated",
+  "unwrappedUVs": "Yes, non-overlapping",
+  "textures": null,
+  "textureSizes": [],
+  "dimensions": null,
+  "formats": [
+   "Cinema 4D + V-Ray",
+   "3ds Max + Corona",
+   "3ds Max + Mental Ray",
+   "3ds Max + Scanline",
+   "3ds Max + V-Ray",
+   "Maya + Redshift",
+   "Maya + V-Ray",
+   "Cinema 4D + Arnold",
+   "3ds Max + Arnold",
+   "Maya + Arnold",
+   "Blender + Cycles",
+   "FBX",
+   "glTF",
+   "Unreal Engine",
+   "Unity",
+   "3ds Max",
+   "USDZ"
+  ],
+  "formatCount": 38,
+  "source": "turbosquid",
+  "at": "2026-11-13"
  },
  "2444289": {
   "title": "Islamic Prayer Accesories Collection",
@@ -135166,6 +135632,22 @@
   "formatCount": null,
   "source": "turbosquid",
   "at": "2026-11-12"
+ },
+ "2545478": {
+  "title": "Twisting Dust Devil Sand VDB for Blender",
+  "polygons": null,
+  "vertices": null,
+  "geometry": "",
+  "rigged": "model is not jointed",
+  "animated": "model is not animated",
+  "unwrappedUVs": "",
+  "textures": null,
+  "textureSizes": [],
+  "dimensions": null,
+  "formats": [],
+  "formatCount": null,
+  "source": "turbosquid",
+  "at": "2026-11-13"
  },
  "2545481": {
   "title": "Sand Tornado Vortex VDB Animated for Blender",

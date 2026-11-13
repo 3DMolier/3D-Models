@@ -33,6 +33,7 @@ const TOPIC_THEME = {
 };
 
 import { ROOT } from './lib/paths.mjs';
+import { imgAttrs, sponsorLinks } from './lib/thumbs.mjs';
 const DATA = path.join(ROOT, 'data');
 const OUT = path.join(ROOT, 'collections');
 const MODELS = path.join(ROOT, 'models');
@@ -204,6 +205,10 @@ const STYLE = `<style>
 </style>`;
 
 function shell(title, desc, canonical, body, extraHead = '') {
+  // 13.11.2026: партнёрские ссылки TurboSquid - rel="sponsored noopener" (lib/thumbs.mjs)
+  return sponsorLinks(shell0(title, desc, canonical, body, extraHead));
+}
+function shell0(title, desc, canonical, body, extraHead = '') {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -221,7 +226,7 @@ function shell(title, desc, canonical, body, extraHead = '') {
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/css/critical-fonts.css?v=${ASSET_V}">
 <link rel="stylesheet" href="/assets/css/styles.min.css?v=${ASSET_V}">
-<link rel="stylesheet" href="/assets/css/fonts.css?v=${ASSET_V}">
+<link rel="stylesheet" href="/assets/css/fonts.css?v=${ASSET_V}" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/css/fonts.css?v=${ASSET_V}"></noscript>
 ${STYLE}
 ${extraHead}
 </head>
@@ -242,7 +247,7 @@ ${FOOTER}
 
 function card(m, themeName) {
   return `      <a href="/models/${m.slug}/" class="model-card card-glow">
-        <div class="img-wrap mc-img"><img src="${m.cover}" alt="${esc(m.name)} 3D model collection preview" width="800" height="450" decoding="async" loading="lazy" data-placeholder="${PLACEHOLDER}" onerror="handleImageError(this)"><div class="img-placeholder"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">${esc(themeName)}</span></div></div>
+        <div class="img-wrap mc-img"><img ${imgAttrs(m.cover, { fn: 'handleImageError' })} alt="${esc(m.name)} 3D model collection preview" width="800" height="450" decoding="async" loading="lazy" data-placeholder="${PLACEHOLDER}"><div class="img-placeholder"><span class="mc-ph-icon">&#128247;</span><span class="mc-ph-label">${esc(themeName)}</span></div></div>
         <div class="mc-body">
           <div class="mc-meta"><h3 class="mc-title">${esc(m.name)}</h3></div>
           <div class="mc-foot"><span class="chip mc-chip chip-theme">${esc(themeName)}</span><span class="mc-price">$${m.price}</span></div>
@@ -386,7 +391,7 @@ const themeCards = THEMES.map(([slug, name, icon]) => {
   const list = byTheme.get(slug) || [];
   if (!list.length) return '';
   return `      <a href="/collections/${slug}/" class="coll-theme-card">
-        <div class="coll-theme-cover"><img src="${coverOf.get(slug).cover}" alt="${esc(name)}" width="800" height="450" loading="lazy" decoding="async"></div>
+        <div class="coll-theme-cover"><img ${imgAttrs(coverOf.get(slug).cover, { fn: '' })} alt="${esc(name)}" width="800" height="450" loading="lazy" decoding="async"></div>
         <div class="coll-theme-body"><div class="coll-theme-name">${icon} ${esc(name)}</div><div class="coll-theme-count">${list.length} collections</div></div>
       </a>`;
 }).filter(Boolean).join('\n');
