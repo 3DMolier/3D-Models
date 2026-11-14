@@ -7,7 +7,7 @@
  "animals-creatures": {
   "polyMed": 19486,
   "priceMed": 129,
-  "n": 1730
+  "n": 1731
  },
  "architecture-landmarks": {
   "polyMed": 52624,
@@ -15,9 +15,9 @@
   "n": 3088
  },
  "characters-people": {
-  "polyMed": 45804,
+  "polyMed": 45438,
   "priceMed": 149,
-  "n": 1586
+  "n": 1587
  },
  "clothing-accessories": {
   "polyMed": 13573,
@@ -25,9 +25,9 @@
   "n": 2141
  },
  "collections-sets": {
-  "polyMed": 27900,
+  "polyMed": 27930,
   "priceMed": 69,
-  "n": 2774
+  "n": 2786
  },
  "containers-storage": {
   "polyMed": 13856,
@@ -65,9 +65,9 @@
   "n": 228
  },
  "medical-3d-models": {
-  "polyMed": 16794,
+  "polyMed": 16740,
   "priceMed": 39,
-  "n": 1752
+  "n": 1753
  },
  "military-vehicles": {
   "polyMed": 622930,
@@ -80,9 +80,9 @@
   "n": 292
  },
  "nature-plants": {
-  "polyMed": 36624,
+  "polyMed": 36822,
   "priceMed": 34,
-  "n": 1101
+  "n": 1102
  },
  "other": {
   "polyMed": 7792,
