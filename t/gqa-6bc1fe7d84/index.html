@@ -185,7 +185,7 @@ function bar(){var h="";
 if(mod)h+='<span>Вы вошли как модератор.</span>'+(owner?'':'<button id="out">Выйти</button>');
 if(mod){var po='<option value="">Предпросмотр: текущий день</option><option value="0">Формирование эскадрильи</option>';for(var k=1;k<=10;k++)po+='<option value="'+k+'">День '+k+'</option>';h+='<select id="pv" aria-label="Предпросмотр дня">'+po+'</select>'}
 else h+='<input id="pin" type="password" inputmode="numeric" autocomplete="off" placeholder="PIN модератора" aria-label="PIN модератора"><button id="in">Войти</button>';
-if(owner)h+='<input id="newPin" type="password" inputmode="numeric" autocomplete="off" placeholder="Новый PIN, 6+ цифр" aria-label="Новый PIN"><button id="setPin">Сохранить PIN</button><button id="startG">Начать формирование эскадрилий (сегодня)</button>';
+if(owner)h+='<input id="newPin" type="password" inputmode="numeric" autocomplete="off" placeholder="Новый PIN, 6+ цифр" aria-label="Новый PIN"><button id="setPin">Сохранить PIN</button><button id="startG">Начать формирование эскадрилий (сегодня)</button><button id="startD1">Начать сразу с Дня 1 (сегодня)</button>';
 $("modBar").innerHTML=h;if($("pv"))$("pv").value=PV===null?"":String(PV)}
 var LN={},PT={},PS=false,PV=null;
 function render(){
@@ -263,6 +263,7 @@ hash(p).then(function(h){if(h===cfg.pin){mod=true;banner("");bar();render()}else
 else if(b.id=="out"){mod=false;bar();render()}
 else if(b.id=="setPin"){var n=$("newPin").value;if(!/^\d{6,}$/.test(n)){banner("PIN: только цифры, минимум 6.");return}
 hash(n).then(function(h){return db.doc("config/pin").set({hash:h})}).then(function(){banner("PIN сохранён.");$("newPin").value=""},function(x){banner("Не удалось сохранить PIN: "+x.message)})}
+else if(b.id=="startD1"){var c=gdate(Date.now())-864e5;while(new Date(c).getUTCDay()%6==0)c-=864e5;db.doc("config/game").set({start:new Date(c).toISOString().slice(0,10)}).then(function(){banner("")},function(x){banner(x.message)})}
 else if(b.id=="startG"){db.doc("config/game").set({start:new Date(gdate(Date.now())).toISOString().slice(0,10)}).then(function(){banner("")},function(x){banner(x.message)})}};
 function init(){
 var im=document.querySelector(".shipimg"),wb=document.createElement("div");wb.id="hitbox";wb.className="hitbox";im.parentNode.insertBefore(wb,im);var sb=document.createElement("div");sb.id="shipbox";sb.className="shipbox";wb.appendChild(sb);sb.appendChild(im);
