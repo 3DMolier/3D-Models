@@ -6,6 +6,9 @@
 // c - это cert, а не category; на этом легко решить, что категория уже есть.
 var FC={i:[],n:[],p:[],s:[],c:[],g:[],ic:[],u:[]}, IMGS={}, fcReady=false, CATS=[];
 var searchQ='', selPrice=null, selCat=null, sortMode='sales', onlyRigged=false;
+// simRank - выдача поиска по картинке (17.11.2026): номер модели -> место по сходству. Пока он задан,
+// каталог показывает только похожие модели в порядке сходства; категория, цена и слово сужают их.
+var simRank=null;
 // Признак «с оснасткой» берём из названия модели: слово Rigged стоит в нём у
 // 3 705 карточек, тогда как отдельное поле из выгрузки студии есть лишь у
 // 2 154 и почти целиком входит в первое. Значит новых данных возить не нужно -
@@ -162,7 +165,7 @@ function onFirstChunk() {
  * делает ensureRemainingChunks в обработчиках фильтров.
  */
 function plainOrder(){
-  return !searchQ && selCat===null && selPrice===null && !onlyRigged && sortMode==='sales';
+  return !searchQ && selCat===null && selPrice===null && !onlyRigged && sortMode==='sales' && !simRank;
 }
 function totalPages(){
   var n = plainOrder() ? (totalModels || filtered.length) : filtered.length;
@@ -307,6 +310,7 @@ function applyFilters(keepPage){
   var catIdx = selCat===null ? -1 : CATS.indexOf(selCat);
   filtered=[];
   for(var i=0;i<FC.n.length;i++){
+    if(simRank&&!(FC.i[i] in simRank))continue;
     if(searchQ&&FC.n[i].toLowerCase().indexOf(searchQ)===-1)continue;
     if(catIdx>=0&&FC.g[i]!==catIdx)continue;
     if(onlyRigged&&!RIGGED.test(FC.n[i]))continue;
@@ -322,6 +326,7 @@ function applyFilters(keepPage){
     filtered.push(i);
   }
   filtered.sort(function(a,b){
+    if(simRank)return simRank[FC.i[a]]-simRank[FC.i[b]];
     if(sortMode==='sales')return(FC.s[b]||0)-(FC.s[a]||0);
     if(sortMode==='price_asc')return FC.p[a]-FC.p[b];
     if(sortMode==='price_desc')return FC.p[b]-FC.p[a];
@@ -375,7 +380,7 @@ function renderGrid(){
      * разметки читали противоречие. Теперь блока в HTML нет вовсе: он
      * создаётся здесь и только по делу.
      */
-    var searched=!!searchQ||selPrice!==null||selCat!==null||onlyRigged;
+    var searched=!!searchQ||selPrice!==null||selCat!==null||onlyRigged||!!simRank;
     if(searched){ var e=emptyBlock(); if(e)e.removeAttribute('hidden'); }
     else { var e0=document.getElementById('empty'); if(e0)e0.setAttribute('hidden',''); }
     renderPager(0);
@@ -546,7 +551,7 @@ function updateStatus(){
    * и вовсе «100 of 54527», где сотня была не числом найденного, а размером
    * первой выдачи. Поэтому без фильтров пишем просто «54,527 models».
    */
-  var filtering = !!searchQ || selCat !== null || selPrice !== null || onlyRigged;
+  var filtering = !!searchQ || selCat !== null || selPrice !== null || onlyRigged || !!simRank;
   if(resultCount){
     resultCount.innerHTML = filtering
       ? '<strong>'+filtered.length.toLocaleString('en-US')+'</strong> of '+total.toLocaleString('en-US')+' models'
@@ -743,6 +748,65 @@ function emptyBlock() {
     });
     btn.setAttribute('aria-expanded', open ? 'false' : 'true');
     btn.innerHTML = open ? 'View all 26 &#8595;' : 'Show fewer &#8593;';
+  });
+})();
+
+/*
+ * ПОИСК ПО КАРТИНКЕ (17.11.2026, просьба основателя). Кнопка с фотоаппаратом в поле поиска: посетитель
+ * выбирает, перетаскивает или вставляет (Ctrl+V) снимок, и каталог показывает похожие модели.
+ * Всё считается в браузере: /assets/js/image-search.js грузится только по первому нажатию, модель
+ * MobileCLIP (12 МБ) и векторы каталога (/data/img-search/) - тоже. Здесь только кнопка и выдача.
+ */
+window.FC_API={
+  ready:function(){return fcReady;},
+  loadAll:function(){ensureRemainingChunks();},
+  setSimilar:function(ids){
+    if(ids&&ids.length){simRank={};for(var k=0;k<ids.length;k++)simRank[ids[k]]=k;}
+    else simRank=null;
+    if(simRank)ensureRemainingChunks();
+    applyFilters();
+    if(simRank&&grid)grid.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+};
+(function(){
+  var sw=qEl&&qEl.parentNode;
+  if(!sw||!window.fetch||!window.WebAssembly)return;
+  var btn=document.createElement('button');
+  btn.type='button';btn.id='img-search-btn';btn.className='fc-imgbtn';
+  btn.setAttribute('aria-label','Search by image');btn.title='Search by image';
+  btn.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>';
+  sw.appendChild(btn);
+  var st=document.createElement('style');
+  st.textContent='.sw{position:relative}.sw input#q{padding-right:48px}.fc-imgbtn{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:38px;height:38px;border:0;border-radius:8px;background:transparent;color:inherit;opacity:.7;cursor:pointer;display:flex;align-items:center;justify-content:center}.fc-imgbtn:hover,.fc-imgbtn:focus-visible{opacity:1;background:rgba(127,127,127,.15)}';
+  document.head.appendChild(st);
+  var loading=null;
+  function load(){
+    if(window.ImageSearch)return Promise.resolve(window.ImageSearch);
+    if(!loading)loading=new Promise(function(ok,no){
+      var s=document.createElement('script');s.src='/assets/js/image-search.min.js?v=1';
+      s.onload=function(){ok(window.ImageSearch);};
+      s.onerror=function(){var t=document.createElement('script');t.src='/assets/js/image-search.js?v=1';t.onload=function(){ok(window.ImageSearch);};t.onerror=no;document.head.appendChild(t);};
+      document.head.appendChild(s);
+    });
+    return loading;
+  }
+  function run(file){
+    if(!file||String(file.type).indexOf('image/')!==0)return;
+    ensureRemainingChunks();
+    load().then(function(IS){IS.search(file);});
+    if(typeof gtag==='function')gtag('event','image_search',{page_type:'catalog'});
+  }
+  var inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.hidden=true;
+  inp.addEventListener('change',function(){run(inp.files&&inp.files[0]);inp.value='';});
+  sw.appendChild(inp);
+  btn.addEventListener('click',function(){load();inp.click();});
+  // Перетащить снимок на поле поиска или вставить из буфера на странице каталога
+  sw.addEventListener('dragover',function(e){if(e.dataTransfer&&Array.prototype.indexOf.call(e.dataTransfer.types,'Files')>=0){e.preventDefault();sw.classList.add('drag');}});
+  sw.addEventListener('dragleave',function(){sw.classList.remove('drag');});
+  sw.addEventListener('drop',function(e){sw.classList.remove('drag');var f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0];if(f){e.preventDefault();run(f);}});
+  document.addEventListener('paste',function(e){
+    var it=e.clipboardData&&e.clipboardData.items;if(!it)return;
+    for(var k=0;k<it.length;k++)if(it[k].kind==='file'&&String(it[k].type).indexOf('image/')===0){e.preventDefault();run(it[k].getAsFile());return;}
   });
 })();
 
