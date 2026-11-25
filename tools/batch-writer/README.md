@@ -89,7 +89,7 @@ node tools/batch-writer/submit.mjs --count 5 --dry
 переменная с ключом будет не видна):
 
 ```
-schtasks /Create /TN "3DMolier Night Descriptions" /SC DAILY /ST 01:00 /RL HIGHEST /F /TR "cmd /c cd /d C:\3dmolier\Clode_and_Gpt_Website && node tools\batch-writer\run-night.mjs --count 2000 --model sonnet >> tools\batch-writer\night-log.txt 2>&1"
+schtasks /Create /TN "3DMolier Night Descriptions" /SC DAILY /ST 01:00 /RL HIGHEST /F /TR "cmd /c cd /d D:\3dmolier\Clode_and_Gpt_Website && node tools\batch-writer\run-night.mjs --count 2000 --model sonnet >> tools\batch-writer\night-log.txt 2>&1"
 ```
 
 01:00 выбрано сознательно: партия считается часами, к публикации в 11:30 всё готово,

@@ -103,6 +103,23 @@ run('link-channel-videos.mjs');
  * медианой, поэтому шаг не критический.
  */
 run('build-category-stats.mjs');
+/*
+ * Характеристики из кабинета TurboSquid для карточек, которых нет в выгрузке студии (фаза 1 плана
+ * 2026-11-09-card-value-after-quality-drop, 10.11.2026): до 2 000 новых карточек в день, чтобы вместе с
+ * ночными текстами остаться ниже потолка 5 000. С 11.11 - 10.11 публикация несла только ночные тексты
+ * (решение основателя). Когда всё перенесено, шаг ничего не меняет.
+ */
+/*
+ * Галереи из превью TurboSquid (фаза 2, решение основателя 10.11.2026): кадры студии не отдаются. По 2 500 карточек
+ * в день в том же порядке, что и характеристики (сначала карточки без данных студии), - первые дни это одни и те же
+ * карточки, и вместе с ночными текстами выходит ниже потолка 5 000. Готовит галереи gallery_classify.py в фоне.
+ */
+if (new Date().toISOString().slice(0, 10) >= '2026-11-11') {
+  if (fs.existsSync('D:/Clode_Work_Folder/tools/turbosquid/ts-specs.json'))
+    say(run('import-ts-specs.mjs', ['--limit', '2500']).trim().split('\n')[0]);
+  if (fs.existsSync('D:/Clode_Work_Folder/tools/turbosquid/ts-gallery.jsonl'))
+    say(run('release-ts-gallery.mjs', ['--limit', '2500']).trim().split('\n')[0]);
+}
 const recOut = run('build-model-records.mjs');
 const vid = (recOut.match(/карточек с роликом: ([\d\s,]+)/) || [])[1];
 if (vid) say('карточек с роликом: ' + vid.trim());
@@ -111,6 +128,28 @@ const noCard = (recOut.match(/карточки ещё нет: (\d+)/) || [])[1];
 if (noCard) say('ежедневных роликов без карточки: ' + noCard);
 const pagesOut = run('apply-rebuild.mjs');
 say((pagesOut.match(/переписано карточек: [\d\s,]+/) || ['страницы пересобраны'])[0]);
+/*
+ * Подписи версий из данных (фаза 5, решение основателя 10.11.2026: «выпускай по 2000 в день»). Они меняют ~17 тыс.
+ * карточек, поэтому идут ТОЛЬКО в свободный остаток до потолка: сначала собраны характеристики, галереи и ночные
+ * тексты, затем считаем изменённые карточки, выпускаем min(2000, остаток - 300 запаса) и пересобираем страницы ещё
+ * раз. Подписи никогда не остановят публикацию остального.
+ */
+{
+  /*
+   * Счётчик Ahrefs ставится в конце, и до него ВСЕ 38 тыс. пересобранных карточек отличаются от опубликованных:
+   * 10.11.2026 пробный прогон насчитал 38 077 и не выпустил ничего. Поэтому ставим его здесь же (шаг вставляет
+   * только туда, где счётчика нет, повтор в конце ничего не меняет) и только потом считаем.
+   */
+  run('inject-ahrefs.mjs');
+  const cardsNow = git('status', '--porcelain').split('\n').filter(l => l.includes(' models/')).length;
+  const room = Math.min(2000, MAX_CHANGED - cardsNow - 300);
+  if (room >= 100) {
+    // пробный прогон - пробный: список выпущенных не пополняется (см. память «Пробный запуск должен быть пробным»)
+    say(run('release-version-facts.mjs', ['--limit', String(room), ...(DRY ? ['--dry'] : [])]).trim().split('\n')[0]
+      + ' (изменено карточек до выпуска: ' + cardsNow + ')');
+    if (!DRY) { run('apply-rebuild.mjs'); run('inject-ahrefs.mjs'); }
+  } else say('подписи версий: сегодня места нет (изменено карточек ' + cardsNow + ')');
+}
 
 run('rebuild-search-index.mjs');
 run('add-new-to-catalog.mjs');
@@ -118,6 +157,10 @@ run('add-new-to-catalog.mjs');
 // показывает вчерашние названия склеенных карточек: на плитке одно, на
 // странице другое (5 699 штук на 16.09.2026).
 run('sync-catalog-names.mjs');
+// Продажи - не в открытые файлы (основатель 09.11.2026): колонка s в fc-chunk
+// становится баллом популярности, sales из catalog.json убирается. После всех,
+// кто пишет fc-chunk, и до тех, кто по нему сортирует.
+say(run('hide-public-sales.mjs').trim().split('\n')[0]);
 run('build-category-hubs.mjs');
 run('build-categories-hub.mjs');
 run('build-subcategories.mjs');
@@ -125,6 +168,9 @@ run('build-browse-index.mjs');
 // Подборки собираются здесь же: их плитки должны вести на живые карточки, а
 // лишние страницы пагинации - сворачиваться в перенаправления ДО сайтмапов.
 run('build-collections.mjs');
+// Свои WebP 600 px для витрин (13.11.2026, lib/thumbs.mjs): кадры TurboSquid, появившиеся на главной, в каталоге и
+// на первых страницах разделов. Сегодня новые идут через прокси wsrv.nl, со следующей сборки - своим файлом.
+say(run('build-showcase-thumbs.mjs').trim().split('\n').pop());
 run('sync-counters.mjs');
 /*
  * Приоритетная карта идёт ДО общих: build-model-sitemaps читает её список и не
@@ -142,8 +188,8 @@ run('redirect-empty-pagination.mjs');
  * недоступен, остаётся вчерашняя страница, а сайт публикуется как обычно.
  */
 try {
-  execFileSync(node, ['C:/Clode_Work_Folder/tools/meta/ig-page-daily.js'],
-    { cwd: 'C:/Clode_Work_Folder/tools/meta', encoding: 'utf8', maxBuffer: 1 << 26, timeout: 15 * 60 * 1000 });
+  execFileSync(node, ['D:/Clode_Work_Folder/tools/meta/ig-page-daily.js'],
+    { cwd: 'D:/Clode_Work_Folder/tools/meta', encoding: 'utf8', maxBuffer: 1 << 26, timeout: 15 * 60 * 1000 });
   say('страница Instagram пересобрана');
 } catch (e) {
   // причина - из вывода самого скрипта, а не «Command failed» (29.10.2026 по нему ничего не понять)
@@ -157,12 +203,15 @@ say('списки, счётчики и сайтмапы пересобраны')
 
 // ── 2. проверки ─────────────────────────────────────────────────────────────
 const vd = run('validate-data.mjs');
-if (!/ВСЕ 17 ПРОВЕРОК ПРОЙДЕНЫ/.test(vd)) {
+// Число проверок не зашиваем: 30.10.2026 добавили 18-ю, а здесь ждали «ВСЕ 17» -
+// всё зелёное, а публикация остановлена. Признак успеха - сама фраза и код 0.
+const allOk = vd.match(/ВСЕ (\d+) ПРОВЕРОК ПРОЙДЕНЫ/);
+if (!allOk) {
   const bad = (vd.match(/\n\s{2}\[\d+\][^\n]*/g) || []).slice(-6).join('\n');
   say('validate-data НЕ ПРОЙДЕН:\n' + bad);
   finish(1, 'ОСТАНОВЛЕНО: проверки не прошли, сайт не публикуется.');
 }
-say('validate-data: 17 из 17');
+say('validate-data: ' + allOk[1] + ' из ' + allOk[1]);
 
 const audit = run('audit-site.mjs');
 if (!/Audit PASSED/.test(audit)) {
@@ -212,15 +261,36 @@ const date = new Date().toISOString().slice(0, 10);
 const msg = 'content: ежедневное обновление карточек ' + date + '\n\n'
   + 'Ролики канала, дописанные описания и всё, что изменилось в данных.\n'
   + 'Файлов: ' + staged + ', из них карточек: ' + models + '.\n\n'
-  + 'Проверки: validate-data 18 из 18, audit-site 0 ошибок,\n'
+  + 'Проверки: validate-data все проверки, audit-site 0 ошибок,\n'
   + 'check-internal-links 0 адресов в никуда.\n\n'
   + 'Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>\n';
 git('commit', '-q', '-m', msg);
 const head = git('rev-parse', 'HEAD').trim();
 say('коммит: ' + head.slice(0, 12) + ', файлов ' + staged);
 
+/*
+ * После пуша с правкой assets/js или assets/css GitHub Action пересобирает .min-файлы и кладёт
+ * свой коммит «chore: auto-minify CSS and JS» прямо в main. На следующий день наш пуш тогда
+ * отвергается: ветка на GitHub впереди. Повторить сборку у себя нельзя - у Action свежий terser
+ * (5.51.2 против 5.48.0 на 09.11.2026), вывод другой. Поэтому подтягиваем такие коммиты слиянием,
+ * но только если в них одни .min-файлы от бота. Что-то другое - останавливаемся и зовём человека.
+ */
+git('fetch', '-q', 'origin', 'main');
+const ahead = git('rev-list', 'HEAD..origin/main').split('\n').filter(Boolean);
+if (ahead.length) {
+  const files = git('diff', '--name-only', 'HEAD...origin/main').split('\n').filter(Boolean);
+  const bots = git('log', '--format=%an', 'HEAD..origin/main').split('\n').filter(Boolean);
+  const onlyMin = files.every(f => /^assets\/(js|css)\/[^/]+\.min\.(js|css)$/.test(f));
+  if (!onlyMin || !bots.every(a => a === 'github-actions[bot]')) {
+    finish(1, 'ОСТАНОВЛЕНО: на GitHub ' + ahead.length + ' коммит(ов), которых нет здесь, и это не сборка .min. Нужен человек.');
+  }
+  git('merge', '-q', '--no-edit', '-m', 'merge: сборка .min с GitHub (auto-minify)', 'origin/main');
+  say('подтянуто с GitHub: ' + ahead.length + ' коммит(ов) сборки .min (' + files.join(', ') + ')');
+}
+const pushed = git('rev-parse', 'HEAD').trim();
+
 git('push', 'origin', 'HEAD:main');
 const remote = git('ls-remote', 'origin', 'main').split(/\s/)[0];
-if (remote !== head) finish(1, 'ОСТАНОВЛЕНО: push прошёл, но на GitHub другой коммит. Нужен человек.');
+if (remote !== pushed) finish(1, 'ОСТАНОВЛЕНО: push прошёл, но на GitHub другой коммит. Нужен человек.');
 say('опубликовано на GitHub');
 finish(0, 'ГОТОВО: сайт обновлён и опубликован.');

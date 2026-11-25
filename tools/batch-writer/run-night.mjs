@@ -25,7 +25,7 @@ import { execFileSync } from 'node:child_process';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\//, ''));
 const ROOT = path.resolve(HERE, '..', '..');
-const NOTIFY = 'D:/Clode_Work_Folder/tools/notify/telegram-send.js';
+const NOTIFY = 'D:/Clode_Work_Folder/tools/notify/telegram-send.js';   // 12.11.2026: D: отваливается, tools лежит на C
 const LOG = path.join(HERE, 'night-log.txt');
 
 const arg = n => { const i = process.argv.indexOf(n); return i > 0 ? process.argv[i + 1] : null; };
